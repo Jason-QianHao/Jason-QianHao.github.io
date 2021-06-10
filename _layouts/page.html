@@ -1,0 +1,36 @@
+---
+layout: default
+---
+{% for node in page.jekyll-theme-WuK.page.prepend %}
+{{ node }}
+{% endfor %}
+{% if page.jekyll-theme-WuK.page.masthead.enable %}
+<div class="masthead">
+  <div class="container">
+    <h3 class="masthead-title">
+      <a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
+      <small>{{ site.tagline }}</small>
+    </h3>
+  </div>
+</div>
+{% endif %}
+<div class="container content">
+  <div class="page">
+    {% if page.jekyll-theme-WuK.page.title.enable %}
+    <h1 class="page-title">{{ page.title }}</h1>
+    {% endif %}
+    {{ content }}
+  </div>
+</div>
+{% if page.jekyll-theme-WuK.page.katex.enable %}
+{{ page.jekyll-theme-WuK.page.katex.append }}
+{% endif %}
+{% if page.jekyll-theme-WuK.page.mermaid.enable %}
+{{ page.jekyll-theme-WuK.page.mermaid.append }}
+{% endif %}
+{% if page.jekyll-theme-WuK.page.prism.enable %}
+{{ page.jekyll-theme-WuK.page.prism.append }}
+{% endif %}
+{% for node in page.jekyll-theme-WuK.page.append %}
+{{ node }}
+{% endfor %}
