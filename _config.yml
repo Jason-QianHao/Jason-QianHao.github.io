@@ -4,15 +4,6 @@ description: | # 头像背后的信息（html格式），<br/>代表换行
   <a href="https://github.com/Jason-QianHao">
     <i class="fab fa-github"></i>
   </a>
-  <iframe
-    src="https://music.163.com/outchain/player?type=0&id=155059595&auto=0&height=32"
-    width=100%
-    height=52
-    frameborder="no"
-    border="0"
-    marginwidth="0"
-    marginheight="0"
-  ></iframe>
 url: https://Jason-QianHao.github.io # 你的域名，例如 https://wu-kan.github.io
 baseurl: "" # 假如你的博客是建在某个目录下的，请在这里加上目录名，并且下面配置的所有链接里的`/assets`前也要加，即`/your_baseurl/assets`。这一项结尾不要有'/'。
 
@@ -219,7 +210,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
       disable: false # 是否不显示sidebar
       avatar: # 侧边栏显示的头像
         enable: true
-        img: https://gravatar.loli.net/avatar/289efba375d63424de3c49569c446744?s=320 # 头像的地址
+        img: /assets/image/dilb.jpeg # 头像的地址
       nav: # 导航部分的内容，你也可以自己增加文字、图标（来自fontawesome）和对应的链接
         - title: '<i class="fas fa-home fa-fw"></i> 首页'
           href: /
@@ -585,7 +576,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
           var alipay = "https://qr.alipay.com/fkx02750b5kbplxvudqrx16";
           var paypal = "https://paypal.me/wukan0621";
           var myname = "WuK";
-          var profile = "https://gravatar.loli.net/avatar/289efba375d63424de3c49569c446744?s=320";
+          var profile = "/assets/image/dilb.jpeg";
           var multilingual = true;
           var myname_hans = "吴坎";
           var myname_hant = "吴坎";
