@@ -6,8 +6,8 @@ signoff:          "Jason" # Your name
 google_analytics: UA-101222464-1
 share:            true 
 # 分页
-paginate: 15
-paginate_path: "Jason-QianHao.github.io/page:num"
+paginate: 1
+paginate_path: "page:num"
 gems: [jekyll-paginate]
 links:
   - name:         首页
@@ -23,9 +23,6 @@ links:
     url:          /tags
     external:     false
 # ------------ CONFIGURABLE END ------------
-
-#permalink:        /:categories/:title.html
-
 defaults:
   - values:
       layout: "default"
