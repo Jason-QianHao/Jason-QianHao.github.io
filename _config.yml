@@ -46,7 +46,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
         <link
           rel="shortcut
           icon"
-          href="https://gravatar.loli.net/avatar/289efba375d63424de3c49569c446744?s=32"
+          href="/assets/image/dilb.jpeg"
         />
       - | # 来自lanyon的页面样式，不要改
         <link
