@@ -1,0 +1,2222 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-10T23:01:20+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">小小千千 | GitHub blog</title><subtitle>一枚顽强的小天蝎程序员&lt;br/&gt;
+张杰&lt;br/&gt;
+林俊杰&lt;br/&gt;
+&lt;a href=&quot;https://github.com/Jason-QianHao&quot;&gt;
+  &lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;a href=&quot;https://www.jianshu.com/u/1d46c8671406&quot;&gt;
+  &lt;i class=&quot;fas fa-smile&quot;&gt;&lt;/i&gt;
+&lt;/a&gt;
+&lt;iframe
+  src=&quot;https://api.mlwei.com/music/play/?id=002qtwZJ32UUxO&amp;type=song&amp;height=32&quot;
+  width=100%
+  height=52
+  frameborder=&quot;no&quot;
+  border=&quot;0&quot;
+  marginwidth=&quot;0&quot;
+  marginheight=&quot;0&quot;
+&gt;&lt;/iframe&gt;
+</subtitle><entry><title type="html">SQL语句与MySQL基础原理</title><link href="http://localhost:4000/_posts/2021-06-09-MySQL/" rel="alternate" type="text/html" title="SQL语句与MySQL基础原理" /><published>2021-06-09T00:00:00+08:00</published><updated>2021-06-09T00:00:00+08:00</updated><id>http://localhost:4000/_posts/MySQL</id><content type="html" xml:base="http://localhost:4000/_posts/2021-06-09-MySQL/">&lt;blockquote&gt;
+  &lt;p&gt;目录
+ 1 MySql基础知识&lt;br /&gt;
+ 2 MySql逻辑架构&lt;br /&gt;
+ 3 并发控制&lt;br /&gt;
+ 4 事务&lt;br /&gt;
+ 5 MVCC多版本并发控制&lt;br /&gt;
+ 6 存储引擎&lt;br /&gt;
+ 7 索引&lt;br /&gt;
+ 8 MySql优化&lt;br /&gt;
+ 9 其他知识点&lt;br /&gt;
+ 10 常见问题总结&lt;/p&gt;
+
+  &lt;p&gt;参考资料
+ · 《高性能MySql》&lt;br /&gt;
+ · 《尚硅谷MySql》&lt;br /&gt;
+ ·  JavaG&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;mysql基础知识&quot;&gt;MySql基础知识&lt;/h1&gt;
+
+&lt;h2 id=&quot;数据库的概念&quot;&gt;数据库的概念&lt;/h2&gt;
+
+&lt;p&gt;（1）DB&lt;/p&gt;
+
+&lt;p&gt;数据库（database）：存储数据的“仓库”。它保存了一系列有组织的数据。&lt;/p&gt;
+
+&lt;p&gt;（2）DBMS&lt;/p&gt;
+
+&lt;p&gt;数据库管理系统（Database Management System）。数据库是通过DBMS创建和操作的容器&lt;/p&gt;
+
+&lt;p&gt;（3）SQL&lt;/p&gt;
+
+&lt;p&gt;结构化查询语言（Structure Query Language）：专门用来与数据库通信的语言&lt;/p&gt;
+
+&lt;h2 id=&quot;sql语言分类&quot;&gt;SQL语言分类&lt;/h2&gt;
+
+&lt;h3 id=&quot;dmldata-manipulation-language&quot;&gt;DML（Data Manipulation Language)&lt;/h3&gt;
+
+&lt;p&gt;数据操纵语句，用于添加、删除、修改、查询数据库记录，并检查数据完整性&lt;/p&gt;
+
+&lt;p&gt;（1）INSERT：添加数据到数据库中&lt;/p&gt;
+
+&lt;p&gt;（2）UPDATE：修改数据库中的数据&lt;/p&gt;
+
+&lt;p&gt;（3）DELETE：删除数据库中的数据&lt;/p&gt;
+
+&lt;p&gt;（4）SELECT：选择（查询）数据&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f12c987af06af138.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-981fae77f813c042.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-32226c6cb97d8732.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-12bf77840221f182.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;ddldata-definition-language&quot;&gt;DDL（Data Definition Language)&lt;/h3&gt;
+
+&lt;p&gt;数据定义语句，用于库和表的创建、修改、删除。&lt;/p&gt;
+
+&lt;p&gt;（1）CREATE TABLE：创建数据库表&lt;/p&gt;
+
+&lt;p&gt;（2）ALTER TABLE：更改表结构、添加、删除、修改列长度&lt;/p&gt;
+
+&lt;p&gt;（3）DROP TABLE：删除表&lt;/p&gt;
+
+&lt;p&gt;（4）CREATE INDEX：在表上建立索引&lt;/p&gt;
+
+&lt;p&gt;（5）DROP INDEX：删除索引&lt;/p&gt;
+
+&lt;h3 id=&quot;dcldata-control-language&quot;&gt;DCL（Data Control Language)&lt;/h3&gt;
+
+&lt;p&gt;数据控制语句，用于定义用户的访问权限和安全级别。&lt;/p&gt;
+
+&lt;p&gt;（1）GRANT：授予访问权限&lt;/p&gt;
+
+&lt;p&gt;（2）REVOKE：撤销访问权限&lt;/p&gt;
+
+&lt;p&gt;（3）COMMIT：提交事务处理&lt;/p&gt;
+
+&lt;p&gt;（4）ROLLBACK：事务处理回退&lt;/p&gt;
+
+&lt;p&gt;（5）SAVEPOINT：设置保存点&lt;/p&gt;
+
+&lt;p&gt;（6）LOCK：对数据库的特定部分进行锁定&lt;/p&gt;
+
+&lt;h2 id=&quot;sql语言规范&quot;&gt;SQL语言规范&lt;/h2&gt;
+
+&lt;p&gt;（1）不区分大小写&lt;/p&gt;
+
+&lt;p&gt;（2）每句话用;或\g结尾&lt;/p&gt;
+
+&lt;p&gt;（3）各子句一般分行写&lt;/p&gt;
+
+&lt;p&gt;（4）关键字不能缩写也不能分行&lt;/p&gt;
+
+&lt;p&gt;（5）用缩进提高语句的可读性&lt;/p&gt;
+
+&lt;h2 id=&quot;数据处理之查询&quot;&gt;数据处理之查询&lt;/h2&gt;
+
+&lt;h3 id=&quot;基本的select语句&quot;&gt;基本的SELECT语句&lt;/h3&gt;
+
+&lt;p&gt;（1）别名&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;紧跟列名&lt;/li&gt;
+  &lt;li&gt;也可以在列名和别名之间加入&lt;strong&gt;关键字‘AS’&lt;/strong&gt;，别名使用双引号，以便在别名中包含空格或特殊的字符并区分大小写。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-bd226ff70a02650b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）字符串&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;字符串可以是 SELECT 列表中的一个字符,数字,日期。&lt;/li&gt;
+  &lt;li&gt;日期和字符只能在单引号中出现。&lt;/li&gt;
+  &lt;li&gt;每当返回一行时，字符串被输出一次。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;过滤和排序数据&quot;&gt;过滤和排序数据&lt;/h3&gt;
+
+&lt;p&gt;（1）过滤&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用WHERE 子句，将不满足条件的行过滤掉。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WHERE 子句紧随 FROM 子句。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（2）where子句中的比较运算&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-e827b28b7f678f57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1120466f3eabd1cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-0af848cac6a75796.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）排序 ORDER BY子句&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用 ORDER BY 子句排序
+ASC（ascend）: 升序
+DESC（descend）: 降序&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ORDER BY 子句在SELECT语句的结尾。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-ca055b45d67b606e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;多个列排序时，按照ORDER BY 列表的顺序排序&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-5dd3dc8dc592a027.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;分组函数&quot;&gt;分组函数&lt;/h3&gt;
+
+&lt;p&gt;（1）作用&lt;/p&gt;
+
+&lt;p&gt;分组函数作用于一组数据，并对一组数据返回&lt;strong&gt;一个值&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;（2）组函数类型&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;AVG() 平均值&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;COUNT() 计数，记录符合某条件的记录个数&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MAX() 最大值&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;MIN() 最小值&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SUM() 求和&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）组函数类型语法&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f74159ffa0d27b8c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;非法使用组函数&lt;/p&gt;
+
+&lt;p&gt;• 不能在 WHERE 子句中使用组函数。&lt;/p&gt;
+
+&lt;p&gt;• 可以在 HAVING 子句中使用组函数&lt;/p&gt;
+
+&lt;p&gt;（4）分组数据: GROUP BY 子句&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可以使用GROUP BY子句将表中的数据分成若干组。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-056080d4299131b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;在SELECT 列表中所有未包含在组函数中的列都应该包含在 GROUP BY 子句中。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c205e22a15a33d30.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;包含在 GROUP BY 子句中的列不必包含在SELECT 列表中&lt;/li&gt;
+  &lt;li&gt;可以使用多个列同时分组&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-22437f9de879e8da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（5）过滤分组： HAVING 子句&lt;/p&gt;
+
+&lt;p&gt;使用 HAVING 过滤分组:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;行已经被分组。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用了组函数。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;满足HAVING 子句中条件的分组将被显示&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-5c9f91bbf5c0f223.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1f9834ab82ac88df.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;多表查询&quot;&gt;多表查询&lt;/h3&gt;
+
+&lt;p&gt;（1）where链接&lt;/p&gt;
+
+&lt;p&gt;连接 n个表,至少需要 n-1个连接条件。 例如：连接三个表，至少需要两个连接条件。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-e7fa0a98b0281b73.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-fabdf2dc580e9e99.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-e3d38ea59ffdf119.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）ON子句连接&lt;/p&gt;
+
+&lt;p&gt;• 自然连接中是以具有相同名字的列为连接条件的。&lt;/p&gt;
+
+&lt;p&gt;• 可以使用 ON 子句指定额外的连接条件。&lt;/p&gt;
+
+&lt;p&gt;• 这个连接条件是与其它条件分开的。&lt;/p&gt;
+
+&lt;p&gt;• ON 子句使语句具有更高的易读性。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-0af155bd36d3d911.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）Join子句连接&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;分类：
+mysql内连接 [inner] join on
+外连接
+    &lt;pre&gt;&lt;code&gt;    左外连接 left [outer] join on
+    右外连接 right [outer] join on
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;图解：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2f6e1e9b3d1a7b0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f7cea2fddb2f9aa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;分页查询&quot;&gt;分页查询&lt;/h3&gt;
+
+&lt;h2 id=&quot;常见函数&quot;&gt;常见函数&lt;/h2&gt;
+&lt;h3 id=&quot;字符函数&quot;&gt;字符函数&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c68c1581463a92f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+####（1）大小写控制函数
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2fa9b5c0152de7bb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+####（2）字符控制函数
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-589a8e3514eef3ce.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;数学函数&quot;&gt;数学函数&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-248af2e384fa8e9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;日期函数&quot;&gt;日期函数&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-39c374b4263a683a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-12765a961095a675.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;流程控制函数补充&quot;&gt;流程控制函数【补充】&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-971d331be350fa06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-210aeae945c5d7af.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;子查询&quot;&gt;子查询&lt;/h2&gt;
+&lt;p&gt;描述子查询可以解决的问题。
+• 定义子查询。
+• 列出子查询的类型。
+• 书写单行子查询和多行子查询。&lt;/p&gt;
+&lt;h3 id=&quot;概念&quot;&gt;概念&lt;/h3&gt;
+
+&lt;h4 id=&quot;1出现在其他语句内部的select语句称为子查询或内查询&quot;&gt;（1）出现在其他语句内部的select语句，称为子查询或内查询&lt;/h4&gt;
+&lt;p&gt;内部嵌套其他select语句的查询，称为外查询或主查询
+  示例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;select first_name from employees where
+department_id in(
+select department_id from departments
+where location_id=1700
+)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2注意事项&quot;&gt;（2）注意事项&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;子查询要包含在括号内。&lt;/li&gt;
+  &lt;li&gt;将子查询放在比较条件的右侧。&lt;/li&gt;
+  &lt;li&gt;单行操作符对应单行子查询，多行操作符对应多行子查询。
+    &lt;h4 id=&quot;3解决的问题&quot;&gt;（3）解决的问题&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-dac9df5e88bd87da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;子查询类型&quot;&gt;子查询类型&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-8382c01775e35213.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1单行子查询&quot;&gt;（1）单行子查询&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-9761603e21d6ed60.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;语法
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-e61ec4bff0c810c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;可以使用组函数、HAVING子句&lt;/li&gt;
+  &lt;li&gt;对于子查询中的空值，不返回任何行
+    &lt;h4 id=&quot;2多行子查询&quot;&gt;（2）多行子查询&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-816ec10c1465b10e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;ANY
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-fdf48db584a713c7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;ALL
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c396cfd68c2b1418.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+    &lt;h2 id=&quot;数据处理之增删改&quot;&gt;数据处理之增删改&lt;/h2&gt;
+    &lt;h3 id=&quot;1插入数据&quot;&gt;（1）插入数据&lt;/h3&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-fcfd01fd846e8fe6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-28e33a159fa23001.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;插入空值
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-490acef5764bace5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;插入指定的值
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3d912c2254b94870.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;从其他表中拷贝数据
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-ede1e1dd2dc6d6fa.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+###（2）更新数据
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-86f10cd91c49b9da.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-5691b08a5756f2d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+###（3）删除数据
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f5c38766ebcebbf7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3fb81c7b6187fb47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+    &lt;h2 id=&quot;创建和管理表&quot;&gt;创建和管理表&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;创建数据库&lt;/li&gt;
+  &lt;li&gt;创建表&lt;/li&gt;
+  &lt;li&gt;描述各种数据类型&lt;/li&gt;
+  &lt;li&gt;修改表的定义&lt;/li&gt;
+  &lt;li&gt;删除，重命名和清空表
+    &lt;h3 id=&quot;1创建数据库&quot;&gt;1创建数据库&lt;/h3&gt;
+    &lt;h4 id=&quot;1命名规则&quot;&gt;（1）命名规则&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-aaa4aafce47946b5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;2语句&quot;&gt;（2）语句&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-777b1ef019af4476.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h3 id=&quot;创建表&quot;&gt;创建表&lt;/h3&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-ca3e5aec0b6f4ef2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;1常用数据类型&quot;&gt;（1）常用数据类型&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-9b69c159e98fed51.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;2使用子查询创建表&quot;&gt;（2）使用子查询创建表&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-65c0d719fbacd385.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-a715170abfe28f4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;3alter-table-语句&quot;&gt;（3）ALTER TABLE 语句&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-61471e1a5fd85c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;追加一个新列
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-22e9cc4295acfa42.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;修改一个列
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-326c3f3940a6ed0a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;删除一个列
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-4d02aa239725018a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;重命名一个列
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f21eff6c24567949.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+    &lt;h4 id=&quot;4删除表&quot;&gt;（4）删除表&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-a2436311ee00a320.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;5清空表&quot;&gt;（5）清空表&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-e088a4bdf9f633a4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h4 id=&quot;6改变对象的名称&quot;&gt;（6）改变对象的名称&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-62b02693a90c0097.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+    &lt;h2 id=&quot;约束和分页&quot;&gt;约束和分页&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;描述约束&lt;/li&gt;
+  &lt;li&gt;创建和维护约束&lt;/li&gt;
+  &lt;li&gt;数据库分页
+    &lt;h3 id=&quot;约束&quot;&gt;约束&lt;/h3&gt;
+    &lt;h4 id=&quot;1什么是约束&quot;&gt;（1）什么是约束&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;为了保证数据的一致性和完整性，SQL规范以约束的方式对表数据进行额外的条件限制。&lt;/li&gt;
+  &lt;li&gt;约束是&lt;strong&gt;表级&lt;/strong&gt;的强制规定&lt;/li&gt;
+  &lt;li&gt;可以在创建表时规定约束（通过 CREATETABLE 语句），或者在表创建之后也可以（通
+过 ALTER TABLE 语句）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;2约束分类&quot;&gt;（2）约束分类&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3f0adc7b94db3858.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;根据约束数据列的限制，约束可分为：
+单列约束：每个约束只约束一列
+多列约束：每个约束可约束多列数据&lt;/li&gt;
+  &lt;li&gt;根据约束的作用范围，约束可分为：
+列级约束只能作用在一个列上，跟在列的定义后面
+表级约束可以作用在多个列上，不与列一起，而是单独定义&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;1. NOT NULL约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;非空约束用于&lt;em&gt;确保当前列的值不为空值&lt;/em&gt;，非空约束只能出现在表对象的列上。&lt;/li&gt;
+  &lt;li&gt;Null类型特征：
+所有的类型的值都可以是null，包括int、float等数据类型
+空字符串””不等于null，0也不等于null
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-5557f0b91932cfc4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-26fa2182a5297bd3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;2. UNIQUE约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;唯一约束，允许出现多个空值：NULL&lt;/li&gt;
+  &lt;li&gt;同一个表可以有多个唯一约束，多个列组合的约束。在创建唯一约束的时候，如果不给唯一约束名称，就
+默认和列名相同。&lt;/li&gt;
+  &lt;li&gt;MySQL会给唯一约束的列上默认创建一个唯一索引
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-268dcc04b1461e1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;3. PRIMARY KEY约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;主键约束相当于&lt;strong&gt;唯一约束+非空约束的组合&lt;/strong&gt;，主键约束列不允许重复，也不允许出现空值&lt;/li&gt;
+  &lt;li&gt;如果是多列组合的主键约束，那么这些列都不允许为空值，并且组合的值不允许重复。&lt;/li&gt;
+  &lt;li&gt;每个表最多只允许一个主键，建立主键约束可以在列级别创建，也可以在表级别上创建。&lt;/li&gt;
+  &lt;li&gt;MySQL的主键名总是PRIMARY，当创建主键约束时，系统默认会在所在的列和列组合上建立对应的
+唯一索引。
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-06513de9aa585fee.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-01b5c66a10eb8250.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;4. FOREIGN KEY约束&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;外键约束是保证一个或两个表之间的参照完整性，外键是构建于一个表的两个字段或是两个表的两个字段之间的参照关系。&lt;/li&gt;
+  &lt;li&gt;从表的外键值必须在主表中能找到或者为空。当主表的记录被从表参照时，主表的记录将不允许删除，如果要删除数据，需要先删除从表中依赖该记录的数据，然后才可以删除主表的数据。&lt;/li&gt;
+  &lt;li&gt;还有一种就是级联删除子表数据。&lt;/li&gt;
+  &lt;li&gt;注意：外键约束的参照列，在主表中引用的只能是主键或唯一键约束的列&lt;/li&gt;
+  &lt;li&gt;同一个表可以有多个外键约束
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2519783159a4ae93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c8168e5032cd591b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2233abb09897d903.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1a4ac8d115150a2b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;5. CHECK约束&lt;/strong&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1709570e96453b47.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;分页&quot;&gt;分页&lt;/h3&gt;
+&lt;h4 id=&quot;1limit分页&quot;&gt;（1）limit分页&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;背景
+查询返回的记录太多了，查看起来很不方便，怎么样能够实现分页查询呢？&lt;/li&gt;
+  &lt;li&gt;分页原理
+所谓分页显示，就是将数据库中的结果集，一段一段显示出来需要的条件
+    &lt;h4 id=&quot;2分页实现&quot;&gt;（2）分页实现&lt;/h4&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-55bdf8973be4e5fd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+    &lt;h2 id=&quot;事物&quot;&gt;事物&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;事务的概念和特性&lt;/li&gt;
+  &lt;li&gt;事务的隔离级别&lt;/li&gt;
+  &lt;li&gt;事务的案例演示
+    &lt;h3 id=&quot;简介&quot;&gt;简介&lt;/h3&gt;
+    &lt;p&gt;（1）概念
+事务由单独单元的一个或多个SQL语句组成，在这个单元中，每个MySQL语句是相互依赖的。而整个单独单元作为一个不可分割的整体，如果单元中某条SQL语句一旦执行失败或产生错误，整个单元将会回滚。所有受到影响的数据将返回到事物开始以前的状态；如果单元中的所有SQL语句均执行成功，则事物被顺利执行。
+（2）存储引擎和事物&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;通过show engines；来查看mysql支持的存储引擎。&lt;/li&gt;
+  &lt;li&gt;在mysql中用的最多的存储引擎有：innodb，myisam ,memory 等。其中innodb支持事务，而myisam、memory等不支持事务
+    &lt;h3 id=&quot;事物的特点&quot;&gt;事物的特点&lt;/h3&gt;
+    &lt;p&gt;事务的ACID(acid)属性&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;原子性（Atomicity）
+原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。&lt;/li&gt;
+  &lt;li&gt;一致性（Consistency）
+事务必须使数据库从一个一致性状态变换到另外一个一致性状态&lt;/li&gt;
+  &lt;li&gt;隔离性（Isolation）
+事务的隔离性是指一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能互相干扰。&lt;/li&gt;
+  &lt;li&gt;持久性（Durability）
+持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来的其他操作和数据库故障不应该对其有任何影响
+    &lt;h3 id=&quot;事物的使用&quot;&gt;事物的使用&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以第一个 DML 语句的执行作为开始&lt;/li&gt;
+  &lt;li&gt;以下面的其中之一作为结束: 
+&lt;code&gt;COMMIT 或 ROLLBACK 语句&lt;/code&gt;
+&lt;code&gt;DDL 或 DCL 语句（自动提交）&lt;/code&gt;
+&lt;code&gt;用户会话正常结束&lt;/code&gt;
+&lt;code&gt;系统异常终了&lt;/code&gt;
+    &lt;h3 id=&quot;数据库的隔离级别&quot;&gt;数据库的隔离级别&lt;/h3&gt;
+    &lt;p&gt;（1）事物与事物&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;对于同时运行的多个事务, 当这些事务访问数据库中相同的数据时, 如果没有采取必要的隔离机制, 就会导致各种并发问题:
+    &lt;blockquote&gt;
+      &lt;p&gt;脏读: 对于两个事务 T1, T2, T1 读取了已经被 T2 更新但还没有被提交的字段. 
+之后, 若 T2 回滚, T1读取的内容就是临时且无效的.&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;不可重复读: 对于两个事务T1, T2, T1 读取了一个字段, 然后 T2 更新了该字段. 
+之后, T1再次读取同一个字段, 值就不同了.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;幻读: 对于两个事务T1, T2, T1 从一个表中读取了一个字段, 然后 T2 在该表中插 入了一些新的行. 之后, 如果 T1 再次读取同一个表, 就会多出几行.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;数据库事务的隔离性: 数据库系统必须具有隔离并发运行各个事务的能力, 使它们不会相互影响, 避免各种并发问题.&lt;/li&gt;
+  &lt;li&gt;一个事务与其他事务隔离的程度称为隔离级别. 数据库规定了多种事务隔离级别, 不同隔离级别对应不同的干扰程度, 隔离级别越高, 数据一致性就越好, 但并发性越弱.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（2）数据库的隔离级别
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-cb9e4b4f94679d03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）设置隔离级别&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;每启动一个 mysql 程序, 就会获得一个单独的数据库连接. 每个数据库连接都有一个全局变量 @@tx_isolation, 表示当前的事务隔离级别.&lt;/li&gt;
+  &lt;li&gt;查看当前的隔离级别: ·SELECT @@tx_isolation·;&lt;/li&gt;
+  &lt;li&gt;设置当前 mySQL 连接的隔离级别: 
+&lt;code&gt;set transaction isolation level read committed; &lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;设置数据库系统的全局的隔离级别: 
+&lt;code&gt;set global transaction isolation level read committed;&lt;/code&gt;
+    &lt;h2 id=&quot;视图&quot;&gt;视图&lt;/h2&gt;
+  &lt;/li&gt;
+  &lt;li&gt;什么是视图&lt;/li&gt;
+  &lt;li&gt;创建或修改视图&lt;/li&gt;
+  &lt;li&gt;删除视图&lt;/li&gt;
+  &lt;li&gt;查看视图
+    &lt;h3 id=&quot;概念-1&quot;&gt;概念&lt;/h3&gt;
+    &lt;p&gt;（1）什么是视图
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-360ae15d3ac64e5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+（2）视图的好处&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;重用sql语句&lt;/li&gt;
+  &lt;li&gt;简化复杂的sql操作，不必知道它的查询细节&lt;/li&gt;
+  &lt;li&gt;保护数据，提高安全性
+    &lt;h3 id=&quot;操作视图&quot;&gt;操作视图&lt;/h3&gt;
+    &lt;p&gt;(1) 创建和修改
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-928a91e5348d354f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;strong&gt;视图的可更新性和视图中查询的定义有关系，以下类型的视图是不能更新的。&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;包含以下关键字的sql语句：&lt;code&gt;分组函数、distinct、group by、having、union或者union all&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;常量视图&lt;/li&gt;
+  &lt;li&gt;Select中包含子查询&lt;/li&gt;
+  &lt;li&gt;join&lt;/li&gt;
+  &lt;li&gt;from一个不能更新的视图&lt;/li&gt;
+  &lt;li&gt;where子句的子查询引用了from子句中的表&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(2) 删除视图
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-9a5abbe9b24d3069.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(3) 查看视图
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-08919fc77c6e0bba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;存储过程和函数&quot;&gt;存储过程和函数&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;什么是存储过程和函数&lt;/li&gt;
+  &lt;li&gt;使用存储过程和函数的好处&lt;/li&gt;
+  &lt;li&gt;创建存储过程和函数&lt;/li&gt;
+  &lt;li&gt;修改存储过程和函数&lt;/li&gt;
+  &lt;li&gt;调用存储过程和函数&lt;/li&gt;
+  &lt;li&gt;查看存储过程和函数
+    &lt;h3 id=&quot;什么是存储过程和函数&quot;&gt;什么是存储过程和函数&lt;/h3&gt;
+  &lt;/li&gt;
+  &lt;li&gt;存储过程和函数：
+事先经过编译并存储在数据库中的一段sql语句的集合。&lt;/li&gt;
+  &lt;li&gt;使用好处：
+简化应用开发人员的很多工作
+减少数据在数据库和应用服务器之间的传输
+提高了数据处理的效率
+    &lt;h3 id=&quot;创建存储过程和函数&quot;&gt;创建存储过程和函数&lt;/h3&gt;
+    &lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-0517b99b3e693be3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-0635db5481bfc4dd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;修改删除查看存储过程和函数&quot;&gt;修改、删除、查看存储过程和函数&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f1a21ad2cfbf191a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2e578720bae12fb2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-4f81868e393008f5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;调用存储过程和函数&quot;&gt;调用存储过程和函数&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-066ccf99dacf9ee0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;举例使用场景：
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-8dc22003626f9ce2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image.png&quot; /&gt;
+    &lt;h2 id=&quot;流程控制&quot;&gt;流程控制&lt;/h2&gt;
+    &lt;p&gt;（1）case结构——作为表达式
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2200a9666fb2f8e4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+（2）case结构——作为独立的语句
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-453b6d36a9749431.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+（3）循环结构
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-9c035f39cf78d08a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;sql语句训练&quot;&gt;Sql语句训练&lt;/h2&gt;
+&lt;p&gt;均来自于leetcode&lt;/p&gt;
+&lt;h3 id=&quot;leetcode595&quot;&gt;leetcode595&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3f9ad4466d637017.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c5211026d0fc81fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode627&quot;&gt;leetcode627&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3685b30e0e057b1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode620&quot;&gt;leetcode620&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1cd9972e0b3fcc97.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode596&quot;&gt;leetcode596&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-10fecfb307a1d67e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode182&quot;&gt;leetcode182&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-14248bb03e7c7a53.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode196&quot;&gt;leetcode196&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-01071e5687220113.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2393f377368487f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode175&quot;&gt;leetcode175&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2aaecd5df69f07a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3068efdd9136175c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode181&quot;&gt;leetcode181&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-23f911e297167ead.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode183&quot;&gt;leetcode183&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-fab74a9559c4fbc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2531058b00d9f275.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode184&quot;&gt;leetcode184&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-390e03833f7be169.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-c79765917c191d2f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode176&quot;&gt;leetcode176&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-f24b50ec768ff2bd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode177&quot;&gt;leetcode177&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-74b40bf409ea94c5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode178&quot;&gt;leetcode178&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-493d10aec6039199.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-cdd2940c160bbf24.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode180&quot;&gt;leetcode180&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-daac3778f925173d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-34a4aab3e3836d11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;leetcode626&quot;&gt;leetcode626&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-99036b9a49b01572.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-2a5c352bf8da408a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;mysql逻辑架构&quot;&gt;MySql逻辑架构&lt;/h1&gt;
+&lt;h2 id=&quot;架构图&quot;&gt;架构图&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-18bf13ea976032e6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;连接线程管理&quot;&gt;连接/线程管理&lt;/h2&gt;
+
+&lt;p&gt;（1）每个客户端连接都会在服务器进程中拥有一个线程&lt;/p&gt;
+
+&lt;p&gt;（2）数据库连接池&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;池化思想：预设资源&lt;/li&gt;
+  &lt;li&gt;本质是socket连接&lt;/li&gt;
+  &lt;li&gt;作用：维护连接的缓存，以便将来重用连接&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）默认端口号：&lt;strong&gt;3306&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;关系型数据库&quot;&gt;关系型数据库&lt;/h2&gt;
+
+&lt;p&gt;（1）关系型数据库
+  关系型数据库是建立在关系模型基础上的数据库，借助于集合代数等数学概念和方法来处理数据库中的数据。简单说，&lt;strong&gt;关系型数据库是由多张能互相连接的表组成的数据库&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;·优点&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;都是使用表结构，格式一致，易于维护。&lt;/li&gt;
+    &lt;li&gt;使用通用的 SQL 语言操作，使用方便，可用于复杂查询。&lt;/li&gt;
+    &lt;li&gt;数据存储在磁盘中，安全。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;·缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;读写性能比较差，不能满足海量数据的高效率读写。&lt;/li&gt;
+    &lt;li&gt;不节省空间。因为建立在关系模型上，就要遵循某些规则，比如数据中某字段值即使为空仍要分配空间。&lt;/li&gt;
+    &lt;li&gt;固定的表结构，灵活度较低。&lt;/li&gt;
+    &lt;li&gt;常见的关系型数据库有 Oracle、DB2、PostgreSQL、Microsoft SQL Server、Microsoft Access 和 &lt;strong&gt;MySQL&lt;/strong&gt; 等。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;（2）非关系型数据库&lt;/p&gt;
+
+&lt;p&gt;非关系型数据库又被称为 NoSQL（Not Only SQL )，意为不仅仅是 SQL。通常指数据以对象的形式存储在数据库中，而&lt;strong&gt;对象之间的关系通过每个对象自身的属性来决定&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;- 优点&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;非关系型数据库存储数据的格式可以是 key-value 形式、文档形式、图片形式等。使用灵活，应用场景广泛，而关系型数据库则只支持基础类型。&lt;/li&gt;
+    &lt;li&gt;速度快，效率高。NoSQL 可以使用硬盘或者随机存储器作为载体，而关系型数据库只能使用硬盘。&lt;/li&gt;
+    &lt;li&gt;海量数据的维护和处理非常轻松。&lt;/li&gt;
+    &lt;li&gt;非关系型数据库具有扩展简单、高并发、高稳定性、成本低廉的优势。&lt;/li&gt;
+    &lt;li&gt;可以实现数据的分布式处理。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;- 缺点&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;非关系型数据库暂时不提供 SQL 支持，学习和使用成本较高。&lt;/li&gt;
+    &lt;li&gt;非关系数据库没有事务处理，没有保证数据的完整性和安全性。适合处理海量数据，但是不一定安全。&lt;/li&gt;
+    &lt;li&gt;功能没有关系型数据库完善。&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;常见的非关系型数据库有 Neo4j、MongoDB、&lt;strong&gt;Redis&lt;/strong&gt;、Memcached、MemcacheDB 和 HBase 等。&lt;/li&gt;
+  &lt;li&gt;分类
+&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-030ab7fc71f09f3b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/li&gt;
+  &lt;li&gt;共同的特点
+    &lt;ol&gt;
+      &lt;li&gt;易扩展
+NoSQL数据库种类繁多，但是一个共同的特点都是去掉关系数据库的关系型特性。数据之间无关系，这样就非常容易扩展。无形之间，在架构的层面上带来了可扩展的能力。&lt;sup&gt; [2]&lt;/sup&gt;&lt;/li&gt;
+      &lt;li&gt;数据量，高性能
+NoSQL数据库都具有非常高的读写性能，尤其在大数据量下，同样表现优秀。这得益于它的无关系性，数据库的结构简单。一般MySQL使用Query Cache。NoSQL的Cache是记录级的，是一种细粒度的Cache，所以NoSQL在这个层面上来说性能就要高很多。&lt;sup&gt; [2]&lt;/sup&gt;&lt;/li&gt;
+      &lt;li&gt;灵活的数据模型
+NoSQL无须事先为要存储的数据建立字段，随时可以存储自定义的数据格式。而在关系数据库里，增删字段是一件非常麻烦的事情。如果是非常大数据量的表，增加字段简直就是——个噩梦。这点在大数据量的Web 2.0时代尤其明显。&lt;sup&gt; [2]&lt;/sup&gt;&lt;/li&gt;
+      &lt;li&gt;高可用
+NoSQL在不太影响性能的情况，就可以方便地实现高可用的架构。比如Cassandra、HBase模型，通过复制模型也能实现高可用。&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;查询缓存&quot;&gt;查询缓存&lt;/h2&gt;
+
+&lt;p&gt;（1）执行查询语句时，先查询缓存&lt;/p&gt;
+
+&lt;p&gt;（2）MySql8.0后移除，不太实用，可通过redis等高速缓存缓存结果。&lt;/p&gt;
+
+&lt;p&gt;（3）弊端：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;额外的开销，查询后缓存，失效后销毁。&lt;/li&gt;
+  &lt;li&gt;严格匹配才能命中缓存&lt;/li&gt;
+  &lt;li&gt;查询中不能包含不确定语句，否则不缓存&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;存储引擎&quot;&gt;存储引擎&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;作用：负责MySql中数据的存储和提取&lt;/li&gt;
+  &lt;li&gt;服务器通过API与存储引擎通信&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;并发控制&quot;&gt;并发控制&lt;/h1&gt;
+
+&lt;h2 id=&quot;读写锁&quot;&gt;读写锁&lt;/h2&gt;
+
+&lt;p&gt;（1）共享锁–读锁&lt;/p&gt;
+
+&lt;p&gt;多个客户在同一时刻可以同时读取同一个资源，互不干扰。&lt;/p&gt;
+
+&lt;p&gt;（2）排他锁–写锁&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;一个写锁会阻塞其他的写锁和读锁&lt;/li&gt;
+  &lt;li&gt;写锁比读锁有更高的优先级&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;锁粒度&quot;&gt;锁粒度&lt;/h2&gt;
+
+&lt;p&gt;尽量只锁定需要修改的部分数据，而不是所有的资源。&lt;strong&gt;MySQL存储引擎可以实现自己的锁策略和锁粒度&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;h3 id=&quot;表锁&quot;&gt;表锁&lt;/h3&gt;
+
+&lt;p&gt;特点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;锁定整张表&lt;/li&gt;
+  &lt;li&gt;不会出现死锁&lt;/li&gt;
+  &lt;li&gt;开销小&lt;/li&gt;
+  &lt;li&gt;MySql为DDL类语句使用标所，忽略存储引擎的锁机制。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;行锁&quot;&gt;行锁&lt;/h3&gt;
+
+&lt;h4 id=&quot;特点&quot;&gt;特点&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;锁定当前操作的行&lt;/li&gt;
+  &lt;li&gt;最大程度地支持并发处理&lt;/li&gt;
+  &lt;li&gt;开销大&lt;/li&gt;
+  &lt;li&gt;会出现死锁&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;innodb中的行锁分类&quot;&gt;InnoDB中的行锁分类&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;Record lock 对索引加锁，锁定行&lt;/li&gt;
+  &lt;li&gt;Gap lock “间隙”加锁，锁定一个范围（不含索引项本身），防止幻读&lt;/li&gt;
+  &lt;li&gt;Next-Key lock 结合上述两种，锁定索引项本身和索引范围，解决幻读问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;innodb的死锁&quot;&gt;InnoDB的死锁&lt;/h2&gt;
+
+&lt;p&gt;（1）InnoDB的行级锁是基于索引实现的，如果查询语句为命中任何索引，那么InnoDB会使用表级锁&lt;/p&gt;
+
+&lt;p&gt;（2）使用锁的时候，如果&lt;strong&gt;表没有定义任何索引，那么InnoDB会创建一个隐藏的聚簇索&lt;/strong&gt;引并使用这个索引来加记录锁。&lt;/p&gt;
+
+&lt;p&gt;（3）InnoDB产生死锁原因&lt;/p&gt;
+
+&lt;p&gt;不同于MyISAM总是一次性获得所需的全部锁，InnoDB的锁是逐步获得的，当两个事务都需要获得对方持有的锁，导致双方都在等待，这就产生了死锁。&lt;/p&gt;
+
+&lt;p&gt;发生死锁后，InnoDB一般都可以检测到，并使一个事务释放锁回退（InnoDB目前将持有最少行级排他锁的事务回滚），另一个则可以获取锁完成事务&lt;/p&gt;
+
+&lt;p&gt;（4）避免死锁：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;通过表级锁来减少死锁产生的概率；&lt;/li&gt;
+  &lt;li&gt;多个程序尽量约定以相同的顺序访问表（这也是解决并发理论中哲学家就餐问题的一种思路）；
+ 同一个事务尽可能做到一次锁定所需要的所有资源。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;事务&quot;&gt;事务&lt;/h1&gt;
+
+&lt;h2 id=&quot;概念-2&quot;&gt;概念&lt;/h2&gt;
+
+&lt;p&gt;逻辑上的一组操作，要么都执行，要么都不执行（即回滚，返回上一次正确状态）。&lt;/p&gt;
+
+&lt;h2 id=&quot;事务四大特性acid&quot;&gt;事务四大特性（ACID）&lt;/h2&gt;
+
+&lt;p&gt;（1）原子性&lt;/p&gt;
+
+&lt;p&gt;事务是最小的执行单位，不可分割。整个事务中的所有操作要么都提交成功，要么全部失败回滚。&lt;/p&gt;
+
+&lt;p&gt;（2）一致性&lt;/p&gt;
+
+&lt;p&gt;执行事务前后，数据保持一致，多个事务对同一个数据读取的结果是相同的。若事务最终没有提交，则事务中所做的修改不会保存到数据库中。&lt;/p&gt;
+
+&lt;p&gt;（3）隔离性&lt;/p&gt;
+
+&lt;p&gt;并发访问数据库时，一个用户的事务不被其他事务所干扰，各并发事务之间数据库的数据是独立的。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;四种隔离级别&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;READ UNCOMMITTED 未提交读/&lt;strong&gt;脏读&lt;/strong&gt;。事务中的修改还没有提交，对其他事务也可见，即其他事务读取了未提交的数据。&lt;/li&gt;
+  &lt;li&gt;READ COMMITTED 提交读/&lt;strong&gt;不可重复读&lt;/strong&gt;。一个事务只能“看见”已经提交的事务所做的修改，可能执行两次查询，等到不一样的结果。&lt;/li&gt;
+  &lt;li&gt;REPEATABLE READ 可重复读/&lt;strong&gt;幻读&lt;/strong&gt;。&lt;strong&gt;是MySQL的默认事务隔离级别&lt;/strong&gt;，保证了在同一个事务中多次读取同样记录的结果一致。可能发生幻读：一个事务在读取某个范围内的记录时，另一个事务在范围内插入记录，导致&lt;strong&gt;幻行&lt;/strong&gt;。通过&lt;strong&gt;MVCC&lt;/strong&gt;多版本并发控制解决问题。&lt;/li&gt;
+  &lt;li&gt;SERIALIZEABLE 可串行化。最高的隔离级别，强制事务串行执行。本质是在读取的每一行数据上都加锁。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-7178de3ecb6c7b03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（4）持久性&lt;/p&gt;
+
+&lt;p&gt;一旦事务提交，则其所做的修改就会永久保存到数据库中。&lt;/p&gt;
+
+&lt;h2 id=&quot;事务日志&quot;&gt;事务日志&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;存储引擎在修改表的数据是只需要修改其内存的拷贝，再把修改行为记录到持久在硬盘的事务日志中。&lt;/li&gt;
+  &lt;li&gt;即修改数据，需要写两次磁盘。&lt;/li&gt;
+  &lt;li&gt;若系统崩溃，可通过日志自动恢复数据&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;mysql中的事务&quot;&gt;MySQL中的事务&lt;/h2&gt;
+
+&lt;p&gt;（1）MySQL默认采用自动提交模式。即如果不显式地开始一个事务，则每个查询都被当做一个事务执行提交操作。&lt;/p&gt;
+
+&lt;p&gt;（2）显式和隐式锁定&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;隐式：事务执行过程中，随时都可以执行锁定，锁只有在执行COMMIT或者ROLLBACK的时候才会释放锁&lt;/li&gt;
+  &lt;li&gt;显式：在MySQL语句中使用LOCK TABLES或者UNLOCK TABLES。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;mvcc多版本并发控制&quot;&gt;MVCC多版本并发控制&lt;/h1&gt;
+
+&lt;h2 id=&quot;特性&quot;&gt;特性&lt;/h2&gt;
+
+&lt;p&gt;MVCC是行级锁的一个变种，但是它在很多情况下避免了加锁操作，因此开销更低。虽然不同数据库的实现机制有所不同，但大都实现了非阻塞的读操作，写操作也只锁定必要的行。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MVCC&lt;/strong&gt;在&lt;strong&gt;MySQL InnoDB&lt;/strong&gt;中的实现主要是为了提高数据库并发性能，用更好的方式去处理读-写冲突，做到即使有读写冲突时，也能做到不加锁，非阻塞并发读&lt;/p&gt;
+
+&lt;h2 id=&quot;相关概念&quot;&gt;相关概念&lt;/h2&gt;
+
+&lt;h3 id=&quot;快照-snapshot&quot;&gt;快照 snapshot&lt;/h3&gt;
+
+&lt;p&gt;（1）事务快照是用来存储数据库的事务运行情况&lt;/p&gt;
+
+&lt;p&gt;（2）生成时机&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;在innodb中(默认repeatable read级别), 事务在begin/start transaction之后的第一条select读操作后, 会创建一个快照(read view), 将当前系统中活跃的其他事务记录记录起来;&lt;/li&gt;
+  &lt;li&gt;在innodb中(READ COMMITTED级别), 事务中每条select语句都会创建一个快照(read view);&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;undo-log&quot;&gt;undo-log&lt;/h3&gt;
+
+&lt;p&gt;（1）当我们对记录做了变更操作时就会产生undo记录&lt;/p&gt;
+
+&lt;p&gt;（2）Undo记录中存储的是老版本数据。当一个旧的事务需要读取数据时，为了能读取到老版本的数据，需要顺着undo链找到满足其可见性的记录&lt;/p&gt;
+
+&lt;h3 id=&quot;redo-log&quot;&gt;redo-log&lt;/h3&gt;
+
+&lt;p&gt;存储变更后的数据&lt;/p&gt;
+
+&lt;h2 id=&quot;innodb实现的mvcc&quot;&gt;InnoDB实现的MVCC&lt;/h2&gt;
+
+&lt;h3 id=&quot;innodb存储引擎在数据库每行数据的后面添加了三个字段&quot;&gt;InnoDB存储引擎在数据库每行数据的后面添加了三个字段&lt;/h3&gt;
+
+&lt;p&gt;字段称之为系统版本号。&lt;/p&gt;
+
+&lt;p&gt;（1） 事务ID DB_TRX_ID&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;用来标识最近一次对本行记录做修改(insert&lt;/td&gt;
+      &lt;td&gt;update)的事务的标识符, 即最后一次修改(insert&lt;/td&gt;
+      &lt;td&gt;update)本行记录的事务id。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;至于delete操作，在innodb看来也不过是一次update操作，更新行中的一个特殊位将行表示为deleted, 并非真正删除。&lt;/p&gt;
+
+&lt;p&gt;（2）回滚指针 DB_ROLL_PTR&lt;/p&gt;
+
+&lt;p&gt;指写入回滚段(rollback segment)的 undo log record (撤销日志记录记录)。 如果一行记录被更新, 则 undo log record 包含 ‘重建该行记录被更新之前内容’ 所必须的信息&lt;/p&gt;
+
+&lt;p&gt;（3） 新行插入而单调递增的ID DB_ROW_ID&lt;/p&gt;
+
+&lt;p&gt;如果我们的表中没有主键或合适的唯一索引, 也就是无法生成聚簇索引的时候, InnoDB会帮我们自动生成聚集索引, 但聚簇索引会使用DB_ROW_ID的值来作为主键; 如果我们有自己的主键或者合适的唯一索引, 那么聚簇索引中也就不会包含 DB_ROW_ID 了&lt;/p&gt;
+
+&lt;h3 id=&quot;更新步骤&quot;&gt;更新步骤&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-32e0b2adbc54c988.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（1）排他锁锁定该行&lt;/p&gt;
+
+&lt;p&gt;（2）记录redo-log&lt;/p&gt;
+
+&lt;p&gt;（3）将修改前的值复制到undo-log&lt;/p&gt;
+
+&lt;p&gt;（4）修改当前行的值，填写事务编号，使用回滚指针，指向Undo-log中的修改前的行&lt;/p&gt;
+
+&lt;h3 id=&quot;当前读和快照读&quot;&gt;当前读和快照读&lt;/h3&gt;
+
+&lt;p&gt;InnoDB存储引擎默认的事务隔离级别是REPEATABLE-READ。通过 “行排他锁+MVCC” 一起实现的, 不仅可以保证可重复读, 还可以防止幻读。&lt;/p&gt;
+
+&lt;p&gt;（1）当前读&lt;/p&gt;
+
+&lt;p&gt;如select … lock in share mode， select … for update ，insert，update，delete操作，在RR级别下，使用&lt;strong&gt;record lock 和 gap lock&lt;/strong&gt;来实现的。&lt;/p&gt;
+
+&lt;p&gt;（2）快照读&lt;/p&gt;
+
+&lt;p&gt;如简单的select操作(当然不包括 select … lock in share mode, select … for update)，是通过&lt;strong&gt;MVVC(多版本控制)和undo log&lt;/strong&gt;来实现的。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;REPEATABLE-READ 此时在第一次读操作时，生成Read View数据（快照），所以可以重复读取，MVCC的活跃事务列表记录后面&lt;strong&gt;所有&lt;/strong&gt;事务，所以可以读到历史版本数据。&lt;/li&gt;
+  &lt;li&gt;READ COMMITTED &lt;strong&gt;每次读取数据前都生成一个ReadView ，&lt;/strong&gt;所以不能重复读取，MVCC的活跃事务列表记录此时后面的&lt;strong&gt;未提交&lt;/strong&gt;的事务，只能读到新版本的数据。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;参考：&lt;a href=&quot;https://blog.csdn.net/flying_hengfei/article/details/106965517&quot;&gt;MVCC到底是什么？这一篇博客就够啦_flying_hengfei的博客-CSDN博客_mvcc作用&lt;/a&gt;
+&lt;a href=&quot;https://www.cnblogs.com/aspirant/p/9177978.html&quot;&gt;Mysql 间隙锁原理，以及Repeatable Read隔离级别下可以防止幻读原理(百度) - aspirant - 博客园&lt;/a&gt;
+&lt;a href=&quot;https://www.cnblogs.com/wwcom123/p/10727194.html&quot;&gt;【MySQL】当前读、快照读、MVCC - wwcom123 - 博客园&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;工作环境&quot;&gt;工作环境&lt;/h3&gt;
+
+&lt;p&gt;仅在两个隔离级别下工作，REPEATABLE READ(可重复读)和READ COMMITTED（提交读）。&lt;/p&gt;
+
+&lt;h1 id=&quot;存储引擎-1&quot;&gt;存储引擎&lt;/h1&gt;
+
+&lt;h2 id=&quot;查看表的存储引擎&quot;&gt;查看表的存储引擎&lt;/h2&gt;
+
+&lt;p&gt;show table status like “table_name”&lt;/p&gt;
+
+&lt;h2 id=&quot;myisam和innodb对比&quot;&gt;MyISAM和InnoDB对比&lt;/h2&gt;
+
+&lt;p&gt;MySQL 5.5版本后默认的存储引擎为InnoDB。&lt;/p&gt;
+
+&lt;p&gt;（1）锁机制&lt;/p&gt;
+
+&lt;p&gt;MyISAM只有表级锁，InnoDB支持行级锁（默认）和表级锁。&lt;/p&gt;
+
+&lt;p&gt;（2）事务&lt;/p&gt;
+
+&lt;p&gt;MyISAM不支持事务，InnoDB事务安全&lt;/p&gt;
+
+&lt;p&gt;（3）查询和添加速度&lt;/p&gt;
+
+&lt;p&gt;MyISAM每次查询具有原子性，执行速度比InnoDB快。&lt;/p&gt;
+
+&lt;p&gt;（4）外键&lt;/p&gt;
+
+&lt;p&gt;MyISAM不支持，而InnoDB支持&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;主键和外键参考：&lt;a href=&quot;https://www.cnblogs.com/liuslayer/p/9082297.html&quot;&gt;（转）关于数据库主键和外键（终于弄懂啦） - liuslayer - 博客园&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;（5）MVCC&lt;/p&gt;
+
+&lt;p&gt;MyISAM不支持，而InnoDB支持&lt;/p&gt;
+
+&lt;p&gt;（6）索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;MyISAM的叶节点是数据记录的地址，即为“非聚集索引”。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;InnoDB叶节点是完整的数据记录，即为“聚集索引”，索引的Key为数据表的主键。所以InnoDB表数据文件本身就是主索引，其余索引都是辅助索引，data中记录了主键的值而不是地址。&lt;/p&gt;
+
+    &lt;p&gt;因为InnoDB的数据文件本身要&lt;strong&gt;按主键聚集&lt;/strong&gt;，所以InnoDB要求表必须有主键（MyISAM可以没有），如果没有显式指定，则MySQL系统会自动选择一个可以唯一标识数据记录的列作为主键，如果不存在这种列，则MySQL自动为InnoDB表生成一个隐含字段作为主键，这个字段长度为6个字节，类型为长整形。&lt;/p&gt;
+
+    &lt;p&gt;聚集索引这种实现方式使得按主键的搜索十分高效，&lt;strong&gt;但是辅助索引搜索需要检索两遍索引&lt;/strong&gt;：首先检索辅助索引获得主键，然后用主键到主索引中检索获得记录。&lt;/p&gt;
+
+    &lt;blockquote&gt;
+      &lt;p&gt;聚集索引参考：&lt;a href=&quot;https://www.cnblogs.com/aspnethot/articles/1504082.html&quot;&gt;聚集索引和非聚集索引（整理） - 布颜书 - 博客园&lt;/a&gt;&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;· 注意&lt;/strong&gt;
+   “聚集索引”是一种数据存储方式，同时保存索引和数据行。一个表中只能有一个聚集索引。&lt;/p&gt;
+
+&lt;h1 id=&quot;索引&quot;&gt;索引&lt;/h1&gt;
+&lt;h2 id=&quot;71-意义&quot;&gt;7.1 意义&lt;/h2&gt;
+&lt;p&gt;索引用来快速地寻找那些具有特定值的记录，&lt;strong&gt;所有MySQL索引都以B-树的形式保存&lt;/strong&gt;。如果没有索引，执行查询时MySQL必须&lt;strong&gt;从第一个记录开始扫描整个表的所有记录&lt;/strong&gt;，直至找到符合要求的记录。&lt;/p&gt;
+
+&lt;h2 id=&quot;实现原理&quot;&gt;实现原理&lt;/h2&gt;
+
+&lt;h3 id=&quot;b-tree索引&quot;&gt;B-Tree索引&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-3841df236781958f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（1）按顺序存储值，每一个叶子节点到根距离相同。&lt;/p&gt;
+
+&lt;p&gt;（2）B+Tree：叶节点指向下一个叶节点，方便叶节点遍历&lt;/p&gt;
+
+&lt;h3 id=&quot;哈希索引&quot;&gt;哈希索引&lt;/h3&gt;
+
+&lt;p&gt;（1）基于哈希表实现，存储引擎会对所有的索引列计算一个哈希码&lt;/p&gt;
+
+&lt;p&gt;（2）在为单条记录查询时，选择哈希更快&lt;/p&gt;
+
+&lt;p&gt;（3）自适应哈希索引（InnoDB）：当索引值被使用非常频繁时，基于B-Tree索引上再建一个哈希索引。&lt;/p&gt;
+
+&lt;p&gt;（4）避免哈希冲突：在WHERE条件中带入哈希值和对应列值。&lt;/p&gt;
+
+&lt;h2 id=&quot;分类&quot;&gt;分类&lt;/h2&gt;
+
+&lt;p&gt;（1）主键索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;唯一性索引，必须指定为“PRIMARY KEY”。每个表只能有一个主键，主键也不能为空&lt;/li&gt;
+  &lt;li&gt;方式：
+          · CREATE TABLE tablename ( […], PRIMARY KEY (列的列表) )
+          · ALTER TABLE tablename ADD PRIMARY KEY (列的列表)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（2）全文索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;FULLTEXT (title,body)，查找的是文本中的关键词
+&lt;code&gt;select * from articles where **match(title,body) against ( 'database')**&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）普通索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;普通索引（由关键字KEY或INDEX定义的索引）的唯一任务是加快对数据的访问速度&lt;/li&gt;
+  &lt;li&gt;create index 索引名 on 表 (列1,列名2);&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（4）唯一 索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;索引列的所有值都只能出现一次，即必须唯一。&lt;/li&gt;
+  &lt;li&gt;CREATE UNIQUE INDEX &lt;索引的名字&gt; ON tablename (列的列表)&lt;/索引的名字&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（5）组合索引&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/40edfbb50046&quot;&gt;普通索引和组合索引 - 简书&lt;/a&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;关于辅助索引的执行流程
+&lt;a href=&quot;https://blog.csdn.net/qq_34294121/article/details/101632347&quot;&gt;MySQL的数据结构以及辅助索引的使用_MemoForward的博客-CSDN博客_mysql辅助索引&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;关于覆盖索引
+&lt;a href=&quot;https://blog.csdn.net/qq_15037231/article/details/87891683&quot;&gt;什么是覆盖索引?如何利用覆盖索引进行SQL语句优化？_斜阳雨陌-CSDN博客_覆盖索引&lt;/a&gt;
+&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=Mzg5NjMxMTYxNQ==&amp;amp;mid=2247488048&amp;amp;idx=1&amp;amp;sn=a5b62a41b83350644a919b49de78ee59&amp;amp;source=41#wechat_redirect&quot;&gt;为什么覆盖索引可以加快查询&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;注意区别&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;主键创建后一定包含一个唯一性索引，唯一性索引并不一定就是主键。&lt;/li&gt;
+  &lt;li&gt;唯一性索引列允许空值，而主键列不允许为空值。&lt;/li&gt;
+  &lt;li&gt;主键列在创建时，已经默认为空值 + 唯一索引了。&lt;/li&gt;
+  &lt;li&gt;主键可以被其他表引用为外键，而唯一索引不能。&lt;/li&gt;
+  &lt;li&gt;一个表最多只能创建一个主键，但可以创建多个唯一索引。&lt;/li&gt;
+  &lt;li&gt;主键更适合那些不容易更改的唯一标识，如自动递增列、身份证号等。&lt;/li&gt;
+  &lt;li&gt;在 RBO 模式下，主键的执行计划优先级要高于唯一索引。 两者可以提高查询的速度。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;查询索引命令&quot;&gt;查询索引命令&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;show index from 表名&lt;/li&gt;
+  &lt;li&gt;show keys from 表名&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;使用索引的代价&quot;&gt;使用索引的代价&lt;/h2&gt;
+&lt;p&gt;对DML(update、delete、insert)语句的效率，增删改会对索引影响，因为索引要重新整理。&lt;/p&gt;
+
+&lt;h2 id=&quot;注意事项&quot;&gt;注意事项&lt;/h2&gt;
+
+&lt;p&gt;（1）存储引擎对索引的支持&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1e5b1400d53e030d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）什么时候加索引&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;查询作为查询条件字段应该创建索引&lt;/li&gt;
+  &lt;li&gt;唯一性太差的字段不适合单独创建索引,即使频繁 &lt;code&gt;Select * from emp where sex=’男’&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;频繁更新字段，也不要定义索引。&lt;/li&gt;
+  &lt;li&gt;不会出现在where语句的字段不要创建索引&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）索引失效&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;模糊查询在like前面有百分号开头会失效。&lt;/li&gt;
+  &lt;li&gt;如果条件中有or，即使其中有条件带索引也不会使用。换言之，就是要求使用的所有字段，都必须建立索引, 我们建议大家尽量避免使用or 关键字&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;mysql优化&quot;&gt;MySql优化&lt;/h1&gt;
+&lt;h2 id=&quot;分表分库&quot;&gt;分表分库&lt;/h2&gt;
+&lt;p&gt;（1）垂直拆分（拆分列）
+        垂直拆分就是要把表按模块划分到不同&lt;strong&gt;数据库&lt;/strong&gt;表中（当然原则还是不破坏第三范式）。例如分布式情况下，为将一个项目进行拆分成多个子模块，每个子模块有单独数据库（解耦数据）。&lt;/p&gt;
+
+&lt;p&gt;（2）水平拆分（拆分行）
+        水平切分就是要把一个表按照某种规则把数据划分到不同表或数据库里。例如时间规则、地点、日志等，还有哈希算法。&lt;/p&gt;
+
+&lt;p&gt;（3）id主键处理方式&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UUID  适用于生成文件名，不适合作为主键，因为太长了。&lt;/li&gt;
+  &lt;li&gt;不同步自增id，如主奇从偶&lt;/li&gt;
+  &lt;li&gt;redis生成id，但是让系统更复杂&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;读写分离&quot;&gt;读写分离&lt;/h2&gt;
+&lt;p&gt;（1）主从复制&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;原理，主数据库将二进制日志文件（bin-log）传给从数据库。&lt;/li&gt;
+  &lt;li&gt;触发时刻：从数据库监控主数据库二进制文件的变化，发生变化则通过IO线程进行二进制文件的复制和传输。&lt;/li&gt;
+  &lt;li&gt;意义
+         1 数据丢失和备份
+         2 读写分离
+         3 负载均衡，高可用&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（2）读写分离&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;定义：主数据库负责助理事务，从数据库负责读操作&lt;/li&gt;
+  &lt;li&gt;意义
+              1 分摊服务器压力，提高机器的系统处理效率
+              2 增加冗余，提高系统可用性，可以在主数据库宕机式进行数据恢复&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;系统扩展&quot;&gt;系统扩展&lt;/h2&gt;
+
+&lt;p&gt;（1）垂直扩展（scale-up），在单机器上加存储、加内存、加CPU&lt;/p&gt;
+
+&lt;p&gt;（2）水平扩展（scale-out）， 加机器数量，做集群&lt;/p&gt;
+
+&lt;h2 id=&quot;mycat-中间件&quot;&gt;MyCat 中间件&lt;/h2&gt;
+
+&lt;p&gt;（1）作用：分发请求，保证安全、读写分离、高可用、负载均衡&lt;/p&gt;
+
+&lt;p&gt;（2）原理：对数据进行分片处理，所有的分片数据库集群构成完整的数据库存储&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;· 阿里的rds系统&lt;/strong&gt;
+即开即用的关系型数据库服务，提供了强大丰富的功能，保证高可用性、安全性、高性能。&lt;/p&gt;
+&lt;h2 id=&quot;书写高质量sql的30条建议&quot;&gt;书写高质量SQL的30条建议&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&amp;amp;mid=2247486461&amp;amp;idx=1&amp;amp;sn=60a22279196d084cc398936fe3b37772&amp;amp;chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&amp;amp;token=1987003517&amp;amp;lang=zh_CN%23rd&quot;&gt;书写高质量SQL的30条建议&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;order-by-底层原理和sql优化&quot;&gt;Order by 底层原理和SQL优化&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_34162294/article/details/105508631&quot;&gt;order by 底层原理和优化查询案例&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mysql分页查询优化&quot;&gt;MySQL分页查询优化&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/scotth/p/7995856.html&quot;&gt;分页查询的性能优化方案&lt;/a&gt;
+&lt;a href=&quot;https://blog.csdn.net/weixin_41092717/article/details/82351735?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&amp;amp;dist_request_id=&amp;amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.control&quot;&gt;sql进行Order by排序再进行分页limit取值会出现重复显示问题&lt;/a&gt;
+&lt;a href=&quot;https://blog.csdn.net/nannan819/article/details/54171708&quot;&gt;mysql分页出现重复数据-order by&lt;/a&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;其他知识点&quot;&gt;其他知识点&lt;/h1&gt;
+
+&lt;h2 id=&quot;存储过程和函数-1&quot;&gt;存储过程和函数&lt;/h2&gt;
+
+&lt;p&gt;（1）就是一组SQL语句集，功能强大，可以实现一些比较复杂的逻辑功能，类似于JAVA语言中的方法。&lt;/p&gt;
+
+&lt;p&gt;（2）存储过程特性：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;有输入输出参数，可以声明变量，有if/else, case,while等控制语句，通过编写存储过程，可以实现复杂的逻辑功能；&lt;/li&gt;
+  &lt;li&gt;函数的普遍特性：模块化，封装，代码复用；&lt;/li&gt;
+  &lt;li&gt;速度快，只有首次执行需经过编译和优化步骤，后续被调用可以直接执行。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）demo&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;· 创建一个存储过程&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create procedure user_porced ()
+begin
+select name from users;
+end;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;· 调用存储过程&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;call porcedureName ();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;· 传参存储过程&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;create PROCEDURE user_porcedPa(
+ in a int(10)
+)
+ BEGIN
+ select * from users where age&amp;gt;a;
+ END;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&quot;language-mysql&quot;&gt;&amp;gt; call user_porcedPa(10);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;数据库备份&quot;&gt;数据库备份&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;（1）手动方式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;·cmd控制台:&lt;/strong&gt;
+在环境变量中配置mysql环境变量
+mysqldump –u -账号–密码数据库[表名1 表名2..]  &amp;gt; 文件路径&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;案例:&lt;/strong&gt; mysqldump-u -root root test &amp;gt; d:\temp.sql
+比如: 把temp数据库备份到 d:\temp.bak    mysqldump -u root -proot test &amp;gt; f:\temp.bak&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;· 如果你希望备份是，数据库的某几张表&lt;/strong&gt;
+` mysqldump -u root -proot test dept &amp;gt; f:\temp.dept.sql`&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;· 如何使用备份文件恢复我们的数据.&lt;/strong&gt;
+mysql控制台
+` source d:\temp.dept.bak`&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;（2）自动方式&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;把备份数据库的指令，写入到bat文件, 然后通过任务管理器去定时调用 bat文件.&lt;/p&gt;
+
+&lt;p&gt;mytask.bat 内容是:&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;@echo off&lt;/p&gt;
+
+  &lt;p&gt;F:\path\mysqlanzhuang\bin\mysqldump -u root -proot test dept &amp;gt; f:\temp.dept.sql&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;创建执行计划任务执行脚本。&lt;/p&gt;
+
+&lt;h2 id=&quot;数据库范式&quot;&gt;数据库范式&lt;/h2&gt;
+
+&lt;p&gt;（1）作用：为了建立冗余较小、结构合理的数据库，设计数据库时必须遵循一定的规则。&lt;/p&gt;
+
+&lt;p&gt;（2）三大范式&lt;/p&gt;
+
+&lt;p&gt;第一范式：1NF是对属性的原子性约束，要求属性(列)具有原子性，不可再分解；(只要是关系型数据库都满足1NF)&lt;/p&gt;
+
+&lt;p&gt;第二范式：2NF是对记录的惟一性约束，表中的记录是唯一的, 就满足2NF, 通常我们设计一个主键来实现，主键不能包含业务逻辑。&lt;/p&gt;
+
+&lt;p&gt;第三范式：3NF是对字段冗余性的约束，它要求字段没有冗余。 没有冗余的数据库设计可以做到。&lt;/p&gt;
+
+&lt;p&gt;还有 BCNF。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/qq_43079376/article/details/93647335&quot;&gt;数据库的第一范式，第二范式，第三范式，BCNF范式理解_sofency’Blog-CSDN博客_数据库第三范式&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;慢查询&quot;&gt;慢查询&lt;/h2&gt;
+
+&lt;p&gt;（1）使用show status使用show status查看MySQL服务器状态信息，包括了慢查询的次数&lt;/p&gt;
+
+&lt;p&gt;（2）慢查询定义：MySQL默认10秒内没有响应SQL结果,则为慢查询。可以去修改MySQL慢查询默认时间。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;查询慢查询时间
+&lt;code&gt;show variables like 'long_query_time';&lt;/code&gt;
+– 修改慢查询时间
+&lt;code&gt;set long_query_time=1;&lt;/code&gt;但是重启mysql之后，long_query_time依然是my.ini中的值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;（3）在默认情况下，我们的mysql不会记录慢查询，需要在启动mysql时候，指定记录慢查询才可以，将慢查询定位到日志中。&lt;/p&gt;
+
+&lt;h2 id=&quot;sql语句执行慢的原因&quot;&gt;SQL语句执行慢的原因&lt;/h2&gt;
+
+&lt;h3 id=&quot;偶尔很慢&quot;&gt;偶尔很慢&lt;/h3&gt;
+
+&lt;p&gt;（1） 系统在刷新“脏页”中&lt;/p&gt;
+
+&lt;p&gt;当我们要往数据库插入一条数据、或者要更新一条数据的时候，我们知道数据库会在&lt;strong&gt;内存&lt;/strong&gt;中把对应字段的数据更新了，但是更新之后，这些更新的字段并不会马上同步持久化到&lt;strong&gt;磁盘&lt;/strong&gt;中去，而是把这些更新的记录写入到 redo log 日记中去，等到空闲的时候，在通过 redo log 里的日记把最新的数据同步到&lt;strong&gt;磁盘&lt;/strong&gt;中去。当内存数据页跟磁盘数据页内容不一致的时候，我们称这个内存页为“脏页”。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;· redolog写满了：&lt;/strong&gt;redo log 里的容量是有限的，如果数据库一直很忙，更新又很频繁，这个时候 redo log 很快就会被写满了，这个时候就没办法等到空闲的时候再把数据同步到磁盘的，只能暂停其他操作，全身心来把数据同步到磁盘中去的，而这个时候，&lt;strong&gt;就会导致我们平时正常的SQL语句突然执行的很慢&lt;/strong&gt;，所以说，数据库在在同步数据到磁盘的时候，就有可能导致我们的SQL语句执行的很慢了。&lt;/p&gt;
+
+&lt;p&gt;** · 内存不够用了：**如果一次查询较多的数据，恰好碰到所查数据页不在内存中时，需要申请内存，而此时恰好内存不足的时候就需要淘汰一部分内存数据页，如果是干净页，就直接释放，如果恰好是脏页就需要刷脏页。&lt;/p&gt;
+
+&lt;p&gt;（2）未获取到锁&lt;/p&gt;
+
+&lt;p&gt;要执行的这条语句，刚好这条语句涉及到的&lt;strong&gt;表&lt;/strong&gt;，别人在用，并且加锁了，我们拿不到锁，只能慢慢等待别人释放锁了。或者，表没有加锁，但要使用到的某个一行被加锁了。&lt;/p&gt;
+
+&lt;h3 id=&quot;一直很慢&quot;&gt;一直很慢&lt;/h3&gt;
+
+&lt;p&gt;(1) 没有用上索引：例如该字段没有索引；由于对字段进行运算、函数操作导致无法用索引。&lt;/p&gt;
+
+&lt;p&gt;(2) 数据库选错了索引。&lt;/p&gt;
+
+&lt;h2 id=&quot;96-一条sql语句的执行过程&quot;&gt;9.6 一条SQL语句的执行过程&lt;/h2&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-1bd66be70b37e485.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;常见问题总结&quot;&gt;常见问题总结&lt;/h1&gt;
+
+&lt;h2 id=&quot;mysql的字符串类型&quot;&gt;MySQL的字符串类型&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;在SQL中，将字符串类型分为了六类：char,varchar,text,blob,enum和set。&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-9a9f3219a7a95cf2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mysql常用sql语句大全&quot;&gt;MySQL常用SQL语句大全&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://blog.csdn.net/With__Sunshine/article/details/89176667&quot;&gt;MySQL常用SQL语句大全_Sunshine-CSDN博客&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mysql数据库建库时sql语句中数据库名表名用引号的问题&quot;&gt;MySQL数据库建库时SQL语句中数据库名、表名用引号的问题&lt;/h2&gt;
+
+&lt;p&gt;解释：&lt;/p&gt;
+
+&lt;p&gt;在创建MySQL数据库和表时，数据库名、表名和字段名外面的符号 ` 不是单引号，而是英文输入法的反单引号，同键盘~同一位置。&lt;/p&gt;
+
+&lt;p&gt;为了避免你的表名和字段名 和数据库SQL中的关键字冲突。但也可以不加。&lt;/p&gt;
+
+&lt;p&gt;此外，需要注意，有部分程序员喜欢从网页上拷贝别人博客中的SQL脚本，在拷贝-粘贴的过程中容易将反单引号不经意间变为单引号，从而造成导入SQL脚本错误，请大家在开发时特别小心！！！&lt;/p&gt;
+
+&lt;h2 id=&quot;mysql表操作之建表时的列参数&quot;&gt;mysql表操作之建表时的列参数&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://baijiahao.baidu.com/s?id=1654339922439146488&amp;amp;wfr=spider&amp;amp;for=pc&quot;&gt;https://baijiahao.baidu.com/s?id=1654339922439146488&amp;amp;wfr=spider&amp;amp;for=pc&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;mysql数据库的高可用&quot;&gt;MySQL数据库的高可用&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://www.jb51.net/article/83400.htm&quot;&gt;MySQL数据库的高可用方案总结&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="MySQL" /><summary type="html">目录 1 MySql基础知识 2 MySql逻辑架构 3 并发控制 4 事务 5 MVCC多版本并发控制 6 存储引擎 7 索引 8 MySql优化 9 其他知识点 10 常见问题总结 参考资料 · 《高性能MySql》 · 《尚硅谷MySql》 · JavaG</summary></entry><entry><title type="html">Springboot和常见框架整合</title><link href="http://localhost:4000/_posts/2021-06-09-SpringBoot/" rel="alternate" type="text/html" title="Springboot和常见框架整合" /><published>2021-06-09T00:00:00+08:00</published><updated>2021-06-09T00:00:00+08:00</updated><id>http://localhost:4000/_posts/SpringBoot</id><content type="html" xml:base="http://localhost:4000/_posts/2021-06-09-SpringBoot/">&lt;blockquote&gt;
+  &lt;p&gt;目录
+ 1 Springboot简介&lt;br /&gt;
+ 2 Springboot整合依赖汇总&lt;br /&gt;
+ 3 常见问题汇总&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h1 id=&quot;1-springboot简介&quot;&gt;1 Springboot简介&lt;/h1&gt;
+&lt;p&gt;Spring Boot让我们的Spring应用变的更轻量化。比如：你可以仅仅依靠一个Java类来运行一个Spring引用。你也可以打包你的应用为jar并通过使用java -jar来运行你的Spring Web应用。&lt;/p&gt;
+
+&lt;p&gt;Spring Boot的主要优点：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;为所有Spring开发者更快的入门&lt;/li&gt;
+  &lt;li&gt;开箱即用，提供各种默认配置来简化项目配置&lt;/li&gt;
+  &lt;li&gt;内嵌式容器简化Web项目&lt;/li&gt;
+  &lt;li&gt;没有冗余代码生成和XML配置的要求&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2-springboot整合依赖汇总&quot;&gt;2 Springboot整合依赖汇总&lt;/h1&gt;
+
+&lt;h2 id=&quot;21-spring-web基础&quot;&gt;2.1 Spring Web基础&lt;/h2&gt;
+
+&lt;h3 id=&quot;211-web基础依赖&quot;&gt;2.1.1 Web基础依赖&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;parent&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-parent&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;1.5.2.RELEASE&amp;lt;/version&amp;gt;
+     &amp;lt;relativePath /&amp;gt; &amp;lt;!-- lookup parent from repository --&amp;gt;
+ &amp;lt;/parent&amp;gt;
+&amp;lt;dependencies&amp;gt;
+   &amp;lt;!-- 集成web --&amp;gt;
+   &amp;lt;dependency&amp;gt;
+       &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+       &amp;lt;artifactId&amp;gt;spring-boot-starter-web&amp;lt;/artifactId&amp;gt;
+   &amp;lt;/dependency&amp;gt;
+&amp;lt;/dependencies&amp;gt;
+ &amp;lt;build&amp;gt;
+     &amp;lt;plugins&amp;gt;
+         &amp;lt;plugin&amp;gt;
+             &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+             &amp;lt;artifactId&amp;gt;spring-boot-maven-plugin&amp;lt;/artifactId&amp;gt;
+         &amp;lt;/plugin&amp;gt;
+         &amp;lt;plugin&amp;gt;
+             &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+             &amp;lt;artifactId&amp;gt;maven-surefire-plugin&amp;lt;/artifactId&amp;gt;
+             &amp;lt;version&amp;gt;2.4.2&amp;lt;/version&amp;gt;
+             &amp;lt;configuration&amp;gt;
+                 &amp;lt;skipTests&amp;gt;true&amp;lt;/skipTests&amp;gt;
+             &amp;lt;/configuration&amp;gt;
+         &amp;lt;/plugin&amp;gt;
+         &amp;lt;plugin&amp;gt;
+             &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+             &amp;lt;artifactId&amp;gt;maven-clean-plugin&amp;lt;/artifactId&amp;gt;
+             &amp;lt;version&amp;gt;3.0.0&amp;lt;/version&amp;gt;
+             &amp;lt;configuration&amp;gt;
+                 &amp;lt;skipTests&amp;gt;true&amp;lt;/skipTests&amp;gt;
+             &amp;lt;/configuration&amp;gt;
+         &amp;lt;/plugin&amp;gt;
+     &amp;lt;/plugins&amp;gt; 
+&amp;lt;/build&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;spring-boot-starter-web会自动引入spring-webmvc，spring-boot-starter-validation，spring-boot-starter，spring-boot-starter-json，spring-boot-starter-tomcat 这5个基础依赖&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;212-配置和启动&quot;&gt;2.1.2 配置和启动&lt;/h3&gt;
+
+&lt;p&gt;（1）spring-boot-starter-web添加了Tomcat和Spring MVC
+（2）Springboot的几种启动方式：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;@EnableAutoConfiguration，auto-configuration将假定你正在开发一个web应用并相应地对Spring进行设置。
+    &lt;pre&gt;&lt;code&gt;@RestController
+@EnableAutoConfiguration
+public class HelloController {
+   @RequestMapping(&quot;/hello&quot;)
+   public String index() {
+        return &quot;Hello World&quot;;
+   }
+   public static void main(String[] args) {
+       SpringApplication.run(HelloController.class, args);
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;&lt;code&gt;@ComponentScan(basePackages = &quot;com.itmayiedu.controller&quot;) 控制器扫包&lt;/code&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code&gt; @ComponentScan(basePackages = &quot;com.itmayiedu.controller&quot;)
+ @EnableAutoConfiguration
+ public class App {
+   public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;（推荐) @SpringBootApplication注解&lt;/strong&gt;
+可以简化部分配置，但mybatis的mapper扫包和springcloud的eureka启动等不能少。
+    &lt;pre&gt;&lt;code&gt;@SpringBootApplication
+@EnableEurekaClient
+@MapperScan(basePackages=&quot;com.qian.mapper&quot;)
+public class MemberApp {
+   public static void main(String[] args) {
+      SpringApplication.run(MemberApp.class, args);
+   }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;p&gt;（3）yml配置文件&lt;/p&gt;
+    &lt;pre&gt;&lt;code&gt;server:
+ port: 8080
+ context-path: /project
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;h2 id=&quot;22-页面渲染&quot;&gt;2.2 页面渲染&lt;/h2&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;221-静态资源访问&quot;&gt;2.2.1 静态资源访问&lt;/h3&gt;
+&lt;p&gt;在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
+Spring Boot默认提供静态资源目录位置需置于classpath下，目录名需符合如下规则：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;/static&lt;/li&gt;
+  &lt;li&gt;/public&lt;/li&gt;
+  &lt;li&gt;/resources&lt;/li&gt;
+  &lt;li&gt;/META-INF/resources
+    &lt;blockquote&gt;
+      &lt;p&gt;举例：我们可以在src/main/resources/目录下创建static文件夹，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:8080/D.jpg。如能显示图片，配置成功。&lt;/p&gt;
+    &lt;/blockquote&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;222-freemarker模板引擎渲染web视图&quot;&gt;2.2.2 Freemarker模板引擎渲染web视图&lt;/h3&gt;
+
+&lt;h4 id=&quot;2221-模板引擎&quot;&gt;2.2.2.1 模板引擎&lt;/h4&gt;
+&lt;p&gt;模板的诞生是为了将显示与数据分离，模板技术多种多样，但其本质是将模板文件和数据通过模板引擎生成最终的HTML代码。使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档在原有的HTML页面中来填充数据。最终达到渲染页面的目的。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-942b91f3d5455c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;模板技术并不是什么神秘技术，干的是拼接字符串的体力活。模板引擎就是利用正则表达式识别模板标识，并利用数据替换其中的标识符。比如：Hello, &amp;lt;%= name%&amp;gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/24777208-81637e7a9aaa566a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;数据是{name: ‘木的树’}，那么通过模板引擎解析后，我们希望得到Hello, 木的树。模板的前半部分是普通字符串，后半部分是模板标识，我们需要将其中的标识符替换为表达式。&lt;/p&gt;
+
+&lt;h4 id=&quot;2222-freemarker&quot;&gt;2.2.2.2 Freemarker&lt;/h4&gt;
+
+&lt;p&gt;（1）maven依赖&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;使用jar工程即可！&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-freemarker&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）yml配置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+   freemarker:
+       allow-request-override : false
+       cache : true
+       check-template-location : true
+       charset : UTF-8
+       content-type : text/html
+       expose-request-attributes : false
+       expose-session-attributes : false
+       expose-spring-macro-helpers : false
+       suffix : .ftl
+       template-loader-path : classpath:/templates/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;其实上述suffix可以该为.html即可支持html格式文件，测试有效！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@RequestMapping(&quot;/index&quot;)
+public String index(Map&amp;lt;String, Object&amp;gt; map) {
+     map.put(&quot;name&quot;,&quot;美丽的天使...&quot;);
+     return &quot;index&quot;;
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Map或者modelMap和request转发是一样的&lt;/p&gt;
+
+&lt;h3 id=&quot;223-jsp&quot;&gt;2.2.3 JSP&lt;/h3&gt;
+
+&lt;h4 id=&quot;2231-maven依赖&quot;&gt;2.2.3.1 maven依赖&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-tomcat&amp;lt;/artifactId&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ &amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.apache.tomcat.embed&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;tomcat-embed-jasper&amp;lt;/artifactId&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;maven中使用war类型工程,这点区别于freemarker！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2232-yml配置&quot;&gt;2.2.3.2 yml配置&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;spring: 
+     mvc: 
+         view: 
+             prefix: /WEB-INF/jsp/
+             suffix: .jsp
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2233-启动&quot;&gt;2.2.3.3 启动&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt; @Controller 
+ public class IndexController {
+     @RequestMapping(&quot;/index&quot;)
+     public String index() {
+         return &quot;index&quot;;
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;23-数据库访问&quot;&gt;2.3 数据库访问&lt;/h2&gt;
+
+&lt;h3 id=&quot;231-jdbctemplate&quot;&gt;2.3.1 JdbcTemplate&lt;/h3&gt;
+
+&lt;h4 id=&quot;2311-maven依赖&quot;&gt;2.3.1.1 maven依赖&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-jdbc&amp;lt;/artifactId&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ &amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;5.1.21&amp;lt;/version&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2312-yml配置&quot;&gt;2.3.1.2 yml配置&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+   datasource :
+       url : jdbc:mysql://localhost:3306/test
+       username : root
+       password : root
+       driver-class-name : com.mysql.jdbc.Driver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2313-调用&quot;&gt;2.3.1.3 调用&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;@Service
+public class UserServiceImpl implements UserService {
+     @Autowired
+     private JdbcTemplate jdbcTemplate;
+     public void createUser(String name, Integer age) {
+         System.*out*.println(&quot;ssss&quot;);
+         jdbcTemplate.update(&quot;insert into users values(null,?,?);&quot;, name, age);
+     }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;232-mybatis&quot;&gt;2.3.2 Mybatis&lt;/h3&gt;
+&lt;h4 id=&quot;2321-maven依赖&quot;&gt;2.3.2.1 maven依赖&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.mybatis.spring.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;mybatis-spring-boot-starter&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;1.1.1&amp;lt;/version&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+ &amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;5.1.46&amp;lt;/version&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2322-yml配置&quot;&gt;2.3.2.2 yml配置&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+   datasource :
+       url : jdbc:mysql://localhost:3306/test
+       username : root
+       password : root
+       driver-class-name : com.mysql.jdbc.Driver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2323-调用&quot;&gt;2.3.2.3 调用&lt;/h4&gt;
+&lt;p&gt;（1）定义mapper接口&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface UserMapper {
+     @Select(&quot;SELECT * FROM USERS WHERE NAME = #{name}&quot;)
+     User findByName(@Param(&quot;name&quot;) String name);
+     @Insert(&quot;INSERT INTO USERS(NAME, AGE) VALUES(#{name}, #{age})&quot;)
+     int insert(@Param(&quot;name&quot;) String name, @Param(&quot;age&quot;) Integer age);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）@MapperScan(basePackages = “com.mapper”)扫包&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@ComponentScan(basePackages = &quot;com.qian&quot;)
+@MapperScan(basePackages = &quot;com.qian.mapper&quot;)
+@SpringBootApplication
+public class App {
+     public static void main(String[] args) {
+     SpringApplication.*run*(App.class, args);
+    }
+ }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;233-springjpa&quot;&gt;2.3.3 Springjpa&lt;/h3&gt;
+&lt;h4 id=&quot;2331-maven依赖&quot;&gt;2.3.3.1 maven依赖&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-data-jpa&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;mysql&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;mysql-connector-java&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;5.1.21&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2332-yml配置&quot;&gt;2.3.3.2 yml配置&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+   datasource :
+       url : jdbc:mysql://localhost:3306/test
+       username : root
+       password : root
+       driver-class-name : com.mysql.jdbc.Driver
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2333-调用和启动&quot;&gt;2.3.3.3 调用和启动&lt;/h4&gt;
+
+&lt;p&gt;（1）创建实体类&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Entity(name = &quot;users&quot;)
+public class User {
+     @Id
+     @GeneratedValue
+     private Integer id;
+     @Column
+     private String name;
+     @Column
+     private Integer age;
+       // ..get/set方法
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）创建Dao接口&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public interface UserDao extends JpaRepository&amp;lt;User, Integer&amp;gt; {
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（3）@EnableJpaRepositories(basePackages = “com.qian.dao”)启动&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@ComponentScan(basePackages = { &quot;com.qian&quot; })
+@EnableJpaRepositories(basePackages = &quot;com.qian.dao&quot;)
+@EnableAutoConfiguration
+@EntityScan(basePackages = &quot;com.itmayiedu.entity&quot;)
+public class App {
+     public static void main(String[] args) {
+         SpringApplication.*run*(App.class, args);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;24-configuration配置&quot;&gt;2.4 @Configuration配置&lt;/h2&gt;
+
+&lt;h3 id=&quot;241-configurationproperties&quot;&gt;2.4.1 @ConfigurationProperties&lt;/h3&gt;
+&lt;p&gt;如果我们需要取 N 个配置项，通过 @Value（“${name}”） 的方式去配置项需要一个一个去取，这就显得有点 low 了。我们可以使用 @ConfigurationProperties 。标有 @ConfigurationProperties 的类的&lt;strong&gt;所有属性和配置文件中相关的配置项进行绑定&lt;/strong&gt;。（默认从全局配置文件中获取配置值），绑定之后我们就可以通过这个类去访问全局配置文件中的属性值了。&lt;/p&gt;
+
+&lt;p&gt;（1） 在主配置文件中添加如下配置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;person: 
+     name: kundy
+     age: 13
+     sex: male
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）创建配置类，由于篇幅问题这里省略了 setter、getter 方法，但是实际开发中这个是必须的，否则无法成功注入。另外，@Component 这个注解也还是需要添加的。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Component
+@ConfigurationProperties(prefix=&quot;person&quot;)
+public class Person{
+     private String name;
+     private Integer age;
+     private String sex;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里 @ConfigurationProperties 有一个 prefix 参数，主要是用来指定该配置项在配置文件中的前缀。&lt;/p&gt;
+
+&lt;h3 id=&quot;242-bean&quot;&gt;2.4.2 @Bean&lt;/h3&gt;
+
+&lt;h4 id=&quot;2421-使用说明&quot;&gt;2.4.2.1 使用说明&lt;/h4&gt;
+
+&lt;p&gt;（1）@Bean注解相当于spring的xml配置文件&lt;bean&gt;标签，告诉容器注入一个bean。&lt;/bean&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）@Bean 注解作用在方法上&lt;/p&gt;
+
+&lt;p&gt;（3）@Bean 指示一个方法返回一个 Spring 容器管理的 Bean&lt;/p&gt;
+
+&lt;p&gt;（4）@Bean 方法名与返回类名一致，首字母小写&lt;/p&gt;
+
+&lt;p&gt;（5）@Bean 一般和 @Component 或者 @Configuration 一起使用&lt;/p&gt;
+
+&lt;p&gt;（6）@Bean 注解默认作用域为单例 singleton 作用域，可通过 @Scope(“prototype”) 设置为原型作用域&lt;/p&gt;
+
+&lt;h4 id=&quot;2422-bean-名称&quot;&gt;2.4.2.2 Bean 名称&lt;/h4&gt;
+
+&lt;p&gt;（1）默认情况下 Bean 名称就是方法名，比如下面 Bean 名称便是 myBean：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Bean
+public MyBean myBean() {
+     return new MyBean();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）@Bean 注解支持设置别名。比如下面除了主名称 myBean 外，还有个别名 myBean1（两个都可以使用）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Bean(&quot;myBean1&quot;)
+public MyBean myBean() {
+     return new MyBean();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（3）@Bean 注解可以接受一个 String 数组设置多个别名。比如下面除了主名称 myBean 外，还有别名 myBean1、myBean2（三个都可以使用）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Bean({&quot;myBean1&quot;, &quot;myBean2&quot;})
+public MyBean myBean() {
+     return new MyBean();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2423-bean-与其他注解一起使用&quot;&gt;2.4.2.3 @Bean 与其他注解一起使用&lt;/h4&gt;
+
+&lt;p&gt;（1）@Bean 注解常常与 @Scope、@Lazy，@DependsOn 和 @link Primary 注解一起使用：&lt;/p&gt;
+
+&lt;p&gt;@Profile 注解：为在不同环境下使用不同的配置提供了支持，如开发环境和生产环境的数据库配置是不同的&lt;/p&gt;
+
+&lt;p&gt;@Scope 注解：将 Bean 的作用域从单例改变为指定的作用域&lt;/p&gt;
+
+&lt;p&gt;@Lazy 注解：只有在默认单例作用域的情况下才有实际效果&lt;/p&gt;
+
+&lt;p&gt;@DependsOn 注解：表示在当前 Bean 创建之前需要先创建特定的其他 Bean&lt;/p&gt;
+
+&lt;p&gt;（2）比如下面样例，Bean 的作用域默认是单例的，我们配合 @Scope 注解将其改成 prototype 原型模式（每次获取 Bean 的时候会有一个新的实例）&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Bean()
+@Scope(&quot;prototype&quot;)
+public MyBean myBean() {
+     return new MyBean();
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;2424-bean-初始化和销毁时调用相应的方法&quot;&gt;2.4.2.4 Bean 初始化和销毁时调用相应的方法&lt;/h4&gt;
+
+&lt;p&gt;（1）实际开发中，经常会遇到在 Bean 使用之前或使用之后做些必要的操作，Spring 对 Bean 的生命周期的操作提供了支持：我们可以通过 @Bean 注解的 initMethod 和 destrodMethod 进行指定 Bean 在初始化和销毁时需要调用相应的方法。&lt;/p&gt;
+
+&lt;p&gt;（2）下面是一个简单的样例：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public class MyBean {
+     public void init() {
+        System.out.println(&quot;MyBean开始初始化...&quot;);
+     }
+     public void destroy() {
+         System.out.println(&quot;MyBean销毁...&quot;);
+     }
+     public String get() {
+         return &quot;MyBean使用...&quot;;
+     }
+}
+&amp;gt; 
+&amp;gt; @Bean(initMethod=&quot;init&quot;, destroyMethod=&quot;destroy&quot;)
+&amp;gt; 
+&amp;gt; public MyBean myBean() {
+&amp;gt; 
+&amp;gt;     return new MyBean();
+&amp;gt; 
+&amp;gt; }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;243-configuration&quot;&gt;2.4.3 &lt;strong&gt;@Configuration&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;h4 id=&quot;2431-使用说明&quot;&gt;&lt;strong&gt;2.4.3.1 使用说明&lt;/strong&gt;&lt;/h4&gt;
+
+&lt;p&gt;（1）@Configuration注解底层是含有@Component ，所以@Configuration 具有和 @Component 的作用。&lt;/p&gt;
+
+&lt;p&gt;（2）@Configuration注解相当于spring的xml配置文件中&lt;beans&gt;标签，里面可以配置bean。&lt;/beans&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;2432-demo&quot;&gt;2.4.3.2 Demo&lt;/h4&gt;
+&lt;pre&gt;&lt;code&gt;import org.springframework.context.annotation.Bean;
+ import org.springframework.context.annotation.Configuration;
+@Configuration
+public class MyConfigration {
+     @Bean
+     public String **hello()** {
+         return &quot;welcome to hangge.com&quot;;
+     }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class HelloController {
+    @Autowired
+    String hello;
+
+    @GetMapping(&quot;/test&quot;)
+     public String test() {
+         return hello;
+     }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;25-事务管理&quot;&gt;2.5 事务管理&lt;/h2&gt;
+
+&lt;h3 id=&quot;251-transactional&quot;&gt;2.5.1 @Transactional&lt;/h3&gt;
+&lt;p&gt;springboot默认集成事物,只主要在方法上加上@Transactional即可。&lt;/p&gt;
+
+&lt;h3 id=&quot;251-分布式事务管理&quot;&gt;2.5.1 分布式事务管理&lt;/h3&gt;
+&lt;p&gt;使用springboot+jta+atomikos 分布式事物管理。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;maven依赖：&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-jta-atomikos&amp;lt;/artifactId&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;26-lombok&quot;&gt;2.6 Lombok&lt;/h2&gt;
+
+&lt;h3 id=&quot;261-maven依赖&quot;&gt;2.6.1 maven依赖&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;!--Lombok --&amp;gt;
+&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.projectlombok&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;lombok&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;1.18.6&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;net.logstash.logback&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;logstash-logback-encoder&amp;lt;/artifactId&amp;gt;
+     &amp;lt;version&amp;gt;4.9&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;262-安装lombok插件&quot;&gt;2.6.2 &lt;strong&gt;安装lomBok插件&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;（1）下载lombok.jar包&lt;a href=&quot;https://projectlombok.org/download.html&quot;&gt;https://projectlombok.org/download.html&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;（2）运行Lombok.jar: java -jar D:\software\lombok.jar。D:\software\lombok.jar这是windows下lombok.jar所在的位置。数秒后将弹出一框，以确认eclipse的安装路径。&lt;/p&gt;
+
+&lt;p&gt;（3）确认完eclipse的安装路径后，点击install/update按钮，即可安装完成&lt;/p&gt;
+
+&lt;p&gt;（4）安装完成之后，请确认eclipse安装路径下是否多了一个lombok.jar包，并且其配置文件eclipse.ini中是否 添加了如下内容:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-javaagent:lombok.jar
+-Xbootclasspath/a:lombok.jar
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么恭喜你已经安装成功，否则将缺少的部分添加到相应的位置即可，重启eclipse或myeclipse。
+##2.7 其他
+###2.7.1 使用@Scheduled创建定时任务&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;在Spring Boot的主类中加入@EnableScheduling注解，启用定时任务的配置。&lt;/li&gt;
+  &lt;li&gt;设置时间方式：
+    &lt;ol&gt;
+      &lt;li&gt;固定时间频率运行方法。@Scheduled(fixedRate=30000)&lt;/li&gt;
+      &lt;li&gt;延迟指定的时间运行方法。@Scheduled(fixedDelay=30000)&lt;/li&gt;
+      &lt;li&gt;按照 cron 表达式定义的时间方式运行方法。@Scheduled(cron=”0 0 * * * *”)
+        &lt;pre&gt;&lt;code&gt;@Component
+public class ScheduledTasks {
+  private static final SimpleDateFormat dateFormat = new SimpleDateFormat(&quot;HH:mm:ss&quot;);
+  @Scheduled(fixedDelay = 5000)
+  public void reportCurrentTime() {
+   System.out.println(&quot;现在时间：&quot; + dateFormat.format(new Date()));
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+        &lt;p&gt;###2.7.2 @Async实现异步调用
+启动加上@EnableAsync，需要执行异步方法上加入 @Async&lt;/p&gt;
+      &lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;###2.7.3 发布打包
+（1）使用mvn package 打包&lt;/p&gt;
+
+&lt;p&gt;（2）使用 “java –jar 包名” 运行应用&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注意事项
+如果报错没有主清单,在pom文件中新增
+```&lt;/li&gt;
+&lt;/ul&gt;
+&lt;build&gt;
+     &lt;plugins&gt;
+         &lt;plugin&gt;
+             &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+             &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;
+             &lt;configuration&gt;
+                 &lt;source /&gt;1.8&amp;lt;/source&amp;gt;
+                 &lt;target&gt;1.8&lt;/target&gt;
+             &lt;/configuration&gt;
+         &lt;/plugin&gt;
+         &lt;plugin&gt;
+                 &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;
+                 &lt;artifactId&gt;spring-boot-maven-plugin&lt;/artifactId&gt;
+                 &lt;configuration&gt;
+                     &lt;maimClass&gt;com.qian.app.App&lt;/maimClass&gt;
+                 &lt;/configuration&gt;
+                 &lt;executions&gt;
+                     &lt;execution&gt;
+                         &lt;goals&gt;
+                             &lt;goal&gt;repackage&lt;/goal&gt;
+                         &lt;/goals&gt;
+                     &lt;/execution&gt;
+                 &lt;/executions&gt; 
+         &lt;/plugin&gt;
+     &lt;/plugins&gt;
+&lt;/build&gt;
+&lt;pre&gt;&lt;code&gt;###2.7.4 说明
+关于ActiveMQ、Redis、Zookeeper、Dubbo、Spring Cloud 的相关依赖，在其各自专题介绍。
+
+#3 常见问题汇总
+##3.1 Spring中访问静态资源
+注意这里不是Springboot环境，仅仅为Spring环境。在SpringMVC3.0之后推荐使用下列配置，该配置的作用是：DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源交由Servlet处理。
+&lt;/code&gt;&lt;/pre&gt;
+&lt;mvc:annotation-driven /&gt;
+
+&lt;mvc:resources location=&quot;/img/&quot; mapping=&quot;/img/**&quot; /&gt;
+
+&lt;mvc:resources location=&quot;/js/&quot; mapping=&quot;/js/**&quot; /&gt;
+
+&lt;mvc:resources location=&quot;/css/&quot; mapping=&quot;/css/**&quot; /&gt;
+
+&lt;pre&gt;&lt;code&gt;- 说明：
+location元素表示webapp目录下的static包下的所有文件；
+mapping元素表示以/static开头的所有请求路径，如/static/a 或者/static/a/b；
+
+##3.2 Spring MVC Controller接收前端参数的几种方式
+(1) 普通方式-请求参数名和Controller方法的参数一致
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;/**&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;请求参数名和Controller方法的参数一致&lt;/li&gt;
+  &lt;li&gt;produces 设置返回参数的编码格式可以设置返回数据的类型以及编码，可以是json或者xml&lt;/li&gt;
+  &lt;li&gt;{&lt;/li&gt;
+  &lt;li&gt;@RequestMapping(value=”/xxx”,produces = {“application/json;charset=UTF-8”})&lt;/li&gt;
+  &lt;li&gt;或&lt;/li&gt;
+  &lt;li&gt;@RequestMapping(value=”/xxx”,produces = {“application/xml;charset=UTF-8”})&lt;/li&gt;
+  &lt;li&gt;或&lt;/li&gt;
+  &lt;li&gt;@RequestMapping(value=”/xxx”,produces = “{text/html;charset=utf-8}”)&lt;/li&gt;
+  &lt;li&gt;}&lt;/li&gt;
+  &lt;li&gt;@param name 用户名&lt;/li&gt;
+  &lt;li&gt;@param pwd 密码&lt;/li&gt;
+  &lt;li&gt;@return
+ *
+*/
+@RequestMapping(value = “/add”, method = RequestMethod.GET, produces = {“application/json;charset=UTF-8”})
+@ResponseBody
+public String addUser(String name, String pwd){
+ return”name:” + name + “,pwd:” + pwd;
+ }
+```
+&lt;code&gt;http://localhost:8080/sty/param/add.action?name=张三&amp;amp;pwd=123456&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;(2) 对象方式-请求参数名和Controller方法中的对象的参数一致&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@Controller
+@RequestMapping(&quot;/param&quot;)publicclass TestParamController {
+    privatestaticfinalLogger logger = LoggerFactory.getLogger(TestParamController.class);
+    /**    * 请求参数名和Controller方法的参数一致
+    * produces 设置返回参数的编码格式可以设置返回数据的类型以及编码，可以是json或者xml
+    * }
+    * @param user 用户信息
+    * @return    *
+    */    @RequestMapping(value = &quot;/addByObject&quot;, method = RequestMethod.GET, produces = {&quot;application/json;charset=UTF-8&quot;})
+    @ResponseBody
+    public String addUserByObject(User user){
+        logger.debug(&quot;name:&quot; + user.getName() + &quot;,pwd:&quot; + user.getPwd());
+        return&quot;name:&quot; + user.getName() + &quot;,pwd:&quot; + user.getPwd();
+    }
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;code&gt;http://localhost:8080/sty/param/addByObject.action?name=张三&amp;amp;pwd=123456 &lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;（3）自定义方法参数名-当请求参数名与方法参数名不一致时
+可以在参数中增加@RequestParam注解。如果在方法中的参数增加了该注解，说明请求的url该带有该参数，否则不能执行该方法。如果在方法中的参数没有增加该注解，说明请求的url无需带有该参数，也能继续执行该方法。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;　　@RequestParam(defaultValue=&quot;0&quot;)可设置默认值(仅当传入参数为空时)。
+
+　　@RequestParam(value=&quot;id&quot;)可接受传入参数为id的值，覆盖该注解注释的字段。
+
+　　@RequestParam(name=&quot;name&quot;,defaultValue = &quot;李四&quot;) String u_name   如果传入字段”name”为空，默认u_name的值为”李四”。若传入”name”不为空，默认u_name值为传入值。
+/** * 自定义方法参数名-当请求参数名与方法参数名不一致时
+
+* @param u_name 用户名
+
+* @param u_pwd 密码
+
+* @return*/@RequestMapping(value = &quot;/addByDifName&quot;, method = RequestMethod.GET, produces = {&quot;application/json;charset=UTF-8&quot;})
+
+@ResponseBodypublicString addUserByDifName(@RequestParam(&quot;name&quot;) String u_name, @RequestParam(&quot;pwd&quot;)String u_pwd){
+
+    logger.debug(&quot;name:&quot; + u_name + &quot;,pwd:&quot; + u_pwd);
+
+    return&quot;name:&quot; + u_name + &quot;,pwd:&quot; + u_pwd;
+
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;访问：&lt;code&gt; http://localhost:8080/sty/param/addUserByDifName.action?name=张三&amp;amp;pwd=123456&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;(4) HttpServletRequest方式&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/** * 通过HttpServletRequest接收
+
+* @param request
+
+* @return*/@RequestMapping(value = &quot;/addByHttpServletRequest&quot;, method = RequestMethod.GET, produces = {&quot;application/json;charset=UTF-8&quot;})
+
+@ResponseBodypublic String addUserByHttpServletRequest(HttpServletRequest request){
+
+    String name = request.getParameter(&quot;name&quot;);
+
+    String pwd = request.getParameter(&quot;pwd&quot;);
+
+    logger.debug(&quot;name:&quot; + name + &quot;,pwd:&quot; + pwd);
+
+    return&quot;name:&quot; + name + &quot;,pwd:&quot; + pwd;
+
+} 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;访问：&lt;code&gt;http://localhost:8080/sty/param/addByHttpServletRequest.action?name=张三&amp;amp;pwd=123456&lt;/code&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;注意：其他方式的获取，基础都是request请求。自动封装也是从request中获取后进行的封装。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;##3.3 Spring MVC的转发和重定向
+###3.3.1 转发
+使用request也行。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@RequestMapping(&quot;/helloForward&quot;)
+publicString helloForward(@RequestParam(value=&quot;name&quot;, required=false, defaultValue=&quot;World2017&quot;) String name, Model model) {
+        model.addAttribute(&quot;name&quot;, name);
+        return&quot;hello&quot;;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;###3.3.2 重定向
+（1）RedirectAttributes类&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/** * 使用RedirectAttributes类
+
+    * @param name
+
+    * @param redirectAttributes
+
+    * @return*/    @RequestMapping(&quot;/helloRedirect&quot;)
+
+    publicString helloRedirect(@RequestParam(value=&quot;name&quot;, required=false ) String name, RedirectAttributes redirectAttributes) {
+
+        redirectAttributes.addFlashAttribute(&quot;name&quot;, name);
+
+        return&quot;redirect:/hello&quot;;
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）借助Session传值&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    /**    * 常规做法，重定向之前把参数放进Session中，在重定向之后的controller中把参数从Session中取出并放进ModelAndView
+
+    * @param name
+
+    * @param request
+
+    * @return*/   
+
+    @RequestMapping(&quot;/helloRedirect2&quot;)
+
+    publicString helloRedirect2(@RequestParam(value=&quot;name&quot;, required=false ) String name, HttpServletRequest request) {
+
+        request.getSession().setAttribute(&quot;name&quot;, name);
+
+        return&quot;redirect:/hello2&quot;;
+
+    }
+
+@RequestMapping(&quot;/hello2&quot;)
+
+    public String hello2(Model model,HttpServletRequest request) {
+
+        HttpSession session = request.getSession();
+
+        model.addAttribute(&quot;name&quot;,session.getAttribute(&quot;name&quot;));
+
+        return&quot;hello&quot;;     
+
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;##3.4 Input标签上传多个图片到服务器
+（1）前端页面&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;form action=&quot;getData&quot; style=&quot;font-size: 14px;&quot; method=&quot;post&quot;  ENCTYPE=&quot;multipart/form-data&quot;&amp;gt;
+    &amp;lt;td&amp;gt;&amp;lt;input type=&quot;file&quot; name=&quot;file&quot; multiple=&quot;multiple&quot;&amp;gt;&amp;lt;/td&amp;gt;
+&amp;lt;/form&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;（2）服务器端&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;public void getData(@RequestParam(value = &quot;file&quot;, required = false) List&amp;lt;MultipartFile&amp;gt; file,
+HttpServletRequest req) {
+  try {
+    for (MultipartFile f : file) {
+        //....
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;##3.5 The field file exceeds its maximum permitted size of 1048576 bytes
+Spring Boot做文件上传时出现了The field file exceeds its maximum permitted size of 1048576 bytes.错误，显示文件的大小超出了允许的范围。文档说明表示，每个文件的配置最大为1Mb，单次请求的文件的总数不能大于10Mb。要更改这个默认值需要在配置文件（如application.properties）中加入两个配置。&lt;/p&gt;
+
+&lt;p&gt;Spring Boot1.4版本后配置更改为:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring.http.multipart.maxFileSize = 10Mb 
+spring.http.multipart.maxRequestSize=100Mb 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Spring Boot2.0之后的版本配置修改为:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring.servlet.multipart.max-file-size = 10MB
+spring.servlet.multipart.max-request-size=100MB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;##3.6 服务器发送可下载文件到浏览器&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;@RequestMapping(value = &quot;downloadZip&quot;, method = RequestMethod.GET)
+    public void downloadZip(HttpServletResponse response,String id) throws Exception {
+        String fileName=workCardPhotoFileService.downloadZipFile(id);
+        if (StringUtils.isNotEmpty(fileName)){
+            response.setContentType(&quot;application/application/vnd.ms-excel&quot;);
+            response.setHeader(&quot;Content-disposition&quot;,
+                    &quot;attachment;filename=&quot; + fileName);
+            download(response.getOutputStream(),fileName);
+        }
+    }
+
+public void download(OutputStream os, String fileName) throws IOException {
+        //获取服务器文件
+        File file = new File(&quot;/Users/Desktop/download/workcardphoto/&quot;+fileName);
+        InputStream ins = new FileInputStream(file);
+        byte[] b = new byte[1024];
+        int len;
+        while((len = ins.read(b)) &amp;gt; 0){
+            os.write(b,0,len);
+        }
+        os.flush();
+        os.close();
+        ins.close();
+    }
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;##3.7 @requestBody注解作用
+通过@requestBody可以将请求体中的JSON字符串绑定到相应的bean上，当然，也可以将其分别绑定到对应的字符串上。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;　$.ajax({
+　　　　　　　　url:&quot;/login&quot;,
+　　　　　　　　type:&quot;POST&quot;,
+　　　　　　　　data:'{&quot;userName&quot;:&quot;admin&quot;,&quot;pwd&quot;,&quot;admin123&quot;}',
+　　　　　　　　content-type:&quot;application/json charset=utf-8&quot;,
+　　　　　　　　success:function(data){
+　　　　　　　　　　alert(&quot;request success ! &quot;);
+　　　　　　　　}
+　　　　});
+
+@requestMapping(&quot;/login&quot;)
+public void login(@requestBody User){
+　　System.out.println(userName+&quot; ：&quot;+pwd);
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;##3.8 Springboot访问HTML页面
+此部分在测试过程中，一旦引入spring-boot-starter-thymeleaf，整个项目的pom文件就报错，具体原因排查中，了解的小伙伴也可以一起讨论。&lt;/p&gt;
+
+&lt;p&gt;在具体实践中，大都使用freemarker进行页面设计，且前述提到过，可以使用freemarker进行Html页面的访问。&lt;/p&gt;
+
+&lt;p&gt;###3.8.1 Springboot下maven依赖&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;dependency&amp;gt;
+     &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+     &amp;lt;artifactId&amp;gt;spring-boot-starter-thymeleaf&amp;lt;/artifactId&amp;gt;
+ &amp;lt;/dependency&amp;gt;
+
+&amp;lt;!--避坑包--&amp;gt;
+
+      &amp;lt;dependency&amp;gt;
+
+          &amp;lt;groupId&amp;gt;net.sourceforge.nekohtml&amp;lt;/groupId&amp;gt;
+
+          &amp;lt;artifactId&amp;gt;nekohtml&amp;lt;/artifactId&amp;gt;
+
+          &amp;lt;version&amp;gt;1.9.22&amp;lt;/version&amp;gt;
+
+      &amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;###3.8.2 yml配置&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;spring:
+     thymeleaf:
+         prefix: classpath:/templates/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在LEGACYHTML5下，application.properties配置文件如下。因为在默认配置下，thymeleaf对.html的内容要求很严格，比如&amp;lt;meta charset=”UTF-8″ /&amp;gt;，如果少最后的标签封闭符号/，就会报错而转到错误页。也比如你在使用Vue.js这样的库，然后有&amp;lt;div v-cloak&amp;gt;&amp;lt;/div&amp;gt;这样的html代码，也会被thymeleaf认为不符合要求而抛出错误。因此，建议增加下面这段：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    spring.thymeleaf.mode = LEGACYHTML5
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;spring.thymeleaf.mode的默认值是HTML5，其实是一个很严格的检查，改为LEGACYHTML5可以得到一个可能更友好亲切的格式要求。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#&amp;lt;!-- 关闭thymeleaf缓存 开发时使用 否则没有实时画面--&amp;gt;
+spring.thymeleaf.cache=false
+## 检查模板是否存在，然后再呈现
+spring.thymeleaf.check-template-location=true
+#Content-Type值
+spring.thymeleaf.content-type=text/html
+#启用MVC Thymeleaf视图分辨率
+spring.thymeleaf.enabled=true
+## 应该从解决方案中排除的视图名称的逗号分隔列表
+##spring.thymeleaf.excluded-view-names=
+#模板编码
+spring.thymeleaf.mode=LEGACYHTML5
+# 在构建URL时预先查看名称的前缀
+spring.thymeleaf.prefix=classpath:/templates/
+# 构建URL时附加查看名称的后缀.
+spring.thymeleaf.suffix=.html
+# 链中模板解析器的顺序
+#spring.thymeleaf.template-resolver-order= o
+# 可以解析的视图名称的逗号分隔列表
+#spring.thymeleaf.view-names=
+#thymeleaf end
+&lt;/code&gt;&lt;/pre&gt;</content><author><name></name></author><category term="Spring" /><summary type="html">目录 1 Springboot简介 2 Springboot整合依赖汇总 3 常见问题汇总</summary></entry></feed>

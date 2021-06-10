@@ -1,16 +1,30 @@
 title: 小小千千 | GitHub blog # 站点标题
 description: | # 头像背后的信息（html格式），<br/>代表换行
   一枚顽强的小天蝎程序员<br/>
+  张杰<br/>
+  林俊杰<br/>
   <a href="https://github.com/Jason-QianHao">
     <i class="fab fa-github"></i>
   </a>
+  <a href="https://www.jianshu.com/u/1d46c8671406">
+    <i class="fas fa-smile"></i>
+  </a>
+  <iframe
+    src="https://api.mlwei.com/music/play/?id=002qtwZJ32UUxO&type=song&height=32"
+    width=100%
+    height=52
+    frameborder="no"
+    border="0"
+    marginwidth="0"
+    marginheight="0"
+  ></iframe>
 url: https://Jason-QianHao.github.io # 你的域名，例如 https://wu-kan.github.io
 baseurl: "" # 假如你的博客是建在某个目录下的，请在这里加上目录名，并且下面配置的所有链接里的`/assets`前也要加，即`/your_baseurl/assets`。这一项结尾不要有'/'。
 
 jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
   default:
     body:
-      theme-base: theme-base-07 # 可选的主题色包括08~0f，见 <https://github.com/poole/lanyon>
+      theme-base: theme-base-0d # 可选的主题色包括08~0f，见 <https://github.com/poole/lanyon>
       layout-reverse: true # 开启后sidebar在右边，反之左边
       sidebar-overlay: true # 开启后正文不随sidebar移动而移动
     append_to_head: # 通过内嵌html的方式引入并定制插件，删改前确定知道自己在做什么。定制插件的方式可以参考这篇文章 <https://wu-kan.cn/_posts/2019-01-18-基于Jekyll搭建个人博客/>
@@ -142,11 +156,11 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
             background-position: 0% 0%;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-image: url(https://Mizuno-Ai.wu-kan.cn/pixiv/74559485_p1.webp);
+            background-image: url(/assets/image/dilb.jpeg);
           }
           @media (min-aspect-ratio: 2400/1850) {
             .wrap {
-              background-image: url(https://Mizuno-Ai.wu-kan.cn/pixiv/71932901_p0.webp);
+              background-image: url(/assets/image/dilb.jpeg);
             }
           }
           .sidebar-overlay #sidebar-checkbox:checked ~ .wrap {
@@ -350,7 +364,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
               document.getElementById("run_time_hour"),
               document.getElementById("run_time_minute"),
               document.getElementById("run_time_second"),
-              "10/04/2017 11:03:56")// 这是我第一篇CSDN博客的时间
+              "06/10/2021 18:00:00")// 这是我第一篇CSDN博客的时间
             </script>
           </div>
         - | # 不蒜子页面统计，看不懂可不改
@@ -388,7 +402,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
         - | # Copyright声明
           <div>
             <i class="fas fa-copyright fa-fw"></i>
-            2017-2020 WuK
+            @2021 Jason
           </div>
       wordcount: # 全站字数统计
         enable: false # 本地调试时建议关闭，非常影响站点生成速度（所需时间与博文数量的平方成正比）
@@ -512,8 +526,8 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
         onload='
           new Valine({
             "el": document.getElementsByClassName("v")[0],
-            "appId": "9hABRddSuEkTgqLrt1VSK5B1-gzGzoHsz",
-            "appKey": "NJ7RwmgrxsF7KDzlqU7YewlL",
+            "appId": "Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz",
+            "appKey": "stI6rxYdK6PXYnmGVxx1JHML",
             "placeholder": "在这里评论吧！填写邮箱可以获得 Gravatar 头像和回复通知哦",
             "requiredFields": ["nick","mail"],
             "visitor": true,
