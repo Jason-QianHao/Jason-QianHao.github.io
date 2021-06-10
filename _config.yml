@@ -1,0 +1,31 @@
+# ----------- CONFIGURABLE START -----------
+title:            "小小千千 | GitHub blog"
+description:      "一个顽强的小天蝎程序员"
+url:              https://Jason-QianHao.github.io # 域名
+signoff:          "Jason" # Your name
+google_analytics: UA-101222464-1
+share:            true 
+# 分页
+paginate: 15
+paginate_path: "Jason-QianHao.github.io/page:num"
+gems: [jekyll-paginate]
+links:
+  - name:         首页
+    url:          /
+    external:     false
+  - name:         Java面试
+    url:          /java
+    external:     false
+  - name:         归档
+    url:          /archives
+    external:     false
+  - name:         标签
+    url:          /tags
+    external:     false
+# ------------ CONFIGURABLE END ------------
+
+#permalink:        /:categories/:title.html
+
+defaults:
+  - values:
+      layout: "default"
