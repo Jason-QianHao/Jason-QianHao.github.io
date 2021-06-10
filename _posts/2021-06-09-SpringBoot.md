@@ -4,9 +4,9 @@ tags: Spring
 ---
 
 > 目录
->  1 Springboot简介
->  2 Springboot整合依赖汇总
->  3 常见问题汇总
+>  1 Springboot简介  
+>  2 Springboot整合依赖汇总  
+>  3 常见问题汇总  
 
 # 1 Springboot简介
 Spring Boot让我们的Spring应用变的更轻量化。比如：你可以仅仅依靠一个Java类来运行一个Spring引用。你也可以打包你的应用为jar并通过使用java -jar来运行你的Spring Web应用。
