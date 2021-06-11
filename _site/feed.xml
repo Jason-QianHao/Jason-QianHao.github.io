@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-10T23:01:20+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">小小千千 | GitHub blog</title><subtitle>一枚顽强的小天蝎程序员&lt;br/&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2021-06-11T12:40:23+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">小小千千 | GitHub blog</title><subtitle>一枚顽强的小天蝎程序员&lt;br/&gt;
 张杰&lt;br/&gt;
 林俊杰&lt;br/&gt;
+迪丽热巴&lt;br/&gt;
 &lt;a href=&quot;https://github.com/Jason-QianHao&quot;&gt;
   &lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;
 &lt;/a&gt;
@@ -17,7 +18,7 @@
   marginheight=&quot;0&quot;
 &gt;&lt;/iframe&gt;
 </subtitle><entry><title type="html">SQL语句与MySQL基础原理</title><link href="http://localhost:4000/_posts/2021-06-09-MySQL/" rel="alternate" type="text/html" title="SQL语句与MySQL基础原理" /><published>2021-06-09T00:00:00+08:00</published><updated>2021-06-09T00:00:00+08:00</updated><id>http://localhost:4000/_posts/MySQL</id><content type="html" xml:base="http://localhost:4000/_posts/2021-06-09-MySQL/">&lt;blockquote&gt;
-  &lt;p&gt;目录
+  &lt;p&gt;目录&lt;br /&gt;
  1 MySql基础知识&lt;br /&gt;
  2 MySql逻辑架构&lt;br /&gt;
  3 并发控制&lt;br /&gt;
@@ -1358,7 +1359,7 @@ mysql控制台
 &lt;h2 id=&quot;mysql数据库的高可用&quot;&gt;MySQL数据库的高可用&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://www.jb51.net/article/83400.htm&quot;&gt;MySQL数据库的高可用方案总结&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><category term="MySQL" /><summary type="html">目录 1 MySql基础知识 2 MySql逻辑架构 3 并发控制 4 事务 5 MVCC多版本并发控制 6 存储引擎 7 索引 8 MySql优化 9 其他知识点 10 常见问题总结 参考资料 · 《高性能MySql》 · 《尚硅谷MySql》 · JavaG</summary></entry><entry><title type="html">Springboot和常见框架整合</title><link href="http://localhost:4000/_posts/2021-06-09-SpringBoot/" rel="alternate" type="text/html" title="Springboot和常见框架整合" /><published>2021-06-09T00:00:00+08:00</published><updated>2021-06-09T00:00:00+08:00</updated><id>http://localhost:4000/_posts/SpringBoot</id><content type="html" xml:base="http://localhost:4000/_posts/2021-06-09-SpringBoot/">&lt;blockquote&gt;
-  &lt;p&gt;目录
+  &lt;p&gt;目录&lt;br /&gt;
  1 Springboot简介&lt;br /&gt;
  2 Springboot整合依赖汇总&lt;br /&gt;
  3 常见问题汇总&lt;/p&gt;
