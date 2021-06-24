@@ -1,6 +1,6 @@
 ---
 title: 微信小程序入门之PuppyDogPitures
-tags: 微信小程序
+tags: 微信小程序,Project
 ---
 
 # 项目介绍
