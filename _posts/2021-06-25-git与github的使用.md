@@ -1,6 +1,6 @@
 ---
 title: git与github的使用
-tags: Git
+tags: Git&Github
 ---
 
 # git与github的使用
