@@ -2,7 +2,8 @@
 title: Springboot和常见框架整合
 tags: Spring
 ---
-*由简书搬迁而来，bug和格式修改中，请看[**原文链接**](https://www.jianshu.com/p/d10d9cce534d)*
+*由简书搬迁而来[**原文链接**](https://www.jianshu.com/p/d10d9cce534d)*
+
 > 目录  
 >  1 Springboot简介  
 >  2 Springboot整合依赖汇总  
