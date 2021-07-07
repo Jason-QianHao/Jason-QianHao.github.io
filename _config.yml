@@ -121,11 +121,6 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
                   "https:\/\/cdn.jsdelivr.net/gh/xiaoski/live2d_models_collection/uiharu/uiharu.model.json"]
               });'
         ></script>
-      - | # 百度爬虫推送，http站点使用 http://push.zhanzhang.baidu.com/push.js
-        <script
-          src='https://zz.bdstatic.com/linksubmit/push.js'
-          async="async"
-        ></script>
       - | #<!-- Global site tag (gtag.js) - Google Analytics -->
         <script
           async="async"
