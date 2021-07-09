@@ -9,7 +9,7 @@ tags: Spring
 >  2 Springboot整合依赖汇总  
 >  3 常见问题汇总  
 
-# 1 Springboot简介
+# Springboot简介
 Spring Boot让我们的Spring应用变的更轻量化。比如：你可以仅仅依靠一个Java类来运行一个Spring引用。你也可以打包你的应用为jar并通过使用java -jar来运行你的Spring Web应用。
 
 Spring Boot的主要优点：
@@ -18,12 +18,12 @@ Spring Boot的主要优点：
 - 内嵌式容器简化Web项目
 - 没有冗余代码生成和XML配置的要求
 
-# 2 Springboot整合依赖汇总
+# Springboot整合依赖汇总
 
-## 2.1 Spring Web基础
+## Spring Web基础
 
-### 2.1.1 Web基础依赖
-```
+### Web基础依赖
+```java
 <parent>
      <groupId>org.springframework.boot</groupId>
      <artifactId>spring-boot-starter-parent</artifactId>
@@ -64,7 +64,7 @@ Spring Boot的主要优点：
 ```
 **spring-boot-starter-web会自动引入spring-webmvc，spring-boot-starter-validation，spring-boot-starter，spring-boot-starter-json，spring-boot-starter-tomcat 这5个基础依赖**
 
-### 2.1.2 配置和启动
+### 配置和启动
 
 （1）spring-boot-starter-web添加了Tomcat和Spring MVC
 （2）Springboot的几种启动方式：
@@ -110,9 +110,9 @@ server:
    port: 8080
    context-path: /project
 ```
-## 2.2 页面渲染
+## 页面渲染
 
-### 2.2.1 静态资源访问
+### 静态资源访问
 在我们开发Web应用的时候，需要引用大量的js、css、图片等静态资源。
 Spring Boot默认提供静态资源目录位置需置于classpath下，目录名需符合如下规则：
 - /static
@@ -121,9 +121,9 @@ Spring Boot默认提供静态资源目录位置需置于classpath下，目录名
 - /META-INF/resources
 >举例：我们可以在src/main/resources/目录下创建static文件夹，在该位置放置一个图片文件。启动程序后，尝试访问http://localhost:8080/D.jpg。如能显示图片，配置成功。
 
-### 2.2.2 Freemarker模板引擎渲染web视图
+### Freemarker模板引擎渲染web视图
 
-#### 2.2.2.1 模板引擎
+#### 模板引擎
 模板的诞生是为了将显示与数据分离，模板技术多种多样，但其本质是将模板文件和数据通过模板引擎生成最终的HTML代码。使用户界面与业务数据（内容）分离而产生的，它可以生成特定格式的文档，用于网站的模板引擎就会生成一个标准的HTML文档在原有的HTML页面中来填充数据。最终达到渲染页面的目的。
 
 ![image](https://upload-images.jianshu.io/upload_images/24777208-942b91f3d5455c2e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -134,7 +134,7 @@ Spring Boot默认提供静态资源目录位置需置于classpath下，目录名
 
 数据是{name: '木的树'}，那么通过模板引擎解析后，我们希望得到Hello, 木的树。模板的前半部分是普通字符串，后半部分是模板标识，我们需要将其中的标识符替换为表达式。
 
-#### 2.2.2.2 Freemarker
+#### Freemarker
 
 （1）maven依赖
 
@@ -172,9 +172,9 @@ public String index(Map<String, Object> map) {
 ```
 Map或者modelMap和request转发是一样的
 
-### 2.2.3 JSP
+### JSP
 
-#### 2.2.3.1 maven依赖
+#### maven依赖
 ```
 <dependency>
      <groupId>org.springframework.boot</groupId>
@@ -187,7 +187,7 @@ Map或者modelMap和request转发是一样的
 ```
 **maven中使用war类型工程,这点区别于freemarker！**
 
-#### 2.2.3.2 yml配置
+#### yml配置
 ```
 spring: 
      mvc: 
@@ -195,7 +195,7 @@ spring:
              prefix: /WEB-INF/jsp/
              suffix: .jsp
 ```
-#### 2.2.3.3 启动
+#### 启动
 ```
  @Controller 
  public class IndexController {
@@ -205,11 +205,11 @@ spring:
      }
  }
 ```
-## 2.3 数据库访问
+## 数据库访问
 
-### 2.3.1 JdbcTemplate
+### JdbcTemplate
 
-#### 2.3.1.1 maven依赖
+#### maven依赖
 ```
 <dependency>
      <groupId>org.springframework.boot</groupId>
@@ -221,7 +221,7 @@ spring:
      <version>5.1.21</version>
  </dependency>
 ```
-#### 2.3.1.2 yml配置
+#### yml配置
 ```
 spring:
    datasource :
@@ -230,7 +230,7 @@ spring:
        password : root
        driver-class-name : com.mysql.jdbc.Driver
 ```
-#### 2.3.1.3 调用
+#### 调用
 ```
 @Service
 public class UserServiceImpl implements UserService {
@@ -242,8 +242,8 @@ public class UserServiceImpl implements UserService {
      }
  }
 ```
-### 2.3.2 Mybatis
-#### 2.3.2.1 maven依赖
+### Mybatis
+#### maven依赖
 ```
 <dependency>
      <groupId>org.mybatis.spring.boot</groupId>
@@ -256,7 +256,7 @@ public class UserServiceImpl implements UserService {
      <version>5.1.46</version>
  </dependency>
 ```
-#### 2.3.2.2 yml配置
+#### yml配置
 ```
 spring:
    datasource :
@@ -265,7 +265,7 @@ spring:
        password : root
        driver-class-name : com.mysql.jdbc.Driver
 ```
-#### 2.3.2.3 调用
+#### 调用
 （1）定义mapper接口
 ```
 public interface UserMapper {
@@ -286,8 +286,8 @@ public class App {
     }
  }
 ```
-### 2.3.3 Springjpa
-#### 2.3.3.1 maven依赖
+### Springjpa
+#### maven依赖
 ```
 <dependency>
      <groupId>org.springframework.boot</groupId>
@@ -299,7 +299,7 @@ public class App {
      <version>5.1.21</version>
 </dependency>
 ```
-#### 2.3.3.2 yml配置
+#### yml配置
 ```
 spring:
    datasource :
@@ -308,7 +308,7 @@ spring:
        password : root
        driver-class-name : com.mysql.jdbc.Driver
 ```
-#### 2.3.3.3 调用和启动
+#### 调用和启动
 
 （1）创建实体类
 ```
@@ -341,9 +341,9 @@ public class App {
     }
 }
 ```
-## 2.4 @Configuration配置
+## @Configuration配置
 
-### 2.4.1 @ConfigurationProperties
+### @ConfigurationProperties
 如果我们需要取 N 个配置项，通过 @Value（“${name}”） 的方式去配置项需要一个一个去取，这就显得有点 low 了。我们可以使用 @ConfigurationProperties 。标有 @ConfigurationProperties 的类的**所有属性和配置文件中相关的配置项进行绑定**。（默认从全局配置文件中获取配置值），绑定之后我们就可以通过这个类去访问全局配置文件中的属性值了。
 
 （1） 在主配置文件中添加如下配置
@@ -365,9 +365,9 @@ public class Person{
 ```
 这里 @ConfigurationProperties 有一个 prefix 参数，主要是用来指定该配置项在配置文件中的前缀。
 
-### 2.4.2 @Bean
+### @Bean
 
-#### 2.4.2.1 使用说明
+#### 使用说明
 
 （1）@Bean注解相当于spring的xml配置文件<bean>标签，告诉容器注入一个bean。
 
@@ -381,7 +381,7 @@ public class Person{
 
 （6）@Bean 注解默认作用域为单例 singleton 作用域，可通过 @Scope(“prototype”) 设置为原型作用域
 
-#### 2.4.2.2 Bean 名称
+#### Bean 名称
 
 （1）默认情况下 Bean 名称就是方法名，比如下面 Bean 名称便是 myBean：
 ```
@@ -404,7 +404,7 @@ public MyBean myBean() {
      return new MyBean();
 }
 ```
-#### 2.4.2.3 @Bean 与其他注解一起使用
+#### @Bean 与其他注解一起使用
 
 （1）@Bean 注解常常与 @Scope、@Lazy，@DependsOn 和 @link Primary 注解一起使用：
 
@@ -424,7 +424,7 @@ public MyBean myBean() {
      return new MyBean();
 }
 ```
-#### 2.4.2.4 Bean 初始化和销毁时调用相应的方法 
+#### Bean 初始化和销毁时调用相应的方法 
 
 （1）实际开发中，经常会遇到在 Bean 使用之前或使用之后做些必要的操作，Spring 对 Bean 的生命周期的操作提供了支持：我们可以通过 @Bean 注解的 initMethod 和 destrodMethod 进行指定 Bean 在初始化和销毁时需要调用相应的方法。
 
@@ -441,24 +441,21 @@ public class MyBean {
          return "MyBean使用...";
      }
 }
-> 
-> @Bean(initMethod="init", destroyMethod="destroy")
-> 
-> public MyBean myBean() {
-> 
->     return new MyBean();
-> 
-> }
+ 
+ @Bean(initMethod="init", destroyMethod="destroy")
+ public MyBean myBean() {
+     return new MyBean();
+ }
 ```
-### 2.4.3 **@Configuration**
+### **@Configuration**
 
-#### **2.4.3.1 使用说明**
+#### **使用说明**
 
 （1）@Configuration注解底层是含有@Component ，所以@Configuration 具有和 @Component 的作用。
 
 （2）@Configuration注解相当于spring的xml配置文件中<beans>标签，里面可以配置bean。
 
-#### 2.4.3.2 Demo
+#### Demo
 ```
 import org.springframework.context.annotation.Bean;
  import org.springframework.context.annotation.Configuration;
@@ -470,7 +467,7 @@ public class MyConfigration {
      }
 }
 ```
-```
+```java
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -485,12 +482,12 @@ public class HelloController {
      }
 }
 ```
-## 2.5 事务管理
+## 事务管理
 
-### 2.5.1 @Transactional
+### @Transactional
  springboot默认集成事物,只主要在方法上加上@Transactional即可。
 
-### 2.5.1 分布式事务管理
+### 分布式事务管理
 使用springboot+jta+atomikos 分布式事物管理。
 
 **maven依赖：**
@@ -500,9 +497,9 @@ public class HelloController {
      <artifactId>spring-boot-starter-jta-atomikos</artifactId>
 </dependency>
 ```
-## 2.6 Lombok
+## Lombok
 
-### 2.6.1 maven依赖
+### maven依赖
 ```
 <!--Lombok -->
 <dependency>
@@ -516,7 +513,7 @@ public class HelloController {
      <version>4.9</version>
 </dependency>
 ```
-### 2.6.2 **安装lomBok插件**
+### **安装lomBok插件**
 
 （1）下载lombok.jar包[https://projectlombok.org/download.html](https://projectlombok.org/download.html)
 
@@ -530,8 +527,9 @@ public class HelloController {
 -Xbootclasspath/a:lombok.jar
 ```
 那么恭喜你已经安装成功，否则将缺少的部分添加到相应的位置即可，重启eclipse或myeclipse。
-##2.7 其他
-###2.7.1 使用@Scheduled创建定时任务
+## 其他
+### 使用@Scheduled创建定时任务
+
 - 在Spring Boot的主类中加入@EnableScheduling注解，启用定时任务的配置。
 - 设置时间方式：
 1. 固定时间频率运行方法。@Scheduled(fixedRate=30000)
@@ -547,17 +545,17 @@ public class ScheduledTasks {
     }
 }
 ```
-###2.7.2 @Async实现异步调用
+###  @Async实现异步调用
 启动加上@EnableAsync，需要执行异步方法上加入 @Async
 
-###2.7.3 发布打包
+### 发布打包
 （1）使用mvn package 打包
 
 （2）使用 “java –jar 包名” 运行应用
 
 - 注意事项
 如果报错没有主清单,在pom文件中新增
-```
+```java
 <build>
      <plugins>
          <plugin>
@@ -585,12 +583,13 @@ public class ScheduledTasks {
      </plugins>
 </build>
 ```
-###2.7.4 说明
+### 说明
 关于ActiveMQ、Redis、Zookeeper、Dubbo、Spring Cloud 的相关依赖，在其各自专题介绍。
 
-#3 常见问题汇总
-##3.1 Spring中访问静态资源
+# 常见问题汇总
+## Spring中访问静态资源
 注意这里不是Springboot环境，仅仅为Spring环境。在SpringMVC3.0之后推荐使用下列配置，该配置的作用是：DispatcherServlet不会拦截以/static开头的所有请求路径，并当作静态资源交由Servlet处理。
+
 ```
 <mvc:annotation-driven />
 <mvc:resources location="/img/" mapping="/img/**"/>
@@ -601,8 +600,9 @@ public class ScheduledTasks {
 location元素表示webapp目录下的static包下的所有文件；
 mapping元素表示以/static开头的所有请求路径，如/static/a 或者/static/a/b；
 
-##3.2 Spring MVC Controller接收前端参数的几种方式
+##  Spring MVC Controller接收前端参数的几种方式
 (1) 普通方式-请求参数名和Controller方法的参数一致
+
 ```
 /** 
 * 请求参数名和Controller方法的参数一致 
@@ -697,9 +697,10 @@ public String addUser(String name, String pwd){
 
 - 注意：其他方式的获取，基础都是request请求。自动封装也是从request中获取后进行的封装。
 
-##3.3 Spring MVC的转发和重定向
-###3.3.1 转发
+## Spring MVC的转发和重定向
+###  转发
 使用request也行。    
+
 ```
 @RequestMapping("/helloForward")
 publicString helloForward(@RequestParam(value="name", required=false, defaultValue="World2017") String name, Model model) {
@@ -707,8 +708,9 @@ publicString helloForward(@RequestParam(value="name", required=false, defaultVal
         return"hello";
     }
 ```
-###3.3.2 重定向
+### 重定向
 （1）RedirectAttributes类
+
 ```
 /** * 使用RedirectAttributes类
 
@@ -758,8 +760,9 @@ publicString helloForward(@RequestParam(value="name", required=false, defaultVal
 
     }
 ```
-##3.4 Input标签上传多个图片到服务器
+## Input标签上传多个图片到服务器
 （1）前端页面
+
 ```
 <form action="getData" style="font-size: 14px;" method="post"  ENCTYPE="multipart/form-data">
     <td><input type="file" name="file" multiple="multiple"></td>
@@ -776,7 +779,7 @@ HttpServletRequest req) {
   }
 }
 ```
-##3.5 The field file exceeds its maximum permitted size of 1048576 bytes
+## The field file exceeds its maximum permitted size of 1048576 bytes
 Spring Boot做文件上传时出现了The field file exceeds its maximum permitted size of 1048576 bytes.错误，显示文件的大小超出了允许的范围。文档说明表示，每个文件的配置最大为1Mb，单次请求的文件的总数不能大于10Mb。要更改这个默认值需要在配置文件（如application.properties）中加入两个配置。
 
 Spring Boot1.4版本后配置更改为:
@@ -789,7 +792,8 @@ Spring Boot2.0之后的版本配置修改为:
 spring.servlet.multipart.max-file-size = 10MB
 spring.servlet.multipart.max-request-size=100MB
 ```
-##3.6 服务器发送可下载文件到浏览器
+## 服务器发送可下载文件到浏览器
+
 ```
 @RequestMapping(value = "downloadZip", method = RequestMethod.GET)
     public void downloadZip(HttpServletResponse response,String id) throws Exception {
@@ -816,8 +820,9 @@ public void download(OutputStream os, String fileName) throws IOException {
         ins.close();
     }
 ```
-##3.7 @requestBody注解作用
+## @requestBody注解作用
 通过@requestBody可以将请求体中的JSON字符串绑定到相应的bean上，当然，也可以将其分别绑定到对应的字符串上。
+
 ```
 　$.ajax({
 　　　　　　　　url:"/login",
@@ -834,12 +839,13 @@ public void login(@requestBody User){
 　　System.out.println(userName+" ："+pwd);
 }
 ```
-##3.8 Springboot访问HTML页面
+## Springboot访问HTML页面
 此部分在测试过程中，一旦引入spring-boot-starter-thymeleaf，整个项目的pom文件就报错，具体原因排查中，了解的小伙伴也可以一起讨论。
 
 在具体实践中，大都使用freemarker进行页面设计，且前述提到过，可以使用freemarker进行Html页面的访问。
 
-###3.8.1 Springboot下maven依赖
+### Springboot下maven依赖
+
 ```
 <dependency>
      <groupId>org.springframework.boot</groupId>
@@ -858,7 +864,8 @@ public void login(@requestBody User){
 
       </dependency>
 ```
-###3.8.2 yml配置
+###  yml配置
+
 ```
 spring:
      thymeleaf:
