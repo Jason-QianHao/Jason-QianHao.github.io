@@ -332,7 +332,7 @@ docker pull nginx
 mkdir -p /data/nginx/{conf,conf.d,html,log}
 ```
 
-![image-20211130162322421](../assets/Docker/image-20211130162322421.png)
+![image-20211130162322421](/../assets/Docker/image-20211130162322421.png)
 
 3. 配置文件放置挂在目录
 
@@ -430,5 +430,5 @@ nginx
 
 5. 效果如下：
 
-![image-20211130163158525](../assets/Docker/image-20211130163158525.png)
+![image-20211130163158525](/../assets/Docker/image-20211130163158525.png)
 
