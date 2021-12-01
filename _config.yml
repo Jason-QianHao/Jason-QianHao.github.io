@@ -215,12 +215,12 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
       nav: # 导航部分的内容，你也可以自己增加文字、图标（来自fontawesome）和对应的链接
         - title: '<i class="fas fa-home fa-fw"></i> 首页'
           href: /
-        - title: '<i class="fas fa-comments fa-fw"></i> 留言'
-          href: /comments/
         - title: '<i class="fas fa-tags fa-fw"></i> 标签'
           href: /tags/
         - title: '<i class="fas fa-archive fa-fw"></i> 归档'
           href: /archive/
+        - title: '<i class="fas fa-comments fa-fw"></i> 留言'
+          href: /comments/
       simple_jekyll_search: # 侧边栏的全站搜索
         enable: true
         full_text_search: false # 可能导致缓慢的搜索和加载
@@ -556,7 +556,7 @@ jekyll-theme-WuK: # 我的主题的自定义样式都在这个命名空间
       （除特别声明或转载文章外）
   tags:
     pie_chart: # 显示一个标签的饼状统计图，需要引入 mermaid
-      enable: true
+      enable: false
     prepend: <i class="fas fa-tag"></i> # 在标签页的每个标签前面显示一个图标
     count: true # 统计每个标签下文章的数量
   archive:
