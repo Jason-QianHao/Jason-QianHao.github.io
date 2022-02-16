@@ -453,7 +453,7 @@ public class MyBean {
 
 （1）@Configuration注解底层是含有@Component ，所以@Configuration 具有和 @Component 的作用。
 
-（2）@Configuration注解相当于spring的xml配置文件中<beans>标签，里面可以配置bean。
+（2）@Configuration注解相当于spring的xml配置文件中`<beans>`标签，里面可以配置bean。
 
 #### Demo
 ```
