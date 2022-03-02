@@ -1,0 +1,1798 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="《开发内功修炼-磁盘篇》学习笔记, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧未来">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>《开发内功修炼-磁盘篇》学习笔记 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧未来
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101558496.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">《开发内功修炼-磁盘篇》学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">操作系统</span>
+                            </a>
+                        
+                            <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                                <span class="chip bg-color">《开发内功修炼》</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-01
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    21 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="《开发内功修炼-磁盘篇》学习笔记"><a href="#《开发内功修炼-磁盘篇》学习笔记" class="headerlink" title="《开发内功修炼-磁盘篇》学习笔记"></a>《开发内功修炼-磁盘篇》学习笔记</h1><blockquote>
+<p>目录</p>
+<ol>
+<li>磁盘结构<ol>
+<li>  机械硬盘</li>
+<li> 固态硬盘</li>
+<li> Linux查看磁盘信息</li>
+</ol>
+</li>
+<li>磁盘IO<ol>
+<li>IO延时</li>
+<li>Linux IO 读取</li>
+<li>Linux IO 写入</li>
+<li>磁盘的随机IO和顺序IO</li>
+</ol>
+</li>
+<li> 磁盘分区</li>
+<li> 文件系统</li>
+</ol>
+<p>参考/来源</p>
+<ul>
+<li>《开发内功修炼》微信公众号</li>
+</ul>
+</blockquote>
+<h1 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h1><h2 id="机械硬盘"><a href="#机械硬盘" class="headerlink" title="机械硬盘"></a>机械硬盘</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>常见的机械磁盘，分磁盘面、磁道、柱面和扇区。</p>
+<p>机械硬盘拆开以后，结构如下：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102349744.png" alt="image-20220302102349744"></p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101558496.png" alt="image-20220302101558496"></p>
+<p>可见有以下概念 ：</p>
+<ol>
+<li><p>磁盘面：磁盘是由一叠磁盘面叠加组合构成，每个磁盘面上都会有一个磁头负责读写。</p>
+</li>
+<li><p>磁道(Track)：每个盘面会围绕圆心划分出多个同心圆圈，每个圆圈叫做一个磁道。</p>
+</li>
+<li><p>柱面(Cylinders)：所有盘片上的同一位置的磁道组成的立体叫做一个柱面。</p>
+</li>
+<li><p>扇区(Sector)：以磁道为单位管理磁盘仍然太大，所以计算机前辈们又把每个磁道划分出了多个扇区。</p>
+</li>
+</ol>
+<p>**所以，磁盘存储的最小组成单位就是扇区。 **</p>
+<p>单柱面的存储容量 = 每个扇区的字节数 * 每柱面扇区数 * 磁盘面数 </p>
+<p>整体磁盘的容量 = 单柱面容量 * 总的柱面数字。</p>
+<h3 id="RAID"><a href="#RAID" class="headerlink" title="RAID"></a>RAID</h3><p>把带有机械技术基因的磁盘搭到计算机，尤其是再应用到服务器领域的时候，暴露出了机械技术的两个严重问题：</p>
+<ul>
+<li><p>第一，速度慢。如果把内存和CPU的速度比作汽车和飞机的话，这个大哥毫秒级别的延迟几乎就是牛车级别的。 </p>
+</li>
+<li><p>第二，容易坏。经常听说谁谁的磁盘坏了，很少有听说过谁的内存条，CPU坏了。笔者就有在读研期间实验室里正在拷贝资料，突然一个断电直接废了一块硬盘的经历。</p>
+</li>
+</ul>
+<p><strong>RAID即是为了解决机械硬盘既慢又容易坏的问题，应运而生。</strong></p>
+<h4 id="多硬盘连接"><a href="#多硬盘连接" class="headerlink" title="多硬盘连接"></a>多硬盘连接</h4><ul>
+<li><p>RAID0</p>
+<p>把一个文件分成N片，每一片都散列在不同的硬盘上。这样当文件进行读取的时候，就可以N块硬盘一起来工作，从而达到读取速度提高到N倍的效果，这就是RAID 0。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102359897.png" alt="image-20220302102359897"></p>
+<p>​        不过这个方案没有解决容易坏的问题，任何一块硬盘坏了都会导致存储系统故障。</p>
+<ul>
+<li><p>RAID1</p>
+<p>仍然把文件分片，但是所有的分片都存在一块硬盘上，其它的硬盘只存拷贝。这既提高了硬盘的访问速度，也解决了坏的问题。任意一块硬盘坏了，存储系统都可以正常使用，只不过速度会打一点折扣。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102407195.png" alt="image-20220302102407195"></p>
+<p>不过这个方案又带来了新的问题，那就是实现成本有点高了。假如我们用256G硬盘想实现512G的存储容量的话，最少得需要4块硬盘才能实现。</p>
+</li>
+<li><p>RAID5</p>
+<p>最常见的raid5 RAID 5同样要对文件进行分片，但是不对存储的数据进行备份，而是会再单独存一个校验数据片。假如文件分为A1 A2 A3，然后需要再存一个校验片到别的磁盘上。这样不管A1，A2还是A3那一片丢失了，都可以根据另外两片和校验片合成出来。既保证了数据的安全性，又只用了一块磁盘做冗余存储。</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102413105.png" alt="image-20220302102413105"></p>
+<p>​    假如我们有8块256GB的硬盘，那么RAID5方案下的磁盘阵列从用户角度来看可用的存储空间是7<em>256GB，只“浪费”了一块盘的空间，所以*<em>目前RAID5应用比较广泛~~</em></em></p>
+<h4 id="RAID缓存"><a href="#RAID缓存" class="headerlink" title="RAID缓存"></a>RAID缓存</h4><p>磁盘本身也基本都带了缓存，另外在一些比较新的raid卡里，硬件开发者们又搞出来了一层“内存”，并且还自己附带一块电池，这就是RAID卡缓存。</p>
+<p>电池的作用就是当发现主机意外断电的时候，能够快速把缓存中的数据写回到磁盘中去。对于写入，一般操作系统写到这个RAID卡里就完事了，所以速度快。对于读取也是，只要缓存里有，就不会透传到磁盘的机械轴上。</p>
+<blockquote>
+<ul>
+<li><p>PERC S120 入门软件阵列卡，主板集成无缓存 支持RAID0 1</p>
+</li>
+<li><p>PERC H330 入门硬件RAID卡，无板载缓存, 支持RAID 0 1 5 10 50</p>
+</li>
+<li><p><strong>PERC H730 主流硬件RAID卡带有1G缓存和电池 支持RAID 0 1 5 6 10 50 60</strong></p>
+</li>
+<li><p><strong>PERC H730P 高性能硬件RAID卡带有2G缓存和电池 支持RAID 0 1 5 6 10 50 60</strong></p>
+</li>
+<li><p>PERC H830 同H730P,没有内置接口，使用外置接口连接附加存储磁盘柜用</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h2><h3 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h3><p>机械硬盘和ssd虽然都同为硬盘，但底层实现技术却完全不一样，机械硬盘使用的是磁性材料记忆，而<strong>SSD用的是类似u盘的闪存技术</strong>。实现技术的不同，必然在硬盘内部结构上他们就有天壤之别。他们的果照对比如下图所示：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102419990.png" alt="image-20220302102419990"></p>
+<ul>
+<li><p>SSD是由一些电路和<strong>黑色的存储颗粒构成</strong>。</p>
+<p>SSD硬盘是基于NAND Flash存储技术的，属于非易失性存储设备，换成人话说，就是掉电了数据不会丢。</p>
+</li>
+<li><p>其中每一个黑色的存储颗粒也叫做一个<strong>Die</strong>。我们“拆开”一个Die来看一下</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102426747.png" alt="image-20220302102426747"></p>
+<ul>
+<li><p>每个Die有若干个<strong>Plane</strong></p>
+</li>
+<li><p>每个Plane有若干个<strong>Block</strong></p>
+</li>
+<li><p>每个Block有若干个<strong>Page</strong>。</p>
+<p>Page是磁盘进行读写的最小单位，一般为2KB/4KB/8KB/16KB等。</p>
+</li>
+<li><p>每一个Page里，又包含了许许多多的<strong>闪存单元</strong>。</p>
+<p>现代的闪存单元有多种类型，目前主流的主要分为SLC、MLC和TLC。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102434489.png" alt="image-20220302102434489"></p>
+<p>以上三种闪存单元对比：从性能和稳定性角度来看，SLC最好。从容量角度看，TLC最大。</p>
+<p>这就是为什么日常我们看到的工业级的SSD要比笔记本SSD要贵很多，其中一个很重要的原因就是<strong>工业级的盘往往采用的闪存单元是SLC或MLC，而我们家用的笔记本一般都是TCL，因为便宜嘛</strong>。我们用表格再对它们直观对比一下：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102442132.png" alt="image-20220302102442132"></p>
+<p>目前主流闪存类型TLC居多，因为价格便宜，容量大。</p>
+</li>
+</ul>
+<h3 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h3><p>新的机械硬盘虽然把物理扇区已经做到4KB的了，但为了兼容老系统还得整出个逻辑扇区的概念来适配。到了SSD里也一样，虽然每一个物理Page的大小为2K到16K不等，但是<strong>为了兼容性，也必须得整出个逻辑扇区才行。</strong></p>
+<p>SSD控制器在逻辑上会把整个磁盘再重新划分成一个个的“扇区”，采用和新机械硬盘一样的LBA方式来进行编址（整个磁盘的扇区从0到某个最大值方式排列，并连成一条线）。、</p>
+<p>当需要读取某几个”扇区”上数据的时候，SSD控制器通过访问这个<code>LBA MapTable</code>, 再来找到要实际访问的物理Page，如下图：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102451208.png" alt="image-20220302102451208"></p>
+<p><strong>不过SSD最小的读写单位就是Page，他是没办法用扇区来进行读写的。</strong></p>
+<h3 id="文件存储方式"><a href="#文件存储方式" class="headerlink" title="文件存储方式"></a>文件存储方式</h3><p>假设某SSD的Page大小是4KB，一个文件是16KB。那么该文件是存在一个黑色的存储颗粒里,还是多个颗粒里？</p>
+<p>我们先把SSD的逻辑结构用个直观一点的图来看：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102458183.png" alt="image-20220302102458183"></p>
+<p>假设只写在一个颗粒里，那么对该文件进行读取的时候，就只能用到一条Flash通道，这样速度就会比较慢。如果存在相邻的4个颗粒里，每个写入4KB。这样多个Flash通道的带宽会充分发挥出来，传输速度也更快。所以，实际中是分散在多个。</p>
+<h2 id="Linux查看磁盘信息"><a href="#Linux查看磁盘信息" class="headerlink" title="Linux查看磁盘信息"></a>Linux查看磁盘信息</h2><ul>
+<li><p><code>lsblk</code>，查看服务器上安装的硬盘数量以及大小</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># lsblk</span>
+NAME                     MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sdb                        <span class="token number">8</span>:16   <span class="token number">0</span>    20T  <span class="token number">0</span> disk
+<span class="token variable"><span class="token variable">`</span>-sdb1                     <span class="token number">8</span>:17   <span class="token number">0</span>    20T  <span class="token number">0</span> part /search
+sda                        <span class="token number">8</span>:0    <span class="token number">0</span> <span class="token number">278</span>.5G  <span class="token number">0</span> disk
+<span class="token operator">|</span>-sda1                     <span class="token number">8</span>:1    <span class="token number">0</span>   200M  <span class="token number">0</span> part /boot
+<span class="token variable">`</span></span>-sda2                     <span class="token number">8</span>:2    <span class="token number">0</span> <span class="token number">278</span>.3G  <span class="token number">0</span> part
+  <span class="token operator">|</span>-vgroot-lvroot <span class="token punctuation">(</span>dm-0<span class="token punctuation">)</span> <span class="token number">253</span>:0    <span class="token number">0</span>    10G  <span class="token number">0</span> lvm  /
+  <span class="token operator">|</span>-vgroot-lvswap <span class="token punctuation">(</span>dm-1<span class="token punctuation">)</span> <span class="token number">253</span>:1    <span class="token number">0</span>     8G  <span class="token number">0</span> lvm  <span class="token punctuation">[</span>SWAP<span class="token punctuation">]</span>
+  <span class="token operator">|</span>-vgroot-lvvar <span class="token punctuation">(</span>dm-2<span class="token punctuation">)</span>  <span class="token number">253</span>:2    <span class="token number">0</span>    15G  <span class="token number">0</span> lvm  /var
+  <span class="token operator">|</span>-vgroot-lvusr <span class="token punctuation">(</span>dm-3<span class="token punctuation">)</span>  <span class="token number">253</span>:3    <span class="token number">0</span>    10G  <span class="token number">0</span> lvm  /usr
+  `-vgroot-lvopt <span class="token punctuation">(</span>dm-4<span class="token punctuation">)</span>  <span class="token number">253</span>:4    <span class="token number">0</span> <span class="token number">136</span>.7G  <span class="token number">0</span> lvm  /opt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>fdisk</code>，查看硬盘更详细的信息</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#fdisk -l /dev/sda</span>
+Disk /dev/sda: <span class="token number">299.0</span> GB, <span class="token number">298999349248</span> bytes
+<span class="token number">255</span> heads, <span class="token number">63</span> sectors/track, <span class="token number">36351</span> cylinders
+Units <span class="token operator">=</span> cylinders of <span class="token number">16065</span> * <span class="token number">512</span> <span class="token operator">=</span> <span class="token number">8225280</span> bytes
+Sector size <span class="token punctuation">(</span>logical/physical<span class="token punctuation">)</span>: <span class="token number">512</span> bytes / <span class="token number">4096</span> bytes
+I/O size <span class="token punctuation">(</span>minimum/optimal<span class="token punctuation">)</span>: <span class="token number">4096</span> bytes / <span class="token number">4096</span> bytes
+Disk identifier: 0x00053169
+
+   Device Boot      Start         End      Blocks   Id  System
+/dev/sda1   *           <span class="token number">1</span>          <span class="token number">26</span>      <span class="token number">204800</span>   <span class="token number">83</span>  Linux
+Partition <span class="token number">1</span> does not end on cylinder boundary.
+/dev/sda2              <span class="token number">26</span>       <span class="token number">36352</span>   <span class="token number">291785728</span>   8e  Linux LVM<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>sda</code>这块磁盘：</p>
+<ol>
+<li><p>有255个heads(磁头)，也就是说共有255个盘面。</p>
+</li>
+<li><p>36351个cylinders，也就是说每个盘面上都有36351个磁道，</p>
+</li>
+<li><p>63sectors/track说的是每个磁道上共有63个扇区。</p>
+</li>
+<li><p>逻辑扇区大小是512 bytes</p>
+</li>
+<li><p>上面的Units说的是每个磁道的存储容量大小</p>
+</li>
+</ol>
+<blockquote>
+<p>几个特殊的参数：</p>
+<ol>
+<li><p>physical Sector size</p>
+<p>现代科技进步了，磁盘底层的最小组成单位并不是扇区512字节，而是physical Sector size 4KB。</p>
+<p>但这时存在一个问题是扇区大小为512字节的假设已经贯穿于整个软件链，比如BIOS，启动加载器，操作系统内核，文件系统代码，以及磁盘工具，等等。直接切换到4096 byte兼容性问题太大了，所以每个<strong>新的磁盘控制器将4096字节的物理扇区对应成了8个512字节的逻辑扇区</strong>，兼容各种老软件。</p>
+</li>
+<li><p>虚拟的磁头head和磁道cylinders</p>
+<p>从磁盘上拆下来的磁头的真实照片</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102507282.png" alt="image-20220302102507282"></p>
+<p>上面的图片里只有几个磁头，如果硬盘里真的装下255个这样的磁头的话，很难想象磁盘得有多厚。而且磁头多了以后硬盘的可靠性就越差，因为多磁头出故障的几率总会比单磁头要高一些。所以<code>fdisk -l</code>里看到的255 heads其实和扇区一样，也是虚拟出来的。 另外cylinders也一样，也是虚拟出来的。</p>
+</li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<h1 id="磁盘IO"><a href="#磁盘IO" class="headerlink" title="磁盘IO"></a>磁盘IO</h1><h2 id="IO延时"><a href="#IO延时" class="headerlink" title="IO延时"></a>IO延时</h2><p>读写原理说起来也简单，就是磁头要找到指定的磁道，指定的扇区，进而把数据读取出来或者写入进去的过程。这个过程分成如下三步：</p>
+<ul>
+<li>第一步，首先是磁头径向移动来寻找数据所在的磁道。这部分时间叫寻道时间。寻道时间，现代磁盘大概在3-15ms，其中寻道时间大小主要受磁头当前所在位置和目标磁道所在位置相对距离的影响</li>
+<li>第二步，找到目标磁道后通过盘面旋转，将目标扇区移动到磁头的正下方，这部分时间叫旋转延迟。现在主流服务器上经常使用的是1W转/分钟的磁盘，每旋转一周所需的时间为60*1000/10000=6ms，故其旋转延迟为（0-6ms）</li>
+<li>第三步，向目标扇区读取或者写入数据，这部分时间叫存取时间。这个是电磁操作，所以一般耗时较短，为零点几ms。</li>
+</ul>
+<p>到此为止，<strong>单次磁盘IO时间 = 寻道时间 + 旋转延迟 + 存取时间</strong></p>
+<h2 id="Linux-IO-读取"><a href="#Linux-IO-读取" class="headerlink" title="Linux IO 读取"></a>Linux IO 读取</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640.png" alt="640"></p>
+<p>Linux读取文件的过程：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640%20(1).png" alt="640 (1)"></p>
+<ul>
+<li><p><strong>如果 Page Cache 命中的话，根本就没有磁盘 IO 产生</strong>。</p>
+</li>
+<li><p>假如 Page Cache 没有命中，访问磁盘缓存</p>
+<p>因为现在的磁盘本身就会带一块缓存。另外现在的服务器都会组建磁盘阵列，在磁盘阵列里的核心硬件Raid卡里也会集成RAM作为缓存。只有所有的缓存都不命中的时候，机械轴带着磁头才会真正工作。</p>
+</li>
+<li><p>缓存没有命中，进行磁盘IO</p>
+<ul>
+<li>Page Cache 是以页为单位的，Linux 页大小一般是 4KB</li>
+<li>文件系统是以块(block)为单位来管理的。使用 <code>dumpe2fs</code> 可以查看，一般一个块默认是 4KB</li>
+<li>通用块层是以段为单位来处理磁盘 IO 请求的，<strong>一个段为一个页或者是页的一部分</strong></li>
+<li>IO 调度程序通过 DMA 方式<strong>传输 N 个扇区到内存，扇区一般为 512 字节</strong></li>
+<li>硬盘也是采用“扇区”的管理和传输数据的</li>
+</ul>
+</li>
+</ul>
+<h2 id="Linux-IO-写入"><a href="#Linux-IO-写入" class="headerlink" title="Linux IO 写入"></a>Linux IO 写入</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102643747.png" alt="image-20220302102643747"></p>
+<p>绝大部分情况都是写入到PageCache中就返回了，这时并没有真正写入磁盘。我们的数据会在如下三个时机下被真正发起写磁盘IO请求：</p>
+<ul>
+<li>第一种情况，如果write系统调用时，如果发现PageCache中脏页占比太多，超过了dirty_ratio或dirty_bytes，write就必须等待了。</li>
+<li>第二种情况，write写到PageCache就已经返回了。worker内核线程异步运行的时候，再次判断脏页占比，如果超过了dirty_background_ratio或dirty_background_bytes，也发起写回请求。</li>
+<li>第三种情况，这时同样write调用已经返回了。worker内核线程异步运行的时候，虽然系统内脏页一直没有超过dirty_background_ratio或dirty_background_bytes，但是脏页在内存中呆的时间超过dirty_expire_centisecs了，也会发起回写。</li>
+</ul>
+<p>如果对以上配置不满意，你可以自己通过修改/etc/sysctl.conf来调整，修改完了别忘了执行sysctl -p。</p>
+<h2 id="磁盘的随机IO和顺序IO"><a href="#磁盘的随机IO和顺序IO" class="headerlink" title="磁盘的随机IO和顺序IO"></a>磁盘的随机IO和顺序IO</h2><p>机械硬盘在顺序IO和随机IO下的巨大性能差异。</p>
+<p>在顺序IO情况下，磁盘是最擅长的顺序IO,再加上Raid卡缓存命中率也高。这时带宽表现有几十、几百M，最好条件下甚至能达到1GB。IOPS这时候能有2-3W左右。</p>
+<p>到了随机IO的情形下，机械轴也被逼的跳来跳去寻道，RAID卡缓存也失效了。带宽跌到了1MB以下，最低只有100K，IOPS也只有可怜巴巴的200左右。</p>
+<p>很多工程实践中的许多的事情都和这个有关：</p>
+<ul>
+<li><p><strong>复制文件夹</strong>：我们都知道，在复制一个文件夹的时候，如果这个文件夹里面包含了许多堆碎文件，这时候复制起来非常慢。原因就是这时候机械硬盘大概率都是在随机IO。怎么提高复制速度呢？很简单，就是把它们先打一个包。打包之后这个文件夹就变成一个大文件了，这时候再复制的话，磁盘就是执行的最擅长的顺序IO了，所以会快很多。</p>
+</li>
+<li><p><strong>数据库事务</strong>：所有的数据库在实现事务的时候，都要保证写数据落盘成功才能返回。但为什么他们几乎都是落盘到自己的事务日志文件里去就返回成功的，而不是直接写入到数据表文件里。这背后的原因还是磁盘读写性能问题，事务只需要保证数据落地成功就可以，至于写到哪里并不重要。写到数据文件中的话大概率就变成随机IO了。如果写到一个日志文件中，就是地地道道的顺序IO，性能就发挥到极致。</p>
+</li>
+<li><p><strong>Mysql的B+树</strong>：无论是顺序IO还是随机IO，只要增加每次IO的单位，性能都会上涨。理解了这个，你就能真正理解为什么Mysql是采用B+树当索引，而不是用其它的树了（比如二叉树）。因为B+树的节点更大，IO起来会让磁盘工作更舒服一些。</p>
+</li>
+</ul>
+<h1 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h1><ul>
+<li><p>分区方式</p>
+<p>考虑磁盘IO时间，采用柱面进行分区，如<code>3263个柱面，C盘0-1000个柱面，D盘1001-20001个柱面,……</code></p>
+<p>这样而来，对于磁盘C，只需要在磁头在1-1000个磁道间移动就可以了，大大降低了寻道时间。</p>
+</li>
+<li><p><code>fdisk</code>命令分区</p>
+<p>分区的过程就是你输入起始柱面号和截至柱面号的过程。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102654287.png" alt="image-20220302102654287"></p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102844649.png" alt="image-20220302102844649"></p>
+<p>不过在实际中，<strong>分区并不能从0号柱面开始的，因为磁盘的第一个磁道对应的柱面会被用来安装引导加载程序以及磁盘分区表。</strong></p>
+</li>
+</ul>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="空文件占用多少磁盘空间"><a href="#空文件占用多少磁盘空间" class="headerlink" title="空文件占用多少磁盘空间"></a>空文件占用多少磁盘空间</h2><h3 id="Inode占用"><a href="#Inode占用" class="headerlink" title="Inode占用"></a>Inode占用</h3><p>新建一个空文件会占用一个Inode。</p>
+<ul>
+<li><p>Linux的inode结构</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">ext2_inode</span> <span class="token punctuation">&#123;</span>
+        __le16  i_mode<span class="token punctuation">;</span>         # 文件权限
+        __le16  i_uid<span class="token punctuation">;</span>          # 文件所有者ID
+        __le32  i_size<span class="token punctuation">;</span>         # 文件字节数大小
+        __le32  i_atime<span class="token punctuation">;</span>        # 文件上次被访问的时间
+        __le32  i_ctime<span class="token punctuation">;</span>        # 文件创建时间
+        __le32  i_mtime<span class="token punctuation">;</span>        # 文件被修改的时间
+        __le32  i_dtime<span class="token punctuation">;</span>        # 文件被删除的时间
+        __le16  i_gid<span class="token punctuation">;</span>          # 文件所属组ID
+        __le16  i_links_count<span class="token punctuation">;</span>  # 此文件的inode被连接的次数
+        __le32  i_blocks<span class="token punctuation">;</span>       # 文件的block数量
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+        __le32  i_block<span class="token punctuation">[</span>EXT2_N_BLOCKS<span class="token punctuation">]</span><span class="token punctuation">;</span> # 指向存储文件数据的块的数组
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>stat</code>命令查看文件inode中数据</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># stat test</span>
+  File: `test'
+  Size: <span class="token number">0</span>               Blocks: <span class="token number">0</span>          IO Block: <span class="token number">1024</span>   regular empty <span class="token function">file</span>
+Device: 801h/2049d      Inode: <span class="token number">26</span>          Links: <span class="token number">1</span>
+Access: <span class="token punctuation">(</span>0644/-rw-r--r--<span class="token punctuation">)</span>  Uid: <span class="token punctuation">(</span>    <span class="token number">0</span>/    root<span class="token punctuation">)</span>   Gid: <span class="token punctuation">(</span>    <span class="token number">0</span>/    root<span class="token punctuation">)</span>
+Access: <span class="token number">2020</span>-03-01 <span class="token number">12</span>:14:31.000000000 +0800
+Modify: <span class="token number">2020</span>-03-01 <span class="token number">12</span>:14:31.000000000 +0800
+Change: <span class="token number">2020</span>-03-01 <span class="token number">12</span>:14:31.000000000 +0800<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>dumpe2fs</code>命令查看inode大小</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># dumpe2fs -h /dev/mapper/vgroot-lvroot</span>
+dumpe2fs <span class="token number">1.41</span>.12 <span class="token punctuation">(</span><span class="token number">17</span>-May-2010<span class="token punctuation">)</span>
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+Inode size:               <span class="token number">256</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h3 id="占用其父目录空间"><a href="#占用其父目录空间" class="headerlink" title="占用其父目录空间"></a>占用其父目录空间</h3><p>文件名存储在目录结构中。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">ext2_dir_entry</span> <span class="token punctuation">&#123;</span>
+         __le32  inode<span class="token punctuation">;</span>                  <span class="token comment">/* Inode number */</span>
+         __le16  rec_len<span class="token punctuation">;</span>                <span class="token comment">/* Directory entry length */</span>
+         __le16  name_len<span class="token punctuation">;</span>               <span class="token comment">/* Name length */</span>
+         <span class="token keyword">char</span>    name<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>                 <span class="token comment">/* File name, up to EXT2_NAME_LEN */</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这个结构体就是我们司空见惯的文件夹所使用的数据结构，每个文件都占用一个<code>ext2_dir_entry</code>。没错，<strong>文件名是存在其所属的文件夹中的，就是其中的<code>char name[]</code>字段</strong>。和文件名一起，文件夹里还记录了该文件的inode号等信息。</p>
+<p>和空文件一样，空的文件夹也会消耗掉一个inode。</p>
+<p>一个文件夹当然消耗的磁盘空间：</p>
+<ul>
+<li>首先要消耗掉一个inode，我的机器上它是256字节</li>
+<li>需要消耗其父目录下的一个目录项<code>ext4_dir_entry</code>，保存自己inode号，目录名。</li>
+<li>其下面如果创建文件夹或者文件的话，它就需要在自己的block里保存<code>ext4_dir_entry</code>数组</li>
+</ul>
+<p>目录下的文件/子目录越多，目录就需要申请越多的block。另外<code>ext4_dir_entry</code>大小不是固定的，文件名/子目录名越长，单个目录项消耗的空间也就越大。</p>
+<p>进一步的，结合后面格式化中块组group知识点，创建目录的过程为：</p>
+<ul>
+<li><p>创建目录的时候，操作系统会在inode位图上寻找尚未使用的inode编号，找到后把inode分配给你。</p>
+</li>
+<li><p>目录会默认分配一个block，所以还需要查询block位图，找到后分配一个block。在block里面，存储的就是文件系统自己定义的目录项数据结构了，例如ext4_dir_entry_2。每一个结构里会保存其下的文件名，文件的inode编号等信息。某个实际文件夹在磁盘上最终使用的空间如下图所示：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102703419.png" alt="image-20220302102703419"></p>
+</li>
+</ul>
+<p>目录的block中保存的是其下面的文件和子目录的目录项结构体，保存着它们的文件名和inode号。理解了目录，对于文件也是一样的。也需要消耗inode，当有数据写入的时候，再去申请block。</p>
+<h2 id="1个字节的文件占用多少磁盘空间"><a href="#1个字节的文件占用多少磁盘空间" class="headerlink" title="1个字节的文件占用多少磁盘空间"></a>1个字节的文件占用多少磁盘空间</h2><p>文件里的内容不论多小，哪怕是一个字节，其实操作系统也会给你分配4K的。</p>
+<ul>
+<li><p>inode结构中的block数组</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">struct</span> <span class="token class-name">ext2_inode</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    __le32  i_block<span class="token punctuation">[</span>EXT2_N_BLOCKS<span class="token punctuation">]</span><span class="token punctuation">;</span> # 指向存储文件数据的块的数组
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>当文件没有数据需要存储的时候，这个数组都是空值。</p>
+<p>而当我们写入了1个字节以后，文件系统就需要申请block去存储了，申请完后，指针放在这个数组里。哪怕文件内容只有一个字节，仍然会分配一个整的Block，因为这是文件系统的最小工作单位。</p>
+</li>
+<li><p>那么这个block大小是多大呢，ext下可以通过<code>dumpe2fs</code>查看。</p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">dumpe</span><span class="token expression"><span class="token number">2f</span>s <span class="token operator">-</span>h <span class="token operator">/</span>dev<span class="token operator">/</span>mapper<span class="token operator">/</span>vgroot<span class="token operator">-</span>lvroot</span></span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+Block size<span class="token operator">:</span>               <span class="token number">4096</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="大文件的block分级存储"><a href="#大文件的block分级存储" class="headerlink" title="大文件的block分级存储"></a>大文件的block分级存储</h2><p>inode中定义的block数组大小呢，只有<code>EXT2_N_BLOCKS</code>个。我们再查看一下这个常量的定义，发现它是15，相关内核中定义如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">#define EXT2_NDIR_BLOCKS        12
+#define EXT2_IND_BLOCK         EXT2_NDIR_BLOCKS
+#define EXT2_DIND_BLOCK        (EXT2_IND_BLOCK + 1)
+#define EXT2_TIND_BLOCK        (EXT2_DIND_BLOCK + 1)
+#define EXT2_N_BLOCKS              (EXT2_TIND_BLOCK + 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>就按4K的block size来看，15个block只够存的下15*4=60K的文件。 这个文件大小相信你一定不满意，你存一个avi大片都得上G了。那Linux是怎么实现大文件存储的呢？嗯，其实上面宏的定义过程已经告诉你了，就是只有12个数组直接存block指针，其余的用来做间接索引（EXT2_IND_BLOCK），二级间接索引（EXT2_DIND_BLOCK）和三级索引（EXT2_TIND_BLOCK）。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102711581.png" alt="image-20220302102711581"></p>
+<p>这样，一个文件可以使用的空间就指数倍的扩展了。 文件小的时候，都用直接索引，磁盘IO少，性能好。文件大的时候，访问一个block可能得先进行三次的IO，性能略慢，不过有OS层面的页缓存、目录项缓存的加持，也还好。</p>
+<h2 id="删除文件后依然占空间"><a href="#删除文件后依然占空间" class="headerlink" title="删除文件后依然占空间"></a>删除文件后依然占空间</h2><p>文件夹下的文件都已经删了，该文件夹为什么还占用72K的磁盘空间？ </p>
+<p>问题关键在于<code>ext4_dir_entry中的</code>rec_len<code>。这个变量存储了当前整个</code>ext4_dir_entry对象的长度，这样操作系统在遍历文件夹的时候，就可以通过当前的指针，加上这个长度就可以找到文件夹中下一个文件的<code>dir_entry</code>了。这样的优势是遍历起来非常方便，有点像是一个链表，一个一个穿起来的。 </p>
+<p>但是，如果要删除一个文件的话，就有点小麻烦了，当前文件结构体变量不能直接删，否则链表就断了。Linux的做法是在删除文件的时候，在其目录中只是把inode设置为0就拉倒，并没有回收整个<code>ext4_dir_entry</code>对象。</p>
+<p>其实和大家做工程的时候经常用到的假删除是一个道理。现在的xfs文件系统好像已经没有这个小问题了，但具体咋解决的，暂时没有深入研究。</p>
+<h2 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h2><p>Linux下的格式化命令是<code>mkfs</code>.</p>
+<p><code>mkfs</code>在格式化的时候需要制定分区以及文件系统类型。该命令其实就是把我们的连续的磁盘空间进行划分和管理。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># mkfs -t ext4 /dev/vdb</span>
+<span class="token function">mke2fs</span> <span class="token number">1.42</span>.9 <span class="token punctuation">(</span><span class="token number">28</span>-Dec-2013<span class="token punctuation">)</span>
+文件系统标签<span class="token operator">=</span>
+OS type: Linux
+块大小<span class="token operator">=</span><span class="token number">4096</span> <span class="token punctuation">(</span>log<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+分块大小<span class="token operator">=</span><span class="token number">4096</span> <span class="token punctuation">(</span>log<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+<span class="token assign-left variable">Stride</span><span class="token operator">=</span><span class="token number">0</span> blocks, Stripe <span class="token assign-left variable">width</span><span class="token operator">=</span><span class="token number">0</span> blocks
+<span class="token number">6553600</span> inodes, <span class="token number">26214400</span> blocks
+<span class="token number">1310720</span> blocks <span class="token punctuation">(</span><span class="token number">5.00</span>%<span class="token punctuation">)</span> reserved <span class="token keyword">for</span> the super user
+第一个数据块<span class="token operator">=</span><span class="token number">0</span>
+Maximum filesystem <span class="token assign-left variable">blocks</span><span class="token operator">=</span><span class="token number">2174746624</span>
+<span class="token number">800</span> block <span class="token function">groups</span>
+<span class="token number">32768</span> blocks per group, <span class="token number">32768</span> fragments per group
+<span class="token number">8192</span> inodes per group
+Superblock backups stored on blocks:
+    <span class="token number">32768</span>, <span class="token number">98304</span>, <span class="token number">163840</span>, <span class="token number">229376</span>, <span class="token number">294912</span>, <span class="token number">819200</span>, <span class="token number">884736</span>, <span class="token number">1605632</span>, <span class="token number">2654208</span>,
+    <span class="token number">4096000</span>, <span class="token number">7962624</span>, <span class="token number">11239424</span>, <span class="token number">20480000</span>, <span class="token number">23887872</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>块大小、block数量、inode数量</p>
+<p>其中块大小、block数量、inode数量可以根据具体业务逻辑进行修改。<code>mke2fs</code>，这个命令允许你输入更详细的格式化选项，demo如下：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">mke2fs</span> -j -L <span class="token string">"卷标"</span> -b <span class="token number">2048</span> -i <span class="token number">8192</span> /dev/sdb1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>块组groups</p>
+<p>格式化后的所有inode并不是挨着一起放的，同样block也不是。而是分成了一个个的group，每一个group里都有一些inode和block。逻辑图如下：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102722093.png" alt="image-20220302102722093"></p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2022/03/01/kai-fa-nei-gong-xiu-lian-ci-pan-pian-xue-xi-bi-ji/">https://jason-qianhao.github.io/2022/03/01/kai-fa-nei-gong-xiu-lian-ci-pan-pian-xue-xi-bi-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">操作系统</span>
+                                </a>
+                            
+                                <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                                    <span class="chip bg-color">《开发内功修炼》</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/03/01/kai-fa-nei-gong-xiu-lian-ci-pan-pian-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101558496.png" class="responsive-img" alt="《开发内功修炼-磁盘篇》学习笔记">
+                        
+                        <span class="card-title">《开发内功修炼-磁盘篇》学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                        <span class="chip bg-color">《开发内功修炼》</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/28/kai-fa-nei-gong-xiu-lian-cpu-pian-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101308390.png" class="responsive-img" alt="《开发内功修炼-CPU篇》学习笔记">
+                        
+                        <span class="card-title">《开发内功修炼-CPU篇》学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                        <span class="chip bg-color">《开发内功修炼》</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">134.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
