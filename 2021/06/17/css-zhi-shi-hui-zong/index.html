@@ -1,0 +1,2226 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="CSS知识汇总, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>CSS知识汇总 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/31.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">CSS知识汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                <span class="chip bg-color">前端</span>
+                            </a>
+                        
+                            <a href="/tags/CSS/">
+                                <span class="chip bg-color">CSS</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                前端
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-06-17
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录：  </p>
+<ol>
+<li>CSS简介</li>
+<li>CSS基础</li>
+<li>CSS文字和字体样式</li>
+<li>CSS背景样式</li>
+<li>CSS列表样式</li>
+<li>盒子模型</li>
+<li>CSS的float</li>
+<li>CSS的定位</li>
+<li>CSS的布局</li>
+</ol>
+<p>参考：</p>
+<ul>
+<li>慕课网</li>
+</ul>
+</blockquote>
+<h1 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h1><h2 id="CSS简介"><a href="#CSS简介" class="headerlink" title="CSS简介"></a>CSS简介</h2><ul>
+<li><p>Cascading Style Sheets，层叠样式表</p>
+</li>
+<li><p>使用其来表现HTML或者XML等样式文件</p>
+</li>
+</ul>
+<h3 id="HTML、CSS和JS的关系"><a href="#HTML、CSS和JS的关系" class="headerlink" title="HTML、CSS和JS的关系"></a>HTML、CSS和JS的关系</h3><ul>
+<li>HTML是网页内容的载体</li>
+<li>CSS样式是表现（外观控制）</li>
+<li>JavaScript是行为，用来实现网页特效效果</li>
+</ul>
+<h3 id="CSS的作用"><a href="#CSS的作用" class="headerlink" title="CSS的作用"></a>CSS的作用</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210617125245507.png" alt="image-20210617125245507" style="zoom:50%;" />
+
+<h2 id="CSS基础"><a href="#CSS基础" class="headerlink" title="CSS基础"></a>CSS基础</h2><h3 id="CSS基础语法"><a href="#CSS基础语法" class="headerlink" title="CSS基础语法"></a>CSS基础语法</h3><h4 id="CSS样式规则"><a href="#CSS样式规则" class="headerlink" title="CSS样式规则"></a>CSS样式规则</h4><p>CSS规则由两部分构成：选择器、声明</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210617125600584.png" alt="image-20210617125600584" style="zoom:50%;" />
+
+<ul>
+<li><p>注意</p>
+<p>选择器可以是多个，之间用逗号隔开</p>
+</li>
+</ul>
+<h4 id="CSS注释"><a href="#CSS注释" class="headerlink" title="CSS注释"></a>CSS注释</h4><ul>
+<li><p>html注释</p>
+<p><code>&lt;!--注释--&gt;</code></p>
+</li>
+<li><p>css注释</p>
+<p><code>/*注释*/</code></p>
+</li>
+</ul>
+<h3 id="CSS使用方法"><a href="#CSS使用方法" class="headerlink" title="CSS使用方法"></a>CSS使用方法</h3><h4 id="CSS样式的引用"><a href="#CSS样式的引用" class="headerlink" title="CSS样式的引用"></a>CSS样式的引用</h4><ul>
+<li><p>行内样式（内联样式）</p>
+<p>在开始标签内添加style样式属性</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">color</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+  内容
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>内部样式表（嵌入样式）</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  	css样式
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>外部样式表（Link链入）</p>
+<p>把css样式代码写在独立的一个文件中</p>
+<ul>
+<li><p>扩展名：CSS文件名.css</p>
+</li>
+<li><p>引入：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>xx.css<span class="token punctuation">"</span></span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span> <span class="token punctuation">/></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p>导入式</p>
+<p>注意：需要写在style标签内</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210617130759028.png" alt="image-20210617130759028"></p>
+</li>
+</ul>
+<p><strong>总结</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210617130844423.png" alt="image-20210617130844423" style="zoom: 50%;" />
+
+<h4 id="CSS使用方法优先级"><a href="#CSS使用方法优先级" class="headerlink" title="CSS使用方法优先级"></a>CSS使用方法优先级</h4><p>对同一个元素，使用多个css的优先级的问题</p>
+<p><strong>行内样式 &gt; 内部样式 &gt; 外部样式</strong></p>
+<ul>
+<li>链入外部样式表与内部样式表之间的优先级取决于所处位置的先后</li>
+<li>最后定义的优先级最高（<strong>就近原则</strong>）</li>
+</ul>
+<h3 id="CSS选择器"><a href="#CSS选择器" class="headerlink" title="CSS选择器"></a>CSS选择器</h3><p>主要分为6类：</p>
+<ul>
+<li>标签选择器</li>
+<li>全局选择器</li>
+<li>类选择器</li>
+<li>群组选择器</li>
+<li>ID选择器</li>
+<li>后代选择器</li>
+</ul>
+<h4 id="标签选择器"><a href="#标签选择器" class="headerlink" title="标签选择器"></a>标签选择器</h4><p>以HTML标签作为选择器</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">p,h1,h2,h3,h4</span><span class="token punctuation">&#123;</span><span class="token property">font-size</span><span class="token punctuation">:</span>30px<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+  <span class="token selector">p</span><span class="token punctuation">&#123;</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+    <span class="token property">font-family</span><span class="token punctuation">:</span><span class="token string">"宋体"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token selector">h1</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="类选择器"><a href="#类选择器" class="headerlink" title="类选择器"></a>类选择器</h4><ul>
+<li><p>为HTML标签添加class属性</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  内容2
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容3
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过类选择器来设置css样式：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">.red</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>red<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>可以对不同类型元素的同一个类选择器设置不同的样式</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>
+  内容2
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容3
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">p.red</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span>
+  <span class="token selector">h1.red</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>同一个元素可以设置多个类，用空格隔开</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span> <span class="token attr-value"><span class="token punctuation attr-equals">=</span> <span class="token punctuation">"</span>red fsize<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容2
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>red<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容3
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h4 id="ID选择器"><a href="#ID选择器" class="headerlink" title="ID选择器"></a>ID选择器</h4><p>添加ID属性</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>
+  内容1
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p1<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容2
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>p2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  内容3
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>通过ID选择器来为元素设置CSS</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">#p1</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span>
+  <span class="token selector">#p2</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>注意</strong> ：在一个html文件中，id是唯一的。一个id不能在多个标签中，一个标签也不能有多个id</p>
+<h4 id="群组选择器"><a href="#群组选择器" class="headerlink" title="群组选择器"></a>群组选择器</h4><p>集体统一设置格式</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">p,h1,h2,h3,h4</span><span class="token punctuation">&#123;</span><span class="token property">font-size</span><span class="token punctuation">:</span>30px<span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="全局选择器"><a href="#全局选择器" class="headerlink" title="全局选择器"></a>全局选择器</h4><p>所有标签设置样式</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">*</span><span class="token punctuation">&#123;</span>
+    ...
+  <span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="后代选择器"><a href="#后代选择器" class="headerlink" title="后代选择器"></a>后代选择器</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">p a em</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span> <span class="token comment">/*p标签中a标签的em标签*/</span>
+  <span class="token selector">#p1 em</span><span class="token punctuation">&#123;</span>...<span class="token punctuation">&#125;</span> <span class="token comment">/*id为p1的标签中的em标签*/</span>
+  <span class="token selector">p.red a em</span><span class="token punctuation">&#123;</span>..<span class="token punctuation">&#125;</span> <span class="token comment">/*class为red的p标签中的a标签中的em标签*/</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="伪类"><a href="#伪类" class="headerlink" title="伪类"></a>伪类</h4><h5 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h5><ul>
+<li>伪类选择器定义特殊状态下的样式</li>
+<li>无法用标签、id、class及其它属性实现</li>
+</ul>
+<h5 id="链接伪类"><a href="#链接伪类" class="headerlink" title="链接伪类"></a>链接伪类</h5><p>链接中的4种状态：</p>
+<table>
+<thead>
+<tr>
+<th>伪类</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>:link</code></td>
+<td>未访问的链接</td>
+</tr>
+<tr>
+<td><code>:visited</code></td>
+<td>已访问的链接</td>
+</tr>
+<tr>
+<td><code>:hover</code></td>
+<td>鼠标悬停状态</td>
+</tr>
+<tr>
+<td><code>:active</code></td>
+<td>激活的链接</td>
+</tr>
+</tbody></table>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">a:link</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>blue<span class="token punctuation">;</span><span class="token punctuation">&#125;</span> <span class="token comment">/*未访问状态*/</span>
+  <span class="token selector">a:visited</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>gray<span class="token punctuation">;</span><span class="token punctuation">&#125;</span> <span class="token comment">/*已访问状态*/</span>
+  <span class="token selector">a:hover</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>green<span class="token punctuation">;</span><span class="token punctuation">&#125;</span> <span class="token comment">/*鼠标悬浮状态*/</span>
+  <span class="token selector">a:active</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>orange<span class="token punctuation">;</span><span class="token punctuation">&#125;</span> <span class="token comment">/*激活状态*/</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>伪类:hover和:active<ul>
+<li><code>:hover</code>用于访问的鼠标经过某个元素时</li>
+<li><code>:active</code>用于一个元素被激活时（按下鼠标之后放开鼠标之前的时间）</li>
+</ul>
+</li>
+</ul>
+<h5 id="伪类顺序"><a href="#伪类顺序" class="headerlink" title="伪类顺序"></a>伪类顺序</h5><p><strong><code>:link &gt; :visited &gt; :hover &gt; :avtive</code></strong></p>
+<ul>
+<li>a:hover必须置于a:link和a:visited之后，才有效</li>
+<li>a:active必须置于a:hover之后，才有效</li>
+<li>伪类名称对大小写不敏感</li>
+</ul>
+<h3 id="CSS继承和层叠"><a href="#CSS继承和层叠" class="headerlink" title="CSS继承和层叠"></a>CSS继承和层叠</h3><h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>​    从父样式继承了<strong>部分</strong>属性</p>
+<h4 id="层叠"><a href="#层叠" class="headerlink" title="层叠"></a>层叠</h4><ul>
+<li><p>可以定义多个样式</p>
+</li>
+<li><p>不冲突时，多个样式可层叠为一个</p>
+</li>
+<li><p>冲突时，按不同样式规则优先级来应用样式</p>
+</li>
+<li><p>层叠时的优先级</p>
+<ol>
+<li>id选择器 &gt; class选择器 &gt; 标签选择器</li>
+<li>同类样式多次引用，样式表中后定义的优先级高</li>
+</ol>
+</li>
+</ul>
+<h4 id="CSS优先级规则"><a href="#CSS优先级规则" class="headerlink" title="CSS优先级规则"></a>CSS优先级规则</h4><p>同一样式表中：</p>
+<ol>
+<li><p>权值相同</p>
+<p>就近原则</p>
+</li>
+<li><p>权值不同</p>
+<p>根据权值来判断css样式</p>
+<p>哪种css样式权值高，就使用哪种样式</p>
+</li>
+</ol>
+<h5 id="选择器权值"><a href="#选择器权值" class="headerlink" title="选择器权值"></a>选择器权值</h5><ul>
+<li>标签选择器：权值1</li>
+<li>类选择器和伪类：权值10</li>
+<li>ID选择器：权值为100</li>
+<li>通配符选择器：权值为0</li>
+<li>行内样式：权值为1000</li>
+</ul>
+<h5 id="权值规则"><a href="#权值规则" class="headerlink" title="权值规则"></a>权值规则</h5><ul>
+<li>统计不同选择器的个数</li>
+<li>每类选择器的个数乘以相应权值</li>
+<li>把所有的值相加得出选择器的权值</li>
+</ul>
+<p>列如下列计算权值：</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210617172342502.png" alt="image-20210617172342502" style="zoom:50%;" />
+
+<h5 id="important规则"><a href="#important规则" class="headerlink" title="!important规则"></a>!important规则</h5><ul>
+<li>可调整样式规则的优先级</li>
+<li>添加在样式规则之后，中间用空格隔开</li>
+</ul>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">></span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">div</span><span class="token punctuation">&#123;</span><span class="token property">color</span><span class="token punctuation">:</span>red <span class="token important">!important</span><span class="token punctuation">;</span><span class="token punctuation">&#125;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>作用的样式，为最高优先级。</strong></p>
+<h5 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h5><ul>
+<li><p>!important声明高</p>
+</li>
+<li><p>css使用方法的优先级</p>
+<p>行内样式 &gt; 内部样式 &gt; 外部样式</p>
+<p><strong>注意</strong>：link链入外部样式和style内部样式优先级，取决于先后顺序</p>
+</li>
+<li><p>样式表中优先级</p>
+<p>ID选择器 &gt; class选择器 &gt; 标签选择器 &gt; 通配符</p>
+</li>
+</ul>
+<h3 id="CSS样式命名"><a href="#CSS样式命名" class="headerlink" title="CSS样式命名"></a>CSS样式命名</h3><h4 id="CSS命名规则"><a href="#CSS命名规则" class="headerlink" title="CSS命名规则"></a>CSS命名规则</h4><ul>
+<li>采用英文字母、数字以及“-”和“_“命名</li>
+<li>以小写字母开头，不能以数字和“-”、“_“开头</li>
+<li>命名形式：单子，连字符，下划线和驼峰</li>
+</ul>
+<h4 id="常用CSS命名"><a href="#常用CSS命名" class="headerlink" title="常用CSS命名"></a>常用CSS命名</h4><ul>
+<li>页面结构<ul>
+<li>页头 header</li>
+<li>导航 nav</li>
+<li>页面主体 main</li>
+<li>侧栏 sidebar</li>
+<li>页尾 footer</li>
+<li>栏目 column</li>
+<li>内容 content/container</li>
+<li>页面外围控制 wrapper</li>
+<li>容器 container</li>
+<li>左右中 left right center</li>
+</ul>
+</li>
+<li>导航<ul>
+<li>导航 nav</li>
+<li>左导航 leftsidebar</li>
+<li>主导航 mainnav</li>
+<li>右导航 rightsidebar</li>
+<li>子导航 subnav</li>
+<li>菜单 menu</li>
+<li>顶导航 topnav</li>
+<li>子菜单 submenu</li>
+<li>顶导航 topnav</li>
+<li>边导航 sidebar</li>
+<li>标题 title</li>
+<li>摘要 summary</li>
+</ul>
+</li>
+<li>功能<ul>
+<li>标志 logo</li>
+<li>注册 register</li>
+<li>广告 banner</li>
+<li>搜索 search</li>
+<li>登录 login</li>
+<li>功能区 shop</li>
+<li>登录条 loginbar</li>
+<li>标题 title</li>
+</ul>
+</li>
+</ul>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>id不要滥用，谨慎使用</li>
+<li>适当使用class</li>
+</ul>
+<h2 id="CSS文字和字体样式"><a href="#CSS文字和字体样式" class="headerlink" title="CSS文字和字体样式"></a>CSS文字和字体样式</h2><h3 id="CSS文字样式"><a href="#CSS文字样式" class="headerlink" title="CSS文字样式"></a>CSS文字样式</h3><p>文字样式属性</p>
+<ul>
+<li>字体：font-family</li>
+<li>文字大小：font-size</li>
+<li>文字颜色：font-color</li>
+<li>文字粗细：font-weight</li>
+<li>文字样式：font-style</li>
+</ul>
+<h4 id="字体：font-family"><a href="#字体：font-family" class="headerlink" title="字体：font-family"></a>字体：font-family</h4><ol>
+<li><p>定义元素内文字以什么字体来显示</p>
+</li>
+<li><p>语法：<br>font-family:<code>[字体1],[字体2],[…]</code><br>说明：</p>
+<ul>
+<li>含空格字体名和中文，用英文引号(“ )括起</li>
+<li>多个字体，用英文逗号“，”隔开</li>
+<li>引号嵌套，外使用双引号，内使用单引号</li>
+<li>设置多个字体，浏览器一次查找，如果都没有，就使用浏览器默认样式 </li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li><p>font-family属性值，除了是具体字体名，也可以是字体集<br>字体集:<br>  • Serif<br>  • Sans-serif<br>  • Monospace<br>  • Cursive<br>  • Fantasy<br>其中，<strong>Serif和Sans-serif区别</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625173035853.png" alt="image-20210625173032387" style="zoom:50%;" />
+#### 文字大小：font-size</li>
+<li><p>定义元素内文字大小</p>
+</li>
+<li><p>语法：<br>   font-size: 绝对单位|相对单位</p>
+<ul>
+<li><p>绝对单位</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625174442314.png" alt="image-20210625174442314"  /><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625174545358.png" alt="image-20210625174545358" style="zoom: 80%;" /></p>
+</li>
+<li><p>相对单位：都是相对于父元素的大小</p>
+<ul>
+<li><p>px 像素</p>
+</li>
+<li><p>em/%</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="文字颜色：-color"><a href="#文字颜色：-color" class="headerlink" title="文字颜色： color"></a>文字颜色： color</h4><ul>
+<li>定义元素内文字颜色<br>语法：<br>color: 颜色名|十六进制|RGB</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625203052635.png" alt="image-20210625203052635"></p>
+<p><strong>注意</strong>，对于十六进制，如果两两相同可以简写为3位数字：</p>
+<pre class="line-numbers language-none"><code class="language-none">#008800 简写为 #080<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="文字粗细-font-weight"><a href="#文字粗细-font-weight" class="headerlink" title="文字粗细: font-weight"></a>文字粗细: font-weight</h4><ul>
+<li><p>为元素内文字设置粗细<br>语法：<br>font-weight: normal | bold | bolder | lighter | 100~900</p>
+</li>
+<li><p>说明：<br>默认值：normal<br>400 等同于 normal，而 700 等同于 bold</p>
+</li>
+</ul>
+<h4 id="文字样式-font-style"><a href="#文字样式-font-style" class="headerlink" title="文字样式: font-style"></a>文字样式: font-style</h4><p>为元素内文字设置样式</p>
+<p>语法：<br>font-style: normal|italic|oblique</p>
+<h4 id="font-variant字体变形"><a href="#font-variant字体变形" class="headerlink" title="font-variant字体变形"></a>font-variant字体变形</h4><p>设置元素中文本为小型大写字母<br>语法：<br>font-variant: normal | small-caps</p>
+<h3 id="CSS文本样式"><a href="#CSS文本样式" class="headerlink" title="CSS文本样式"></a>CSS文本样式</h3><h4 id="水平对齐方式-text-align"><a href="#水平对齐方式-text-align" class="headerlink" title="水平对齐方式: text-align"></a>水平对齐方式: text-align</h4><ul>
+<li><p>设置元素内文本的水平对齐方式</p>
+</li>
+<li><p>语法：<br>text-align: left | right | center | justify<br>注：该属性对块级元素设置有效</p>
+</li>
+</ul>
+<h4 id="文本行高-line-height"><a href="#文本行高-line-height" class="headerlink" title="文本行高: line-height"></a>文本行高: line-height</h4><ul>
+<li><p>设置元素中文本行高</p>
+</li>
+<li><p>语法：<br>line-height: 长度值 | 百分比</p>
+</li>
+<li><p>说明：一行文字的高度。行高指文本行的基线间的距离。</p>
+<ul>
+<li><p>文字基线</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625203702015.png" alt="image-20210625203702015"></p>
+</li>
+<li><p>行高和行距</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625203729343.png" alt="image-20210625203729343"></p>
+</li>
+<li><p>行框和行内框</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625203745872.png" alt="image-20210625203745872"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="垂直方式-vertical-align"><a href="#垂直方式-vertical-align" class="headerlink" title="垂直方式: vertical-align"></a>垂直方式: vertical-align</h4><ul>
+<li><p>设置元素内容的垂直方式</p>
+</li>
+<li><p>语法：<br>vertical-align: baseline | sub | super | top | text-top</p>
+<pre><code>                     middle | bottom | text-bottom
+                     长度 | 百分比
+</code></pre>
+</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625204028477.png" alt="image-20210625204028477" style="zoom:70%;" />
+
+<h4 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210625204333373.png" alt="image-20210625204333373" style="zoom:67%;" />
+
+<h2 id="CSS背景样式"><a href="#CSS背景样式" class="headerlink" title="CSS背景样式"></a>CSS背景样式</h2><h3 id="设置元素的背景颜色"><a href="#设置元素的背景颜色" class="headerlink" title="设置元素的背景颜色"></a>设置元素的背景颜色</h3><ul>
+<li>background-color: 颜色｜ transparent</li>
+<li>说明 <ul>
+<li> transparent是全透明黑色(black)的速记法，类似rgba(0,0,0,0)这样的值。</li>
+<li>颜色值（颜色名｜RGB｜十六进制｜）</li>
+<li>背景区包括内容、内边距（padding）和边框（默认颜色和文本颜色一致）、不包含外边距（margin）</li>
+</ul>
+</li>
+</ul>
+<h3 id="图像设置为背景"><a href="#图像设置为背景" class="headerlink" title="图像设置为背景"></a>图像设置为背景</h3><ul>
+<li>background-image : URL｜ none</li>
+<li>说明<ul>
+<li>url地址可以是相对地址也可以是绝对地址</li>
+<li>元素的背景占据了元素的全部尺寸，包括内边距和边框，但不包括外边距。</li>
+<li>默认地，背景图像位于元素的左上角，并在水平和垂直方向上重复（当容器尺寸大于背景图片时，图片需要重复，这里就是往哪个方向重复）。</li>
+<li>既设置背景颜色又设置背景图片时，图片会覆盖颜色。</li>
+</ul>
+</li>
+</ul>
+<h3 id="设置背景图像的起始位置"><a href="#设置背景图像的起始位置" class="headerlink" title="设置背景图像的起始位置"></a>设置背景图像的起始位置</h3><ul>
+<li>background-position : 百分比｜值 top ｜right ｜ bottom ｜ left ｜ center</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706140813768.png" alt="image-20210706140813768"></p>
+<h3 id="背景图像是否固定或者随着页面的其余部分滚动"><a href="#背景图像是否固定或者随着页面的其余部分滚动" class="headerlink" title="背景图像是否固定或者随着页面的其余部分滚动"></a>背景图像是否固定或者随着页面的其余部分滚动</h3><ul>
+<li><p>background-attachment: scroll ｜fixed</p>
+</li>
+<li><p>说明：</p>
+<ul>
+<li><p>scroll ：默认值，背景图片随滚动条滚动</p>
+</li>
+<li><p>fixed ：当页面的其余部分滚动时，背景图片不会移动</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="背景图像是否重复"><a href="#背景图像是否重复" class="headerlink" title="背景图像是否重复"></a>背景图像是否重复</h3><ul>
+<li>background-repeat: repeat ｜ no-repeat repeat-x ｜repeat-y</li>
+<li>参数说明<ul>
+<li>repeat ：默认值，背景图片水平方向和垂直方向重复</li>
+<li>repeat-x：背景图片水平方向重复</li>
+<li>repeat-y : 背景图片垂直方向重复</li>
+<li>no-repeat : 背景图片不重复</li>
+</ul>
+</li>
+</ul>
+<h3 id="将背景属性设置在一个声明中"><a href="#将背景属性设置在一个声明中" class="headerlink" title="将背景属性设置在一个声明中"></a>将背景属性设置在一个声明中</h3><ul>
+<li><p>background：[background-color] [background-image] [background-repeat] [background-attachment]<br>[background-position] []</p>
+</li>
+<li><p>说明 ：各值之间用空格分割，不分先后顺序</p>
+</li>
+</ul>
+<h2 id="CSS列表样式"><a href="#CSS列表样式" class="headerlink" title="CSS列表样式"></a>CSS列表样式</h2><h3 id="设置列表项标志的类型"><a href="#设置列表项标志的类型" class="headerlink" title="设置列表项标志的类型"></a>设置列表项标志的类型</h3><ul>
+<li>list-style-type: 关键字｜none</li>
+<li>无序列表</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706141352908.png" alt="image-20210706141352908"></p>
+<ul>
+<li>有序列表</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706141409225.png" alt="image-20210706141409225"></p>
+<h3 id="将图像设置为列表项标志"><a href="#将图像设置为列表项标志" class="headerlink" title="将图像设置为列表项标志"></a>将图像设置为列表项标志</h3><ul>
+<li>list-style-image: URL ｜none</li>
+</ul>
+<h3 id="设置列表中列表项标志的位置"><a href="#设置列表中列表项标志的位置" class="headerlink" title="设置列表中列表项标志的位置"></a>设置列表中列表项标志的位置</h3><ul>
+<li><p>list-style-position: inside ｜outside</p>
+</li>
+<li><p>说明</p>
+<ul>
+<li>inside :列表项目标记放置在文本以内，且环绕文本根据标记对齐</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706141632705.png" alt="image-20210706141632705"></p>
+<ul>
+<li>outside :默认值，列表项目标记放置在文本以外，且环绕文本不根据标记对齐</li>
+</ul>
+</li>
+</ul>
+<h3 id="用于把所有列表的属性设置于一个声明中"><a href="#用于把所有列表的属性设置于一个声明中" class="headerlink" title="用于把所有列表的属性设置于一个声明中"></a>用于把所有列表的属性设置于一个声明中</h3><ul>
+<li><p>list-style: list-style-type list-style-position list-style-image</p>
+</li>
+<li><p>说明</p>
+<ul>
+<li>值之间用空格分隔割</li>
+<li>顺序不固定</li>
+<li>list-style-image 会覆盖 list-style-type的设置</li>
+</ul>
+</li>
+</ul>
+<h2 id="盒子模型"><a href="#盒子模型" class="headerlink" title="盒子模型"></a>盒子模型</h2><h3 id="盒子模型概念"><a href="#盒子模型概念" class="headerlink" title="盒子模型概念"></a>盒子模型概念</h3><ul>
+<li>盒子模型用来“放”网页中的各种元素。</li>
+<li>网页设计中内容，如文字、图片等元素，都可是盒子（DIV嵌套）</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706142035679.png" alt="image-20210706142035679"></p>
+<h3 id="高和宽设置"><a href="#高和宽设置" class="headerlink" title="高和宽设置"></a>高和宽设置</h3><ul>
+<li><p>可以设置高和宽的html元素</p>
+<ul>
+<li><p>块级元素 </p>
+<p><code>&lt;p&gt;、&lt;div&gt; 、 &lt;h1&gt; ~ &lt;h6&gt; 、&lt;ul&gt; 、&lt;li&gt; 、&lt;ol&gt; &lt;dl&gt; 、&lt;dt&gt; 、&lt;dd&gt;</code>等</p>
+</li>
+<li><p>替换元素<br><code>&lt;img&gt;、&lt;input&gt;、&lt;textarea&gt;</code>等</p>
+</li>
+</ul>
+</li>
+<li><p>HTML标签分类 </p>
+<ul>
+<li>块级标签：占据一行，换行。<br><code>&lt;div&gt;、&lt;ul&gt;、&lt;ol&gt;、&lt;li&gt;、&lt;dl&gt;、&lt;dt&gt;、&lt;dd&gt; &lt;h1&gt;~&lt;h6&gt;、&lt;p&gt;、&lt;form&gt;、&lt;hr&gt;…</code></li>
+<li>行内标签：在一行，不换行。<br>非替换元素：<code>&lt;b&gt;、&lt;em&gt;、&lt;a&gt;、&lt;span&gt;……</code><br>替换元素：<code>&lt;img&gt;、&lt;input&gt;、&lt;textarea&gt;……</code></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706143121956.png" alt="image-20210706143121956"></p>
+<h3 id="边框设置"><a href="#边框设置" class="headerlink" title="边框设置"></a>边框设置</h3><ul>
+<li>宽度： border-width : thin | medium | thick | 长度值</li>
+<li>颜色： border-color ：颜色 | transparent</li>
+<li>样式：border-style : 值 | none | hidden</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>值</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>none</td>
+<td>定义无边框。默认值</td>
+</tr>
+<tr>
+<td>hideden</td>
+<td>与 “none” 相同。除非在表格元素中解决边框冲突时</td>
+</tr>
+<tr>
+<td>dotted</td>
+<td>定义点状边框 。在大多数浏览器中呈现为实线</td>
+</tr>
+<tr>
+<td>dashed</td>
+<td>定义虚线。在大多数浏览器中呈现为实线</td>
+</tr>
+<tr>
+<td>solid</td>
+<td>定义实线</td>
+</tr>
+<tr>
+<td>double</td>
+<td>定义双线</td>
+</tr>
+<tr>
+<td>groove</td>
+<td>定义 3D 凹槽边框</td>
+</tr>
+<tr>
+<td>ridge</td>
+<td>定义 3D 垄状边框</td>
+</tr>
+<tr>
+<td>inset</td>
+<td>定义 3D inset 边框</td>
+</tr>
+<tr>
+<td>outset</td>
+<td>定义 3D outset 边框</td>
+</tr>
+<tr>
+<td>inherit</td>
+<td>规定应该从父元素继承边框样式</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>方向： </p>
+<pre class="line-numbers language-none"><code class="language-none">border-[left | right | top | bottom]-width 
+border-[left | right | top | bottom]-color
+border-[left | right | top | bottom]-style<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>总体设置/缩写</p>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">border : [宽度] | [样式] | [颜色] 
+不同方向： 
+	border-top : [宽度] | [样式] | [颜色] 
+	border-left : [宽度] | [样式] | [颜色] 
+	border-right : [宽度] | [样式] | [颜色]
+	border-bottom ：[宽度] | [样式] | [颜色]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="内边距设置"><a href="#内边距设置" class="headerlink" title="内边距设置"></a>内边距设置</h3><ul>
+<li><p>设置元素的内容与边框之间的距离（内边距或填充）,分4个方向 （上、右、下、左） </p>
+<p>– padding-top : 长度值 | 百分比</p>
+<p>– padding-right :长度值 | 百分比</p>
+<p>– padding-bottom :长度值 | 百分比 </p>
+<p>– padding-left :长度值 | 百分比</p>
+</li>
+<li><p>说明：值不能为负值</p>
+</li>
+<li><p>缩写</p>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">padding : 值1； &#x2F;&#x2F;4个方向都为值1 
+padding : 值1 值2 ; &#x2F;&#x2F; 上下&#x3D;值1，左右&#x3D;值2
+padding : 值1 值2 值3；&#x2F;&#x2F; 上&#x3D;值1，左右&#x3D;值2，下&#x3D;值3
+padding : 值1 值2 值3 值4；&#x2F;&#x2F; 上&#x3D;值1，右&#x3D;值2，下&#x3D;值3,左&#x3D;值2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="外边距设置"><a href="#外边距设置" class="headerlink" title="外边距设置"></a>外边距设置</h3><ul>
+<li><p>设置元素与元素之间的距离（外边距）, 4个方向（上、右、下、左） </p>
+<p>– margin-top : 长度值 | 百分比 | auto </p>
+<p>– margin-right : 长度值 | 百分比 | auto </p>
+<p>– margin-bottom : 长度值 | 百分比 | auto </p>
+<p>– margin-left : 长度值 | 百分比 | auto</p>
+</li>
+<li><p>说明：值可为负值</p>
+</li>
+<li><p>缩写</p>
+</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">margin : 值1； &#x2F;&#x2F;4个方向都为值1 
+margin : 值1 值2 ; &#x2F;&#x2F; 上下&#x3D;值1，左右&#x3D;值2 
+margin : 值1 值2 值3；&#x2F;&#x2F; 上&#x3D;值1，左右&#x3D;值2，下&#x3D;值3
+margin : 值1 值2 值3 值4；&#x2F;&#x2F; 上&#x3D;值1，右&#x3D;值2，下&#x3D;值3,左&#x3D;值2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>默认情况下，相应HTML块级元素存在外边距 </p>
+<ul>
+<li><p>body、h1~h6、p……</p>
+</li>
+<li><p>可以通过声明margin属性，覆盖默认样式</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706144706035.png" alt="image-20210706144706035"></p>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>margin值为auto , 实现水平方向居中显示效果 ，由浏览器计算外边距</li>
+<li>垂直方向，两个相邻元素都设置外边距，外边距会发生合并。合并后外边距高度=两个发生合并外边距的高度中最大值</li>
+</ul>
+<h3 id="盒子的计算"><a href="#盒子的计算" class="headerlink" title="盒子的计算"></a>盒子的计算</h3><ul>
+<li><p>说明</p>
+<ul>
+<li>在 CSS 中，width 和 height 指的是内容区域的宽度和高度</li>
+<li>增加内边距、边框和外边距不会影响内容区域的尺寸</li>
+<li>但会增加元素框的总尺寸</li>
+</ul>
+</li>
+<li><p>计算</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210706145001819.png" alt="image-20210706145001819"></p>
+<h2 id="CSS的float"><a href="#CSS的float" class="headerlink" title="CSS的float"></a>CSS的float</h2><ul>
+<li><p>四个参数</p>
+<pre class="line-numbers language-none"><code class="language-none">float:right; 右浮动 
+float:left; 左浮动
+float:none; 不浮动
+float:inherit; 继承<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>float属性实现文本环绕 </p>
+<ul>
+<li>float属性定义了元素在哪个方向进行动</li>
+<li>在HTML中任何元素都是可以浮动的</li>
+</ul>
+</li>
+<li></li>
+<li><p>loat浮动的真正原因以及副作用 </p>
+<ul>
+<li>浮动的元素不占有原空间</li>
+<li>使得元素脱离了标准流</li>
+<li>父元素塌陷及其他元素异位</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS的定位"><a href="#CSS的定位" class="headerlink" title="CSS的定位"></a>CSS的定位</h2><p>HTML中的三种布局方式</p>
+<ul>
+<li>浮动</li>
+<li>标准流</li>
+<li>定位</li>
+</ul>
+<h3 id="position属性的意义"><a href="#position属性的意义" class="headerlink" title="position属性的意义"></a>position属性的意义</h3><ul>
+<li><p>通过top、right、bottom、left实现位置的改变</p>
+</li>
+<li><p>position属性决定了元素将如何定位</p>
+</li>
+</ul>
+<h3 id="position中的可选参数"><a href="#position中的可选参数" class="headerlink" title="position中的可选参数"></a>position中的可选参数</h3><ul>
+<li><p>static 绝对定位</p>
+</li>
+<li><p>relative 相对定位</p>
+<ul>
+<li>可以利用 top right bottom left 进行定位 不脱离文档流，可以进行块元素之间的覆盖和交叉</li>
+<li>为子定位划分作用域</li>
+<li>移动区域为整个网页</li>
+</ul>
+</li>
+<li><p>absolute</p>
+<ul>
+<li>可以利用 top right bottom left 进行定位 脱离文档流，有了层的概念。</li>
+<li>为子定位划分作用域</li>
+<li>移动区域为整个网页</li>
+</ul>
+</li>
+<li><p>fixed</p>
+<ul>
+<li>可以利用 top right bottom left 进行定位 脱离文档流</li>
+<li>为子定位划分作用域</li>
+<li>移动区域为整个窗口区</li>
+</ul>
+</li>
+<li><p>inherit</p>
+<p>继承父元素的position属性，其它属性不继承！</p>
+</li>
+</ul>
+<h3 id="层级"><a href="#层级" class="headerlink" title="层级"></a>层级</h3><ul>
+<li><p>概念</p>
+<ul>
+<li>通过顺序插入，越后添加的定位元素层级越大 </li>
+<li>通过z-index改变层级</li>
+<li>不同父元素中的子元素的层级各不相干</li>
+</ul>
+</li>
+<li><p>z-index 属性值</p>
+<ul>
+<li>z-index：auto(默认值) </li>
+<li>z-index：inherit（继承）</li>
+<li>z-index：number（number指具体数值）</li>
+</ul>
+</li>
+<li><p>z-index 特性 </p>
+<ul>
+<li><p>可以设置元素的叠加顺序，但依赖定位属性</p>
+</li>
+<li><p>z-index大的元素会覆盖z-index小的元素</p>
+</li>
+<li><p>z-index为auto的元素不参与层级比较</p>
+</li>
+<li><p>z-index 为负值，元素被普通流中的元素覆盖</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="CSS的布局"><a href="#CSS的布局" class="headerlink" title="CSS的布局"></a>CSS的布局</h2><h3 id="行布局"><a href="#行布局" class="headerlink" title="行布局"></a>行布局</h3><h3 id="多列布局"><a href="#多列布局" class="headerlink" title="多列布局"></a>多列布局</h3><h3 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h3><h3 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h3><p>布局要求 </p>
+<ul>
+<li><p>三列布局，中间宽度自适应，两边定宽</p>
+</li>
+<li><p>中间栏要在浏览器中优先展示渲染</p>
+</li>
+<li><p>允许任意列的高度最高</p>
+</li>
+<li><p>只用一个额外的DIV标签</p>
+</li>
+<li><p>用最简单的CSS、最少的HACK语句</p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2021/06/17/css-zhi-shi-hui-zong/">https://jason-qianhao.github.io/2021/06/17/css-zhi-shi-hui-zong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                                    <span class="chip bg-color">前端</span>
+                                </a>
+                            
+                                <a href="/tags/CSS/">
+                                    <span class="chip bg-color">CSS</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/06/17/leetcode-shua-ti/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="Leetcode分类刷题">
+                        
+                        <span class="card-title">Leetcode分类刷题</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构和算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">数据结构和算法</span>
+                    </a>
+                    
+                    <a href="/tags/Leetcode/">
+                        <span class="chip bg-color">Leetcode</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/06/17/javascript-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="JavaScript知识汇总">
+                        
+                        <span class="card-title">JavaScript知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-17
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%89%8D%E7%AB%AF/" class="post-category">
+                                    前端
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%89%8D%E7%AB%AF/">
+                        <span class="chip bg-color">前端</span>
+                    </a>
+                    
+                    <a href="/tags/JavaScipt/">
+                        <span class="chip bg-color">JavaScipt</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

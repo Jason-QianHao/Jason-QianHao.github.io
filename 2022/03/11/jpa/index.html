@@ -1,0 +1,1646 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="JPA(转载), 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>JPA(转载) | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/58.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">JPA(转载)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Java/">
+                                <span class="chip bg-color">Java</span>
+                            </a>
+                        
+                            <a href="/tags/JPA/">
+                                <span class="chip bg-color">JPA</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Java/" class="post-category">
+                                Java
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-03-11
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.6k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    14 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录：</p>
+<ol>
+<li>什么是JPA</li>
+<li>Spring data JPA与JPA的关系</li>
+<li>JPA注解</li>
+<li>JPA对象属性与数据库列的映射</li>
+</ol>
+<p>来源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/z-sm/p/9176636.html">JPA &amp; Spring Data JPA学习与使用小记 - March On - 博客园</a></li>
+</ul>
+</blockquote>
+<h1 id="什么是JPA"><a href="#什么是JPA" class="headerlink" title="什么是JPA"></a>什么是JPA</h1><p>JPA（Java Persistence API）是Java标准中的一套<strong>ORM规范</strong>，借助JPA技术可以通过注解或者XML描述【对象-关系表】之间的映射关系，并将实体对象持久化到数据库中（即Object Model与Data Model间的映射）。</p>
+<p><strong>JPA之于ORM（持久层框架，如MyBatis、Hibernate等，用于管理应用层Object与数据库Data之间的映射）正如JDBC之于数据库驱动。</strong></p>
+<p>JDBC是Java语言定义的一套标准，规范了客户端程序访问关系数据库（如MySQL、Oracle、Postgres、SQLServer等）的应用程序接口，接口的具体实现（即数据库驱动）由各关系数据库自己实现。</p>
+<p>随着业务系统的复杂，直接用JDBC访问数据库对开发者来说变得很繁琐，代码难以维护，为解决此问题，ORM（Object Relation Mapping）框架出现了，如MyBatis、Hibernate等，百花齐放。</p>
+<p>爱大一统的Java又出手了，Java针对ORM提出了JPA，JPA 本质上是一种 ORM 规范，不是 ORM 框架，只是定制了一些规范，提供了一些编程的 API 接口，具体实现由 ORM 厂商实现，如Hiernate、Eclipselink等都是JAP的具体实现，主要有：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/568153-20190719101311621-1093504698.png"></p>
+<p>另：关于Java Persistence规范的演进（OMG、EJB1.0 CMP、EJB2.0 CMP等）可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/What_is_JPA%3F">https://en.wikibooks.org/wiki/Java_Persistence/What_is_JPA%3F</a></p>
+<blockquote>
+<p>JPA was meant to unify the EJB 2 CMP, JDO, Hibernate, and TopLink APIs and products</p>
+<p>It is a standard and part of EJB3 and Java EE.</p>
+</blockquote>
+<p>JPA主要包括<strong>Statix Named Query、Criteria Query API</strong>两部分（Query包含select、update、delete、insert等）。分为静态查询和动态查询：</p>
+<ul>
+<li><p>静态查询在编译期即确定查询逻辑，为<strong>Static Named Query</strong>，如getByName等。 </p>
+</li>
+<li><p>动态查询运行时确定查询逻辑，主要是<strong>Criteria API</strong>。Spring的<strong>Specification Query API</strong>对Criteria API进行了简化封装，此外Spring还提供了<strong>Example动态</strong>查询（query by example (QBE)）。</p>
+</li>
+</ul>
+<p>使用JPA Query时与SQL Query最大的区别在于前者是面向Object Model（即定义的Java Bean）而后者是面向Data Model（即数据库表）的。</p>
+<h1 id="Spring-data-JPA与JPA的关系"><a href="#Spring-data-JPA与JPA的关系" class="headerlink" title="Spring data JPA与JPA的关系"></a>Spring data JPA与JPA的关系</h1><p>如上面所述，<strong>JPA</strong>是Java标准中的一套规范。其为我们提供了：</p>
+<ol>
+<li>ORM映射元数据：JPA支持通过XML和注解两种元数据形式描述对象和表间的映射关系，并持久化到数据库表中。如@Entity、@Table等</li>
+<li>JPA的<strong>Criteria API</strong>：提供API来操作实体对象，执行CRUD操作，框架会自动将之转换为对应的SQL，使开发者从繁琐的JDBC、SQL中解放出来。</li>
+<li><strong>JPQL</strong>查询语言：提供面向Java对象而非面向数据库自动的查询语言，避免程序与SQL语句耦合</li>
+</ol>
+<p>关系图：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/568153-20190829111235665-523591815.png"></p>
+<p><strong>Spring Data JPA</strong>是Spring提供的一套简化JPA开发的框架（Criteria API还是太复杂了），按照约定好的【方法命名规则】写dao层接口，就可以<strong>在不写接口实现的情况下，实现对数据库的访问和操作</strong>。同时提供了很多除了CRUD之外的功能，如分页、排序、复杂查询等等。</p>
+<p>关系图：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/568153-20190829111315277-1589873234.png" alt="点击全屏显示"></p>
+<p>通过Repository来支持上述功能，默认提供的几种Repository已经满足了绝大多数需求：</p>
+<ul>
+<li><p>JpaRepository（ 为Repository的子接口：JpaRepository -&gt; PagingAndSortingRepository -&gt; CrudRepository -&gt; Repository）</p>
+</li>
+<li><p>QueryByExampleExecutor</p>
+</li>
+<li><p>JpaSpecificationExecutor</p>
+</li>
+</ul>
+<p>后两者用于更复杂的查询，如动态查询、关联查询等；第一种用得最多，提供基于方法名（query method）的查询，用户可基于第一种继承创建自己的子接口（只要是Repository的子接口即可），并声明各种基于方法名的查询方法。</p>
+<p>题外话：PagingAndSortingRepository及其继承的几个接口实际上不仅可用于Spring Data JPA，还可用于Spring Data MongoDB等，可见可复用性很好。</p>
+<h1 id="JPA注解"><a href="#JPA注解" class="headerlink" title="JPA注解"></a>JPA注解</h1><h2 id="注解位置"><a href="#注解位置" class="headerlink" title="注解位置"></a>注解位置</h2><p>通过JPA定义的Object至少需要@Entity、@Id注解，示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">javax<span class="token punctuation">.</span>persistence<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token annotation punctuation">@Entity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Id</span>
+    <span class="token keyword">private</span> <span class="token keyword">long</span> id<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> firstName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> lastName<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Address</span> address<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Phone</span><span class="token punctuation">></span></span> phones<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">Employee</span> manager<span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Employee</span><span class="token punctuation">></span></span> managedEmployees<span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这些注解的位置可以有两种（Access Type）：Field（在变量上）上、Property（在变量的get方法）上。</p>
+<p>一个Ojbect内的JPA注解要么在Field上要么在Property上（当然可以在类上），不能两者同时有。详情可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Mapping#Access_Type">https://en.wikibooks.org/wiki/Java_Persistence/Mapping#Access_Type</a></p>
+<p>JPA 2.0开始允许通过**@Acdess注解来指定默认access type**并通过该注解来指定例外acess type，从而达到混合使用的效果。 </p>
+<h2 id="注解使用"><a href="#注解使用" class="headerlink" title="注解使用"></a>注解使用</h2><h3 id="Entity"><a href="#Entity" class="headerlink" title="@Entity"></a><strong>@Entity</strong></h3><p>@Entity 标注用于实体类声明语句之前，指出该Java 类为实体类，将映射到指定的关系数据库表。（类似的，使用@Document可以映射到mongodb）</p>
+<p>应用了此注解后，将会自动将<strong>类名映射作为数据库表名</strong>、将类内的<strong>字段名映射为数据库表的列</strong>名。</p>
+<p>映射策略默认是按驼峰命名法拆分将类名或字段名拆分成多部分，然后以下划线连接，如StudentEntity -&gt; student_entity、studentName -&gt; student_name。若不按默认映射，则可通过@Table、@Column指定。</p>
+<h3 id="Table"><a href="#Table" class="headerlink" title="@Table"></a><strong>@Table</strong></h3><p>当实体类与其映射的数据库表名不同名时需要使用 @Table 标注说明，该标注与 @Entity 标注并列使用</p>
+<ul>
+<li>schema属性：指定数据库名</li>
+<li>name属性：指定表名，不知道时表名为类名</li>
+</ul>
+<h3 id="id"><a href="#id" class="headerlink" title="@id"></a><strong>@id</strong></h3><p>@Id 标注用于声明一个实体类的属性映射为数据库的一个主键列</p>
+<p>@Id标注也可置于属性的getter方法之前。以下注解也一样可以标注于getter方法前。</p>
+<p>若同时<strong>指定了下面的@GeneratedValue则存储时会自动生成主键值</strong>，否则在存入前用户需要手动为实体赋一个主键值。主键值类型可能是：</p>
+<ul>
+<li><ul>
+<li>Primitive types: boolean, byte, short, char, int, long, float, double.</li>
+<li>Equivalent wrapper classes from package java.lang:<br>Byte, Short, Character, Integer, Long, Float, Double.</li>
+<li>java.math.BigInteger, java.math.BigDecimal.</li>
+<li>java.lang.String.</li>
+<li>java.util.Date, java.sql.Date, java.sql.Time, java.sql.Timestamp.</li>
+<li>Any enum type.</li>
+<li>Reference to an entity object.</li>
+<li>composite of several keys above</li>
+</ul>
+</li>
+</ul>
+<p>指定联合主键，有@IdClass、@EmbeddedId两种方法，可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing#Composite_Primary_Keys">https://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing#Composite_Primary_Keys</a></p>
+<h3 id="IdClass"><a href="#IdClass" class="headerlink" title="@IdClass"></a><strong>@IdClass</strong></h3><p>修饰在实体类上，指定联合主键。如：@IdClass(StudentExperimentEntityPK.class)，主键类StudentExperimentEntityPK需要满足：</p>
+<ol>
+<li>实现Serializable接口</li>
+<li>有默认的public无参数的构造方法</li>
+<li>重写equals和hashCode方法。equals方法用于判断两个对象是否相同，EntityManger通过find方法来查找Entity时，是根据equals的返回值来判断的。hashCode方法返回当前对象的哈希码</li>
+</ol>
+<h3 id="EmbeddedId"><a href="#EmbeddedId" class="headerlink" title="@EmbeddedId"></a><strong>@EmbeddedId</strong></h3><p>功能与@IdClass一样用于指定联合主键。不同的在于其是修饰实体内的一个主键类变量，且主键类应该被@Embeddable修饰。</p>
+<p>此外在主键类内指定的字段在实体类内可以不再指定，若再指定则需为@Column加上insertable = false, updatable = false属性</p>
+<h3 id="GeneratedValue"><a href="#GeneratedValue" class="headerlink" title="@GeneratedValue"></a><strong>@GeneratedValue</strong></h3><p>@GeneratedValue 用于标注主键的生成策略，通过 strategy 属性指定。默认情况下，JPA 自动选择一个最适合底层数据库的主键生成策略：SqlServer 对应 identity，MySQL 对应 auto increment</p>
+<ul>
+<li>IDENTITY：采用数据库 ID自增长的方式来自增主键字段，Oracle 不支持这种方式</li>
+<li>AUTO： JPA自动选择合适的策略，是默认选项</li>
+<li>TABLE：通过表产生主键，框架借由表模拟序列产生主键，使用该策略可以使应用更易于数据库移植。</li>
+<li>SEQUENCE：通过序列产生主键，通过 @SequenceGenerator 注解指定序列名，MySql 不支持这种方式</li>
+</ul>
+<p>更多详情可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing#Sequence_Strategies">https://en.wikibooks.org/wiki/Java_Persistence/Identity_and_Sequencing#Sequence_Strategies</a></p>
+<h3 id="Basic"><a href="#Basic" class="headerlink" title="@Basic"></a><strong>@Basic</strong></h3><p>表示一个简单的属性到数据表的字段的映射，对于没有任何标注的 getXxx() 方法，<strong>默认为 @Basic</strong></p>
+<p>fetch 表示属性的读取策略，有 EAGER 和 LAZY 两种，分别为立即加载和延迟加载</p>
+<p>optional 表示该属性是否允许为 null，默认为 true</p>
+<h3 id="Column"><a href="#Column" class="headerlink" title="@Column"></a><strong>@Column</strong></h3><p>此注解不是必须的，无此字段也会将字段映射到表列。当<strong>实体的属性与其映射的数据库表的列不同名时需要使用</strong> @Column 标注说明，其有属性 name、unique、nullable、length 等。</p>
+<p>类的字段名在数据库中对应的字段名可以通过此注解的name属性指定，不指定则默认为将属性名按驼峰命名法拆分并以下划线连接，如createTime对应create_time。注意：即使name的值中包含大写字母，对应到db后也会转成小写，如@Column(name=”create_Time”)在数据库中字段名仍为create_time。</p>
+<p>可通过SpringBoot配置参数 spring.jpa.hibernate.naming.physical-strategy 配置上述对应策略，如指定name值是什么数据库中就对应什么名字的列名。默认值为： org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy </p>
+<h3 id="Transient"><a href="#Transient" class="headerlink" title="@Transient"></a><strong>@Transient</strong></h3><p>表示该属性并非一个到数据库表的字段的映射，ORM 框架将忽略该属性</p>
+<p>如果一个属性并非数据库表的字段映射，就务必将其标识为 @Transient，否则ORM 框架默认为其注解 @Basic，例如工具方法不需要映射</p>
+<h3 id="Temporal"><a href="#Temporal" class="headerlink" title="@Temporal"></a><strong>@Temporal</strong></h3><p>在 JavaAPI 中没有定义 Date 类型的精度，而在数据库中表示 Date 类型的数据类型有 Date，Time，TimeStamp 三种精度（日期，时间，两者兼具），进行属性映射的时候可以使用 @Temporal 注解调整精度。目前此注解只能用于修饰java.util.Date、java.util.Calendar类型的变量，TemporalType取DATE、TIME、TIMESTAMP时在MySQL中分别对应的DATE、TIME、DATETIME类型。示例：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">
+<span class="token annotation punctuation">@Temporal</span><span class="token punctuation">(</span><span class="token class-name">TemporalType</span><span class="token punctuation">.</span>TIMESTAMP<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@CreationTimestamp</span> <span class="token comment">//org.hibernate.annotations.CreationTimestamp，用于在JPA执行insert操作时自动更新该字段值</span>
+<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"create_time"</span><span class="token punctuation">,</span> updatable<span class="token operator">=</span><span class="token boolean">false</span> <span class="token punctuation">)</span><span class="token comment">//为防止手动set，可设false以免该字段被更新</span>
+<span class="token keyword">private</span> <span class="token class-name">Date</span> createTime<span class="token punctuation">;</span>
+<span class="token annotation punctuation">@Temporal</span><span class="token punctuation">(</span><span class="token class-name">TemporalType</span><span class="token punctuation">.</span>TIMESTAMP<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@UpdateTimestamp</span> <span class="token comment">//org.hibernate.annotations.UpdateTimestamp，用于在JPA执行update操作时自动更新该字段值</span>
+<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"update_time"</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">Date</span> updateTime<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>@CreationTimestamp、@UpdateTimestamp是Hibernate的注解，SpringData JPA也提供了类似功能（推荐用此）：@CreatedDate、@LastModifiedDate、@CreatedBy、@LastModifiedBy，可参阅<a target="_blank" rel="noopener" href="https://blog.csdn.net/tianyaleixiaowu/article/details/77931903">https://blog.csdn.net/tianyaleixiaowu/article/details/77931903</a></p>
+<h3 id="MappedSuperClass"><a href="#MappedSuperClass" class="headerlink" title="@MappedSuperClass"></a><strong>@MappedSuperClass</strong></h3><p>用来修饰一个类，类中声明了各Entity共有的字段，也即数据库中多表中共有的字段，如create_time、update_time、id等。</p>
+<p>标注为@MappedSuperclass的类将不是一个完整的实体类，他将不会映射到数据库表，但是他的属性都将映射到其子类的数据库字段中。</p>
+<p>标注为@MappedSuperclass的类不能再标注@Entity或@Table注解，也无需实现序列化接口。</p>
+<p>允许多级继承。</p>
+<h3 id="Inheritance"><a href="#Inheritance" class="headerlink" title="@Inheritance"></a><strong>@Inheritance</strong></h3><p>用于表结构复用。指定被该注解修饰的类被子类继承后子类和父类的表结构的关系。通过strategy属性指定关系，有三种策略：</p>
+<ol>
+<li>SINGLE_TABLE：适用于共同字段多独有字段少的关联关系定义。子类和父类对应同一个表且所有字段在一个表中，还会自动生成（也可通过@DiscriminatorColumn指定）一个字段 varchar ‘dtype’ 用来表示一条数据是属于哪个实体的。为默认值（未使用@Inheritance或使用了但没指定strategy属性时默认采用此策略）。</li>
+<li>JOINED：子类和父类对应不同表，父类属性对应的列（除了主键）不会且无法再出现在子表中。子表自动产生与父表主键对应的外键与父表关联。同样地也可通过@DiscriminatorColumn为父类指定一个字段用于标识一条记录属于哪个子类。</li>
+<li>TABLE_PER_CLASS：子类和父类对应不同表且各类自己的所有字段（包括继承的）分别都出现在各自的表中；表间没有任何外键关联。此策略最终效果与@MappedSuperClass等同。</li>
+</ol>
+<p>更多详情可参阅：<a target="_blank" rel="noopener" href="https://www.ibm.com/developerworks/cn/java/j-lo-hibernatejpa/index.html">https://www.ibm.com/developerworks/cn/java/j-lo-hibernatejpa/index.html</a></p>
+<p>@Inheritance与@MappedSuperclass的区别：后者子类与父类没有外键关系、后者不会对应一个表等、前者适用于表关联后者适用于定义公共字段。另：两者是可以混合使用的。详见：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/9667703/jpa-implementing-model-hierarchy-mappedsuperclass-vs-inheritance%E3%80%82">https://stackoverflow.com/questions/9667703/jpa-implementing-model-hierarchy-mappedsuperclass-vs-inheritance。</a></p>
+<p>总而言之，@Inheritance、@MappedSuperClass可用于定义Inheritance关系。详情可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Inheritance%E3%80%82%E8%BF%99%E4%BA%9B%E6%96%B9%E5%BC%8F%E7%9A%84%E4%B8%80%E4%B8%AA%E7%BC%BA%E7%82%B9%E6%98%AF%E5%AD%90%E7%B1%BB%E4%B8%AD%E6%97%A0%E6%B3%95%E8%A6%86%E7%9B%96%E4%BB%8E%E7%88%B6%E7%B1%BB%E7%BB%A7%E6%89%BF%E7%9A%84%E5%AD%97%E6%AE%B5%E7%9A%84%E5%AE%9A%E4%B9%89%EF%BC%88%E5%A6%82%E7%88%B6%E7%B1%BB%E4%B8%ADname%E6%98%AFnot">https://en.wikibooks.org/wiki/Java_Persistence/Inheritance。这些方式的一个缺点是子类中无法覆盖从父类继承的字段的定义（如父类中name是not</a> null的但子类中允许为null）。</p>
+<p>除了 @Inheritance、@MappedSuperClass外，还有一种Inheritance方法（此法可解决上述不足）：先定义一个Java POJO（干净的POJO，没有任何对该类使用任何的ORM注解），然后不同子类继承该父类并分别在不同子类中进行ORM定义即可。此法下不同子类拥有父类的公共字段且该字段在不同子类中对应的数据库列定义可不同。</p>
+<h2 id="注解扫描"><a href="#注解扫描" class="headerlink" title="注解扫描"></a>注解扫描</h2><p>这里针对SpringBoot而言。在SpringBoot中：</p>
+<ul>
+<li><p>默认情况下，当Entity类、Repository类与主类在同一个包下或在主类所在包的子类时，Entity类、Repository类会被自动扫描到并注册到Spring容器，此时使用者无需任何额外配置。</p>
+</li>
+<li><p>当不在同一包或不在子包下时，需要分别通过在主类上加注解  @EntityScan( basePackages = {“xxx.xxx”}) 、 @EnableJpaRepositories( basePackages = {“xxx.xxx”}) 注解来分别指定Entity、Repository类的位置。</p>
+</li>
+</ul>
+<p>可多处使用@EntityScan：它们的basePackages可有交集，但必须覆盖到所有被Resository使用到的Entity否则会报错。</p>
+<p>可多处使用@EnableJpaRepositories：它们的basePackages不能有交集否则会报重复定义的错（除非配置允许覆盖定义），必须覆盖到所有被使用到的Resository。</p>
+<h1 id="JPA对象属性与数据库列的映射"><a href="#JPA对象属性与数据库列的映射" class="headerlink" title="JPA对象属性与数据库列的映射"></a>JPA对象属性与数据库列的映射</h1><p>（attribute map between object model and data model）</p>
+<p>基本类型（String、Integer等）、时间、枚举、复杂对象如何自动映射到数据库列，详情可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Basic_Attributes">https://en.wikibooks.org/wiki/Java_Persistence/Basic_Attributes</a></p>
+<p>以下是基本类型的映射：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/568153-20190901214340682-1664473771.png" alt="点击全屏显示"></p>
+<p><strong>对于非基本类型的属性，其映射</strong>：</p>
+<ul>
+<li>法1：</li>
+</ul>
+<blockquote>
+<p>By default in JPA any <code>Serializable</code> attribute that is not a relationship or a basic type (String, Number, temporal, primitive), will be serialized to a <code>BLOB</code> field.</p>
+</blockquote>
+<ul>
+<li><p>法2：JPA 2.1起可通过 <strong>@Convert 指定属性与数据库列间的映射逻辑，其可将任意对象映射到数据库的一个列</strong>（详见后文）。</p>
+<p>在这之前没有@Convert，可以通过get、set方法实现类似效果，示例：</p>
+</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> isActive<span class="token punctuation">;</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token annotation punctuation">@Transient</span>
+    <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">getIsActive</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> isActive<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">setIsActive</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> isActive<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>isActive <span class="token operator">=</span> isActive<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token annotation punctuation">@Basic</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">getIsActiveValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>isActive<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token string">"T"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">else</span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">return</span> <span class="token string">"F"</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">setIsActiveValue</span><span class="token punctuation">(</span><span class="token class-name">String</span> isActive<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>isActive <span class="token operator">=</span> <span class="token string">"T"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>isActive<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2022/03/11/jpa/">https://jason-qianhao.github.io/2022/03/11/jpa/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Java/">
+                                    <span class="chip bg-color">Java</span>
+                                </a>
+                            
+                                <a href="/tags/JPA/">
+                                    <span class="chip bg-color">JPA</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/03/11/java5-xin-te-xing/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/59.png" class="responsive-img" alt="Java5新特性">
+                        
+                        <span class="card-title">Java5新特性</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/JDK1-5/">
+                        <span class="chip bg-color">JDK1.5</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/03/11/jwt/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/57.jpg" class="responsive-img" alt="JWT(转载)">
+                        
+                        <span class="card-title">JWT(转载)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-03-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9E%B6%E6%9E%84/" class="post-category">
+                                    架构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9E%B6%E6%9E%84/">
+                        <span class="chip bg-color">架构</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83/">
+                        <span class="chip bg-color">认证授权</span>
+                    </a>
+                    
+                    <a href="/tags/JWT/">
+                        <span class="chip bg-color">JWT</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

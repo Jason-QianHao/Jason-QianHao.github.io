@@ -1,0 +1,1995 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Redis知识汇总, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Redis知识汇总 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Redis知识汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-10
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    31 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录<br>  1 Redis简介<br>  2 数据结构和对象<br>  3 数据库<br>  4 RDB<br>  5 AOF<br>  6 事件<br>  7 客户端<br>  8 复制<br>  9 哨兵机制<br>  10集群<br>  11 发布与订阅<br>  12 事务<br>  13 缓存问题<br>  14 内存淘汰机制<br>  15 Redis并发竞争key<br>  16 缓存与数据库一致性问题  </p>
+<p>参考资料<br>· 《Redis设计与实现》<br>  · JavaG  </p>
+</blockquote>
+<h1 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h1><p>  简单来说redis就是一个数据库，不过与传统数据库不同的是redis的数据是存在内存中的，所以读写速度非常快，因此redis被广泛应用于缓存方向。另外，redis也经常用来做分布式锁。redis提供了多种数据类型来支持不同的业务场景。除此之外，redis支持事务、持久化、LUA脚本、LRU驱动事件、多种集群方案。</p>
+<h1 id="数据结构和对象"><a href="#数据结构和对象" class="headerlink" title="数据结构和对象"></a>数据结构和对象</h1><p>  redis数据库里面的每个键值对都是由<strong>对象</strong>组成的，其中，</p>
+<p>​    · <strong>数据库键总是一个字符串对象</strong></p>
+<p>​    · 而数据库键的值则可以是<strong>字符串对象</strong>、<strong>列表对象</strong>、<strong>哈希对象</strong>、<strong>集合对象</strong>、<strong>有序集合对象</strong>。</p>
+<h2 id="SDS简单动态字符串"><a href="#SDS简单动态字符串" class="headerlink" title="SDS简单动态字符串"></a>SDS简单动态字符串</h2><h3 id="SDS定义"><a href="#SDS定义" class="headerlink" title="SDS定义"></a>SDS定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552229.jpeg" alt="img" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552040.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  保留空字符“\0”作为字符串的结尾，兼容C语言，但是空字符的1个字节不计入SDS的len属性中。</p>
+<h3 id="与C串的区别"><a href="#与C串的区别" class="headerlink" title="与C串的区别"></a>与C串的区别</h3><p>（1）通过常数复杂度回去字符串长度，len属性</p>
+<p>（2）字符串拼接、修改等操作时，杜绝缓存区溢出，自动修改大小。</p>
+<p>（3）减少修改时内存重新分配次数</p>
+<p>​      SDS通过未使用空间（free属性记录）解除了字符串长度和底层数组长度之间的关联。SDS实现了空间预分配和惰性空间释放两种优化策略。</p>
+<p>  <strong>· 空间预分配</strong>：优化SDS字符串增长操作。对象与修改len后，若len小于1MB，则free = len；若len大于等于1MB，则free = 1MB。故将连续增长N次字符串所需的内存重分配次数从必定N次降低为最多N次。</p>
+<p>  <strong>· 惰性空间释放</strong>：优化SDS字符串缩短操作。利用free属性将不适用的数据大小记录下来，等将来使用。</p>
+<p>（4）二进制安全</p>
+<p>​    所有的SDS API都会以处理二进制的方式来处理SDS存放的buf数组里的数据，程序不会对其中的数据做任何限制、过滤、或者假设，数据在写入时是什么样的，它被读取时就是什么样。</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552055.jpeg" alt="img" style="zoom: 50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552038.jpeg" alt="img" style="zoom: 50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552308.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>（1）双端</p>
+<p>（2）无环</p>
+<p>（3）带有表头和表尾指针</p>
+<p>（4）带链表长度计数器</p>
+<p>（5）多态，通过dup、free、match设置类型特定的函数</p>
+<h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>  Redis的字典使用哈希表作为底层实现。</p>
+<p>（1）哈希表节点</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552057.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  next指针将多个哈希值相同的键值对连接在一起，以此来解决键冲突问题（collision）。</p>
+<p>（2）哈希表</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552060.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（3）字典</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552079.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552312.jpeg" alt="img" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552080.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p>（1）计算hash值，采用MurmurHash2算法计算。</p>
+<p>（2）计算在哈希表中的位置index = hash &amp; sizemask</p>
+<h3 id="解决键冲突"><a href="#解决键冲突" class="headerlink" title="解决键冲突"></a>解决键冲突</h3><p>（1）使用链地址法解决冲突</p>
+<p>（2）因为dictEntry节点组成的链表没有表尾指针，故将新加节点加到链表的表头位置。</p>
+<h3 id="rehash重新散列"><a href="#rehash重新散列" class="headerlink" title="rehash重新散列"></a>rehash重新散列</h3><p>  哈希表保存的键值对随着操作会逐渐增多或者减少，为了让<strong>哈希表的负载因子（load factor）维持在一个合理的范围之内</strong>，需要重新散列。</p>
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552086.jpeg" alt="img" style="zoom:50%;" />
+
+<h4 id="负载因子"><a href="#负载因子" class="headerlink" title="负载因子"></a>负载因子</h4><p>（1）load_factor = ht[0].used / ht[0].size</p>
+<p>（2）还要结合服务器是否在执行BGSAVE或者BGREWRITEAOF指令，在load_factor &gt;= 1（否）或者load_factor &gt;= 5（是）时进行rehash。</p>
+<h4 id="渐进式rehash"><a href="#渐进式rehash" class="headerlink" title="渐进式rehash"></a>渐进式rehash</h4><p>（1）rehash动作分多次、渐进式地完成.</p>
+<p>（2）渐进式rehash期间，字典的增删查改在两个哈希表上进行。</p>
+<h2 id="skiplist跳跃表"><a href="#skiplist跳跃表" class="headerlink" title="skiplist跳跃表"></a>skiplist跳跃表</h2><p>  是一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的。</p>
+<h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>（1）zskiplistNode</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552100.jpeg" alt="img" style="zoom:50%;" />
+
+<p>· 层用来加速访问其他节点，一般层的数量越多，访问其他节点的速度越快</p>
+<p>· 层的前进指针：用于从表头向表尾访问节点</p>
+<p>· 跨度：用来计算排位的，查找某个节点的过程中，将沿途访问过的所有层的跨度累计起来，得到的结果就是目标节点在条鱼表中的排位。</p>
+<p>· 后退指针：用于从表尾向表头方向访问节点，每次只能后退至前一个节点。</p>
+<p>· 分值：跳跃表中的所以节点按照分值从小到大排序</p>
+<p>· 成员对象：指向一个字符串对象SDS，且对象必须唯一</p>
+<p>（2）zskiplist</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct zskiplist <span class="token punctuation">&#123;</span>
+  <span class="token comment">// 表头节点和表尾节点</span>
+  structz skiplistNode <span class="token operator">*</span>header<span class="token punctuation">,</span> <span class="token operator">*</span>tail<span class="token punctuation">;</span>
+  <span class="token comment">// 表中节点的数量</span>
+  unsigned <span class="token keyword">long</span> length<span class="token punctuation">;</span>
+  <span class="token comment">// 表中层数最大的节点的层数</span>
+  <span class="token keyword">int</span> level<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> zskiplist<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>（1）有序集合键</p>
+<p>（2）集群节点中用作内部数据结构</p>
+<h2 id="intset整数集合"><a href="#intset整数集合" class="headerlink" title="intset整数集合"></a>intset整数集合</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552118-5113552.jpeg" alt="img" style="zoom:50%;" />
+
+<p>· encoding属性决定contents数组真正的类型可以为INTSET_ENC_INT16（int16_t），INTSET_ENC_INT32（int32_t），INTSET_ENC_INT64（int64_t）</p>
+<p>· length属性是contents数组的长度</p>
+<p>· contents数组是整数集合的底层实现，各个按值大小<strong>从小到大</strong>有序地排列，<strong>不包含重复项</strong>。</p>
+<h3 id="升级"><a href="#升级" class="headerlink" title="升级"></a>升级</h3><p>  当新元素的类型比整数集合现有所有元素的类型都要长时，整数集合需要先进行升级。</p>
+<p>（1）步骤</p>
+<p>​    · 根据新元素的类型，扩展整数集合底层数组的空间大小</p>
+<p>​    · 底层数组现有的所有元素都转换成与新元素相同的类型，并保持数组的有序性。</p>
+<p>​    · 将新元素添加到底层数组里面</p>
+<p>（2）新元素插入的位置</p>
+<p>​    要么是最大值要么是最小值，故只会在表头和表尾插入。</p>
+<p>（3）优点</p>
+<p>​    · 提升整数集合的灵活性</p>
+<p>​    · 尽可能地节约内存</p>
+<h2 id="ziplist压缩列表"><a href="#ziplist压缩列表" class="headerlink" title="ziplist压缩列表"></a>ziplist压缩列表</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>（1）ziplist</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552118.jpeg" alt="img" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552165.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（2）节点entry</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552135.jpeg" alt="img" style="zoom:50%;" />
+
+<p>· previous_entry_length：记录了压缩列表中前一个节点的长度。压缩列表从表尾向表头遍历操作就是依赖这个属性。</p>
+<p>· encoding：记录节点的content属性所保存数据的类型和长度。</p>
+<p>· content 保存节点的值，可以是一个字节数组或者一个整数。</p>
+<h3 id="连锁更新"><a href="#连锁更新" class="headerlink" title="连锁更新"></a>连锁更新</h3><p>当添加或者删除节点的时候，导致previous_entry_length所占字节空间发生变化（1字节或者5字节），新节点的后续节点都要重新分配空间。</p>
+<h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>  包含5中类型的对象。基于引用计数计数进行内存回收和对象共享机制。</p>
+<h3 id="redisObject"><a href="#redisObject" class="headerlink" title="redisObject"></a>redisObject</h3><p>（1）结构定义</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552155.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（2）type</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552181.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（3）encoding</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552195.jpeg" alt="img" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299-5113552.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h3><p>（1）可以使用的encoding类型</p>
+<p>​    REDIS_ENCODING_INT、REDIS_ENCODING_EMBSTR、REDIS_ENCODING_RAW</p>
+<p>（2）编码转换</p>
+<p>​    int编码和embstr编码的字符串对象在条件满足的情况下，被转换为raw对象。</p>
+<h3 id="列表对象"><a href="#列表对象" class="headerlink" title="列表对象"></a>列表对象</h3><p>（1）可以使用的encoding类型</p>
+<p>​    REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_LINKEDLIST</p>
+<p>（2）编码转换</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552216.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="哈希对象"><a href="#哈希对象" class="headerlink" title="哈希对象"></a>哈希对象</h3><p>（1）可以使用的encoding类型</p>
+<p>​     REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_HT</p>
+<p>（2）编码转换</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552233.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="集合对象"><a href="#集合对象" class="headerlink" title="集合对象"></a>集合对象</h3><p>（1）可以使用的encoding类型</p>
+<p>​    REDIS_ENCODING_INTSET、REDIS_ENCODING_HT</p>
+<p>（2）编码转换</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552251.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="有序集合对象"><a href="#有序集合对象" class="headerlink" title="有序集合对象"></a>有序集合对象</h3><p>（1）可以使用的encoding类型</p>
+<p>​    REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_SKIPLIST</p>
+<p>（2）底层结构zset</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct zset<span class="token punctuation">&#123;</span>
+  zskiplist <span class="token operator">*</span>zsl<span class="token punctuation">;</span>
+  dict <span class="token operator">*</span>dict<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>· zsl按分值从小到大保存所有集合元素</p>
+<p>· dict保存成员到分值的映射，键为成员，值为分值。</p>
+<p><strong>这两种数据结构通过指针来共享相同元素的成员和分值，不会浪费额外的内存。</strong></p>
+<p>（3）编码转换</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552253.jpeg" alt="img" style="zoom:50%;" />
+
+<h3 id="多态命令"><a href="#多态命令" class="headerlink" title="多态命令"></a>多态命令</h3><p>  redis除了会根据值对象的类型来判断键是否能够执行指定命令外，还会根据值对象的编码方式，选择正确的命令实现代码来执行命令。</p>
+<h3 id="内存回收"><a href="#内存回收" class="headerlink" title="内存回收"></a>内存回收</h3><p>  引用计数法：利用redisObject中的refcount属性，当计数值为0时，回收内存。</p>
+<h3 id="对象共享"><a href="#对象共享" class="headerlink" title="对象共享"></a>对象共享</h3><p>· 将数据库键的值指针指向一个向右的值对象</p>
+<p>· 将被共享的值对象的引用计数增1</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552274.jpeg" alt="img" style="zoom:50%;" />
+
+<p><strong>· 注意：redis只对包含整数值的字符串对象进行共享，其他字符串可能比较值相同较耗CPU。</strong></p>
+<h3 id="空转时长"><a href="#空转时长" class="headerlink" title="空转时长"></a>空转时长</h3><p>  · redis利用redisObject中的<strong>lru属性</strong>，记录对象最后一次被命令程序访问的时间。</p>
+<p>  · 空转时长，就是通过将当前时间减去键的值对象的lru时间计算得出</p>
+<p>  · 如服务器打开maxmemory选项，且回收内存算法为volatile-lru或者allkeys-lru，则当内存超过maxmemory时，空转时长较高的部分将优先被服务器释放，回收内存。</p>
+<h1 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h1><h2 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h2><p>（1）redisServer</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">struct redisServer<span class="token punctuation">&#123;</span>
+  <span class="token comment">// 保存服务器中所有数据库的数组</span>
+  redisDb <span class="token operator">*</span>db<span class="token punctuation">;</span>
+  <span class="token comment">// 服务器数据库数量</span>
+  <span class="token keyword">int</span> dbnum<span class="token punctuation">;</span>
+  <span class="token comment">// ....</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552276.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  dbnum的数量默认为16.</p>
+<p>（2）redisClient</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct redisClient<span class="token punctuation">&#123;</span>
+  <span class="token comment">// 记录客户端当前正在使用的数据库</span>
+  redisDb <span class="token operator">*</span>db<span class="token punctuation">;</span>
+  <span class="token comment">// ....</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>默认使用0号数据库</strong>。可以通过SELECT命令切换数据库。</p>
+<p>（3）redisDb</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct redisDb<span class="token punctuation">&#123;</span>
+  <span class="token comment">// 数据库键空间</span>
+  dict <span class="token operator">*</span>dict
+  <span class="token comment">// 过期时间</span>
+  dict <span class="token operator">*</span>expires<span class="token punctuation">;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>· dict字典中保存一个数据库中的所有键值对。</p>
+<p><strong>· 脏键</strong>，客户端使用WATCH命令监视的键，服务器每次修改一个键之后，都会对脏键计数器的值加1，计数器会触发服务器的持久化和复制操作。</p>
+<h2 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h2><p>（1）EXPIRE/PEXPIRE命令</p>
+<p>​    设置TTL生存时间，EXPIRE单位为s，PEXPIRE单位为ms。</p>
+<p>（2）EXPIREAT/PEXPIREAT命令</p>
+<p>​    设置过期时间，后面跟UNIX时间戳。</p>
+<p>（3）使用 redisDb的expires字典保存过期时间，键为对象，值为过期时间。</p>
+<p>（4）<strong>redis的过期删除策略</strong></p>
+<ul>
+<li><p><strong>惰性删除：</strong>在查询key时，若过期才删除</p>
+</li>
+<li><p><strong>定期删除</strong>：当服务器周期操作serverCron函数执行时删除。每次删除随机抽取部分，并维护一个进度记录，知道过期键全部清除。</p>
+</li>
+</ul>
+<p>（5）RDB功能和过期键</p>
+<p>​    · 生成RDB文件时，检测键，过期的键不会被保存到文件中。</p>
+<p>​    · 载入RDB文件时，主服务器忽略过期键，从服务器直接载入（主从同步时会删除）。</p>
+<p>（6）AOF功能和过期键</p>
+<p>​    过期键对AOF无影响，当过期键被删除式，AOF文件追加DEL语句。</p>
+<h1 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>（1）RDB持久化是将某个时间点上的数据库状态保存到一个RDB文件中。</p>
+<p>（2）RDB文件是一个经过压缩的二进制文件，通过该文件可以还原生成RDB文件时的数据库状态。</p>
+<h2 id="创建和载入"><a href="#创建和载入" class="headerlink" title="创建和载入"></a>创建和载入</h2><h3 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h3><p>（1）SAVE命令</p>
+<p>  阻塞Redis服务器，直到RDB文件创建完毕为止。</p>
+<p>（2）BGSAVE命令</p>
+<p>  派生出一个子进程，子进程负责创建RDB，服务器进程继续处理命令。</p>
+<p><strong>· 注意：如果服务器开启了AOF持久化功能，那么服务器会优先使用AOF文件来还原数据。当AOF关闭时，才会使用RDB方式。</strong></p>
+<h3 id="载入"><a href="#载入" class="headerlink" title="载入"></a>载入</h3><p>  在服务器启动时自动执行。</p>
+<h2 id="自动间隔性保存"><a href="#自动间隔性保存" class="headerlink" title="自动间隔性保存"></a>自动间隔性保存</h2><p>（1）配置</p>
+<p>  在redis.windows.conf中，通过save选项设定服务器自动执行BGSAVE命令的间隔时间。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552297.png" alt="img"></p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299.png" alt="img"></p>
+<p>· 900秒内，对数据库修改1次，创建RDB</p>
+<p>· 300秒内，对数据库修改10次，创建RDB</p>
+<p>· 60秒内，对数据库修改10000次，创建RDB</p>
+<p>（2）原理</p>
+<p>​    · save选项会设置到redisServer的saveparam属性中。</p>
+<p>​    · redisServer的dirty计数器记录一次SAVE/BGSAVE后，数据库修改次数</p>
+<p>​    · redisServer的lastsave属性记录上一次SAVE/BGSAVE执行时间</p>
+<p>​    <strong>· 服务器周期性操作函数serverCron默认每个100ms执行一次，其中一项工作为检测save选项条件是否满足</strong></p>
+<h2 id="RDB文件结构"><a href="#RDB文件结构" class="headerlink" title="RDB文件结构"></a>RDB文件结构</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552313.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（1）REDIS用来快速检测所载入的文件是否是RDB文件</p>
+<p>（2）db_version长度为4字节，记录RDB文件版本号</p>
+<p>（3）databases包含0个或多个数据库，以及各数据库中的键值对数据</p>
+<p>（4）EOF长度为1字节，标志RDB文件正文内容的结束</p>
+<p>（5）check_sum长度为8字节无符号整数，保存一个校验和，用来检测RDB文件是否有出错或者损坏的情况</p>
+<h1 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>  AOF持久化是通过保存Redis服务器锁执行的写命令来记录数据库状态的</p>
+<h2 id="创建步骤"><a href="#创建步骤" class="headerlink" title="创建步骤"></a>创建步骤</h2><h3 id="命令追加-append"><a href="#命令追加-append" class="headerlink" title="命令追加(append)"></a>命令追加(append)</h3><p>  服务器在执行完一个写命令后，会以协议格式将被执行的写命令追加到redisServer的aof_buf缓冲区（SDS类型）的末尾。</p>
+<h3 id="文件写入与同步"><a href="#文件写入与同步" class="headerlink" title="文件写入与同步"></a>文件写入与同步</h3><p>  服务器在每个事件处理结束时，调用flushAppendOnlyFile函数将aof_buf缓冲区中的内容写入和保存到AOF文件里面。flushAppendOnlyFile函数的appendfsync参数决定同步（何时将操作系统内存缓存区的内容写入磁盘）方式：</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552315.jpeg" alt="img"/>
+
+<p><strong>everysec为默认设置。</strong></p>
+<h2 id="载入-1"><a href="#载入-1" class="headerlink" title="载入"></a>载入</h2><p>步骤：</p>
+<p>（1）创建一个不带网络连接的伪客户端</p>
+<p>（2）从AOF文件中分析并读取一条写命令（包括新增，修改，删除）</p>
+<p>（3）使用伪客户端执行写命令</p>
+<p>（4）一直执行（2）和（3）直到所有命令被处理完。</p>
+<h2 id="AOF重写"><a href="#AOF重写" class="headerlink" title="AOF重写"></a>AOF重写</h2><p>（1）原因：为了解决长时间后AOF文件体积膨胀的问题（主要由于Redis的内存淘汰机制，一定时间后，大量数据被淘汰，使得原本的AOF存在大量之前的写记录，变得冗长）</p>
+<p>（2）实现：创建一个新的AOF文件代替现有AOF文件。新旧两个AOF文件保存的数据库状态相同，<strong>但新AOF文件不包含任何浪费空间的冗命令</strong>。</p>
+<p>（3）原理：从数据库读取键现在的值，用一条命令去记录键值对，代替之前记录这个键值对的多条命令。</p>
+<p>（4）后台重写：创建子进程执行AOF重写程序（因为<strong>Reids采用单线程模式工作</strong>）。</p>
+<h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>  Redis服务器是一个事件驱动程序</p>
+<h2 id="文件事件"><a href="#文件事件" class="headerlink" title="文件事件"></a>文件事件</h2><h3 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552329.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（1）套接字 socket</p>
+<p>​    Redis服务器通过套接字与客户端连接。</p>
+<p>（2）I/O多路复用</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552317.jpeg" alt="img" style="zoom:50%;" />
+
+<p>​    将所有产生的套接字都放在一个<strong>队列</strong>里面，然后通过这个队列，以<strong>有序、同步、每次一个套接字</strong>的方式向文件事件分派器传送套接字。</p>
+<p>​    Redis以单线程模式运行。</p>
+<p>（3）文件事件分派器</p>
+<p>​    根据IO复用器传过来的套接字产生的事件类型，调用相应的事件处理器</p>
+<p>（4）事件处理器</p>
+<p>​    · 命令请求处理器</p>
+<p>​    · 命令回复处理器</p>
+<p>​    · 连接应答处理器</p>
+<p>​    · 。。。</p>
+<h3 id="事件类型"><a href="#事件类型" class="headerlink" title="事件类型"></a>事件类型</h3><p>（1）AE_READABLE</p>
+<p>​    套接字可读。即客户端对套接字执行write操作，或者close操作，或者有新的可应答套接字出现。</p>
+<p>（2）AE_WRITABLE</p>
+<p>​    套接字可写，即客户端对套接字执行read操作。</p>
+<p>  当两种事件同时发生时，文件事件分派器优先处理AR_READABLE事件。</p>
+<h2 id="时间事件"><a href="#时间事件" class="headerlink" title="时间事件"></a>时间事件</h2><p>  分为定时事件和周期性事件两类。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>（1）定时事件：让一段程序在指定的时间后执行一次。事件处理器返回AE_NOMORE</p>
+<p>（2）周期性事件：让程序每隔指定时间就执行一次。事件处理器返回非AE_NOMORE整数值。</p>
+<p>  <strong>目前版本Redis只使用周期性事件。</strong></p>
+<h3 id="时间事件的属性"><a href="#时间事件的属性" class="headerlink" title="时间事件的属性"></a>时间事件的属性</h3><p>  · id 服务器为时间事件创建的全局唯一ID</p>
+<p>  · when 毫秒精度的UNIX时间戳，记录时间事件的到达时间</p>
+<p>  · timeProc 时间时间处理器，当时间事件到达时，服务器会调用相应的处理器来处理事件</p>
+<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>  服务器将所有时间事件放在一个无序链表中，每当时间事件执行器运行时，它就遍历整个链表，查找所有已到达的时间事件，并调用相应的事件处理器。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552342.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  · 新的时间事件总是插入到链表的表头。</p>
+<p>  · 正常模式下的Redis服务器只使用serverCron一个时间事件，故无序链表并不影响事件执行性能。</p>
+<h3 id="serverCron函数"><a href="#serverCron函数" class="headerlink" title="serverCron函数"></a>serverCron函数</h3><p>（1）Redis需要定期对自身的资源和状态进行检查和调整</p>
+<p>（2）主要工作：</p>
+<p>​    · 更新服务器的各类统计信息，如时间、内存占用等</p>
+<p>​    · 清理数据库中的过期键值对</p>
+<p>​    · 关闭和清理连接失效的客户端</p>
+<p>​    · 尝试进行AOF或RDB持久化操作</p>
+<p>​    · 如果服务器是主服务器，对从服务器进行定期同步</p>
+<p>​    · 如果处于集群模式，对集群进行定期同步和连接测试</p>
+<p>（3）默认serverCron平均每<strong>间隔100ms</strong>运行一次（Redis2.6），Redis2.8开始，用户通过修改redis.windos.conf的hz选项来调整每秒执行次数。</p>
+<h2 id="事件的执行原则"><a href="#事件的执行原则" class="headerlink" title="事件的执行原则"></a>事件的执行原则</h2><p>（1）一次文件事件之后，仍然没有时间事件到达，那么服务器将再次等待并处理文件事件。</p>
+<p>（2）事件的处理都是同步、有序、原子地执行的。</p>
+<p>（3）时间事件在文件事件之后执行，通常执行时间会比时间事件设定的到达时间稍晚一些。</p>
+<h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><h2 id="redisClient"><a href="#redisClient" class="headerlink" title="redisClient"></a>redisClient</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">struct redisServer <span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+  <span class="token comment">// 一个链表，保存了所有客户端状态</span>
+  list <span class="token operator">*</span>client
+  <span class="token comment">// 套接字描述符</span>
+  <span class="token keyword">int</span> fd<span class="token punctuation">;</span>
+  <span class="token comment">//...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="客户端分类"><a href="#客户端分类" class="headerlink" title="客户端分类"></a>客户端分类</h2><p>（1）普通客户端</p>
+<p>​    · fd &gt; -1的整数，来源于网络</p>
+<p>​    · 创建时，添加到链表表尾</p>
+<p>（2）伪客户端</p>
+<p>​    · fd = -1，不是来源于网络</p>
+<p>​    · AOF在载入AOF文件时创建。在载入完成后，伪客户端关闭。</p>
+<p>​    · Lua脚本执行时创建。在服务器关闭时，伪客户端关闭。</p>
+<h1 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>（1）”SLAVEOF ip port”命令或者配置文件中的slaveof选项</p>
+<p>（2）主从服务器的数据库将保存相同的数据</p>
+<h2 id="旧版（Redis2-8之前）"><a href="#旧版（Redis2-8之前）" class="headerlink" title="旧版（Redis2.8之前）"></a>旧版（Redis2.8之前）</h2><p>  分为两个步骤进行，同步和命令传播。</p>
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552345.jpeg" alt="img" style="zoom:67%;" />
+
+<p>（1）从服务器向主服务器发送SYNC命令</p>
+<p>（2）收到SYNC命令的主服务器执行BGSAVE命令。在后台生成一个RDB文件，并使用一个缓冲区记录从现在开始执行的所有写命令</p>
+<p>（3）主服务器将RDB文件发送给从服务器，从服务器收入并载入RDB文件。</p>
+<p>（4）主服务器将记录在缓冲区里面的所有写命令发送给从服务器。</p>
+<h3 id="命令传播"><a href="#命令传播" class="headerlink" title="命令传播"></a>命令传播</h3><p>  同步之后，每次将主服务器的写命令发送给从服务器。</p>
+<h2 id="新版"><a href="#新版" class="headerlink" title="新版"></a>新版</h2><p>  为了解决旧版复制功能在处理断线重复制情况时的低效问题。</p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p>  使用PSYNC命令，具有完整重同步和部分重同步两种模式</p>
+<p>（1）完整重同步，用于初次复制情况</p>
+<p>​    和SYNC命令类似，传送RDB文件和写命令缓冲区。</p>
+<p>（2）<strong>部分重同步</strong>，用于处理断线后重复制情况</p>
+<p>​    主服务器将主从服务器连接断开期间执行的写命令发送给从服务器。</p>
+<h2 id="心跳检测"><a href="#心跳检测" class="headerlink" title="心跳检测"></a>心跳检测</h2><p>（1）在<strong>命令传播</strong>阶段，<strong>从服务器</strong>默认会以<strong>每秒一次</strong>的频率，向主服务器发送命令:</p>
+<p>​    REPLCONF ACK <replication_offset></p>
+<p>（2）作用：</p>
+<p>​    · 检测主从服务器的网络连接状态</p>
+<p>​    · 辅助实现min-slaves选项</p>
+<p>​    · 检测命令丢失</p>
+<h1 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h1><h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>  sentinel是Redis的高可用性解决方案。监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器。</p>
+<p>  <strong>若之前的主服务器重新上线，则自动成为现存主服务器的从服务器。</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552338.jpeg" alt="img" style="zoom:50%;" />
+
+<h2 id="启动sentinel"><a href="#启动sentinel" class="headerlink" title="启动sentinel"></a>启动sentinel</h2><p>（1）初始化服务器</p>
+<p>​    · Sentinel本质上是一个运行在特殊模式下的Redis服务器</p>
+<p>​    · Sentinel不适用数据库，不会载入RDB或者AOF文件</p>
+<p>（2）将普通Redis服务器使用的代码替换为sentinel专用代码</p>
+<p>（3）初始化sentinel状态</p>
+<p>（4）根据配置文件，初始化Sentinel的监视主服务器列表</p>
+<p>（5）创建连向主服务器的网络连接</p>
+<p>​    · 命令连接：向服务器发送命令和接收命令回复</p>
+<p>​    · 订阅连接：订阅服务器的_sentinel_:hello频道</p>
+<h2 id="获取服务器信息"><a href="#获取服务器信息" class="headerlink" title="获取服务器信息"></a>获取服务器信息</h2><p>（1）Sentinel默认以<strong>十秒一次的频率，通过命令连接向被监视的主服务器发送INFO命令</strong>。</p>
+<p>  可以获取以下消息：</p>
+<p>​    · 主服务器本身的信息</p>
+<p>​    · 所有从服务器的信息</p>
+<p>（2）Sentinel默认<strong>以十秒一次的频率，通过命令连接向被监视的从服务器发送INFO命令</strong>。</p>
+<h2 id="发送和接收"><a href="#发送和接收" class="headerlink" title="发送和接收"></a>发送和接收</h2><p>（1）sentine<strong>l每两秒一次</strong>发送命令给监视的主从服务器的_sentinel_:hello频道</p>
+<p>（2）订阅连接建立之后，通过_sentinel_hello频道获取信息。</p>
+<h2 id="检测是否下线"><a href="#检测是否下线" class="headerlink" title="检测是否下线"></a>检测是否下线</h2><p>（1）主观下线</p>
+<p>​    Sentinel<strong>默认每次一秒</strong>的频率向建立了命令连接的Redis实例发送PING命令。若在down-after-milliseconds选项配置的时间内没有有效回复，认为为主观下线状态。</p>
+<p>（2）客观下线</p>
+<p>​    当Sentinel将一个主服务器判断为主观下线后，为了确认是否真的下线了，会向同样监视这一主服务器的其他Sentinel进行询问，若其他Sentinel也认为为下线状态，在接收到足够数量的下线判断后，Sentinel认为主服务器为客观下线，并进行故障转移操作。</p>
+<h2 id="选举领头Sentinel"><a href="#选举领头Sentinel" class="headerlink" title="选举领头Sentinel"></a>选举领头Sentinel</h2><p>  当一个主服务器为客观下线时，监视这个主服务器的所有Sentinel选举一个领头Sentinel对主服务器执行故障转移操作。</p>
+<p>主要步骤如下：</p>
+<p>（1）在一个配置纪元（计数器）里面，所有Sentinel有一次将某个Sentinel设置为局部领头Sentinel的机会，并且局部领头一旦设置，在这个配置纪元里面就不能再更改。</p>
+<p>（2）Sentinel向另一个Sentinel发送带有自己运行ID的命令，让其设置自己为局部领头Sentinel（相当于<strong>抢票</strong>）。</p>
+<p>（3）局部领头Sentinel规则：先到先得。已经设置为别人为Sentinel的Sentinel，拒绝后续收到的设置</p>
+<p>（4）如果<strong>某个Sentinel被半数以上的Sentinel设置成了局部领头Sentinel</strong>，那么这个Sentinel成为领头Sentinel。</p>
+<h2 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h2><p>（1）在已下线主服务器属下的所有从服务器中，挑选出一个从服务器，将其转换为主服务器。</p>
+<p>​    领头Sentinel按照从服务器的优先级，对列表中剩余的从服务器进行排序，并选出其中优先级最高的从服务器</p>
+<p>（2）让已下线主服务器属下的所以从服务器改为复制新的主服务器。</p>
+<p>（3）将已下线主服务器设置为新的主服务器的从服务器，当这个旧的主服务器重新上线时，它就会成为新的主服务器的从服务器。</p>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><p>  Redis集群是Redis提供的分布式数据库方案，集群通过分片进行数据共享，并提供复制和故障转移功能。</p>
+<h2 id="节点"><a href="#节点" class="headerlink" title="节点"></a>节点</h2><p>（1）CLUSTER MEET命令</p>
+<p>​    · 格式 CLUSTER MEET <ip> <port></p>
+<p>​    · 向另一个节点发送命令，进行握手，握手成功后加入所在集群。</p>
+<p>（2）启动节点</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552529.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（3）集群数据结构</p>
+<p>  · clusterNode 每个节点使用其记录自己的状态，并为集群中其他节点创建一个相应的clusterNode结构</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552348.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  · clusterLink 保存了连接节点所需的有关信息</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552375.jpeg" alt="img" style="zoom:50%;" />
+
+<p>  · clusterState 记录在当前节点的视角下，集群目前所处状态</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552377.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（4）节点握手</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552376.jpeg" alt="img" />
+
+<h2 id="槽指派"><a href="#槽指派" class="headerlink" title="槽指派"></a>槽指派</h2><p>（1）概念</p>
+<p>​    Redis集群通过分片的方式来保存数据库中的键值对：集群的整个数据库被分为16384割槽（slot），数据库中的每个键都属于整个16384个槽的其中一个，集群中的每个节点可以处理0~16384个槽。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rjzheng/p/11430592.html">为什么有16384个槽</a></p>
+<img src="../assets/Redis/image-20210701145808348.png" alt="image-20210701145808348"/>
+
+<p>（2）数据结构</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">struct clusterNode<span class="token punctuation">&#123;</span>
+  <span class="token comment">//....</span>
+  unsigned <span class="token keyword">char</span> slots<span class="token punctuation">[</span><span class="token number">16384</span><span class="token operator">/</span><span class="token number">8</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">int</span> numslots<span class="token punctuation">;</span>
+  <span class="token comment">// ....</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  · 二进制数组中索引上的二进制位为1，则表示节点负责处理该槽</p>
+<p>  · numslots表示该节点负责的槽数量</p>
+<p>（3）相关命令</p>
+<p>  CLUSTER ADDSLOTS 指派槽</p>
+<p>（4）注意点</p>
+<p>  <strong>节点数据库只能使用0号数据库</strong>，这和单机服务器的数据库不同。</p>
+<h2 id="复制和故障转移"><a href="#复制和故障转移" class="headerlink" title="复制和故障转移"></a>复制和故障转移</h2><h3 id="复制-1"><a href="#复制-1" class="headerlink" title="复制"></a>复制</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552368.jpeg" alt="img"/>
+
+<p>  主节点（master）用于处理槽，从节点用于复制某个主节点，在其主节点下线时可以代替主节点继续处理命令请求。</p>
+<h3 id="故障转移-1"><a href="#故障转移-1" class="headerlink" title="故障转移"></a>故障转移</h3><p>（1）在从节点中选一个成为新的主节点</p>
+<p>​    新主节点的选取，类似于sentinel领头的选取，算法都是基于Raft算法实现的。</p>
+<p>（2）新的主节点撤销对已下线主节点的槽指派，并将这些槽指派给自己</p>
+<p>（3）<strong>新的主节点广播PONG消息</strong>，让其他节点知道自己成为新的主节点</p>
+<p>（4）接收和处理自己的槽相关的请求，故障转移完成。</p>
+<h1 id="发布与订阅"><a href="#发布与订阅" class="headerlink" title="发布与订阅"></a>发布与订阅</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>（1）由PUBLISH（发送消息）、SUBSCRIBE（订阅频道）、PSUBSCRIBE（订阅模式）等命令组成</p>
+<p>（2）通过执行SUBSCRIBE命令，客户端可以订阅一个或多个频道，每当有其他客户端向被订阅的频道发送消息时，频道的所有订阅者都会受到这条消息。</p>
+<p>（3）通过执行PSUBSCRIBE命令订阅一个或多个模式，每当有其他客户端向某个频道发送消息时，消息会被发送给与这个频道相匹配的模式的订阅者。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552378.jpeg" alt="img" style="zoom:70%;" />
+
+<h2 id="频道"><a href="#频道" class="headerlink" title="频道"></a>频道</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">struct redisServer<span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+  <span class="token comment">// 保存所有频道的订阅关系</span>
+  dict <span class="token operator">*</span>pubsub_channels<span class="token punctuation">;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  · 字典的键是某个被订阅的频道</p>
+<p>  · 字典的值是一个链表，记录所有订阅该频道的客户端</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552395.jpeg" alt="img" />
+
+<h3 id="订阅和退订"><a href="#订阅和退订" class="headerlink" title="订阅和退订"></a>订阅和退订</h3><p>（1）订阅：使用SUBSCRIBE命令，在链表的尾部添加</p>
+<p>（2）退订：使用UNSUBSCRIBE命令，从链表中删除客户端。当出现键对应空链表，要从字典中删除键</p>
+<h2 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h2><h3 id="数据结构-1"><a href="#数据结构-1" class="headerlink" title="数据结构"></a>数据结构</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">struct redisServer<span class="token punctuation">&#123;</span>
+ <span class="token comment">// ...</span>
+  <span class="token comment">// 保存所有频道的订阅关系</span>
+  dict <span class="token operator">*</span>pubsub_patterns<span class="token punctuation">;</span>
+ <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="订阅和退订-1"><a href="#订阅和退订-1" class="headerlink" title="订阅和退订"></a>订阅和退订</h3><p>  类似频道。</p>
+<h2 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h2><p>  PUBLISH命令：在pubsub_channels字典里找到频道channel的订阅者名单（一个链表），然后将消息发送给名单上的所有客户端。</p>
+<h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h2 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h2><p>  使用MULTI（事务开始）、EXEC（提交事务）、WATCH等命令来实现事务。</p>
+<p>  事务提供了一种多个命令请求打包，然后一次性、按顺序地执行多个命令的机制，并且在事务执行期间，服务器不会中断事务而改去执行其他客户端的命令请求。</p>
+<h2 id="事务的实现"><a href="#事务的实现" class="headerlink" title="事务的实现"></a>事务的实现</h2><p>（1）事务开始</p>
+<p>​    · MULTI命令将客户端切换至事务状态。</p>
+<p>​    · 原理：在客户端状态的flags属性中打开REDIS_MULTI标识。</p>
+<p>（2）命令入队</p>
+<p>​    · 如果是EXEC、DISCARD、WATCH、MULTI四个命令，立即执行</p>
+<p>​    · 其他命令放入事务队列，然后客户端返回QUEUED回复</p>
+<p>（3）事务执行</p>
+<p>​    遍历客户端的事务队列，执行队列中保存的所有命令。</p>
+<h2 id="WATCH命令"><a href="#WATCH命令" class="headerlink" title="WATCH命令"></a>WATCH命令</h2><p>（1）作用</p>
+<p>​    是一个乐观锁，在执行EXEC命令前，监视任意数量的数据库键。在EXEC命令执行时，若监视的键是否至少有一个已经被修改过了，如果是的话，服务器拒绝执行事务，向客户端返回空回复。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552420.jpeg" alt="img"  />
+
+<p>（2）数据结构</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct redisDb<span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+  <span class="token comment">// 正在被WATCH命令监视的键</span>
+  dict <span class="token operator">*</span>watched_keys<span class="token punctuation">;</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>  每个数据库都保存一个字典，键为WATCH命令监视的数据库键。值为一个链表，记录所有监视相应数据库键的客户端。</p>
+<p>（3）当被监视的键被修改，则客户端的REDIS_DITRY_CAS标识打开。</p>
+<h1 id="缓存问题"><a href="#缓存问题" class="headerlink" title="缓存问题"></a>缓存问题</h1><h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><p>（1）原因</p>
+<p>​    缓存同一时间大面积的失效，大量的请求直接落到数据库上，造成数据库短时间内承受大量请求而崩掉。</p>
+<p>（2）解决办法</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552417.png" alt="img" />
+
+<p>· 事前：尽量保证整个Redis集群的高可用性，发现机器宕机几块补上，选择合适的内存淘汰策略。</p>
+<p>· 事中： 本地ehcache缓存+hystrix限流&amp;降级，避免MySQL崩掉</p>
+<p>· 事后：利用redis持久化机制保存的数据尽快恢复缓存</p>
+<h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>​    大量请求的key根本不在缓存中，导致请求直接到了数据库上。</p>
+<p>​    一般MySQL的最大连接数在150左右，最大连接数还只是一个指标，cpu，内存，自盘，网络等</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240.png" alt="img" />
+
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="无效key的时间减短"><a href="#无效key的时间减短" class="headerlink" title="无效key的时间减短"></a>无效key的时间减短</h4><p>  黑客每次构建不同的请求Key，会导致redis中缓存大量无效的key，故可以将无效key的过期时间设置短一点。</p>
+<h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a><strong>布隆过滤器</strong></h4><p>（1）布隆过滤器的概念</p>
+<p>  布隆过滤器（Bloom Filter）可以看作由二进制向量（或者说位数组）和一系列随机映射函数（哈希函数）两部分组成的数据结构。相比于我们平时常用的的 List、Map 、Set 等数据结构，它占用空间更少并且效率更高，但是<strong>缺点是其返回的结果是概率性的，而不是非常准确的。理论情况下添加到集合中的元素越多，误报的可能性就越大。并且，存放在布隆过滤器的数据不容易删除。</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552418.png" alt="img"/>
+
+<p>  位数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1。这样申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000/1024 kb ≈ 122kb 的空间。</p>
+<p>总结：<strong>一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。</strong></p>
+<p>（2）布隆过滤器的原理介绍</p>
+<p><strong>· 当一个元素加入布隆过滤器中的时候，会进行如下操作：</strong></p>
+<p>​    使用布隆过滤器中的哈希函数对元素值进行计算，得到哈希值（有几个哈希函数得到几个哈希值）</p>
+<p>​    根据得到的哈希值，在位数组中把对应下标的值置为 1</p>
+<p><strong>· 当我们需要判断一个元素是否存在于布隆过滤器的时候，会进行如下操作：</strong></p>
+<p>​    对给定元素再次进行相同的哈希计算</p>
+<p>​    得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中</p>
+<p>举个简单的例子：</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552441.png" alt="img"/>
+
+<p>  <strong>不同的字符串可能哈希出来的位置相同，这种情况我们可以适当增加位数组大小或者调整我们的哈希函数。</strong></p>
+<p>综上，我们可以得出：<strong>布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。</strong></p>
+<p>  在Redis中具体工作机制如下：</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552456.png" alt="img"/>
+
+<h1 id="内存淘汰机制"><a href="#内存淘汰机制" class="headerlink" title="内存淘汰机制"></a>内存淘汰机制</h1><p>  保证Redis中的数据为热点数据。</p>
+<p>（1）volatile-lru：从<strong>已设置过期时间</strong>的数据集中挑选最近最少使用的数据淘汰</p>
+<p>（2）volatile-ttl：从<strong>已设置过期时间</strong>的数据集中挑选将要过期的数据淘汰</p>
+<p>（3）volatile-random：从<strong>已设置过期时间</strong>的数据集中挑选任意数据淘汰</p>
+<p>（4）allkeys-lru：内存不足时，在键空间中移除最近最少使用的key<strong>（最常用）</strong></p>
+<p>（5）allkeys-random：从<strong>数据集</strong>中任意选择数据淘汰</p>
+<p>（6）no-eviction：禁止驱逐数据</p>
+<p>redis4.0后新增</p>
+<p>（7）volatile-lfu：从已设置过期时间的数据集中挑选<strong>最不经常使用</strong>的数据淘汰</p>
+<p>（8）allkeys-lfu：内存不足时，在键空间中移除<strong>最不经常使用</strong>的key</p>
+<h1 id="Redis分布式锁"><a href="#Redis分布式锁" class="headerlink" title="Redis分布式锁"></a>Redis分布式锁</h1><p>  分布式锁一般有三种方式实现：<strong>数据库乐观锁，基于Redis的分布式锁，基于zookeeper的分布式锁</strong>。</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>redis.clients<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>jedis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.9.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"> <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RedisTool</span> <span class="token punctuation">&#123;</span>
+   <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> LOCK_SUCCESS <span class="token operator">=</span> <span class="token string">"OK"</span><span class="token punctuation">;</span>
+   <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> SET_IF_NOT_EXIST <span class="token operator">=</span> <span class="token string">"NX"</span><span class="token punctuation">;</span>
+   <span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">final</span> <span class="token class-name">String</span> SET_WITH_EXPIRE_TIME <span class="token operator">=</span> <span class="token string">"PX"</span><span class="token punctuation">;</span>
+   <span class="token comment">/**
+   \* 尝试获取分布式锁
+   \* @param jedis Redis客户端
+   \* @param lockKey 锁
+   \* @param requestId 请求标识
+   \* @param expireTime 超期时间
+   \* @return 是否获取成功
+   */</span>
+   <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">tryGetDistributedLock</span><span class="token punctuation">(</span><span class="token class-name">Jedis</span> jedis<span class="token punctuation">,</span> <span class="token class-name">String</span> lockKey<span class="token punctuation">,</span> <span class="token class-name">String</span> requestId<span class="token punctuation">,</span> <span class="token keyword">int</span> expireTime<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> result <span class="token operator">=</span> jedis<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>lockKey<span class="token punctuation">,</span> requestId<span class="token punctuation">,</span> SET_IF_NOT_EXIST<span class="token punctuation">,</span> SET_WITH_EXPIRE_TIME<span class="token punctuation">,</span> expireTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>LOCK_SUCCESS<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个set()方法一共有五个形参：</p>
+<p>  · 第一个为key，我们使用key来当锁，因为key是唯一的。</p>
+<p>  · 第二个为value，我们传的是requestId，很多童鞋可能不明白，有key作为锁不就够了吗，为什么还要用到value？原因就是我们在上面讲到可靠性时，分布式锁要满足第四个条件解铃还须系铃人，通过给value赋值为requestId，我们就知道这把锁是哪个请求加的了，在解锁的时候就可以有依据。requestId可以使用UUID.randomUUID().toString()方法生成。</p>
+<p>  · 第三个为nxxx，这个参数我们填的是NX，意思是SET IF NOT EXIST，即当key不存在时，我们进行set操作；若key已经存在，则不做任何操作；</p>
+<p>  · 第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。</p>
+<p>  · 第五个为time，与第四个参数相呼应，代表key的过期时间。</p>
+<p>  方法底层主要使用Redis的Setnx 命令实现。</p>
+<p>  总的来说，执行上面的set()方法就只会导致两种结果：<strong>1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁设置个有效期，同时value表示加锁的客户端。2. 已有锁存在，不做任何操作。</strong></p>
+<h1 id="缓存与数据库一致性问题"><a href="#缓存与数据库一致性问题" class="headerlink" title="缓存与数据库一致性问题"></a>缓存与数据库一致性问题</h1><ul>
+<li><p>最经典的缓存+数据库读写的模式，就是 Cache Aside Pattern。</p>
+<p>读的时候，先读缓存，缓存没有的话，就读数据库，然后取出数据后放入缓存，同时返回响应。</p>
+<p>更新的时候，<strong>先删除缓存，然后再更新数据库</strong>。</p>
+</li>
+<li><p>Redis如果写数据库成功了，写缓存失败了怎么办？</p>
+<p>高峰期的时候让缓存的过期时间小一点，但是明显不能完全解决这个问题～</p>
+<p><strong>可以单独写一个定时任务，定时对比数据库和Redis中的数据，数据中可以加入版本号，查阅版本号是否一致等等。</strong></p>
+</li>
+</ul>
+<h1 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h1><p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d32b16f12f09">Redis实现消息队列的4种方案</a></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2020/11/10/redis-zhi-shi-hui-zong/">https://jason-qianhao.github.io/2020/11/10/redis-zhi-shi-hui-zong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/12/activemq-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="ActiveMQ知识汇总">
+                        
+                        <span class="card-title">ActiveMQ知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQ/" class="post-category">
+                                    MQ
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQ/">
+                        <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                    <a href="/tags/ActiveMQ/">
+                        <span class="chip bg-color">ActiveMQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/02/ji-suan-ji-wang-luo/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-3z3grv.jpg" class="responsive-img" alt="计算机网络">
+                        
+                        <span class="card-title">计算机网络</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8EWeb%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络与Web安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E4%B8%8EWeb%E5%9F%BA%E7%A1%80/">
+                        <span class="chip bg-color">网络与Web基础</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">
+                        <span class="chip bg-color">计算机网络</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

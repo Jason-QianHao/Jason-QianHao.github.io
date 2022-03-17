@@ -1,0 +1,2339 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="微信小程序基础入门知识, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>微信小程序基础入门知识 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/39.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">微信小程序基础入门知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                <span class="chip bg-color">小程序</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                <span class="chip bg-color">微信小程序</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E5%B0%8F%E7%A8%8B%E5%BA%8F/" class="post-category">
+                                小程序
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-20
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="小程序-学习笔记"><a href="#小程序-学习笔记" class="headerlink" title="小程序-学习笔记"></a>小程序-学习笔记</h1><blockquote>
+<p>目录：    </p>
+<ol>
+<li>概述    </li>
+</ol>
+<p>参考资料：  </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/">微信小程序文档</a></li>
+</ul>
+</blockquote>
+<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="小程序基础"><a href="#小程序基础" class="headerlink" title="小程序基础"></a>小程序基础</h2><h3 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210618150320298.png" alt="image-20210618150320298"></p>
+<h4 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h4><p>​    小程序的脚本代码，处理小程序的生命周期</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210618150500386.png" alt="image-20210618150500386"></p>
+<h4 id="app-json"><a href="#app-json" class="headerlink" title="app.json"></a>app.json</h4><p>​    小程序的全局配置，哪些页面组成，窗口结构等</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210618150655826.png" alt="image-20210618150655826"></p>
+<h4 id="app-wxss"><a href="#app-wxss" class="headerlink" title="app.wxss"></a>app.wxss</h4><p>​    小程序的全局样式文件</p>
+<p> <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210618150740655.png" alt="image-20210618150740655"></p>
+<h4 id="pages"><a href="#pages" class="headerlink" title="pages"></a>pages</h4><p>​    配置所有页面</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210618151345987.png" alt="image-20210618151345987"></p>
+<ul>
+<li><p>wxml文件</p>
+<p>配置页面结构</p>
+</li>
+<li><p>wxss文件</p>
+<p>子页面的配置，会覆盖全局配置</p>
+</li>
+<li><p>js和wxml文件是必须的，其他文件可选择</p>
+</li>
+</ul>
+<h3 id="详解和参考文档"><a href="#详解和参考文档" class="headerlink" title="详解和参考文档"></a>详解和参考文档</h3><h4 id="app-json-1"><a href="#app-json-1" class="headerlink" title="app.json"></a>app.json</h4><p>小程序根目录下的 <code>app.json</code> 文件用来对微信小程序进行全局配置。文件内容为一个 JSON 对象，有以下属性：</p>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">必填</th>
+<th align="left">描述</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#entryPagePath">entryPagePath</a></td>
+<td align="left">string</td>
+<td align="left">否</td>
+<td align="left">小程序默认启动首页</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#pages">pages</a></td>
+<td align="left">string[]</td>
+<td align="left">是</td>
+<td align="left">页面路径列表</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#window">window</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">全局的默认窗口表现</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#tabBar">tabBar</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">底部 <code>tab</code> 栏的表现</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#networkTimeout">networkTimeout</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">网络超时时间</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#debug">debug</a></td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">是否开启 debug 模式，默认关闭</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#functionalPages">functionalPages</a></td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">是否启用插件功能页，默认关闭</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.1.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#subpackages">subpackages</a></td>
+<td align="left">Object[]</td>
+<td align="left">否</td>
+<td align="left">分包结构配置</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.7.3</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#workers">workers</a></td>
+<td align="left">string</td>
+<td align="left">否</td>
+<td align="left"><code>Worker</code> 代码放置的目录</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.9.90</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#requiredBackgroundModes">requiredBackgroundModes</a></td>
+<td align="left">string[]</td>
+<td align="left">否</td>
+<td align="left">需要在后台使用的能力，如「音乐播放」</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#plugins">plugins</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">使用到的插件</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.9.6</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#preloadRule">preloadRule</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">分包预下载规则</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.3.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#resizable">resizable</a></td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">PC 小程序是否支持用户任意改变窗口大小（包括最大化窗口）；iPad 小程序是否支持屏幕旋转。默认关闭</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.3.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#usingComponents">usingComponents</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">全局<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/custom-component/">自定义组件</a>配置</td>
+<td align="left">开发者工具 1.02.1810190</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#permission">permission</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">小程序接口权限相关设置</td>
+<td align="left">微信客户端 7.0.0</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#sitemapLocation">sitemapLocation</a></td>
+<td align="left">string</td>
+<td align="left">是</td>
+<td align="left">指明 sitemap.json 的位置</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#style">style</a></td>
+<td align="left">string</td>
+<td align="left">否</td>
+<td align="left">指定使用升级后的weui样式</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.8.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#useextendedlib">useExtendedLib</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">指定需要引用的扩展库</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.2.1</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#entranceDeclare">entranceDeclare</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">微信消息用小程序打开</td>
+<td align="left">微信客户端7.0.9</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#darkmode">darkmode</a></td>
+<td align="left">boolean</td>
+<td align="left">否</td>
+<td align="left">小程序支持 DarkMode</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.11.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#themeLocation">themeLocation</a></td>
+<td align="left">string</td>
+<td align="left">否</td>
+<td align="left">指明 theme.json 的位置，darkmode为true为必填</td>
+<td align="left">开发者工具 1.03.2004271</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#lazyCodeLoading">lazyCodeLoading</a></td>
+<td align="left">string</td>
+<td align="left">否</td>
+<td align="left">配置自定义组件代码按需注入</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.11.1</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html#singlePage">singlePage</a></td>
+<td align="left">Object</td>
+<td align="left">否</td>
+<td align="left">单页模式相关配置</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.12.0</a></td>
+</tr>
+</tbody></table>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/configuration/app.html">小程序配置 /全局配置</a></p>
+<h4 id="app-js-1"><a href="#app-js-1" class="headerlink" title="app.js"></a>app.js</h4><ul>
+<li><p>App(Object object)，注册小程序。接受一个 <code>Object</code> 参数，其指定小程序的生命周期回调等。<strong>App() 必须在 <code>app.js</code> 中调用，必须调用且只能调用一次。不然会出现无法预期的后果。</strong></p>
+</li>
+<li><p>Object object 参数</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">必填</th>
+<th align="left">说明</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onLaunch-Object-object">onLaunch</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">生命周期回调——监听小程序初始化。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onShow-Object-object">onShow</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">生命周期回调——监听小程序启动或切前台。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onHide">onHide</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">生命周期回调——监听小程序切后台。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onError-String-error">onError</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">错误监听函数。</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onPageNotFound-Object-object">onPageNotFound</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">页面不存在监听函数。</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.9.90</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onUnhandledRejection-Object-object">onUnhandledRejection</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">未处理的 Promise 拒绝事件监听函数。</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.10.0</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/App.html#onThemeChange-Object-object">onThemeChange</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">监听系统主题变化</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.11.0</a></td>
+</tr>
+<tr>
+<td align="left">其他</td>
+<td align="left">any</td>
+<td align="left"></td>
+<td align="left">否</td>
+<td align="left">开发者可以添加任意的函数或数据变量到 <code>Object</code> 参数中，用 <code>this</code> 可以访问</td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例代码</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">App</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token function">onLaunch</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something initial when launch.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function">onShow</span> <span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when show.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function">onHide</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when hide.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function">onError</span> <span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">globalData</span><span class="token operator">:</span> <span class="token string">'I am global data'</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="page-js"><a href="#page-js" class="headerlink" title="page.js"></a>page.js</h4><p><strong>1.  AppObject getApp(Object object) 获取到小程序全局唯一的 <code>App</code> 实例。</strong></p>
+<ul>
+<li>Object object 参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">必填</th>
+<th align="left">说明</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">allowDefault</td>
+<td align="left">boolean</td>
+<td align="left">false</td>
+<td align="left">否</td>
+<td align="left">在 <code>App</code> 未定义时返回默认实现。当App被调用时，默认实现中定义的属性会被覆盖合并到App中。一般用于<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages/independent.html">独立分包</a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.2.4</a></td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例代码</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">// other.js</span>
+<span class="token keyword">var</span> appInstance <span class="token operator">=</span> <span class="token function">getApp</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>appInstance<span class="token punctuation">.</span>globalData<span class="token punctuation">)</span> <span class="token comment">// I am global data</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>注意</p>
+<ul>
+<li>不要在定义于 <code>App()</code> 内的函数中，或调用 <code>App</code> 前调用 <code>getApp()</code> ，使用 <code>this</code> 就可以拿到 app 实例。</li>
+<li>通过 <code>getApp()</code> 获取实例之后，不要私自调用生命周期函数。</li>
+</ul>
+<p>**2. Page(Object object) 注册小程序中的一个页面 **<br>接受一个 Object 类型参数，其指定页面的初始数据、生命周期回调、事件处理函数等</p>
+<ul>
+<li>Object object 参数</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">默认值</th>
+<th align="left">必填</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#data">data</a></td>
+<td align="left">Object</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">页面的初始数据</td>
+</tr>
+<tr>
+<td align="left">options</td>
+<td align="left">Object</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">页面的组件选项，同 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Component.html"><code>Component</code> 构造器</a> 中的 <code>options</code> ，需要基础库版本 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">2.10.1</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onLoad-Object-query">onLoad</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">生命周期回调—监听页面加载</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShow">onShow</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">生命周期回调—监听页面显示</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onReady">onReady</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">生命周期回调—监听页面初次渲染完成</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onHide">onHide</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">生命周期回调—监听页面隐藏</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onUnload">onUnload</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">生命周期回调—监听页面卸载</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onPullDownRefresh">onPullDownRefresh</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">监听用户下拉动作</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onReachBottom">onReachBottom</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">页面上拉触底事件的处理函数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareAppMessage-Object-object">onShareAppMessage</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">用户点击右上角转发</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onShareTimeline">onShareTimeline</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">用户点击右上角转发到朋友圈</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onAddToFavorites-Object-object">onAddToFavorites</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">用户点击右上角收藏</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onPageScroll-Object-object">onPageScroll</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">页面滚动触发事件的处理函数</td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onResize-Object-object">onResize</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">页面尺寸改变时触发，详见 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/resizable.html#%E5%9C%A8%E6%89%8B%E6%9C%BA%E4%B8%8A%E5%90%AF%E7%94%A8%E5%B1%8F%E5%B9%95%E6%97%8B%E8%BD%AC%E6%94%AF%E6%8C%81">响应显示区域变化</a></td>
+</tr>
+<tr>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html#onTabItemTap-Object-object">onTabItemTap</a></td>
+<td align="left">function</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">当前是 tab 页时，点击 tab 时触发</td>
+</tr>
+<tr>
+<td align="left">其他</td>
+<td align="left">any</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">开发者可以添加任意的函数或数据到 <code>Object</code> 参数中，在页面的函数中用 <code>this</code> 可以访问</td>
+</tr>
+</tbody></table>
+<ul>
+<li>示例代码</li>
+</ul>
+<pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token comment">//index.js</span>
+<span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token literal-property property">data</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">"This is page data."</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onLoad</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">options</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do some initialize when page load.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onShow</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page show.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onReady</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page ready.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onHide</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page hide.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onUnload</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page close.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onPullDownRefresh</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when pull down.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onReachBottom</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page reach bottom.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onShareAppMessage</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// return custom share data when user share.</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onPageScroll</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page scroll</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">onResize</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Do something when page resize</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token function">onTabItemTap</span><span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>index<span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>pagePath<span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token comment">// Event handler.</span>
+  <span class="token function-variable function">viewTap</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+      <span class="token literal-property property">text</span><span class="token operator">:</span> <span class="token string">'Set some data for updating view.'</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+      <span class="token comment">// this is setData callback</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+  <span class="token literal-property property">customData</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token literal-property property">hi</span><span class="token operator">:</span> <span class="token string">'MINA'</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/Page.html">页面 /Page</a></p>
+<p><strong>3. 其他</strong></p>
+<ul>
+<li>组件事件处理函数</li>
+</ul>
+<p><code>Page</code> 中还可以定义组件事件处理函数。在渲染层的组件中加入<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">事件绑定</a>，当事件被触发时，就会执行 Page 中定义的事件处理函数。</p>
+<p>示例代码</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewTap<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> click me <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+Page(&#123;
+  viewTap: function() &#123;
+    console.log('view tap')
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Page.route</li>
+</ul>
+<p>到当前页面的路径，类型为<code>String</code>。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token function">Page</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
+  <span class="token function-variable function">onShow</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>route<span class="token punctuation">)</span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>Page.prototype.setData(Object data, Function callback)</li>
+</ul>
+<p><code>setData</code> 函数用于将数据从逻辑层发送到视图层（异步），同时改变对应的 <code>this.data</code> 的值（同步）。</p>
+<p>参数说明</p>
+<table>
+<thead>
+<tr>
+<th align="left">字段</th>
+<th align="left">类型</th>
+<th align="left">必填</th>
+<th align="left">描述</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">data</td>
+<td align="left">Object</td>
+<td align="left">是</td>
+<td align="left">这次要改变的数据</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">callback</td>
+<td align="left">Function</td>
+<td align="left">否</td>
+<td align="left">setData引起的界面更新渲染完毕后的回调函数</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.5.0</a></td>
+</tr>
+</tbody></table>
+<p><code>Object</code> 以 <code>key: value</code> 的形式表示，将 <code>this.data</code> 中的 <code>key</code> 对应的值改变成 <code>value</code>。</p>
+<p><strong>其中 <code>key</code> 可以以数据路径的形式给出，支持改变数组中的某一项或对象的某个属性，如 <code>array[2].message</code>，<code>a.b.c.d</code>，并且不需要在 this.data 中预先定义。</strong></p>
+<p><strong>注意：</strong></p>
+<blockquote>
+<ol>
+<li>直接修改 this.data 而不调用 this.setData 是无法改变页面的状态的，还会造成数据不一致。</li>
+<li>仅支持设置可 JSON 化的数据。</li>
+<li>单次设置的数据不能超过1024kB，请尽量避免一次设置过多的数据。</li>
+<li>请不要把 data 中任何一项的 value 设为 <code>undefined</code> ，否则这一项将不被设置并可能遗留一些潜在问题。</li>
+</ol>
+</blockquote>
+<p><strong>示例代码：</strong></p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!--index.wxml--></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>&#123;&#123;text&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeText<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> Change normal data <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>&#123;&#123;num&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeNum<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> Change normal num <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>&#123;&#123;array[0].text&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeItemInArray<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> Change Array data <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>&#123;&#123;object.text&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeItemInObject<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> Change Object data <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>view</span><span class="token punctuation">></span></span>&#123;&#123;newField.text&#125;&#125;<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>view</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">bindtap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>addNewField<span class="token punctuation">"</span></span><span class="token punctuation">></span></span> Add new data <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">></span></span>
+// index.js
+Page(&#123;
+  data: &#123;
+    text: 'init data',
+    num: 0,
+    array: [&#123;text: 'init data'&#125;],
+    object: &#123;
+      text: 'init data'
+    &#125;
+  &#125;,
+  changeText: function() &#123;
+    // this.data.text = 'changed data' // 不要直接修改 this.data
+    // 应该使用 setData
+    this.setData(&#123;
+      text: 'changed data'
+    &#125;)
+  &#125;,
+  changeNum: function() &#123;
+    // 或者，可以修改 this.data 之后马上用 setData 设置一下修改了的字段
+    this.data.num = 1
+    this.setData(&#123;
+      num: this.data.num
+    &#125;)
+  &#125;,
+  changeItemInArray: function() &#123;
+    // 对于对象或数组字段，可以直接修改一个其下的子字段，这样做通常比修改整个对象或数组更好
+    this.setData(&#123;
+      'array[0].text':'changed data'
+    &#125;)
+  &#125;,
+  changeItemInObject: function()&#123;
+    this.setData(&#123;
+      'object.text': 'changed data'
+    &#125;);
+  &#125;,
+  addNewField: function() &#123;
+    this.setData(&#123;
+      'newField.text': 'new data'
+    &#125;)
+  &#125;
+&#125;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>页面间通信</li>
+</ul>
+<p>如果一个页面由另一个页面通过 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/api/route/wx.navigateTo.html"><code>wx.navigateTo</code></a> 打开，这两个页面间将建立一条数据通道：</p>
+<blockquote>
+<p>被打开的页面可以通过 <code>this.getOpenerEventChannel()</code> 方法来获得一个 <code>EventChannel</code> 对象；<br><code>wx.navigateTo</code> 的 <code>success</code> 回调中也包含一个 <code>EventChannel</code> 对象。</p>
+</blockquote>
+<p>这两个 <code>EventChannel</code> 对象间可以使用 <code>emit</code> 和 <code>on</code> 方法相互发送、监听事件。</p>
+<p><strong>4. 模块化</strong></p>
+<ul>
+<li>单个page中定义的元素，其他page不可访问。全局元素可以在app.js中设置</li>
+<li>可以自定义一些公共模块</li>
+</ul>
+<p>列如：</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token comment">// common.js</span>
+<span class="token keyword">function</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> !</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+<span class="token keyword">function</span> <span class="token function">sayGoodbye</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Goodbye </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">$&#123;</span>name<span class="token interpolation-punctuation punctuation">&#125;</span></span><span class="token string"> !</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
+
+module<span class="token punctuation">.</span>exports<span class="token punctuation">.</span>sayHello <span class="token operator">=</span> sayHello
+exports<span class="token punctuation">.</span>sayGoodbye <span class="token operator">=</span> sayGoodbye<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/api/require.html">模块化</a></p>
+<h4 id="WXML"><a href="#WXML" class="headerlink" title="WXML"></a>WXML</h4><ul>
+<li>数据绑定：WXML 中的动态数据均来自对应 <strong>Page 的 data</strong>，数据绑定使用 Mustache 语法<strong>（双大括号）将变量包起来</strong>。</li>
+<li>列表渲染：在组件上使用 <code>wx:for</code> 控制属性绑定一个数组，即可使用数组中各项的数据重复渲染该组件。默认数组的当前项的下标变量名默认为 <code>index</code>，数组当前项的变量名默认为 <code>item</code></li>
+<li>条件渲染：在框架中，使用 <code>wx:if=&quot;&quot;</code> 来判断是否需要渲染该代码块</li>
+<li>模板：WXML提供模板（template），可以在模板中定义代码片段，然后在不同的地方调用</li>
+<li>引用：WXML 提供两种文件引用方式<code>import</code>和<code>include</code></li>
+</ul>
+<p>参考官方文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/reference/wxml/data.html">WXML</a></p>
+<h4 id="WXSS"><a href="#WXSS" class="headerlink" title="WXSS"></a>WXSS</h4><p>WXSS (WeiXin Style Sheets)是一套样式语言，用于描述 WXML 的组件样式。WXSS 用来决定 WXML 的组件应该怎么显示。</p>
+<p>为了适应广大的前端开发者，WXSS 具有 CSS 大部分特性。同时为了更适合开发微信小程序，WXSS 对 CSS 进行了扩充以及修改。</p>
+<p>与 CSS 相比，WXSS 扩展的特性有：</p>
+<ul>
+<li>尺寸单位</li>
+<li>样式导入</li>
+</ul>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxss.html">视图层 /WXSS</a></p>
+<h2 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h2><h3 id="事件的概念"><a href="#事件的概念" class="headerlink" title="事件的概念"></a>事件的概念</h3><ul>
+<li>事件是视图层到逻辑层的通讯方式。</li>
+<li>事件可以将用户的行为反馈到逻辑层进行处理。</li>
+<li>事件可以绑定在组件上，当达到触发事件，就会执行逻辑层中对应的事件处理函数。</li>
+<li>事件对象可以携带额外信息，如 id, dataset, touches。</li>
+</ul>
+<h3 id="事件的使用方式"><a href="#事件的使用方式" class="headerlink" title="事件的使用方式"></a>事件的使用方式</h3><ul>
+<li>在组件中绑定一个事件处理函数。<br>如bindtap，当用户点击该组件的时候会在该页面对应的Page中找到相应的事件处理函数。</li>
+<li>在相应的Page定义中写上相应的事件处理函数，参数是event。</li>
+</ul>
+<h3 id="事件分类"><a href="#事件分类" class="headerlink" title="事件分类"></a>事件分类</h3><p>事件分为冒泡事件和非冒泡事件：</p>
+<ul>
+<li>冒泡事件：当一个组件上的事件被触发后，该事件会向父节点传递。</li>
+<li>非冒泡事件：当一个组件上的事件被触发后，该事件不会向父节点传递。</li>
+</ul>
+<p>WXML的冒泡事件列表：</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">触发条件</th>
+<th align="left">最低版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">touchstart</td>
+<td align="left">手指触摸动作开始</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">touchmove</td>
+<td align="left">手指触摸后移动</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">touchcancel</td>
+<td align="left">手指触摸动作被打断，如来电提醒，弹窗</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">touchend</td>
+<td align="left">手指触摸动作结束</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">tap</td>
+<td align="left">手指触摸后马上离开</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">longpress</td>
+<td align="left">手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.5.0</a></td>
+</tr>
+<tr>
+<td align="left">longtap</td>
+<td align="left">手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">transitionend</td>
+<td align="left">会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">animationstart</td>
+<td align="left">会在一个 WXSS animation 动画开始时触发</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">animationiteration</td>
+<td align="left">会在一个 WXSS animation 一次迭代结束时触发</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">animationend</td>
+<td align="left">会在一个 WXSS animation 动画完成时触发</td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">touchforcechange</td>
+<td align="left">在支持 3D Touch 的 iPhone 设备，重按时会触发</td>
+<td align="left"><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/compatibility.html">1.9.90</a></td>
+</tr>
+</tbody></table>
+<p><strong>注：除上表之外的其他组件自定义事件如无特殊声明都是非冒泡事件，如 <a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/form.html">form</a> 的<code>submit</code>事件，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/input.html">input</a> 的<code>input</code>事件，<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html">scroll-view</a> 的<code>scroll</code>事件，(详见各个<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/">组件</a>)</strong></p>
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/event.html">事件</a></p>
+<h3 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h3><p>触发事件是由<strong>“用户在渲染层的行为反馈”以及“组件的部分状态反馈”引起的</strong>，由于不同组件的状态不一致，所以我们这里不讨论组件相关的事件（组件的事件可以参考其参数说明，详情见官方文档 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/debug/wxadoc/dev/component/">https://mp.weixin.qq.com/debug/wxadoc/dev/component/</a> ）</p>
+<ul>
+<li><p>常见的事件类型</p>
+<table>
+<thead>
+<tr>
+<th align="left">类型</th>
+<th align="left">触发条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">touchstart</td>
+<td align="left">手指触摸动作开始</td>
+</tr>
+<tr>
+<td align="left">touchmove</td>
+<td align="left">手指触摸后移动</td>
+</tr>
+<tr>
+<td align="left">touchcancel</td>
+<td align="left">手指触摸动作被打断，如来电提醒，弹窗</td>
+</tr>
+<tr>
+<td align="left">touchend</td>
+<td align="left">手指触摸动作结束</td>
+</tr>
+<tr>
+<td align="left">tap</td>
+<td align="left">手指触摸后马上离开</td>
+</tr>
+<tr>
+<td align="left">longpress</td>
+<td align="left">手指触摸后，超过350ms再离开，如果指定了事件回调函数并触发了这个事件，tap事件将不被触发</td>
+</tr>
+<tr>
+<td align="left">longtap</td>
+<td align="left">手指触摸后，超过350ms再离开（推荐使用longpress事件代替）</td>
+</tr>
+<tr>
+<td align="left">transitionend</td>
+<td align="left">会在 WXSS transition 或 wx.createAnimation 动画结束后触发</td>
+</tr>
+<tr>
+<td align="left">animationstart</td>
+<td align="left">会在一个 WXSS animation 动画开始时触发</td>
+</tr>
+<tr>
+<td align="left">animationiteration</td>
+<td align="left">会在一个 WXSS animation 一次迭代结束时触发</td>
+</tr>
+<tr>
+<td align="left">animationend</td>
+<td align="left">会在一个 WXSS animation 动画完成时触发</td>
+</tr>
+</tbody></table>
+</li>
+<li><p>当事件回调触发的时候，会收到一个事件对象，对象的详细属性如下表所示。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">属性</th>
+<th align="left">类型</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">type</td>
+<td align="left">String</td>
+<td align="left">事件类型</td>
+</tr>
+<tr>
+<td align="left">timeStamp</td>
+<td align="left">Integer</td>
+<td align="left">页面打开到触发事件所经过的毫秒数</td>
+</tr>
+<tr>
+<td align="left">target</td>
+<td align="left">Object</td>
+<td align="left">触发事件的组件的一些属性值集合</td>
+</tr>
+<tr>
+<td align="left">currentTarget</td>
+<td align="left">Object</td>
+<td align="left">当前组件的一些属性值集合</td>
+</tr>
+<tr>
+<td align="left">detail</td>
+<td align="left">Object</td>
+<td align="left">额外的信息</td>
+</tr>
+<tr>
+<td align="left">touches</td>
+<td align="left">Array</td>
+<td align="left">触摸事件，当前停留在屏幕中的触摸点信息的数组</td>
+</tr>
+<tr>
+<td align="left">changedTouches</td>
+<td align="left">Array</td>
+<td align="left">触摸事件，当前变化的触摸点信息的数组</td>
+</tr>
+</tbody></table>
+<h3 id="事件绑定与冒泡捕获"><a href="#事件绑定与冒泡捕获" class="headerlink" title="事件绑定与冒泡捕获"></a>事件绑定与冒泡捕获</h3><p>事件绑定的写法和组件属性一致，以key=”value”的形式，其中：</p>
+<ol>
+<li>key以bind或者catch开头，然后跟上事件的类型，如bindtap、catchtouchstart。自基础库版本1.5.0起，bind和catch后可以紧跟一个冒号，其含义不变，如bind:tap、catch:touchstart。同时bind和catch前还可以加上capture-来表示捕获阶段。</li>
+<li>value是一个字符串，需要在对应的页面Page构造器中定义同名的函数，否则触发事件时在控制台会有报错信息。</li>
+</ol>
+<p>事件的参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/ebook?action=get_post_info&docid=000846df9a03909b0086a50025180a">事件与事件绑定</a></p>
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><p>小程序提供了丰富的基础组件给开发者，开发者可以像搭积木一样，组合各种组件拼合成自己的小程序。</p>
+<p>就像 <code>HTML</code> 的 <code>div</code>, <code>p</code> 等标签一样，在小程序里边，你只需要在 <code>WXML</code> 写上对应的组件标签名字就可以把该组件显示在界面上，例如，你需要在界面上显示地图，你只需要这样写即可：</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>map</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>map</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>参考文档：<a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/component/">文档</a></p>
+<h3 id="WeUI"><a href="#WeUI" class="headerlink" title="WeUI"></a>WeUI</h3><ul>
+<li><p>官方提供的，一个非常好用的组件样式库</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/weui/weui">WeUI</a> 是一套同微信原生视觉体验一致的基础样式库，由微信官方设计团队为微信内网页和微信小程序量身设计，令用户的使用感知更加统一。包含<code>button</code>、<code>cell</code>、<code>dialog</code>、 <code>progress</code>、 <code>toast</code>、<code>article</code>、<code>actionsheet</code>、<code>icon</code>等各式元素。</p>
+</li>
+<li><p>预览效果</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/29502325-ada080f6-8661-11e7-94c2-23d638210f45.jpg" alt="WeUI for 小程序"></p>
+</li>
+<li><p>使用方法：</p>
+<p>可以通过导入模块来解决（但我好像试过有些问题，后续再查查）</p>
+<p>也可以直接在<a target="_blank" rel="noopener" href="https://github.com/Tencent/weui-wxss/tree/78ed9949f4b4c17132faae0a223179b86591fac1/dist/example">example</a>页面找到需要的组件直接使用标签即可。</p>
+</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2021/07/20/wei-xin-xiao-cheng-xu-ji-chu-ru-men-zhi-shi/">https://jason-qianhao.github.io/2021/07/20/wei-xin-xiao-cheng-xu-ji-chu-ru-men-zhi-shi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                    <span class="chip bg-color">小程序</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+                                    <span class="chip bg-color">微信小程序</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/07/21/acm-mo-shi-jie-ti-mo-ban/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="ACM模式解题模板">
+                        
+                        <span class="card-title">ACM模式解题模板</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-21
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" class="post-category">
+                                    数据结构和算法
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">数据结构和算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/13/2021-nian-qiu-zhao-mian-shi-zi-jie-tiao-dong/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/zj.jpg" class="responsive-img" alt="2021年秋招面试-字节跳动">
+                        
+                        <span class="card-title">2021年秋招面试-字节跳动</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-13
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AC%94%E7%BB%8F%E9%9D%A2%E7%BB%8F/" class="post-category">
+                                    笔经面经
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E7%BB%8F%E9%9D%A2%E7%BB%8F/">
+                        <span class="chip bg-color">笔经面经</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8/">
+                        <span class="chip bg-color">字节跳动</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

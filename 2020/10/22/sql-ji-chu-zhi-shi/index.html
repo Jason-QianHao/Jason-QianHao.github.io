@@ -1,0 +1,2104 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="SQL基础知识, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>SQL基础知识 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/43.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">SQL基础知识</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/SQL/">
+                                <span class="chip bg-color">SQL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-22
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    18 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录</p>
+<ol>
+<li>SQL语言分类</li>
+<li>SQL语言规范</li>
+<li>数据处理之查询</li>
+<li>子查询</li>
+<li>数据处理之增删改</li>
+<li>常见函数</li>
+<li>创建和管理表</li>
+<li>约束和分页</li>
+<li>事物</li>
+<li>视图</li>
+<li>存储过程和函数</li>
+<li>触发器</li>
+<li>流程控制</li>
+</ol>
+</blockquote>
+<h2 id="SQL语言分类"><a href="#SQL语言分类" class="headerlink" title="SQL语言分类"></a>SQL语言分类</h2><h3 id="DML（Data-Manipulation-Language"><a href="#DML（Data-Manipulation-Language" class="headerlink" title="DML（Data Manipulation Language)"></a>DML（Data Manipulation Language)</h3><p>数据操纵语句，用于添加、删除、修改、查询数据库记录，并检查数据完整性</p>
+<p>（1）INSERT：添加数据到数据库中</p>
+<p>（2）UPDATE：修改数据库中的数据</p>
+<p>（3）DELETE：删除数据库中的数据</p>
+<p>（4）SELECT：选择（查询）数据</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210630203736938.png" alt="image-20210630203736938" style="zoom: 30%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308101713848.png" alt="image-20220308101713848" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308101726850.png" alt="image-20220308101726850" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210630204426765.png" alt="image-20210630204426765" style="zoom:30%;" />
+
+<h3 id="DDL（Data-Definition-Language"><a href="#DDL（Data-Definition-Language" class="headerlink" title="DDL（Data Definition Language)"></a>DDL（Data Definition Language)</h3><p>数据定义语句，用于库和表的创建、修改、删除。</p>
+<p>（1）CREATE TABLE：创建数据库表</p>
+<p>（2）ALTER TABLE：更改表结构、添加、删除、修改列长度</p>
+<p>（3）DROP TABLE：删除表</p>
+<p>（4）CREATE INDEX：在表上建立索引</p>
+<p>（5）DROP INDEX：删除索引</p>
+<h3 id="DCL（Data-Control-Language"><a href="#DCL（Data-Control-Language" class="headerlink" title="DCL（Data Control Language)"></a>DCL（Data Control Language)</h3><p>数据控制语句，用于定义用户的访问权限和安全级别。</p>
+<p>（1）GRANT：授予访问权限</p>
+<p>（2）REVOKE：撤销访问权限</p>
+<p>（3）COMMIT：提交事务处理</p>
+<p>（4）ROLLBACK：事务处理回退</p>
+<p>（5）SAVEPOINT：设置保存点</p>
+<p>（6）LOCK：对数据库的特定部分进行锁定</p>
+<h2 id="SQL语言规范"><a href="#SQL语言规范" class="headerlink" title="SQL语言规范"></a>SQL语言规范</h2><p>（1）不区分大小写</p>
+<p>（2）每句话用;或\g结尾</p>
+<p>（3）各子句一般分行写</p>
+<p>（4）关键字不能缩写也不能分行</p>
+<p>（5）用缩进提高语句的可读性</p>
+<h2 id="数据处理之查询"><a href="#数据处理之查询" class="headerlink" title="数据处理之查询"></a>数据处理之查询</h2><h3 id="基本的SELECT语句"><a href="#基本的SELECT语句" class="headerlink" title="基本的SELECT语句"></a>基本的SELECT语句</h3><p>（1）别名</p>
+<ul>
+<li>紧跟列名</li>
+<li>也可以在列名和别名之间加入<strong>关键字‘AS’</strong>，别名使用双引号，以便在别名中包含空格或特殊的字符并区分大小写。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744404.png" alt="image" />
+
+<p>（2）字符串</p>
+<ul>
+<li>字符串可以是 SELECT 列表中的一个字符,数字,日期。</li>
+<li>日期和字符只能在单引号中出现。</li>
+<li>每当返回一行时，字符串被输出一次。</li>
+</ul>
+<h3 id="过滤和排序数据"><a href="#过滤和排序数据" class="headerlink" title="过滤和排序数据"></a>过滤和排序数据</h3><p>（1）过滤</p>
+<ul>
+<li><p>使用WHERE 子句，将不满足条件的行过滤掉。</p>
+</li>
+<li><p>WHERE 子句紧随 FROM 子句。</p>
+</li>
+</ul>
+<p>（2）where子句中的比较运算</p>
+<table>
+<thead>
+<tr>
+<th>操作符</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>=</td>
+<td>等于（不是==)</td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>大于</td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>大于、等于</td>
+</tr>
+<tr>
+<td>&lt;</td>
+<td>小于</td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>小于等于</td>
+</tr>
+<tr>
+<td>&lt;&gt;、!=</td>
+<td>不等于</td>
+</tr>
+<tr>
+<td>between … and …</td>
+<td>两个值之间（含边界）</td>
+</tr>
+<tr>
+<td>in (set)</td>
+<td>在列表中的值</td>
+</tr>
+<tr>
+<td>like</td>
+<td>模糊查询</td>
+</tr>
+<tr>
+<td>is null</td>
+<td>空值</td>
+</tr>
+<tr>
+<td>and</td>
+<td>逻辑并</td>
+</tr>
+<tr>
+<td>or</td>
+<td>逻辑或</td>
+</tr>
+<tr>
+<td>not</td>
+<td>逻辑否</td>
+</tr>
+</tbody></table>
+<p>（3）排序 ORDER BY子句</p>
+<ul>
+<li><p>使用 ORDER BY 子句排序<br>ASC（ascend）: 升序<br>DESC（descend）: 降序</p>
+</li>
+<li><p>ORDER BY 子句在SELECT语句的结尾。</p>
+</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744381.png" alt="image"/>
+
+<ul>
+<li>多个列排序时，按照ORDER BY 列表的顺序排序</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744400.png" alt="image"/>
+
+<h3 id="分组函数"><a href="#分组函数" class="headerlink" title="分组函数"></a>分组函数</h3><p>（1）作用</p>
+<p>分组函数作用于一组数据，并对一组数据返回<strong>一个值</strong>。</p>
+<p>（2）组函数类型</p>
+<ul>
+<li><p>AVG() 平均值</p>
+</li>
+<li><p>COUNT() 计数，记录符合某条件的记录个数</p>
+</li>
+<li><p>MAX() 最大值</p>
+</li>
+<li><p>MIN() 最小值</p>
+</li>
+<li><p>SUM() 求和</p>
+</li>
+</ul>
+<p>（3）组函数类型语法</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744433.png" alt="image" />
+
+<p>非法使用组函数</p>
+<p>• 不能在 WHERE 子句中使用组函数。</p>
+<p>• 可以在 HAVING 子句中使用组函数</p>
+<p>（4）分组数据: GROUP BY 子句</p>
+<ul>
+<li>可以使用GROUP BY子句将表中的数据分成若干组。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744434-5057264.png" alt="image"  />
+
+<ul>
+<li>在SELECT 列表中所有未包含在组函数中的列都应该包含在 GROUP BY 子句中。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744443.png" alt="image"/>
+
+<ul>
+<li>包含在 GROUP BY 子句中的列不必包含在SELECT 列表中</li>
+<li>可以使用多个列同时分组</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744451.png" alt="image"/>
+
+<p>（5）过滤分组： HAVING 子句</p>
+<p>使用 HAVING 过滤分组:</p>
+<ol>
+<li><p>行已经被分组。</p>
+</li>
+<li><p>使用了组函数。</p>
+</li>
+<li><p>满足HAVING 子句中条件的分组将被显示</p>
+</li>
+</ol>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744473.png" alt="image"  />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744472.png" alt="image" />
+
+<h3 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h3><p>（1）where链接</p>
+<p>连接 n个表,至少需要 n-1个连接条件。 例如：连接三个表，至少需要两个连接条件。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> table1<span class="token punctuation">.</span><span class="token keyword">column</span><span class="token punctuation">,</span> table2<span class="token punctuation">.</span><span class="token keyword">column</span>
+form table1<span class="token punctuation">,</span> table2
+<span class="token keyword">where</span> table1<span class="token punctuation">.</span>columu1 <span class="token operator">=</span> table2<span class="token punctuation">.</span>column2<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>在where子句中写入连接条件</li>
+<li>在表中有相同列时，在列名之前加上表名前缀</li>
+</ul>
+<p>（2）ON子句连接</p>
+<p>• 自然连接中是以具有相同名字的列为连接条件的。</p>
+<p>• 可以使用 ON 子句指定额外的连接条件。</p>
+<p>• 这个连接条件是与其它条件分开的。</p>
+<p>• ON 子句使语句具有更高的易读性。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744523.png" alt="image" style="zoom:50%;" />
+
+<p>（3）Join子句连接</p>
+<ul>
+<li><p>分类：</p>
+<ul>
+<li><p>mysql内连接 [inner] join on</p>
+</li>
+<li><p>外连接</p>
+<p> 左外连接 left [outer] join on<br> 右外连接 right [outer] join on</p>
+</li>
+</ul>
+</li>
+<li><p>图解：</p>
+</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744544.png" alt="image" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744559.png" alt="image" style="zoom:50%;" />
+
+<h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><p>描述子查询可以解决的问题。</p>
+<ul>
+<li>定义子查询。</li>
+<li>列出子查询的类型。</li>
+<li>书写单行子查询和多行子查询。</li>
+</ul>
+<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>出现在其他语句内部的select语句，称为子查询或内查询</p>
+<p>内部嵌套其他select语句的查询，称为外查询或主查询</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> first_name <span class="token keyword">from</span> employees <span class="token keyword">where</span>
+department_id <span class="token operator">in</span><span class="token punctuation">(</span>
+<span class="token keyword">select</span> department_id <span class="token keyword">from</span> departments
+<span class="token keyword">where</span> location_id<span class="token operator">=</span><span class="token number">1700</span>
+<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h4><ul>
+<li>子查询要包含在括号内。</li>
+<li>将子查询放在比较条件的右侧。</li>
+<li>单行操作符对应单行子查询，多行操作符对应多行子查询。</li>
+</ul>
+<h4 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744630.png" alt="image.png" style="zoom:50%;" />
+
+<h3 id="子查询类型"><a href="#子查询类型" class="headerlink" title="子查询类型"></a>子查询类型</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744685.png" alt="image.png" style="zoom:50%;" />
+
+<h4 id="单行子查询"><a href="#单行子查询" class="headerlink" title="单行子查询"></a>单行子查询</h4><ul>
+<li><p>只返回一行</p>
+</li>
+<li><p>使用单行比较操作符</p>
+<p><code>=</code> <code>&gt;</code> <code>&gt;=</code> <code>&lt;</code> <code>&lt;=</code> <code>&lt;&gt;</code></p>
+</li>
+<li><p>语法</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744684.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>可以使用组函数、HAVING子句</p>
+</li>
+<li><p>对于子查询中的空值，不返回任何行</p>
+</li>
+</ul>
+<h4 id="多行子查询"><a href="#多行子查询" class="headerlink" title="多行子查询"></a>多行子查询</h4><ul>
+<li><p>返回多行</p>
+</li>
+<li><p>使用多行比较操作符</p>
+<p>​    <code>in/not in</code> <code>any some</code> <code>all</code></p>
+</li>
+<li><p>ANY</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744784.png" alt="image.png" style="zoom:70%;" /></li>
+<li><p>ALL</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744764.png" alt="image.png" style="zoom:70%;" /></li>
+</ul>
+<h2 id="数据处理之增删改"><a href="#数据处理之增删改" class="headerlink" title="数据处理之增删改"></a>数据处理之增删改</h2><h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><ul>
+<li><p>mysql中常用的三种插入数据的语句:</p>
+<ul>
+<li><p>insert into表示插入数据，数据库会检查主键，如果出现重复会报错；</p>
+</li>
+<li><p>replace into表示插入替换数据，需求表中有PrimaryKey，或者unique索引，如果数据库已经存在数据，则用新数据替换，如果没有数据效果则和insert into一样；</p>
+</li>
+<li><p>insert ignore表示，如果中已经存在相同的记录，则忽略当前新数据；</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744787.png" alt="image.png" style="zoom:50%;" />
+
+<p><strong>日期和字符应该使用单引号包括</strong></p>
+</li>
+</ul>
+</li>
+<li><p>插入空值</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744822.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>插入指定的值</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744836.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>从其他表中拷贝数据</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744856.png" alt="image.png" style="zoom:50%;" /></li>
+</ul>
+<h3 id="更新数据"><a href="#更新数据" class="headerlink" title="更新数据"></a>更新数据</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744862.png" alt="image.png" style="zoom:50%;" />
+
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744888.png" alt="image.png" style="zoom:50%;" />
+
+<h2 id="常见函数"><a href="#常见函数" class="headerlink" title="常见函数"></a>常见函数</h2><p>详细参考</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/mysql/mysql-functions.html">菜鸟教程：mysql函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/shoshana-kong/p/11049983.html">CSDN：mysql函数</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39010770/article/details/87862407">窗口函数</a></li>
+</ul>
+<h3 id="字符函数"><a href="#字符函数" class="headerlink" title="字符函数"></a>字符函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744547.png" alt="image.png" style="zoom:50%;" />
+
+<h4 id="大小写控制函数"><a href="#大小写控制函数" class="headerlink" title="大小写控制函数"></a>大小写控制函数</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744561.png" alt="image.png" style="zoom:50%;" />
+
+<h4 id="字符控制函数"><a href="#字符控制函数" class="headerlink" title="字符控制函数"></a>字符控制函数</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744587.png" alt="image.png" style="zoom:50%;" />
+
+<ul>
+<li>对于CONCAT函数，还有<strong>concat_ws()函数</strong>、<strong>group_concat</strong>，详见<a target="_blank" rel="noopener" href="https://blog.csdn.net/harry5508/article/details/102481017">CONCAT函数相关</a></li>
+</ul>
+<h3 id="数学函数"><a href="#数学函数" class="headerlink" title="数学函数"></a>数学函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744592.png" alt="image.png" style="zoom:50%;" />
+
+<h3 id="日期函数"><a href="#日期函数" class="headerlink" title="日期函数"></a>日期函数</h3><ul>
+<li>now 获取当前日期</li>
+<li>str_to_date 将日期格式的字符转换成指定格式的日期</li>
+<li>date_format 将日期转换成字符</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744619.png" alt="image.png" style="zoom:50%;" />
+
+<h3 id="流程控制函数"><a href="#流程控制函数" class="headerlink" title="流程控制函数"></a>流程控制函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744632.png" alt="image.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308103243131.png" alt="image-20220308103243131" style="zoom:50%;" />
+
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/2019022312202720.png" alt="mysql窗口函数"></p>
+<p>窗口：记录集合<br>窗口函数：在满足某些条件的记录集合上执行的特殊函数，<strong>对于每条记录都要在此窗口内执行函数</strong>。有的函数随着记录的不同，窗口大小都是固定的，称为静态窗口；有的函数则相反，不同的记录对应着不同的窗口，称为滑动窗口。</p>
+<ul>
+<li><p>窗口函数和普通聚合函数的区别：</p>
+<ul>
+<li><strong>聚合函数是将多条记录聚合为一条；窗口函数是每条记录都会执行，有几条记录执行完还是几条</strong>。</li>
+<li>聚合函数也可以用于窗口函数。</li>
+</ul>
+</li>
+<li><p>窗口函数的基本用法：</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">函数名 <span class="token keyword">OVER</span> 子句<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>over关键字用来指定函数执行的窗口范围，若后面括号中什么都不写，则意味着窗口包含满足WHERE条件的所有行，窗口函数基于所有行进行计算；如果不为空，则支持以下4中语法来设置窗口。</p>
+<ul>
+<li>window_name：给窗口指定一个别名。如果SQL中涉及的窗口较多，采用别名可以看起来更清晰易读；</li>
+<li>PARTITION BY 子句：窗口按照哪些字段进行分组，窗口函数在不同的分组上分别执行；</li>
+<li>ORDER BY子句：按照哪些字段进行排序，窗口函数将按照排序后的记录顺序进行编号；</li>
+<li>FRAME子句：FRAME是当前分区的一个子集，子句用来定义子集的规则，通常用来作为滑动窗口使用。</li>
+</ul>
+</li>
+<li><p>示例</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">mysql<span class="token operator">></span> SELECT *
+    -<span class="token operator">></span> FROM<span class="token punctuation">(</span>
+    -<span class="token operator">></span>     SELECT
+    -<span class="token operator">></span>     ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> OVER <span class="token punctuation">(</span>PARTITION BY stu_id ORDER BY score DESC<span class="token punctuation">)</span> AS score_order1,
+    -<span class="token operator">></span>     RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> OVER <span class="token punctuation">(</span>PARTITION BY stu_id ORDER BY score DESC<span class="token punctuation">)</span> AS score_order2,
+    -<span class="token operator">></span>     DENSE_RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> OVER <span class="token punctuation">(</span>PARTITION BY stu_id ORDER BY score DESC<span class="token punctuation">)</span> AS score_order3,
+    -<span class="token operator">></span>     stu_id, lesson_id, score
+    -<span class="token operator">></span>     FROM t_score<span class="token punctuation">)</span> t
+    -<span class="token operator">></span> WHERE stu_id <span class="token operator">=</span> <span class="token number">1</span> AND score_order1 <span class="token operator">&lt;=</span> <span class="token number">3</span> AND score_order2 <span class="token operator">&lt;=</span> <span class="token number">3</span> AND score_order3 <span class="token operator">&lt;=</span> <span class="token number">3</span>
+    -<span class="token operator">></span> <span class="token punctuation">;</span>
++--------------+--------------+--------------+--------+-----------+-------+
+<span class="token operator">|</span> score_order1 <span class="token operator">|</span> score_order2 <span class="token operator">|</span> score_order3 <span class="token operator">|</span> stu_id <span class="token operator">|</span> lesson_id <span class="token operator">|</span> score <span class="token operator">|</span>
++--------------+--------------+--------------+--------+-----------+-------+
+<span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>      <span class="token number">1</span> <span class="token operator">|</span> L005      <span class="token operator">|</span>    <span class="token number">98</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">2</span> <span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>            <span class="token number">1</span> <span class="token operator">|</span>      <span class="token number">1</span> <span class="token operator">|</span> L001      <span class="token operator">|</span>    <span class="token number">98</span> <span class="token operator">|</span>
+<span class="token operator">|</span>            <span class="token number">3</span> <span class="token operator">|</span>            <span class="token number">3</span> <span class="token operator">|</span>            <span class="token number">2</span> <span class="token operator">|</span>      <span class="token number">1</span> <span class="token operator">|</span> L004      <span class="token operator">|</span>    <span class="token number">88</span> <span class="token operator">|</span>
++--------------+--------------+--------------+--------+-----------+-------+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>ROW_NUMBER()：顺序排序——1、2、3<br>RANK()：并列排序，跳过重复序号——1、1、3<br>DENSE_RANK()：并列排序，不跳过重复序号——1、1、2</p>
+</li>
+</ul>
+<h2 id="创建和管理表"><a href="#创建和管理表" class="headerlink" title="创建和管理表"></a>创建和管理表</h2><ul>
+<li>创建数据库</li>
+<li>创建表</li>
+<li>描述各种数据类型</li>
+<li>修改表的定义</li>
+<li>删除，重命名和清空表</li>
+</ul>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><h4 id="命名规则"><a href="#命名规则" class="headerlink" title="命名规则"></a>命名规则</h4><ul>
+<li>数据库名不得超过30个字符，变量名限制为29个</li>
+<li>必须只能包含A-Z， a-z， 0-9，_，共63个字符</li>
+<li>不能在对象名的字符间留空格</li>
+<li>必须不能和用户定义的其他对象名重名</li>
+<li>必须保证你的字段没有和保留字、数据库系统或常用方法冲突</li>
+<li>保持字段名和类型的一致性，在命名字段并为其指定数据类型的时候一定要保证一致性。假如数据类型在一个表里是整数，那在另一个表里可就别变成字符型了</li>
+</ul>
+<h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/829.png" alt="img" style="zoom:50%;" />
+
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204744963.png" alt="image.png" style="zoom:50%;" />
+
+<p><strong>注意：</strong></p>
+<ul>
+<li><p>在创建MySQL数据库和表时，数据库名、表名和字段名外面的符号 ` 不是单引号，而是英文输入法的反单引号，同键盘~同一位置。</p>
+<p>是为了避免你的表名和字段名 和数据库SQL中的关键字冲突。但也可以不加。</p>
+</li>
+<li><p>此外，需要注意，有部分程序员喜欢从网页上拷贝别人博客中的SQL脚本，在拷贝-粘贴的过程中容易将反单引号不经意间变为单引号，从而造成导入SQL脚本错误，请大家在开发时特别小心！！！</p>
+</li>
+</ul>
+<h4 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/874.png" alt="img" style="zoom:50%;" />
+
+<h4 id="使用子查询创建表"><a href="#使用子查询创建表" class="headerlink" title="使用子查询创建表"></a>使用子查询创建表</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745030.png" alt="image.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745018-5057265.png" alt="image.png" style="zoom:50%;" />
+
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><h4 id="ALTER-TABLE-语句"><a href="#ALTER-TABLE-语句" class="headerlink" title="ALTER TABLE 语句"></a>ALTER TABLE 语句</h4><ul>
+<li><p>可以实现：</p>
+<ul>
+<li>向已有的表中添加列</li>
+<li>修改现有表中的列</li>
+<li>删除现有表中的列</li>
+<li>重命名现有表中的列</li>
+</ul>
+</li>
+<li><p>追加一个新列</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745042.png" style="zoom:70%;" /></li>
+<li><p>修改一个列</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745079.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>删除一个列</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745045.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>重命名一个列</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745056.png" alt="image.png" style="zoom:50%;" /></li>
+<li><p>总结如下：</p>
+<ul>
+<li><strong>ALTER TABLE 表名 ADD 列名/索引/主键/外键等；</strong></li>
+<li><strong>ALTER TABLE 表名 DROP 列名/索引/主键/外键等；</strong></li>
+<li><strong>ALTER TABLE 表名 ALTER 仅用来改变某列的默认值；</strong></li>
+<li><strong>ALTER TABLE 表名 RENAME 列名/索引名 TO 新的列名/新索引名；</strong></li>
+<li><strong>ALTER TABLE 表名 RENAME TO/AS 新表名;</strong></li>
+<li><strong>ALTER TABLE 表名 MODIFY 列的定义但不改变列名；</strong></li>
+<li><strong>ALTER TABLE 表名 CHANGE 列名和定义都可以改变。</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745062.png" alt="image.png" style="zoom:50%;" />
+
+<h4 id="清空表"><a href="#清空表" class="headerlink" title="清空表"></a>清空表</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745096.png" alt="image.png" style="zoom:50%;" />
+
+<h4 id="改变对象的名称"><a href="#改变对象的名称" class="headerlink" title="改变对象的名称"></a>改变对象的名称</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745102.png" alt="image.png" style="zoom:50%;" />
+
+<h2 id="约束和分页"><a href="#约束和分页" class="headerlink" title="约束和分页"></a>约束和分页</h2><ul>
+<li>描述约束</li>
+<li>创建和维护约束</li>
+<li>数据库分页</li>
+</ul>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h4 id="什么是约束"><a href="#什么是约束" class="headerlink" title="什么是约束"></a>什么是约束</h4><ul>
+<li>为了保证数据的一致性和完整性，SQL规范以约束的方式对表数据进行额外的条件限制。</li>
+<li>约束是<strong>表级</strong>的强制规定</li>
+<li>可以在创建表时规定约束（通过 CREATETABLE 语句），或者在表创建之后也可以（通<br>过 ALTER TABLE 语句）</li>
+</ul>
+<h4 id="约束分类"><a href="#约束分类" class="headerlink" title="约束分类"></a>约束分类</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745121.png" style="zoom:50%;" />
+
+<ul>
+<li>根据约束数据列的限制，约束可分为：<br>单列约束：每个约束只约束一列<br>多列约束：每个约束可约束多列数据</li>
+<li>根据约束的作用范围，约束可分为：<br>列级约束只能作用在一个列上，跟在列的定义后面<br>表级约束可以作用在多个列上，不与列一起，而是单独定义</li>
+</ul>
+<h5 id="NOT-NULL约束"><a href="#NOT-NULL约束" class="headerlink" title="NOT NULL约束"></a><strong>NOT NULL约束</strong></h5><ul>
+<li><p>非空约束用于<em>确保当前列的值不为空值</em>，非空约束只能出现在表对象的列上。</p>
+</li>
+<li><p>Null类型特征：<br>类型的值都可以是null，包括int、float等数据类型<br>空字符串””不等于null，0也不等于null</p>
+</li>
+<li><p>创建not null 约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> emp<span class="token punctuation">(</span>
+	id <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+  name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span> <span class="token keyword">default</span> <span class="token string">'abc'</span><span class="token punctuation">;</span>
+  sex <span class="token keyword">char</span> <span class="token boolean">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>取消not null 约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp
+<span class="token keyword">modify</span> sex <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span> <span class="token boolean">null</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h5 id="UNIQUE约束"><a href="#UNIQUE约束" class="headerlink" title="UNIQUE约束"></a><strong>UNIQUE约束</strong></h5><ul>
+<li><p>唯一约束，允许出现多个空值：NULL</p>
+</li>
+<li><p>同一个表可以有多个唯一约束，多个列组合的约束。在创建唯一约束的时候，如果不给唯一约束名称，就<br>默认和列名相同。</p>
+</li>
+<li><p><strong>MySQL会给唯一约束的列上默认创建一个唯一索引</strong></p>
+</li>
+<li><p>添加唯一约束</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308111034544.png" alt="image-20220308111034544" style="zoom:70%;" /></li>
+<li><p>删除约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> <span class="token keyword">user</span>
+<span class="token keyword">drop</span> <span class="token keyword">index</span> uk_name_pwd<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h5 id="PRIMARY-KEY约束"><a href="#PRIMARY-KEY约束" class="headerlink" title="PRIMARY KEY约束"></a><strong>PRIMARY KEY约束</strong></h5><ul>
+<li><p>主键约束相当于<strong>唯一约束+非空约束的组合</strong>，主键约束列不允许重复，也不允许出现空值</p>
+</li>
+<li><p>如果是多列组合的主键约束，那么这些列都不允许为空值，并且组合的值不允许重复。</p>
+</li>
+<li><p>每个表最多只允许一个主键，建立主键约束可以在列级别创建，也可以在表级别上创建。</p>
+</li>
+<li><p>MySQL的主键名总是PRIMARY，当创建主键约束时，系统默认会在所在的列和列组合上建立对应的<br>唯一索引。</p>
+</li>
+<li><p>创建主键约束</p>
+<img src="/Users/qianhao/Jason/个人学习/Blog/Jason-QianHao.github.io-1.2/Jason-QianHao.github.io-1.2/assets/MySQL/1240-20210630204745165.png" style="zoom:50%;" /></li>
+<li><p>删除主键约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp5
+<span class="token keyword">drop</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>添加主键约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp5
+<span class="token keyword">add</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> pws<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>修改主键约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp5
+<span class="token keyword">modify</span> id <span class="token keyword">int</span> <span class="token keyword">primary</span> <span class="token keyword">key</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h5 id="FOREIGN-KEY约束"><a href="#FOREIGN-KEY约束" class="headerlink" title="FOREIGN KEY约束"></a><strong>FOREIGN KEY约束</strong></h5><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745197.png" style="zoom:50%;" />
+
+<ul>
+<li><p>外键约束是保证一个或两个表之间的参照完整性，外键是构建于一个表的两个字段或是两个表的两个字段之间的参照关系。</p>
+</li>
+<li><p>从表的外键值必须在主表中能找到或者为空。当主表的记录被从表参照时，主表的记录将不允许删除，如果要删除数据，需要先删除从表中依赖该记录的数据，然后才可以删除主表的数据。</p>
+</li>
+<li><p>还有一种就是级联删除子表数据。</p>
+</li>
+<li><p>注意：外键约束的参照列，在主表中引用的只能是主键或唯一键约束的列</p>
+</li>
+<li><p>同一个表可以有多个外键约束</p>
+</li>
+<li><p>创建外键约束</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308111522914.png" alt="image-20220308111522914" style="zoom:67%;" /></li>
+<li><p>创建多列外键组合，必须使用表级约束</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308111649446.png" alt="image-20220308111649446" style="zoom:67%;" /></li>
+<li><p>删除外键约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp
+<span class="token keyword">drop</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span> emp_dept_id_fk<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>增加外键约束</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">alter</span> <span class="token keyword">table</span> emp
+<span class="token keyword">add</span> <span class="token punctuation">[</span><span class="token keyword">CONSTRAINT</span> emp_dept_id_fk<span class="token punctuation">]</span> <span class="token keyword">foreign</span> <span class="token keyword">key</span><span class="token punctuation">(</span>dept_id<span class="token punctuation">)</span> <span class="token keyword">references</span> dept<span class="token punctuation">(</span>dept_id<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h5 id="CHECK约束"><a href="#CHECK约束" class="headerlink" title="CHECK约束"></a><strong>CHECK约束</strong></h5><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308111933447.png" alt="image-20220308111933447" style="zoom:50%;" />
+
+<h3 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h3><h4 id="limit分页"><a href="#limit分页" class="headerlink" title="limit分页"></a>limit分页</h4><ul>
+<li>背景<br>查询返回的记录太多了，查看起来很不方便，怎么样能够实现分页查询呢？</li>
+<li>分页原理<br>所谓分页显示，就是将数据库中的结果集，一段一段显示出来需要的条件</li>
+</ul>
+<h4 id="分页实现"><a href="#分页实现" class="headerlink" title="分页实现"></a>分页实现</h4>  <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745225.png" style="zoom:50%;" />
+
+<h2 id="事物"><a href="#事物" class="headerlink" title="事物"></a>事物</h2><ul>
+<li>事务的概念和特性</li>
+<li>事务的隔离级别</li>
+<li>事务的案例演示</li>
+</ul>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>（1）概念<br>事务由单独单元的一个或多个SQL语句组成，在这个单元中，每个MySQL语句是相互依赖的。而整个单独单元作为一个不可分割的整体，如果单元中某条SQL语句一旦执行失败或产生错误，整个单元将会回滚。所有受到影响的数据将返回到事物开始以前的状态；如果单元中的所有SQL语句均执行成功，则事物被顺利执行。<br>（2）存储引擎和事物</p>
+<ul>
+<li>通过show engines；来查看mysql支持的存储引擎。</li>
+<li>在mysql中用的最多的存储引擎有：innodb，myisam ,memory 等。其中innodb支持事务，而myisam、memory等不支持事务</li>
+</ul>
+<h3 id="事物的特点"><a href="#事物的特点" class="headerlink" title="事物的特点"></a>事物的特点</h3><p>事务的ACID(acid)属性</p>
+<ul>
+<li>原子性（Atomicity）<br>原子性是指事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。</li>
+<li>一致性（Consistency）<br>事务必须使数据库从一个一致性状态变换到另外一个一致性状态</li>
+<li>隔离性（Isolation）<br>事务的隔离性是指一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对并发的其他事务是隔离的，并发执行的各个事务之间不能互相干扰。</li>
+<li>持久性（Durability）<br>持久性是指一个事务一旦被提交，它对数据库中数据的改变就是永久性的，接下来的其他操作和数据库故障不应该对其有任何影响</li>
+</ul>
+<h3 id="事物的使用"><a href="#事物的使用" class="headerlink" title="事物的使用"></a>事物的使用</h3><ul>
+<li>以第一个 DML 语句的执行作为开始</li>
+<li>以下面的其中之一作为结束:<br><code>COMMIT 或 ROLLBACK 语句</code><br><code>DDL 或 DCL 语句（自动提交）</code><br><code>用户会话正常结束</code><br><code>系统异常终了</code></li>
+</ul>
+<h3 id="数据库的隔离级别"><a href="#数据库的隔离级别" class="headerlink" title="数据库的隔离级别"></a>数据库的隔离级别</h3><p>（1）事物与事物</p>
+<ul>
+<li>对于同时运行的多个事务, 当这些事务访问数据库中相同的数据时, 如果没有采取必要的隔离机制, 就会导致各种并发问题: </li>
+</ul>
+<blockquote>
+<p>脏读: 对于两个事务 T1, T2, T1 读取了已经被 T2 更新但还没有被提交的字段.<br>之后, 若 T2 回滚, T1读取的内容就是临时且无效的. </p>
+</blockquote>
+<blockquote>
+<p>不可重复读: 对于两个事务T1, T2, T1 读取了一个字段, 然后 T2 更新了该字段.<br>之后, T1再次读取同一个字段, 值就不同了.</p>
+</blockquote>
+<blockquote>
+<p>幻读: 对于两个事务T1, T2, T1 从一个表中读取了一个字段, 然后 T2 在该表中插 入了一些新的行. 之后, 如果 T1 再次读取同一个表, 就会多出几行. </p>
+</blockquote>
+<ul>
+<li>数据库事务的隔离性: 数据库系统必须具有隔离并发运行各个事务的能力, 使它们不会相互影响, 避免各种并发问题. </li>
+<li>一个事务与其他事务隔离的程度称为隔离级别. 数据库规定了多种事务隔离级别, 不同隔离级别对应不同的干扰程度, 隔离级别越高, 数据一致性就越好, 但并发性越弱.</li>
+</ul>
+<p>（2）数据库的隔离级别</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210630211034873.png" alt="image-20210630211034873" style="zoom:40%;" />
+
+<p>（3）设置隔离级别</p>
+<ul>
+<li>每启动一个 mysql 程序, 就会获得一个单独的数据库连接. 每个数据库连接都有一个全局变量 @@tx_isolation, 表示当前的事务隔离级别. </li>
+<li>查看当前的隔离级别: ·SELECT @@tx_isolation·;</li>
+<li>设置当前 mySQL 连接的隔离级别:<br><code>set transaction isolation level read committed; </code></li>
+<li>设置数据库系统的全局的隔离级别:<br><code>set global transaction isolation level read committed;</code></li>
+</ul>
+<h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><ul>
+<li>什么是视图</li>
+<li>创建或修改视图</li>
+<li>删除视图</li>
+<li>查看视图</li>
+</ul>
+<h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>（1）什么是视图</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745253.png" style="zoom:50%;" />
+
+<p>（2）视图的好处</p>
+<ul>
+<li>重用sql语句</li>
+<li>简化复杂的sql操作，不必知道它的查询细节</li>
+<li>保护数据，提高安全性</li>
+</ul>
+<h3 id="操作视图"><a href="#操作视图" class="headerlink" title="操作视图"></a>操作视图</h3><p>(1) 创建和修改</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745275.png" style="zoom:50%;" />
+
+<p><strong>视图的可更新性和视图中查询的定义有关系，以下类型的视图是不能更新的。</strong></p>
+<ul>
+<li>包含以下关键字的sql语句：<code>分组函数、distinct、group by、having、union或者union all</code></li>
+<li>常量视图</li>
+<li>Select中包含子查询</li>
+<li>join</li>
+<li>from一个不能更新的视图</li>
+<li>where子句的子查询引用了from子句中的表</li>
+</ul>
+<p>(2) 删除视图</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745263.png" alt="image.png" style="zoom:50%;" />
+
+<p>(3) 查看视图</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745287.png" style="zoom:50%;" />
+
+<h2 id="存储过程和函数"><a href="#存储过程和函数" class="headerlink" title="存储过程和函数"></a>存储过程和函数</h2><ul>
+<li>什么是存储过程和函数</li>
+<li>使用存储过程和函数的好处</li>
+<li>创建存储过程和函数</li>
+<li>修改存储过程和函数</li>
+<li>调用存储过程和函数</li>
+<li>查看存储过程和函数</li>
+</ul>
+<h3 id="什么是存储过程和函数"><a href="#什么是存储过程和函数" class="headerlink" title="什么是存储过程和函数"></a>什么是存储过程和函数</h3><ul>
+<li>存储过程和函数：<br>事先经过编译并存储在数据库中的一段sql语句的集合。</li>
+<li>使用好处：<br>简化应用开发人员的很多工作<br>减少数据在数据库和应用服务器之间的传输<br>提高了数据处理的效率</li>
+</ul>
+<h3 id="创建存储过程和函数"><a href="#创建存储过程和函数" class="headerlink" title="创建存储过程和函数"></a>创建存储过程和函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745316.png" style="zoom: 50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745324.png" style="zoom:50%;" />
+
+<h3 id="修改、删除、查看存储过程和函数"><a href="#修改、删除、查看存储过程和函数" class="headerlink" title="修改、删除、查看存储过程和函数"></a>修改、删除、查看存储过程和函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745334.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745360.png" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745381.png" style="zoom:50%;" />
+
+<h3 id="调用存储过程和函数"><a href="#调用存储过程和函数" class="headerlink" title="调用存储过程和函数"></a>调用存储过程和函数</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745355.png" style="zoom:50%;" />
+
+<ul>
+<li>举例使用场景：</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745368.png" alt="image.png" style="zoom:50%;" />
+
+<h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><p>详细内容参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/babycan5/article/details/82789099">MySQL | 触发器</a>，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41177699/article/details/80302987">MySQL数据库触发器讲解与案例</a></p>
+<h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p><strong>触发器</strong>是一种特殊类型的存储过程，它不同于存储过程，主要是通过事件触发而被执行的，即不是主动调用而执行的；而存储过程则需要主动调用其名字执行</p>
+<p>触发器：trigger，是指事先为某张表绑定一段代码，当表中的某些内容发生改变（增、删、改）的时候，系统会自动触发代码并执行。</p>
+<h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">create trigger 触发器名字 触发时间 触发事件 on 表 for each row
+begin
+    -- 触发器内容主体，每行用分号结尾
+end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><p>（1）case结构——作为表达式</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745352.png" style="zoom:50%;" />
+
+<p>（2）case结构——作为独立的语句</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745382.png" style="zoom:50%;" />
+
+<p>（3）循环结构</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745392.png" style="zoom:50%;" />
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2020/10/22/sql-ji-chu-zhi-shi/">https://jason-qianhao.github.io/2020/10/22/sql-ji-chu-zhi-shi/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/SQL/">
+                                    <span class="chip bg-color">SQL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/26/java-ji-chu-ji-he/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/35.jpg" class="responsive-img" alt="Java基础+集合">
+                        
+                        <span class="card-title">Java基础+集合</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-26
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/14/javaweb/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="JavaWeb">
+                        
+                        <span class="card-title">JavaWeb</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8EWeb%E5%AE%89%E5%85%A8/" class="post-category">
+                                    网络与Web安全
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BD%91%E7%BB%9C%E4%B8%8EWeb%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">网络与Web安全</span>
+                    </a>
+                    
+                    <a href="/tags/JavaWeb/">
+                        <span class="chip bg-color">JavaWeb</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

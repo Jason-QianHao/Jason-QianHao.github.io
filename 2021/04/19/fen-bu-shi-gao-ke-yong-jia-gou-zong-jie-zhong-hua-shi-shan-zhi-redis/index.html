@@ -1,0 +1,1782 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="《分布式高可用架构总结-中华石衫》之Redis, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>《分布式高可用架构总结-中华石衫》之Redis | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/28.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">《分布式高可用架构总结-中华石衫》之Redis</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/Redis/">
+                                <span class="chip bg-color">Redis</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    11.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    40 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录  </p>
+<ol>
+<li>为什么要用缓存</li>
+<li>用了缓存之后的不良后果</li>
+<li>Redis的线程模型</li>
+<li>为啥redis单线程模型也能效率这么高</li>
+<li>redis的数据类型和运用场景</li>
+<li>Redis的内存淘汰机制 </li>
+<li>redis如何通过读写分离来承载读请求QPS超过10万+？ </li>
+<li>关于Redis的主从复制</li>
+<li>哨兵机制 </li>
+<li>Redis持久化</li>
+<li>Redis Cluster集群 </li>
+<li>redis的并发竞争</li>
+<li>生产环境中的redis是怎么部署的</li>
+<li>总结</li>
+</ol>
+</blockquote>
+<h2 id="为什么要用缓存"><a href="#为什么要用缓存" class="headerlink" title="为什么要用缓存"></a>为什么要用缓存</h2><p>1）高性能</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621287-5361381.png" alt="img"></p>
+<p>  假设这么个场景，你有个操作，一个请求过来，吭哧吭哧你各种乱七八糟操作mysql，半天查出来一个结果，耗时600ms。但是这个结果可能接下来几个小时都不会变了，或者变了也可以不用立即反馈给用户。那么此时咋办？</p>
+<p>  缓存啊，折腾600ms查出来的结果，扔缓存里，一个key对应一个value，下次再有人查，别走mysql折腾600ms了。直接从缓存里，通过一个key查出来一个value，2ms搞定。性能提升300倍。</p>
+<p>  这就是所谓的高性能。就是把你一些复杂操作耗时查出来的结果，如果确定后面不咋变了，然后但是马上还有很多读请求，那么直接结果放缓存，后面直接读缓存就好了。</p>
+<p>2）高并发</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621282.png" alt="img"></p>
+<p>  mysql这么重的数据库，压根儿设计不是让你玩儿高并发的，虽然也可以玩儿，但是天然支持不好。mysql单机支撑到<strong>2000qps</strong>也开始容易报警了。</p>
+<p>  所以要是你有个系统，<strong>高峰期</strong>一秒钟过来的请求有1万，那一个mysql单机绝对会死掉。你这个时候就只能上缓存，把很多数据放缓存，别放mysql。缓存功能简单，说白了就是key-value式操作，单机支撑的并发量轻松一秒几万十几万，支撑高并发so easy。单机承载并发量是mysql单机的几十倍。</p>
+<h2 id="用了缓存之后的不良后果"><a href="#用了缓存之后的不良后果" class="headerlink" title="用了缓存之后的不良后果"></a>用了缓存之后的不良后果</h2><p>1）缓存与数据库双写不一致</p>
+<p>2）缓存雪崩</p>
+<p>3）缓存穿透</p>
+<p>4）缓存并发竞争</p>
+<h2 id="Redis的线程模型"><a href="#Redis的线程模型" class="headerlink" title="Redis的线程模型"></a>Redis的线程模型</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621287.png" alt="img"></p>
+<p>1）文件事件处理器</p>
+<p>  redis基于reactor模式开发了网络事件处理器，这个处理器叫做文件事件处理器，file event handler。这个文件事件处理器，是单线程的，redis才叫做单线程的模型，采用IO多路复用机制同时监听多个socket，根据socket上的事件来选择对应的事件处理器来处理这个事件。</p>
+<p>  文件事件处理器的结构包含4个部分：多个socket，IO多路复用程序，文件事件分派器，事件处理器（命令请求处理器、命令回复处理器、连接应答处理器，等等）。</p>
+<p>  多个socket可能并发的产生不同的操作，每个操作对应不同的文件事件，但是IO多路复用程序会监听多个socket，但是会将socket放入一个队列中排队，每次从队列中取出一个socket给事件分派器，事件分派器把socket给对应的事件处理器。</p>
+<p>2）文件事件</p>
+<p>  当socket变得可读时（比如客户端对redis执行write操作，或者close操作），或者有新的可以应答的sccket出现时（客户端对redis执行connect操作），socket就会产生一个AE_READABLE事件。</p>
+<p>当socket变得可写的时候（客户端对redis执行read操作），socket会产生一个AE_WRITABLE事件。</p>
+<p>IO多路复用程序可以同时监听AE_REABLE和AE_WRITABLE两种事件，要是一个socket同时产生了AE_READABLE和AE_WRITABLE两种事件，那么文件事件分派器<strong>优先处理AE_REABLE事件，然后才是AE_WRITABLE事件。</strong></p>
+<p>3）文件事件处理器</p>
+<p>如果是客户端要连接redis，那么会为socket关联连接应答处理器</p>
+<p>如果是客户端要写数据到redis，那么会为socket关联命令请求处理器</p>
+<p>如果是客户端要从redis读数据，那么会为socket关联命令回复处理器</p>
+<p>4）客户端与redis通信的一次流程</p>
+<p>  在redis启动初始化的时候，redis会将<strong>连接应答处理器跟AE_READABLE事件关联</strong>起来，接着如果一个客户端跟redis发起连接，此时会产生一个AE_READABLE事件，然后由连接应答处理器来处理跟客户端建立连接，创建客户端对应的socket，同时将这个socket的AE_READABLE事件跟命令请求处理器关联起来。</p>
+<p>  当客户端向redis发起请求的时候（不管是读请求还是写请求，都一样），首先就会在socket产生一个AE_READABLE事件，然后由对应的命令请求处理器来处理。这个命令请求处理器就会从socket中读取请求相关数据，然后进行执行和处理。</p>
+<p>  接着redis这边准备好了给客户端的响应数据之后，就会<strong>将socket的AE_WRITABLE事件跟命令回复处理器关联起来</strong>，当客户端这边准备好读取响应数据时，就会在socket上产生一个AE_WRITABLE事件，会由对应的命令回复处理器来处理，就是将准备好的响应数据写入socket，供客户端来读取。</p>
+<p>  命令回复处理器写完之后，就会<strong>删除</strong>这个socket的AE_WRITABLE事件和命令回复处理器的关联关系。</p>
+<h2 id="为啥redis单线程模型也能效率这么高"><a href="#为啥redis单线程模型也能效率这么高" class="headerlink" title="为啥redis单线程模型也能效率这么高"></a>为啥redis单线程模型也能效率这么高</h2><p>1）纯内存操作</p>
+<p>2）核心是基于非阻塞的IO多路复用机制</p>
+<p>3）单线程反而避免了多线程的频繁上下文切换问题（百度）</p>
+<h2 id="redis的数据类型和运用场景"><a href="#redis的数据类型和运用场景" class="headerlink" title="redis的数据类型和运用场景"></a>redis的数据类型和运用场景</h2><p>（1）string</p>
+<p>这是最基本的类型了，没啥可说的，就是普通的set和get，做简单的kv缓存</p>
+<p>（2）hash</p>
+<p>  这个是类似map的一种结构，这个一般就是可以将结构化的数据，比如一个对象（前提是这个对象没嵌套其他的对象）给缓存在redis里，然后每次读写缓存的时候，可以就操作hash里的某个字段。</p>
+<p>key=150</p>
+<p>value={</p>
+<p> “id”: 150,</p>
+<p> “name”: “zhangsan”,</p>
+<p> “age”: 20</p>
+<p>}</p>
+<p>hash类的数据结构，主要是用来存放一些对象，把一些简单的对象给缓存起来，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值</p>
+<p>（3）list</p>
+<p>有序列表，这个是可以玩儿出很多花样的</p>
+<p>· 微博，某个大v的粉丝，就可以以list的格式放在redis里去缓存</p>
+<p>key=某大v</p>
+<p>value=[zhangsan,lisi, wangwu]</p>
+<p>· 比如可以通过list存储一些列表型的数据结构，类似粉丝列表了、文章的评论列表了之类的东西</p>
+<p>· 比如可以通过lrange命令，就是从某个元素开始读取多少个元素，<strong>可以基于list实现分页查询</strong>，这个很棒的一个功能，基于redis实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西，性能高，就一页一页走</p>
+<p>· 比如可以搞个简单的消息队列，从list头怼进去，从list尾巴那里弄出来</p>
+<p>（4）set</p>
+<p>无序集合，自动去重</p>
+<p>直接基于set将系统里需要去重的数据扔进去，自动就给去重了，如果你需要对一些数据进行快速的全局去重，你当然也可以基于jvm内存里的HashSet进行去重，但是如果你的某个系统部署在多台机器上呢？得基于redis进行全局的set去重</p>
+<p>可以基于set玩儿交集、并集、差集的操作，比如交集吧，可以把两个人的粉丝列表整一个交集，看看俩人的共同好友是谁？对吧</p>
+<p>把两个大v的粉丝都放在两个set中，对两个set做交集</p>
+<p>（5）sorted set</p>
+<p>排序的set，去重但是可以排序，写进去的时候给一个分数，自动根据分数排序，这个可以玩儿很多的花样，最大的特点是有个分数可以自定义排序规则</p>
+<p>比如说你要是想根据时间对数据排序，那么可以写入进去的时候用某个时间作为分数，人家自动给你按照时间排序了</p>
+<p>排行榜：将每个用户以及其对应的什么分数写入进去，zadd board score username，接着zrevrange board 0 99，就可以获取排名前100的用户；zrank board username，可以看到用户在排行榜里的排名。</p>
+<h2 id="Redis的内存淘汰机制"><a href="#Redis的内存淘汰机制" class="headerlink" title="Redis的内存淘汰机制"></a>Redis的内存淘汰机制</h2><h3 id="往redis里写的数据怎么没了？"><a href="#往redis里写的数据怎么没了？" class="headerlink" title="往redis里写的数据怎么没了？"></a>往redis里写的数据怎么没了？</h3><p>  数据太多，内存满了，或者触发了什么条件，redis lru，自动给你清理掉了一些最近很少使用的数据</p>
+<p>redis的内存占用过多的时候，此时会进行内存淘汰，有如下一些策略：</p>
+<p>1）noeviction：当内存不足以容纳新写入数据时，新写入操作会报错，这个一般没人用吧，实在是太恶心了</p>
+<p>2）allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）</p>
+<p>3）allkeys-random：当内存不足以容纳新写入数据时，在键空间中，随机移除某个key，这个一般没人用吧，为啥要随机，肯定是把最近最少使用的key给干掉啊</p>
+<p>4）volatile-lru：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，移除最近最少使用的key（这个一般不太合适）</p>
+<p>5）volatile-random：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，随机移除某个key</p>
+<p>6）volatile-ttl：当内存不足以容纳新写入数据时，在设置了过期时间的键空间中，有更早过期时间的key优先移除</p>
+<h3 id="数据明明都过期了，怎么还占用着内存啊？"><a href="#数据明明都过期了，怎么还占用着内存啊？" class="headerlink" title="数据明明都过期了，怎么还占用着内存啊？"></a>数据明明都过期了，怎么还占用着内存啊？</h3><p>定期删除+惰性删除</p>
+<p>所谓定期删除，指的是redis默认是每隔100ms就随机抽取一些设置了过期时间的key，检查其是否过期，如果过期就删除。假设redis里放了10万个key，都设置了过期时间，你每隔几百毫秒，就检查10万个key，那redis基本上就死了，cpu负载会很高的，消耗在你的检查过期key上了。注意，这里可不是每隔100ms就遍历所有的设置过期时间的key，那样就是一场性能上的灾难。实际上redis是每隔100ms随机抽取一些key来检查和删除的。</p>
+<p>但是问题是，定期删除可能会导致很多过期key到了时间并没有被删除掉，那咋整呢？所以就是惰性删除了。这就是说，在你获取某个key的时候，redis会检查一下，这个key如果设置了过期时间那么是否过期了？如果过期了此时就会删除，不会给你返回任何东西。</p>
+<h2 id="redis如何通过读写分离来承载读请求QPS超过10万-？"><a href="#redis如何通过读写分离来承载读请求QPS超过10万-？" class="headerlink" title="redis如何通过读写分离来承载读请求QPS超过10万+？"></a>redis如何通过读写分离来承载读请求QPS超过10万+？</h2><h3 id="redis高并发跟整个系统的高并发之间的关系"><a href="#redis高并发跟整个系统的高并发之间的关系" class="headerlink" title="redis高并发跟整个系统的高并发之间的关系"></a>redis高并发跟整个系统的高并发之间的关系</h3><p>redis，你要搞高并发的话，不可避免，要把底层的缓存搞得很好</p>
+<p>mysql，高并发，做到了，那么也是通过一系列复杂的分库分表，订单系统，事务要求的，QPS到几万，比较高了</p>
+<p>要做一些电商的商品详情页，真正的超高并发，QPS上十万，甚至是百万，一秒钟百万的请求量</p>
+<p>光是redis是不够的，但是redis是整个大型的缓存架构中，支撑高并发的架构里面，非常重要的一个环节</p>
+<p>首先，你的底层的缓存中间件，缓存系统，必须能够支撑的起我们说的那种高并发，其次，再经过良好的整体的缓存架构的设计（多级缓存架构、热点缓存），支撑真正的上十万，甚至上百万的高并发</p>
+<h3 id="redis不能支撑高并发的瓶颈在哪里？"><a href="#redis不能支撑高并发的瓶颈在哪里？" class="headerlink" title="redis不能支撑高并发的瓶颈在哪里？"></a>redis不能支撑高并发的瓶颈在哪里？</h3><p>单机</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621291.png" alt="img"></p>
+<h3 id="如果redis要支撑超过10万-的并发，那应该怎么做？"><a href="#如果redis要支撑超过10万-的并发，那应该怎么做？" class="headerlink" title="如果redis要支撑超过10万+的并发，那应该怎么做？"></a>如果redis要支撑超过10万+的并发，那应该怎么做？</h3><p>单机的redis几乎不太可能说QPS超过10万+，除非一些特殊情况，比如你的机器性能特别好，配置特别高，物理机，维护做的特别好，而且你的整体的操作不是太复杂</p>
+<p>单机在几万</p>
+<p>读写分离，一般来说，对缓存，一般都是用来支撑读高并发的，写的请求是比较少的，可能写请求也就一秒钟几千，一两千</p>
+<p>大量的请求都是读，一秒钟二十万次读</p>
+<p>读写分离</p>
+<p><strong>主从架构 -&gt;</strong> <strong>读写分离 -&gt;</strong> <strong>支撑10万+读QPS的架构</strong></p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621300.png" alt="img"></p>
+<h2 id="关于Redis的主从复制"><a href="#关于Redis的主从复制" class="headerlink" title="关于Redis的主从复制"></a>关于Redis的主从复制</h2><h3 id="redis-replication的核心机制"><a href="#redis-replication的核心机制" class="headerlink" title="redis replication的核心机制"></a>redis replication的核心机制</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621329.png" alt="img"></p>
+<p>（1）redis采用<strong>异步方式</strong>复制数据到slave节点，不过redis 2.8开始，slave node会周期性地确认自己每次复制的数据量</p>
+<p>（2）一个master node是可以配置多个slave node的</p>
+<p>（3）slave node也可以连接其他的slave node</p>
+<p>（4）slave node做复制的时候，是不会block master node的正常工作的</p>
+<p>（5）<strong>slave node在做复制的时候，也不会block对自己的查询操作，它会用旧的数据集来提供服务; 但是复制完成的时候，需要删除旧数据集，加载新数据集，这个时候就会暂停对外服务了</strong></p>
+<p>（6）slave node主要用来进行横向扩容，做读写分离，扩容的slave node可以提高读的吞吐量</p>
+<p>slave，高可用性，有很大的关系</p>
+<h3 id="master持久化对于主从架构的安全保障的意义"><a href="#master持久化对于主从架构的安全保障的意义" class="headerlink" title="master持久化对于主从架构的安全保障的意义"></a>master持久化对于主从架构的安全保障的意义</h3><p><strong>如果采用了主从架构，那么建议必须开启master node****的持久化</strong>！</p>
+<p>（1）不建议用slave node作为master node的数据热备，因为那样的话，如果你关掉master的持久化，<strong>可能在master宕机重启的时候数据是空的，然后可能一经过复制，salve node数据也丢了</strong></p>
+<p>  ·master -&gt; RDB和AOF都关闭了 -&gt; 全部在内存中</p>
+<p>  ·master宕机，重启，是没有本地数据可以恢复的，然后就会直接认为自己IDE数据是空的</p>
+<p>  ·master就会将空的数据集同步到slave上去，所有slave的数据全部清空</p>
+<p>100%的数据丢失，故master节点，必须要使用持久化机制</p>
+<p>（2）第二个，master的各种备份方案，要不要做，万一说本地的所有文件丢失了; 从备份中挑选一份rdb去恢复master; 这样才能确保master启动的时候，是有数据的</p>
+<p>即使采用了后续讲解的高可用机制，slave node可以自动接管master node，但是也可能sentinal还没有检测到master failure，master node就自动重启了，还是可能导致上面的所有slave node数据清空故障</p>
+<h3 id="主从复制底层原理"><a href="#主从复制底层原理" class="headerlink" title="主从复制底层原理"></a>主从复制底层原理</h3><p>（1）主从架构的核心原理</p>
+<p>当启动一个slave node的时候，它会发送一个<strong>PSYNC</strong>命令给master node</p>
+<p>如果这是slave node重新连接master node，那么master node仅仅会复制给slave部分缺少的数据; 否则<strong>如果是slave node第一次连接master node，那么会触发一次full resynchronization</strong></p>
+<p>开始full resynchronization的时候，master会启动一个<strong>后台线程，开始生成一份RDB快照文件</strong>，<strong>同时还会将从客户端收到的所有写命令缓存在内存中</strong>。RDB文件生成完毕之后，master会将这个RDB发送给slave，<strong>slave会先写入本地磁盘，然后再从本地磁盘加载到内存中</strong>。然后master会将内存中缓存的写命令发送给slave（<strong>异步</strong>），slave也会同步这些数据。</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621347.png" alt="img"></p>
+<p>slave node如果跟master node有网络故障，断开了连接，会自动重连。master如果发现有多个slave node都来重新连接，仅仅会启动一个rdb save操作，用一份数据服务所有slave node。</p>
+<p>（2）主从复制的<strong>断点续传</strong></p>
+<p>从redis 2.8开始，就支持主从复制的断点续传，如果主从复制过程中，网络连接断掉了，那么可以接着上次复制的地方，继续复制下去，而不是从头开始复制一份</p>
+<p>master node会在内存中常见一个backlog，<strong>master和slave都会保存一个replica offset还有一个master id</strong>，offset就是保存在backlog中的。如果master和slave网络连接断掉了，slave会让master从上次的replica offset开始继续复制</p>
+<p>但是如果没有找到对应的offset，那么就会执行一次resynchronization</p>
+<p>（3）无磁盘化复制</p>
+<p>master在内存中直接创建rdb，然后发送给slave，不会在自己本地落地磁盘了</p>
+<p>repl-diskless-sync</p>
+<p>repl-diskless-sync-delay，等待一定时长再开始复制，因为要等更多slave重新连接过来</p>
+<p>（4）过期key处理</p>
+<p>slave不会过期key，只会<strong>等待master过期key</strong>。如果master过期了一个key，或者通过LRU淘汰了一个key，那么会<strong>模拟一条del命令发送给slave</strong>。</p>
+<h2 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="哨兵的介绍"><a href="#哨兵的介绍" class="headerlink" title="哨兵的介绍"></a>哨兵的介绍</h4><p>sentinal，中文名是哨兵</p>
+<p><strong>·</strong> 哨兵是redis集群架构中非常重要的一个组件，主要功能如下</p>
+<p>（1）集群监控，负责监控redis master和slave进程是否正常工作</p>
+<p>（2）消息通知，如果某个redis实例有故障，那么哨兵负责发送消息作为报警通知给管理员</p>
+<p>（3）故障转移，如果master node挂掉了，会自动转移到slave node上</p>
+<p>（4）配置中心，如果故障转移发生了，通知client客户端新的master地址</p>
+<p><strong>·</strong> 哨兵本身也是分布式的，作为一个哨兵集群去运行，互相协同工作</p>
+<p>（1）故障转移时，判断一个master node是宕机了，需要大部分的哨兵都同意才行，涉及到了分布式选举的问题</p>
+<p>（2）即使部分哨兵节点挂掉了，哨兵集群还是能正常工作的，因为如果一个作为高可用机制重要组成部分的故障转移系统本身是单点的，那就很坑爹了</p>
+<h4 id="哨兵的核心知识"><a href="#哨兵的核心知识" class="headerlink" title="哨兵的核心知识"></a>哨兵的核心知识</h4><p>（1）<strong>哨兵至少需要3个实例</strong>，来保证自己的健壮性</p>
+<p>（2）哨兵 + redis主从的部署架构，是<strong>不会保证数据零丢失的，只能保证redis集群的高可用性</strong></p>
+<p>（3）对于哨兵 + redis主从这种复杂的部署架构，尽量在测试环境和生产环境，都进行充足的测试和演练</p>
+<h4 id="为什么redis哨兵集群只有2个节点无法正常工作？"><a href="#为什么redis哨兵集群只有2个节点无法正常工作？" class="headerlink" title="为什么redis哨兵集群只有2个节点无法正常工作？"></a>为什么redis哨兵集群只有2个节点无法正常工作？</h4><p>哨兵集群必须部署2个以上节点</p>
+<p>如果哨兵集群仅仅部署了个2个哨兵实例，quorum=1</p>
+<p>+—-+     +—-+</p>
+<p>| M1 |———|R1 |</p>
+<p>| S1 |     | S2 |</p>
+<p>+—-+     +—-+</p>
+<p>Configuration:quorum = 1</p>
+<p>master宕机，s1和s2中只要有1个哨兵认为master宕机就可以还行切换，同时s1和s2中会选举出一个哨兵来执行故障转移</p>
+<p>同时这个时候，<strong>需要majority</strong>，也就是大多数哨兵都是运行的，2个哨兵的majority就是2（2的majority=2，3的majority=2，5的majority=3，4的majority=2），2个哨兵都运行着，就可以允许执行故障转移</p>
+<p>但是如果整个M1和S1运行的机器宕机了，那么哨兵只有1个了，此时就没有majority来允许执行故障转移，虽然另外一台机器还有一个R1，但是故障转移不会执行</p>
+<h4 id="经典的3节点哨兵集群"><a href="#经典的3节点哨兵集群" class="headerlink" title="经典的3节点哨兵集群"></a>经典的3节点哨兵集群</h4><p>​    +—-+</p>
+<p>​    | M1 |</p>
+<p>​    | S1 |</p>
+<p>​    +—-+</p>
+<p>​     |</p>
+<p>+—-+  |  +—-+</p>
+<p>| R2 |—-+—-|R3 |</p>
+<p>| S2 |     | S3 |</p>
+<p>+—-+     +—-+</p>
+<p>Configuration:</p>
+<p>quorum = 2，majority</p>
+<p>如果M1所在机器宕机了，那么三个哨兵还剩下2个，S2和S3可以一致认为master宕机，然后选举出一个来执行故障转移</p>
+<p>同时3个哨兵的majority是2，所以还剩下的2个哨兵运行着，就可以允许执行故障转移</p>
+<h3 id="redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂"><a href="#redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂" class="headerlink" title="redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂"></a>redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂</h3><h4 id="两种数据丢失的情况"><a href="#两种数据丢失的情况" class="headerlink" title="两种数据丢失的情况"></a>两种数据丢失的情况</h4><p><strong>主备切换</strong>的过程，可能会导致数据丢失</p>
+<p>（1）<strong>异步复制</strong>导致的数据丢失</p>
+<p>因为master -&gt; slave的复制是异步的，所以可能有部分数据还没复制到slave，master就宕机了，此时这些部分数据就丢失了</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621331.png" alt="img"></p>
+<p>（2）<strong>脑裂</strong>导致的数据丢失</p>
+<p>脑裂，也就是说，某个master所在机器突然脱离了正常的网络，跟其他slave机器不能连接，但是实际上master还运行着</p>
+<p>此时哨兵可能就会认为master宕机了，然后开启选举，将其他slave切换成了master</p>
+<p>这个时候，集群里就会有两个master，也就是所谓的脑裂</p>
+<p>此时虽然某个slave被切换成了master，但是可能client还没来得及切换到新的master，还继续写向旧master的数据可能也丢失了</p>
+<p>因此旧master再次恢复的时候，会被作为一个slave挂到新的master上去，自己的数据会清空，重新从新的master复制数据</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621342.png" alt="img"></p>
+<h4 id="解决异步复制和脑裂导致的数据丢失"><a href="#解决异步复制和脑裂导致的数据丢失" class="headerlink" title="解决异步复制和脑裂导致的数据丢失"></a>解决异步复制和脑裂导致的数据丢失</h4><p>min-slaves-to-write 1</p>
+<p>min-slaves-max-lag 10</p>
+<p>要求至少有1个slave，数据复制和同步的延迟不能超过10秒</p>
+<p>如果说一旦所有的slave，数据复制和同步的延迟都超过了10秒钟，那么这个时候，master就不会再接收任何请求了</p>
+<p>上面两个配置可以减少异步复制和脑裂导致的数据丢失</p>
+<p>（1）减少异步复制的数据丢失</p>
+<p>有了min-slaves-max-lag这个配置，就可以确保说，一旦slave复制数据和ack延时太长，就认为可能master宕机后损失的数据太多了，那么就<strong>拒绝写请求</strong>，这样可以把master宕机时由于部分数据未同步到slave导致的数据丢失降低的可控范围内</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621395.png" alt="img"></p>
+<p>（2）减少脑裂的数据丢失</p>
+<p>如果一个master出现了脑裂，跟其他slave丢了连接，那么上面两个配置可以确保说，<strong>如果不能继续给指定数量的slave发送数据，而且slave超过10秒没有给自己ack消息，那么就直接拒绝客户端的写请求</strong></p>
+<p>这样脑裂后的旧master就不会接受client的新数据，也就避免了数据丢失</p>
+<p>上面的配置就确保了，如果跟任何一个slave丢了连接，在10秒后发现没有slave给自己ack，那么就拒绝新的写请求</p>
+<p>因此在脑裂场景下，最多就丢失10秒的数据</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621364.png" alt="img"></p>
+<h3 id="一些底层机制"><a href="#一些底层机制" class="headerlink" title="一些底层机制"></a>一些底层机制</h3><h4 id="哨兵集群的自动发现机制"><a href="#哨兵集群的自动发现机制" class="headerlink" title="哨兵集群的自动发现机制"></a>哨兵集群的自动发现机制</h4><p>哨兵互相之间的发现，是<strong>通过redis的pub/sub系统实现</strong>的，每个哨兵都会往**<strong>sentinel</strong>:hello**这个channel里发送一个消息，这时候所有其他哨兵都可以消费到这个消息，并感知到其他的哨兵的存在</p>
+<p>每隔两秒钟，每个哨兵都会往<strong>自己监控的某个master+slaves</strong>对应的__sentinel__:hello channel里发送一个消息，内容是自己的host、ip和runid还有对这个master的监控配置</p>
+<p>每个哨兵也会去监听自己监控的每个master+slaves对应的__sentinel__:hello channel，然后去感知到同样在监听这个master+slaves的其他哨兵的存在</p>
+<p>每个哨兵还会跟其他哨兵交换对master的监控配置，互相进行监控配置的同步</p>
+<h4 id="slave-gt-master选举算法"><a href="#slave-gt-master选举算法" class="headerlink" title="slave-&gt;master选举算法"></a>slave-&gt;master选举算法</h4><p>如果一个master被认为odown了，而且majority哨兵都允许了主备切换，那么某个哨兵就会执行主备切换操作，此时首先要选举一个slave来</p>
+<p>会考虑slave的一些信息</p>
+<p>（1）跟master断开连接的时长</p>
+<p>（2）slave优先级</p>
+<p>（3）复制offset</p>
+<p>（4）run id</p>
+<p>如果一个slave跟master断开连接已经超过了down-after-milliseconds的10倍，外加master宕机的时长，那么slave就被认为不适合选举为master</p>
+<p>(down-after-milliseconds* 10) + milliseconds_since_master_is_in_SDOWN_state</p>
+<p>接下来会对slave进行排序</p>
+<p>（1）按照slave优先级进行排序，slave priority越低，优先级就越高</p>
+<p>（2）如果slave priority相同，那么看replica offset，哪个slave复制了越多的数据，offset越靠后，优先级就越高</p>
+<p>（3）如果上面两个条件都相同，那么选择一个run id比较小的那个slave</p>
+<h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><h3 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h3><p>  redis持久化的意义，在于故障恢复</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621367.png" alt="img"></p>
+<p>如果没有持久化的话，redis遇到灾难性故障的时候，就会丢失所有的数据</p>
+<p>如果通过持久化将数据搞一份儿在磁盘上去，然后定期比如说同步和备份到一些云存储服务上去，那么就可以保证数据不丢失全部，还是可以恢复一部分数据回来的</p>
+<h3 id="RDB与AOF"><a href="#RDB与AOF" class="headerlink" title="RDB与AOF"></a>RDB与AOF</h3><h4 id="RDB和AOF两种持久化机制的介绍"><a href="#RDB和AOF两种持久化机制的介绍" class="headerlink" title="RDB和AOF两种持久化机制的介绍"></a>RDB和AOF两种持久化机制的介绍</h4><p>RDB持久化机制，对redis中的数据执行周期性的持久化</p>
+<p>AOF机制对每条写入命令作为日志，以append-only的模式写入一个日志文件中，在redis重启的时候，可以通过回放AOF日志中的写入指令来重新构建整个数据集</p>
+<p>如果我们想要redis仅仅作为纯内存的缓存来用，那么可以禁止RDB和AOF所有的持久化机制</p>
+<p>通过RDB或AOF，都可以将redis内存中的数据给持久化到磁盘上面来，然后可以将这些数据备份到别的地方去，比如说阿里云，云服务。如果redis挂了，服务器上的内存和磁盘上的数据都丢了，可以从云服务上拷贝回来之前的数据，放到指定的目录中，然后重新启动redis，redis就会自动根据持久化数据文件中的数据，去恢复内存中的数据，继续对外提供服务</p>
+<p>如果同时使用RDB和AOF两种持久化机制，那么在redis重启的时候，会使用AOF来重新构建数据，因为AOF中的数据更加完整</p>
+<h4 id="RDB持久化机制的优点"><a href="#RDB持久化机制的优点" class="headerlink" title="RDB持久化机制的优点"></a>RDB持久化机制的优点</h4><p>（1）RDB会生成多个数据文件，每个数据文件都代表了某一个时刻中redis的数据，这种多个数据文件的方式，<strong>非常适合做冷备</strong>，可以将这种完整的数据文件发送到一些远程的安全存储上去，比如说Amazon的S3云服务上去，在国内可以是阿里云的ODPS分布式存储上，以预定好的备份策略来定期备份redis中的数据</p>
+<p>（2）RDB<strong>对redis对外提供的读写服务，影响非常小</strong>，可以让redis保持高性能，因为redis主进程只需要fork一个子进程，让子进程执行磁盘IO操作来进行RDB持久化即可</p>
+<p>（3）相对于AOF持久化机制来说，直接基于RDB数据文件来重启和恢复redis进程，更加快速</p>
+<h4 id="RDB持久化机制的缺点"><a href="#RDB持久化机制的缺点" class="headerlink" title="RDB持久化机制的缺点"></a>RDB持久化机制的缺点</h4><p>（1）如果想要在redis故障时，<strong>尽可能少的丢失数据，那么RDB没有AOF好</strong>。一般来说，RDB数据快照文件，都是每隔5分钟，或者更长时间生成一次，这个时候就得接受一旦redis进程宕机，那么会丢失最近5分钟的数据</p>
+<p>（2）RDB每次在fork子进程来执行RDB快照数据文件生成的时候，<strong>如果数据文件特别大，可能会导致对客户端提供的服务暂停数毫秒</strong>，或者甚至数秒</p>
+<h4 id="AOF持久化机制的优点"><a href="#AOF持久化机制的优点" class="headerlink" title="AOF持久化机制的优点"></a>AOF持久化机制的优点</h4><p>（1）AOF可以更好的保护数据不丢失，一般AOF会每隔1秒，<strong>通过一个后台线程执行一次fsync操作，最多丢失1秒钟的数据</strong></p>
+<p>（2）AOF日志文件以append-only模式写入，所以没有任何磁盘寻址的开销，写入性能非常高，而且文件不容易破损，即使文件尾部破损，也很容易修复</p>
+<p>（3）AOF日志文件即使过大的时候，出现后台重写操作，也不会影响客户端的读写。因为在rewrite log的时候，会对其中的指导进行压缩，创建出一份需要恢复数据的最小日志出来。再创建新日志文件的时候，老的日志文件还是照常写入。当新的merge后的日志文件ready的时候，再交换新老日志文件即可。</p>
+<p>（4）AOF日志文件的命令通过非常可读的方式进行记录，这个特性非常适合做灾难性的误删除的紧急恢复。比如某人不小心用flushall命令清空了所有数据，只要这个时候后台rewrite还没有发生，那么就可以立即拷贝AOF文件，将最后一条flushall命令给删了，然后再将该AOF文件放回去，就可以通过恢复机制，自动恢复所有数据</p>
+<h4 id="AOF持久化机制的缺点"><a href="#AOF持久化机制的缺点" class="headerlink" title="AOF持久化机制的缺点"></a>AOF持久化机制的缺点</h4><p>（1）对于同一份数据来说，<strong>AOF日志文件通常比RDB数据快照文件更大</strong></p>
+<p>  **Redis通过内存淘汰机制，淘汰内存数据后，AOF中指令和当前数据的相关性逐渐变小，通过AOF重写来解决AOF膨胀的问题。<br>**</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621386.png" alt="img"></p>
+<p><img src="../assets/Framework/1240-20210704091621428.png" alt="img"></p>
+<p>（2）AOF开启后，支持的写QPS会比RDB支持的写QPS低，因为AOF一般会配置成每秒fsync一次日志文件，当然，每秒一次fsync，性能也还是很高的</p>
+<p>（3）以前AOF发生过bug，就是通过AOF记录的日志，进行数据恢复的时候，没有恢复一模一样的数据出来。所以说，类似AOF这种较为复杂的基于命令日志/merge/回放的方式，比基于RDB每次持久化一份完整的数据快照文件的方式，更加脆弱一些，<strong>容易有bug</strong>。不过AOF就是为了避免rewrite过程导致的bug，因此每次rewrite并不是基于旧的指令日志进行merge的，而是基于当时内存中的数据进行指令的重新构建，这样健壮性会好很多。</p>
+<h4 id="RDB和AOF到底该如何选择"><a href="#RDB和AOF到底该如何选择" class="headerlink" title="RDB和AOF到底该如何选择"></a>RDB和AOF到底该如何选择</h4><p>（1）不要仅仅使用RDB，因为那样会导致你丢失很多数据</p>
+<p>（2）也不要仅仅使用AOF，因为那样有两个问题，第一，你通过AOF做冷备，没有RDB做冷备，来的恢复速度更快; 第二，RDB每次简单粗暴生成数据快照，更加健壮，可以避免AOF这种复杂的备份和恢复机制的bug</p>
+<p>（3）综合使用AOF和RDB两种持久化机制，用AOF来保证数据不丢失，作为数据恢复的第一选择; 用RDB来做不同程度的冷备，在AOF文件都丢失或损坏不可用的时候，还可以使用RDB来进行快速的数据恢复</p>
+<h2 id="Redis-Cluster集群"><a href="#Redis-Cluster集群" class="headerlink" title="Redis Cluster集群"></a>Redis Cluster集群</h2><h3 id="海量数据处理"><a href="#海量数据处理" class="headerlink" title="海量数据处理"></a>海量数据处理</h3><p>（1）redis的集群架构 redis cluster</p>
+<p>支撑N个redis master node，每个master node都可以挂载多个slave node</p>
+<p>读写分离的架构，对于每个master来说，写就写到master，然后读就从mater对应的slave去读</p>
+<p>高可用，因为每个master都有salve节点，那么如果mater挂掉，redis cluster这套机制，就会自动将某个slave切换成master</p>
+<p>redis cluster（多master + 读写分离 + 高可用）</p>
+<p>我们只要基于redis cluster去搭建redis集群即可，不需要手工去搭建replication复制+主从架构+读写分离+哨兵集群+高可用</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621430.png" alt="img"></p>
+<p><img src="../assets/Framework/1240-20210704091621412.png" alt="img"></p>
+<p>（2）redis cluster vs. replication + sentinal</p>
+<p>  · 如果你的数据量很少，主要是承载<strong>高并发高性能</strong>的场景，比如你的缓存一般就几个G，单机足够了</p>
+<p>  · replication，一个mater，多个slave，要几个slave跟你的要求的读吞吐量有关系，然后自己搭建一个sentinal集群，去保证redis主从架构的<strong>高可用性</strong>，就可以了</p>
+<p>  · redis cluster，主要是针对<strong>海量数据+高并发+高可用的场景</strong>，海量数据，如果你的数据量很大，那么建议就用redis cluster</p>
+<h3 id="分布式数据存储的核心算法，数据分布的算法"><a href="#分布式数据存储的核心算法，数据分布的算法" class="headerlink" title="分布式数据存储的核心算法，数据分布的算法"></a>分布式数据存储的核心算法，数据分布的算法</h3><p>hash算法 -&gt; 一致性hash算法（memcached） -&gt; redis cluster，hash slot算法</p>
+<p>用不同的算法，就决定了在多个master节点的时候，<strong>数据如何分布到这些节点上去</strong>，解决这个问题</p>
+<h4 id="redis-cluster介绍"><a href="#redis-cluster介绍" class="headerlink" title="redis cluster介绍"></a>redis cluster介绍</h4><p>redis cluster</p>
+<p>（1）自动将数据进行<strong>分片</strong>，每个master上放一部分数据</p>
+<p>（2）提供内置的高可用支持，部分master不可用时，还是可以继续工作的</p>
+<p>在redis cluster架构下，每个redis要放开两个端口号，比如一个是6379，另外一个就是加10000的端口号，比如16379</p>
+<p>16379端口号是用来进行节点间通信的，也就是cluster bus的东西，集群总线。cluster bus的通信，用来进行故障检测，配置更新，故障转移授权</p>
+<p>cluster bus用了另外一种二进制的协议，主要用于节点间进行高效的数据交换，占用更少的网络带宽和处理时间</p>
+<h4 id="最老土的hash算法和弊端（大量缓存重建）"><a href="#最老土的hash算法和弊端（大量缓存重建）" class="headerlink" title="最老土的hash算法和弊端（大量缓存重建）"></a>最老土的hash算法和弊端（大量缓存重建）</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20220305095109690.png" alt="img"></p>
+<h4 id="一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）"><a href="#一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）" class="headerlink" title="一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）"></a>一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621462.png" alt="img"></p>
+<p><img src="../assets/Framework/1240-20210704091621480.png" alt="img"></p>
+<h4 id="redis-cluster的hash-slot算法"><a href="#redis-cluster的hash-slot算法" class="headerlink" title="redis cluster的hash slot算法"></a>redis cluster的hash slot算法</h4><p>redis cluster有固定的<strong>16384个hash slot</strong>，对每个key计算CRC16值，然后对16384取模，可以获取key对应的hash slot</p>
+<p>redis cluster中每个master都会持有部分slot，比如有3个master，那么可能每个master持有5000多个hash slot</p>
+<p>hash slot让node的增加和移除很简单，<strong>增加一个master，就将其他master的hash slot移动部分过去，减少一个master，就将它的hash slot移动到其他master上去</strong></p>
+<p>移动hash slot的成本是非常低的</p>
+<p>客户端的api，可以对指定的数据，让他们走同一个hash slot，通过hash tag来实现</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621448.png" alt="img"></p>
+<h3 id="集群节点间的通信"><a href="#集群节点间的通信" class="headerlink" title="集群节点间的通信"></a>集群节点间的通信</h3><h4 id="基础通信原理"><a href="#基础通信原理" class="headerlink" title="基础通信原理"></a>基础通信原理</h4><p>（1）redis cluster节点间采取<strong>gossip协议</strong>进行通信</p>
+<p>跟集中式不同，不是将集群元数据（节点信息，故障，等等）集中存储在某个节点上，而是互相之间不断通信，保持整个集群所有节点的数据是完整的</p>
+<p>集中式：好处在于，元数据的更新和读取，时效性非常好，一旦元数据出现了变更，立即就更新到集中式的存储中，其他节点读取的时候立即就可以感知到; 不好在于，所有的元数据的跟新压力全部集中在一个地方，可能会导致元数据的存储有压力</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621455.png" alt="img"></p>
+<p>gossip：好处在于，元数据的更新比较分散，不是集中在一个地方，更新请求会陆陆续续，打到所有节点上去更新，有一定的延时，降低了压力; 缺点，元数据更新有延时，可能导致集群的一些操作会有一些滞后</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621457.png" alt="img"></p>
+<p>（2）10000端口</p>
+<p>每个节点都有一个专门用于节点间通信的端口，就是<strong>自己提供服务的端口号+10000</strong>，比如7001，那么用于节点间通信的就是17001端口</p>
+<p>每隔节点每隔一段时间都会往另外几个节点发送ping消息，同时其他几点接收到ping之后返回pong</p>
+<p>（3）交换的信息</p>
+<p>故障信息，节点的增加和移除，hash slot信息，等等</p>
+<h4 id="gossip协议"><a href="#gossip协议" class="headerlink" title="gossip协议"></a>gossip协议</h4><p>gossip协议包含多种消息，包括ping，pong，meet，fail，等等</p>
+<p>（1）meet: 某个节点发送meet给新加入的节点，让新节点加入集群中，然后新节点就会开始与其他节点进行通信</p>
+<p>redis-trib.rbadd-node</p>
+<p>其实内部就是发送了一个gossip meet消息，给新加入的节点，通知那个节点去加入我们的集群</p>
+<p>（2）ping: 每个节点都会频繁给其他节点发送ping，其中包含自己的状态还有自己维护的集群元数据，互相通过ping交换元数据</p>
+<p>每个节点每秒都会频繁发送ping给其他的集群，ping，频繁的互相之间交换数据，互相进行元数据的更新</p>
+<p>（3）pong: 返回ping和meet，包含自己的状态和其他信息，也可以用于信息广播和更新</p>
+<p>（4）fail: 某个节点判断另一个节点fail之后，就发送fail给其他节点，通知其他节点，指定的节点宕机了</p>
+<h4 id="ping消息深入"><a href="#ping消息深入" class="headerlink" title="ping消息深入"></a>ping消息深入</h4><p>ping很频繁，而且要携带一些元数据，所以可能会加重网络负担</p>
+<p>每个节点<strong>每秒会执行10次ping</strong>，每次会选择<strong>5个最久没有通信的其他节点</strong></p>
+<p>当然如果发现某个节点通信延时达到了cluster_node_timeout / 2，那么立即发送ping，避免数据交换延时过长，落后的时间太长了</p>
+<p>比如说，两个节点之间都10分钟没有交换数据了，那么整个集群处于严重的元数据不一致的情况，就会有问题</p>
+<p>所以cluster_node_timeout可以调节，如果调节比较大，那么会降低发送的频率</p>
+<p>每次ping，一个是带上自己节点的信息，还有就是带上1/10其他节点的信息，发送出去，进行数据交换</p>
+<p>至少包含3个其他节点的信息，最多包含总节点-2个其他节点的信息</p>
+<h3 id="高可用性与主备切换原理"><a href="#高可用性与主备切换原理" class="headerlink" title="高可用性与主备切换原理"></a>高可用性与主备切换原理</h3><p>redis cluster的高可用的原理，几乎跟哨兵是类似的</p>
+<p>（1）判断节点宕机</p>
+<p>如果一个节点认为另外一个节点宕机，那么就是pfail，主观宕机</p>
+<p>如果多个节点都认为另外一个节点宕机了，那么就是fail，客观宕机，跟哨兵的原理几乎一样，sdown，odown</p>
+<p>在cluster-node-timeout内，某个节点一直没有返回pong，那么就被认为pfail</p>
+<p><strong>如果一个节点认为某个节点pfail了，那么会在gossip ping消息中，ping给其他节点，如果超过半数的节点都认为pfail了，那么就会变成fail</strong></p>
+<p>（2）从节点过滤</p>
+<p>对宕机的master node，从其所有的slave node中，选择一个切换成master node</p>
+<p>检查每个slave node与master node断开连接的时间，如果超过了cluster-node-timeout * cluster-slave-validity-factor，那么就没有资格切换成master</p>
+<p>这个也是跟哨兵是一样的，从节点超时过滤的步骤</p>
+<p>（3）从节点选举</p>
+<p>哨兵：对所有从节点进行排序，<strong>slave priority，offset，run id</strong></p>
+<p>每个从节点，都根据自己对master复制数据的offset，来设置一个选举时间，offset越大（复制数据越多）的从节点，选举时间越靠前，优先进行选举</p>
+<p>所有的master node开始slave选举投票，给要进行选举的slave进行投票，如果大部分master node（N/2 + 1）都投票给了某个从节点，那么选举通过，那个从节点可以切换成master</p>
+<p>从节点执行主备切换，从节点切换为主节点</p>
+<p>（4）与哨兵比较</p>
+<p>  整个流程跟哨兵相比，非常类似，所以说，<strong>redis cluster功能强大，直接集成了replication和sentinal的功能</strong></p>
+<h3 id="缓存问题"><a href="#缓存问题" class="headerlink" title="**缓存问题 **"></a>**缓存问题 **</h3><h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621489.png" alt="img"></p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621490.png" alt="img"></p>
+<p>缓存雪崩的事前事中事后的解决方案</p>
+<p>事前：redis高可用，主从+哨兵，redis cluster，避免全盘崩溃</p>
+<p>事中：本地ehcache缓存 + hystrix限流&amp;降级，避免MySQL被打死</p>
+<p>事后：redis持久化，快速恢复缓存数据</p>
+<h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透的解决方法</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621491.png" alt="img"></p>
+<p>另外还有，布隆过滤器可以有效缓解缓存穿透的问题。</p>
+<h3 id="缓存-数据库双写一致性问题"><a href="#缓存-数据库双写一致性问题" class="headerlink" title="缓存+数据库双写一致性问题"></a>缓存+数据库双写一致性问题</h3><h4 id="最经典的缓存-数据库读写的模式，cache-aside-pattern"><a href="#最经典的缓存-数据库读写的模式，cache-aside-pattern" class="headerlink" title="最经典的缓存+数据库读写的模式，cache aside pattern"></a>最经典的缓存+数据库读写的模式，cache aside pattern</h4><p>（1）Cache Aside Pattern</p>
+<p>  · 读的时候，先读缓存，缓存没有的话，那么就读数据库，然后取出数据后放入缓存，同时返回响应</p>
+<p>  · 更新的时候，先删除缓存，然后再更新数据库</p>
+<p>（2）为什么是删除缓存，而不是更新缓存呢？</p>
+<p>  原因很简单，很多时候，复杂点的缓存的场景，因为缓存有的时候，不简单是数据库中直接取出来的值</p>
+<p>  更新缓存的代价是很高的</p>
+<p>  是不是说，每次修改数据库的时候，都一定要将其对应的缓存去跟新一份？也许有的场景是这样的，但是对于比较复杂的缓存数据计算的场景，就不是这样了。28法则，黄金法则，20%的数据，占用了80%的访问量。其实删除缓存，而不是更新缓存，就是一个lazy计算的思想，不要每次都重新做复杂的计算，不管它会不会用到，而是让它到需要被使用的时候再重新计算。</p>
+<h4 id="高并发场景下的缓存-数据库双写不一致问题分析与解决方案设计"><a href="#高并发场景下的缓存-数据库双写不一致问题分析与解决方案设计" class="headerlink" title="高并发场景下的缓存+数据库双写不一致问题分析与解决方案设计"></a>高并发场景下的缓存+数据库双写不一致问题分析与解决方案设计</h4><p>（1）<strong>高并发情况下的现象</strong></p>
+<p>  数据发生了变更，先删除了缓存，然后要去修改数据库，此时还没修改，一个请求过来，去读缓存，发现缓存空了，去查询数据库，查到了修改前的旧数据，放到了缓存中，数据变更的程序完成了数据库的修改。完了，数据库和缓存中的数据不一样了。</p>
+<p>（2）解决办法：数据库与缓存更新与读取操作进行异步串行化</p>
+<p>  更新数据的时候，根据数据的唯一标识，将操作路由之后，发送到一个jvm内部的队列中</p>
+<p>  读取数据的时候，如果发现数据不在缓存中，那么将重新读取数据+更新缓存的操作，根据唯一标识路由之后，也发送同一个jvm内部的队列中</p>
+<p>  一个队列对应一个工作线程，每个工作线程串行拿到对应的操作，然后一条一条的执行。此时如果一个读请求过来，读到了空的缓存，那么可以先将缓存更新的请求发送到队列中，此时会在队列中积压，然后同步等待缓存更新完成。一个队列中，其实多个更新缓存请求串在一起是没意义的，因此可以做过滤，如果发现队列中已经有一个更新缓存的请求了，那么就不用再放个更新请求操作进去了，直接等待前面的更新操作请求完成即可。</p>
+<h2 id="redis的并发竞争"><a href="#redis的并发竞争" class="headerlink" title="redis的并发竞争"></a>redis的并发竞争</h2><p><img src="../assets/Framework/1240-20210704091621495.png" alt="img"></p>
+<h2 id="生产环境中的redis是怎么部署的"><a href="#生产环境中的redis是怎么部署的" class="headerlink" title="生产环境中的redis是怎么部署的"></a>生产环境中的redis是怎么部署的</h2><p>redis cluster，10台机器，5台机器部署了redis主实例，另外5台机器部署了redis的从实例，每个主实例挂了一个从实例，5个节点对外提供读写服务，每个节点的读写高峰qps可能可以达到每秒5万，5台机器最多是25万读写请求/s。</p>
+<p>机器是什么配置？32G内存+8核CPU+1T磁盘，但是分配给redis进程的是10g内存，一般线上生产环境，redis的内存尽量不要超过10g，超过10g可能会有问题。</p>
+<p>5台机器对外提供读写，一共有50g内存。</p>
+<p>因为每个主实例都挂了一个从实例，所以是高可用的，任何一个主实例宕机，都会自动故障迁移，redis从实例会自动变成主实例继续提供读写服务</p>
+<p>你往内存里写的是什么数据？每条数据的大小是多少？商品数据，每条数据是10kb。100条数据是1mb，10万条数据是1g。常驻内存的是200万条商品数据，占用内存是20g，仅仅不到总内存的50%。</p>
+<p>目前高峰期每秒就是3500左右的请求量</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>redis高并发</strong>：<strong>主从架构</strong>，一主多从，一般来说，很多项目其实就足够了，单主用来写入数据，<strong>单机几万QPS</strong>，多从用来查询数据，多个从实例可以提供<strong>每秒10万的QPS</strong>。</p>
+<p><strong>redis高可用</strong>：如果你做主从架构部署，其实就是加上<strong>哨兵</strong>就可以了，就可以实现，任何一个实例宕机，自动会进行主备切换。</p>
+<p>redis高并发的同时，还<strong>需要容纳大量的数据</strong>：一主多从，每个实例都容纳了完整的数据，比如redis主就10G的内存量，其实你就最对只能容纳10g的数据量。如果你的缓存要容纳的数据量很大，达到了几十g，甚至几百g，或者是几t，那你就需要redis集群，而且用redis集群之后，可以提供可能每秒几十万的读写并发。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2021/04/19/fen-bu-shi-gao-ke-yong-jia-gou-zong-jie-zhong-hua-shi-shan-zhi-redis/">https://jason-qianhao.github.io/2021/04/19/fen-bu-shi-gao-ke-yong-jia-gou-zong-jie-zhong-hua-shi-shan-zhi-redis/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/Redis/">
+                                    <span class="chip bg-color">Redis</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/04/19/fen-bu-shi-gao-ke-yong-jia-gou-zong-jie-zhong-hua-shi-shan-zhi-mq/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/28.jpg" class="responsive-img" alt="《分布式高可用架构总结-中华石衫》之MQ">
+                        
+                        <span class="card-title">《分布式高可用架构总结-中华石衫》之MQ</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-04-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQ/" class="post-category">
+                                    MQ
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQ/">
+                        <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/24/2021-nian-chun-zhao-shi-xi-sheng-mian-shi/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="2021年春招实习生面试">
+                        
+                        <span class="card-title">2021年春招实习生面试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AC%94%E7%BB%8F%E9%9D%A2%E7%BB%8F/" class="post-category">
+                                    笔经面经
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AC%94%E7%BB%8F%E9%9D%A2%E7%BB%8F/">
+                        <span class="chip bg-color">笔经面经</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

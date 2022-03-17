@@ -1,0 +1,1869 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="《大型网站技术架构-核心原理与案例分析》学习笔记, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>《大型网站技术架构-核心原理与案例分析》学习笔记 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">《大型网站技术架构-核心原理与案例分析》学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%9E%B6%E6%9E%84/">
+                                <span class="chip bg-color">架构</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%9E%B6%E6%9E%84/" class="post-category">
+                                架构
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-04-23
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    8.4k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    28 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录<br>1 大型网站架构演化<br>2  大型网站架构模式<br>3 大型网站核心架构要素<br>4 瞬时响应：网站的高性能架构<br>5 万无一失：网站的高可用架构<br>6 永无止境：网站的伸缩性架构<br>7 随需应变：网站的可扩展架构<br>8 固若金汤：网站的安全架构<br>参考资料<br>· 《大型网站技术架构-核心原理与案例分析》  </p>
+</blockquote>
+<h1 id="大型网站架构演化"><a href="#大型网站架构演化" class="headerlink" title="大型网站架构演化"></a>大型网站架构演化</h1><h2 id="（1）初始阶段"><a href="#（1）初始阶段" class="headerlink" title="（1）初始阶段"></a>（1）初始阶段</h2><p>  只需一台服务器就绰绰有余。通常服务器操作系统使用Linux、应用程序使用PHP开发、然后部署再Apache上，数据库使用MySQL。典型的<strong>LAMP</strong>开发。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846463.jpeg" style="zoom:50%;" />
+
+
+
+<h2 id="（2）应用服务和数据服务分离"><a href="#（2）应用服务和数据服务分离" class="headerlink" title="（2）应用服务和数据服务分离"></a>（2）应用服务和数据服务分离</h2><ul>
+<li><p>背景：用户访问的增长，访问和存储空间导致很多问题，将应用和数据分离使得整个网站使用三台服务器：应用服务器、文件服务器和数据库服务器。</p>
+</li>
+<li><p><strong>不同特性的服务器承担不同的服务角色。</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846533.jpeg" style="zoom:50%;" /></li>
+</ul>
+<h2 id="（3）使用缓存改善网站性能"><a href="#（3）使用缓存改善网站性能" class="headerlink" title="（3）使用缓存改善网站性能"></a>（3）使用缓存改善网站性能</h2><ul>
+<li>背景：<strong>二八定律：80%的业务访问集中再20%的数据上。</strong></li>
+<li>缓存分为：本地缓存和远程分布式缓存。前者受应用服务器内存和性能的限制，后者有更好的性能。</li>
+<li>使用缓存将热点数据缓存</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846522.jpeg" style="zoom:50%;" />
+
+<h2 id="（4）使用应用服务器集群改善网站的并发处理能力"><a href="#（4）使用应用服务器集群改善网站的并发处理能力" class="headerlink" title="（4）使用应用服务器集群改善网站的并发处理能力"></a>（4）使用<strong>应用服务器集群</strong>改善网站的并发处理能力</h2><ul>
+<li>背景： <strong>使用集群是网站解决高并发、海量数据问题的常用手段。</strong></li>
+<li>通过负载均衡调度器将用户请求分发到应用服务器集群中的任何一台服务器上，使得应用服务器的负载压力不在是瓶颈。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20220305181215080.jpeg" style="zoom:50%;" />
+
+<h2 id="（5）数据库读写分离"><a href="#（5）数据库读写分离" class="headerlink" title="（5）数据库读写分离"></a>（5）数据库读写分离</h2><ul>
+<li>背景：仍然有一部分读操作（未命中缓存）和全部写操作到达数据库，随着用户的增长，数据库业务负载压力过高而成为瓶颈。</li>
+<li>主从热备、读写分离，从而改善数据库负载压力。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846624.jpeg" style="zoom:50%;" />
+
+<h2 id="（6）使用反向代理和CDN加速网站响应"><a href="#（6）使用反向代理和CDN加速网站响应" class="headerlink" title="（6）使用反向代理和CDN加速网站响应"></a>（6）使用反向代理和CDN加速网站响应</h2><ul>
+<li>背景：随着用户规模的扩大，不同地区访问网站速度差别极大。为了提供更好的用户体验，留住用户，需要加速网站访问速度。</li>
+<li>主要手段有两个，基本的原理都是<strong>缓存</strong></li>
+<li>CDN：部署在<strong>网络提供商的机房</strong>，使得用户在请求网站服务时，可以从距离子句最近的网络提供商机房获取数据。</li>
+<li>反向代理：部署在<strong>网站的中心机房</strong>，用户请求首先访问的服务器是反向代理服务器，如果反向代理服务器中缓存着用户请求的资源，就直接返回给用户。</li>
+<li>优点：在加快用户访问速度的同时，也减轻后端服务器的负载压力。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846528.jpeg" style="zoom:50%;" />
+
+<h2 id="（7）使用分布式文件系统和分布式数据库系统"><a href="#（7）使用分布式文件系统和分布式数据库系统" class="headerlink" title="（7）使用分布式文件系统和分布式数据库系统"></a>（7）使用分布式文件系统和分布式数据库系统</h2><ul>
+<li>背景： 数据库和文件系统不能满足持续增长的业务需求</li>
+<li>分布式数据库是网站数据库拆分的最后手段，只有在单表数据规模非常庞大的时候才使用。不到不得已时，网站更常用的数据库拆分手段是业务分库，将不同业务的数据库部署再不同的物理服务器上。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846507.jpeg" style="zoom:50%;" />
+
+<h2 id="（8）使用NoSQL和搜素引擎"><a href="#（8）使用NoSQL和搜素引擎" class="headerlink" title="（8）使用NoSQL和搜素引擎"></a>（8）使用NoSQL和搜素引擎</h2><ul>
+<li>背景： 随着网站业务越来越复杂，对数据存储和检索的需求越来越复杂，网站需要采用一些<em>非关系数据库技术如NOSQL</em>和<em>非数据库查询技术如搜索引擎</em>。</li>
+<li><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846570.jpeg" style="zoom:50%;" /></li>
+</ul>
+<h2 id="（9）业务拆分"><a href="#（9）业务拆分" class="headerlink" title="（9）业务拆分"></a>（9）业务拆分</h2><ul>
+<li>背景：业务场景日益复杂，需要将业务分成不同的产品线，不同产品线将网站拆分为不同的应用，每个应用单独部署和维护。</li>
+<li>应用可以通过<strong>超链接</strong>、<strong>消息队列</strong>或者<strong>数据存储系统</strong>建立为完整的系统</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846606.jpeg" style="zoom:50%;" />
+
+<h2 id="（10）分布式服务"><a href="#（10）分布式服务" class="headerlink" title="（10）分布式服务"></a>（10）分布式服务</h2><ul>
+<li>背景：业务拆分越来越小，应用系统的整体复杂度呈指数级增加，部署维护越来越困难。</li>
+<li>将共同的业务提取出来，独立部署。应用系统通过分布式服务调用共同业务服务完成具体业务操作。</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846568.jpeg" style="zoom:50%;" />
+
+<h1 id="大型网站架构模式"><a href="#大型网站架构模式" class="headerlink" title="大型网站架构模式"></a>大型网站架构模式</h1><h2 id="什么是模式？"><a href="#什么是模式？" class="headerlink" title="什么是模式？"></a>什么是模式？</h2><p>  每一个模式描述了一个在外面周围不断重复发生的问题及该问题解决方案的核心，这样，你就能一次又一次地使用该方案而不必做重复工作。</p>
+<h2 id="分层"><a href="#分层" class="headerlink" title="分层"></a>分层</h2><ul>
+<li>是企业应用系统中最常见的一种架构模式，将系统<strong>在横向维度</strong>上切分成几个部分，每个部分负责一部分相对单一的职责，然后通过<strong>上层对下层</strong>的依赖和调用组成一个完整的系统。</li>
+<li>常见的，MVC模式的分层</li>
+<li>一些注意点：必须合理规划层次边界和接口，在开发过程中，严格遵循分层架构的约束，禁止跨层次的调用（应用层直接调用数据层）及逆向调用（数据层调用服务层，或者服务层调用应用层）。</li>
+<li>意义：分层结构对网站支持高并发向分布式方向发展至关重要。</li>
+</ul>
+<h2 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h2><ul>
+<li>在<strong>纵向方面</strong>对软件进行切分。<blockquote>
+<p>在应用层，将不同业务分割，如论坛、广告分割成不同的应用；<br>在每个应用可以进行更小粒度的分割，如首页、商品详情等模块。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h2><ul>
+<li><p>将上述分层和分割后的不同模块部署在不同的服务器上，通过远程调用协同工作。分布式意味着可以使用更多的计算机完成同样的功能，计算机越多，CPU、内存、存储资源也就越多，能够处理的并发访问和数据量就越大，进而能够为更多用户提供服务。</p>
+</li>
+<li><p>带来的问题：<br>通过网络进行机器通信，性能有影响<br>数据一致性问题<br>机器宕机概率增大<br>。。。</p>
+</li>
+<li><p>常见的分布式方案：<br>分布式应用和服务：服务模块分布式部署<br>分布式静态资源：静态资源分布式部署，独立域名（<strong>动静分离</strong>）<br>分布式数据和存储：海量数据的分布式存储<br>分布式计算：目前网站普遍使用Hadoop及其MapReduce分布式计算框架进行此类批处理计算。<br>分布式配置<br>分布式锁<br>分布式文件系统</p>
+</li>
+</ul>
+<h2 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h2><ul>
+<li>多台服务器部署相同应用构成一个集群，通过负载均衡设备共同对外提供服务</li>
+<li>即使是访问量很小的分布式应用和服务，也至少要部署两台服务器构成一个小的集群，目的就是提高系统的可用性。</li>
+</ul>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><ul>
+<li>缓存就是将数据存放在距离计算最近的位置以加快处理速度</li>
+<li><strong>缓存是改善软件性能的第一手段</strong>，缓存无处不在</li>
+<li>常见缓存方案：<br>CDN：内容分发网络<br>反向代理<br>本地缓存：在应用服务器本地缓存着热点数据，在内存中，无需访问数据库<br>分布式缓存：海量需要缓存的数据，单机不够，通过分布式缓存解决</li>
+<li>使用缓存的前提条件：<ol>
+<li>数据访问热点不均衡，某些数据会被更频繁的访问，这些数据应该在缓存中</li>
+<li>数据在某个时间段内有效，不会很快过期，否则缓存的数据就会因已经失效而产生脏读，影响结果的正确性。</li>
+</ol>
+</li>
+</ul>
+<h2 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h2><ul>
+<li>计算机软件发展的一个重要目标和驱动力是<strong>降低软件耦合性</strong>。</li>
+<li>异步，即业务之间的消息传递不是同步调用，而是将一个业务操作分成多个阶段，每个阶段之间通过共享数据的方式异步执行进行协作。</li>
+<li>实现方式：<br>单一服务器内：通过多线程共享<strong>内存队列</strong>的方式实现异步<br>分布式系统中：分布式消息队列实现异步。</li>
+<li>异步消息队列的特性：<ol>
+<li>典型的生产着消费者模式</li>
+<li>提高系统的可用性：消费者宕机重启后继续处理消息队列中的数据</li>
+<li>加快网站响应速度：前端不等待结果处理，直接返回给客户端</li>
+<li>消除并发访问高峰</li>
+</ol>
+</li>
+</ul>
+<h2 id="冗余"><a href="#冗余" class="headerlink" title="冗余"></a>冗余</h2><ul>
+<li>要想保证在服务器宕机的情况下网站依然可以继续服务，不丢失数据，就需要一定程度的<strong>服务器冗余运行，数据冗余备份</strong>，这样当某台服务器宕机时，可以将其上的服务和数据访问转移到其他机器上。</li>
+<li>冷备份与热备份：数据库定期备份，存档保存，进行冷备份；为了保证在线业务高可用，需要进行主从分离，实时同步实现热备份。</li>
+<li>全球范围内部署灾备数据中心。</li>
+</ul>
+<h2 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h2><ul>
+<li>在无人值守的情况下网站可以正常运行，一切都可以自动化是网站的理想状态。目前大型网站的自动化架构设计主要集中在<strong>发布运维方面</strong>。</li>
+<li>发布网站过程中：发布过程自动化、自动化代码管理、自动化测试、自动化安全检测和自动化部署</li>
+<li>网站运行过程中：自动化监控、自动化报警、自动化失效转移、自动化失效恢复、自动化降级、自动化分配资源。</li>
+</ul>
+<h2 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h2><ul>
+<li>通过密码和手机校验码进行身份认证</li>
+<li>登录、交易操作进行网络通信加密</li>
+<li>防止机器人攻击网络，使用验证码进行识别</li>
+<li>对XSS攻击和SQL注入进行编码转换</li>
+<li>对垃圾信息、敏感信息过滤</li>
+<li>交易过程的风险控制</li>
+</ul>
+<h1 id="大型网站核心架构要素"><a href="#大型网站核心架构要素" class="headerlink" title="大型网站核心架构要素"></a>大型网站核心架构要素</h1><h2 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h2><h3 id="衡量网站性能的指标"><a href="#衡量网站性能的指标" class="headerlink" title="衡量网站性能的指标"></a>衡量网站性能的指标</h3><ul>
+<li>响应时间</li>
+<li>TPS</li>
+<li>系统性能计数器</li>
+<li>…..<h3 id="优化性能的手段"><a href="#优化性能的手段" class="headerlink" title="优化性能的手段"></a>优化性能的手段</h3></li>
+<li>浏览器端，通过浏览器缓存、页面压缩、减少Cookie传输等改善</li>
+<li>CDN</li>
+<li>服务端，使用本地缓存和分布式缓存</li>
+<li>异步</li>
+<li>集群</li>
+<li>代码层面，使用多线程、改善内存管理等</li>
+<li>数据库端，索引、缓存、SQL优化等</li>
+<li>NOSQL</li>
+</ul>
+<h2 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h2><ul>
+<li>用几个9来衡量，常见的是4个9的可用性，即99.99%</li>
+<li>衡量一个系统架构设计是否满足可用的目标，就是假设系统中任何一台或者多台服务器宕机时，以及出现各种不可预期的问题时，系统整体是否依然可用。</li>
+<li>网站高可用的主要手段：<strong>冗余</strong></li>
+</ul>
+<h2 id="伸缩性"><a href="#伸缩性" class="headerlink" title="伸缩性"></a>伸缩性</h2><ul>
+<li>伸缩性是指：通过不断向集群中加入服务器的手段来缓解不断上升的用户并发访问压力和不断增长的数据存储需求。</li>
+<li>分类：<ol>
+<li>应用服务器的伸缩性：服务器对等</li>
+<li>缓存服务器的伸缩性：修改缓存裸路由算法</li>
+<li>关系数据库的伸缩性：通过路由分区等手段将有多个数据库的服务器组成一个集群</li>
+<li>NOSQL产品的伸缩性：天生为海量数据而生，可以实现集群规模的线性伸缩</li>
+</ol>
+</li>
+</ul>
+<h2 id="扩展性"><a href="#扩展性" class="headerlink" title="扩展性"></a>扩展性</h2><ul>
+<li>扩展性是指：网站快速发展，功能不断扩展，如何设计网站的架构使其能够快速响应需求变化，是网站可扩展架构主要的目的</li>
+<li>衡量网站架构扩展性好坏的主要标准就是：在网站增加新的业务产品时，是否可以实现对现有产品透明无影响。不需要任何改动或者很少改动既有业务功能就可以上线新产品。</li>
+<li>主要手段：<ol>
+<li>事件驱动架构：利用消息队列实现</li>
+<li>分布式服务：将业务和可复用服务分离开来，通过分布式服务框架调用。</li>
+</ol>
+</li>
+</ul>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><ul>
+<li>衡量网站安全架构的标准就是：针对现存和潜在的各种攻击与窃密手段，是否有可靠的应对策略。</li>
+</ul>
+<h1 id="瞬时响应：网站的高性能架构"><a href="#瞬时响应：网站的高性能架构" class="headerlink" title="瞬时响应：网站的高性能架构"></a>瞬时响应：网站的高性能架构</h1><h2 id="网站性能测试"><a href="#网站性能测试" class="headerlink" title="网站性能测试"></a>网站性能测试</h2><h3 id="性能测试指标"><a href="#性能测试指标" class="headerlink" title="性能测试指标"></a>性能测试指标</h3><p>（1）响应时间</p>
+<ul>
+<li>指应用执行一个操作需要的时间，包括从发出请求开始到收到最后响应数据所需要的时间。</li>
+<li>响应时间测试方法：重复请求。比如一个请求操作重复执行一万次，测试一万次执行需要的总响应时间之和，然后除以一万，得到单次请求的响应时间。</li>
+</ul>
+<p>（2）并发数</p>
+<ul>
+<li>指系统能够同时处理请求的数目。</li>
+<li>网站系统用户数 &gt;= 网站在线用户数 &gt;= 网站并发用户数</li>
+<li>并发数测试方法：通过多线程模拟并发用户的办法来测试系统的并发处理能力。</li>
+</ul>
+<p>（3）吞吐量</p>
+<ul>
+<li>指单位时间内系统处理的请求数量，体现系统的整体处理能力。</li>
+<li>TPS（每秒事务数）、HPS（每秒HTTP请求数）和QPS（每秒查询数）。</li>
+</ul>
+<p>（4）性能计数器</p>
+<ul>
+<li>它是描述服务器或操作系统性能的一些数据指标。包括System Load、对象与线程数、内存使用、CPU使用、磁盘与网络I/O等指标。</li>
+</ul>
+<h3 id="性能测试方法"><a href="#性能测试方法" class="headerlink" title="性能测试方法"></a>性能测试方法</h3><ul>
+<li>性能测试</li>
+<li>负载测试</li>
+<li>压力测试</li>
+<li>稳定性测试</li>
+</ul>
+<h3 id="性能优化策略"><a href="#性能优化策略" class="headerlink" title="性能优化策略"></a>性能优化策略</h3><p>（1）性能分析</p>
+<ul>
+<li>检查请求处理的<strong>各个环节的日志</strong>，分析哪个环节响应时间不合理、超过预期；</li>
+<li>然后检查<strong>监控数据</strong>，分析影响性能的主要因素是内存、磁盘、网络、还是CPU，是代码问题还是架构设计不合理，或者系统资源确实不足。</li>
+</ul>
+<p>（2）性能优化</p>
+<ul>
+<li>Web前端性能优化</li>
+<li>应用服务器性能优化</li>
+<li>存储服务器性能优化</li>
+</ul>
+<h2 id="Web前端性能优化"><a href="#Web前端性能优化" class="headerlink" title="Web前端性能优化"></a>Web前端性能优化</h2><h3 id="浏览器访问优化"><a href="#浏览器访问优化" class="headerlink" title="浏览器访问优化"></a>浏览器访问优化</h3><ol>
+<li>减少HTTP请求<br>合并CSS、合并JavaScript、合并图片。将浏览器一次访问需要的JavaScript、CSS合并成一个文件，这样浏览器就只需要一次请求</li>
+<li>使用浏览器缓存</li>
+</ol>
+<p>-设置浏览器缓存更新频率较低的静态资源，可以设置HTTP头中Cache-Control和Expires属性<br>-使用浏览器缓存策略的网站在更新静态资源时，应采用逐量更新的方法，以免用户浏览器突然大量缓存失效，集中更新缓存，造成服务器负载骤增、网络堵塞的情况。<br>3. 启用压缩<br>HTML、CSS、JavaScript文件启用GZip压缩，减少通信传输的数据量<br>4. CSS放在页面最上面、JavaScript放在页面最下面<br>-浏览器会在下载完全部CSS之后才对整个页面进行渲染，因此最好的做法是将CSS放在页面最上面，让浏览器尽快下载CSS<br>-浏览器在加载JavaScript后立即执行，有可能会阻塞整个页面，造成页面显示缓慢，因此JavaScript最好放在页面最下面<br>5. 减少Cookie传输</p>
+<h3 id="CND加速"><a href="#CND加速" class="headerlink" title="CND加速"></a>CND加速</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846559.jpeg" style="zoom:50%;" />
+
+<p>CDN能够缓存的一般是静态资源，如图片、文件、CSS、Script脚本、静态网页等。</p>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><p>来自互联网的访问请求，必须经过代理服务器，相当于在web服务器和可能的网络攻击之间建立了一个屏障。</p>
+<p>也可以配置缓存功能加速Web请求</p>
+<h2 id="应用服务器性能优化"><a href="#应用服务器性能优化" class="headerlink" title="应用服务器性能优化"></a>应用服务器性能优化</h2><h3 id="分布式缓存"><a href="#分布式缓存" class="headerlink" title="分布式缓存"></a>分布式缓存</h3><ol>
+<li><p>缓存原理<br>缓存的本质是一个内存Hash表，网站应用中，数据缓存以一对Key、Value的形式存储在内存Hash表中。</p>
+</li>
+<li><p>合理使用缓存<br>频繁修改的数据，徒增系统负担。一般，数据的<strong>读写比在2:1以上</strong>，缓存才有意义<br>没有热点的访问，如果系统的访问，不符合二八定律，则没有必要使用缓存<br>数据不一致与脏读<br>缓存可用性，使用集群改善。<br>缓存预热，LRU算法执行uxuyao时间，可用在缓存系统启动时，就把热点数据加载好。<br>缓存穿透</p>
+</li>
+<li><p>分布式缓存架构</p>
+</li>
+</ol>
+<p>-分布式缓存指部署再多个服务器组成的集群中，以集群方式提供缓存服务。应用程序通过<strong>一致性Hash等路由算法</strong>选择缓存服务器远程访问缓存数据。<br>-架构方式有两种：JBoss Cache为代表的需要更新同步的分布式缓存；以Memcached为代表的不互相通信的分布式缓存。</p>
+<h3 id="异步操作"><a href="#异步操作" class="headerlink" title="异步操作"></a>异步操作</h3><ul>
+<li>使用消息队列将调用异步化，可改善网站的扩展性，也可以改善网站系统的性能</li>
+<li>在使用消息队列后，用户请求的数据发送给消息队列后立即返回，再由消息队列的消费者进程（通过情况下，该进程通常独立部署在专门的服务器集群上）从消息队列中获取数据，异步写入数据库。</li>
+</ul>
+<h3 id="使用集群"><a href="#使用集群" class="headerlink" title="使用集群"></a>使用集群</h3><p>使用负载均衡技术为一个应用构建一个由多台服务器组成的服务器集群，将并发访问请求分发到多台服务器上处理，避免单一服务器因负载压力过大而响应缓慢，使用户请求具有更好的响应延迟特性。</p>
+<h3 id="代码优化"><a href="#代码优化" class="headerlink" title="代码优化"></a>代码优化</h3><ul>
+<li><p>多线程</p>
+<ol>
+<li>使用多线程的原因：IO阻塞与多CPU，更好的利用资源。</li>
+<li>服务器上执行形同类型的任务，针对该任务可以启动的线程数：<br>启动线程数=[任务执行时间/（任务执行时间 - IO等待时间）] * CPU 内核数</li>
+</ol>
+</li>
+<li><p>资源复用<br>主要有两种模式：单例（Singleton）和对象池（Object Pool）</p>
+</li>
+<li><p>数据结构</p>
+</li>
+<li><p>垃圾回收<br>再回顾一下GC步骤：</p>
+<ol>
+<li>新建对象总是再Eden区中被创建，当Eden区空间已满，就出发一次<strong>Young GC</strong>，将还被使用的对象复制到From区，这样整个Eden区被清空</li>
+<li>当Eden区再次用完，再触发一次Young GC，将Eden区和From区还在被使用的对象复制到To区，下一次Young GC将是Eden区和To区还被使用的对象复制到From区。</li>
+<li>当多次Young GC后，如果超过某个阈值对象还未被释放，则将该对象复制到Old Generation。</li>
+<li>如果Old Generation空间也已用完，那么就会触发Full GC，即全量回收。</li>
+</ol>
+</li>
+</ul>
+<h2 id="存储性能优化"><a href="#存储性能优化" class="headerlink" title="存储性能优化"></a>存储性能优化</h2><ul>
+<li>机械硬盘和固体硬盘</li>
+<li>B+树和LSM树</li>
+</ul>
+<h1 id="万无一失：网站的高可用架构"><a href="#万无一失：网站的高可用架构" class="headerlink" title="万无一失：网站的高可用架构"></a>万无一失：网站的高可用架构</h1><p>实现高可用架构的主要手段是：<strong>数据和服务的冗余备份及失效转移</strong>。</p>
+<h2 id="高可用的应用"><a href="#高可用的应用" class="headerlink" title="高可用的应用"></a>高可用的应用</h2><p>应用层的一个显著的特点是应用的无状态性。所谓<strong>无状态的应用</strong>是指应用服务器不保存业务的上下文信息，而仅根据每次请求提交的数据进行相应的业务逻辑处理，<strong>多个服务实例（服务器）之间完全对等</strong>，请求提交到任意服务器，处理结果都是完全一样的。</p>
+<ul>
+<li>通过负载均衡进行无状态服务的失效转移<br>负载均衡服务器通过心跳检测机制发现该服务器失去响应，就会把它从服务器列表中删除，而将请求发送到其他服务器上。</li>
+<li>应用服务器集群的Session管理<br>集群环境下，Session管理主要有一下几种手段：<ol>
+<li>Session复制<br>服务器开启Web容器的Session复制功能，在集群中的几台服务器之间同步Session对象，使得每台服务器上都保存所有用户的Session信息。</li>
+<li>Session绑定（不符合高可用的要求）<br>利用负载均衡的原地址Hash算法实现。负载均衡器总是将来源于同一IP的请求分发到同一台服务器上。</li>
+<li>利用Cookie记录Session</li>
+<li>Session服务器<br>利用独立部署的Session服务器（集群）统一管理Session，应用服务器每次读写Session时，都访问Session服务器。</li>
+</ol>
+</li>
+</ul>
+<h2 id="高可用的服务"><a href="#高可用的服务" class="headerlink" title="高可用的服务"></a>高可用的服务</h2><ul>
+<li><p>分级管理</p>
+<ol>
+<li>核心应用和服务有限使用更好的硬件</li>
+<li>服务部署上需要进行必要的隔离，避免故障的连锁反应。</li>
+</ol>
+</li>
+<li><p>超时设置</p>
+</li>
+<li><p>异步调用</p>
+<ol>
+<li>应用对服务的调用通过消息队列等异步方式完成，避免一个服务失败导致整个应用请求失败的情况。</li>
+<li>当然，不是所有服务调用都可以异步调用，对于获取用户信息这类调用，采用异步方式会延长响应时间，得不偿失。对于那些<strong>必须确认服务调用成功才能继续下一步操作</strong>的应用，也不适合使用异步调用。</li>
+</ol>
+</li>
+<li><p>服务降级</p>
+</li>
+<li><p>幂等性设计</p>
+</li>
+</ul>
+<h2 id="高可用的数据"><a href="#高可用的数据" class="headerlink" title="高可用的数据"></a>高可用的数据</h2><p>不同于高可用的应用和服务，由于数据存储服务器上保存的数据不同，当某台服务器宕机的时候，数据访问请求不能任意切换到集群中其他的机器上。</p>
+<p>根据CAP原理，为了保证数据的高可用，网站通常会牺牲另一个也很重要的指标：数据一致性。</p>
+<ul>
+<li><p>数据备份<br>数据热备分为两种：异步热备方式和同步热备方式</p>
+</li>
+<li><p>失效转移<br>若数据服务器集群中任何一台服务器宕机，那么应用程序针对这台服务器的所有读写操作都需要重新路由到其他服务器，保证数据访问不会失败，这个过程叫做失效转移。</p>
+<ol>
+<li>失效确认<br>通过心跳检测和应用程序访问失败报告</li>
+<li>访问转移<br>确认宕机后，需要将数据读写访问重新路由到其他服务器上。</li>
+<li>数据恢复<br>从健康的服务器复制数据，将数据副本数目恢复到设定值</li>
+</ol>
+</li>
+</ul>
+<h2 id="高可用网站的软件质量保证"><a href="#高可用网站的软件质量保证" class="headerlink" title="高可用网站的软件质量保证"></a>高可用网站的软件质量保证</h2><p>（1）网站发布</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846594.jpeg" style="zoom:50%;" />
+
+<p>发布过程中，每次关闭的服务器都是集群中的一小部分，并在发布完成后立即可以访问，因此整个发布过程不影响用户使用。<br>（2）自动化测试<br>大部分网站采用Web自动化测试技术，比较流行的测试工具是Selenium。<br>（3）预发布验证<br>网站发布时，先发布到预发布服务器上，开发和测试工程师进行预发布验证，执行一些典型的业务流程，确认系统没有问题后才正式发布。<br>（4)代码控制</p>
+<ul>
+<li>有“主干开发、分支发布”和“分支开发，主干发布”两种</li>
+<li>目前网站主要使用“分支开发，主干发布”。<br>（5）自动化发布</li>
+<li>很多网站选择<strong>周四</strong>作为发布日</li>
+<li>采用“火车发布模型”，开发一个自动化发布的工具。<br>（6）灰度发布</li>
+<li>背景：服务器集群规模庞大，一旦发现故障，即使想要回滚，也需要很长时间才能完成。</li>
+<li>灰度发布模式：将集群服务器分成若干份，每天只发布一部分服务器，观察运行稳定没有故障，第二天继续发布一部分服务器， 持续几天才能把整个集群全部发布完毕，期间如果发现问题，只需要回滚已发布的一部分服务器即可。</li>
+<li><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846600.jpeg" style="zoom:50%;" /></li>
+</ul>
+<h1 id="永无止境：网站的伸缩性架构"><a href="#永无止境：网站的伸缩性架构" class="headerlink" title="永无止境：网站的伸缩性架构"></a>永无止境：网站的伸缩性架构</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><ul>
+<li>不同功能进行物理分离实现伸缩（不同的服务器部署不同的服务，提供不同的功能）<br>横向分离<br>纵向分离</li>
+<li>单一功能通过集群规模实现伸缩（集群内的多台服务器部署相同的服务，提供相同的功能）<br>应用服务器集群伸缩性<br>数据服务器集群伸缩：缓存数据服务器集群、存储数据服务器集群</li>
+</ul>
+<h2 id="应用服务器集群伸缩性"><a href="#应用服务器集群伸缩性" class="headerlink" title="应用服务器集群伸缩性"></a>应用服务器集群伸缩性</h2><p>如果HTTP请求分发装置（负载均衡服务器）可以感知或者可以配置集群的服务器数量，可以及时发现集群中新上线或下线的服务器，并能向新上线的服务器分发请求，停止向已下线的服务器分发请求，那么就实现了应用服务器集群的伸缩性。</p>
+<ul>
+<li>HTTP重定向负载均衡<br>HTTP重定向服务器，将其一台真实的Web服务器地址写入HTTP重定向响应中（响应状态码302）返回给用户浏览器。<br>由于需要两次请求服务器才能完成一次访问，性能较差，使用这种方案不多</li>
+<li>DNS域名解析负载均衡<br>每次域名解析请求都会根据负载均衡算法计算一个不同的IP地址返回。<br>事实上，大型网站总是部分使用DNS域名解析，利用域名解析作为第一级负载均衡手段，即域名解析得到的一组服务器并不是实际提供Web服务的物理服务器，而是同样提供负载均衡服务的内部服务器，这组内部服务器再进行负载均衡。</li>
+<li>反向代理负载均衡（应用层负载均衡）</li>
+<li>IP负载均衡</li>
+<li>数据链路层负载均衡<ol>
+<li>是指在通信协议的数据链路层修改mac地址进行负载均衡。</li>
+<li>又称为三角传输模式：负载均衡数据分发过程中不修改IP地址，只修改目的mac地址。由于实际处理请求的真实物理服务器IP和数据请求目的IP一致，不需要通过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。（直接路由方式DR）</li>
+<li><strong>这是目前大型网站使用最广的一种负载均衡手段</strong>。</li>
+</ol>
+</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704094846604.jpeg" style="zoom:50%;" />
+
+<h2 id="分布式缓存集群的伸缩性"><a href="#分布式缓存集群的伸缩性" class="headerlink" title="分布式缓存集群的伸缩性"></a>分布式缓存集群的伸缩性</h2><ul>
+<li>主要目标：必须让新上线的缓存服务器对整个分布式缓存集群影响最小，也就是说新加入缓存服务器后应使整个缓存服务器集群中已经缓存的数据尽可能还被访问到，这是分布式缓存集群伸缩性设计的最主要目标</li>
+<li>一致性Hash算法<ol>
+<li>具体使用二叉查找树实现，Hash查找过程实际上是在二叉查找树中查找不小于查找数的最小数值。</li>
+<li>通过虚拟节点解决负载不均衡的问题。</li>
+</ol>
+</li>
+</ul>
+<h2 id="数据存储服务器集群的伸缩性"><a href="#数据存储服务器集群的伸缩性" class="headerlink" title="数据存储服务器集群的伸缩性"></a>数据存储服务器集群的伸缩性</h2><ul>
+<li><p>关系数据库集群的伸缩性设计</p>
+<ol>
+<li>读写分离</li>
+<li>数据分库：不同业务数据表部署在不同的数据库集群上</li>
+</ol>
+<p>数据库中间件，可以很好的支持数据分片。</p>
+<ol>
+<li>应用程序通过JDBC驱动访问中间件集群，中间件服务器根据SQL和分库规则分解SQL，分发到MySQL集群不同的数据库实例上执行（每个MySQL实例都部署从节点，保证高可用）。</li>
+<li>在做集群的伸缩时，数据库中间件可以使用负载均衡手段实现；而MySQL中存储这数据，必须要做<strong>数据迁移</strong>，将集群中原来机器中的数据迁移到新添加的机器中。</li>
+</ol>
+</li>
+<li><p>NoSQL数据库的伸缩性设计<br>HBase为可伸缩海量数据存储而设计，主要依赖其可分裂的HRegion及可伸缩的分布式文件系统HDFS实现。</p>
+</li>
+</ul>
+<h1 id="随需应变：网站的可扩展架构"><a href="#随需应变：网站的可扩展架构" class="headerlink" title="随需应变：网站的可扩展架构"></a>随需应变：网站的可扩展架构</h1><p>开发底耦合系统是软件设计的终极目标之一<br>模块分布式部署后，具体聚合方式主要有分布式消息队列和分布式服务</p>
+<ul>
+<li><p>利用分布式消息队列降低系统耦合性</p>
+<ol>
+<li>事件驱动架构（EDA）<br>通过在低耦合的模块之间传输事件消息，以保持模块的松散耦合，并借助事件消息的通信完成模块间合作。典型的EDA架构就是操作系统中常见的生产者消费者模式，最常用的是分布式消息队列。</li>
+<li>分布式消息队列</li>
+</ol>
+<p>-消息队列服务器将消息写入本地内存队列后立即返回成功响应给消息生产者。<br>-伸缩性：将新服务器加入分布式消息队列集群中，通知生产者服务器更改消息队列服务器列表即可。<br>-可用性：如果内存队列已满，会将消息写入磁盘。<br>-为了避免消息队列服务器宕机造成消息丢失，会将消息成功发送到消息队列的消息存储在消息生产者服务器，等消息真正被消息消费者服务器处理后才删除消息。</p>
+</li>
+<li><p>利用分布式服务打造可复用的业务平台<br>拆分服务，使用分布式服务框架构建其SOA（面向服务的体系架构）</p>
+</li>
+<li><p>可扩展的数据结构<br>需要实现，无需修改表结构就可以新增字段<br>许多NoSQL数据库使用的ColumnFamily（列簇）设计就是一个解决方案。</p>
+</li>
+</ul>
+<h1 id="固若金汤：网站的安全架构"><a href="#固若金汤：网站的安全架构" class="headerlink" title="固若金汤：网站的安全架构"></a>固若金汤：网站的安全架构</h1><h2 id="网站的攻击和防御"><a href="#网站的攻击和防御" class="headerlink" title="网站的攻击和防御"></a>网站的攻击和防御</h2><p>（1）XSS攻击</p>
+<ul>
+<li><p>概念<br>跨站点脚本攻击，指黑客通过篡改网页，注入恶意HTML脚本，在用户浏览网页时，控制用户浏览器进行恶意操作的一种攻击方式。</p>
+</li>
+<li><p>常见攻击类型</p>
+<ol>
+<li>反射型，攻击者诱使用户点击一个嵌入恶意脚本的链接，达到攻击的目的</li>
+<li>持久型，黑客提交含有恶意脚本的请求，保存在被攻击的Web站点的数据库中，用户浏览网页时，恶意脚本被包含在正常页面中，达到攻击目的</li>
+</ol>
+</li>
+<li><p>防御手段</p>
+<ol>
+<li>消毒。对某些html危险字符转义，如”&gt;”转义为”&gt;”、”&lt;”转义为”&lt;”等。</li>
+<li>HttpOnly。浏览器机制页面JavaScript访问带有HttpOnly属性的Cookie。HttpOnly并不是直接对抗XSS攻击，而是防止XSS攻击窃取Cookie。</li>
+</ol>
+</li>
+</ul>
+<p>（2）注入攻击</p>
+<ul>
+<li>主要有两种形式：SQL注入攻击和OS注入攻击。</li>
+<li>SQL注入原理：攻击者在HTTP请求中注入恶意SQL命令（<code>http://www.a.com?user=frank&#39;;drop table users;--&#39;;</code>），服务器用请求参数构造数据库SQL命令时，恶意SQL被一起构造，并在数据库执行。</li>
+<li>防御SQL注入首先要避免被攻击者猜测到表名等数据库表结构信息，主要手段有：<ol>
+<li>消毒：通过正则匹配，过滤请求数据中可能注入的SQL</li>
+<li>参数绑定：是最好的防SQL注入方法。ORM实现SQL预编译和参数绑定，攻击者的恶意SQL会被当做SQL的参数，而不是SQL命令执行。</li>
+</ol>
+</li>
+</ul>
+<p>（3）CSRF攻击</p>
+<ul>
+<li>跨站点请求伪造。攻击者通过跨站请求，以合法用户的身份进行非法操作，如转账等。</li>
+<li>其核心是利用了浏览器Cookie或者服务器Session策略，盗取用户身份。</li>
+<li>主要防御手段<ol>
+<li>表单Token。在页面表单中增加一个随机数作为Token，每次响应页面的Token不相同，伪造的请求无法获取该值</li>
+<li>验证码</li>
+<li>Referer check。检查HTTP请求头的Referer域，检查来源是否合法。（可以利用这个配置防盗链）</li>
+</ol>
+</li>
+</ul>
+<h2 id="信息加密技术及密钥安全管理"><a href="#信息加密技术及密钥安全管理" class="headerlink" title="信息加密技术及密钥安全管理"></a>信息加密技术及密钥安全管理</h2><p>一些信息加密技术：</p>
+<ul>
+<li><p>单向散列加密</p>
+<ol>
+<li>通过对不同输入长度的信息进行散列计算，得到<strong>固定长度的输出</strong>。这个散列计算过程是单向的。</li>
+<li>为了加强安全性，还会给散列算法加盐（salt），salt相当于加密的密钥，增加破解的难度</li>
+<li>常用单向散列算法：MD5、SHA</li>
+</ol>
+</li>
+<li><p>对称加密</p>
+</li>
+<li><p>非对称加密</p>
+</li>
+</ul>
+<p>密钥的安全管理：</p>
+<ul>
+<li>密钥和算法放在一个独立的服务器上，应用系统调用这个服务，实现数据的加解密</li>
+<li>将加解密算法防砸应用系统中，密钥则放在独立的服务器中，密钥还可以分片保存。</li>
+</ul>
+<h2 id="信息过滤与反垃圾"><a href="#信息过滤与反垃圾" class="headerlink" title="信息过滤与反垃圾"></a>信息过滤与反垃圾</h2><p>常用的信息过滤与反垃圾手段：</p>
+<ul>
+<li>文本匹配<br>常见的算法有：Trie树变种、多级Hash表。</li>
+<li>分类算法<br>常见的算法：贝叶斯分类算法</li>
+<li>黑名单<br>可以通过Hash表实现，但是当黑名单列表非常大时，Hash表需要占据极大的内存空间。<br><strong>当Hash表占内存过大时，在对过滤需求不完全精确的场景下，可用布隆过滤器代替Hash表</strong>。</li>
+</ul>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2021/04/23/da-xing-wang-zhan-ji-zhu-jia-gou-he-xin-yuan-li-yu-an-li-fen-xi-xue-xi-bi-ji/">https://jason-qianhao.github.io/2021/04/23/da-xing-wang-zhan-ji-zhu-jia-gou-he-xin-yuan-li-yu-an-li-fen-xi-xue-xi-bi-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%9E%B6%E6%9E%84/">
+                                    <span class="chip bg-color">架构</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/05/06/springboot-he-chang-jian-kuang-jia-zheng-he/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/36.jpg" class="responsive-img" alt="Springboot和常见框架整合">
+                        
+                        <span class="card-title">Springboot和常见框架整合</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/04/22/fen-bu-shi-gao-ke-yong-jia-gou-zong-jie-zhong-hua-shi-shan-zhi-dubbo/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="《分布式高可用架构总结-中华石衫》之Dubbo">
+                        
+                        <span class="card-title">《分布式高可用架构总结-中华石衫》之Dubbo</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-04-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                    微服务
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                    <a href="/tags/Dubbo/">
+                        <span class="chip bg-color">Dubbo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

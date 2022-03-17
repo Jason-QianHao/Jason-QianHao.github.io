@@ -1,0 +1,1829 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Nginx知识汇总, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Nginx知识汇总 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723956.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Nginx知识汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Nginx/">
+                                <span class="chip bg-color">Nginx</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Nginx/" class="post-category">
+                                Nginx
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-26
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    24 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录<br>1 Nginx概述<br>2 使用<br>3 反向代理<br>4 负载均衡<br>5 重写<br>6 Nginx的其他用法<br>7 一个HTTP到Nginx处理的过程<br>8 Nginx解决跨域问题<br>9 Nginx配置防盗链<br>10 对比F5  </p>
+<p>参考资料<br>· GitHub  </p>
+</blockquote>
+<h1 id="Nginx概述"><a href="#Nginx概述" class="headerlink" title="Nginx概述"></a>Nginx概述</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>  nginx是一款高性能的http服务器/反向代理服务器及电子邮件（IMAP/POP3）代理服务器。由俄罗斯的程序设计师Igor Sysoev所开发，<strong>官方测试nginx能够支支撑5万并发链接</strong>，并且cpu、内存等资源消耗却非常低，运行非常稳定，所以现在很多知名的公司都在使用nginx。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>（1）http服务器。Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</p>
+<p>（2）虚拟主机。可以实现在一台服务器虚拟出多个网站。例如个人网站使用的虚拟主机。</p>
+<p>（3）反向代理，负载均衡。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用nginx做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723956.png" alt="img"/>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>（1）nginx 是<strong>事件驱动</strong>的服务器。</p>
+<p>（2）nginx 采用的是<strong>多进程</strong>，（每个进程都是）<strong>单线程</strong>。</p>
+<p>（3）nginx 采用 <strong>IO 多路复用</strong>的事件模型。在Linux操作系统下，Nginx使用epoll事件模型（得益于此，Nginx在Linux操作系统下效率相当高）。在OpenBSD或FreeBSD操作系统上采用类似于epoll的事件模型kqueue。</p>
+<blockquote>
+<p>Nginx 支持 select、poll、kqueue、epoll、rtsig 和 /dev/poll。当然，你不用特别指定事件模型，Nginx 会自动选择最佳。</p>
+</blockquote>
+<p>epoll模型参考连接：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/126532346">select、poll和epoll模型 - 知乎</a></p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>（1）优点：</p>
+<p>​    · 高性能</p>
+<p>​    · 资源消耗低</p>
+<p>​    · 模块化设计</p>
+<p>​    · 模块编写简单</p>
+<p>​    · 配置文件简洁</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723897.png" alt="img"/>
+
+<p>常见模块参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/CMX_Shmily/p/11599753.html">Nginx常用模块及作用 - Room、C - 博客园</a></p>
+<p>（2）缺点：（ nginx 性能提升的代价是降低了其他方面）</p>
+<p>​    · <strong>稳定性</strong>，不如 apache 和 Windows Server 下的 Nginx</p>
+<p>​    · 没有像 Apache 使用.htaccess 那样的访问设置</p>
+<p>​    · 添加模块复杂（在版本 1.9.11 中增加了动态模块加载。但模块需要与 Nginx 同时编译）</p>
+<h2 id="nginx-conf配置文件"><a href="#nginx-conf配置文件" class="headerlink" title="nginx.conf配置文件"></a>nginx.conf配置文件</h2><h3 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h3><pre class="line-numbers language-none"><code class="language-none">events &#123;
+&#125;
+http &#123;
+  server &#123;
+  &#125;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><h4 id="指令分类"><a href="#指令分类" class="headerlink" title="指令分类"></a>指令分类</h4><p>① 简单指令 Simple Directives</p>
+<p>  如listen <em>:80;，是由 名称（listen）-参数（</em>:80）-分号（;） 构成。</p>
+<p>  <strong>简单指令只能包含在上下文指令中。（最高层的简单指令可以理解成在一个隐藏的上下文指令中）</strong></p>
+<p>② 上下文指令 Context Directives</p>
+<p>  如</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">server<span class="token punctuation">&#123;</span>  
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="指令继承"><a href="#指令继承" class="headerlink" title="指令继承"></a>指令继承</h4><p>  指令总是向下继承，除非有内部重名的会覆盖外层。这跟编程语言变量作用域的规则一样。</p>
+<h4 id="一些具体指令"><a href="#一些具体指令" class="headerlink" title="一些具体指令"></a>一些具体指令</h4><p>（1）worker_processes</p>
+<p>  · 格式：worker_processes 1;</p>
+<p>  · 指定工作进程数。推荐 auto，它会自动检测逻辑CPU内核数。如果 cpu 使用了超线程技术，例如双核4线程，可以设置为4。</p>
+<p>  · 拓展：</p>
+<blockquote>
+<p>物理cpu数：主板上实际插入的cpu数量。</p>
+<p>cpu核数：单块CPU上面能处理数据的芯片组的数量，如双核、四核等。</p>
+<p>逻辑cpu数：一般情况下，逻辑cpu=物理CPU数×cpu核数。</p>
+</blockquote>
+<p>（2）Events 上下文指令</p>
+<p>  · Events 这个上下文指令只能在配置文件里出现一次。</p>
+<p>  · 格式：</p>
+<pre class="line-numbers language-none"><code class="language-none">events&#123;
+  worker_connections 512;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>  · worker_connections 单个工作进程可以允许同时建立连接的数量（此为调优的重要参数）。如果往上调整太多，记得有可能需要同时调整操作系统的最大打开文件数限制（ulimit）。</p>
+<h3 id="虚拟主机"><a href="#虚拟主机" class="headerlink" title="虚拟主机"></a>虚拟主机</h3><p>  虚拟主机是一种在<strong>单一主机</strong>或主机群上，实现多网域服务的方法，可以运行<strong>多个网站</strong>或服务的技术。常见有3种方法：</p>
+<p>（1）<strong>基于IP地址</strong>。通过 listen 对应 IP，前提是你的主机得有多个 IP 地址，这个成本较大。</p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;
+  listen 172.19.205.200:80;
+&#125;
+server &#123;
+  listen 172.19.205.201:80;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（2）<strong>基于端口号</strong>。通过 listen 对应端口，但一般网址都是默认 80/443，弄别的端口体验会很差。</p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;
+  listen 80;
+&#125;
+server &#123;
+  listen 81;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>（3） <strong>基于主机名</strong>。通过 <strong>server_name</strong>，对应 HTTP 的 Host 头（对应一个IP地址）。HTTP1.1 新增 Host 头，用来填写主机名。</p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;
+  listen 80;
+  server_name test1.xjnotxj.com;
+&#125;
+server &#123;
+  listen 80;
+  server_name test2.xjnotxj.com;
+&#125;
+\# 支持多个值
+  server_name example.com www.example.com; 
+\# 支持通配符 
+  server_name example.com *.example.com www.example.*;
+  server_name ~^www[0-9]\.example\.com$;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>· <strong>3种方法的匹配规则</strong></p>
+<p>① default_server</p>
+<pre class="line-numbers language-none"><code class="language-none">server&#123;
+listen 80 default_server;
+server_name foobar.com;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>② 匹配规则</p>
+<p>  · 先匹配 listen</p>
+<p>​    如果这都匹配不到，则根本就不会有响应，因为 HTTP 连接没法建立</p>
+<p>  · 然后匹配 server_name</p>
+<p>​    · 准确值优先级大于通配符</p>
+<p>​    · 如果没找到，有 default_server 则匹配</p>
+<p>​    · 如果没有 default_server，就找第一个出现的 server</p>
+<p><strong>· 建议在负责兜底的匹配规则里：</strong></p>
+<p>  · 首先有 default_server</p>
+<p>  · 然后 server_name 写成 _（只是惯例，你写成 @#$ 也没事，反正不会被匹配上），</p>
+<p>  ·返回的话：</p>
+<p>​    · 写上 return 444，这是 nginx 自己独有的 HTTP 响应码，含义是服务器不向客户端返回任何信息，并关闭连接（有助于恶意软件的威胁）。</p>
+<p>​    · 可以重定向到你定制的错误页面或者官网首页。</p>
+<h3 id="Location-Block"><a href="#Location-Block" class="headerlink" title="Location Block"></a>Location Block</h3><p>  location 即 url 的匹配规则。</p>
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723945.png" alt="img" style="zoom:50%;" />
+
+<p>· 先是最普通的写法：</p>
+<blockquote>
+<p>location /api {} # 前缀匹配</p>
+</blockquote>
+<p>· 然后支持上面表的修饰符</p>
+<blockquote>
+<p>location = /api { } # 精确匹配<br>location ~ .php$ { } # 正则匹配（区分大小写）<br>location <del>* .php$ { } # 正则匹配（不分大小写）<br>location ^</del> /api { } # 非正则的前缀匹配</p>
+</blockquote>
+<h4 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h4><p>（1）匹配规则（按顺序依次匹配）：</p>
+<p>  · 精确匹配 =</p>
+<p>  · 非正则的前缀匹配 ^~</p>
+<p>  · 正则匹配 ~ 和 ~*</p>
+<p>  · 前缀匹配</p>
+<p>（2）注1：</p>
+<p>  · 一个网址中，<strong>域名不分大小写</strong>（例如 chrome 地址栏中输入大写，会自动变小写），但是后面的<strong>路径分大小写</strong>， nginx 也分。</p>
+<p>  · 注意有两种前缀匹配，且在<strong>这两种前缀匹配下，匹配越长优先级越高</strong>，与 location 所在位置的顺序无关</p>
+<p>  · <strong>正则匹配</strong>如果匹配了多个，会选择出现<strong>顺序的首个</strong>，所以建议越精细的放的越靠前。</p>
+<p>  · 最终还是没找到，nginx 响应 404。</p>
+<p>（2）注2：关于网址斜杠的问题</p>
+<p>  · <strong>一个域名的最后一定要有一个斜杠</strong>，这是 RFC1738 规定的，如 <a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com/</a> 是对的，而 <a target="_blank" rel="noopener" href="https://www.baidu.com/">https://www.baidu.com</a> 不对，但日常大家都习惯不加，是因为如浏览器等都会帮我们自动加上。（对应 nginx 的精确匹配就是 location = / {}）</p>
+<p>  · 一个网址（域名+路径）的最后的斜杠<strong>可有可没有。没有代表一个文件，有代表一个目录</strong>。</p>
+<p>  · 域名不看，nginx 只会把路径当成待比较的值，去参与上面介绍的匹配规则。（如 <a target="_blank" rel="noopener" href="https://www.baidu.com/api/abc">https://www.baidu.com/api/abc</a> ，只会用 /api/abc 去参与匹配）</p>
+<p>  · nginx 用来匹配的路径，会<strong>忽略 ? 及后面</strong>。（如 <a target="_blank" rel="noopener" href="https://www.baidu.com/api?param1&amp;param2%EF%BC%8C%E5%8F%AA%E4%BC%9A%E7%94%A8">https://www.baidu.com/api?param1&amp;param2，只会用</a> /api 去参与匹配）</p>
+<h4 id="Named-Location-Blocks"><a href="#Named-Location-Blocks" class="headerlink" title="Named Location Blocks"></a>Named Location Blocks</h4><p>（1）Named Location 不能直接用于常规请求处理，并且永远不会与请求URI匹配。相反，它们只适用于<strong>内部重定向</strong>，搭配 try_files 指令。</p>
+<p>  try_files 指令检查是否存在所提供的文件名（按顺序检查，从左到右），try_files 的最后一个参数便是 Named Location。</p>
+<blockquote>
+<p>try_files 是 nginx 在 0.7 以后的版本中加入的指令（放置在 server 或 location 块中），配合 Named Location，可以部分<strong>替代原本常用的 rewrite</strong> 。（rewrite 下面会详细介绍）</p>
+</blockquote>
+<p>（2）使用：</p>
+<pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;
+try_files maintenance.html index.html @foobar;
+&#125;
+location @foobar &#123;
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>  · try_files 不一定非要搭配 location，直接返回响应码也是可以的：</p>
+<pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;	try_files maintenance.html index.html &#x3D;404&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（4）Location Block 内的指令</p>
+<p>① 指定<strong>文件系统路径</strong> —— root / alias</p>
+<p><strong>· root 指令:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">location &#x2F;foobar&#x2F;resource_root &#123; root &#x2F;etc&#x2F;nginx&#x2F;static&#x2F;;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>对 <a target="_blank" rel="noopener" href="http://example.org/foobar/resource_root/b.jpg">http://example.org/foobar/resource_root/b.jpg</a> 的请求将解析为文件系统路径 /etc/nginx/static/foobar/resource_root/b.jpg。</p>
+<p>原理：<strong>文件系统目录 = root + url_path</strong>（即 /etc/nginx/static/ + /foobar/resource_root/b.jpg = /etc/nginx/static//foobar/resource_root/b.jpg ）</p>
+<p><strong>· alias 指令:</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">location &#x2F;foobar&#x2F;resource_alias &#123;	alias &#x2F;etc&#x2F;nginx&#x2F;static&#x2F;;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>对 <a target="_blank" rel="noopener" href="https://xjnotxj.com/foobar/resource_alias/img/a.jpg">https://xjnotxj.com/foobar/resource_alias/img/a.jpg</a> 的请求将解析为文件系统路径 /etc/nginx/static/img/a.jpg。</p>
+<p>原理：**文件系统目录 = alias + (url_path - location)**（即 /etc/nginx/static/ + /img/a.jpg = /etc/nginx/static//img/a.jpg ）</p>
+<p>注：上面的结果 /etc/nginx/static//img/a.jpg 注意中间是有两个斜杠。<strong>alias 路径最后的斜杠带不带要仔细考量，因为 (url_path - location) 的开头不一定有斜杠</strong>，最终结果不一定合法。</p>
+<p>注：root 和 alias 还有一个区别，即：<strong>alias 只能位于 location 块中，而 root 可以在 location 块也可以在 server 块。</strong>（原因很简单，从它们两者的原理就可以看出，因为 alias 计算文件系统路径需要 location 的参与，而 root 不需要。）</p>
+<p>② 指定<strong>网站默认页</strong> —— index 指令</p>
+<p>· 默认值：index index.html</p>
+<p>· 原理：<strong>内部重定向</strong>【重点】</p>
+<p>  内部重定向即<strong>再一次搜索同一个 server 下的 location</strong>。</p>
+<blockquote>
+<p>最早的时候这个文件被叫作“主页” （home page），意思就是当省略文件名时访问的那个默认的页面。随着 Web 的普及，这个词的意义似乎并没有被正确理解，现在不光是默认页面，似乎随便什么网页都可以被叫作主页了。</p>
+</blockquote>
+<p>更多指令参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xjnotxj/p/13094290.html">Nginx 学习笔记 - 小蒋不素小蒋 - 博客园</a></p>
+<h2 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723942.png" alt="img"/>
+
+<p>（1）master进程</p>
+<p>  · 接收来自外界的信号</p>
+<p>  · 向各worker进程发送信号</p>
+<p>  · 监控worker进程运行状态</p>
+<p>  · 当worker退出后，会自动重新启动新的worker进程</p>
+<p>（2）worker进程</p>
+<p>  · 采用单线程，非阻塞的事件模型</p>
+<p>  · 监听端口及处理客户端请求</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="静态访问"><a href="#静态访问" class="headerlink" title="静态访问"></a>静态访问</h2><p>  Web server很重要一部分工作就是提供静态页面的访问，例如images, html page。nginx可以通过不同的配置，根据request请求，从本地的目录提供不同的文件返回给客户端。 </p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;    listen   80;    server_name localhost;    location &#x2F; &#123;      root html;      index index.html index.htm;    &#125;    error_page 500 502 503 504 &#x2F;50x.html;    location &#x3D; &#x2F;50x.html &#123;      root html;    &#125;&#125; <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="动态程序"><a href="#动态程序" class="headerlink" title="动态程序"></a>动态程序</h2><h3 id="CGI、FastCGI"><a href="#CGI、FastCGI" class="headerlink" title="CGI、FastCGI"></a>CGI、FastCGI</h3><p>（1）CGI（Common Gateway Interface，通用网关接口），是服务器与程序（或脚本）进行通信的接口。CGI 使程序员能够编写自己的动态 Web 应用程序。</p>
+<p>（2）实现步骤：</p>
+<p>  · 一般通过 url 路径中的<strong>文件扩展名</strong>来进行判断是静态还是动态页面，例如将 .cgi、.php 等扩展名设置为动态页面。</p>
+<p>  · 接着通过配置 CGI / FastCGI 来运行程序，返回结果。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723959.png" alt="img" style="zoom:67%;" />
+
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><h1 id="反向代理-1"><a href="#反向代理-1" class="headerlink" title="反向代理"></a>反向代理</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>（1）正向代理：类似于跳板机，代理访问外部资源，类似于海外代购</p>
+<p>（2）反向代理：将请求转发（<strong>重新发起请求</strong>）给内部网络的服务器，对外表现为一个服务器（保证内网的安全，阻止web攻击），类似于明星经纪人</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723960.png" alt="img"></p>
+<h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>（1）实现动态Web应用程序</p>
+<p>（2）负载均衡</p>
+<p>（3）保护服务器内网的真实IP地址</p>
+<h2 id="配置实例"><a href="#配置实例" class="headerlink" title="配置实例"></a>配置实例</h2><p>（1）host文件</p>
+<blockquote>
+<p>127.0.0.1 8080.qian.com</p>
+<p>127.0.0.1 b8081.qian.com</p>
+</blockquote>
+<p>（2）nginx.conf配置</p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;    listen    80;    server_name  8080.qian.com;    location &#x2F; &#123;      proxy_pass  http:&#x2F;&#x2F;127.0.0.1:8080;      index  index.html index.html;    &#125;&#125;server &#123;    listen    80;    server_name  b8081.qian.com;    location &#x2F; &#123;      proxy_pass  http:&#x2F;&#x2F;127.0.0.1:8081;      index  index.html index.html;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>  负载均衡建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
+<p>  负载均衡，英文名称为Load Balance，其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723922.png" alt="img"/>
+
+<h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>  Nginx负载平衡实际上是反向代理的一种。</p>
+<p>  upstream 指令进行负载均衡配置。</p>
+<h3 id="HTTP-负载均衡"><a href="#HTTP-负载均衡" class="headerlink" title="HTTP 负载均衡"></a>HTTP 负载均衡</h3><p>（1）默认算法：Round Robin（轮询）</p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;  upstream ub &#123;     server10.117.0.1:3010;     server10.117.0.2:3010;     server10.117.0.3:3010;  &#125;    server &#123;     location &#x2F; &#123;         proxy_pass http:&#x2F;&#x2F;ub; &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>Round Robin（轮询）还可以加上<strong>服务器权重</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;  upstream ub &#123;     server10.117.0.1:3010weight &#x3D;5;     server10.117.0.2:3010weight &#x3D;3;     server10.117.0.3:3010weight &#x3D;1;  &#125;    server &#123;     location &#x2F; &#123;         proxy_pass http:&#x2F;&#x2F;ub; &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>解释：服务器收到请求数的比重是 <em>5：3：1</em></p>
+<p>（2）Least Connections（最少连接数）</p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;   upstream ub &#123;       least_conn;       server 10.117.0.1:3010;       server 10.117.0.2:3010;       server 10.117.0.3:3010;   &#125;    ​    server &#123;    ​      location &#x2F; &#123;      ​        proxy_pass http:&#x2F;&#x2F;ub;​      &#125;  ​    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（3）Least Time（最短时间）【仅适用于 NGINX Plus】</p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;  upstream ub &#123;     hash $request_uri consistent;     server 10.117.0.1:3010;     server 10.117.0.2:3010;     server 10.117.0.3:3010;  &#125;    server &#123;     location &#x2F; &#123;         proxy_pass http:&#x2F;&#x2F;ub; &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>注：肯定比上面的都好使，毕竟是 NGINX Plus 才有的<strong>收费</strong>功能。</p>
+<p>（4）IP Hash（IP哈希）</p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;  upstream ub &#123;     ip_hash;     server10.117.0.1:3010;     server10.117.0.2:3010;     server10.117.0.3:3010;  &#125;    server &#123;     location &#x2F; &#123;         proxy_pass http:&#x2F;&#x2F;ub; &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（5）Generic Hash（通用哈希）</p>
+<pre class="line-numbers language-none"><code class="language-none">http &#123;  upstream ub &#123;     hash $request_uri consistent;     server10.117.0.1:3010;     server10.117.0.2:3010;     server10.117.0.3:3010;  &#125;    server &#123;     location &#x2F; &#123;         proxy_pass http:&#x2F;&#x2F;ub; &#125;  &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>解释：等于把上面 ip hash 变成了 $request_uri hash。</p>
+<h3 id="TCP-负载均衡"><a href="#TCP-负载均衡" class="headerlink" title="TCP 负载均衡"></a>TCP 负载均衡</h3><p>  nginx 开源版 1.9.0 支持 TCP 负载平衡。</p>
+<p>（1）写法</p>
+<pre class="line-numbers language-none"><code class="language-none">stream&#123;upstream backend&#123; server 127.0.0.1:8089; server 127.0.0.2:1935; server 127.0.0.3:1935; &#125;server&#123; listen 80; proxy_pass backend; &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>· 跟 HTTP 负载均衡写法的异同：</strong></p>
+<p>  · stream block 取代 http block（stream 表示 <strong>TCP/UDP 流量</strong>）</p>
+<p>  · upstream 写法不变</p>
+<p>  · proxy_pass 属于 server 而不是 location，server 也不存在 location。</p>
+<p>（2）优缺点</p>
+<p>  · 优点：<strong>性能好</strong>。直接转发原始TCP数据包，没有数据解析；如果是 HTTPS ，也免去了 SSL 层的损耗。</p>
+<p>  · 缺点：<strong>功能损失</strong>。例如无法通过 proxy_set_header 改写/注入 HTTP 标头</p>
+<blockquote>
+<p>[拓展] <strong>既然 proxy_set_header 无法用，那 TCP 代理怎么传递客户端的原始 IP 信息呢？</strong></p>
+<p>可以使用 proxy protocol。</p>
+<p>proxy protocol 是 HAProxy 的作者 Willy Tarreau 于 2010 年开发和设计的一个 Internet 协议，通过为 tcp 添加一个很小的头信息，来方便的传递客户端信息（协议栈、源IP、目的IP、源端口、目的端口等)。其本质是在三次握手结束后由代理在连接中插入了一个携带了原始连接四元组信息的数据包。</p>
+</blockquote>
+<blockquote>
+<p>具体例子参考：<a target="_blank" rel="noopener" href="https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/">https://docs.nginx.com/nginx/admin-guide/load-balancer/using-proxy-protocol/</a></p>
+<p>proxy protocol 也可以用在 HTTP 负载均衡上。</p>
+</blockquote>
+<h3 id="邮件协议的负载均衡"><a href="#邮件协议的负载均衡" class="headerlink" title="邮件协议的负载均衡"></a>邮件协议的负载均衡</h3><blockquote>
+<p># 邮件流量</p>
+<p>mail{}</p>
+</blockquote>
+<h2 id="宕机轮训配置规则"><a href="#宕机轮训配置规则" class="headerlink" title="宕机轮训配置规则"></a>宕机轮训配置规则</h2><pre class="line-numbers language-none"><code class="language-none">server &#123;    listen    80;    server_name  www.itmayiedu.com;    location &#x2F; &#123;      proxy_pass  http:&#x2F;&#x2F;backserver;      index  index.html index.htm;      proxy_connect_timeout 1;      proxy_send_timeout 1;      proxy_read_timeout 1;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="重写"><a href="#重写" class="headerlink" title="重写"></a>重写</h1><h2 id="概念-3"><a href="#概念-3" class="headerlink" title="概念"></a>概念</h2><p>  rewrite 是 nginx 的重写模块，即ngx_http_rewrite_module。主要功能是改写请求URI，是Nginx默认安装的模块。rewrite模块会根据PCRE正则匹配重写URI，然后发起内部跳转再匹配location，或者直接做30x重定向返回客户端。</p>
+<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>  · 通知用户他们正在请求的资源现在位于其他位置</p>
+<p>  · 控制处理流程等等</p>
+<h2 id="涉及命令"><a href="#涉及命令" class="headerlink" title="涉及命令"></a>涉及命令</h2><p>  · return 和 rewrite，之前介绍的 try_files 也可以部分做到</p>
+<p>  · 重写模块同时也涉及了 break，if，set 等其它命令</p>
+<h2 id="return"><a href="#return" class="headerlink" title="return"></a>return</h2><p>（1）介绍</p>
+<p>· 语法：</p>
+<pre class="line-numbers language-none"><code class="language-none">return URL; # 外部重定向return code URL;return code [text];<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>可以将 return 指令放置在 server 或 location 中。</p>
+<p>（2）demo</p>
+<pre class="line-numbers language-none"><code class="language-none">return https: &#x2F;&#x2F;baidu.com; # 默认 302return 301 https: &#x2F;&#x2F;baidu.com; # 必须是支持重定向的响应码，比如 200 就不行return 200 &quot;okokok&quot;; # 修改不了响应行文本，原因未知<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="rewrite"><a href="#rewrite" class="headerlink" title="rewrite"></a>rewrite</h2><p>（1）介绍</p>
+<blockquote>
+<p>语法：rewrite regex replacement [flag];</p>
+</blockquote>
+<p>可以将 rewrite 指令放置在 server 或 location 中。</p>
+<p>（2）参数</p>
+<p>① regex 为正则表达式</p>
+<p>② flag 取值如下：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723939.png" alt="img"></p>
+<p><strong>注意，rewrite 后 url 就会变了，下一个 rewrite 识别的就是改过的 url</strong></p>
+<p>③ replacement 为重写的值</p>
+<p><strong>如果 replacement 以协议头开头（如：http://，https:// 或 $scheme），则效果相当于 flag = redirect。</strong></p>
+<p>如果想在 replacement 中<strong>抛弃之前路径的请求参数</strong>，可以在最后加了个 ?，如 </p>
+<pre class="line-numbers language-none"><code class="language-none">rewrite ^&#x2F;users&#x2F;(.*)$ &#x2F;show?user&#x3D;$1?<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（3）demo</p>
+<p>以 flag = 无 为例：</p>
+<pre class="line-numbers language-none"><code class="language-none">location &#x2F; &#123;rewrite ^&#x2F;user&#x2F;(.*)$ &#x2F;show&#x2F;$1;rewrite ^&#x2F;show&#x2F;(.*)$ &#x2F;hide&#x2F;$1;&#125;location &#x2F;show &#123;return200;&#125;location &#x2F;hide &#123;return201;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>访问 <a target="_blank" rel="noopener" href="https://example.com/user/a.jpg%EF%BC%9A">https://example.com/user/a.jpg：</a></p>
+<p>1、/user/a.jpg 被 location / 捕获</p>
+<p>2、第一个 rewrite 把 /user/a.jpg 改写成 /show/a.jpg</p>
+<p>  <strong>注意，这时的路径已经被改写成 /show/a.jpg 了。</strong></p>
+<p>3、第二个 rewrite 把 /show/a.jpg 改写成 /hide/a.jpg</p>
+<p>4、下面没有命令了，执行内部重定向</p>
+<p>5、/hide/a.jpg 被 location /hide 捕获，返回 201</p>
+<p><strong>注：诸如 $1 和 $2 这种变量，表示正则表达式匹配的第 N 个参数.</strong></p>
+<p>（4）死循环</p>
+<p>某些情况下，rewrite 重定向后，可能又会执行 rewrite，然后循环往复，进入死循环。</p>
+<p>为了避免这种情况，nginx 会在<strong>循环 10 次时之后，直接返回 500 异常</strong>。</p>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><p>（1）set —— 设置变量</p>
+<pre class="line-numbers language-none"><code class="language-none">set $var1 &quot;hello world&quot;;return 200 &quot;response ok $var1&quot;;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（2）if —— 判断条件</p>
+<p>  if 比 rewrite 的正则匹配更灵活。</p>
+<h2 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h2><p>注意：rewrite 因为有正则，所以比 return 更加影响<strong>性能</strong>（if 语句也如是），且可读性差，所以如果能用 return 就用 return。</p>
+<p>（1）从旧网址重定向到新网址</p>
+<pre class="line-numbers language-none"><code class="language-none">server&#123;listen80;listen 443 ssl;server_name www.old-name.com old-name.com;return 301 $scheme:&#x2F;&#x2F;www.new-name.com$request_uri;\# 不推荐rewrite ^$scheme:&#x2F;&#x2F;www.new-name.com$request_uri permanent; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（2）强制所有请求使用 HTTPS</p>
+<pre class="line-numbers language-none"><code class="language-none">server&#123;   listen   80;server_name www.domain.com;return 301 https:&#x2F;&#x2F;www.domain.com$request_uri;# 不推荐if($scheme!&#x3D;&quot;https&quot;) &#123; rewrite ^ https:&#x2F;&#x2F;www.mydomain.com$request_uri permanent; &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（3）添加/删除 www 前缀</p>
+<pre class="line-numbers language-none"><code class="language-none"># add &#39;www&#39;server&#123;listen 80;listen 443 ssl;server_name domain.com;return 301 $scheme:&#x2F;&#x2F;www.domain.com$request_uri;&#125;# remove &#39;www&#39;server&#123;listen 80;listen 443 ssl;server_name www.domain.com;return 301 $scheme:&#x2F;&#x2F;domain.com$request_uri;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>（4）兜底，把其它流量重定向到正确的域名 or 返回错误</p>
+<pre class="line-numbers language-none"><code class="language-none">server&#123;listen 80 default_server;listen 443 ssl default_server;server_name_;return 301 $scheme:&#x2F;&#x2F;www.domain.com;# orreturn 444&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="Nginx的其他用法"><a href="#Nginx的其他用法" class="headerlink" title="Nginx的其他用法"></a>Nginx的其他用法</h1><h2 id="nginx-禁止-允许某个-些-IP-访问"><a href="#nginx-禁止-允许某个-些-IP-访问" class="headerlink" title="nginx 禁止 / 允许某个(些) IP 访问"></a>nginx 禁止 / 允许某个(些) IP 访问</h2><p>使用到 ngx_http_access_module 模块</p>
+<p>deny，相反的为 allow</p>
+<pre class="line-numbers language-none"><code class="language-none">deny 1.1.1.1;deny 8.0.0.0&#x2F;8;deny all allow 1.1.1.1;allow 8.0.0.0&#x2F;8;allow all; # default<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>原理：通过 $remote_addr 来判断。</p>
+<blockquote>
+<p>在需要很多规则的情况下，最好使用 ngx_http_geo_module 模块。</p>
+</blockquote>
+<p>结果：返回 403。</p>
+<h2 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h2><p>error_page</p>
+<p>（1）常见 HTTP （响应码）错误</p>
+<blockquote>
+<p>· 403 Forbidden</p>
+<p>· 404 Not Found</p>
+<p>· 500 Internal Server Error 通常是 upstream server 返回的错误</p>
+<p>· 502 Bad Gateway 通常是 nginx 无法到达 upstream server</p>
+<p>· 503 Service Unavailable 通常是 nginx 因暂时超载或临时维护，无法处理HTTP请求</p>
+<p>· 504 gateway timeout 通常是 upstream server 返回超时</p>
+</blockquote>
+<p>（2）用法</p>
+<p>error_page 可以位于 server block / location block</p>
+<p>原理：通过<strong>内部重定向</strong>。（跟上面介绍的 index 指令 一样）</p>
+<p>① 针对普通情况</p>
+<p>基本：</p>
+<pre class="line-numbers language-none"><code class="language-none"># 指向错误页面
+error_page 404&#x2F;404.html;
+error_page 500 502 503 504 &#x2F;50x.html;
+# 重定向到外部 
+urlerror_page 500 http:&#x2F;&#x2F;www.google.com; 
+# 重定向到 named location blocklocation&#x2F; &#123;error_page 404&#x3D; @fallback;&#125;location @fallback&#123;proxy_pass http:&#x2F;&#x2F;different_backend;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>注1：<strong>因为 error_page 是通过内部重定向，所以你可以显示地写一个与之对应的 location （如 location /404.html）来干更多事。</strong></p>
+<p>注2：<strong>因为 error_page 是通过内部重定向，所以 access 日志会有两条记录。</strong></p>
+<p>高级：</p>
+<blockquote>
+<p># 更改HTTP状态码（不推荐，这样 nginx 日志记录也是）error_page500=200/index.html</p>
+</blockquote>
+<p>② 针对反向代理（使用 proxy_intercept_errors，error_page 才会生效）</p>
+<pre class="line-numbers language-none"><code class="language-none">location @rails &#123;proxy_pass http:&#x2F;&#x2F;rails_app;proxy_intercept_errors on; # focus hereerror_page 404&#x2F;404.html;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="一个HTTP到Nginx处理的过程"><a href="#一个HTTP到Nginx处理的过程" class="headerlink" title="一个HTTP到Nginx处理的过程"></a>一个HTTP到Nginx处理的过程</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723963.png" alt="img"/>
+
+<h1 id="Nginx解决跨域问题"><a href="#Nginx解决跨域问题" class="headerlink" title="Nginx解决跨域问题"></a>Nginx解决跨域问题</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723965.png" alt="img"/>
+
+<p>  Tomcat同一个服务器，在jsp页面或其他java代码跳转页面时，域名必须相同（同一个web应用）,用nginx搭建网关系统，可实现跨域跳转。</p>
+<p>配置:</p>
+<pre class="line-numbers language-none"><code class="language-none">server &#123;    listen   80;    server_name www.itmayiedu.com;    location &#x2F;A &#123;      proxy_pass http:&#x2F;&#x2F;a.a.com:81&#x2F;A;      index index.html index.htm;    &#125;    location &#x2F;B &#123;      proxy_pass http:&#x2F;&#x2F;b.b.com:81&#x2F;B;      index index.html index.htm;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="Nginx配置防盗链"><a href="#Nginx配置防盗链" class="headerlink" title="Nginx配置防盗链"></a>Nginx配置防盗链</h1><p>  设置可以访问固定后缀静态资源的域名</p>
+<pre class="line-numbers language-none"><code class="language-none">location ~ .*\.(jpg|jpeg|JPG|png|gif|icon)$ &#123;    valid_referers blocked http:&#x2F;&#x2F;www.itmayiedu.com www.itmayiedu.com;    if ($invalid_referer) &#123;      return 403;    &#125;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="对比F5"><a href="#对比F5" class="headerlink" title="对比F5"></a>对比F5</h1><h2 id="F5的负载均衡功能"><a href="#F5的负载均衡功能" class="headerlink" title="F5的负载均衡功能"></a><strong>F5的负载均衡功能</strong></h2><p>  其实看到Nginx的原理和功能，是不是觉得已经不需要F5了？当然也不是，F5毕竟是负载均衡的老前辈，一直以来都以功能强大，性能稳定著称，很多功能其实是软负载无法做到的。</p>
+<p>F5 BIG-IP用作HTTP负载均衡器的主要功能：</p>
+<p>（1）F5 BIG-IP提供12种灵活的算法将所有流量均衡的分配到各个服务器，而面对用户，只是一台虚拟服务器。</p>
+<p>（2）F5 BIG-IP可以确认应用程序能否对请求返回对应的数据。假如F5 BIG-IP后面的某一台服务器发生服务停止、死机等故障，F5会检查出来并将该服务器标识为宕机，从而不将用户的访问请求传送到该台发生故障的服务器上。这样，只要其它的服务器正常，用户的访问就不会受到影响。宕机一旦修复，F5 BIG-IP就会自动查证应用保证对客户的请求作出正确响应并恢复向该服务器传送。</p>
+<p>（3）F5 BIG-IP具有动态Session的会话保持功能，笔者也是在网站中使用的F5将用户IP与Session通过F5进行的绑定，使其Session保持一致。</p>
+<p>（4）F5 BIG-IP的iRules功能可以做HTTP内容过滤，根据不同的域名、URL，将访问请求传送到不同的服务器。</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><p><strong>（1）F5，硬件</strong></p>
+<p>优点：能够直接通过智能交换机实现,处理能力更强，而且与系统无关，负载性能强，更适用于一大堆设备、大访问量、简单应用。</p>
+<p>缺点：成本高，除设备价格高昂，而且配置冗余，很难想象后面服务器做一个集群，但最关键的负载均衡设备却是单点配置，无法有效掌握服务器及应用状态。</p>
+<p>硬件负载均衡，一般都不管实际系统与应用的状态，而只是从网络层来判断，所以有时候系统处理能力已经不行了，但网络可能还来得及反应（这种情况非常典型，比如应用服务器后面内存已经占用很多，但还没有彻底不行，如果网络传输量不大就未必在网络层能反映出来）</p>
+<p><strong>（2）Nginx，软负载</strong></p>
+<p>优点：基于系统与应用的负载均衡，能够更好地根据系统与应用的状况来分配负载。这对于复杂应用是很重要的，性价比高，实际上如果几台服务器，用F5之类的硬件产品显得有些浪费，而用软件就要合算得多，因为服务器同时还可以跑应用、做集群等。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2020/11/26/nginx-zhi-shi-hui-zong/">https://jason-qianhao.github.io/2020/11/26/nginx-zhi-shi-hui-zong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Nginx/">
+                                    <span class="chip bg-color">Nginx</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/12/02/springcloud-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/47.jpg" class="responsive-img" alt="SpringCloud知识汇总">
+                        
+                        <span class="card-title">SpringCloud知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-12-02
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                    微服务
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                    <a href="/tags/SpringCloud/">
+                        <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/25/dubbo-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/60.jpg" class="responsive-img" alt="Dubbo知识汇总">
+                        
+                        <span class="card-title">Dubbo知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                    微服务
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                    <a href="/tags/Dubbo/">
+                        <span class="chip bg-color">Dubbo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

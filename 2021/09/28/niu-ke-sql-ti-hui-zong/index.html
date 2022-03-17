@@ -1,0 +1,2306 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="牛客网SQL题汇总, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>牛客网SQL题汇总 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/43.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">牛客网SQL题汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                <span class="chip bg-color">数据库</span>
+                            </a>
+                        
+                            <a href="/tags/SQL/">
+                                <span class="chip bg-color">SQL</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-09-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.2k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="牛客SQL总结"><a href="#牛客SQL总结" class="headerlink" title="牛客SQL总结"></a>牛客SQL总结</h1><h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><h2 id="SQL36"><a href="#SQL36" class="headerlink" title="SQL36"></a>SQL36</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929111953766.png" alt="image-20210929111953766" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> actor_name
+<span class="token punctuation">(</span>
+first_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span><span class="token punctuation">,</span>
+last_name <span class="token keyword">varchar</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span> <span class="token operator">not</span> <span class="token boolean">null</span>
+<span class="token punctuation">)</span> <span class="token keyword">as</span> 
+<span class="token keyword">select</span> first_name<span class="token punctuation">,</span>last_name
+<span class="token keyword">from</span> actor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="SQL39"><a href="#SQL39" class="headerlink" title="SQL39"></a>SQL39</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929112125985.png" alt="image-20210929112125985" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
+<span class="token keyword">from</span> salaries
+<span class="token keyword">force</span> <span class="token keyword">index</span> <span class="token punctuation">(</span>idx_emp_no<span class="token punctuation">)</span>
+<span class="token keyword">where</span> emp_no<span class="token operator">=</span><span class="token number">10005</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="SQL40"><a href="#SQL40" class="headerlink" title="SQL40"></a>SQL40</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929112210893.png" alt="image-20210929112210893" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> actor <span class="token keyword">ADD</span> create_date <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token string">'2020-10-01 00:00:00'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="SQL41（触发器）"><a href="#SQL41（触发器）" class="headerlink" title="SQL41（触发器）"></a>SQL41（触发器）</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211008125722460.png" alt="image-20211008125722460" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> audit_log 
+<span class="token keyword">after</span> <span class="token keyword">insert</span> <span class="token keyword">on</span> employees_test
+<span class="token keyword">for each row</span>
+<span class="token keyword">begin</span> 
+    <span class="token keyword">insert</span> <span class="token keyword">into</span> audit <span class="token keyword">values</span><span class="token punctuation">(</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span>new<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="SQL46"><a href="#SQL46" class="headerlink" title="SQL46"></a>SQL46</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211008145453608.png" alt="image-20211008145453608" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> audit
+<span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>emp_no<span class="token punctuation">)</span>
+<span class="token keyword">REFERENCES</span> employees_test<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="最值"><a href="#最值" class="headerlink" title="最值"></a>最值</h2><h3 id="SQL2"><a href="#SQL2" class="headerlink" title="SQL2"></a>SQL2</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928160517266.png" alt="image-20210928160517266" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+	<span class="token operator">*</span> 
+<span class="token keyword">from</span> 
+	employees 
+<span class="token keyword">order</span> <span class="token keyword">by</span> 
+	hire_date <span class="token keyword">desc</span> 
+<span class="token keyword">limit</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>主页limit第一参数为(页数 - 1)*每页数量</p>
+<h2 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h2><h3 id="SQL8"><a href="#SQL8" class="headerlink" title="SQL8"></a>SQL8</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928161305190.png" alt="image-20210928161305190" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    <span class="token keyword">DISTINCT</span> salary
+<span class="token keyword">FROM</span>
+    salaries
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
+    salary <span class="token keyword">desc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="SQL10"><a href="#SQL10" class="headerlink" title="SQL10"></a>SQL10</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928161526148.png" alt="image-20210928161526148" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    employees<span class="token punctuation">.</span>emp_no
+<span class="token keyword">FROM</span>
+    employees
+<span class="token keyword">left</span> <span class="token keyword">JOIN</span>
+    dept_manager
+<span class="token keyword">ON</span>
+    dept_manager<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> employees<span class="token punctuation">.</span>emp_no
+<span class="token keyword">WHERE</span>
+    dept_manager<span class="token punctuation">.</span>emp_no <span class="token operator">is</span> <span class="token boolean">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL11"><a href="#SQL11" class="headerlink" title="SQL11"></a>SQL11</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928161633124.png" alt="image-20210928161633124" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+    m<span class="token punctuation">.</span>emp_no <span class="token keyword">as</span> manager
+<span class="token keyword">FROM</span>
+    dept_emp e
+<span class="token keyword">JOIN</span>
+    dept_manager m
+<span class="token keyword">on</span>
+    e<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> m<span class="token punctuation">.</span>dept_no
+<span class="token keyword">WHERE</span>
+    e<span class="token punctuation">.</span>emp_no <span class="token operator">!=</span> m<span class="token punctuation">.</span>emp_no
+<span class="token keyword">group</span> <span class="token keyword">BY</span>
+    e<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL12"><a href="#SQL12" class="headerlink" title="SQL12"></a>SQL12</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308115000735.png" alt="image-20220308115000735" style="zoom:50%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220308115020098.png" alt="image-20220308115020098" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    t<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span> 
+    s<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> 
+    t<span class="token punctuation">.</span>maxSalary
+<span class="token keyword">from</span> 
+    <span class="token punctuation">(</span>
+    <span class="token keyword">select</span>
+        d<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span> 
+        <span class="token function">max</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>salary<span class="token punctuation">)</span> <span class="token keyword">as</span> maxSalary 
+    <span class="token keyword">from</span> 
+        dept_emp d<span class="token punctuation">,</span>
+        salaries s
+    <span class="token keyword">where</span> 
+        d<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no 
+    <span class="token keyword">group</span> <span class="token keyword">by</span> 
+        d<span class="token punctuation">.</span>dept_no
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> t<span class="token punctuation">,</span> 
+    salaries s<span class="token punctuation">,</span> 
+    dept_emp d
+<span class="token keyword">where</span> 
+    t<span class="token punctuation">.</span>maxSalary <span class="token operator">=</span> s<span class="token punctuation">.</span>salary <span class="token operator">and</span> 
+    t<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> d<span class="token punctuation">.</span>dept_no <span class="token operator">and</span> 
+    d<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no
+<span class="token keyword">order</span> <span class="token keyword">by</span> 
+    t<span class="token punctuation">.</span>dept_no <span class="token keyword">asc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL19"><a href="#SQL19" class="headerlink" title="SQL19"></a>SQL19</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928162304345.png" alt="image-20210928162304345" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>
+    e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span>
+    d<span class="token punctuation">.</span>dept_name
+<span class="token keyword">FROM</span>
+    employees e
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span>
+    dept_emp de
+<span class="token keyword">ON</span>
+    e<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> de<span class="token punctuation">.</span>emp_no
+<span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span>
+    departments d
+<span class="token keyword">ON</span>
+    de<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> d<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL21"><a href="#SQL21" class="headerlink" title="SQL21"></a>SQL21</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929105618744.png" alt="image-20210929105618744" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 本题应该考虑降薪的问题:题中没有讲员工不降薪，所以不能直接使用最大薪水-最小薪水求值</span>
+<span class="token keyword">SELECT</span> 
+  s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+  s2<span class="token punctuation">.</span>salary <span class="token operator">-</span> s1<span class="token punctuation">.</span>salary <span class="token keyword">AS</span> growth 
+<span class="token keyword">FROM</span>
+  <span class="token punctuation">(</span><span class="token keyword">SELECT</span> 
+    e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+    s<span class="token punctuation">.</span>salary 
+  <span class="token keyword">FROM</span>
+    employees e 
+  <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> salaries s 
+      <span class="token keyword">ON</span> e<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no 
+  		<span class="token keyword">WHERE</span> e<span class="token punctuation">.</span>hire_date <span class="token operator">=</span> s<span class="token punctuation">.</span>from_date<span class="token punctuation">)</span> <span class="token keyword">AS</span> s1  <span class="token comment">-- 入职薪水</span>
+  <span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> 
+    <span class="token punctuation">(</span><span class="token keyword">SELECT</span> 
+      e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+      s<span class="token punctuation">.</span>salary 
+    <span class="token keyword">FROM</span>
+      employees e 
+    <span class="token keyword">LEFT</span> <span class="token keyword">JOIN</span> salaries s 
+        <span class="token keyword">ON</span> e<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no 
+    		<span class="token keyword">WHERE</span> s<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
+    <span class="token punctuation">)</span> <span class="token keyword">AS</span> s2  <span class="token comment">-- 现在薪水</span>
+    <span class="token keyword">ON</span> s1<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s2<span class="token punctuation">.</span>emp_no  
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> growth <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL22"><a href="#SQL22" class="headerlink" title="SQL22"></a>SQL22</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929105949261.png" alt="image-20210929105949261" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    d<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span>
+    d<span class="token punctuation">.</span>dept_name<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>sum
+<span class="token keyword">FROM</span>
+    <span class="token punctuation">(</span>
+     <span class="token keyword">SELECT</span>
+        de<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span>
+        <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token keyword">as</span> <span class="token string">"sum"</span>
+     <span class="token keyword">FROM</span>
+        dept_emp de
+     <span class="token keyword">JOIN</span>
+        salaries s
+     <span class="token keyword">ON</span>
+        de<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no
+     <span class="token keyword">GROUP</span> <span class="token keyword">BY</span>
+        de<span class="token punctuation">.</span>dept_no
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> t
+<span class="token keyword">JOIN</span>
+    departments d
+<span class="token keyword">ON</span>
+    d<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> t<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL25"><a href="#SQL25" class="headerlink" title="SQL25"></a>SQL25</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929110544985.png" alt="image-20210929110544985" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    de<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>manager_no<span class="token punctuation">,</span>
+    s<span class="token punctuation">.</span>salary <span class="token keyword">as</span> emp_salary<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>manager_salary
+<span class="token keyword">from</span>
+    dept_emp de
+<span class="token keyword">JOIN</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span>
+        dm<span class="token punctuation">.</span>emp_no <span class="token keyword">as</span> manager_no<span class="token punctuation">,</span>
+        dm<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span>
+        s<span class="token punctuation">.</span>salary <span class="token keyword">as</span> manager_salary
+    <span class="token keyword">FROM</span>
+        dept_manager dm
+    <span class="token keyword">JOIN</span>
+        salaries s
+    <span class="token keyword">ON</span>
+        dm<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> t
+<span class="token keyword">ON</span>
+    t<span class="token punctuation">.</span> dept_no <span class="token operator">=</span> de<span class="token punctuation">.</span>dept_no
+<span class="token keyword">JOIN</span>
+    salaries s
+<span class="token keyword">ON</span>
+    de<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no
+<span class="token keyword">WHERE</span>
+    s<span class="token punctuation">.</span>salary <span class="token operator">></span> t<span class="token punctuation">.</span>manager_salary<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL57"><a href="#SQL57" class="headerlink" title="SQL57"></a>SQL57</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014110619032.png" alt="image-20211014110619032" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> employees e
+<span class="token keyword">where</span> <span class="token operator">not</span> <span class="token keyword">exists</span>
+<span class="token punctuation">(</span><span class="token keyword">select</span> emp_no <span class="token keyword">from</span> dept_emp d <span class="token keyword">where</span> d<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> e<span class="token punctuation">.</span>emp_no<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL59"><a href="#SQL59" class="headerlink" title="SQL59"></a>SQL59</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014110731335.png" alt="image-20211014110731335" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
+    e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> 
+    e<span class="token punctuation">.</span>first_name<span class="token punctuation">,</span> 
+    e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span> 
+    eb<span class="token punctuation">.</span>btype<span class="token punctuation">,</span> 
+    s<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
+    <span class="token keyword">CASE</span> 
+        <span class="token keyword">WHEN</span> eb<span class="token punctuation">.</span>btype <span class="token operator">=</span> <span class="token number">1</span> <span class="token keyword">THEN</span> s<span class="token punctuation">.</span>salary <span class="token operator">*</span> <span class="token number">0.1</span>
+        <span class="token keyword">WHEN</span> eb<span class="token punctuation">.</span>btype <span class="token operator">=</span> <span class="token number">2</span> <span class="token keyword">THEN</span> s<span class="token punctuation">.</span>salary <span class="token operator">*</span> <span class="token number">0.2</span>
+        <span class="token keyword">ELSE</span> s<span class="token punctuation">.</span>salary <span class="token operator">*</span> <span class="token number">0.3</span>
+    <span class="token keyword">END</span> bonus
+<span class="token keyword">FROM</span> 
+    emp_bonus <span class="token keyword">AS</span> eb<span class="token punctuation">,</span> 
+    employees <span class="token keyword">AS</span> e<span class="token punctuation">,</span> 
+    salaries <span class="token keyword">AS</span> s
+<span class="token keyword">WHERE</span> 
+    eb<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> e<span class="token punctuation">.</span>emp_no <span class="token operator">AND</span> 
+    s<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> e<span class="token punctuation">.</span>emp_no <span class="token operator">AND</span> 
+    s<span class="token punctuation">.</span>to_date<span class="token operator">=</span><span class="token string">'9999-01-01'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL64"><a href="#SQL64" class="headerlink" title="SQL64"></a>SQL64</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014111431630.png" alt="image-20211014111431630" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    p<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+    p<span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>content
+<span class="token keyword">from</span>
+    person p
+<span class="token keyword">left</span> <span class="token keyword">join</span>
+    task t
+<span class="token keyword">on</span>
+    p<span class="token punctuation">.</span>id <span class="token operator">=</span> t<span class="token punctuation">.</span>person_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL82"><a href="#SQL82" class="headerlink" title="SQL82"></a>SQL82</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019162627904.png" alt="image-20211019162627904" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    o<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+    o<span class="token punctuation">.</span>is_group_buy<span class="token punctuation">,</span>
+    <span class="token keyword">case</span> o<span class="token punctuation">.</span>is_group_buy
+        <span class="token keyword">when</span> <span class="token string">'No'</span> <span class="token keyword">then</span> c<span class="token punctuation">.</span>name
+        <span class="token keyword">else</span> <span class="token string">'None'</span>
+    <span class="token keyword">end</span> client_name 
+<span class="token keyword">FROM</span>
+    order_info <span class="token keyword">as</span> o
+<span class="token keyword">JOIN</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span>
+        user_id
+    <span class="token keyword">FROM</span>
+        order_info
+    <span class="token keyword">where</span>
+        <span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span> <span class="token operator">and</span>
+        <span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span> <span class="token operator">and</span>
+        product_name <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'Java'</span><span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+    <span class="token keyword">GROUP</span> <span class="token keyword">by</span>
+        user_id
+    <span class="token keyword">HAVING</span>
+        <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">2</span>
+    <span class="token punctuation">)</span> <span class="token keyword">as</span> t
+    <span class="token keyword">ON</span>
+        o<span class="token punctuation">.</span>user_id <span class="token operator">=</span> t<span class="token punctuation">.</span>user_id
+<span class="token keyword">left</span> <span class="token keyword">join</span>
+    client <span class="token keyword">as</span> c
+    <span class="token keyword">on</span>
+        o<span class="token punctuation">.</span>client_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id
+<span class="token keyword">where</span>
+    o<span class="token punctuation">.</span><span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span> <span class="token operator">and</span>
+    o<span class="token punctuation">.</span><span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span> <span class="token operator">and</span>
+    o<span class="token punctuation">.</span>product_name <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'Java'</span><span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL83"><a href="#SQL83" class="headerlink" title="SQL83"></a>SQL83</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019162736374.png" alt="image-20211019162736374" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span>
+    <span class="token keyword">case</span> o<span class="token punctuation">.</span>client_id
+        <span class="token keyword">when</span> <span class="token number">0</span> <span class="token keyword">then</span> <span class="token string">'GroupBuy'</span>
+        <span class="token keyword">else</span> c<span class="token punctuation">.</span>name
+    <span class="token keyword">end</span> source<span class="token punctuation">,</span>
+    o<span class="token punctuation">.</span>cnt
+<span class="token keyword">FROM</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">select</span>
+        client_id<span class="token punctuation">,</span>
+        <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> cnt
+    <span class="token keyword">from</span>
+        <span class="token punctuation">(</span>
+        <span class="token keyword">SELECT</span>
+            user_id
+        <span class="token keyword">FROM</span>
+            order_info
+        <span class="token keyword">WHERE</span>
+            <span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span> <span class="token operator">and</span>
+            <span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span> <span class="token operator">and</span>
+            product_name <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'Java'</span><span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+        <span class="token keyword">GROUP</span> <span class="token keyword">BY</span>
+            user_id
+        <span class="token keyword">HAVING</span>
+            <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">2</span>
+        <span class="token punctuation">)</span> <span class="token keyword">as</span> t<span class="token punctuation">,</span>
+        order_info
+     <span class="token keyword">where</span>
+         t<span class="token punctuation">.</span>user_id <span class="token operator">=</span> order_info<span class="token punctuation">.</span>user_id <span class="token operator">and</span>
+         order_info<span class="token punctuation">.</span><span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span> <span class="token operator">and</span>
+         order_info<span class="token punctuation">.</span><span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span> <span class="token operator">and</span>
+         order_info<span class="token punctuation">.</span>product_name <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'Java'</span><span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+     <span class="token keyword">group</span> <span class="token keyword">by</span>
+         order_info<span class="token punctuation">.</span>client_id
+    <span class="token punctuation">)</span> o
+<span class="token keyword">left</span> <span class="token keyword">JOIN</span>
+    client <span class="token keyword">as</span> c
+    <span class="token keyword">ON</span>
+        o<span class="token punctuation">.</span>client_id <span class="token operator">=</span> c<span class="token punctuation">.</span>id
+<span class="token keyword">order</span> <span class="token keyword">BY</span>
+    source<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL86"><a href="#SQL86" class="headerlink" title="SQL86"></a>SQL86</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019163146236.png" alt="image-20211019163146236" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询在2025年投递简历的每个岗位，每个月内收到简历的数量和，对应的2026年的同月同岗位收到简历的数量，最后的结果先按first_year_mon月份降序，再按job降序排序显示</span>
+<span class="token keyword">SELECT</span> h1<span class="token punctuation">.</span>job<span class="token punctuation">,</span>first_year_mon<span class="token punctuation">,</span>first_year_cnt<span class="token punctuation">,</span>second_year_mon<span class="token punctuation">,</span>second_year_cnt 
+<span class="token keyword">FROM</span> 
+<span class="token comment">-- 2025年的 </span>
+<span class="token punctuation">(</span><span class="token keyword">SELECT</span> job<span class="token punctuation">,</span>DATE_FORMAT<span class="token punctuation">(</span><span class="token keyword">DATE</span><span class="token punctuation">,</span><span class="token string">'%Y-%m'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> first_year_mon<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">AS</span> first_year_cnt
+<span class="token keyword">FROM</span> resume_info
+<span class="token keyword">WHERE</span> <span class="token keyword">DATE</span> <span class="token operator">LIKE</span> <span class="token string">'2025%'</span>  <span class="token comment">-- 符合最左前缀匹配原则，也走索引</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job<span class="token punctuation">,</span>first_year_mon<span class="token punctuation">)</span> <span class="token keyword">AS</span> h1
+<span class="token comment">-- inner join 假装优化下，inner可以省略</span>
+<span class="token keyword">INNER</span> <span class="token keyword">JOIN</span> 
+<span class="token comment">-- 2026年的</span>
+<span class="token punctuation">(</span><span class="token keyword">SELECT</span> job<span class="token punctuation">,</span>DATE_FORMAT<span class="token punctuation">(</span><span class="token keyword">DATE</span><span class="token punctuation">,</span><span class="token string">'%Y-%m'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> second_year_mon<span class="token punctuation">,</span><span class="token function">SUM</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">AS</span> second_year_cnt
+<span class="token keyword">FROM</span> resume_info
+<span class="token keyword">WHERE</span> <span class="token keyword">DATE</span> <span class="token operator">LIKE</span> <span class="token string">'2026%'</span>  <span class="token comment">-- 符合最左前缀匹配原则，也走索引</span>
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span> job<span class="token punctuation">,</span>second_year_mon<span class="token punctuation">)</span> <span class="token keyword">AS</span> h2  
+<span class="token comment">-- 表连接条件：两表job相同且月份相同，</span>
+<span class="token comment">-- 因date日期类型经过 DATE_FORMAT()后变成 字符串，所以使用right()函数取后两位即为月数</span>
+<span class="token keyword">ON</span> h1<span class="token punctuation">.</span>job<span class="token operator">=</span>h2<span class="token punctuation">.</span>job <span class="token operator">AND</span>  <span class="token keyword">right</span><span class="token punctuation">(</span>first_year_mon<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token operator">=</span><span class="token keyword">right</span><span class="token punctuation">(</span>second_year_mon<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span> 
+<span class="token comment">-- 排序</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> first_year_mon <span class="token keyword">DESC</span><span class="token punctuation">,</span>h1<span class="token punctuation">.</span>job <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL90"><a href="#SQL90" class="headerlink" title="SQL90"></a>SQL90</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211021110055820.png" alt="image-20211021110055820" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    <span class="token keyword">user</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> 
+    <span class="token keyword">user</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>grade_sum 
+<span class="token keyword">from</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">select</span> 
+        user_id<span class="token punctuation">,</span>
+        <span class="token function">sum</span><span class="token punctuation">(</span>grade_num<span class="token punctuation">)</span> <span class="token keyword">as</span> grade_sum 
+    <span class="token keyword">from</span> 
+        grade_info 
+    <span class="token keyword">group</span> <span class="token keyword">by</span> 
+        user_id
+    <span class="token keyword">having</span> 
+        grade_sum <span class="token operator">=</span><span class="token punctuation">(</span>
+            <span class="token keyword">select</span> 
+                <span class="token function">sum</span><span class="token punctuation">(</span>grade_num<span class="token punctuation">)</span> <span class="token keyword">as</span> grade_sum 
+            <span class="token keyword">from</span> 
+                grade_info
+            <span class="token keyword">group</span> <span class="token keyword">by</span>
+                user_id
+            <span class="token keyword">order</span> <span class="token keyword">by</span> 
+                grade_sum <span class="token keyword">desc</span> <span class="token keyword">limit</span> <span class="token number">1</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">)</span> t
+<span class="token keyword">join</span>
+    <span class="token keyword">user</span>
+    <span class="token keyword">on</span> t<span class="token punctuation">.</span>user_id<span class="token operator">=</span><span class="token keyword">user</span><span class="token punctuation">.</span>id
+<span class="token keyword">order</span> <span class="token keyword">by</span>
+    <span class="token keyword">user</span><span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL91"><a href="#SQL91" class="headerlink" title="SQL91"></a>SQL91</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211021110222209.png" alt="image-20211021110222209" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    <span class="token keyword">user</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> 
+    <span class="token keyword">user</span><span class="token punctuation">.</span>name<span class="token punctuation">,</span>
+    t<span class="token punctuation">.</span>grade_sum 
+<span class="token keyword">from</span>
+    <span class="token punctuation">(</span>
+        <span class="token keyword">select</span> 
+            user_id<span class="token punctuation">,</span>
+            <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">type</span> <span class="token keyword">when</span> <span class="token string">'add'</span> <span class="token keyword">then</span> grade_num <span class="token keyword">else</span> <span class="token operator">-</span>grade_num <span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token keyword">as</span> grade_sum 
+        <span class="token keyword">from</span> 
+            grade_info 
+        <span class="token keyword">group</span> <span class="token keyword">by</span> user_id
+        <span class="token keyword">having</span> 
+            grade_sum<span class="token operator">=</span><span class="token punctuation">(</span>
+                <span class="token keyword">select</span> 
+                    <span class="token function">sum</span><span class="token punctuation">(</span><span class="token keyword">case</span> <span class="token keyword">type</span> <span class="token keyword">when</span> <span class="token string">'add'</span> <span class="token keyword">then</span> grade_num <span class="token keyword">else</span> <span class="token operator">-</span>grade_num <span class="token keyword">end</span> <span class="token punctuation">)</span> <span class="token keyword">as</span> grade_sum 
+                <span class="token keyword">from</span> 
+                    grade_info 
+                <span class="token keyword">group</span> <span class="token keyword">by</span> 
+                    user_id 
+                <span class="token keyword">order</span> <span class="token keyword">by</span> 
+                    grade_sum <span class="token keyword">desc</span> 
+                <span class="token keyword">limit</span> <span class="token number">1</span><span class="token punctuation">)</span> 
+    <span class="token punctuation">)</span> t
+<span class="token keyword">join</span> <span class="token keyword">user</span>
+<span class="token keyword">on</span> t<span class="token punctuation">.</span>user_id<span class="token operator">=</span><span class="token keyword">user</span><span class="token punctuation">.</span>id
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">user</span><span class="token punctuation">.</span>id <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="排名序号"><a href="#排名序号" class="headerlink" title="排名序号"></a>排名序号</h2><h3 id="SQL23"><a href="#SQL23" class="headerlink" title="SQL23"></a>SQL23</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929110105165.png" alt="image-20210929110105165" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
+    s1<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
+    <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token keyword">DISTINCT</span> s2<span class="token punctuation">.</span>salary<span class="token punctuation">)</span> <span class="token keyword">as</span> t_rank
+<span class="token keyword">FROM</span>
+    salaries s1
+<span class="token keyword">JOIN</span>
+    salaries s2
+		<span class="token keyword">ON</span>
+    	s1<span class="token punctuation">.</span>salary <span class="token operator">&lt;=</span> s2<span class="token punctuation">.</span>salary
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span>
+    s1<span class="token punctuation">.</span>emp_no
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
+    t_rank<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL63"><a href="#SQL63" class="headerlink" title="SQL63"></a>SQL63</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014111320786.png" alt="image-20211014111320786" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    p1<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
+    p1<span class="token punctuation">.</span>number<span class="token punctuation">,</span>
+    <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> p2<span class="token punctuation">.</span>number<span class="token punctuation">)</span> <span class="token keyword">as</span> t_rank
+<span class="token keyword">FROM</span>
+    passing_number p1
+<span class="token keyword">JOIN</span>
+    passing_number p2
+<span class="token keyword">ON</span>
+    p1<span class="token punctuation">.</span>number <span class="token operator">&lt;=</span> p2<span class="token punctuation">.</span>number
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span>
+    id<span class="token punctuation">,</span> number
+<span class="token keyword">order</span> <span class="token keyword">BY</span>
+    t_rank<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL81"><a href="#SQL81" class="headerlink" title="SQL81"></a>SQL81</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019162524334.png" alt="image-20211019162524334" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    a<span class="token punctuation">.</span>user_id <span class="token punctuation">,</span> 
+    a<span class="token punctuation">.</span>first_buy_date <span class="token punctuation">,</span> 
+    c<span class="token punctuation">.</span><span class="token keyword">date</span> <span class="token punctuation">,</span> 
+    a<span class="token punctuation">.</span>cnt
+<span class="token keyword">FROM</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> 
+        user_id <span class="token punctuation">,</span> 
+        <span class="token function">MIN</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span> first_buy_date <span class="token punctuation">,</span> 
+        <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> cnt
+    <span class="token keyword">FROM</span> 
+        order_info
+    <span class="token keyword">WHERE</span> 
+        <span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span>
+    <span class="token operator">AND</span> <span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span>
+    <span class="token operator">AND</span> product_name <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token string">'C++'</span> <span class="token punctuation">,</span> <span class="token string">'Java'</span> <span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+    <span class="token keyword">GROUP</span> <span class="token keyword">BY</span> 
+        user_id
+    <span class="token keyword">HAVING</span> 
+        <span class="token function">COUNT</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span> <span class="token operator">>=</span> <span class="token number">2</span>
+    <span class="token punctuation">)</span> a
+<span class="token keyword">JOIN</span> 
+    <span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> 
+        user_id <span class="token punctuation">,</span> 
+        <span class="token keyword">date</span>
+    <span class="token keyword">FROM</span>
+        <span class="token punctuation">(</span>
+        <span class="token keyword">SELECT</span> 
+            user_id <span class="token punctuation">,</span>
+            <span class="token keyword">date</span> <span class="token punctuation">,</span> 
+            RANK<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span><span class="token punctuation">(</span><span class="token keyword">PARTITION</span> <span class="token keyword">BY</span> user_id <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> <span class="token keyword">date</span><span class="token punctuation">)</span> rnk
+        <span class="token keyword">FROM</span> 
+            order_info
+        <span class="token keyword">WHERE</span> 
+            <span class="token keyword">date</span> <span class="token operator">></span> <span class="token string">'2025-10-15'</span>
+        <span class="token operator">AND</span> <span class="token keyword">status</span> <span class="token operator">=</span> <span class="token string">'completed'</span>
+        <span class="token operator">AND</span> product_name <span class="token operator">IN</span> <span class="token punctuation">(</span><span class="token string">'C++'</span> <span class="token punctuation">,</span> <span class="token string">'Java'</span> <span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
+        <span class="token punctuation">)</span> b
+     <span class="token keyword">WHERE</span> 
+        b<span class="token punctuation">.</span>rnk <span class="token operator">=</span> <span class="token number">2</span>
+     <span class="token punctuation">)</span> c
+<span class="token keyword">ON</span> 
+    a<span class="token punctuation">.</span>user_id <span class="token operator">=</span> c<span class="token punctuation">.</span>user_id
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> 
+    a<span class="token punctuation">.</span>user_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="SQL87"><a href="#SQL87" class="headerlink" title="SQL87"></a>SQL87</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019163337353.png" alt="image-20211019163337353" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> grade<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">)</span> t_rank 
+<span class="token keyword">from</span> class_grade 
+<span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><h4 id="SQL16"><a href="#SQL16" class="headerlink" title="SQL16"></a>SQL16</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210928162059085.png" alt="image-20210928162059085" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    t<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
+    <span class="token function">avg</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span>
+    titles t
+<span class="token keyword">JOIN</span>
+    salaries s
+<span class="token keyword">ON</span>
+    t<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s<span class="token punctuation">.</span>emp_no
+<span class="token keyword">GROUP</span> <span class="token keyword">BY</span>
+    t<span class="token punctuation">.</span>title
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
+    <span class="token function">avg</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>salary<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL54"><a href="#SQL54" class="headerlink" title="SQL54"></a>SQL54</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014110031225.png" alt="image-20211014110031225" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span>
+    salaries
+<span class="token keyword">WHERE</span>
+    to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span> <span class="token operator">and</span>
+    salary <span class="token operator">not</span> <span class="token operator">in</span> <span class="token punctuation">(</span>
+        <span class="token keyword">select</span>
+            <span class="token function">max</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+        <span class="token keyword">from</span>
+            salaries
+        <span class="token keyword">where</span> to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
+    <span class="token punctuation">)</span> <span class="token operator">and</span>
+    salary <span class="token operator">not</span> <span class="token operator">in</span><span class="token punctuation">(</span>
+        <span class="token keyword">select</span>
+            <span class="token function">min</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
+        <span class="token keyword">from</span>
+            salaries
+        <span class="token keyword">where</span> to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
+    <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL62"><a href="#SQL62" class="headerlink" title="SQL62"></a>SQL62</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014111141842.png" alt="image-20211014111141842" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> number <span class="token keyword">from</span> grade <span class="token keyword">group</span> <span class="token keyword">by</span> number <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">>=</span><span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+
+
+<h3 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h3><h4 id="SQL32"><a href="#SQL32" class="headerlink" title="SQL32"></a>SQL32</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929111619847.png" alt="image-20210929111619847" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    CONCAT<span class="token punctuation">(</span>last_name<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> first_name<span class="token punctuation">)</span>
+<span class="token keyword">from</span>
+    employees<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL51"><a href="#SQL51" class="headerlink" title="SQL51"></a>SQL51</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211012164126524.png" alt="image-20211012164126524" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    LENGTH<span class="token punctuation">(</span><span class="token string">"10,A,B"</span><span class="token punctuation">)</span> <span class="token operator">-</span> LENGTH<span class="token punctuation">(</span><span class="token keyword">REPLACE</span><span class="token punctuation">(</span><span class="token string">"10,A,B"</span><span class="token punctuation">,</span> <span class="token string">","</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> cnt<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h4 id="SQL52"><a href="#SQL52" class="headerlink" title="SQL52"></a>SQL52</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211012164214515.png" alt="image-20211012164214515" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    first_name
+<span class="token keyword">FROM</span>
+    employees
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
+    SUBSTR<span class="token punctuation">(</span>first_name<span class="token punctuation">,</span> LENGTH<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> LENGTH<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL53"><a href="#SQL53" class="headerlink" title="SQL53"></a>SQL53</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014105909840.png" alt="image-20211014105909840" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> dept_no<span class="token punctuation">,</span> group_concat<span class="token punctuation">(</span>emp_no<span class="token punctuation">)</span> <span class="token keyword">as</span> employees
+<span class="token keyword">from</span> dept_emp
+<span class="token keyword">group</span> <span class="token keyword">by</span> dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL60"><a href="#SQL60" class="headerlink" title="SQL60"></a>SQL60</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014110905479.png" alt="image-20211014110905479" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
+<span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span>salary<span class="token punctuation">)</span>
+<span class="token keyword">FROM</span> salaries <span class="token keyword">AS</span> s2
+<span class="token keyword">WHERE</span> s2<span class="token punctuation">.</span>emp_no <span class="token operator">&lt;=</span> s1<span class="token punctuation">.</span>emp_no
+<span class="token operator">AND</span> s2<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> running_total
+<span class="token keyword">FROM</span> salaries <span class="token keyword">AS</span> s1
+<span class="token keyword">WHERE</span> s1<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> s1<span class="token punctuation">.</span>emp_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL65"><a href="#SQL65" class="headerlink" title="SQL65"></a>SQL65</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014111602913.png" alt="image-20211014111602913" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    email<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">,</span> 
+    <span class="token function">round</span><span class="token punctuation">(</span>
+        <span class="token function">sum</span><span class="token punctuation">(</span>
+            <span class="token keyword">case</span> email<span class="token punctuation">.</span><span class="token keyword">type</span> 
+                <span class="token keyword">when</span><span class="token string">'completed'</span> <span class="token keyword">then</span> <span class="token number">0</span> 
+                <span class="token keyword">else</span> <span class="token number">1</span> 
+            <span class="token keyword">end</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">1.0</span> <span class="token operator">/</span> <span class="token function">count</span><span class="token punctuation">(</span>email<span class="token punctuation">.</span><span class="token keyword">type</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">as</span> p
+<span class="token keyword">from</span> 
+    email
+<span class="token keyword">join</span>
+    <span class="token keyword">user</span> <span class="token keyword">as</span> u1 
+<span class="token keyword">on</span> 
+    email<span class="token punctuation">.</span>send_id<span class="token operator">=</span>u1<span class="token punctuation">.</span>id <span class="token operator">and</span> 
+    u1<span class="token punctuation">.</span>is_blacklist<span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">join</span> 
+    <span class="token keyword">user</span> <span class="token keyword">as</span> u2 
+<span class="token keyword">on</span> 
+    email<span class="token punctuation">.</span>receive_id<span class="token operator">=</span>u2<span class="token punctuation">.</span>id <span class="token operator">and</span> 
+    u2<span class="token punctuation">.</span>is_blacklist<span class="token operator">=</span><span class="token number">0</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> 
+    email<span class="token punctuation">.</span><span class="token keyword">date</span> 
+<span class="token keyword">order</span> <span class="token keyword">by</span> 
+    email<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL69"><a href="#SQL69" class="headerlink" title="SQL69"></a>SQL69</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018142049652.png" alt="image-20211018142049652" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    <span class="token keyword">distinct</span> <span class="token keyword">date</span><span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span>
+        <span class="token keyword">case</span> 
+            <span class="token keyword">when</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span> <span class="token operator">in</span> 
+                <span class="token punctuation">(</span><span class="token keyword">select</span> 
+                     user_id<span class="token punctuation">,</span>
+                     <span class="token function">min</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span>
+                 <span class="token keyword">from</span> 
+                     login 
+                 <span class="token keyword">group</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span>
+            <span class="token keyword">then</span> <span class="token number">1</span> 
+            <span class="token keyword">else</span> <span class="token number">0</span> 
+        <span class="token keyword">end</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> login
+<span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token keyword">date</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL70"><a href="#SQL70" class="headerlink" title="SQL70"></a>SQL70</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018142212720.png" alt="image-20211018142212720" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    <span class="token keyword">date</span><span class="token punctuation">,</span>
+    ifnull<span class="token punctuation">(</span>
+        <span class="token function">round</span><span class="token punctuation">(</span>
+            <span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>
+                <span class="token keyword">case</span> 
+                    <span class="token keyword">when</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span> <span class="token operator">in</span>
+                        <span class="token punctuation">(</span><span class="token keyword">select</span> 
+                             user_id<span class="token punctuation">,</span>
+                             date_add<span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">,</span><span class="token keyword">interval</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token keyword">day</span><span class="token punctuation">)</span> 
+                         <span class="token keyword">from</span> login<span class="token punctuation">)</span>  <span class="token operator">and</span> 
+                        <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span><span class="token operator">in</span> 
+                        <span class="token punctuation">(</span><span class="token keyword">select</span> 
+                             user_id<span class="token punctuation">,</span>
+                             <span class="token function">min</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span>
+                         <span class="token keyword">from</span> login 
+                         <span class="token keyword">group</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span>
+                    <span class="token keyword">then</span> <span class="token number">1</span> 
+                    <span class="token keyword">else</span> <span class="token number">0</span> 
+                <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token operator">/</span>
+            <span class="token punctuation">(</span><span class="token function">sum</span><span class="token punctuation">(</span>
+                <span class="token keyword">case</span> 
+                    <span class="token keyword">when</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span><span class="token operator">in</span>
+                        <span class="token punctuation">(</span><span class="token keyword">select</span> 
+                             user_id<span class="token punctuation">,</span>
+                             <span class="token function">min</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span>
+                         <span class="token keyword">from</span> login 
+                         <span class="token keyword">group</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span>
+                    <span class="token keyword">then</span> <span class="token number">1</span> 
+                    <span class="token keyword">else</span> <span class="token number">0</span> 
+                <span class="token keyword">end</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token keyword">as</span> p
+<span class="token keyword">from</span> login
+<span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token keyword">date</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL85"><a href="#SQL85" class="headerlink" title="SQL85"></a>SQL85</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211019162856125.png" alt="image-20211019162856125" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 按月统计数量并排序</span>
+<span class="token keyword">select</span> job<span class="token punctuation">,</span>date_format<span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">,</span><span class="token string">'%Y-%m'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> mon<span class="token punctuation">,</span><span class="token function">sum</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">as</span> cnt
+<span class="token keyword">from</span> resume_info
+<span class="token keyword">where</span> <span class="token keyword">date</span> <span class="token operator">like</span> <span class="token string">'2025%'</span>  <span class="token comment">-- 符合最左前缀匹配原则，也走索引</span>
+<span class="token keyword">group</span> <span class="token keyword">by</span> job<span class="token punctuation">,</span>mon
+<span class="token keyword">order</span> <span class="token keyword">by</span> mon <span class="token keyword">desc</span><span class="token punctuation">,</span>cnt <span class="token keyword">desc</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><h4 id="SQL61"><a href="#SQL61" class="headerlink" title="SQL61"></a>SQL61</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014111026521.png" alt="image-20211014111026521" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    e<span class="token punctuation">.</span>first_name
+<span class="token keyword">FROM</span> employees e <span class="token keyword">JOIN</span>
+<span class="token punctuation">(</span>
+    <span class="token keyword">SELECT</span> 
+        first_name
+        <span class="token punctuation">,</span> ROW_NUMBER<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">OVER</span><span class="token punctuation">(</span><span class="token keyword">ORDER</span> <span class="token keyword">BY</span> first_name <span class="token keyword">ASC</span><span class="token punctuation">)</span> <span class="token keyword">AS</span>  r_num
+    <span class="token keyword">FROM</span> employees
+<span class="token punctuation">)</span> <span class="token keyword">AS</span> t 
+<span class="token keyword">ON</span> e<span class="token punctuation">.</span>first_name <span class="token operator">=</span> t<span class="token punctuation">.</span>first_name
+<span class="token keyword">WHERE</span> t<span class="token punctuation">.</span>r_num <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL68"><a href="#SQL68" class="headerlink" title="SQL68"></a>SQL68</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018141757866.png" alt="image-20211018141757866" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+<span class="token function">round</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> user_id<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">1.0</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> user_id<span class="token punctuation">)</span> <span class="token keyword">from</span> login<span class="token punctuation">)</span> <span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
+<span class="token keyword">from</span> login
+<span class="token keyword">where</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span>
+<span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> user_id<span class="token punctuation">,</span>DATE_ADD<span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span> <span class="token keyword">from</span> login <span class="token keyword">group</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL71"><a href="#SQL71" class="headerlink" title="SQL71"></a>SQL71</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018142622482.png" alt="image-20211018142622482" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> u<span class="token punctuation">.</span>name <span class="token keyword">as</span> u_n
+        <span class="token punctuation">,</span>p<span class="token punctuation">.</span><span class="token keyword">date</span> <span class="token keyword">as</span> <span class="token keyword">date</span>
+        <span class="token punctuation">,</span><span class="token function">sum</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span>number<span class="token punctuation">)</span><span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> u<span class="token punctuation">.</span>name <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">date</span><span class="token punctuation">)</span><span class="token keyword">as</span> ps_num
+<span class="token keyword">from</span> passing_number p<span class="token punctuation">,</span><span class="token keyword">user</span> u
+<span class="token keyword">where</span> p<span class="token punctuation">.</span>user_id<span class="token operator">=</span>u<span class="token punctuation">.</span>id
+<span class="token keyword">order</span> <span class="token keyword">by</span> p<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">,</span>u<span class="token punctuation">.</span>name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL74"><a href="#SQL74" class="headerlink" title="SQL74"></a>SQL74</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018142935185.png" alt="image-20211018142935185" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> l<span class="token punctuation">.</span>name<span class="token punctuation">,</span> a<span class="token punctuation">.</span>score
+<span class="token keyword">FROM</span>
+<span class="token keyword">language</span> <span class="token keyword">AS</span> l
+<span class="token keyword">JOIN</span>
+<span class="token punctuation">(</span><span class="token keyword">SELECT</span> id<span class="token punctuation">,</span> language_id<span class="token punctuation">,</span> score<span class="token punctuation">,</span> dense_rank<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">PARTITION</span> <span class="token keyword">BY</span> language_id <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> score <span class="token keyword">DESC</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> rank_num
+<span class="token keyword">FROM</span> grade<span class="token punctuation">)</span>a
+<span class="token keyword">ON</span> l<span class="token punctuation">.</span>id <span class="token operator">=</span> a<span class="token punctuation">.</span>language_id
+<span class="token keyword">WHERE</span> rank_num <span class="token operator">&lt;=</span><span class="token number">2</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> l<span class="token punctuation">.</span>name<span class="token punctuation">,</span> a<span class="token punctuation">.</span>score <span class="token keyword">DESC</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL76"><a href="#SQL76" class="headerlink" title="SQL76"></a>SQL76</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211018143208316.png" alt="image-20211018143208316" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    id
+    <span class="token punctuation">,</span>g<span class="token punctuation">.</span>job <span class="token keyword">as</span> job
+    <span class="token punctuation">,</span>score
+    <span class="token punctuation">,</span>rk
+<span class="token keyword">from</span> <span class="token punctuation">(</span>
+    <span class="token keyword">select</span> 
+        id
+        <span class="token punctuation">,</span>job
+        <span class="token punctuation">,</span>score
+        <span class="token punctuation">,</span>row_number<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span>
+            <span class="token keyword">partition</span> <span class="token keyword">by</span> job
+            <span class="token keyword">order</span> <span class="token keyword">by</span> score <span class="token keyword">desc</span>
+        <span class="token punctuation">)</span> <span class="token keyword">as</span> rk
+    <span class="token keyword">from</span> grade 
+<span class="token punctuation">)</span> g
+
+<span class="token keyword">join</span> <span class="token punctuation">(</span>
+    <span class="token keyword">select</span>
+        job
+        <span class="token punctuation">,</span>floor<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> m1
+        <span class="token punctuation">,</span>ceiling<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token keyword">as</span> m2
+    <span class="token keyword">from</span> grade
+    <span class="token keyword">group</span> <span class="token keyword">by</span> job
+<span class="token punctuation">)</span> m
+
+<span class="token keyword">on</span> g<span class="token punctuation">.</span>job <span class="token operator">=</span> m<span class="token punctuation">.</span>job
+
+<span class="token keyword">where</span> rk <span class="token operator">between</span> m1 <span class="token operator">and</span> m2          <span class="token comment">-- 过滤，保证row_number处于中位数位置</span>
+
+<span class="token keyword">order</span> <span class="token keyword">by</span> id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL88"><a href="#SQL88" class="headerlink" title="SQL88"></a>SQL88</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211021105800133.png" alt="image-20211021105800133" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> grade
+<span class="token keyword">from</span>
+    <span class="token punctuation">(</span><span class="token keyword">select</span> grade<span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">sum</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token keyword">from</span> class_grade<span class="token punctuation">)</span> <span class="token keyword">as</span> total<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">)</span> a<span class="token punctuation">,</span> <span class="token comment">-- 求正序</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> grade <span class="token keyword">desc</span><span class="token punctuation">)</span> b  <span class="token comment">-- 求逆序</span>
+     <span class="token keyword">from</span> class_grade
+    <span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">)</span>t
+<span class="token keyword">where</span> a <span class="token operator">>=</span> total<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">and</span> b <span class="token operator">>=</span> total<span class="token operator">/</span><span class="token number">2</span>  <span class="token comment">-- 正序逆序均大于整个数列数字个数的一半</span>
+<span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="SQL89"><a href="#SQL89" class="headerlink" title="SQL89"></a>SQL89</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211021105926913.png" alt="image-20211021105926913" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
+    u<span class="token punctuation">.</span>name<span class="token punctuation">,</span> 
+    g<span class="token punctuation">.</span>grade
+<span class="token keyword">from</span>
+    <span class="token punctuation">(</span>
+    <span class="token keyword">select</span> 
+        user_id<span class="token punctuation">,</span> 
+        <span class="token function">sum</span><span class="token punctuation">(</span>grade_num<span class="token punctuation">)</span><span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">partition</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span> grade
+    <span class="token keyword">from</span> 
+        grade_info
+    <span class="token keyword">order</span> <span class="token keyword">by</span> 
+        grade <span class="token keyword">desc</span>
+    <span class="token keyword">limit</span> <span class="token number">1</span>
+    <span class="token punctuation">)</span>g
+<span class="token keyword">join</span>
+    <span class="token keyword">user</span> <span class="token keyword">as</span> u
+    <span class="token keyword">on</span> g<span class="token punctuation">.</span>user_id <span class="token operator">=</span> u<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><h3 id="SQL55"><a href="#SQL55" class="headerlink" title="SQL55"></a>SQL55</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211014110439716.png" alt="image-20211014110439716" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
+    <span class="token operator">*</span>
+<span class="token keyword">FROM</span>
+    employees
+<span class="token keyword">limit</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">5</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><h2 id="SQL34"><a href="#SQL34" class="headerlink" title="SQL34"></a>SQL34</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929111755733.png" alt="image-20210929111755733" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> actor<span class="token punctuation">(</span>actor_id<span class="token punctuation">,</span>
+                  first_name<span class="token punctuation">,</span>
+                  last_name<span class="token punctuation">,</span>
+                  last_update<span class="token punctuation">)</span>
+<span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'PENELOPE'</span><span class="token punctuation">,</span><span class="token string">'GUINESS'</span><span class="token punctuation">,</span><span class="token string">'2006-02-15 12:34:33'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'NICK'</span><span class="token punctuation">,</span><span class="token string">'WAHLBERG'</span><span class="token punctuation">,</span><span class="token string">'2006-02-15 12:34:33'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="SQL35"><a href="#SQL35" class="headerlink" title="SQL35"></a>SQL35</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210929111844515.png" alt="image-20210929111844515" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># mysql中常用的三种插入数据的语句:</span>
+<span class="token comment"># insert into表示插入数据，数据库会检查主键，如果出现重复会报错；</span>
+<span class="token comment"># replace into表示插入替换数据，需求表中有PrimaryKey，</span>
+<span class="token comment">#             或者unique索引，如果数据库已经存在数据，则用新数据替换，如果没有数据效果则和insert into一样；</span>
+<span class="token comment"># insert ignore表示，如果中已经存在相同的记录，则忽略当前新数据；</span>
+<span class="token keyword">insert</span> <span class="token keyword">ignore</span> <span class="token keyword">into</span> actor <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">"3"</span><span class="token punctuation">,</span><span class="token string">"ED"</span><span class="token punctuation">,</span><span class="token string">"CHASE"</span><span class="token punctuation">,</span><span class="token string">"2006-02-15 12:34:33"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><h2 id="SQL42"><a href="#SQL42" class="headerlink" title="SQL42"></a>SQL42</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211008143658302.png" alt="image-20211008143658302" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span>
+    t2<span class="token punctuation">.</span><span class="token operator">*</span>
+<span class="token keyword">FROM</span>
+    <span class="token identifier"><span class="token punctuation">`</span>titles_test<span class="token punctuation">`</span></span> t1<span class="token punctuation">,</span>
+    <span class="token identifier"><span class="token punctuation">`</span>titles_test<span class="token punctuation">`</span></span> t2
+<span class="token keyword">WHERE</span>
+    t1<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> t2<span class="token punctuation">.</span>emp_no <span class="token operator">and</span>
+    t1<span class="token punctuation">.</span>id <span class="token operator">&lt;</span> t2<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><h2 id="SQL48"><a href="#SQL48" class="headerlink" title="SQL48"></a>SQL48</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20211008145613875.png" alt="image-20211008145613875" style="zoom:50%;" />
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span>
+    salaries
+<span class="token keyword">SET</span>
+    salary <span class="token operator">=</span> salary <span class="token operator">+</span> salary <span class="token operator">*</span> <span class="token number">0.1</span>
+<span class="token keyword">WHERE</span>
+    emp_no <span class="token operator">in</span> <span class="token punctuation">(</span>
+        <span class="token keyword">select</span>
+            emp_no
+        <span class="token keyword">from</span>
+            emp_bonus
+    <span class="token punctuation">)</span> <span class="token operator">and</span>
+    to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2021/09/28/niu-ke-sql-ti-hui-zong/">https://jason-qianhao.github.io/2021/09/28/niu-ke-sql-ti-hui-zong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
+                                    <span class="chip bg-color">数据库</span>
+                                </a>
+                            
+                                <a href="/tags/SQL/">
+                                    <span class="chip bg-color">SQL</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/11/30/dokcer-chong-dian-gai-nian-an-zhuang-he-bu-shu-nginx-shi-jian/">
+                    <div class="card-image">
+                        
+                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-j8depm.jpg" class="responsive-img" alt="Dokcer重点概念、安装和部署Nginx实践">
+                        
+                        <span class="card-title">Dokcer重点概念、安装和部署Nginx实践</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-30
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%9E%B6%E6%9E%84/" class="post-category">
+                                    架构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%9E%B6%E6%9E%84/">
+                        <span class="chip bg-color">架构</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/09/27/linux-an-zhuang-mysql/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="Linux安装Mysql">
+                        
+                        <span class="card-title">Linux安装Mysql</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-27
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/Linux/">
+                        <span class="chip bg-color">Linux</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

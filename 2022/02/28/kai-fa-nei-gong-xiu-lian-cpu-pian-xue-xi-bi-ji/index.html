@@ -1,0 +1,1672 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="《开发内功修炼-CPU篇》学习笔记, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>《开发内功修炼-CPU篇》学习笔记 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">《开发内功修炼-CPU篇》学习笔记</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                <span class="chip bg-color">操作系统</span>
+                            </a>
+                        
+                            <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                                <span class="chip bg-color">《开发内功修炼》</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                操作系统
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-28
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    4.1k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    16 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="《开发内功修炼-内存篇》学习笔记"><a href="#《开发内功修炼-内存篇》学习笔记" class="headerlink" title="《开发内功修炼-内存篇》学习笔记"></a>《开发内功修炼-内存篇》学习笔记</h1><blockquote>
+<p>目录</p>
+<ol>
+<li> CPU物理结构</li>
+<li>CPU缓存</li>
+<li>进程/线程切换的开销</li>
+<li>软中断的开销</li>
+<li>系统调用的开销</li>
+<li>函数调用的开销</li>
+</ol>
+<p>参考/来源</p>
+<ul>
+<li>《开发内功修炼》微信公众号</li>
+</ul>
+</blockquote>
+<h1 id="CPU物理结构"><a href="#CPU物理结构" class="headerlink" title="CPU物理结构"></a>CPU物理结构</h1><h2 id="CPU核数"><a href="#CPU核数" class="headerlink" title="CPU核数"></a>CPU核数</h2><ul>
+<li><p><strong>物理CPU</strong>：主板上真正安装的CPU的个数，</p>
+</li>
+<li><p><strong>物理核</strong>：一个CPU会集成多个物理核心</p>
+</li>
+<li><p><strong>逻辑核</strong>：超线程技术可以把一个物理核虚拟出来多个逻辑核</p>
+</li>
+</ul>
+<p>超线程里的2个逻辑核实际上是在一个物理核上运行的，模拟双核心运作，共享该物理核的L1和L2缓存。物理计算能力并没有增加，超线程技术只有在多任务的时候才能提升机器核整体的吞吐量。而且据Intel官方介绍，相比实核，平均性能提升只有20-30%30%左右。</p>
+<h2 id="Linux的CPU"><a href="#Linux的CPU" class="headerlink" title="Linux的CPU"></a>Linux的CPU</h2><ul>
+<li><p><code>top</code>命令</p>
+<p>其实我们通过top命令看到的CPU核是逻辑核</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101308390.png" alt="image-20220302101308390"></p>
+</li>
+<li><p>更详细信息</p>
+<p>在linux系统下，通过查看<code>/proc/cpuinfo</code>可以看到CPU更为详细的信息。我们<strong>通过physical id 可以看到真正的物理CPU的个数</strong>，如下：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#cat /proc/cpuinfo | grep "physical id" | sort | uniq</span>
+physical <span class="token function">id</span>     <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+physical <span class="token function">id</span>     <span class="token builtin class-name">:</span> <span class="token number">1</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>可以看出，该实机有两个物理CPU。我们继续查看物理核，<strong>通过cpu cores可以看到每个CPU有几个物理核</strong>。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#cat /proc/cpuinfo| grep "cpu cores"| uniq</span>
+cpu cores       <span class="token builtin class-name">:</span> <span class="token number">6</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>cpu cores显示为6表示每个cpu有6个物理核心，因为有2个物理CPU，所以该机器总共有12个物理核。当然<strong>该命令也可以查看逻辑核，那就是grep显示结果中的processor</strong>。</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#cat /proc/cpuinfo  | grep -E "core id|process|physical id"</span>
+processor       <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+physical <span class="token function">id</span>     <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+core <span class="token function">id</span>         <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+processor       <span class="token builtin class-name">:</span> <span class="token number">12</span>  
+physical <span class="token function">id</span>     <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+core <span class="token function">id</span>         <span class="token builtin class-name">:</span> <span class="token number">0</span>  
+<span class="token punctuation">..</span><span class="token punctuation">..</span><span class="token punctuation">..</span>
+processor       <span class="token builtin class-name">:</span> <span class="token number">23</span>  
+physical <span class="token function">id</span>     <span class="token builtin class-name">:</span> <span class="token number">1</span>  
+core <span class="token function">id</span>         <span class="token builtin class-name">:</span> <span class="token number">10</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>processor就是逻辑核的序号，可以看出该机器总共有24个逻辑核。大家注意看processor 0和processor 12的physical id、core id都是一样的，也就说他们他们也处在同一个物理核上。但是他们的processor编号却不一样，一个是0，一个是12。这就是说，这两个逻辑核实际上是一个物理核虚拟出来的而已。</p>
+</li>
+</ul>
+<h1 id="CPU缓存"><a href="#CPU缓存" class="headerlink" title="CPU缓存"></a>CPU缓存</h1><h2 id="L1-L2-L3缓存"><a href="#L1-L2-L3缓存" class="headerlink" title="L1\L2\L3缓存"></a>L1\L2\L3缓存</h2><p>CPU越来越快，现在CPU的速度比内存要快百倍以上，所以就逐步演化出了L1、L2、L3三级缓存结构，而且都集成到的CPU芯片里，以进一步提高访问速度。</p>
+<p>现代Intel的CPU架构的基本结构：</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102323668.png" alt="image-20220302102323668"></p>
+<p>越往下，速度越慢，容量越大</p>
+<ul>
+<li><p>L1最接近于CPU，速度也最快，但是容量最小。一般现代CPU的L1会分成两个，一个用来cache data，一个用来cache code，这是因为code和data的更新策略并不相同，而且因为CISC的变长指令，code cache要做特殊优化。一般每个核都有自己独立的data L1和code L1。</p>
+</li>
+<li><p>L2一般也可以做到每个核一个独立的</p>
+</li>
+<li><p>但是L3一般就是整颗CPU共享的了。</p>
+<p>UEFIBlog里提供了一个比较好的物理解剖图，比较好地展示了出来：</p>
+</li>
+</ul>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102332354.png" alt="image-20220302102332354"></p>
+<h2 id="查看Linux的三级缓存"><a href="#查看Linux的三级缓存" class="headerlink" title="查看Linux的三级缓存"></a>查看Linux的三级缓存</h2><p><strong>L1一级缓存查看：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none"># cat cpu0&#x2F;cache&#x2F;index0&#x2F;level
+1
+# cat cpu0&#x2F;cache&#x2F;index0&#x2F;size
+32K
+# cat cpu0&#x2F;cache&#x2F;index0&#x2F;type
+Data
+# cat cpu0&#x2F;cache&#x2F;index0&#x2F;shared_cpu_list
+0,12
+# cat cpu0&#x2F;cache&#x2F;index1&#x2F;level
+1
+# cat cpu0&#x2F;cache&#x2F;index1&#x2F;size
+32K
+# cat cpu0&#x2F;cache&#x2F;index1&#x2F;type
+Instruction
+# cat cpu0&#x2F;cache&#x2F;index1&#x2F;shared_cpu_list
+0,12<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>从上面的level接口可以看出index0和index1都是一级缓存，只不过一个是Data数据缓存，一个是Instruction也就是代码缓存。</li>
+<li>shared_cpu_list显示有共享？我们这里看到的cpu0并不是物理Core，而是逻辑核，都是超线程技术虚拟出来的。实际上cpu0和cpu12是属于一个物理Core，所以每个Data L1和Instruction是这两个逻辑核共享的。</li>
+</ul>
+<p><strong>L2二级缓存查看：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none"># cat cpu0&#x2F;cache&#x2F;index2&#x2F;size
+256K
+# cat cpu0&#x2F;cache&#x2F;index2&#x2F;type
+Unified
+# cat cpu0&#x2F;cache&#x2F;index2&#x2F;shared_cpu_list
+0,12<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>二级缓存要比一级缓存大不少，有256K，但是不分Data和Instruction。另外L2和L1一样，也是总共有12个，每两个逻辑核共享一个L2。</p>
+<p><strong>L3三级缓存查看：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none"># cat cpu0&#x2F;cache&#x2F;index3&#x2F;size
+12288K
+# cat cpu0&#x2F;cache&#x2F;index3&#x2F;type
+Unified
+# cat cpu0&#x2F;cache&#x2F;index3&#x2F;shared_cpu_list
+0-5,12-17
+#cat cpu6&#x2F;cache&#x2F;index3&#x2F;shared_cpu_list
+6-11,18-23<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Cache-Line"><a href="#Cache-Line" class="headerlink" title="Cache Line"></a>Cache Line</h2><p><strong>Cache Line是</strong>本级缓存向下一层取数据时的基本单位</p>
+<p>可以看到L1、L2、L3的Cache Line大小都是64字节（注意是字节，可以在相关配置文件查看）。就是说每次cpu从内存获取数据的时候，都是以该单位来进行的，哪怕你只取一个bit，CPU也是给你取一个Cache Line然后放到各级缓存里存起来。</p>
+<h2 id="TLB"><a href="#TLB" class="headerlink" title="TLB"></a>TLB</h2><p>和CPU的L1、L2、L3的缓存思想一致，既然进行地址转换需要的内存IO次数多，且耗时。那么干脆就在CPU里把页表尽可能地cache起来不就行了么，所以就有了TLB(Translation Lookaside Buffer)，专门用于改进虚拟地址到物理地址转换速度的缓存。其访问速度非常快，和寄存器相当，比L1访问还快。</p>
+<p>有了TLB之后，CPU访问某个虚拟内存地址的过程如下</p>
+<ol>
+<li><p>CPU产生一个虚拟地址</p>
+</li>
+<li><p>MMU从TLB中获取页表，翻译成物理地址</p>
+</li>
+<li><p>MMU把物理地址发送给L1/L2/L3/内存</p>
+</li>
+<li><p>L1/L2/L3/内存将地址对应数据返回给CPU</p>
+</li>
+</ol>
+<p>TLB并不是很大，只有4k，而且现在逻辑核又造成会有两个进程来共享。所以可能会有cache miss的情况出现。而且一旦<strong>TLB miss造成的后果可比物理地址cache miss后果要严重一些，最多可能需要进行5次内存IO才行</strong>。</p>
+<h1 id="进程-线程切换的开销"><a href="#进程-线程切换的开销" class="headerlink" title="进程/线程切换的开销"></a>进程/线程切换的开销</h1><h2 id="上下文切换"><a href="#上下文切换" class="headerlink" title="上下文切换"></a>上下文切换</h2><ul>
+<li><p>上下文切换</p>
+<p>在进程A切换到进程B的过程中，先保存A进程的上下文，以便于等A恢复运行的时候，能够知道A进程的下一条指令是啥。然后将要运行的B进程的上下文恢复到寄存器中。这个过程被称为上下文切换。</p>
+</li>
+<li><p>测试开销的结果</p>
+<p>每次执行的时间会有差异，多次运行后<strong>平均每次上下文切换耗时3.5us左右</strong>。当然了这个数字因机器而异，而且建议在实机上测试。</p>
+<p><strong>前文我们测试系统调用的时候，最低值是200ns</strong>。可见，上下文切换开销要比系统调用的开销要大。系统调用只是在进程内将用户态切换到内核态，然后再切回来，而上下文切换可是直接从进程A切换到了进程B。显然这个上下文切换需要完成的工作量更大。</p>
+</li>
+<li><p>开销分析</p>
+<p>开销分成两种，一种是直接开销、一种是间接开销。</p>
+<p><strong>直接开销就是在切换时，cpu必须做的事情</strong>，包括：</p>
+<p>1、切换页表全局目录</p>
+<p>2、切换内核态堆栈</p>
+<p>3、切换硬件上下文（进程恢复前，必须装入寄存器的数据统称为硬件上下文）</p>
+<ul>
+<li>ip(instruction pointer)：指向当前执行指令的下一条指令</li>
+<li>bp(base pointer): 用于存放执行中的函数对应的栈帧的栈底地址</li>
+<li>sp(stack poinger): 用于存放执行中的函数对应的栈帧的栈顶地址</li>
+<li>cr3:页目录基址寄存器，保存页目录表的物理地址</li>
+<li>……</li>
+</ul>
+<p>4、刷新TLB</p>
+<p>5、系统调度器的代码执行</p>
+<p><strong>间接开销主要指的是虽然切换到一个新进程后，由于各种缓存并不热，速度运行会慢一些</strong>。如果进程始终都在一个CPU上调度还好一些，如果跨CPU的话，之前热起来的TLB、L1、L2、L3因为运行的进程已经变了，所以以局部性原理cache起来的代码、数据也都没有用了，导致新进程穿透到内存的IO会变多。其实我们上面的实验并没有很好地测量到这种情况，所以实际的上下文切换开销可能比3.5us要大。</p>
+</li>
+<li><p>相关命令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># vmstat 1</span>
+procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu-----
+ r  b   swpd   <span class="token function">free</span>   buff  cache   si   so    bi    bo   <span class="token keyword">in</span>   cs us sy <span class="token function">id</span> wa st
+ <span class="token number">2</span>  <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">595504</span>   <span class="token number">5724</span> <span class="token number">190884</span>    <span class="token number">0</span>    <span class="token number">0</span>   <span class="token number">295</span>   <span class="token number">297</span>    <span class="token number">0</span>    <span class="token number">0</span> <span class="token number">14</span>  <span class="token number">6</span> <span class="token number">75</span>  <span class="token number">0</span>  <span class="token number">4</span>
+ <span class="token number">5</span>  <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">593016</span>   <span class="token number">5732</span> <span class="token number">193288</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">0</span>    <span class="token number">92</span> <span class="token number">19889</span> <span class="token number">29104</span> <span class="token number">20</span>  <span class="token number">6</span> <span class="token number">67</span>  <span class="token number">0</span>  <span class="token number">7</span>
+ <span class="token number">3</span>  <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">591292</span>   <span class="token number">5732</span> <span class="token number">195476</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">0</span>     <span class="token number">0</span> <span class="token number">20151</span> <span class="token number">28487</span> <span class="token number">20</span>  <span class="token number">6</span> <span class="token number">66</span>  <span class="token number">0</span>  <span class="token number">8</span>
+ <span class="token number">4</span>  <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">589296</span>   <span class="token number">5732</span> <span class="token number">196800</span>    <span class="token number">0</span>    <span class="token number">0</span>   <span class="token number">116</span>   <span class="token number">384</span> <span class="token number">19326</span> <span class="token number">27693</span> <span class="token number">20</span>  <span class="token number">7</span> <span class="token number">67</span>  <span class="token number">0</span>  <span class="token number">7</span>
+ <span class="token number">4</span>  <span class="token number">0</span>      <span class="token number">0</span> <span class="token number">586956</span>   <span class="token number">5740</span> <span class="token number">199496</span>    <span class="token number">0</span>    <span class="token number">0</span>   <span class="token number">216</span>    <span class="token number">24</span> <span class="token number">18321</span> <span class="token number">24018</span> <span class="token number">22</span>  <span class="token number">8</span> <span class="token number">62</span>  <span class="token number">0</span>  <span class="token number">8</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>cs列</strong>表示的就是在1s内系统发生的上下文切换次数</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># sar -w 1</span>
+proc/s
+     Total number of tasks created per second.
+cswch/s
+     Total number of context switches per second.
+<span class="token number">11</span>:19:20 AM    proc/s   cswch/s
+<span class="token number">11</span>:19:21 AM    <span class="token number">110.28</span>  <span class="token number">23468.22</span>
+<span class="token number">11</span>:19:22 AM    <span class="token number">128.85</span>  <span class="token number">33910.58</span>
+<span class="token number">11</span>:19:23 AM     <span class="token number">47.52</span>  <span class="token number">40733.66</span>
+<span class="token number">11</span>:19:24 AM     <span class="token number">35.85</span>  <span class="token number">30972.64</span>
+<span class="token number">11</span>:19:25 AM     <span class="token number">47.62</span>  <span class="token number">24951.43</span>
+<span class="token number">11</span>:19:26 AM     <span class="token number">47.52</span>  <span class="token number">42950.50</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h2><p>在网络服务器环境下，为了避免频繁的上下文切换，有一种异步非阻塞的开发模型。那就是用一个进程或线程去接收一大堆用户的请求，然后通过IO多路复用的方式来提高性能（进程或线程不阻塞，省去了上下文切换的开销）。</p>
+<p>在应用层，<strong>不需要进程/线程上下文切换的“线程”，即为协程</strong>。用协程去处理高并发的应用场景，既能够符合进程涉及的初衷，让开发者们用人类正常的线性的思维去处理自己的业务，也同样能够省去昂贵的进程/线程上下文切换的开销。因此可以说，协程就是Linux处理海量请求应用场景里的进程模型的一个很好的的补丁。</p>
+<ul>
+<li><p>协程切换开销</p>
+<p>平均每次协程切换的开销是（655035993-415197171)/2000000=<strong>120ns</strong>。相对于前面文章测得的进程切换开销大约3.5us，大约是其的三十分之一。比系统调用的造成的开销还要低。</p>
+</li>
+<li><p>内存开销</p>
+<p>在空间上，协程初始化创建的时候为其分配的栈有2KB。而线程栈要比这个数字大的多，可以通过ulimit 命令查看，一般都在几兆，作者的机器上是10M。如果对每个用户创建一个协程去处理，100万并发用户请求只需要2G内存就够了，而如果用线程模型则需要10T。</p>
+</li>
+</ul>
+<p>无论是空间还是时间性能都比进程（线程）好这么多，那么Linus为啥不把它在操作系统里实现了多好？<strong>操作系统为了实现实时性更好的目的，对一些优先级比较高的进程是会抢占其它进程的CPU的</strong>。而协程无法实现这一点，还得依赖于挡前使用CPU的协程主动释放，于操作系统的实现目的不相吻合。<strong>所以协程的高效是以牺牲可抢占性为代价的</strong>。</p>
+<h1 id="软中断的开销"><a href="#软中断的开销" class="headerlink" title="软中断的开销"></a>软中断的开销</h1><p>现代的Linux发明了软件中断，配合硬中断来处理网络IO。硬中断你可以理解只是个收包的，把包收取回来放到“家里”就完事，很快就能完成，这样不耽误CPU响应其它外部高优先级的中断。而<strong>软中断优先级较低，负责将包进行各种处理，完成从驱动层、到网络协议栈，最终把处理出来的数据放到socker的接收buffer中。软中断消耗的CPU周期相对比硬中断要多不少。</strong></p>
+<p>软中断和系统调用一样，都是CPU停止掉当前用户态上下文，保存工作现场，然后陷入到内核态继续工作。二者的唯一区别是系统调用是切换到同进程的内核态上下文，而软中断是则是切换到了另外一个内核进程ksoftirqd上。</p>
+<p><strong>1） 查看软中断总耗时</strong><br>首先用top命令可以看出每个核上软中断的开销占比，是在<strong>si列</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">top</span>
+- <span class="token number">19</span>:51:24 up <span class="token number">78</span> days,  <span class="token number">7</span>:53,  <span class="token number">2</span> users,  load average: <span class="token number">1.30</span>, <span class="token number">1.35</span>, <span class="token number">1</span>.35Tasks: <span class="token number">923</span> total,   <span class="token number">2</span> running, <span class="token number">921</span> sleeping,   <span class="token number">0</span> stopped,   <span class="token number">0</span> zombieCpu<span class="token punctuation">(</span>s<span class="token punctuation">)</span>:  <span class="token number">7.1</span>%us,  <span class="token number">1.4</span>%sy,  <span class="token number">0.0</span>%ni, <span class="token number">90.1</span>%id,  <span class="token number">0.1</span>%wa,  <span class="token number">0.2</span>%hi,  <span class="token number">1.2</span>%si,  <span class="token number">0.0</span>%stMem:  65872372k total, 64711668k used,  1160704k free,   339384k buffersSwap:        0k total,        0k used,        0k free, 55542632k cached<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>CPU大约花费了1.2%的时钟周期在软中断上，也就是说每个核要花费12ms。</p>
+<p><strong>2）查看软中断次数</strong><br>再用vmstat命令可以看到软中断的次数</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ <span class="token function">vmstat</span> <span class="token number">1</span>
+procs -----------memory---------- ---swap-- -----io---- --system-- -----cpu------
+r  b   swpd   <span class="token function">free</span>   buff  cache   si   so    bi    bo   <span class="token keyword">in</span>   cs us sy <span class="token function">id</span> wa st1  
+<span class="token number">0</span>  <span class="token number">0</span> <span class="token number">1231716</span> <span class="token number">339244</span> <span class="token number">55474204</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">6</span>   <span class="token number">496</span>    <span class="token number">0</span>    <span class="token number">0</span>  <span class="token number">7</span>  <span class="token number">3</span> <span class="token number">90</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">2</span>  
+<span class="token number">0</span>  <span class="token number">0</span> <span class="token number">1231352</span> <span class="token number">339244</span> <span class="token number">55474204</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">0</span>   <span class="token number">128</span> <span class="token number">57402</span> <span class="token number">24593</span>  <span class="token number">5</span>  <span class="token number">2</span> <span class="token number">92</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">2</span>  
+<span class="token number">0</span>  <span class="token number">0</span> <span class="token number">1230988</span> <span class="token number">339244</span> <span class="token number">55474528</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">0</span>   <span class="token number">140</span> <span class="token number">55267</span> <span class="token number">24213</span>  <span class="token number">5</span>  <span class="token number">2</span> <span class="token number">93</span>  <span class="token number">0</span>  <span class="token number">0</span>  <span class="token number">2</span> 
+<span class="token number">0</span>  <span class="token number">0</span> <span class="token number">1230988</span> <span class="token number">339244</span> <span class="token number">55474528</span>    <span class="token number">0</span>    <span class="token number">0</span>     <span class="token number">0</span>   <span class="token number">332</span> <span class="token number">56328</span> <span class="token number">23672</span>  <span class="token number">5</span>  <span class="token number">2</span> <span class="token number">93</span>  <span class="token number">0</span>  <span class="token number">0</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>每秒大约有56000次左右的软中断（该机器上是web服务，网络IO密集型的机器，其它中断可以忽略不计）。</p>
+<p><strong>3）计算每次软中断的耗时</strong><br>该机器是16核的物理实机，故可以得出每个软中断需要的CPU时间是=12ms/(56000/16)次=3.428us</p>
+<p>从实验数据来看，<strong>一次软中断CPU开销大约3.4us左右</strong></p>
+<p>这个时间里其实包含两部分，<strong>一是上下文切换开销，二是软中断内核执行开销</strong>。其中上下文切换和系统调用、进程上下文切换有很多相似的地方。</p>
+<h1 id="系统调用的开销"><a href="#系统调用的开销" class="headerlink" title="系统调用的开销"></a>系统调用的开销</h1><h2 id="strace命令"><a href="#strace命令" class="headerlink" title="strace命令"></a><code>strace</code>命令</h2><p><code>strace命令</code>来查看到你的程序正在执行哪些系统调用</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># strace -p 28927</span>
+Process <span class="token number">28927</span> attached  
+epoll_wait<span class="token punctuation">(</span><span class="token number">6</span>, <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>EPOLLIN, <span class="token punctuation">&#123;</span>u32<span class="token operator">=</span><span class="token number">96829456</span>, <span class="token assign-left variable">u64</span><span class="token operator">=</span><span class="token number">140312383422480</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>, <span class="token number">512</span>, -1<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>
+accept4<span class="token punctuation">(</span><span class="token number">8</span>, <span class="token punctuation">&#123;</span>sa_family<span class="token operator">=</span>AF_INET, <span class="token assign-left variable">sin_port</span><span class="token operator">=</span>htons<span class="token punctuation">(</span><span class="token number">55465</span><span class="token punctuation">)</span>, <span class="token assign-left variable">sin_addr</span><span class="token operator">=</span>inet_addr<span class="token punctuation">(</span><span class="token string">"10.143.52.149"</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span>, <span class="token punctuation">[</span><span class="token number">16</span><span class="token punctuation">]</span>, SOCK_NONBLOCK<span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">13</span>  epoll_ctl<span class="token punctuation">(</span><span class="token number">6</span>, EPOLL_CTL_ADD, <span class="token number">13</span>, <span class="token punctuation">&#123;</span>EPOLLIN<span class="token operator">|</span>EPOLLRDHUP<span class="token operator">|</span>EPOLLET, <span class="token punctuation">&#123;</span>u32<span class="token operator">=</span><span class="token number">96841984</span>, <span class="token assign-left variable">u64</span><span class="token operator">=</span><span class="token number">140312383435008</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span>  
+epoll_wait<span class="token punctuation">(</span><span class="token number">6</span>, <span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span>EPOLLIN, <span class="token punctuation">&#123;</span>u32<span class="token operator">=</span><span class="token number">96841984</span>, <span class="token assign-left variable">u64</span><span class="token operator">=</span><span class="token number">140312383435008</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span>, <span class="token number">512</span>, <span class="token number">60000</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">1</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="开销"><a href="#开销" class="headerlink" title="开销"></a>开销</h2><p>相比较函数调用时的不到1ns的耗时，系统调用确实开销蛮大的。虽然使用了“快速系统调用”指令，但耗时仍大约在<strong>200ns+，多的可能到十几us</strong>。每个系统调用内核要进行许多工作，大约需要执行1000条左右的CPU指令，所以确实应该尽量减少系统调用。但是即使是10us，仍然是1ms的百分之一，所以还没到了谈系统调用色变的程度，能理性认识到它的开销既可。</p>
+<p>另外为什么系统调用之间的耗时相差这么多？因为系统调用花在内核态用户态的切换上的时间是差不多的，但区别在于不同的系统调用当进入到内核态之后要处理的工作不同，呆在内核态里的时候相差较大。</p>
+<h1 id="函数调用的开销"><a href="#函数调用的开销" class="headerlink" title="函数调用的开销"></a>函数调用的开销</h1><h2 id="C语言"><a href="#C语言" class="headerlink" title="C语言"></a>C语言</h2><ul>
+<li><p>每个c函数调用耗时大约是<strong>0.4ns</strong>左右。</p>
+</li>
+<li><p>每个c函数需要的CPU指令数是8个！</p>
+<p>8次CPU指令中大部分都是寄存器的操作，即使有“内存IO”，也是在栈上进行。而栈操作密集，符合局部性原理，早就被L1缓存住了，其实都是L1的IO，所以耗时很低</p>
+</li>
+</ul>
+<h2 id="其他语言"><a href="#其他语言" class="headerlink" title="其他语言"></a>其他语言</h2><ul>
+<li>php7：1000W次耗时0.667s，减去0.140s的for循环耗时，平均每次函数调用耗时52ns</li>
+<li>php53：1000W次耗时2.1s，减去0.5s的for循环耗时，平均每次耗时160ns</li>
+</ul>
+<p>php的函数调用确实比c的要慢很多，从不到1ns升高到了50ns左右。因为php又用c虚拟了一层指令集，这层指令集还需要变成CPU的指令集后才可以真正运行。但是要知道的是ns这个时间单位太小了，假如你用的框架特别变态，一个用户请求来了直接就搞了1000次的函数调用，那么消耗在函数调用上的时间会是50ns*1000=50us。<strong>这和代码框架化后给团队项目带来的便利性来对比的话，这点时间开销，我觉得仍然是可以忽略的</strong>。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2022/02/28/kai-fa-nei-gong-xiu-lian-cpu-pian-xue-xi-bi-ji/">https://jason-qianhao.github.io/2022/02/28/kai-fa-nei-gong-xiu-lian-cpu-pian-xue-xi-bi-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                                    <span class="chip bg-color">操作系统</span>
+                                </a>
+                            
+                                <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                                    <span class="chip bg-color">《开发内功修炼》</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/03/01/kai-fa-nei-gong-xiu-lian-ci-pan-pian-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/50.jpg" class="responsive-img" alt="《开发内功修炼-磁盘篇》学习笔记">
+                        
+                        <span class="card-title">《开发内功修炼-磁盘篇》学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-03-01
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                        <span class="chip bg-color">《开发内功修炼》</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/25/kai-fa-nei-gong-xiu-lian-nei-cun-pian-xue-xi-bi-ji/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/3.png" class="responsive-img" alt="《开发内功修炼-内存篇》学习笔记">
+                        
+                        <span class="card-title">《开发内功修炼-内存篇》学习笔记</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-25
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
+                                    操作系统
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
+                        <span class="chip bg-color">操作系统</span>
+                    </a>
+                    
+                    <a href="/tags/%E3%80%8A%E5%BC%80%E5%8F%91%E5%86%85%E5%8A%9F%E4%BF%AE%E7%82%BC%E3%80%8B/">
+                        <span class="chip bg-color">《开发内功修炼》</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>

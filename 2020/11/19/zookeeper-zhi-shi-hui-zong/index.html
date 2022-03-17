@@ -1,0 +1,2012 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="ZooKeeper知识汇总, 小小千千 Blog">
+    <meta name="description" content="心怀梦想 不惧前行">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>ZooKeeper知识汇总 | 小小千千 Blog</title>
+    <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.1"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo-jiagou.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">小小千千 Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo-jiagou.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">小小千千 Blog</div>
+        <div class="logo-desc">
+            
+            心怀梦想 不惧前行
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/Jason-QianHao" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/Jason-QianHao" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/69.png')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">ZooKeeper知识汇总</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ZooKeeper/">
+                                <span class="chip bg-color">ZooKeeper</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/ZooKeeper/" class="post-category">
+                                ZooKeeper
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-11-19
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    11.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    42 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>目录<br>  1 分布式架构<br>  2 一致性协议<br>  3 Zookeeper概述<br>  4 JavaAPI<br>  5 Zookeeper应用场景<br>  6 系统模型<br>  7 序列化与协议<br>  8 客户端<br>  9 会话<br>  10 服务器启动<br>  11 Leader选举<br>  12 数据与存储<br>  13 ZooKeeper代码  </p>
+<p>参考目录<br>  · 《从Paxos到Zookeeper 分布式一致性原理与实践》   </p>
+</blockquote>
+<h1 id="分布式架构"><a href="#分布式架构" class="headerlink" title="分布式架构"></a>分布式架构</h1><h2 id="对比两种架构"><a href="#对比两种架构" class="headerlink" title="对比两种架构"></a>对比两种架构</h2><h3 id="集中式"><a href="#集中式" class="headerlink" title="集中式"></a>集中式</h3><p>  由一台或多台主计算机组成中心节点，数据集中存储于这个中心节点中，并且整个系统的所有业务单元都集中部署在这个中心节点上，系统的所有功能均由其集中处理</p>
+<h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><p>（1）定义：是一个硬件或者软件组件分布在不同的网络计算机上，彼此之间仅仅通过消息传递进行通信和协调的系统</p>
+<p>（2）特点</p>
+<p>  · 分布性：系统中的多台计算机都会在空间上随意分布，同时，机器的分布情况也会随时变动</p>
+<p>  · 对等性：分布式系统中的计算机没有主/从之分</p>
+<p>  · 并发性：同一个分布式系统中的多个节点，可能会并发地操作一些共享的资源。</p>
+<p>  · 缺乏全局时钟：很难定义两个事件谁先谁后</p>
+<p>  · 故障总是会发生的：所有计算机都有可能发生任何形式的故障。所以，除非需求指标允许，在系统设计时不能放过任何异常情况</p>
+<p>（3）分布式环境的各种问题</p>
+<p>  · 通信异常：在现代计算机体系结构中，单机内存访问的延时在纳秒数量级(10ns左右)，而正常的一次网络通信的延迟在0.1~1ms左右。</p>
+<p>  · 网络分区（脑裂）：随着网络延时不断增大，导致系统中只有部分节点之间能够进行正常通信，而另一些节点则不能</p>
+<p>  · 三态：每一次的请求与响应，存在着三种情况，成功、失败、超时。</p>
+<p>  · 节点故障：服务器节点出现的宕机或“僵死”现象。</p>
+<h2 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h2><p>  分布式系统事务处理与数据一致性。</p>
+<h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><p>  事务的四个特征，原子性、一致性、隔离性（隔离级别：未提交读、提交读、可重复读、串行化）、持久性。</p>
+<h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>  指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于分布式系统的不同节点上。</p>
+<p>  分布式的操作序列称为子事务，也可以说是嵌套型的事务。</p>
+<h4 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045650.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（1）定义：一个分布式系统不可能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三个基本需求，最多只能同时满足其中的两项</p>
+<p>（2）一致性</p>
+<p>  数据在多个副本之间是否能够保持一致的性质。当一个系统在数据一致的状态下执行更新操作后，应该保证系统的数据仍然处于一致的状态。</p>
+<p>（3）可用性</p>
+<p>  系统提供的服务必须一直处于可用的状态，对于用户的每一个操作请求总是能够在有限的时间内返回结果。</p>
+<p>（4）分区容错性</p>
+<p>  分布式系统在遇到任何网络分区故障的时候，仍然需要能够保证对外提供满足一致性和可用性的服务，除非是整个网络环境都发生了故障。</p>
+<h4 id="BASE理论"><a href="#BASE理论" class="headerlink" title="BASE理论"></a>BASE理论</h4><p>  是Basically Available（基本可用）、Soft state（软状态）和Eventually consistent（最终一致性）三个短语的简写。</p>
+<p>（1）核心思想：即使无法做到强一致性（Strong consistency），但每个应用都可以根据自身的业务特点，采用适当的方式来使系统达到最终一致性（Eventual consistency）。</p>
+<p>（2）基本可用：允许损失部分可用性。如响应时间上的损失，从0.5秒变为1~2秒；功能上的损失，网站由于并发太高引导用户到一个降级页面。</p>
+<p>（3）软状态：允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。</p>
+<p>（4）最终一致性：系统中的数据副本，在经过一段时间的同步后，最终能够到达一个一致的状态。</p>
+<h1 id="一致性协议"><a href="#一致性协议" class="headerlink" title="一致性协议"></a>一致性协议</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>（1）协调者（Coordinator）：统一调度所有分布式节点的执行逻辑。协调者最终决定这些参与者是否要把事务真正的进行提交。</p>
+<p>（2）参与者（Participant）：被调度的分布式节点</p>
+<h2 id="2PC"><a href="#2PC" class="headerlink" title="2PC"></a>2PC</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>  Two-Phase Commit的缩写，二段提交协议，是使分布式系统架构下的所有节点在进行事务处理过程中能够保持原子性和一致性而设计的一种算法。</p>
+<h3 id="一致性的方式"><a href="#一致性的方式" class="headerlink" title="一致性的方式"></a>一致性的方式</h3><p>  通过统一决定事务的提交或回滚，从而保证分布式数据的一致性</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><p>（1）阶段一：提交事务请求（“投票阶段”，是否继续执行事务提交操作）</p>
+<p>  · 事务询问：协调者向所有的参与者发送事务内容，询问是否可以执行事务提交操作，并开始等待各参与者的响应。</p>
+<p>  · 执行事务：各参与者节点执行事务操作，并将Undo和Redo信息记入事务日志中</p>
+<p>  · 各参与者向协调者反馈事务询问的响应：如果参与者成功执行了事务操作，那么就反馈给协调者Yes响应，表示事务可以执行；如果参与者没有成功执行事务，那就反馈No响应，表示事务不可执行</p>
+<p>（2）阶段二：执行事务提交</p>
+<p>  <strong>· 情况一：执行事务提交。如果所有的参与者获得的反馈都是Yes响应，则执行事务提交</strong></p>
+<p>​    · 发送提交请求：协调者向所有参与者节点发出Commit请求</p>
+<p>​    · 事务提交：参与者接收到Commit请求后，会正式执行事务提交操作，并在完成提交之后释放在整个事务执行期间占用的事务资源。</p>
+<p>​    · 反馈事务提交结果：参与者在完成事务提交之后，向协调者发送Ack消息</p>
+<p>​    · 完成事务：协调者收到所有参与者反馈的Ack消息后，完成事务</p>
+<p>  · <strong>情况二：中断事务。如果任何一个参与者反馈了No响应，或等待超时无法接受所有参与者的反馈，则中断事务</strong></p>
+<p>​    · 发送回滚请求：协调者向所有参与者节点发出Rollback请求</p>
+<p>​    · 事务回滚：参与者收到Rollback请求，利用Undo信息执行事务回滚操作，并完成后释放所占用的资源</p>
+<p>​    · 反馈事务回滚结果：参与者在完成事务回滚后，向协调者发送Ack消息</p>
+<p>​    · 中断事务：协调者接收到所有参与者反馈的Ack消息后，完成事务中断。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>（1）优点：原理简单，实现方便</p>
+<p>（2）缺点：</p>
+<p>​    · 同步阻塞：各个参与者在等待其他参与者的响应中，无法进行其他操作</p>
+<p>​    · 单点问题：一旦协调者出现问题，那么整个二阶段提交流程将无法运转</p>
+<p>​    · 数据不一致：阶段二若协调者发出Commit请求后，部分节点网络异常，导致只有部分参与者收到了Commit请求，会出现数据不一致情况。</p>
+<p>​    · 太过保守：二阶段提交协议没有设计较为完善的容错机制，任意一个节点的失败都会导致整个事务的失败。</p>
+<h2 id="3PC"><a href="#3PC" class="headerlink" title="3PC"></a>3PC</h2><p>  将2PC的提交事务请求一分为二，形成由CanCommit、PreCommit和doCommit三个阶段组成的事务处理协议。</p>
+<h3 id="流程-1"><a href="#流程-1" class="headerlink" title="流程"></a>流程</h3><p>（1）阶段一：CanCommit</p>
+<p>​    · 事务询问：协调者向所有的参与者发送一个包含事务内的canCommit请求，询问是否可以执行事务提交操作，并开始等待各参与者的响应。</p>
+<p>​    · 各参与者向协调者反馈事务询问的响应：若参与者认为可以顺利执行事务，反馈Yes响应，并进入预备状态，否则返回No响应</p>
+<p>（2）阶段二：PreCommit</p>
+<p>  **· 情况一：执行事务预提交：所有参与者的反馈都是Yes，执行预提交<br>**</p>
+<p>​    · 发送预提交请求：协调者向所有参与者节点发出preCommit请求，进入Prepared阶段</p>
+<p>​    · 事务预提交：参与者收到preCommit请求后，会执行事务操作，并将Undo和Redo信息记录到事务日志中</p>
+<p>​    · 各参与者向协调者反馈事务执行的响应：如果参与者成功执行了事务操作，那么就会反馈给协调者Ack响应，同时等待最终的指令：提交（commit）或中止（absort）。</p>
+<p>  <strong>· 情况二：中断事务：任何一个参与者向协调者反馈了No响应，或者在等待超时之后无法接受到所有参与者反馈，就中断事务</strong></p>
+<p>​    · 发送中断请求：协调者向所有参与者节点发出abort请求</p>
+<p>​    · 中断事务：参与者中断事务</p>
+<p>（3）阶段三：doCommit</p>
+<p>  **· 情况一：执行提交：收到所有参与者的Ack响应，则从“预提交”进入“提交”状态<br>**</p>
+<p>​    · 发送提交请求：发送doCommit请求</p>
+<p>​    · 事务提交： 参与者收到doCommit请求后，执行事务提交操作，完成后释放所有占用资源</p>
+<p>​    · 反馈事务提交结果：完成事务提交后，向协调者发送Ack消息</p>
+<p>​    · 完成事务：协调者接收到所有参与者的Ack消息后，完成事务</p>
+<p>  <strong>· 情况二：中断事务：任何一个参与者向协调者反馈了No响应，或者在等待超时之后无法接受到所有参与者反馈，就中断事务</strong></p>
+<p>​    · 发送中断请求：协调者向所有的参与者节点发送abort请求</p>
+<p>​    · 事务回滚：参与者接收到abort请求后，利用Undo信息执行事务回滚操作，并完成后释放所有占用资源。</p>
+<p>​    · 反馈事务回滚结果：完成回滚之后，发送Ack消息</p>
+<p>​    · 中断事务：协调者接收到所有参与者反馈的Ack消息后，中断事务</p>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>（1）优点：降低了参与者的阻塞范围，并且能够在出现单点故障后继续达成一致</p>
+<p>（2）缺点：参与者收到preCommit消息后，出现网络分区，依然会提交事务，导致数据不一致。</p>
+<h2 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/linbingdong/p/6253479.html">分布式系列文章——Paxos算法原理与推导 - lzslbd - 博客园</a></p>
+<h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>（1）是一种基于消息传递且具有高度容错特性的一致性算法，是目前公认的解决分布式一致性问题最有效的算法之一。</p>
+<p>（2）解决问题：如何在一个可能发生诸如机器宕机或网络异常的等异常的分布式系统中，快速且正确地在集群内部对某个数据的值（<strong>提案proposal</strong>）达成一致，并且保证不论发生以上任何异常，都不会破坏整个系统一致性。</p>
+<h3 id="角色"><a href="#角色" class="headerlink" title="角色"></a>角色</h3><p>（1）Proposer 提出提案，如果某个提案被Accptor选定（chosen），那么该提案里的value就被选定了</p>
+<p>（2）Acceptor 接受提案，只要Acceptor接受了某个提案，Acceptor就认为该提案里的value被选定了</p>
+<p>（3）Learner Acceptor告诉Learner哪个value被选定，Learner就认为那个value被选定</p>
+<p>（4）Proposal 提案 = 编号 + value（最终要达成一致的value）</p>
+<h3 id="约束和规定"><a href="#约束和规定" class="headerlink" title="约束和规定"></a>约束和规定</h3><p>（1）规定：一个提案被选定需要被半数以上的Acceptor接受</p>
+<p>（2）Paxos的目标：保证最终有一个value会被选定，当value被选定后，进程最终也能获取到被选定的value。</p>
+<p>（3）约束（推导过程）</p>
+<p>  · P1：一个Acceptor必须接受它收到的第一个提案</p>
+<p>  · P1a：一个Acceptor只要尚<strong>未响应过</strong>任何<strong>编号大于N</strong>的<strong>Prepare请求</strong>，那么他就可以<strong>接受</strong>这个<strong>编号为N的提案</strong>。</p>
+<p>  · P2：如果某个value为v的提案被选定了，那么每个编号更高的被选定提案的value必须也是v</p>
+<p>  · P2a：如果某个value为v的提案被选定了，那么每个编号更高的被Acceptor接受的提案的value必须也是v</p>
+<p>  · P2b：如果某个value为v的提案被选定了，那么之后任何Proposer提出的编号更高的提案的value必须也是v</p>
+<p>  · P2c：对于任意的N和V，如果提案[N, V]被提出，那么存在一个半数以上的Acceptor组成的集合S，满足以下两个条件中的任意一个：<br>    · S中每个Acceptor都没有接受过编号小于N的提案。<br>    · S中Acceptor接受过的最大编号的提案的value为V</p>
+<h3 id="Proposer生成提案"><a href="#Proposer生成提案" class="headerlink" title="Proposer生成提案"></a>Proposer生成提案</h3><p>（1）<strong>Prepare请求</strong></p>
+<p>  Proposer选择一个<strong>新的提案编号N</strong>，然后向<strong>某个Acceptor集合</strong>（半数以上）发送请求，要求该集合中的每个Acceptor做出如下响应（response）：</p>
+<p>​    · 向Proposer承诺保证<strong>不再接受</strong>任何编号<strong>小于N的提案</strong>。</p>
+<p>​    · 如果Acceptor已经接受过提案，那么就向Proposer响应<strong>已经接受过</strong>的编号小于N的<strong>最大编号的提案</strong>。</p>
+<p>  我们将该请求称为<strong>编号为N</strong>的<strong>Prepare请求</strong>。</p>
+<p>（2）<strong>Accept请求</strong></p>
+<p>  如果Proposer收到了<strong>半数以上</strong>的Acceptor的<strong>响应</strong>，那么它就可以生成编号为N，Value为V的<strong>提案[N,V]<strong>。这里的V是所有的响应中</strong>编号最大的提案的Value</strong>。如果所有的响应中<strong>都没有提案</strong>，那 么此时V就可以由Proposer<strong>自己选择</strong>。</p>
+<p>  生成提案后，Proposer将该<strong>提案</strong>发送给<strong>半数以上</strong>的Acceptor集合，并期望这些Acceptor能接受该提案。我们称该请求为<strong>Accept请求</strong>。（注意：此时接受Accept请求的Acceptor集合<strong>不一定</strong>是之前响应Prepare请求的Acceptor集合）</p>
+<h3 id="Acceptor接受提案"><a href="#Acceptor接受提案" class="headerlink" title="Acceptor接受提案"></a>Acceptor接受提案</h3><p>（1）响应：未响应过编号大于N的提案时，就接受提案</p>
+<p>（2）拒绝：已经响应过N编号</p>
+<h3 id="Paxos算法"><a href="#Paxos算法" class="headerlink" title="Paxos算法"></a>Paxos算法</h3><p><strong>（1）阶段一：</strong></p>
+<p>  · Proposer选择一个<strong>提案编号N</strong>，然后向<strong>半数以上</strong>的Acceptor发送编号为N的<strong>Prepare请求</strong>。</p>
+<p>  · 如果一个Acceptor收到一个编号为N的Prepare请求，且N<strong>大于</strong>该Acceptor已经<strong>响应过的</strong>所有<strong>Prepare请求</strong>的编号，那么它就会将它已经<strong>接受过的编号最大的提案（如果有的话）</strong>作为响应反馈给Proposer，同时该Acceptor承诺<strong>不再接受</strong>任何<strong>编号小于N的提案</strong>。</p>
+<p><strong>（2）阶段二：</strong></p>
+<p>  · 如果Proposer收到<strong>半数以上</strong>Acceptor对其发出的编号为N的Prepare请求的<strong>响应</strong>，那么它就会发送一个针对**[N,V]提案<strong>的</strong>Accept请求<strong>给</strong>半数以上<strong>的Acceptor。注意：V就是收到的</strong>响应<strong>中</strong>编号最大的提案的value<strong>，如果响应中</strong>不包含任何提案<strong>，那么V就由Proposer</strong>自己决定**。</p>
+<p>  · 如果Acceptor收到一个针对编号为N的提案的Accept请求，只要该Acceptor<strong>没有</strong>对编号<strong>大于N</strong>的<strong>Prepare请求</strong>做出过<strong>响应</strong>，它就<strong>接受该提案</strong>。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045691.jpeg" alt="img"/>
+
+<h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>（1）Learner学习被选定的value</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045800.png" alt="img" />
+
+<p>（2）如何保证Paxos算法的活性</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045906.png" alt="img"/>
+
+
+
+<h1 id="Zookeeper概述"><a href="#Zookeeper概述" class="headerlink" title="Zookeeper概述"></a>Zookeeper概述</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>  是一个开放源代码的分布式协调服务，是Google Chubby的开源实现，也是一个典型的分布式数据一致性的解决方案，可以基于它实现数据发布/订阅、负载均衡、命名服务、分布式协调/通知、集群管理、master选举、分布式锁和分布式队列等功能</p>
+<h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>（1）顺序一致性：从同一个客户端发起的事务请求，最终功能将会严格按照其发起顺序被应用到Zookeeper中去</p>
+<p>（2）原子性：所有事务请求的处理结果在整个集群中所有机器上的应用情况时一致的</p>
+<p>（3）单一视图：物理客户端连接的是哪个Zookeeper服务器，其看到的服务端数据模型都是一致的</p>
+<p>（4）可靠性：保留客户端的事务响应</p>
+<p>（5）实时性：Zookeeper保证事务被应用成功，则客户端可以读取到事务变更后的最新数据状态（仅仅保证在一定时间内，客户端最终一定会读取到最新状态）。</p>
+<h3 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h3><p>（1）简单的数据模型</p>
+<p>（2）可以构建集群：只要集群中存在超过一半的机器能够正常工作，那么整个集群就能正常对外服务。</p>
+<p>（3）顺序访问：每个事务操作都会被分配一个全局唯一的递增编号，反应先后顺序。</p>
+<p>（4）高性能，数据存储在内存中</p>
+<h3 id="集群角色"><a href="#集群角色" class="headerlink" title="集群角色"></a>集群角色</h3><p>  没有沿用传统的Master/Slave概念，引入了下列三个角色。</p>
+<p>（1）Leader：选举产生一台机器，为客户端提供读和写服务</p>
+<p>（2）Follower：只能提供读服务，可以参与Leader选举</p>
+<p>（3）Observer：只能提供读服务，但不参与选举 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yangshangwei/article/details/111658771">Apache ZooKeeper - 集群中 Observer 的作用以及 与 Follow 的区别_小工匠-CSDN博客</a></p>
+<h3 id="会话（Session）"><a href="#会话（Session）" class="headerlink" title="会话（Session）"></a>会话（Session）</h3><p>  以客户端和服务器之间的一个TCP长连接为生命周期的开始。sessionTimeout为客户端最大断开连接时间</p>
+<h3 id="数据节点（ZNode）"><a href="#数据节点（ZNode）" class="headerlink" title="数据节点（ZNode）"></a>数据节点（ZNode）</h3><p>（1）持久节点</p>
+<p>（2）持久顺序节点</p>
+<p>（3）临时节点（随着会话结束而删除）</p>
+<p>（4）临时顺序节点</p>
+<p>  顺序节点有由父节点维护的自增整型数字，追加在节点后面。</p>
+<h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><p>  每一个Znode都含有一个Stat的数据结构，记录了三个数据版本：</p>
+<p>​    · version 当前ZNode版本</p>
+<p>​    · cversion 当前ZNode子节点的版本</p>
+<p>​    · aversion 当前ZNode的ACL版本</p>
+<h3 id="Watcher"><a href="#Watcher" class="headerlink" title="Watcher"></a>Watcher</h3><p>  事件监听器，对客户端的触发事件进行回调。</p>
+<p>  该机制是Zookeeper实现分布式协调服务的重要特性</p>
+<h3 id="ACL"><a href="#ACL" class="headerlink" title="ACL"></a>ACL</h3><p>  Access Control Lists 策略，用来进行权限控制。共有五种权限：</p>
+<p>​    · CREATE 创建子节点的权限</p>
+<p>​    · READ 获取节点数据和子节点列表的权限</p>
+<p>​    · WRITE 更新节点数据的权限</p>
+<p>​    · DELETE 删除子节点的权限</p>
+<p>​    · ADMIN 设置节点ACL的权限</p>
+<h2 id="ZAB协议"><a href="#ZAB协议" class="headerlink" title="ZAB协议"></a>ZAB协议</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>（1）Zookeeper Aotomic Broadcast Zookeeper原子消息广播协议，是一种特别为Zookeeper设计的奔溃可恢复的原子消息广播算法</p>
+<p>（2）核心：定义了对于那些会改变Zookeeper服务器数据状态的事务请求的处理方式</p>
+<p>​    · 所有事务请求必须由一个唯一的服务器来协调处理，即Leader服务器</p>
+<p>​    · 生成一个事务Proposal广播给所有的Follower服务器</p>
+<p>​    · 等待半数以上的Follower服务器正确反馈后，Leader发送commit命令，所有Follower提交Porposal</p>
+<p>（3）ZAB协议具有两种基本的模式：崩溃恢复和消息广播</p>
+<h3 id="崩溃恢复"><a href="#崩溃恢复" class="headerlink" title="崩溃恢复"></a>崩溃恢复</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>  当整个服务器框架在启动过程中，或是当Leader服务器出现网络中断、崩溃退出与重启等异常情况时，ZAB协议进入恢复模式并<strong>选举产生新的Leader服务器，</strong>并进行数据同步。</p>
+<h4 id="基本特性"><a href="#基本特性" class="headerlink" title="基本特性"></a>基本特性</h4><p>  针对可能会出现的两个数据不一致性的隐患，需要保证以下特性：</p>
+<p>​    · ZAB协议需要确保那些已经在Leader服务器上提交的事务最终被所有服务器都提交</p>
+<p>​    · ZAB协议需要确保丢弃那些只在Leader服务器上被提出的事务</p>
+<h4 id="Leader选举算法"><a href="#Leader选举算法" class="headerlink" title="Leader选举算法"></a>Leader选举算法</h4><p>​    针对需要确保的基本特性，设计的选举算法可以：然Leader选举算法能够保证新选举出来的Leader服务器拥有集群中所有机器最高编号（即ZXID最大）的事务Proposal。那么就可以保证这个新选举出来的Leader一定具有所有已经提交的提案。</p>
+<p>  选举中的选票就是利用Proposal中的epoch值进行比较。</p>
+<h4 id="数据同步"><a href="#数据同步" class="headerlink" title="数据同步"></a>数据同步</h4><p>（1）定义</p>
+<p>  完成选举后，Leader服务器首先需要确认事务日志中的所有Proposal是否都已经被集群中过半的机器提交了，即是否完成数据同步。</p>
+<p>（2）过程</p>
+<p>  · Leader服务器会为每个Follower服务器都准备一个队列。</p>
+<p>  · 将没有被各Follower同步的事务放在队列中逐个发送，每个事务后紧跟一个commit消息</p>
+<p>  · 将同步成功的Follower加入真正可用的Follower列表</p>
+<h3 id="消息广播"><a href="#消息广播" class="headerlink" title="消息广播"></a>消息广播</h3><p>（1）定义</p>
+<p>  当集群中已经有过半的Follower服务器完成了和Leader同步后，则整个服务器框架进入消息广播模式。</p>
+<p>  Leader服务器在接收到客户端的事务请求后，会生成对应的事务提案并发起一轮广播协议；而如果集群中的其他机器收到客户端的事务请求，那么这些非Leader服务器会首先将这个事务请求转发给Leader服务器。</p>
+<p>（2）使用原子广播协议</p>
+<p>  · 类似于二段提交协议，但移除了中断逻辑。所有的Follower服务器要么正常反馈要么直接抛弃Leader服务器。</p>
+<p>  · 在收到过半的Follower服务器的反馈后直接就可以开始提交事务，不需要等待集群中所有的Follower服务器响应</p>
+<p>  · 整个消息广播协议是基于具有FIFO特性的TCP协议来进行网络通信的，因此能够很容易地保证消息广播过程中消息接收与发送的顺序性。</p>
+<p>（3）过程</p>
+<p>  · Leader服务器为每一个Follower服务器准备一个单独的队列，将需要广播的事务依次放入队列</p>
+<p>  · Follower接收到Proposal后，会以事务日志的形式写入到本地磁盘中去，并且在成功写入后反馈给Leader服务器一个ACk响应</p>
+<p>  · Leader收到半数以上的响应，发送Commit消息，各自提交事务</p>
+<h3 id="事务编号ZXID"><a href="#事务编号ZXID" class="headerlink" title="事务编号ZXID"></a>事务编号ZXID</h3><p>（1）是一个64位的数字</p>
+<p>（2）低32位可用看作是一个简单的单调递增的计数器，对客户端每一个事务请求加1</p>
+<p>（3）高32位代表了Leader周期epoch编号</p>
+<p>（4）每当选举产生一个新的Leader时，从该Leader的本地日志中解析出最大编号ZXID，对其epoch值加1作为新的epoch，低32位置0，生成新的ZXID。</p>
+<h3 id="系统模型"><a href="#系统模型" class="headerlink" title="系统模型"></a>系统模型</h3><h4 id="进程分类"><a href="#进程分类" class="headerlink" title="进程分类"></a>进程分类</h4><p>（1）进程正常工作，则成为进程处于UP状态</p>
+<p>（2）进程处于崩溃状态，称为DOWN状态</p>
+<p>（3）一个集群中过半UP状态的进程组成的一个子集称为Quorum</p>
+<h4 id="进程运行状态"><a href="#进程运行状态" class="headerlink" title="进程运行状态"></a>进程运行状态</h4><p>（1）LOOKING：Leader选举阶段</p>
+<p>（2）FOLLOWING：Follower服务器和Leader保持同步状态</p>
+<p>（3）LEADING：Leader服务器作为主进程领导状态</p>
+<h3 id="与Paxos的区别"><a href="#与Paxos的区别" class="headerlink" title="与Paxos的区别"></a>与Paxos的区别</h3><p>（1）ZAB协议主要用于构建一个高可用的分布式数据主备系统</p>
+<p>（2）Paxos是用于构建一个分布式的一致性状态机系统</p>
+<h1 id="JavaAPI"><a href="#JavaAPI" class="headerlink" title="JavaAPI"></a>JavaAPI</h1><p>（1）增删查改操作中，更新操作时基于CAS乐观锁 + version版本号实现的</p>
+<p>（2）两个开源客户端ZkClient和Curator，对Zookeeper原生API接口进一步包装</p>
+<h1 id="Zookeeper应用场景"><a href="#Zookeeper应用场景" class="headerlink" title="Zookeeper应用场景"></a>Zookeeper应用场景</h1><h2 id="发布-订阅"><a href="#发布-订阅" class="headerlink" title="发布/订阅"></a>发布/订阅</h2><p>（1）推拉相结合方式</p>
+<p>​    客户端向服务器注册关注节点，数据发送变更后，服务器发送Watcher通知，客户端主动获取最新配置信息</p>
+<p>（2）可以将配置信息放在Zookeeper上，配置发生变更，利用Watcher通知，客户端通过订阅来获取最新配置信息。</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>（1）定义</p>
+<p>​    Load Balance是一种相当常见的计算机网络技术，用来对多个计算机（计算机集群）、网络连接、CPU、磁盘驱动器或其他资源进行分配负载，以达到优化资源使用、最大化吞吐率、最小化响应时间和避免过载的目的。</p>
+<p>（2）分类</p>
+<p>  · 硬件负载均衡：F5设备</p>
+<p>  · 软件负载均衡：Zookeeper利用节点存储IP等方法可实现负载均衡，还有Nginx反向代理</p>
+<h2 id="命名服务"><a href="#命名服务" class="headerlink" title="命名服务"></a>命名服务</h2><p>（1）Java语言中的JNDI（Java Naming and Directory Interface）Java命名与目录接口，是一种典型的命名服务</p>
+<p>（2）分布式全局唯一ID</p>
+<p>  · UUID：32位字符和4个短线的字符串，缺点是字符串过长，占空间</p>
+<p>  · Zookeeper顺序节点：在API返回值中返回节点的完整名字，后面的数字为自动递增的</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045719-5126445.jpeg"/>
+
+<h2 id="分布式协调-通知"><a href="#分布式协调-通知" class="headerlink" title="分布式协调/通知"></a>分布式协调/通知</h2><h3 id="通常做法"><a href="#通常做法" class="headerlink" title="通常做法"></a>通常做法</h3><p>​    不同的客户端都对Zookeeper上同一个节点进行Watcher注册，监听数据节点变化，所有订阅的客户端都会收到相应的通知并作出相应处理</p>
+<h3 id="通用的分布式系统机器间通信"><a href="#通用的分布式系统机器间通信" class="headerlink" title="通用的分布式系统机器间通信"></a>通用的分布式系统机器间通信</h3><p>（1）心跳检测</p>
+<p>  · 通过主机之间是否可以相互PING通来判断，或是通过TCP连接固有的心跳检测来实现</p>
+<p>  · 基于Zookeeper：不同节点在一个节点下创建子节点进行判断</p>
+<p>（2）工作进度汇报</p>
+<p>  每个任务客户端在指定节点下面创建临时子节点，可以进行：</p>
+<p>​    · 通过判断临时节点是否存在来确定任务机器是否存活</p>
+<p>​    · 各个任务机器会实时地将自己的任务执行进度写到这个临时节点，以便中心系统能够实时地获取到任务的执行进度。</p>
+<p>（3）系统调度</p>
+<p>  管理人员在控制台上进行操作，实际是修改节点数据，而Zookeeper进一步把这些数据变更以事件通知的形式发送给了对应的订阅客户端。</p>
+<h2 id="集群管理"><a href="#集群管理" class="headerlink" title="集群管理"></a>集群管理</h2><p>（1）包括集群监控和集群控制两大块。</p>
+<p>​    集群监控：侧重对集群运行时状态的收集</p>
+<p>​    集群控制：侧重对集群进行操作与控制</p>
+<p>（2）基于Zookeeper下列两大特性实现管理：</p>
+<p>  · 对数据节点监听，并结合Watcher事件通知</p>
+<p>  · 临时节点，在客户端与服务器之间会话失效后被自动清除</p>
+<h2 id="Master选举"><a href="#Master选举" class="headerlink" title="Master选举"></a>Master选举</h2><p>  这里指的是Client集群中的选举，不是Zookeeper集群</p>
+<p>（1）背景</p>
+<p>​    在海量数据处理中，非常耗费I/O和CPU，只让client集群中的一台去处理数据，结果共享。选举的Master就会负责进行一系列的海量数据处理。</p>
+<p>（2）方式</p>
+<p>​    Client集群每天定时在Zookeeper上创建一个临时节点，只有一个客户端能够成功创建它就成为Master，如果挂了，就重新选举。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045977.jpeg" alt="img" style="zoom:50%;" />
+
+<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><p>（1）获取锁</p>
+<p>​    创建<strong>临时子节点</strong>成功，即获得锁</p>
+<p>（2）释放锁</p>
+<p>​    · Client宕机，Zookeeper的临时节点被删除</p>
+<p>​    · 正常执行完事务，Client主动删除</p>
+<p>​    锁被释放后，所有正在等待获取锁的事务都能够被通知到。</p>
+<h3 id="共享锁"><a href="#共享锁" class="headerlink" title="共享锁"></a>共享锁</h3><p>（1）获取锁</p>
+<p>​    根据读/写请求，创建不同的<strong>临时顺序节点</strong>。</p>
+<p>（2）读写顺序</p>
+<p>​    · 对于读：若没有比自己序号小的子节点，或是所有比自己序号小的子节点都是读请求，那么表明自己已经成功获取到了共享锁，否则等待。</p>
+<p>​    · 对于写：若自己不是序号最小的子节点，那么就需要等待</p>
+<p>（3）羊群效应</p>
+<p>​    · Client收到大量和自己并不相关的事件通知</p>
+<p>​    · 改进锁：每个锁只关注序号比自己小的那个节点（缩小锁的范围）</p>
+<h2 id="分布式队列"><a href="#分布式队列" class="headerlink" title="分布式队列"></a>分布式队列</h2><p>  大致分为两大类，一种是常规的先入先出队列，另一种则是要等到队列元素集聚之后才统一安排执行的Barrier模型</p>
+<p>（1）FIFO</p>
+<p>​    类似全写的共享锁，创建临时顺序节点，监听小于自己的节点。</p>
+<p>（2）Barrier</p>
+<p>​    · 创建临时子节点</p>
+<p>​    · 调用getChildren()接口获取节点下的所有子节点，知道子节点个数满足才执行</p>
+<h1 id="系统模型-1"><a href="#系统模型-1" class="headerlink" title="系统模型"></a>系统模型</h1><h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>（1）树状结构</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045662.jpeg" alt="img" style="zoom:50%;" />
+
+<p>（2）ZNode</p>
+<p>​    除了分为四类节点外，还有一个Stat对象保存节点信息，Stat对象属性如下：</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045784.jpeg" alt="img" style="zoom:50%;" />
+
+<h2 id="版本-1"><a href="#版本-1" class="headerlink" title="版本"></a>版本</h2><p>  在数据节点中引入三个版本号。</p>
+<p>（1）作用：保证分布式数据原子性操作</p>
+<p>（2）version属性正是用来实现乐观锁机制中的“写入校验”</p>
+<p>（3）具体实现：在Zookeeper服务器中的PrepRequestProcessor处理器中，处理每一个数据更新请求（setDataRequest）时，比较当前请求的版本version和当前服务器上该数据的最新版本currentVersion，不匹配抛异常。</p>
+<h2 id="Watcher-1"><a href="#Watcher-1" class="headerlink" title="Watcher"></a>Watcher</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/835.jpeg" alt="img"></p>
+<p>（1）Watcher机制主要包括<strong>客户端线程</strong>、<strong>客户端WatchManager</strong>和<strong>Zookeeper服务器</strong>。</p>
+<p>（2）客户端在向Zookeeper服务器注册Watcher的同时，会将Watcher对象存储在客户端的WatcherManager中。当Zookeeper服务器触发Watcher事件后，会向客户端发送通知，客户端线程从WatcherManager中取出对应的Watcher对象来执行回调逻辑。</p>
+<h3 id="Watcher接口"><a href="#Watcher接口" class="headerlink" title="Watcher接口"></a>Watcher接口</h3><p>  接口主要包含以下属性</p>
+<p>（1）KeeperState枚举类</p>
+<p>（2）EventType枚举类</p>
+<p>（3）process（WatchedEvent event）回调方法</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045778.jpeg" alt="img"/>
+
+<h3 id="WatchedEvent"><a href="#WatchedEvent" class="headerlink" title="WatchedEvent"></a>WatchedEvent</h3><p>  在回调方法process（WatchedEvent event）中，传入参数WatchedEvent</p>
+<p>（1）包含通知状态（keeperState）、事件类型（eventType）和节点路径（path）三个基本属性。用来封装事件传递给Watcher。</p>
+<p>（2）服务器生成WathedEvent后，调用<strong>getWrapper</strong>方法将自己包装成一个可序列化的、可以用于网络传输的<strong>WatcherEvent</strong>事件</p>
+<p>（3）客户端接收到WatcherEvent事件后，先还原成一个WatchedEvent事件，并传递给process方法处理</p>
+<h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><p>  总体分为三个过程：客户端注册Watcher、服务端处理Watcher和客户端回调Watcher。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045769.jpeg" alt="img" style="zoom:70%;" />
+
+<h4 id="客户端注册Watcher"><a href="#客户端注册Watcher" class="headerlink" title="客户端注册Watcher"></a>客户端注册Watcher</h4><p>（1）注册方式</p>
+<p>​    · new Zookeeper（…..Watcher watcher）；</p>
+<p>​    · getData（…）;</p>
+<p>​    · getChildren（…）;</p>
+<p>​    · exist（…）；</p>
+<p>（2）流程</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045790.jpeg" alt="img"/>
+
+<ul>
+<li><p><strong>为什么只传部分参数</strong></p>
+<p>这里网上没有查到相关资料，我觉得是为了减轻网络传输。packet里面有整个wacher的信息，包括不同事件会有什么响应，这些不需要发送到服务端，这个喝后面把watcher注册到本地的ZKWatcherManager应该也有关系。</p>
+</li>
+</ul>
+<p>​    在运行过程中，始终保持着数据节点路径和Wather对象的一一映射。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045803.jpeg" alt="img" style="zoom:70%;" />
+
+<h4 id="服务端处理Watcher"><a href="#服务端处理Watcher" class="headerlink" title="服务端处理Watcher"></a>服务端处理Watcher</h4><p>注意服务端WatcherManager和ClientWatcherManager的区别，参考：<a target="_blank" rel="noopener" href="https://zookeeper系列/">Watcher机制</a></p>
+<p>（1）分为Servercnxn存储和Watcher触发两部分</p>
+<p>（2）流程</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045839.jpeg" alt="img" style="zoom:80%;" />
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045813.jpeg" alt="img" style="zoom:50%;" />
+
+<ul>
+<li><p><strong>为什么Watcher一次性有效</strong></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://nightfield.com.cn/index.php/archives/194/">漫谈zookeeper watcher单次触发特性</a></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210701163144724.png" alt="image-20210701163144724" />
+
+<p>所以，在<code>getData()</code>、<code>exists()</code> 和 <code>getChildren()</code> 的操作中，添加了一个 <code>Watcher</code> 参数，用于重新注册watcher。</p>
+</li>
+</ul>
+<h4 id="客户端回调Watcher"><a href="#客户端回调Watcher" class="headerlink" title="客户端回调Watcher"></a>客户端回调Watcher</h4><p>（1）分为<strong>SendThread接收事件通知</strong>和<strong>EventThread处理事件通知</strong>两部分。</p>
+<p>（2）流程</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045853.jpeg" alt="img"/>
+
+<h1 id="序列化与协议"><a href="#序列化与协议" class="headerlink" title="序列化与协议"></a>序列化与协议</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>  对于一个网络通信，首先需要解决的就是对数据的序列化和反序列化处理。ZooKeeper使用Jute组件进行序列化。</p>
+<h2 id="使用Jute的步骤"><a href="#使用Jute的步骤" class="headerlink" title="使用Jute的步骤"></a>使用Jute的步骤</h2><p>（1）实体类需要实现Record接口的serialize和deserialize方法</p>
+<p>（2）构建一个序列化器BinaryOutputArchive</p>
+<p>（3）序列化，调用实体类的serialize方法</p>
+<p>（4）反序列化。调用实体类的deserialize方法</p>
+<h2 id="序列化器"><a href="#序列化器" class="headerlink" title="序列化器"></a>序列化器</h2><p>（1）Record接口</p>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045832.jpeg" alt="img"></p>
+<p>（2）底层真正的序列化器</p>
+<p>  · OutputArchive接口 Jute底层序列化器，基于OutputStream实现，有3种常见实现</p>
+<p>  · InputArchive接口 Jute底层反序列化器，基于InputStream实现</p>
+<h2 id="通信协议"><a href="#通信协议" class="headerlink" title="通信协议"></a>通信协议</h2><p>  基于TCP/IP协议，Zookeeper实现了自己的通信协议来完成客户端与服务器、服务器与客户端之间的网络通信。</p>
+<p>  除非是“会话创建”请求，其他所有client请求都会带上请求头。</p>
+<h1 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h1><h2 id="ZooKeeper客户端的核心组件"><a href="#ZooKeeper客户端的核心组件" class="headerlink" title="ZooKeeper客户端的核心组件"></a>ZooKeeper客户端的核心组件</h2><p>（1）ZooKeeper实例：客户端入口</p>
+<p>（2）ClientWatchManager：客户端Watcher管理器</p>
+<p>（3）HostProvider：客户端地址列表管理器</p>
+<p>（4）ClientCnxn：客户端核心线程，分为两个：SendThread是I/O线程，主要负责ZooKeeper客户端和服务器之间的网络I/O通信；EventThread是事件线程，主要负责对服务端事件进行处理。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045858.jpeg" alt="img" />
+
+<h2 id="会话创建"><a href="#会话创建" class="headerlink" title="会话创建"></a>会话创建</h2><p>  分为三个阶段：初始化阶段、会话阶段、响应处理阶段。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045880.jpeg" alt="img" style="zoom:80%;" />
+
+<h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>（1）初始化Zookeeper对象</p>
+<p>​    实例化一个ZooKeeper对象，并创建一个Watcher管理器：ClientWatcherManager</p>
+<p>（2）设置会话默认Watcher</p>
+<p>​    构造方法中传入的Watcher对象，被认作默认Watcher保存在ClientWatcherManager中</p>
+<p>（3）构造ZooKeeper服务器地址列表管理器：HostProvider</p>
+<p>​    构造方法中的服务器地址，会放在服务器地址列表管理器HostProvider中</p>
+<p>（4）创建并初始化客户端网络连接器：ClientCnxn</p>
+<p>​    创建一个网络连接器ClientCnxn，同时初始化客户端两个核心队列<strong>outgoingQueue和pendingQueue分别作为客户端的请求发送队列和服务端响应的等待队列</strong></p>
+<p>​    底层是ClientCnxnSocket处理器。</p>
+<p>（5）初始化SendThread和EventThread</p>
+<p>​    将ClientCnxnSocket分配给SendThread作为底层网络I/O处理器；初始化EventThread的<strong>待处理事件队列waitingEvents</strong>。</p>
+<h3 id="会话创建阶段"><a href="#会话创建阶段" class="headerlink" title="会话创建阶段"></a>会话创建阶段</h3><p>（6）启动SendThread和EventThread</p>
+<p>（7）获取一个服务器地址</p>
+<p>​    SendThread从HostProvider中随机获取出一个地址，委托给ClientCnxnSocket去创建TCP连接</p>
+<p>（8）创建TCP连接</p>
+<p>（9）构造ConnectRquset请求</p>
+<p>​    ZooKeeper客户端进一步将请求包装成网络I/O层的Packer对象，放入请求发送队列outgoingQueue中去</p>
+<p>（10）发送请求</p>
+<p>​    ClientCnxnSocket从outgoingQueue中取出一个Packet对象，将其序列化为ByteBuffer后向服务器发送</p>
+<h3 id="响应处理阶段"><a href="#响应处理阶段" class="headerlink" title="响应处理阶段"></a>响应处理阶段</h3><p>（11）接收服务端响应</p>
+<p>​    ClientCnxnSocket接收到服务端的响应后，判断当前的客户端状态是否是“已初始化”，若没有初始化则交由readConnectResult方法处理</p>
+<p>（12）处理Response</p>
+<p>​    反序列化得到ConnectResponse对象从，从中获取ZooKeeper服务器分配的sessionId</p>
+<p>（13）连接成功</p>
+<p>​    通知SendThread线程，设置客户端会话参数包括readTimeout和connectTimeout等，并更新客户端状态</p>
+<p>​    通知地址管理器HostProvider当期成功连接的服务器地址</p>
+<p>（14）生成事件：SyncConnected-None</p>
+<p>​    SendThread生成这个事件，并传递给EventThread</p>
+<p>（15）查询Watcher</p>
+<p>​    EventThread从ClientWatcherManager管理器中查询出对应的Watcher，放入waitingEvents队列中</p>
+<p>（16）处理事件</p>
+<p>​    EventThread不断从watingEvents中取出Watcher对象调用对象的process接口方法</p>
+<h2 id="服务器地址列表"><a href="#服务器地址列表" class="headerlink" title="服务器地址列表"></a>服务器地址列表</h2><p>（1）用户传入的服务器地址列表，通常是一个使用英文状态逗号分隔的多个IP地址和端口的字符串</p>
+<p>（2）地址使用ConnectStringParser解析器对象封装起来。</p>
+<p>（3）解析器解析ChrootPath：命名空间，实则的相对路径</p>
+<p>（4）HostProvider地址列表管理器</p>
+<p>​      解析器将IP和端口封装成InetSocketAddress对象，以ArrayList形式保存到ConnectStringParser的相应属性中，进一步封装到HostProvider的默认实现类StaticHostProvider中。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045864.jpeg" alt="img" style="zoom:50%;" />
+
+<p>​    StaticHostProvdier类中解析InetSocketAddress后，将地址打散重排形成一个环形循环队列。next()方法每次按照顺序返回一个已经解析过的InetSocketAddress。</p>
+<h2 id="ClientCnxn"><a href="#ClientCnxn" class="headerlink" title="ClientCnxn"></a>ClientCnxn</h2><h3 id="Packet"><a href="#Packet" class="headerlink" title="Packet"></a>Packet</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045873.jpeg" alt="img" />
+
+<p>（1）Packet是ClientCnxn内部定义的一个对协议层的封装</p>
+<p>（2）Packet中包含了最基本的请求头、响应头、请求体、响应体、节点路径和注册的Watcher等信息</p>
+<p>（3）Packet的createBB()方法负责序列化，最终生成可用于底层网络传输的ByteBuffer对象。</p>
+<p>​    只会将requestHeader、request和readOnly三个属性进行序列化。</p>
+<h3 id="底层Socket通信"><a href="#底层Socket通信" class="headerlink" title="底层Socket通信"></a>底层Socket通信</h3><p>  · 默认实现是ClientCnxnSocketNIO。</p>
+<p>  · 从outgoingQueue中取出的Packet对象，在请求发送完毕后，会立即将该Packet保存到pendingQueue队列中。</p>
+<p>  · SendThread维护了会话生命周期，在一定周期频率内向服务端发送一个PING包来实现心跳检测。</p>
+<h1 id="会话"><a href="#会话" class="headerlink" title="会话"></a>会话</h1><h2 id="会话状态"><a href="#会话状态" class="headerlink" title="会话状态"></a>会话状态</h2><p>（1）CONNECTING：开始创建ZooKeeper客户端</p>
+<p>（2）CONNECTED：成功连接上服务器</p>
+<p>（3）RECONNECTING：</p>
+<p>（4）RECONNECTED：</p>
+<p>（5）CLOSE：出现会话超时、权限检测失败或是客户端主动退出程序等情况</p>
+<h2 id="服务端会话工作原理"><a href="#服务端会话工作原理" class="headerlink" title="服务端会话工作原理"></a>服务端会话工作原理</h2><h3 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h3><p>（1）4个基本属性</p>
+<p>​    · sessionID：唯一标识一个会话</p>
+<p>​    · Timeout：会话超时时间</p>
+<p>​    · TickTime：下次会话超时时间点。13位的Long整型</p>
+<p>​    · isClosing：标记一个会话是否关闭</p>
+<p>（2）sessionID生成步骤</p>
+<p>​    · 获取当前时间的毫秒表示。调用System.currentTimeMillis（）</p>
+<p>​    · 左移24位</p>
+<p>​    · 无符号右移8位</p>
+<p>​    · 添加机器标识SID，左移56位。SID就是在myid文件中的值</p>
+<p>​    · 将运算后的时间按位或SID</p>
+<p>  sessionID的高8位确定了所在机器，后56位使用当前时间的毫秒表示进行随机</p>
+<h3 id="SessionTracker"><a href="#SessionTracker" class="headerlink" title="SessionTracker"></a>SessionTracker</h3><p>  是ZooKeeper服务端的会话管理器，辅助会话的创建、管理和清理等工作。</p>
+<h4 id="分桶策略"><a href="#分桶策略" class="headerlink" title="分桶策略"></a>分桶策略</h4><p>  将类似的会话放在同一区块中进行管理，以便于ZooKeeper对会话进行不同区块的隔离处理以及同一区块的统一处理。</p>
+<p>  分配区块的原则是“下次超时时间点”。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045876.jpeg" alt="img"/>
+
+<h4 id="会话激活"><a href="#会话激活" class="headerlink" title="会话激活"></a>会话激活</h4><p>  服务端不断受到来自客户端的这个心跳检测，并需要重新激活对应的客户端会话。</p>
+<p>（1）步骤</p>
+<p>​    · 检验该会话是否已经被关闭</p>
+<p>​    · 计算会话新的超时时间</p>
+<p>​    · 定位该会话当前的区块</p>
+<p>​    · 迁移会话</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045881.jpeg" alt="img"/>
+
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045920.jpeg" alt="img" />
+
+<h4 id="会话超时检查"><a href="#会话超时检查" class="headerlink" title="会话超时检查"></a>会话超时检查</h4><p>  创建了一个单独的线程专门进行会话超时检查。</p>
+<p>  逐个对会话桶中剩下的会话进行清理。</p>
+<h1 id="服务器启动"><a href="#服务器启动" class="headerlink" title="服务器启动"></a>服务器启动</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045923.jpeg" alt="img" />
+
+<h2 id="单机版"><a href="#单机版" class="headerlink" title="单机版"></a>单机版</h2><p>  主要分为五大步骤：配置文件解析、初始化数据管理器、初始化网络I/O管理器、数据恢复和对外服务。可以概括为预启动和初始化两大类。</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160047286.jpeg" alt="img" />
+
+<h3 id="预启动"><a href="#预启动" class="headerlink" title="预启动"></a>预启动</h3><p>（1）统一由QuorumPeerMain作为启动类</p>
+<p>​    是由zkServer.cmd和zkServer.sh两个脚本中配置的启动类</p>
+<p>（2）解析配置文件zoo.cfg</p>
+<p>（3）创建并启动历史文件清理器DatadirCleanupManager</p>
+<p>​    包括对事务日志和快照数据文件进行定时清理</p>
+<p>（4）判断当前是集群模式还是单机模式的启动</p>
+<p>​    根据zoo.cfg解析的集群服务器地址列表来判断，如果是单机模式交给ZooKeeperServerMain进行启动处理</p>
+<p>（5）再次进行配置文件zoo.cfg的解析</p>
+<p>（6）创建服务器实例<strong>ZooKeeperServer</strong></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>（1）创建服务器统计器ServerStats</p>
+<p>​    包含了最基本的运行时信息。</p>
+<p>（2）创建ZooKeeper数据管理器FIleTxnSnapLog</p>
+<p>​    是上层服务器和底层数据存储之间的对接层，包括事务日志文件和快照数据文件的接口。</p>
+<p>（3）设置服务器tickTime和会话超时时间限制</p>
+<p>（4）创建ServerCnxnFactory</p>
+<p>​    可以通过配置属性来决定使用自己实现的NIO还是Netty框架作为网络连接工厂。</p>
+<p>（5）初始化ServerCnxnFactory</p>
+<p>​    初始化一个线程作为ServerCnxnFactory的主线程，再初始化NIO服务器</p>
+<p>（6）启动ServerCnxnFactory主线程</p>
+<p>​    服务器端口号2181，虽然此时已经开放连接端口，但ZooKeeper此时还无法正常处理客户端请求的。</p>
+<p>（7）恢复本地数据</p>
+<p>​    从本地快照数据文件和事务日志文件中进行数据恢复</p>
+<p>（8）创建并启动会话管理器</p>
+<p>​    创建SessionTracker。初始化SessionTracker后，立即开始会话管理器的会话超时检查。</p>
+<p>（9）初始化ZooKeeper的请求处理链</p>
+<p>​    责任链模式，会有多个请求处理器一次处理一个客户端请求，串联处理。</p>
+<p>​    单机版主要包括：PrepRequestProcessor–&gt;SyncRequestProcessor–&gt;FinalRequestProcessor</p>
+<p>（10）注册JMX服务</p>
+<p>​    将服务器运行时的一些信息以JMX（Java 管理扩展）的方式暴露给外部。</p>
+<p>（11）注册ZooKeeper服务器实例</p>
+<p>​    将已经完成初始化的ZookeeperServer实例注册到ServerCnxnFactory即可。</p>
+<h2 id="集群版"><a href="#集群版" class="headerlink" title="集群版"></a>集群版</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045898.jpeg" alt="img" />
+
+<h3 id="预启动-1"><a href="#预启动-1" class="headerlink" title="预启动"></a>预启动</h3><p>（1）统一由QuroumPeerMain作为启动类</p>
+<p>（2）解析配置文件zoo.cfg</p>
+<p>（3）创建并启动历史文件清理器DatadirCleanupManager</p>
+<p>（4）判断当前是集群模式还是单机模式</p>
+<p>​      在zoo.cfg中配置了多个服务器地址，因此此处选择集群模式启动ZooKeeper</p>
+<h3 id="初始化-1"><a href="#初始化-1" class="headerlink" title="初始化"></a>初始化</h3><p>（1）创建ServerCnxnFactory</p>
+<p>（2）初始化ServerCnxnFactory</p>
+<p>（3）创建ZooKeeper数据管理器FileTxnSnapLog</p>
+<p>（4）创建QuorumPeer实例</p>
+<p>​    Quorum是Zookeeper服务器实例（ZooKeeperServer）的托管者。QuorumPeer代表了ZooKeeper集群中的一台机器，在运行期间QuorumPeer会不断检测当前服务器实例的运行状态，同时根据情况发起Leader选举。</p>
+<p>（5）创建内存数据库ZKDatabase</p>
+<p>​    负责管理ZooKeeper的所有会哈记录以及DataTree和事务日志的存储。</p>
+<p>（6）初始化QuorumPeer</p>
+<p>​    将FileTxnSnapLog、ServerCnxnFactory和ZkDatabase等核心组件注册到QuorumPeer中去，同时配置服务器地址列表、leader选举算法和会话超时时间限制等参数</p>
+<p>（7）恢复本地数据</p>
+<p>（8）启动ServerCnxnFactory主线程</p>
+<h3 id="Leader选举"><a href="#Leader选举" class="headerlink" title="Leader选举"></a>Leader选举</h3><p>（1）初始化Leader选举</p>
+<p>​    根据SID、lastLoggedZxid（最新ZXID）和当前的服务器epoch（currentEpoch）来生成一个初始化投票。</p>
+<p>​    ZooKeeper中默认有三种算法：LeaderElection、AuthFastLeaderElection和FastLeaderElection，可以在zoo.cfg总配置。<strong>从3.4.0版本开始，ZooKeeper只支持FastLeadElection算法了</strong>。</p>
+<p>​    创建Leader选举锁需要的网络I/O层QuorumCnxManager，同时启动端口监听，等待其他服务器创建连接。</p>
+<p>（2）注册JMX服务</p>
+<p>（3）检测当前服务器状态</p>
+<p>​    服务状态在LOOKING、LEADING和FOLLOWING/OBSERVING之间切换。</p>
+<p>​    启动阶段，QuorumPeer是LOOKING，开始进行Leader选举</p>
+<p>（4）leader选举</p>
+<h3 id="Leader和Follower的启动"><a href="#Leader和Follower的启动" class="headerlink" title="Leader和Follower的启动"></a>Leader和Follower的启动</h3><p>（1）交互期</p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045933.jpeg" alt="img"/>
+
+<p>（2）启动</p>
+<p>  · 创建并启动会话管理器</p>
+<p>  · 初始化ZooKeeper的请求处理链</p>
+<p>  · 注册JMX服务</p>
+<h1 id="Leader选举-1"><a href="#Leader选举-1" class="headerlink" title="Leader选举"></a>Leader选举</h1><h2 id="投票格式"><a href="#投票格式" class="headerlink" title="投票格式"></a>投票格式</h2><p>  投票包括所推举的服务器的myid和ZXID，以（myid，ZXID）表示。</p>
+<h2 id="服务器启动时期的Leader选举（无Leader）"><a href="#服务器启动时期的Leader选举（无Leader）" class="headerlink" title="服务器启动时期的Leader选举（无Leader）"></a>服务器启动时期的Leader选举（无Leader）</h2><p>（1）初始化投票，第一轮投票投给自己</p>
+<p>（2）接收来自各个服务器的投票</p>
+<p>​      会判断投票的有效性，检测是否是本轮投票，是否来自LOOKING状态的服务器</p>
+<p>（3）处理投票</p>
+<p>​      · 优先比较ZXID，较大的作为Leader</p>
+<p>​      · ZXID相同则比较myid，较大的作为Leader</p>
+<p>​    判断完后，<strong>变更投票</strong>，再一次向集群发送投票。</p>
+<p>（4）统计投票</p>
+<p>​    判断是否已经有过半的机器接收到相同的投票信息。达到时，Leader服务器就被选出了。</p>
+<p>（5）改变服务器状态</p>
+<p>​    Leader确定后，服务器更新自己状态，Follower变为FOLLOWING，Leader变为LEADING。</p>
+<h2 id="服务器运行期间的Leader选举（Leader下线）"><a href="#服务器运行期间的Leader选举（Leader下线）" class="headerlink" title="服务器运行期间的Leader选举（Leader下线）"></a>服务器运行期间的Leader选举（Leader下线）</h2><p>（1）<strong>变更服务器状态</strong></p>
+<p>​    所有非observer服务器变为LOOKING，进入Leader选举流程。</p>
+<p>（2）每个Server会发出一个投票</p>
+<p>​    第一次投票，投给自己</p>
+<p>（3）接收来自各个服务器的投票</p>
+<p>（4）处理投票</p>
+<p>（5）统计投票</p>
+<p>（6）改变服务器状态</p>
+<h1 id="数据与存储"><a href="#数据与存储" class="headerlink" title="数据与存储"></a>数据与存储</h1><p>.  ZooKeeper中数据存储分为内存数据存储和磁盘数据存储两部分。</p>
+<h2 id="内存数据"><a href="#内存数据" class="headerlink" title="内存数据"></a>内存数据</h2><p>  ZooKeeper会定时将所有的节点路径、节点数据及其ACL信息等存储到磁盘上。</p>
+<h3 id="DataTree"><a href="#DataTree" class="headerlink" title="DataTree"></a>DataTree</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701160045950.jpeg" alt="img" style="zoom:70%;" />
+
+<p>（1）DataTree是内存属性核心，是一个“树”结构，代表了内存中的一份完整的数据</p>
+<p>（2）DataNode是数据存储的最小单元</p>
+<p>（3）nodes是一个ConcurrentHashMap结构，节点路径为key，DataNode为值</p>
+<p>（4）对于所有的临时节点，为了方便计时清理，有一个单独的ConcurrentHashMap&lt;Long，Hashset<String>&gt;</p>
+<h3 id="ZKDatabase"><a href="#ZKDatabase" class="headerlink" title="ZKDatabase"></a>ZKDatabase</h3><p>（1）是ZooKeeper的内存数据库</p>
+<p>（2）负责管理所有会话、DataTree存储和事务日志</p>
+<p>（3）定时向磁盘dump快照数据</p>
+<p>（4）服务器启动时，通过磁盘的事务日志和快照数据文件恢复内存数据库。</p>
+<h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><h3 id="文件存储"><a href="#文件存储" class="headerlink" title="文件存储"></a>文件存储</h3><p>（1）ZooKeeper的zoo.cfg文件中配置事务日志存储目录dataDir</p>
+<p>（2）运行过程中在dataDir中生成包含版本号的子目录</p>
+<p>（3）日志文件的后缀名，是写入该日志文件的第一条事务记录的ZXID</p>
+<h3 id="日志写入"><a href="#日志写入" class="headerlink" title="日志写入"></a>日志写入</h3><p>  FileTxnLog负责维护事务日志对外的接口，包括事务日志的写入和读取等。写入日志大致过程：</p>
+<p>（1）确定是否有事务日志可写</p>
+<p>​    ZooKeeper首先判断FileTxnLog组件是否已经关联上一个可写的事务日志文件</p>
+<p>​    如果没有关联，则用第一个事务操作的ZXID作为后缀创建一个事务日志文件，同时构建事务日志头信息。同时该文件的文件流放入streamsToFlush集合（将数据强制刷入磁盘上）中。</p>
+<p>（2）确定事务日志文件是否需要扩容（预分配）</p>
+<p>​    当前日志文件大小不足4KB，在现有文件大小的基础上增加64MB，使用‘\0’填充。这样可以避免频繁的磁盘Seek</p>
+<p>（3）事务序列化</p>
+<p>（4）生成Checksum</p>
+<p>（5）写入事务日志文件流</p>
+<p>​    写入到BufferedOutputStream中。</p>
+<p>（6）事务日志刷入磁盘</p>
+<p>​    从streamsToFlush中提取文件流</p>
+<h3 id="日志截断"><a href="#日志截断" class="headerlink" title="日志截断"></a>日志截断</h3><p>  非Leader的ZXID比Leader大，Leader会发送TRUNC命令给该机器，机器删除包含或大于此ZXID的事务日志文件</p>
+<h2 id="Snapshot数据快照"><a href="#Snapshot数据快照" class="headerlink" title="Snapshot数据快照"></a>Snapshot数据快照</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>  记录ZooKeeper服务器上某一个时刻的全量内存数据内容，并将其写入到指定的磁盘文件中。</p>
+<h3 id="文件存储-1"><a href="#文件存储-1" class="headerlink" title="文件存储"></a>文件存储</h3><p>  同事务日志原理</p>
+<h3 id="数据快照"><a href="#数据快照" class="headerlink" title="数据快照"></a>数据快照</h3><p>  FileSnap负责维护快照数据对外的接口，包括快照数据的写入和读取等。</p>
+<p>  ZooKeeper在进行若干次事务日志记录之后，将内存数据库的全量数据Dump到本地文件中，这个过程就是数据快照。可以配置snapCount参数控制每次数据快照之间的事务操作数。</p>
+<p>  数据快照的过程如下：</p>
+<p>（1）确定是否需要进行数据快照</p>
+<p>​    理论上进行snapCount次事务后开始快照，但实际上采取“过半随机”策略：logCount &gt; ( snapCount / 2 + randRoll )</p>
+<p>（2）切换事务日志文件</p>
+<p>​    当前事务日志已经“写满”（已经写了snapCount个事务日志），需要重新创建一个新的事务日志。</p>
+<p>（3）创建数据快照异步线程</p>
+<p>​    需要单独的异步线程来进行数据快照</p>
+<p>（4）获取全量数据和会话信息</p>
+<p>​    从ZKDatabase中获取到DataTree和会话信息。</p>
+<p>（5）生成快照数据文件名</p>
+<p>​    ZooKeeper根据当前已提交的最大ZXID来生成数据快照文件名</p>
+<p>（6）数据序列化</p>
+<h2 id="初始化-2"><a href="#初始化-2" class="headerlink" title="初始化"></a>初始化</h2><p>（1）作用</p>
+<p>​    将存储在磁盘上的数据文件加载到ZooKeeper服务器内存中，主要包括了从快照文件中加载快照数据和根据事务日志进行数据订正两个过程</p>
+<p>（2）FileTxnSnapLog是ZooKeeper事务日志和快照数据访问层，分为FileTxnLog和FileSnap初始化</p>
+<h2 id="数据同步-1"><a href="#数据同步-1" class="headerlink" title="数据同步"></a>数据同步</h2><h3 id="初始化-3"><a href="#初始化-3" class="headerlink" title="初始化"></a>初始化</h3><p>  Leader服务器从ZooKeeper的内存数据库中提取出事务请求对应的提议缓存队列proposal，同时完成对以下三个ZXID值的初始化。</p>
+<p>（1）peerLastZxid：该<strong>Learner</strong>服务器最后处理的ZXID</p>
+<p>（2）minCommittedLog：Leader服务器提议缓存队列committedLog中的最小ZXID</p>
+<p>（3）maxCommittedLog：Leader服务器提议缓存队列committedLog中的最大ZXID</p>
+<h3 id="集群数据同步方式"><a href="#集群数据同步方式" class="headerlink" title="集群数据同步方式"></a>集群数据同步方式</h3><p>（1）直接差异化同步 DIFF</p>
+<p>​    peerLastZxid介于minCommittedLog和maxCommittedLog之间。</p>
+<p>（2）先回滚再差异化同步 TRUNC + DIFF</p>
+<p>​    Leader服务器在已经将事务记录到了本地事务日志中，但是没有成功发起Proposal流程的时候就挂了。</p>
+<p>（3）仅回滚同步 TRUNC</p>
+<p>​    peerLastZxid大于maxCommittedLog.</p>
+<p>（4）全量同步（SNAP同步）</p>
+<p>​    · peerLastZxid小于maxCommittedLog</p>
+<p>​    · Leader服务器上没有提议缓存队列，peerLastZxid不等于Leader服务器数据恢复后得到的最大ZXID。</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">小小千千</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://jason-qianhao.github.io/2020/11/19/zookeeper-zhi-shi-hui-zong/">https://jason-qianhao.github.io/2020/11/19/zookeeper-zhi-shi-hui-zong/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">小小千千</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/ZooKeeper/">
+                                    <span class="chip bg-color">ZooKeeper</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.jpg" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'Si5PlwXoOsczw9YMDIGjYPSK-gzGzoHsz',
+        appKey: 'stI6rxYdK6PXYnmGVxx1JHML',
+        notify: '' === 'true',
+        verify: 'true' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '在这里评论吧！填写真实邮箱可以获得回复通知哦'
+    });
+</script>
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/11/25/dubbo-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/60.jpg" class="responsive-img" alt="Dubbo知识汇总">
+                        
+                        <span class="card-title">Dubbo知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-11-25
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                    微服务
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
+                    </a>
+                    
+                    <a href="/tags/Dubbo/">
+                        <span class="chip bg-color">Dubbo</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/11/12/activemq-zhi-shi-hui-zong/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/30.jpg" class="responsive-img" alt="ActiveMQ知识汇总">
+                        
+                        <span class="card-title">ActiveMQ知识汇总</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-11-12
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/MQ/" class="post-category">
+                                    MQ
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/MQ/">
+                        <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                    <a href="/tags/ActiveMQ/">
+                        <span class="chip bg-color">ActiveMQ</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h1, h2, h3, h4, h5'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2021-2022</span>
+            
+            <span id="year">2021</span>
+            <a href="/about" target="_blank">小小千千</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">450.4k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/Jason-QianHao" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:qianhao_cs@163.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=404836248" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 404836248" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+	
+    
+
+    
+
+    
+    <script type="text/javascript" src="/libs/background/ribbon-dynamic.js" async="async"></script>
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
