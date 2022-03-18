@@ -455,14 +455,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    2.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    9 分
                 </div>
                 
 
@@ -489,6 +489,7 @@
 <p>目录：</p>
 <ol>
 <li>Linux安装Elasticsearch</li>
+<li>Mac安装Elasticsearch</li>
 <li>Springboot整合Elasticsearch</li>
 </ol>
 <p>参考/来源：</p>
@@ -497,7 +498,7 @@
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6976253744342122504">https://juejin.cn/post/6976253744342122504</a></li>
 </ul>
 </blockquote>
-<h1 id="Linux安装Elasticsearch"><a href="#Linux安装Elasticsearch" class="headerlink" title="Linux安装Elasticsearch"></a>Linux安装Elasticsearch</h1><p>Elastic 需要 Java 8 环境。如果你的机器还没安装 Java，可以参考<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-debian-8">这篇文章</a>，注意要保证环境变量<code>JAVA_HOME</code>正确设置。</p>
+<h1 id="Linux安装Elasticsearch"><a href="#Linux安装Elasticsearch" class="headerlink" title="Linux安装Elasticsearch"></a>Linux安装Elasticsearch</h1><p>Elastic 需要 Java 8 环境，注意要保证环境变量<code>JAVA_HOME</code>正确设置。</p>
 <p>安装完 Java，就可以跟着<a target="_blank" rel="noopener" href="https://www.elastic.co/guide/en/elasticsearch/reference/current/zip-targz.html">官方文档</a>安装 Elastic。直接下载压缩包比较简单。</p>
 <blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">wget</span> https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.5.1.zip
@@ -512,7 +513,7 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
 <blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">sudo</span> sysctl -w vm.max_map_count<span class="token operator">=</span><span class="token number">262144</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<p>如果一切正常，Elastic 就会在默认的9200端口运行。这时，打开另一个命令行窗口，请求该端口，会得到说明信息。</p>
+<p>如果一切正常，<strong>Elastic 就会在默认的9200端口运行</strong>。这时，打开另一个命令行窗口，请求该端口，会得到说明信息。</p>
 <blockquote>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">curl</span> localhost:9200
 
@@ -530,6 +531,7 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
   <span class="token string">"tagline"</span> <span class="token builtin class-name">:</span> <span class="token string">"You Know, for Search"</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<p><strong>注意</strong>，如果此时报错：<code>curl: (52) Empty reply from server</code>，在<code>config/elasticsearch.yml</code>中，将<code>xpack.security.enabled: true</code>改为<code>xpack.security.enabled: false</code></p>
 <p>上面代码中，请求9200端口，Elastic 返回一个 JSON 对象，包含当前节点、集群、版本等信息。</p>
 <p>按下 Ctrl + C，Elastic 就会停止运行。</p>
 <p>默认情况下，Elastic 只允许本机访问，如果需要远程访问，可以修改 Elastic 安装目录的<code>config/elasticsearch.yml</code>文件，去掉<code>network.host</code>的注释，将它的值改成<code>0.0.0.0</code>，然后重新启动 Elastic。</p>
@@ -537,22 +539,85 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">network.host: <span class="token number">0.0</span>.0.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
 <p>上面代码中，设成<code>0.0.0.0</code>让任何人都可以访问。线上服务不要这样设置，要设成具体的 IP。</p>
+<h1 id="Mac安装"><a href="#Mac安装" class="headerlink" title="Mac安装"></a>Mac安装</h1><ul>
+<li><p>官网下载安装</p>
+<ol>
+<li><p>在<a target="_blank" rel="noopener" href="https://www.elastic.co/cn/downloads/elasticsearch">官网</a>下载mac版本</p>
+<p><strong>这里一定要注意Springboot、Spring-data-elasticsearch和下载的elasticsearch的版本一致问题</strong></p>
+<ul>
+<li>我这里使用的springboot为2.2.6</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.2.6.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+		<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>relativePath</span> <span class="token punctuation">/></span></span> <span class="token comment">&lt;!-- lookup parent from repository --></span>
+	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>查看生成的maven依赖信息</li>
+</ul>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220318160420012.png" alt="image-20220318160420012" style="zoom:50%;" />
+
+<p>可以看到我这里Spring-data-elasticsearch默认是3.2.6版本，而对应所需要的<strong>Elasticsearch版本为6.8.7</strong></p>
+<p>所以下载的时候，记得要下载对应版本的Elasticsearch。</p>
+</li>
+<li><p>使用<code>tar -zxvf</code>命令解压缩包</p>
+</li>
+<li><p>在Elasticsearch的其他<strong>高版本</strong>中，还需要在<code>config/elasticsearch.yml</code>中，将<code>xpack.security.enabled: true</code>改为<code>xpack.security.enabled: false</code></p>
+</li>
+<li><p>使用<code>./bin/elasticsearch</code>启动</p>
+</li>
+</ol>
+</li>
+<li><p>homebrew安装</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh"># 安装
+brew install elasticsearch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh"># 启动
+elasticsearch<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ul>
+<h1 id="Elasticsearch-head插件"><a href="#Elasticsearch-head插件" class="headerlink" title="Elasticsearch-head插件"></a>Elasticsearch-head插件</h1><p>是一个可视化数据的插件，在浏览器访问页面即可看见所以数据和集群状态等信息。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/mobz/elasticsearch-head#running-with-built-in-server">官方信息</a>，具体安装步骤如下：</p>
+<ol>
+<li><p><code>git clone https://github.com/mobz/elasticsearch-head.git</code></p>
+</li>
+<li><p><code>cd elasticsearch-head</code></p>
+</li>
+<li><p><code>sudo npm install</code></p>
+</li>
+<li><p><code>npm run start</code></p>
+</li>
+<li><p>修改config/elasticsearch.yml文件，添加如下参数：</p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">http.cors.enabled</span><span class="token punctuation">:</span>  <span class="token boolean important">true</span>
+<span class="token key atrule">http.cors.allow-origin</span><span class="token punctuation">:</span> <span class="token string">"*"</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>如果不配置，会连接不上elasticsearch集群</p>
+</li>
+<li><p>浏览器访问<code>localhost:9100</code></p>
+</li>
+</ol>
+<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220318160023531.png" alt="image-20220318160023531"></p>
 <h1 id="Springboot整合Elasticsearch"><a href="#Springboot整合Elasticsearch" class="headerlink" title="Springboot整合Elasticsearch"></a>Springboot整合Elasticsearch</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
 	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-elasticsearch<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-	<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.5.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
+<h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>这里也要注意版本问题，每个版本配置信息不同，默认信息也不同</p>
+<p>我这里使用的是Elasticsearch6.8.7版本，配置信息如下: </p>
+<pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span> 
  <span class="token key atrule">data</span><span class="token punctuation">:</span> 
   <span class="token key atrule">elasticsearch</span><span class="token punctuation">:</span> 
-   <span class="token key atrule">cluster-name</span><span class="token punctuation">:</span> es<span class="token punctuation">-</span>cluster
-   <span class="token key atrule">cluster-nodes</span><span class="token punctuation">:</span> 10.133.28.55<span class="token punctuation">:</span><span class="token number">9300</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+   <span class="token key atrule">cluster-name</span><span class="token punctuation">:</span> elasticsearch
+   <span class="token key atrule">cluster-nodes</span><span class="token punctuation">:</span> localhost<span class="token punctuation">:</span><span class="token number">9300</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<p>注意：</p>
+<p>​    9200作为Http协议，主要用于外部通讯</p>
+<p>​    9300作为Tcp协议，jar之间就是通过tcp协议通讯，ES集群之间是通过9300进行通讯，<strong>也是Spring应用程序访问的端口</strong></p>
 <h2 id="实体类"><a href="#实体类" class="headerlink" title="实体类"></a>实体类</h2><h3 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h3><h4 id="Document"><a href="#Document" class="headerlink" title="@Document"></a>@Document</h4><p>注解作用在类上，标记实体类为文档对象，指定实体类与索引对应关系。常用配置项有：</p>
 <ul>
 <li>indexName：索引名称</li>
-<li>type: 索引类型，默认为空</li>
+<li>type: 索引类型，默认为空（<strong>注意，在有些版本中已经废除</strong>）</li>
 <li>shards: 主分片数量，默认5</li>
 <li>replicas：复制分片数量，默认1</li>
 <li>createIndex：创建索引，默认为true</li>
@@ -598,8 +663,10 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
 </blockquote>
 </li>
 </ul>
-<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 关联的索引是item，类型是_doc，直接使用而不创建索引</span>
-<span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"item"</span><span class="token punctuation">,</span>type <span class="token operator">=</span> <span class="token string">"_doc"</span><span class="token punctuation">,</span>createIndex <span class="token operator">=</span> <span class="token string">"false"</span><span class="token punctuation">)</span>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span> <span class="token comment">//不设置setter/getter方法，会发现写入不了elasticsearch！！！</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span> <span class="token comment">//可能手动构造对象需要！！！</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span> <span class="token comment">//反序列化需要！！！</span>
+<span class="token annotation punctuation">@Document</span><span class="token punctuation">(</span>indexName <span class="token operator">=</span> <span class="token string">"item"</span><span class="token punctuation">,</span>createIndex <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Item</span> <span class="token punctuation">&#123;</span>
     <span class="token annotation punctuation">@Id</span>
     <span class="token keyword">private</span> <span class="token class-name">Long</span> id<span class="token punctuation">;</span>
@@ -614,9 +681,127 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
     <span class="token comment">// brand 不被分词，且不创建索引</span>
     <span class="token annotation punctuation">@Field</span><span class="token punctuation">(</span>index <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span>type <span class="token operator">=</span> <span class="token class-name">FieldType<span class="token punctuation">.</span>Keyword</span><span class="token punctuation">)</span>
     <span class="token keyword">private</span> <span class="token class-name">String</span> images<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h2><p>Springboot可以通过ElasticsearchTemplate和ElasticsearchRepository两种方式整合。</p>
+<p><strong>特别提醒，这三个注解特别重要！！！</strong></p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Data</span> <span class="token comment">//不设置setter/getter方法，会发现写入不了elasticsearch！！！</span>
+<span class="token annotation punctuation">@AllArgsConstructor</span> <span class="token comment">//可能手动构造对象需要！！！</span>
+<span class="token annotation punctuation">@NoArgsConstructor</span> <span class="token comment">//反序列化需要！！！</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="数据访问层"><a href="#数据访问层" class="headerlink" title="数据访问层"></a>数据访问层</h2><p>Springboot可以通过ElasticsearchTemplate和ElasticsearchRepository两种方式整合，推荐使用ElasticsearchRepository。</p>
+<h3 id="ElasticsearchRepository（推荐）"><a href="#ElasticsearchRepository（推荐）" class="headerlink" title="ElasticsearchRepository（推荐）"></a>ElasticsearchRepository（推荐）</h3><ul>
+<li><p>Dao层</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * 需要继承ElasticsearchRepository接口
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">,</span><span class="token class-name">Long</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">/**
+     * 方法名必须遵守SpringData的规范
+     * 价格区间查询
+     */</span>
+    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">></span></span> <span class="token function">findByTitleLike</span><span class="token punctuation">(</span><span class="token class-name">String</span> keywords<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>常用方法</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/14661887531a46ca85cec6c4a7706c2b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.image" alt="image-20210617133707448" style="zoom: 50%;" />
+
+<p><strong>生成规则</strong></p>
+<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/ca354b67914a4f5aaafb652d55a51768~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.image" alt="image-20210617134220264" style="zoom:50%;" /></li>
+</ul>
+<ul>
+<li><p>Service层</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ElasticsearchService</span> <span class="token punctuation">&#123;</span>
+	
+	<span class="token annotation punctuation">@Autowired</span>
+	<span class="token keyword">private</span> <span class="token class-name">ElasticDao</span> elasticDao<span class="token punctuation">;</span>
+	
+	<span class="token comment">/*
+	 * 插入
+	 */</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">Item</span> item<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		elasticDao<span class="token punctuation">.</span><span class="token function">deleteAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token comment">// 接收对象集合，实现批量新增</span>
+	    elasticDao<span class="token punctuation">.</span><span class="token function">save</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token comment">/*
+	 * 批量插入
+	 */</span>
+	<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">></span></span> list<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		elasticDao<span class="token punctuation">.</span><span class="token function">deleteAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		elasticDao<span class="token punctuation">.</span><span class="token function">saveAll</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token comment">/*
+	 * 模糊查询
+	 */</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">queryByKeywords</span><span class="token punctuation">(</span><span class="token class-name">String</span> keyword<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> elasticDao<span class="token punctuation">.</span><span class="token function">findByTitleLike</span><span class="token punctuation">(</span>keyword<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token keyword">return</span> JSON<span class="token punctuation">.</span><span class="token function">toJSONString</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>Controller层</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ElasticsearchController</span> <span class="token punctuation">&#123;</span>
+
+	<span class="token annotation punctuation">@Autowired</span>
+	<span class="token keyword">private</span> <span class="token class-name">ElasticsearchService</span> elasticsearchService<span class="token punctuation">;</span>
+	
+	<span class="token comment">/*
+	 * 插入
+	 */</span>
+	<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/add"</span><span class="token punctuation">)</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token class-name">Item</span> item <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">2L</span><span class="token punctuation">,</span> <span class="token string">"iphone13"</span><span class="token punctuation">,</span> <span class="token string">"iphone"</span><span class="token punctuation">,</span> <span class="token number">3699.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token class-name">Item</span> item2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">3L</span><span class="token punctuation">,</span> <span class="token string">"iphone12"</span><span class="token punctuation">,</span> <span class="token string">"iphone"</span><span class="token punctuation">,</span> <span class="token number">4499.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+			elasticsearchService<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span> <span class="token string">"Successfully"</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token comment">// TODO: handle exception</span>
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span> <span class="token string">"Failed"</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token comment">/*
+	 * 批量插入
+	 */</span>
+	<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/addBatch"</span><span class="token punctuation">)</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">addBatch</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+	    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">></span></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">,</span> <span class="token string">"小米手机7"</span><span class="token punctuation">,</span> <span class="token string">"小米"</span><span class="token punctuation">,</span> <span class="token number">3299.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">2L</span><span class="token punctuation">,</span> <span class="token string">"坚果手机R1"</span><span class="token punctuation">,</span> <span class="token string">"锤子"</span><span class="token punctuation">,</span> <span class="token number">3699.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">3L</span><span class="token punctuation">,</span> <span class="token string">"华为META10"</span><span class="token punctuation">,</span> <span class="token string">"华为"</span><span class="token punctuation">,</span> <span class="token number">4499.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">4L</span><span class="token punctuation">,</span> <span class="token string">"小米Mix2S"</span><span class="token punctuation">,</span> <span class="token string">"小米"</span><span class="token punctuation">,</span> <span class="token number">4299.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    list<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Item</span><span class="token punctuation">(</span><span class="token number">5L</span><span class="token punctuation">,</span> <span class="token string">"荣耀V10"</span><span class="token punctuation">,</span> <span class="token string">"华为"</span><span class="token punctuation">,</span> <span class="token number">2799.00</span><span class="token punctuation">,</span> <span class="token string">"http://xxx/1.jpg"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	    <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+			elasticsearchService<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span> <span class="token string">"Successfully"</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token comment">// TODO: handle exception</span>
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span> <span class="token string">"Failed"</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+	
+	<span class="token comment">/*
+	 * 根据关键词查询
+	 */</span>
+	<span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/query"</span><span class="token punctuation">)</span>
+	<span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">queryBykeywords</span><span class="token punctuation">(</span><span class="token class-name">String</span> keywords<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+		<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+			<span class="token keyword">return</span> elasticsearchService<span class="token punctuation">.</span><span class="token function">queryByKeywords</span><span class="token punctuation">(</span>keywords<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+		<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+			<span class="token comment">// TODO: handle exception</span>
+			e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+			<span class="token keyword">return</span> <span class="token string">"Query Failed"</span><span class="token punctuation">;</span>
+		<span class="token punctuation">&#125;</span>
+	<span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
 <h3 id="ElasticsearchTemplate"><a href="#ElasticsearchTemplate" class="headerlink" title="ElasticsearchTemplate"></a>ElasticsearchTemplate</h3><ul>
 <li><p>索引管理</p>
 <p>ElasticsearchTemplate提供了创建索引的方法，但是不建议使用 ElasticsearchTemplate 对索引进行管理（创建索引，更新映射，删除索引）。</p>
@@ -625,7 +810,7 @@ $ <span class="token builtin class-name">cd</span> elasticsearch-5.5.1/ <span ar
 elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> clazz<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment">// 删除索引,有好几个方法，有兴趣的同学可以自行翻阅源码</span>
 elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">deleteIndex</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> clazz<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>增删查改文档</p>
+<li><p>增删查改</p>
 <p>这里只列出查找，其他可以参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6976253744342122504#heading-15">https://juejin.cn/post/6976253744342122504#heading-15</a></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@RunWith</span><span class="token punctuation">(</span><span class="token class-name">SpringRunner</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
 <span class="token annotation punctuation">@SpringBootTest</span><span class="token punctuation">(</span>classes <span class="token operator">=</span> <span class="token class-name">Application</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
@@ -641,26 +826,6 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
         elasticsearchTemplate<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span>indexQuery<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-</ul>
-<h3 id="ElasticsearchRepository"><a href="#ElasticsearchRepository" class="headerlink" title="ElasticsearchRepository"></a>ElasticsearchRepository</h3><ul>
-<li><p>Dao层</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
- * 需要继承ElasticsearchRepository接口
- */</span>
-<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">ItemRepository</span> <span class="token keyword">extends</span> <span class="token class-name">ElasticsearchRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">,</span><span class="token class-name">Long</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
-    <span class="token comment">/**
-     * 方法名必须遵守SpringData的规范
-     * 价格区间查询
-     */</span>
-    <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Item</span><span class="token punctuation">></span></span> <span class="token function">findByPriceBetween</span><span class="token punctuation">(</span><span class="token keyword">double</span> price1<span class="token punctuation">,</span> <span class="token keyword">double</span> price2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>常用方法</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/14661887531a46ca85cec6c4a7706c2b~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.image" alt="image-20210617133707448" style="zoom: 50%;" /></li>
-<li><p>生成规则</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/ca354b67914a4f5aaafb652d55a51768~tplv-k3u1fbpfcp-zoom-in-crop-mark:1304:0:0:0.image" alt="image-20210617134220264" style="zoom:50%;" /></li>
-<li><p>增删查改文档</p>
-<p>详见：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6976253744342122504#heading-25">https://juejin.cn/post/6976253744342122504#heading-25</a></p>
-</li>
 </ul>
 
                 
@@ -1411,7 +1576,7 @@ elasticsearchTemplate<span class="token punctuation">.</span><span class="token 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">449.6k</span>&nbsp;字
+                class="white-color">450.4k</span>&nbsp;字
             
             
             
