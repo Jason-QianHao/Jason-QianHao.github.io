@@ -459,14 +459,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.6k
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    5 分
                 </div>
                 
 
@@ -511,36 +511,29 @@
 <li><p>Linux</p>
 <p><a target="_blank" rel="noopener" href="https://www.mongodb.org.cn/tutorial/56.html">Linux平台安装MongoDB</a></p>
 </li>
+<li><p>MacOS</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.mongodb.com/try/download/community">官网下载安装包</a></p>
+</li>
+<li><p>解压后进入bin目录，验证环境</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">.&#x2F;mongod -version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><strong>这里也可以将bin目录配置到系统环境变量path中去，这样就无需在bin目录中使用命令</strong></p>
+</li>
 </ul>
-<h1 id="启动MongoDB服务"><a href="#启动MongoDB服务" class="headerlink" title="启动MongoDB服务"></a>启动MongoDB服务</h1><p>在<code>你的安装目录/bin</code>下，有一个叫<code>mongod.exe</code>的应用程序，这个程序就是用来启动你的mongodb服务器的。</p>
-<h2 id="创建数据库目录"><a href="#创建数据库目录" class="headerlink" title="创建数据库目录"></a>创建数据库目录</h2><p>在你想要存放数据的地方，新建一个文件夹，如<code>db</code>，我们推荐的数据库目录设置是：</p>
-<pre class="line-numbers language-none"><code class="language-none">data&#x2F;
-	conf	--&gt;配置文件目录
-		mongod.conf		--&gt;配置文件
-	db		--&gt;数据库目录
-	log		--&gt;日志文件目录
-		mongodb.log		--&gt;日志记录文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h1 id="启动MongoDB服务"><a href="#启动MongoDB服务" class="headerlink" title="启动MongoDB服务"></a>启动MongoDB服务</h1><p>这里只说MacOS环境下，其他系统类似。</p>
+<ol>
+<li><p>创建data和log文件夹</p>
+<p>用来存储数据库数据和日志文件</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">mkdir data
+mkdir log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h2 id="启动数据库"><a href="#启动数据库" class="headerlink" title="启动数据库"></a>启动数据库</h2><p>我本地是window10环境，我的mongodb服务安装在<code>F</code>盘的mongodb文件夹。我的数据目录在<code>F</code>的<code>data</code>文件夹。</p>
-<p>启动<code>doc</code>命令,输入以下命令:</p>
-<pre class="line-numbers language-none"><code class="language-none">F:\&gt;mongodb&#x2F;bin
-F:\mongodb\bin&gt;mongod --path&#x3D;&#x2F;data&#x2F;db<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<p>运行后，显示”waiting for connections on port 27017”，表明mongodb服务器已经启动，正在27017窗口等待连接。</p>
-<h2 id="将MongoDB作为Windows服务运行"><a href="#将MongoDB作为Windows服务运行" class="headerlink" title="将MongoDB作为Windows服务运行"></a>将MongoDB作为Windows服务运行</h2><pre class="line-numbers language-none"><code class="language-none">F:\mongodb\bin&gt;mongod --dbpath &quot;f:\data\db&quot; --logpath &quot;f:\data\log\mongodb.log&quot; --serviceName &quot;mongodb&quot; --serviceDisplayName &quot;mongodb&quot; --install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>看到了如下输出：</p>
-<pre class="line-numbers language-none"><code class="language-none">2016-10-20T23:32:46.339+0800 I CONTROL  log file &quot;f:\data\log\mongodb.log&quot; exists; moved to &quot;f:\data\log\mongodb.log.2016-10-20T15-32-46&quot;.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>说明mongodb服务安装成功。启动mongodb服务：</p>
-<pre class="line-numbers language-none"><code class="language-none">F:\mongodb\bin&gt;net start mongodb MongoDB 服务已经启动成功。<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>说明mongodb启动成功。</p>
-<p>由于我们并没有指定mongodb服务的端口号，所以它启动在默认的<code>27017</code>窗口。</p>
-<p>打开浏览器，范围地址<code>http://127.0.0.1:27017/</code>,可看到如下信息</p>
-<pre class="line-numbers language-none"><code class="language-none">It looks like you are trying to access MongoDB over HTTP on the native driver port.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="mongodb常用启动参数"><a href="#mongodb常用启动参数" class="headerlink" title="mongodb常用启动参数"></a>mongodb常用启动参数</h2><p><code>mongod.exe</code>常用参数如下</p>
+<p>这里可以放在安装包目录下</p>
+</li>
+<li><p>mongod命令启动MongoDB服务</p>
+<p><code>mongod</code>常用参数如下</p>
 <table>
 <thead>
 <tr>
@@ -581,25 +574,12 @@ F:\mongodb\bin&gt;mongod --path&#x3D;&#x2F;data&#x2F;db<span aria-hidden="true" 
 <td align="left">指定作为一个Windows服务安装。</td>
 </tr>
 </tbody></table>
-<p><code>mongod.exe</code>的启动参数，在window环境下和linux环境下并不相同，详见<a target="_blank" rel="noopener" href="https://www.mongodb.org.cn/manual/188.html">mongod - mongodb启动服务工具</a>。</p>
-<h1 id="客户端连接MongoDB"><a href="#客户端连接MongoDB" class="headerlink" title="客户端连接MongoDB"></a>客户端连接MongoDB</h1><h2 id="通过shell连接MongoDB服务"><a href="#通过shell连接MongoDB服务" class="headerlink" title="通过shell连接MongoDB服务"></a>通过shell连接MongoDB服务</h2><p>你可以通过执行以下命令来连接MongoDB的服务。</p>
-<p><strong>注意：</strong>localhost为主机名，这个选项是必须的</p>
-<pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;mongo  MongoDB shell version: 3.0.6  connecting to: test  &gt; mongodb:&#x2F;&#x2F;localhostmongodb:&#x2F;&#x2F;localhost  ...   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>可以看到如下信息：</p>
-<pre class="line-numbers language-none"><code class="language-none">……省略信息……  2015-09-25T17:22:27.336+0800 I CONTROL  [initandlisten] allocator: tcmalloc  2015-09-25T17:22:27.336+0800 I CONTROL  [initandlisten] options: &#123; storage: &#123; dbPath: &quot;&#x2F;data&#x2F;db&quot; &#125; &#125;  2015-09-25T17:22:27.350+0800 I NETWORK  [initandlisten] waiting for connections on port 27017  2015-09-25T17:22:36.012+0800 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:37310 #1 (1 connection now open)  # 该行表明一个来自本机的连接    ……省略信息……  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h2 id="MongoDB连接命令格式"><a href="#MongoDB连接命令格式" class="headerlink" title="MongoDB连接命令格式"></a>MongoDB连接命令格式</h2><p>使用用户名和密码连接到MongoDB服务器，你必须使用 ‘<strong>username:password@hostname/dbname</strong>‘ 格式，’username’为用户名，’password’ 为密码。</p>
-<p>使用用户名和密码连接登陆到默认数据库：</p>
-<pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;mongo  MongoDB shell version: 3.0.6  connecting to: test  mongodb:&#x2F;&#x2F;admin:123456@localhost&#x2F;  <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>以上命令中，用户 admin 使用密码 123456 连接到本地的 MongoDB 服务上。输出结果如下所示：</p>
-<pre class="line-numbers language-none"><code class="language-none">&gt; mongodb:&#x2F;&#x2F;admin:123456@localhost&#x2F;  ...   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>使用用户名和密码连接登陆到指定数据库：</p>
-<p>连接到指定数据库的格式如下：</p>
-<p><code>mongodb://admin:123456@localhost/test</code></p>
-<h1 id="Springboot整合MongoDB"><a href="#Springboot整合MongoDB" class="headerlink" title="Springboot整合MongoDB"></a>Springboot整合MongoDB</h1><p>Springboot通过<strong>Spring Data方式</strong>整合MongoDB，又可以分为**<code>MongoRepository</code>和<code>MongoTemplate</code>两种方法**</p>
+<p><code>mongod</code>的启动参数，在window环境下和linux环境下并不相同，详见<a target="_blank" rel="noopener" href="https://www.mongodb.org.cn/manual/188.html">mongod - mongodb启动服务工具</a>。</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">.&#x2F;bin&#x2F;mongod --dbpath data --logpath log&#x2F;mongodb.log --logappend<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>客户端访问MonogDB</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">.&#x2F;bin&#x2F;mongo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+</ol>
+<h1 id="Springboot整合MongoDB"><a href="#Springboot整合MongoDB" class="headerlink" title="Springboot整合MongoDB"></a>Springboot整合MongoDB</h1><p>Springboot通过<strong>Spring Data方式</strong>整合MongoDB，又可以分为<code>MongoRepository</code>和<code>MongoTemplate</code>两种方法</p>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-mongodb<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -608,11 +588,11 @@ F:\mongodb\bin&gt;mongod --path&#x3D;&#x2F;data&#x2F;db<span aria-hidden="true" 
 <h2 id="配置参数"><a href="#配置参数" class="headerlink" title="配置参数"></a>配置参数</h2><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">spring</span><span class="token punctuation">:</span>
   <span class="token key atrule">data</span><span class="token punctuation">:</span>
     <span class="token key atrule">mongodb</span><span class="token punctuation">:</span>
-      <span class="token key atrule">host</span><span class="token punctuation">:</span> 127.0.0.1
+      <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
       <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">27017</span>
       <span class="token key atrule">database</span><span class="token punctuation">:</span> test
-      <span class="token key atrule">username</span><span class="token punctuation">:</span> admin
-      <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+      <span class="token comment">#username: admin 这里如果没有对mongodb配置用户名和密码就不设置</span>
+      <span class="token comment">#password: 123456</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>参数介绍：</p>
 <ul>
@@ -628,7 +608,7 @@ F:\mongodb\bin&gt;mongod --path&#x3D;&#x2F;data&#x2F;db<span aria-hidden="true" 
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>mongodb<span class="token punctuation">.</span>repository<span class="token punctuation">.</span></span><span class="token class-name">MongoRepository</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>stereotype<span class="token punctuation">.</span></span><span class="token class-name">Repository</span><span class="token punctuation">;</span>
 
-<span class="token annotation punctuation">@Repository</span>
+<span class="token annotation punctuation">@Repository</span> <span class="token comment">// 注意，我使用Spring Data 方式时，这里没有加过@Repository，很奇怪，也没报错</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UserRepository</span> <span class="token keyword">extends</span> <span class="token class-name">MongoRepository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
@@ -1602,7 +1582,7 @@ F:\mongodb\bin&gt;mongod --path&#x3D;&#x2F;data&#x2F;db<span aria-hidden="true" 
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">450.4k</span>&nbsp;字
+                class="white-color">450.5k</span>&nbsp;字
             
             
             

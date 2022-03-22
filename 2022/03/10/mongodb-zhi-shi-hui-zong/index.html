@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.2k
+                    9.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    36 分
+                    37 分
                 </div>
                 
 
@@ -684,13 +684,24 @@
 <p>MongoDB的默认数据库为”db”，该数据库存储在data目录中。</p>
 <p>MongoDB的单个实例可以容纳多个独立的数据库，每一个都有自己的集合和权限，不同的数据库也放置在不同的文件中。</p>
 <p><strong>“show dbs”</strong> 命令可以显示所有数据的列表。</p>
-<pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;mongo  MongoDB shell version: 3.0.6  connecting to: test  &gt; show dbs  local  0.078GB  test   0.078GB  &gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">$ .&#x2F;mongo  
+MongoDB shell version: 3.0.6  connecting to: test  
+&gt; show dbs  
+	local  0.078GB  
+	test   0.078GB  
+&gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>执行 <strong>“db”</strong> 命令可以显示当前数据库对象或集合。</p>
-<pre class="line-numbers language-none"><code class="language-none">$ .&#x2F;mongo  MongoDB shell version: 3.0.6  connecting to: test  &gt; db  test  &gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">$ .&#x2F;mongo  
+	MongoDB shell version: 3.0.6  connecting to: test  
+	&gt; db  test  
+	&gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>运行”use”命令，可以连接到一个指定的数据库。</p>
-<pre class="line-numbers language-none"><code class="language-none">&gt; use local  switched to db local  &gt; db  local  &gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">&gt; use local  
+switched to db local  
+&gt; db  local  
+&gt;   <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上实例命令中，”local” 是你要链接的数据库。</p>
 <p>在下一个章节我们将详细讲解MongoDB中命令的使用。</p>
@@ -905,6 +916,73 @@
 <td align="left">正则表达式类型。用于存储正则表达式。</td>
 </tr>
 </tbody></table>
+<h2 id="客户端的基本操作"><a href="#客户端的基本操作" class="headerlink" title="客户端的基本操作"></a>客户端的基本操作</h2><h3 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h3><h4 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a><strong>创建数据库</strong></h4><p>启动服务后，进入 MongoDB 命令行操作界面：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">$ mongo<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>使用 use 命令创建数据库：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> use mydb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查看当前连接的数据库：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> db<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>查看所有的数据库：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> show dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>列出的所有数据库中看不到 mydb 或者显示 mydb(empty) ，因为 mydb 为空，里面没有任何东西，MongoDB 不显示或显示 mydb(empty)。</p>
+<h4 id="销毁数据库"><a href="#销毁数据库" class="headerlink" title="销毁数据库"></a><strong>销毁数据库</strong></h4><p>使用 db.dropDatabase() 销毁数据库：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> use local
+ switched to db local
+> db.dropDatabase()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>查看所有的数据库：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> show dbs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="集合（collection）的创建和删除"><a href="#集合（collection）的创建和删除" class="headerlink" title="集合（collection）的创建和删除"></a><strong>集合（collection）的创建和删除</strong></h3><h4 id="创建集合"><a href="#创建集合" class="headerlink" title="创建集合"></a><strong>创建集合</strong></h4><p>在数据库 mydb 中创建一个集合</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> use mydb
+switched to db mydb
+> db.createCollection("users")<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>查看创建的集合：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> show collections<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h4 id="删除集合"><a href="#删除集合" class="headerlink" title="删除集合"></a><strong>删除集合</strong></h4><p>删除集合的方法如下：（删除 users 集合）</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> show collections
+> db.users.drop()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<p>查看是否删除成功：</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> show collections<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h3 id="向集合中插入数据"><a href="#向集合中插入数据" class="headerlink" title="向集合中插入数据"></a><strong>向集合中插入数据</strong></h3><h4 id="使用-insert"><a href="#使用-insert" class="headerlink" title="使用 insert()"></a><strong>使用 insert()</strong></h4><p>插入数据时，如果 users 集合没有创建会自动创建。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> use mydb
+switched to db mydb
+> db.users.insert([
+... &#123; name : "jam",
+... email : "jam@qq.com"
+... &#125;,
+... &#123; name : "tom",
+... email : "tom@qq.com"
+... &#125;
+... ])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h4 id="使用-save"><a href="#使用-save" class="headerlink" title="使用 save()"></a><strong>使用 save()</strong></h4><p>插入数据时，如果 users 集合没有创建会自动创建。</p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">> use mydb2
+switched to db mydb2
+> db.users.save([
+... &#123; name : "jam",
+... email : "jam@qq.com"
+... &#125;,
+... &#123; name : "tom",
+... email : "tom@qq.com"
+... &#125;
+... ])<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="查看集合中的数据"><a href="#查看集合中的数据" class="headerlink" title="查看集合中的数据"></a>查看集合中的数据</h3><h4 id="查看集合中所有数据"><a href="#查看集合中所有数据" class="headerlink" title="查看集合中所有数据"></a>查看集合中所有数据</h4><pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">&gt; use test;
+switched to db test
+&gt; show collections;
+user
+&gt; db.user.find();
+&#123; &quot;_id&quot; : NumberLong(1), &quot;name&quot; : &quot;jason&quot;, &quot;age&quot; : 24, &quot;_class&quot; : &quot;com.jason.domain.User&quot; &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><p>索引通常能够极大的提高查询的效率，如果没有索引，MongoDB在读取数据时必须扫描集合中的每个文件并选取那些符合查询条件的记录。</p>
 <p>这种扫描全集合的查询效率是非常低的，特别在处理大量的数据时，查询可以要花费几十秒甚至几分钟，这对网站的性能是非常致命的。</p>
 <p>索引是特殊的数据结构，<strong>索引存储在一个易于遍历读取的数据集合中，索引是对数据库表中一列或多列的值进行排序的一种结构</strong></p>
@@ -2088,7 +2166,7 @@ mongos&gt; db.runCommand(&#123; shardcollection: &quot;test.log&quot;, key: &#12
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">450.4k</span>&nbsp;字
+                class="white-color">450.5k</span>&nbsp;字
             
             
             
