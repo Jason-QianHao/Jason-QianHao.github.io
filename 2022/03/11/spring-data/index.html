@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.3k
+                    1.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    6 分
                 </div>
                 
 
@@ -583,7 +583,7 @@
 
 
 
-<h1 id="生成的方法"><a href="#生成的方法" class="headerlink" title="生成的方法"></a>生成的方法</h1><p><code>Spring Data</code>以方法中的结构为<code>findBy...</code>、<code>deleteBy...</code>，其结构都是动词加上<code>By</code>，<code>By</code>是整个语句拆分的关键点。通常<code>By</code>后面跟着的是查询的<code>参数</code>列表，通过<code>And</code>、<code>Or</code>来连接。</p>
+<h1 id="生成方法"><a href="#生成方法" class="headerlink" title="生成方法"></a>生成方法</h1><h2 id="按规则生成"><a href="#按规则生成" class="headerlink" title="按规则生成"></a>按规则生成</h2><p><code>Spring Data</code>以方法中的结构为<code>findBy...</code>、<code>deleteBy...</code>，其结构都是动词加上<code>By</code>，<code>By</code>是整个语句拆分的关键点。通常<code>By</code>后面跟着的是查询的<code>参数</code>列表，通过<code>And</code>、<code>Or</code>来连接。</p>
 <p> 在<code>By</code>后面的参数中，首先将整个内容作为一个属性，如果找不到，然后再参数中以<code>大写字母</code>为分割，直到找到对应的参数为止。</p>
 <p>以Spring Data JPA为例：</p>
 <pre class="line-numbers language-css" data-language="css"><code class="language-css"><span class="token property">方法生成规则</span><span class="token punctuation">:</span>
@@ -718,6 +718,31 @@
 <td>where UPPER(name)=UPPER(?)</td>
 </tr>
 </tbody></table>
+<h2 id="使用-Query注解"><a href="#使用-Query注解" class="headerlink" title="使用@Query注解"></a>使用@Query注解</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * Repository接口讲解
+ * @author Administrator
+ *
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">UsersDao</span> <span class="token keyword">extends</span> <span class="token class-name">Repository</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">,</span> <span class="token class-name">Integer</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+	<span class="token comment">//使用@Query注解查询SQL</span>
+	<span class="token comment">//nativeQuery:默认的是false.表示不开启sql查询。是否对value中的语句做转义。</span>
+	<span class="token annotation punctuation">@Query</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"select * from t_users where username = ?"</span><span class="token punctuation">,</span>nativeQuery<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> <span class="token function">queryUserByNameUseSQL</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+	<span class="token annotation punctuation">@Query</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"select * from t_users where username like ?"</span><span class="token punctuation">,</span>nativeQuery<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> <span class="token function">queryUserByLikeNameUseSQL</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+	<span class="token annotation punctuation">@Query</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"select * from t_users where username = ? and userage >= ?"</span><span class="token punctuation">,</span>nativeQuery<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">)</span>
+	<span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Users</span><span class="token punctuation">></span></span> <span class="token function">queryUserByNameAndAgeUseSQL</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">,</span><span class="token class-name">Integer</span> age<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  
+  <span class="token comment">//也可以进行更新数据</span>
+  <span class="token annotation punctuation">@Query</span><span class="token punctuation">(</span><span class="token string">"update Users set userage = ? where userid = ?"</span><span class="token punctuation">)</span>
+	<span class="token annotation punctuation">@Modifying</span> <span class="token comment">//@Modifying当前语句是一个更新语句</span>
+	<span class="token keyword">void</span> <span class="token function">updateUserAgeById</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> age<span class="token punctuation">,</span><span class="token class-name">Integer</span> id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+	
+<span class="token punctuation">&#125;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p><strong><code>Pageable</code><strong>是<code>Spring Data</code>提供出来进行分页查询参数输入的</strong>接口</strong>，里面主要定义多个与页面设定的方法：</p>
 <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/4538433-39824eae32b620bf.jpg" alt="img" style="zoom:67%;" />
 
@@ -1502,7 +1527,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">451.7k</span>&nbsp;字
+                class="white-color">453.5k</span>&nbsp;字
             
             
             
