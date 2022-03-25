@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723956.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/51.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -481,7 +481,7 @@
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>（1）http服务器。Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</p>
 <p>（2）虚拟主机。可以实现在一台服务器虚拟出多个网站。例如个人网站使用的虚拟主机。</p>
 <p>（3）反向代理，负载均衡。当网站的访问量达到一定程度后，单台服务器不能满足用户的请求时，需要用多台服务器集群可以使用nginx做反向代理。并且多台服务器可以平均分担负载，不会因为某台服务器负载高宕机而某台服务器闲置的情况。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723956.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723956.png" alt="img"/>
 
 <h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>（1）nginx 是<strong>事件驱动</strong>的服务器。</p>
 <p>（2）nginx 采用的是<strong>多进程</strong>，（每个进程都是）<strong>单线程</strong>。</p>
@@ -496,7 +496,7 @@
 <p>​    · 模块化设计</p>
 <p>​    · 模块编写简单</p>
 <p>​    · 配置文件简洁</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723897.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723897.png" alt="img"/>
 
 <p>常见模块参考链接：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/CMX_Shmily/p/11599753.html">Nginx常用模块及作用 - Room、C - 博客园</a></p>
 <p>（2）缺点：（ nginx 性能提升的代价是降低了其他方面）</p>
@@ -589,7 +589,7 @@ server_name foobar.com;
 <p>​    · 写上 return 444，这是 nginx 自己独有的 HTTP 响应码，含义是服务器不向客户端返回任何信息，并关闭连接（有助于恶意软件的威胁）。</p>
 <p>​    · 可以重定向到你定制的错误页面或者官网首页。</p>
 <h3 id="Location-Block"><a href="#Location-Block" class="headerlink" title="Location Block"></a>Location Block</h3><p>  location 即 url 的匹配规则。</p>
-<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723945.png" alt="img" style="zoom:50%;" />
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723945.png" alt="img" style="zoom:50%;" />
 
 <p>· 先是最普通的写法：</p>
 <blockquote>
@@ -651,7 +651,7 @@ location @foobar &#123;
 <p>最早的时候这个文件被叫作“主页” （home page），意思就是当省略文件名时访问的那个默认的页面。随着 Web 的普及，这个词的意义似乎并没有被正确理解，现在不光是默认页面，似乎随便什么网页都可以被叫作主页了。</p>
 </blockquote>
 <p>更多指令参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/xjnotxj/p/13094290.html">Nginx 学习笔记 - 小蒋不素小蒋 - 博客园</a></p>
-<h2 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723942.png" alt="img"/>
+<h2 id="进程模型"><a href="#进程模型" class="headerlink" title="进程模型"></a>进程模型</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723942.png" alt="img"/>
 
 <p>（1）master进程</p>
 <p>  · 接收来自外界的信号</p>
@@ -668,11 +668,11 @@ location @foobar &#123;
 <p>（2）实现步骤：</p>
 <p>  · 一般通过 url 路径中的<strong>文件扩展名</strong>来进行判断是静态还是动态页面，例如将 .cgi、.php 等扩展名设置为动态页面。</p>
 <p>  · 接着通过配置 CGI / FastCGI 来运行程序，返回结果。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723959.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723959.png" alt="img" style="zoom:67%;" />
 
 <h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><h1 id="反向代理-1"><a href="#反向代理-1" class="headerlink" title="反向代理"></a>反向代理</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>（1）正向代理：类似于跳板机，代理访问外部资源，类似于海外代购</p>
 <p>（2）反向代理：将请求转发（<strong>重新发起请求</strong>）给内部网络的服务器，对外表现为一个服务器（保证内网的安全，阻止web攻击），类似于明星经纪人</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723960.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723960.png" alt="img"></p>
 <h2 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h2><p>（1）实现动态Web应用程序</p>
 <p>（2）负载均衡</p>
 <p>（3）保护服务器内网的真实IP地址</p>
@@ -686,7 +686,7 @@ location @foobar &#123;
 
 <h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>  负载均衡建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。</p>
 <p>  负载均衡，英文名称为Load Balance，其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723922.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723922.png" alt="img"/>
 
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>  Nginx负载平衡实际上是反向代理的一种。</p>
 <p>  upstream 指令进行负载均衡配置。</p>
@@ -758,7 +758,7 @@ location @foobar &#123;
 <p>（2）参数</p>
 <p>① regex 为正则表达式</p>
 <p>② flag 取值如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723939.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723939.png" alt="img"></p>
 <p><strong>注意，rewrite 后 url 就会变了，下一个 rewrite 识别的就是改过的 url</strong></p>
 <p>③ replacement 为重写的值</p>
 <p><strong>如果 replacement 以协议头开头（如：http://，https:// 或 $scheme），则效果相当于 flag = redirect。</strong></p>
@@ -838,9 +838,9 @@ urlerror_page 500 http:&#x2F;&#x2F;www.google.com;
 <p>② 针对反向代理（使用 proxy_intercept_errors，error_page 才会生效）</p>
 <pre class="line-numbers language-none"><code class="language-none">location @rails &#123;proxy_pass http:&#x2F;&#x2F;rails_app;proxy_intercept_errors on; # focus hereerror_page 404&#x2F;404.html;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h1 id="一个HTTP到Nginx处理的过程"><a href="#一个HTTP到Nginx处理的过程" class="headerlink" title="一个HTTP到Nginx处理的过程"></a>一个HTTP到Nginx处理的过程</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723963.png" alt="img"/>
+<h1 id="一个HTTP到Nginx处理的过程"><a href="#一个HTTP到Nginx处理的过程" class="headerlink" title="一个HTTP到Nginx处理的过程"></a>一个HTTP到Nginx处理的过程</h1><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723963.png" alt="img"/>
 
-<h1 id="Nginx解决跨域问题"><a href="#Nginx解决跨域问题" class="headerlink" title="Nginx解决跨域问题"></a>Nginx解决跨域问题</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701165723965.png" alt="img"/>
+<h1 id="Nginx解决跨域问题"><a href="#Nginx解决跨域问题" class="headerlink" title="Nginx解决跨域问题"></a>Nginx解决跨域问题</h1><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701165723965.png" alt="img"/>
 
 <p>  Tomcat同一个服务器，在jsp页面或其他java代码跳转页面时，域名必须相同（同一个web应用）,用nginx搭建网关系统，可实现跨域跳转。</p>
 <p>配置:</p>
@@ -1606,7 +1606,7 @@ urlerror_page 500 http:&#x2F;&#x2F;www.google.com;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

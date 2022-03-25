@@ -477,22 +477,22 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1594865601171-c0ee042f-2c1b-4ab8-8a15-73025d7988be.svg" alt="img"></p>
+                <h2 id="浏览器的缓存机制"><a href="#浏览器的缓存机制" class="headerlink" title="浏览器的缓存机制"></a>浏览器的缓存机制</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1594865601171-c0ee042f-2c1b-4ab8-8a15-73025d7988be.svg" alt="img"></p>
 <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>浏览器缓存（Browser Caching）是为了节约网络的资源加速浏览，浏览器在用户磁盘上对最近请求过的文档进行存储，当访问者再次请求这个页面时，浏览器就可以从本地磁盘显示文档，这样就可以加速页面的阅览。</p>
 <h2 id="简单释义"><a href="#简单释义" class="headerlink" title="简单释义"></a>简单释义</h2><p>浏览器缓存其实就是浏览器保存通过HTTP获取的所有资源,是浏览器将网络资源存储在本地的一种行为。浏览器的缓存机制是根据HTTP报文的缓存标识进行的。</p>
 <h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2><p><strong>通常浏览器缓存策略分为两种：强缓存（Expires，cache-control</strong>）和协商缓存（Last-modified ，Etag），并且缓存策略都是通过设置 HTTP Header 来实现的。</p>
 <h3 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h3><h4 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a>Expires</h4><p>response header里的过期时间，浏览器再次加载资源时，如果在这个过期时间内，则命中强制缓存。</p>
 <h4 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a>Cache-Control</h4><p>当值设为max-age=300时，则代表在这个请求正确返回时间（浏览器也会记录下来）的5分钟内再次加载资源，就会命中强缓存。</p>
-<p>  <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1588900617474-c5debfb6-4e89-4eca-afa8-7ee32d73e719.png" alt="img"></p>
+<p>  <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1588900617474-c5debfb6-4e89-4eca-afa8-7ee32d73e719.png" alt="img"></p>
 <h4 id="Expires和Cache-Control的区别"><a href="#Expires和Cache-Control的区别" class="headerlink" title="Expires和Cache-Control的区别"></a>Expires和Cache-Control的区别</h4><ol>
 <li>Expires 是http1.0的产物，Cache-Control是http1.1的产物</li>
 <li>两者同时存在的话，Cache-Control优先级高于Expires；</li>
 <li>在某些不支持HTTP1.1的环境下，Expires就会发挥用处。所以Expires其实是过时的产物，现阶段它的存在只是一种兼容性的写法</li>
 <li>Expires是一个具体的服务器时间，这就导致一个问题，如果客户端时间和服务器时间相差较大，缓存命中与否就不是开发者所期望的。Cache-Control是一个时间段，控制就比较容易</li>
 </ol>
-<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a><strong>协商缓存</strong></h3><h4 id="ETag和If-None-Match"><a href="#ETag和If-None-Match" class="headerlink" title="ETag和If-None-Match"></a>ETag和If-None-Match</h4><p>这两个要一起说。Etag是上一次加载资源时，服务器返回的response header，是对该资源的一种唯一标识，只要资源有变化，Etag就会重新生成。浏览器在下一次加载资源向服务器发送请求时，会将上一次返回的Etag值放到request header里的If-None-Match里，服务器接受到If-None-Match的值后，会拿来跟该资源文件的Etag值做比较，如果相同，则表示资源文件没有发生改变，命中协商缓存。<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1588900997548-5fef26a1-01c5-412e-9bc8-7499254e5a6d.png" alt="img"></p>
+<h3 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a><strong>协商缓存</strong></h3><h4 id="ETag和If-None-Match"><a href="#ETag和If-None-Match" class="headerlink" title="ETag和If-None-Match"></a>ETag和If-None-Match</h4><p>这两个要一起说。Etag是上一次加载资源时，服务器返回的response header，是对该资源的一种唯一标识，只要资源有变化，Etag就会重新生成。浏览器在下一次加载资源向服务器发送请求时，会将上一次返回的Etag值放到request header里的If-None-Match里，服务器接受到If-None-Match的值后，会拿来跟该资源文件的Etag值做比较，如果相同，则表示资源文件没有发生改变，命中协商缓存。<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1588900997548-5fef26a1-01c5-412e-9bc8-7499254e5a6d.png" alt="img"></p>
 <h4 id="Last-Modified和If-Modified-Since"><a href="#Last-Modified和If-Modified-Since" class="headerlink" title="Last-Modified和If-Modified-Since"></a>Last-Modified和If-Modified-Since</h4><p>这两个也要一起说。Last-Modified是该资源文件最后一次更改时间，服务器会在response header里返回，同时浏览器会将这个值保存起来，在下一次发送请求时，放到request header里的If-Modified-Since里，服务器在接收到后也会做比对，如果相同则命中协商缓存。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1588900997540-6afaafa9-f27a-40da-9899-a44abe7bb920.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1588900997540-6afaafa9-f27a-40da-9899-a44abe7bb920.png" alt="img"></p>
 <h4 id="ETag和Last-Modified区别"><a href="#ETag和Last-Modified区别" class="headerlink" title="ETag和Last-Modified区别"></a>ETag和Last-Modified区别</h4><ol>
 <li>在方式上，Etag是对资源的一种唯一标识，而Last-Modified是该资源文件最后一次更改时间</li>
 <li>在精确度上，Etag要优于Last-Modified。Last-Modified的时间单位是秒，如果某个文件在1秒内改变了多次，那么他们的Last-Modified其实并没有体现出来修改，但是Etag每次都会改变确保了精度；如果是负载均衡的服务器，各个服务器生成的Last-Modified也有可能不一致。</li>
@@ -505,7 +505,7 @@
 <li>服务器收到请求后，优先根据Etag的值判断被请求的文件有没有做修改，Etag值一致则没有修改，命中协商缓存，返回304；如果不一致则有改动，直接返回新的资源文件带上新的Etag值并返回200；</li>
 <li>如果服务器收到的请求没有Etag值，则将If-Modified-Since和被请求文件的最后修改时间做比对，一致则命中协商缓存，返回304；不一致则返回新的last-modified和文件并返回200；</li>
 </ol>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1588986700552-360c5db2-a839-46c6-9ad2-66b9a2195607.png" alt="image.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1588986700552-360c5db2-a839-46c6-9ad2-66b9a2195607.png" alt="image.png"></p>
 <h2 id="存储位置"><a href="#存储位置" class="headerlink" title="存储位置"></a>存储位置</h2><p>从存储位置来看，浏览器缓存一共分为四种，并且各自有优先级，当依次查找缓存且都没有命中的时候，才会去请求网络。</p>
 <ul>
 <li>Service Worker</li>
@@ -1346,7 +1346,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

@@ -485,9 +485,9 @@
 <h1 id="数据结构和对象"><a href="#数据结构和对象" class="headerlink" title="数据结构和对象"></a>数据结构和对象</h1><p>  redis数据库里面的每个键值对都是由<strong>对象</strong>组成的，其中，</p>
 <p>​    · <strong>数据库键总是一个字符串对象</strong></p>
 <p>​    · 而数据库键的值则可以是<strong>字符串对象</strong>、<strong>列表对象</strong>、<strong>哈希对象</strong>、<strong>集合对象</strong>、<strong>有序集合对象</strong>。</p>
-<h2 id="SDS简单动态字符串"><a href="#SDS简单动态字符串" class="headerlink" title="SDS简单动态字符串"></a>SDS简单动态字符串</h2><h3 id="SDS定义"><a href="#SDS定义" class="headerlink" title="SDS定义"></a>SDS定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552229.jpeg" alt="img" style="zoom:50%;" />
+<h2 id="SDS简单动态字符串"><a href="#SDS简单动态字符串" class="headerlink" title="SDS简单动态字符串"></a>SDS简单动态字符串</h2><h3 id="SDS定义"><a href="#SDS定义" class="headerlink" title="SDS定义"></a>SDS定义</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552229.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552040.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552040.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  保留空字符“\0”作为字符串的结尾，兼容C语言，但是空字符的1个字节不计入SDS的len属性中。</p>
 <h3 id="与C串的区别"><a href="#与C串的区别" class="headerlink" title="与C串的区别"></a>与C串的区别</h3><p>（1）通过常数复杂度回去字符串长度，len属性</p>
@@ -498,11 +498,11 @@
 <p>  <strong>· 惰性空间释放</strong>：优化SDS字符串缩短操作。利用free属性将不适用的数据大小记录下来，等将来使用。</p>
 <p>（4）二进制安全</p>
 <p>​    所有的SDS API都会以处理二进制的方式来处理SDS存放的buf数组里的数据，程序不会对其中的数据做任何限制、过滤、或者假设，数据在写入时是什么样的，它被读取时就是什么样。</p>
-<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552055.jpeg" alt="img" style="zoom: 50%;" />
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552055.jpeg" alt="img" style="zoom: 50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552038.jpeg" alt="img" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552038.jpeg" alt="img" style="zoom: 50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552308.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552308.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h3><p>（1）双端</p>
 <p>（2）无环</p>
@@ -511,26 +511,26 @@
 <p>（5）多态，通过dup、free、match设置类型特定的函数</p>
 <h2 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>  Redis的字典使用哈希表作为底层实现。</p>
 <p>（1）哈希表节点</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552057.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552057.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  next指针将多个哈希值相同的键值对连接在一起，以此来解决键冲突问题（collision）。</p>
 <p>（2）哈希表</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552060.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552060.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（3）字典</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552079.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552079.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  ht属性是一个包含两个项的数组，数组中的每个项都是一个dictht哈希表，一般情况下，字典只使用ht[0]哈希表，ht[1]哈希表只会在对ht[0]哈希表进行rehash时使用。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552312.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552312.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552080.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552080.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h3><p>（1）计算hash值，采用MurmurHash2算法计算。</p>
 <p>（2）计算在哈希表中的位置index = hash &amp; sizemask</p>
 <h3 id="解决键冲突"><a href="#解决键冲突" class="headerlink" title="解决键冲突"></a>解决键冲突</h3><p>（1）使用链地址法解决冲突</p>
 <p>（2）因为dictEntry节点组成的链表没有表尾指针，故将新加节点加到链表的表头位置。</p>
 <h3 id="rehash重新散列"><a href="#rehash重新散列" class="headerlink" title="rehash重新散列"></a>rehash重新散列</h3><p>  哈希表保存的键值对随着操作会逐渐增多或者减少，为了让<strong>哈希表的负载因子（load factor）维持在一个合理的范围之内</strong>，需要重新散列。</p>
-<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552086.jpeg" alt="img" style="zoom:50%;" />
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552086.jpeg" alt="img" style="zoom:50%;" />
 
 <h4 id="负载因子"><a href="#负载因子" class="headerlink" title="负载因子"></a>负载因子</h4><p>（1）load_factor = ht[0].used / ht[0].size</p>
 <p>（2）还要结合服务器是否在执行BGSAVE或者BGREWRITEAOF指令，在load_factor &gt;= 1（否）或者load_factor &gt;= 5（是）时进行rehash。</p>
@@ -538,7 +538,7 @@
 <p>（2）渐进式rehash期间，字典的增删查改在两个哈希表上进行。</p>
 <h2 id="skiplist跳跃表"><a href="#skiplist跳跃表" class="headerlink" title="skiplist跳跃表"></a>skiplist跳跃表</h2><p>  是一种有序数据结构，它通过在每个节点中维持多个指向其他节点的指针，从而达到快速访问节点的目的。</p>
 <h3 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h3><p>（1）zskiplistNode</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552100.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552100.jpeg" alt="img" style="zoom:50%;" />
 
 <p>· 层用来加速访问其他节点，一般层的数量越多，访问其他节点的速度越快</p>
 <p>· 层的前进指针：用于从表头向表尾访问节点</p>
@@ -555,11 +555,11 @@
   <span class="token comment">// 表中层数最大的节点的层数</span>
   <span class="token keyword">int</span> level<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span> zskiplist<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552299.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h3><p>（1）有序集合键</p>
 <p>（2）集群节点中用作内部数据结构</p>
-<h2 id="intset整数集合"><a href="#intset整数集合" class="headerlink" title="intset整数集合"></a>intset整数集合</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552118-5113552.jpeg" alt="img" style="zoom:50%;" />
+<h2 id="intset整数集合"><a href="#intset整数集合" class="headerlink" title="intset整数集合"></a>intset整数集合</h2><h3 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552118-5113552.jpeg" alt="img" style="zoom:50%;" />
 
 <p>· encoding属性决定contents数组真正的类型可以为INTSET_ENC_INT16（int16_t），INTSET_ENC_INT32（int32_t），INTSET_ENC_INT64（int64_t）</p>
 <p>· length属性是contents数组的长度</p>
@@ -575,12 +575,12 @@
 <p>​    · 提升整数集合的灵活性</p>
 <p>​    · 尽可能地节约内存</p>
 <h2 id="ziplist压缩列表"><a href="#ziplist压缩列表" class="headerlink" title="ziplist压缩列表"></a>ziplist压缩列表</h2><h3 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h3><p>（1）ziplist</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552118.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552118.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552165.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552165.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（2）节点entry</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552135.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552135.jpeg" alt="img" style="zoom:50%;" />
 
 <p>· previous_entry_length：记录了压缩列表中前一个节点的长度。压缩列表从表尾向表头遍历操作就是依赖这个属性。</p>
 <p>· encoding：记录节点的content属性所保存数据的类型和长度。</p>
@@ -588,15 +588,15 @@
 <h3 id="连锁更新"><a href="#连锁更新" class="headerlink" title="连锁更新"></a>连锁更新</h3><p>当添加或者删除节点的时候，导致previous_entry_length所占字节空间发生变化（1字节或者5字节），新节点的后续节点都要重新分配空间。</p>
 <h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><p>  包含5中类型的对象。基于引用计数计数进行内存回收和对象共享机制。</p>
 <h3 id="redisObject"><a href="#redisObject" class="headerlink" title="redisObject"></a>redisObject</h3><p>（1）结构定义</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552155.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552155.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（2）type</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552181.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552181.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（3）encoding</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552195.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552195.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299-5113552.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552299-5113552.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="字符串对象"><a href="#字符串对象" class="headerlink" title="字符串对象"></a>字符串对象</h3><p>（1）可以使用的encoding类型</p>
 <p>​    REDIS_ENCODING_INT、REDIS_ENCODING_EMBSTR、REDIS_ENCODING_RAW</p>
@@ -605,17 +605,17 @@
 <h3 id="列表对象"><a href="#列表对象" class="headerlink" title="列表对象"></a>列表对象</h3><p>（1）可以使用的encoding类型</p>
 <p>​    REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_LINKEDLIST</p>
 <p>（2）编码转换</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552216.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552216.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="哈希对象"><a href="#哈希对象" class="headerlink" title="哈希对象"></a>哈希对象</h3><p>（1）可以使用的encoding类型</p>
 <p>​     REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_HT</p>
 <p>（2）编码转换</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552233.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552233.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="集合对象"><a href="#集合对象" class="headerlink" title="集合对象"></a>集合对象</h3><p>（1）可以使用的encoding类型</p>
 <p>​    REDIS_ENCODING_INTSET、REDIS_ENCODING_HT</p>
 <p>（2）编码转换</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552251.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552251.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="有序集合对象"><a href="#有序集合对象" class="headerlink" title="有序集合对象"></a>有序集合对象</h3><p>（1）可以使用的encoding类型</p>
 <p>​    REDIS_ENCODING_ZIPLIST、REDIS_ENCODING_SKIPLIST</p>
@@ -628,13 +628,13 @@
 <p>· dict保存成员到分值的映射，键为成员，值为分值。</p>
 <p><strong>这两种数据结构通过指针来共享相同元素的成员和分值，不会浪费额外的内存。</strong></p>
 <p>（3）编码转换</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552253.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552253.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="多态命令"><a href="#多态命令" class="headerlink" title="多态命令"></a>多态命令</h3><p>  redis除了会根据值对象的类型来判断键是否能够执行指定命令外，还会根据值对象的编码方式，选择正确的命令实现代码来执行命令。</p>
 <h3 id="内存回收"><a href="#内存回收" class="headerlink" title="内存回收"></a>内存回收</h3><p>  引用计数法：利用redisObject中的refcount属性，当计数值为0时，回收内存。</p>
 <h3 id="对象共享"><a href="#对象共享" class="headerlink" title="对象共享"></a>对象共享</h3><p>· 将数据库键的值指针指向一个向右的值对象</p>
 <p>· 将被共享的值对象的引用计数增1</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552274.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552274.jpeg" alt="img" style="zoom:50%;" />
 
 <p><strong>· 注意：redis只对包含整数值的字符串对象进行共享，其他字符串可能比较值相同较耗CPU。</strong></p>
 <h3 id="空转时长"><a href="#空转时长" class="headerlink" title="空转时长"></a>空转时长</h3><p>  · redis利用redisObject中的<strong>lru属性</strong>，记录对象最后一次被命令程序访问的时间。</p>
@@ -648,7 +648,7 @@
   <span class="token keyword">int</span> dbnum<span class="token punctuation">;</span>
   <span class="token comment">// ....</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552276.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552276.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  dbnum的数量默认为16.</p>
 <p>（2）redisClient</p>
@@ -695,8 +695,8 @@
 <h3 id="载入"><a href="#载入" class="headerlink" title="载入"></a>载入</h3><p>  在服务器启动时自动执行。</p>
 <h2 id="自动间隔性保存"><a href="#自动间隔性保存" class="headerlink" title="自动间隔性保存"></a>自动间隔性保存</h2><p>（1）配置</p>
 <p>  在redis.windows.conf中，通过save选项设定服务器自动执行BGSAVE命令的间隔时间。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552297.png" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552299.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552297.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552299.png" alt="img"></p>
 <p>· 900秒内，对数据库修改1次，创建RDB</p>
 <p>· 300秒内，对数据库修改10次，创建RDB</p>
 <p>· 60秒内，对数据库修改10000次，创建RDB</p>
@@ -705,7 +705,7 @@
 <p>​    · redisServer的dirty计数器记录一次SAVE/BGSAVE后，数据库修改次数</p>
 <p>​    · redisServer的lastsave属性记录上一次SAVE/BGSAVE执行时间</p>
 <p>​    <strong>· 服务器周期性操作函数serverCron默认每个100ms执行一次，其中一项工作为检测save选项条件是否满足</strong></p>
-<h2 id="RDB文件结构"><a href="#RDB文件结构" class="headerlink" title="RDB文件结构"></a>RDB文件结构</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552313.jpeg" alt="img" style="zoom:50%;" />
+<h2 id="RDB文件结构"><a href="#RDB文件结构" class="headerlink" title="RDB文件结构"></a>RDB文件结构</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552313.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（1）REDIS用来快速检测所载入的文件是否是RDB文件</p>
 <p>（2）db_version长度为4字节，记录RDB文件版本号</p>
@@ -715,7 +715,7 @@
 <h1 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>  AOF持久化是通过保存Redis服务器锁执行的写命令来记录数据库状态的</p>
 <h2 id="创建步骤"><a href="#创建步骤" class="headerlink" title="创建步骤"></a>创建步骤</h2><h3 id="命令追加-append"><a href="#命令追加-append" class="headerlink" title="命令追加(append)"></a>命令追加(append)</h3><p>  服务器在执行完一个写命令后，会以协议格式将被执行的写命令追加到redisServer的aof_buf缓冲区（SDS类型）的末尾。</p>
 <h3 id="文件写入与同步"><a href="#文件写入与同步" class="headerlink" title="文件写入与同步"></a>文件写入与同步</h3><p>  服务器在每个事件处理结束时，调用flushAppendOnlyFile函数将aof_buf缓冲区中的内容写入和保存到AOF文件里面。flushAppendOnlyFile函数的appendfsync参数决定同步（何时将操作系统内存缓存区的内容写入磁盘）方式：</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552315.jpeg" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552315.jpeg" alt="img"/>
 
 <p><strong>everysec为默认设置。</strong></p>
 <h2 id="载入-1"><a href="#载入-1" class="headerlink" title="载入"></a>载入</h2><p>步骤：</p>
@@ -728,12 +728,12 @@
 <p>（3）原理：从数据库读取键现在的值，用一条命令去记录键值对，代替之前记录这个键值对的多条命令。</p>
 <p>（4）后台重写：创建子进程执行AOF重写程序（因为<strong>Reids采用单线程模式工作</strong>）。</p>
 <h1 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h1><p>  Redis服务器是一个事件驱动程序</p>
-<h2 id="文件事件"><a href="#文件事件" class="headerlink" title="文件事件"></a>文件事件</h2><h3 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552329.jpeg" alt="img" style="zoom:50%;" />
+<h2 id="文件事件"><a href="#文件事件" class="headerlink" title="文件事件"></a>文件事件</h2><h3 id="构成"><a href="#构成" class="headerlink" title="构成"></a>构成</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552329.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（1）套接字 socket</p>
 <p>​    Redis服务器通过套接字与客户端连接。</p>
 <p>（2）I/O多路复用</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552317.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552317.jpeg" alt="img" style="zoom:50%;" />
 
 <p>​    将所有产生的套接字都放在一个<strong>队列</strong>里面，然后通过这个队列，以<strong>有序、同步、每次一个套接字</strong>的方式向文件事件分派器传送套接字。</p>
 <p>​    Redis以单线程模式运行。</p>
@@ -757,7 +757,7 @@
 <p>  · when 毫秒精度的UNIX时间戳，记录时间事件的到达时间</p>
 <p>  · timeProc 时间时间处理器，当时间事件到达时，服务器会调用相应的处理器来处理事件</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>  服务器将所有时间事件放在一个无序链表中，每当时间事件执行器运行时，它就遍历整个链表，查找所有已到达的时间事件，并调用相应的事件处理器。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552342.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552342.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  · 新的时间事件总是插入到链表的表头。</p>
 <p>  · 正常模式下的Redis服务器只使用serverCron一个时间事件，故无序链表并不影响事件执行性能。</p>
@@ -791,7 +791,7 @@
 <h1 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h1><h2 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h2><p>（1）”SLAVEOF ip port”命令或者配置文件中的slaveof选项</p>
 <p>（2）主从服务器的数据库将保存相同的数据</p>
 <h2 id="旧版（Redis2-8之前）"><a href="#旧版（Redis2-8之前）" class="headerlink" title="旧版（Redis2.8之前）"></a>旧版（Redis2.8之前）</h2><p>  分为两个步骤进行，同步和命令传播。</p>
-<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552345.jpeg" alt="img" style="zoom:67%;" />
+<h3 id="同步"><a href="#同步" class="headerlink" title="同步"></a>同步</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552345.jpeg" alt="img" style="zoom:67%;" />
 
 <p>（1）从服务器向主服务器发送SYNC命令</p>
 <p>（2）收到SYNC命令的主服务器执行BGSAVE命令。在后台生成一个RDB文件，并使用一个缓冲区记录从现在开始执行的所有写命令</p>
@@ -812,7 +812,7 @@
 <p>​    · 检测命令丢失</p>
 <h1 id="哨兵机制"><a href="#哨兵机制" class="headerlink" title="哨兵机制"></a>哨兵机制</h1><h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>  sentinel是Redis的高可用性解决方案。监视的主服务器进入下线状态时，自动将下线主服务器属下的某个从服务器升级为新的主服务器。</p>
 <p>  <strong>若之前的主服务器重新上线，则自动成为现存主服务器的从服务器。</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552338.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552338.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="启动sentinel"><a href="#启动sentinel" class="headerlink" title="启动sentinel"></a>启动sentinel</h2><p>（1）初始化服务器</p>
 <p>​    · Sentinel本质上是一个运行在特殊模式下的Redis服务器</p>
@@ -849,20 +849,20 @@
 <p>​    · 格式 CLUSTER MEET <ip> <port></p>
 <p>​    · 向另一个节点发送命令，进行握手，握手成功后加入所在集群。</p>
 <p>（2）启动节点</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552529.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552529.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（3）集群数据结构</p>
 <p>  · clusterNode 每个节点使用其记录自己的状态，并为集群中其他节点创建一个相应的clusterNode结构</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552348.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552348.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  · clusterLink 保存了连接节点所需的有关信息</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552375.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552375.jpeg" alt="img" style="zoom:50%;" />
 
 <p>  · clusterState 记录在当前节点的视角下，集群目前所处状态</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552377.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552377.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（4）节点握手</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552376.jpeg" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552376.jpeg" alt="img" />
 
 <h2 id="槽指派"><a href="#槽指派" class="headerlink" title="槽指派"></a>槽指派</h2><p>（1）概念</p>
 <p>​    Redis集群通过分片的方式来保存数据库中的键值对：集群的整个数据库被分为16384割槽（slot），数据库中的每个键都属于整个16384个槽的其中一个，集群中的每个节点可以处理0~16384个槽。</p>
@@ -882,7 +882,7 @@
 <p>  CLUSTER ADDSLOTS 指派槽</p>
 <p>（4）注意点</p>
 <p>  <strong>节点数据库只能使用0号数据库</strong>，这和单机服务器的数据库不同。</p>
-<h2 id="复制和故障转移"><a href="#复制和故障转移" class="headerlink" title="复制和故障转移"></a>复制和故障转移</h2><h3 id="复制-1"><a href="#复制-1" class="headerlink" title="复制"></a>复制</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552368.jpeg" alt="img"/>
+<h2 id="复制和故障转移"><a href="#复制和故障转移" class="headerlink" title="复制和故障转移"></a>复制和故障转移</h2><h3 id="复制-1"><a href="#复制-1" class="headerlink" title="复制"></a>复制</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552368.jpeg" alt="img"/>
 
 <p>  主节点（master）用于处理槽，从节点用于复制某个主节点，在其主节点下线时可以代替主节点继续处理命令请求。</p>
 <h3 id="故障转移-1"><a href="#故障转移-1" class="headerlink" title="故障转移"></a>故障转移</h3><p>（1）在从节点中选一个成为新的主节点</p>
@@ -893,7 +893,7 @@
 <h1 id="发布与订阅"><a href="#发布与订阅" class="headerlink" title="发布与订阅"></a>发布与订阅</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>（1）由PUBLISH（发送消息）、SUBSCRIBE（订阅频道）、PSUBSCRIBE（订阅模式）等命令组成</p>
 <p>（2）通过执行SUBSCRIBE命令，客户端可以订阅一个或多个频道，每当有其他客户端向被订阅的频道发送消息时，频道的所有订阅者都会受到这条消息。</p>
 <p>（3）通过执行PSUBSCRIBE命令订阅一个或多个模式，每当有其他客户端向某个频道发送消息时，消息会被发送给与这个频道相匹配的模式的订阅者。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552378.jpeg" alt="img" style="zoom:70%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552378.jpeg" alt="img" style="zoom:70%;" />
 
 <h2 id="频道"><a href="#频道" class="headerlink" title="频道"></a>频道</h2><h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><pre class="line-numbers language-java" data-language="java"><code class="language-java">struct redisServer<span class="token punctuation">&#123;</span>
   <span class="token comment">// ...</span>
@@ -903,7 +903,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>  · 字典的键是某个被订阅的频道</p>
 <p>  · 字典的值是一个链表，记录所有订阅该频道的客户端</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552395.jpeg" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552395.jpeg" alt="img" />
 
 <h3 id="订阅和退订"><a href="#订阅和退订" class="headerlink" title="订阅和退订"></a>订阅和退订</h3><p>（1）订阅：使用SUBSCRIBE命令，在链表的尾部添加</p>
 <p>（2）退订：使用UNSUBSCRIBE命令，从链表中删除客户端。当出现键对应空链表，要从字典中删除键</p>
@@ -927,7 +927,7 @@
 <p>​    遍历客户端的事务队列，执行队列中保存的所有命令。</p>
 <h2 id="WATCH命令"><a href="#WATCH命令" class="headerlink" title="WATCH命令"></a>WATCH命令</h2><p>（1）作用</p>
 <p>​    是一个乐观锁，在执行EXEC命令前，监视任意数量的数据库键。在EXEC命令执行时，若监视的键是否至少有一个已经被修改过了，如果是的话，服务器拒绝执行事务，向客户端返回空回复。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552420.jpeg" alt="img"  />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552420.jpeg" alt="img"  />
 
 <p>（2）数据结构</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java">typedef struct redisDb<span class="token punctuation">&#123;</span>
@@ -941,19 +941,19 @@
 <h1 id="缓存问题"><a href="#缓存问题" class="headerlink" title="缓存问题"></a>缓存问题</h1><h2 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h2><p>（1）原因</p>
 <p>​    缓存同一时间大面积的失效，大量的请求直接落到数据库上，造成数据库短时间内承受大量请求而崩掉。</p>
 <p>（2）解决办法</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552417.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552417.png" alt="img" />
 
 <p>· 事前：尽量保证整个Redis集群的高可用性，发现机器宕机几块补上，选择合适的内存淘汰策略。</p>
 <p>· 事中： 本地ehcache缓存+hystrix限流&amp;降级，避免MySQL崩掉</p>
 <p>· 事后：利用redis持久化机制保存的数据尽快恢复缓存</p>
 <h2 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h2><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>​    大量请求的key根本不在缓存中，导致请求直接到了数据库上。</p>
 <p>​    一般MySQL的最大连接数在150左右，最大连接数还只是一个指标，cpu，内存，自盘，网络等</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240.png" alt="img" />
 
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><h4 id="无效key的时间减短"><a href="#无效key的时间减短" class="headerlink" title="无效key的时间减短"></a>无效key的时间减短</h4><p>  黑客每次构建不同的请求Key，会导致redis中缓存大量无效的key，故可以将无效key的过期时间设置短一点。</p>
 <h4 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a><strong>布隆过滤器</strong></h4><p>（1）布隆过滤器的概念</p>
 <p>  布隆过滤器（Bloom Filter）可以看作由二进制向量（或者说位数组）和一系列随机映射函数（哈希函数）两部分组成的数据结构。相比于我们平时常用的的 List、Map 、Set 等数据结构，它占用空间更少并且效率更高，但是<strong>缺点是其返回的结果是概率性的，而不是非常准确的。理论情况下添加到集合中的元素越多，误报的可能性就越大。并且，存放在布隆过滤器的数据不容易删除。</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552418.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552418.png" alt="img"/>
 
 <p>  位数组中的每个元素都只占用 1 bit ，并且每个元素只能是 0 或者 1。这样申请一个 100w 个元素的位数组只占用 1000000Bit / 8 = 125000 Byte = 125000/1024 kb ≈ 122kb 的空间。</p>
 <p>总结：<strong>一个名叫 Bloom 的人提出了一种来检索元素是否在给定大集合中的数据结构，这种数据结构是高效且性能很好的，但缺点是具有一定的错误识别率和删除难度。并且，理论情况下，添加到集合中的元素越多，误报的可能性就越大。</strong></p>
@@ -965,12 +965,12 @@
 <p>​    对给定元素再次进行相同的哈希计算</p>
 <p>​    得到值之后判断位数组中的每个元素是否都为 1，如果值都为 1，那么说明这个值在布隆过滤器中，如果存在一个值不为 1，说明该元素不在布隆过滤器中</p>
 <p>举个简单的例子：</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552441.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552441.png" alt="img"/>
 
 <p>  <strong>不同的字符串可能哈希出来的位置相同，这种情况我们可以适当增加位数组大小或者调整我们的哈希函数。</strong></p>
 <p>综上，我们可以得出：<strong>布隆过滤器说某个元素存在，小概率会误判。布隆过滤器说某个元素不在，那么这个元素一定不在。</strong></p>
 <p>  在Redis中具体工作机制如下：</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701122552456.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701122552456.png" alt="img"/>
 
 <h1 id="内存淘汰机制"><a href="#内存淘汰机制" class="headerlink" title="内存淘汰机制"></a>内存淘汰机制</h1><p>  保证Redis中的数据为热点数据。</p>
 <p>（1）volatile-lru：从<strong>已设置过期时间</strong>的数据集中挑选最近最少使用的数据淘汰</p>
@@ -1588,7 +1588,7 @@
                 <a href="/2020/11/02/ji-suan-ji-wang-luo/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-3z3grv.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="/medias/featureimages/3.png" class="responsive-img" alt="计算机网络">
                         
                         <span class="card-title">计算机网络</span>
                     </div>
@@ -1772,7 +1772,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

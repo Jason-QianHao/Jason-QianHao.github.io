@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304142031111.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304142031111.png')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -486,7 +486,7 @@
 </ul>
 </blockquote>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="设计模式概念"><a href="#设计模式概念" class="headerlink" title="设计模式概念"></a>设计模式概念</h2><p>  软件设计模式（Software Design Pattern），又称设计模式，是一套被反复使用、多数人知晓的、经过分类编目的、代码设计经验的总结。它描述了在软件设计过程中的一些不断重复发生的问题，以及该问题的解决方案。也就是说，它是解决特定问题的一系列套路，是前辈们的代码设计经验的总结，具有一定的普遍性，可以反复使用。其目的是为了提高代码的可重用性、代码的可读性和代码的可靠性。</p>
-<h2 id="23种设计模式分类"><a href="#23种设计模式分类" class="headerlink" title="23种设计模式分类"></a>23种设计模式分类</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304142031111.png" alt="image-20220304142031111" style="zoom:67%;" />
+<h2 id="23种设计模式分类"><a href="#23种设计模式分类" class="headerlink" title="23种设计模式分类"></a>23种设计模式分类</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304142031111.png" alt="image-20220304142031111" style="zoom:67%;" />
 
 <h3 id="根据目的来分"><a href="#根据目的来分" class="headerlink" title="根据目的来分"></a>根据目的来分</h3><p>  根据模式是用来完成什么工作来划分，这种方式可分为<strong>创建型模式</strong>、<strong>结构型模式</strong>和<strong>行为型模式</strong> 3 种。</p>
 <p>（1）创建型模式：用于描述“怎样创建对象”，它的主要特点是“<strong>将对象的创建与使用分离</strong>”。GoF 中提供了<strong>单例</strong>、<strong>原型</strong>、<strong>工厂方法</strong>、<strong>抽象工厂</strong>、<strong>建造者</strong>等 5 种创建型模式。</p>
@@ -612,7 +612,7 @@
 </li>
 </ul>
 <p>其结构图如下图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210628100738046.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210628100738046.png" alt="img"></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">FoodFactory</span> <span class="token punctuation">&#123;</span>
   <span class="token comment">/*
   	其中，LanZhouNoodle 和 HuangMenChicken 都继承自 Food。
@@ -643,7 +643,7 @@
 <p>· 抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能。</p>
 <p>· 具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同·具体工厂之间一一对应。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738057.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738057.gif" alt="img"></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 其中，ChineseFoodA、ChineseFoodB、AmericanFoodA、AmericanFoodB 都派生自 Food。</span>
 <span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">FoodFactory</span> <span class="token punctuation">&#123;</span>
     <span class="token class-name">Food</span> <span class="token function">makeFood</span><span class="token punctuation">(</span><span class="token class-name">String</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -682,8 +682,8 @@
 <p>· 抽象产品（Product）：定义了产品的规范，描述了产品的主要特性和功能，抽象工厂模式有多个抽象产品。</p>
 <p>· 具体产品（ConcreteProduct）：实现了抽象产品角色所定义的接口，由具体工厂来创建，它同具体工厂之间是多对一的关系。</p>
 <p>抽象工厂模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738062.gif" alt="img"></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/abstract-factory-3.png" alt="abstract-factory-3" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738062.gif" alt="img"></p>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/abstract-factory-3.png" alt="abstract-factory-3" style="zoom:50%;" />
 
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/*
 	客户端调用
@@ -709,7 +709,7 @@
 <p>· 具体建造者(Concrete Builder）：实现 Builder 接口，完成复杂产品的各个部件的具体创建方法。</p>
 <p>· 指挥者（Director）：它调用建造者对象中的部件构造与装配方法完成复杂对象的创建，在指挥者中不涉及具体产品的信息。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738055.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738055.gif" alt="img"></p>
 <p> 在实际代码中，通常可以构造成链式调用。</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Food</span> food <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FoodBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">Food</span> food <span class="token operator">=</span> <span class="token class-name">Food</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">c</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -789,7 +789,7 @@
 <p>· 真实主题（Real Subject）类：实现了抽象主题中的具体业务，是代理对象所代表的真实对象，是最终要引用的对象。</p>
 <p>· 代理（Proxy）类：<strong>提供了与真实主题相同的接口</strong>，其<strong>内部含有对真实主题的引用</strong>，它可以访问、控制或扩展真实主题的功能。</p>
 <p>其结构图如图所示</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip.gif" alt="img"></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">FoodService</span> <span class="token punctuation">&#123;</span>
     <span class="token class-name">Food</span> <span class="token function">makeChicken</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token class-name">Food</span> <span class="token function">makeNoodle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -848,12 +848,12 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 适配者（Adaptee）类：它是被访问和适配的现存组件库中的组件接口。</p>
 <p>· 适配器（Adapter）类：它是一个转换器，通过继承或引用适配者的对象，把适配者接口转换成目标接口，让客户按目标接口的格式访问适配者。</p>
 <p>（1）类适配器模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738011.gif" alt="img"></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/adapter-2.png" alt="adapter-1" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738011.gif" alt="img"></p>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/adapter-2.png" alt="adapter-1" style="zoom:50%;" />
 
 <p>​    通过继承的方法，适配器自动获得了所需要的大部分方法。这个时候，客户端使用更加简单，直接 <code>Target t = new SomeAdapter();</code> 就可以了。</p>
 <p>（2）对象适配器模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738030.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738030.gif" alt="img"></p>
 <p>例子，将鸡适配成鸭，这样鸡也能当鸭来用。因为，现在鸭这个接口，我们没有合适的实现类可以用，所以需要适配器：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Duck</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">quack</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 鸭的呱呱叫</span>
@@ -912,8 +912,8 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 实现化（Implementor）角色：定义实现化角色的接口，供扩展抽象化角色调用。</p>
 <p>· 具体实现化（Concrete Implementor）角色：给出实现化角色接口的具体实现。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738044.gif" alt="img"></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/bridge-1.png" alt="bridge-1" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738044.gif" alt="img"></p>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/bridge-1.png" alt="bridge-1" style="zoom:50%;" />
 
 <p>客户端：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -931,8 +931,8 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 抽象装饰（Decorator）角色：继承抽象构件，并包含具体构件的实例，可以通过其子类扩展具·体构件的功能。</p>
 <p>· 具体装饰（ConcreteDecorator）角色：实现抽象装饰的相关方法，并给具体构件对象添加附加的责任。</p>
 <p>装饰模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738059.gif" alt="img"></p>
- <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/decorator-1.png" alt="decorator-1" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738059.gif" alt="img"></p>
+ <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/decorator-1.png" alt="decorator-1" style="zoom:50%;" />
 
 <p>首先，定义饮料抽象基类：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">Beverage</span> <span class="token punctuation">&#123;</span>
@@ -1020,7 +1020,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 子系统（Sub System）角色：实现系统的部分功能，客户可以通过外观角色访问它。</p>
 <p>· 客户（Client）角色：通过一个外观角色访问各个子系统的功能。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738063.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738063.gif" alt="img"></p>
 <p>首先，我们定义一个接口：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Shape</span> <span class="token punctuation">&#123;</span>
    <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1105,7 +1105,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· ConcreteFlyweight 是具体享元角色，包含了关键字 key，它实现了抽象享元接口；</p>
 <p>· FlyweightFactory 是享元工厂角色，它是关键字 key 来管理具体享元；</p>
 <p>· 客户角色通过享元工厂获取具体享元，并访问具体享元的相关方法。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738276.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738276.gif" alt="img"></p>
 <p>​    复用对象最简单的方式是，用一个 HashMap 来存放每次新生成的对象。每次需要一个对象的时候，先到 HashMap 中看看有没有，如果没有，再生成新的对象，然后将这个对象放入 HashMap 中。</p>
 <h1 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h1><h2 id="定义-11"><a href="#定义-11" class="headerlink" title="定义"></a>定义</h2><p>​    有时又叫作整体-部分（Part-Whole）模式，它是一种将对象组合成树状的层次结构的模式，用来表示“整体-部分”的关系，使用户对单个对象和组合对象具有一致的访问性。</p>
 <p>​    例如，每个员工都有姓名、部门、薪水这些属性，同时还有下属员工集合（虽然可能集合为空），而下属员工和自己的结构是一样的，也有姓名、部门这些属性，同时也有他们的下属员工集合。</p>
@@ -1115,10 +1115,10 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>组合模式分为<strong>透明式的组合模式</strong>和<strong>安全式的组合模式</strong>。</p>
 <p>(1) 透明方式</p>
 <p>  在该方式中，由于抽象构件声明了所有子类中的全部方法，所以客户端无须区别树叶对象和树枝对象，对客户端来说是透明的。但其缺点是：树叶构件本来没有 Add()、Remove() 及 GetChild() 方法，却要实现它们（空实现或抛异常），这样会带来一些安全性问题。其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738077-4846058.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738077-4846058.gif" alt="img"></p>
 <p>(2) 安全方式</p>
 <p>  在该方式中，将管理子构件的方法移到树枝构件中，抽象构件和树叶构件没有对子对象的管理方法，这样就避免了上一种方式的安全性问题，但由于叶子和分支有不同的接口，客户端在调用时要知道树叶对象和树枝对象的存在，所以失去了透明性。其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738081.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738081.gif" alt="img"></p>
 <h1 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h1><h2 id="定义-12"><a href="#定义-12" class="headerlink" title="定义"></a>定义</h2><p>​    定义一个操作中的算法骨架，而将算法的一些步骤延迟到子类中，使得子类可以不改变该算法结构的情况下重定义该算法的某些特定步骤。</p>
 <h2 id="实现-11"><a href="#实现-11" class="headerlink" title="实现"></a>实现</h2><p>（1）抽象类/抽象模板（Abstract Class）</p>
 <p>  抽象模板类，负责给出一个算法的轮廓和骨架。它由一个模板方法和若干个基本方法构成。这些方法的定义如下。</p>
@@ -1130,7 +1130,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>2）具体子类/具体实现（Concrete Class）</p>
 <p>  具体实现类，实现抽象类中所定义的抽象方法和钩子方法，它们是一个顶级逻辑的一个组成步骤。</p>
 <p>模板方法模式的结构图如图 1 所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738082.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738082.gif" alt="img"></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">AbstractTemplate</span> <span class="token punctuation">&#123;</span>
     <span class="token comment">// 这就是模板方法</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">templateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -1173,7 +1173,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 具体策略（Concrete Strategy）类：实现了抽象策略定义的接口，提供具体的算法实现。</p>
 <p>· 环境（Context）类：持有一个策略类的引用，最终给客户端调用。</p>
 <p>其结构图如图所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738277.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738277.gif" alt="img"></p>
 <p>首先，先定义一个策略接口：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Strategy</span> <span class="token punctuation">&#123;</span>
    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token keyword">int</span> radius<span class="token punctuation">,</span> <span class="token keyword">int</span> x<span class="token punctuation">,</span> <span class="token keyword">int</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1225,7 +1225,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 实现者/接收者（Receiver）角色：执行命令功能的相关操作，是具体命令对象业务的真正实现者。</p>
 <p>· 调用者/请求者（Invoker）角色：是请求的发送者，它通常拥有很多的命令对象，并通过访问命令对象来执行相关请求，它不直接访问接收者。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738077.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738077.gif" alt="img"></p>
 <h1 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h1><h2 id="定义-15"><a href="#定义-15" class="headerlink" title="定义"></a>定义</h2><p>​    为了避免请求发送者与多个请求处理者耦合在一起，于是将所有请求的处理者通过前一对象记住其下一个对象的引用而连成一条链；当有请求发生时，可将请求沿着这条链传递，直到有对象处理它为止。</p>
 <h2 id="实现-14"><a href="#实现-14" class="headerlink" title="实现"></a>实现</h2><p>职责链模式主要包含以下角色。</p>
 <p>· 抽象处理者（Handler）角色：定义一个处理请求的接口，包含抽象处理方法和一个后继连接。</p>
@@ -1233,7 +1233,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 客户类（Client）角色：创建处理链，并向链头的具体处理者对象提交请求，它不关心处理细节和请求的传递过程。</p>
 <p>  责任链模式的本质是解耦请求与处理，让请求在处理链中能进行传递与被处理；理解责任链模式应当理解其模式，而不是其具体实现。责任链模式的独到之处是将其节点处理者组合成了链式结构，并允许节点自身决定是否进行请求处理或转发，相当于让请求流动起来。</p>
 <p>其结构图如图所示。客户端可按图中所示设置责任链。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738091.gif" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738091.gif" alt="img"/>
 
 <img src="../assets/Pattern/strip-20210628100738092.gif" alt="img" style="zoom:67%;" />
 
@@ -1244,7 +1244,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 抽象状态（State）角色：定义一个接口，用以封装环境对象中的特定状态所对应的行为，可以有一个或多个行为。</p>
 <p>· 具体状态（Concrete State）角色：实现抽象状态所对应的行为，并且在需要的情况下进行状态切换。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738094.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738094.gif" alt="img"></p>
 <p>商品库存中心有个最基本的需求是减库存和补库存，我们看看怎么用状态模式来写。核心在于，我们的关注点不再是 Context 是该进行哪种操作，而是关注在这个 Context 会有哪些操作。</p>
 <p>定义状态接口：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">State</span> <span class="token punctuation">&#123;</span>
@@ -1320,7 +1320,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 抽象观察者（Observer）角色：它是一个抽象类或接口，它包含了一个更新自己的抽象方法，当接到具体主题的更改通知时被调用。</p>
 <p>· 具体观察者（Concrete Observer）角色：实现抽象观察者中定义的抽象方法，以便在得到目标的更改通知时更新自身的状态。</p>
 <p>观察者模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738098.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738098.gif" alt="img"></p>
 <p>首先，需要定义主题，每个主题需要持有观察者列表的引用，用于在数据变更的时候通知各个观察者：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Subject</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">private</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Observer</span><span class="token punctuation">></span></span> observers <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Observer</span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -1406,7 +1406,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 抽象同事类（Colleague）角色：定义同事类的接口，保存中介者对象，提供同事对象交互的抽象方法，实现所有相互影响的同事类的公共功能。</p>
 <p>· 具体同事类（Concrete Colleague）角色：是抽象同事类的实现者，当需要与其他同事对象交互时，由中介者对象负责后续的交互。</p>
 <p>中介者模式的结构图如图 1 所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738104.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738104.gif" alt="img"></p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MediatorPattern</span> <span class="token punctuation">&#123;</span>
@@ -1494,7 +1494,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 抽象迭代器（Iterator）角色：定义访问和遍历聚合元素的接口，通常包含 hasNext()、first()、next() 等方法。</p>
 <p>· 具体迭代器（Concretelterator）角色：实现抽象迭代器接口中所定义的方法，完成对聚合对象的遍历，记录遍历的当前位置。</p>
 <p>其结构图如图所示。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304142653516.png" alt="image-20220304142653516" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304142653516.png" alt="image-20220304142653516" style="zoom:50%;" />
 
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span></span><span class="token operator">*</span><span class="token punctuation">;</span>
 
@@ -1590,14 +1590,14 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 具体元素（ConcreteElement）角色：实现抽象元素角色提供的 accept() 操作，其方法体通常都是 visitor.visit(this) ，另外具体元素中可能还包含本身业务逻辑的相关操作。</p>
 <p>· 对象结构（Object Structure）角色：是一个包含元素角色的容器，提供让访问者对象遍历容器中的所有元素的方法，通常由 List、Set、Map 等聚合类实现。</p>
 <p>其结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738108.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738108.gif" alt="img"></p>
 <h1 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h1><h2 id="定义-21"><a href="#定义-21" class="headerlink" title="定义"></a>定义</h2><p>  在不破坏封装性的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便以后当需要时能将该对象恢复到原先保存的状态。该模式又叫快照模式。</p>
 <h2 id="实现-20"><a href="#实现-20" class="headerlink" title="实现"></a>实现</h2><p>备忘录模式的主要角色如下。</p>
 <p>· 发起人（Originator）角色：记录当前时刻的内部状态信息，提供创建备忘录和恢复备忘录数据的功能，实现其他业务功能，它可以访问备忘录里的所有信息。</p>
 <p>· 备忘录（Memento）角色：负责存储发起人的内部状态，在需要的时候提供这些内部状态给发起人。</p>
 <p>· 管理者（Caretaker）角色：对备忘录进行管理，提供保存与获取备忘录的功能，但其不能对备忘录的内容进行访问与修改。</p>
 <p>备忘录模式的结构图如图所示。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304142844328.png" alt="image-20220304142844328" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304142844328.png" alt="image-20220304142844328" style="zoom:50%;" />
 
 <h1 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h1><h2 id="定义-22"><a href="#定义-22" class="headerlink" title="定义"></a>定义</h2><p>  给分析对象定义一个语言，并定义该语言的文法表示，再设计一个解析器来解释语言中的句子。也就是说，用编译语言的方式来分析应用中的实例。这种模式实现了文法表达式处理的接口，该接口解释一个特定的上下文。</p>
 <h2 id="实现-21"><a href="#实现-21" class="headerlink" title="实现"></a>实现</h2><p>· 抽象表达式（Abstract Expression）角色：定义解释器的接口，约定解释器的解释操作，主要包含解释方法 interpret()。</p>
@@ -1606,7 +1606,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
 <p>· 环境（Context）角色：通常包含各个解释器需要的数据或是公共的功能，一般用来传递被所有解释器共享的数据，后面的解释器可以从这里获取这些值。</p>
 <p>· 客户端（Client）：主要任务是将需要分析的句子或表达式转换成使用解释器对象描述的抽象语法树，然后调用解释器的解释方法，当然也可以通过环境角色间接访问解释器的解释方法。</p>
 <p>解释器模式的结构图如图所示。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/strip-20210628100738119.gif" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/strip-20210628100738119.gif" alt="img"></p>
 
                 
             </div>
@@ -2164,7 +2164,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
                 <a href="/2020/12/09/docker-jian-jie/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-mp53pk.jpg" class="responsive-img" alt="Docker简介">
+                        <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/wallhaven-mp53pk.jpg" class="responsive-img" alt="Docker简介">
                         
                         <span class="card-title">Docker简介</span>
                     </div>
@@ -2348,7 +2348,7 @@ foodService<span class="token punctuation">.</span><span class="token function">
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

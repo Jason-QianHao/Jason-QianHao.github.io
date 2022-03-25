@@ -509,7 +509,7 @@
 </ol>
 <p>认证服务器和资源服务器可以在同一台服务器上，比如前后端分离的服务后台，它即供认证服务（认证服务器，提供令牌），客户端通过令牌来从后台获取服务（资源服务器）；它们也可以不在同一台服务器上，比如上面第三方登录的例子。</p>
 <h2 id="授权码模式"><a href="#授权码模式" class="headerlink" title="授权码模式"></a>授权码模式</h2><p>授权码模式是最能体现OAuth2协议，最严格，流程最完整的授权模式，流程如下所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624150726.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624150726.png"></p>
 <p>A. 客户端将用户导向认证服务器；</p>
 <p>B. 用户决定是否给客户端授权；</p>
 <p>C. 同意授权后，认证服务器将用户导向客户端提供的URL，并附上授权码；</p>
@@ -531,7 +531,7 @@
 <li>client_id：表示客户端ID，必选项。</li>
 </ol>
 <h2 id="密码模式"><a href="#密码模式" class="headerlink" title="密码模式"></a>密码模式</h2><p>在密码模式中，用户像客户端提供用户名和密码，客户端通过用户名和密码到认证服务器获取令牌。流程如下所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624150632.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624150632.png"></p>
 <p>A. 用户向客户端提供用户名和密码；</p>
 <p>B. 客户端向认证服务器换取令牌；</p>
 <p>C. 发放令牌。</p>
@@ -544,7 +544,7 @@
 </ol>
 <p>剩下两种授权模式可以参考上面的参考链接，这里就不介绍了。</p>
 <h1 id="Spring-Security实现OAuth2"><a href="#Spring-Security实现OAuth2" class="headerlink" title="Spring Security实现OAuth2"></a>Spring Security实现OAuth2</h1><p>Spring框架对OAuth2协议进行了实现，Spring Security OAuth2主要包含认证服务器和资源服务器这两大块的实现：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624155418.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624155418.png"></p>
 <p>认证服务器主要包含了四种授权模式的实现和Token的生成与存储，我们也可以在认证服务器中自定义获取Token的方式（JWT）；</p>
 <p>资源服务器主要是在Spring Security的过滤器链上加了OAuth2AuthenticationProcessingFilter过滤器，即使用OAuth2协议发放令牌认证的方式来保护我们的资源。</p>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>properties</span><span class="token punctuation">></span></span>
@@ -661,15 +661,15 @@
 
 <ul>
 <li><p>跳转登录页面</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624184517.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624184517.png"></p>
 </li>
 <li><p>登录成功后页面成功跳转到了授权页面</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624185204.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624185204.png"></p>
 </li>
 <li><p>点击Authorize按钮后，页面跳转到了我们指定的redirect_uri，并且带上了授权码信息:</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624185339.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624185339.png"></p>
 <h3 id="认证服务器请求令牌"><a href="#认证服务器请求令牌" class="headerlink" title="认证服务器请求令牌"></a>认证服务器请求令牌</h3><ul>
 <li><p>发送请求</p>
 <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">http</span><span class="token punctuation">:</span><span class="token header-value">//localhost:8080/oauth/token?...</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -695,7 +695,7 @@
 <li>key为“Authorization”</li>
 <li>value为上述令牌的“token_type access_token”(<strong>注意有个空格！</strong>)</li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/QQ%E6%88%AA%E5%9B%BE20190624211148.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/QQ%E6%88%AA%E5%9B%BE20190624211148.png"></p>
 </li>
 <li><p>成功获得信息</p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
@@ -1568,7 +1568,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

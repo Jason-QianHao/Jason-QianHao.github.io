@@ -495,10 +495,10 @@
 </blockquote>
 <p>从2001年DDR内存面世以来发展到2019年的今天，已经走过了DDR、DDR2、DDR3、DDR4四个大的规格时代了（DDR5现在也出来了）</p>
 <h1 id="CPU与内存的连接架构"><a href="#CPU与内存的连接架构" class="headerlink" title="CPU与内存的连接架构"></a>CPU与内存的连接架构</h1><h2 id="FSB"><a href="#FSB" class="headerlink" title="FSB"></a>FSB</h2><p>​    是历史上CPU、内存数量比较少的年代里的总线方案-FSB。FSB的全称是Front Side Bus，因此也叫前端总线。CPU通过FSB总线连接到北桥芯片，然后再连接到内存。内存控制器是集成在北桥里的，Cpu和内存之间的通信全部都要通过这一条FSB总线来进行。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102116541.png" alt="image-20220302102116541"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102116541.png" alt="image-20220302102116541"></p>
 <p>提高计算机系统整体性能的方式就是不断地提高CPU、FSB总线、内存条的数据传输频率。</p>
 <h2 id="NUMA时代"><a href="#NUMA时代" class="headerlink" title="NUMA时代"></a><strong>NUMA时代</strong></h2><p>CPU制造商们把内存控制器从北桥搬到了CPU内部，这样CPU便可以直接和自己的内存进行通信了。那么，如果CPU想要访问不和自己直连的内存条怎么办呢？所以就诞生了新的总线类型，它就叫QPI总线。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101634743.png" alt="image-20220302101634743"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302101634743.png" alt="image-20220302101634743"></p>
 <h3 id="查看NUMA的内存组"><a href="#查看NUMA的内存组" class="headerlink" title="查看NUMA的内存组"></a>查看NUMA的内存组</h3><p>每一个物理CPU都有不同的内存组，通过<code>numactl</code>命令可以查看这个分组情况。</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># numactl --hardware</span>
 available: <span class="token number">2</span> nodes <span class="token punctuation">(</span><span class="token number">0</span>-1<span class="token punctuation">)</span>
@@ -517,14 +517,14 @@ available: <span class="token number">2</span> nodes <span class="token punctuat
 <p> <code>node distance</code>是一个二维矩阵，描述node访问所有内存条的延时情况。 <code>node 0</code>里的CPU访问<code>node 0</code>里的内存相对距离是<code>10</code>,因为这时访问的内存都是和该CPU直连的。而<code>node 0</code>如果想访问<code>node 1</code>节点下的内存的话，就需要走QPI总线了，这时该相对距离就变成了<code>21</code>。</p>
 <h3 id="测试内存访问速度"><a href="#测试内存访问速度" class="headerlink" title="测试内存访问速度"></a>测试内存访问速度</h3><p>拿8M数组，循环步长为64的数组来测试访问速度，<strong>同node耗时3.15纳秒，跨node为3.96纳秒</strong>。所以属于同一个node里的CPU和内存之间访问速度会比较快。而如果跨node的话，则需要经过QPI总线，总体来说，速度会略慢一些。</p>
 <h3 id="ZONE的划分"><a href="#ZONE的划分" class="headerlink" title="ZONE的划分"></a>ZONE的划分</h3><p>每个 node 又会划分成若干的 <strong>zone（区域）</strong> 。zone 表示内存中的一块范围</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102125489.png" alt="image-20220302102125489"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102125489.png" alt="image-20220302102125489"></p>
 <ul>
 <li>ZONE_DMA：地址段最低的一块内存区域，ISA(Industry Standard Architecture)设备DMA访问</li>
 <li>ZONE_DMA32：该Zone用于支持32-bits地址总线的DMA设备，只在64-bits系统里才有效</li>
 <li>ZONE_NORMAL：在X86-64架构下，DMA和DMA32之外的内存全部在NORMAL的Zone里管理</li>
 </ul>
 <p>在每个zone下，都包含了许许多多个 Page（页面）， 在linux下一个Page的大小一般是 4 KB。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102133618.png" alt="image-20220302102133618"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102133618.png" alt="image-20220302102133618"></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># 查看zone的情况</span>
 <span class="token comment"># cat /proc/zoneinfo</span>
 Node <span class="token number">0</span>, zone      DMA
@@ -549,9 +549,9 @@ struct zone <span class="token punctuation">&#123;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>free_area是一个11个元素的数组，在每一个数组分别代表的是空闲可分配连续4K、8K、16K、……、4M内存链表。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102152275.png" alt="image-20220302102152275"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102152275.png" alt="image-20220302102152275"></p>
 <p>基于伙伴系统的内存分配中，有可能需要将大块内存拆分成两个小伙伴。在释放中，可能会将两个小伙伴合并再次组成更大块的连续内存。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102202256.png" alt="image-20220302102202256"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102202256.png" alt="image-20220302102202256"></p>
 <p>内核提供分配器函数 <code>alloc_pages</code> 到上面的多个链表中寻找可用连续页面。</p>
 <h3 id="NUMA陷阱"><a href="#NUMA陷阱" class="headerlink" title="NUMA陷阱"></a>NUMA陷阱</h3><p>NUMA陷阱指的是引入QPI总线后，在计算机系统里可能会存在的一个坑。</p>
 <p>大致的意思就是如果你的机器打开了numa，那么你的内存即使在充足的情况下，也会<strong>使用磁盘上的swap</strong>，导致性能低下。</p>
@@ -616,8 +616,8 @@ Part Number: 36KSF1G72PZ-1G4M1
 <li>Speed: 1067 MHz：每秒能进行内存数据传输的速度. <strong>这里实际是工作频率</strong></li>
 <li>Data Width: 64 bits：内存工作一次传输的数据宽度</li>
 </ul>
-<h2 id="对比历代DDR参数"><a href="#对比历代DDR参数" class="headerlink" title="对比历代DDR参数"></a>对比历代DDR参数</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640" alt="图片"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102220072.png" alt="image-20220302102220072"></p>
+<h2 id="对比历代DDR参数"><a href="#对比历代DDR参数" class="headerlink" title="对比历代DDR参数"></a>对比历代DDR参数</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102220072.png" alt="image-20220302102220072"></p>
 <p><strong>汇总一句话，内存真正的工作频率是核心频率，时钟频率和数据频率都是在核心频率的基础上，通过技术手段放大出来的。内存越新，放大的倍数越多。</strong></p>
 <h1 id="内存在顺序和随机IO的延时差异"><a href="#内存在顺序和随机IO的延时差异" class="headerlink" title="内存在顺序和随机IO的延时差异"></a>内存在顺序和随机IO的延时差异</h1><h2 id="测试顺序IO"><a href="#测试顺序IO" class="headerlink" title="测试顺序IO"></a>测试顺序IO</h2><pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token keyword">void</span> <span class="token function">init_data</span><span class="token punctuation">(</span><span class="token keyword">double</span> <span class="token operator">*</span>data<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
  <span class="token keyword">int</span> i<span class="token punctuation">;</span>
@@ -673,7 +673,7 @@ Part Number: 36KSF1G72PZ-1G4M1
 <p><strong>数组从32K到64M</strong>。当数据集比较小的时候、L1、L2、L3还能抗一抗。但当增加到16M、64M以后，穿透到内存的IO情况会变多，穿透过去以后极大可能行地址也会变。在64M的数据集中，内存的延时竟然下降到了38.4ns.</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>内存存在随机访问比顺序访问慢的多的情况，大概是4:1的关系。</p>
 <h1 id="内存带宽"><a href="#内存带宽" class="headerlink" title="内存带宽"></a>内存带宽</h1><p>理论上内存带宽的计算公式是：Band Width = Speed * Data Width。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102228612.png" alt="image-20220302102228612"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102228612.png" alt="image-20220302102228612"></p>
 <p>在DDR3,1067MHz的条件下，测量的实际带宽：</p>
 <ul>
 <li><p>在数据较小，实际内存IO发生的很少时，大部分都是更高效的L1 cache的IO，在CPU内部就完成了。但最高值也才6G而已，也没有达到厂家宣称的8GB。</p>
@@ -682,11 +682,11 @@ Part Number: 36KSF1G72PZ-1G4M1
 </li>
 </ul>
 <h1 id="内核对内存的使用"><a href="#内核对内存的使用" class="headerlink" title="内核对内存的使用"></a>内核对内存的使用</h1><p>不同于给应用程序提供的虚拟内存机制，内核使用slab的分配器来申请内存。比如TCP连接时内存的运用等等。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102239970.png" alt="image-20220302102239970"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102239970.png" alt="image-20220302102239970"></p>
 <p>对于各个内核运行中实际使用的对象来说，多大的对象都有。有的对象有1K多，但有的对象只有几百、甚至几十个字节。如果都直接分配一个 4K的页面 来存储的话也太败家了，所以伙伴系统并不能直接使用。</p>
 <p>在伙伴系统之上，<strong>内核又给自己搞了一个专用的内存分配器， 叫slab或slub</strong>。</p>
 <p>这个分配器最大的特点就是，一个slab内只分配特定大小、甚至是特定的对象。这样当一个对象释放内存后，另一个同类对象可以直接使用这块内存。通过这种办法极大地降低了碎片发生的几率。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102246288.png" alt="image-20220302102246288"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102246288.png" alt="image-20220302102246288"></p>
 <p>slab相关的内核对象定义如下：</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;file: include&#x2F;linux&#x2F;slab_def.h
 struct kmem_cache &#123;
@@ -704,7 +704,7 @@ struct kmem_cache_node &#123;
 
 <p>每个cache都有满、半满、空三个链表。每个链表节点都对应一个 slab，一个 slab 由 1 个或者多个内存页组成。</p>
 <p><strong>在每一个 slab 内都保存的是同等大小的对象。</strong> 一个cache的组成示意图如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102254865.png" alt="image-20220302102254865"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102254865.png" alt="image-20220302102254865"></p>
 <p>当 cache 中内存不够的时候，会调用基于伙伴系统的分配器（__alloc_pages函数）请求整页连续内存的分配。</p>
 <h1 id="关于内存问题的例子"><a href="#关于内存问题的例子" class="headerlink" title="关于内存问题的例子"></a>关于内存问题的例子</h1><h2 id="Redis存储结构的设计"><a href="#Redis存储结构的设计" class="headerlink" title="Redis存储结构的设计"></a>Redis存储结构的设计</h2><ul>
 <li><p>需求</p>
@@ -727,7 +727,7 @@ struct kmem_cache_node &#123;
 </ul>
 </li>
 <li><p>测试结果</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102306125.png" alt="image-20220302102306125"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102306125.png" alt="image-20220302102306125"></p>
 </li>
 <li><p>结果分析</p>
 <ul>
@@ -1505,7 +1505,7 @@ struct kmem_cache_node &#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

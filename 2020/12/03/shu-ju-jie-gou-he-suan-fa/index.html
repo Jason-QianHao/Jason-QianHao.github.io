@@ -519,7 +519,7 @@
 </ul>
 <h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><ul>
 <li><p>主定理计算时间复杂度</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310103515959.png" alt="image-20220310103515959"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310103515959.png" alt="image-20220310103515959"></p>
 </li>
 <li><p>尾递归</p>
 <p>  如果一个函数中所有递归形式的调用都出现在函数的末尾，我们称这个递归函数是尾递归的。当<strong>递归调用是整个函数体中最后执行的语句且它的返回值不属于表达式的一部分</strong>时，这个递归调用就是尾递归。尾递归函数的特点是在回归过程中不用做任何操作，这个特性很重要，因为大多数现代的编译器会利用这种特点自动生成优化的代码。</p>
@@ -528,17 +528,17 @@
 <p>  针对尾递归优化的语言可以通过尾递归防止栈溢出。<strong>尾递归事实上和循环是等价的</strong>，没有循环语句的编程语言只能通过尾递归实现循环。</p>
 </li>
 </ul>
-<h2 id="Java常见数据结构的复杂度"><a href="#Java常见数据结构的复杂度" class="headerlink" title="Java常见数据结构的复杂度"></a>Java常见数据结构的复杂度</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310103613699.png" alt="image-20220310103613699"></p>
+<h2 id="Java常见数据结构的复杂度"><a href="#Java常见数据结构的复杂度" class="headerlink" title="Java常见数据结构的复杂度"></a>Java常见数据结构的复杂度</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310103613699.png" alt="image-20220310103613699"></p>
 <ul>
 <li><p>特别注意一下跳跃表</p>
 <p>思想：<strong>升维</strong>和<strong>空间换时间</strong>，改善链表随机访问过慢的情况</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310103846892.png" alt="image-20220310103846892"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310103846892.png" alt="image-20220310103846892"></p>
 <p>在调表中查询任意数据的时间复杂度都是O(log(n))。</p>
 </li>
 </ul>
 <h1 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h1><ul>
 <li><p>一维数组是存放在连续内存空间上的相同类型数据的结合</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310134027486.png" alt="image-20220310134027486"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310134027486.png" alt="image-20220310134027486"></p>
 <p>需要两点注意的是</p>
 <ul>
 <li><strong>数组下标都是从0开始的。</strong></li>
@@ -553,7 +553,7 @@
 <h1 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>链表是一种通过指针串联在一起的线性结构，每一个节点由两部分组成，一个是数据域一个是指针域（存放指向下一个节点的指针），最后一个节点的指针域指向null（空指针的意思）。</p>
 <p>链接的入口节点称为链表的头结点也就是head。</p>
 <p>如图所示：</p>
-<p> <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20200806194529815.png" alt="链表1"></p>
+<p> <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200806194529815.png" alt="链表1"></p>
 <h2 id="链表的类型"><a href="#链表的类型" class="headerlink" title="链表的类型"></a>链表的类型</h2><ul>
 <li><p>单链表</p>
 <p>刚刚说的就是单链表。</p>
@@ -563,19 +563,19 @@
 <p>双链表：每一个节点有两个指针域，一个指向下一个节点，一个指向上一个节点。</p>
 <p>双链表 既可以向前查询也可以向后查询。</p>
 <p>如图所示： </p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20200806194559317.png" alt="链表2"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200806194559317.png" alt="链表2"></p>
 </li>
 <li><p>循环链表</p>
 <p>循环链表，顾名思义，就是链表首尾相连。</p>
 <p>循环链表可以用来解决约瑟夫环问题。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20200806194629603.png" alt="链表4"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200806194629603.png" alt="链表4"></p>
 </li>
 </ul>
 <h2 id="链表的存储方式"><a href="#链表的存储方式" class="headerlink" title="链表的存储方式"></a>链表的存储方式</h2><p>数组是在内存中是连续分布的，但是<strong>链表在内存中可不是连续分布的。</strong></p>
 <p>链表是通过指针域的指针链接在内存中各个节点。</p>
 <p>所以链表中的节点在内存中不是连续分布的 ，而是<strong>散乱分布在内存中的某地址上，分配机制取决于操作系统的内存管理。</strong></p>
 <p>如图所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20200806194613920.png" alt="链表3"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200806194613920.png" alt="链表3"></p>
 <p>这个链表起始节点为2， 终止节点为7， 各个节点分布在内存个不同地址空间上，通过指针串联在一起。</p>
 <h2 id="链表的定义"><a href="#链表的定义" class="headerlink" title="链表的定义"></a>链表的定义</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 单链表</span>
 <span class="token keyword">class</span> <span class="token class-name">ListNode</span> <span class="token punctuation">&#123;</span>
@@ -588,7 +588,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="性能分析"><a href="#性能分析" class="headerlink" title="性能分析"></a>性能分析</h2><p>再把链表的特性和数组的特性进行一个对比，如图所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20200806195200276.png" alt="链表-链表与数据性能对比"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200806195200276.png" alt="链表-链表与数据性能对比"></p>
 <p>数组在定义的时候，长度就是固定的，如果想改动数组的长度，就需要重新定义一个新的数组。</p>
 <p>链表的长度可以是不固定的，并且可以动态增删， 适合数据量不固定，频繁增删，较少查询的场景。</p>
 <h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><p>（1）树的定义，一种最自然的方式是<strong>递归</strong>的方式。</p>
@@ -632,36 +632,36 @@
 
 <p>（3）findMin和findMax</p>
 <p>​    往树的最左节点和最右节点找。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321049.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321049.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（4）insert</p>
 <p>  根据大小关系，遍历并比较，遍历到叶节点时插入</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321109.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321109.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（5）remove</p>
 <p>​    用其右子树的最小的数据代替该节点的数据，并递归的删除那个节点。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321062.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321062.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="AVL树"><a href="#AVL树" class="headerlink" title="AVL树"></a>AVL树</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>（1）背景：对于二叉搜索树，当向一棵树输入预先排好序的数据，将会退化成一个链表。</p>
 <p>（2）特性：带有平衡条件的二叉查找树，它必须保证树的深度须是O(log N)。</p>
 <p>（3）定义：一颗AVL树是其每个节点的左子树和右子树的高度最多差1的二叉查找树（空树的高度为-1）</p>
 <h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>  当进行插入操作时，可能破坏AVL树的特性。通过旋转操作来恢复平衡特性。</p>
-<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210517630.png" alt="img" style="zoom:50%;" />
+<h4 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210517630.png" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321049.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321049.png" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210555667.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210555667.png" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321071.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321071.png" alt="img" style="zoom:50%;" />
 
 <h4 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h4><p>（1）插入</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321111.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321111.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（2）右旋</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321086.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321086.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（3）左旋</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321094.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321094.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="伸展树"><a href="#伸展树" class="headerlink" title="伸展树"></a>伸展树</h2><h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><p>（1）伸展树（Splay Tree）主要特点是不会保证树一直是平衡的，但各种操作的平摊时间复杂度是O(log n)</p>
 <p>（2）伸展树的出发点</p>
@@ -670,16 +670,16 @@
 <h3 id="旋转方式"><a href="#旋转方式" class="headerlink" title="旋转方式"></a>旋转方式</h3><p>  伸展树主要有三种旋转操作，分别为单旋转，一字形旋转和之字形旋转。为了便于解释，我们假设当前被访问节点为X，X的父亲节点为Y（如果X的父亲节点存在），X的祖父节点为Z（如果X的祖父节点存在）。</p>
 <p>（1）单旋转</p>
 <p>  节点X的父节点Y是根节点。这时，如果X是Y的左孩子，我们进行一次右旋操作；如果X 是Y 的右孩子，则我们进行一次左旋操作。经过旋转，X成为二叉查找树T的根节点，调整结束。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321091.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321091.jpeg" alt="img"></p>
 <p>（2）一字型旋转</p>
 <p>  节点X 的父节点Y不是根节点，Y 的父节点为Z，且X与Y同时是各自父节点的左孩子或者同时是各自父节点的右孩子。这时，我们进行一次左左旋转操作或者右右旋转操作。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321095.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321095.jpeg" alt="img"></p>
 <p>（3）之字形旋转</p>
 <p>节点X的父节点Y不是根节点，Y的父节点为Z，X与Y中一个是其父节点的左孩子而另一个是其父节点的右孩子。这时，我们进行一次左右旋转操作或者右左旋转操作。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321114.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321114.jpeg" alt="img"></p>
 <p>（4）伸展树区间操作</p>
 <p>  在实际应用中，伸展树的中序遍历即为我们维护的数列，这就引出一个问题，怎么在伸展树中表示某个区间？比如我们要提取区间[a,b]，那么我们将a前面一个数对应的结点转到树根，将b 后面一个结点对应的结点转到树根的右边，那么根右边的左子树就对应了区间[a,b]。原因很简单，将a 前面一个数对应的结点转到树根后， a 及a 后面的数就在根的右子树上，然后又将b后面一个结点对应的结点转到树根的右边，那么[a,b]这个区间就是下图中B所示的子树。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321124.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321124.jpeg" alt="img"></p>
 <p>  利用区间操作我们可以实现线段树的一些功能，比如回答对区间的询问（最大值，最小值等）。具体可以这样实现，在每个结点记录关于以这个结点为根的子树的信息，然后询问时先提取区间，再直接读取子树的相关信息。还可以对区间进行整体修改，这也要用到与线段树类似的延迟标记技术，即对于每个结点，额外记录一个或多个标记，表示以这个结点为根的子树是否被进行了某种操作，并且这种操作影响其子结点的信息值，当进行旋转和其他一些操作时相应地将标记向下传递。</p>
 <h2 id="B树-B-树）、B-树、B-树"><a href="#B树-B-树）、B-树、B-树" class="headerlink" title="B树(B-树）、B+树、B*树"></a>B树(B-树）、B+树、B*树</h2><p>参考连接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/1d501467124b">B树（B-树）、B+树、B*树 - 简书</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/zhuanzhe117/article/details/78039692">B树与B+树简明扼要的区别_Hannah-CSDN博客_b树和b+树区别</a></p>
 <h2 id="红黑树"><a href="#红黑树" class="headerlink" title="红黑树"></a>红黑树</h2><p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24367771">美团：红黑树深入剖析及Java实现</a></p>
@@ -689,12 +689,12 @@
 <p>（3）每个叶子节点都是黑色的空节点（NIL节点）。</p>
 <p>（4）每个红色节点的两个子节点都是黑色。(从每个叶子到根的所有路径上不能有两个连续的红色节点)</p>
 <p>（5）从任一节点到其每个叶子的所有路径都包含相同数目的黑色节点。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321134.jpeg" alt="img" style="zoom: 67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321134.jpeg" alt="img" style="zoom: 67%;" />
 
 <h3 id="关键性质"><a href="#关键性质" class="headerlink" title="关键性质"></a>关键性质</h3><p>从根到叶子的最长的可能路径不多于最短的可能路径的两倍长。</p>
 <h3 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h3><p>  插入一个叶子节点后，由于插入破坏的红黑树性质，要进行一定的调整。有变色和旋转两种方式。</p>
 <h4 id="变色"><a href="#变色" class="headerlink" title="变色"></a>变色</h4><p>  为了重新符合红黑树的规则，尝试把红色节点变为黑色，或者把黑色节点变为红色。</p>
-<h4 id="旋转-1"><a href="#旋转-1" class="headerlink" title="旋转"></a>旋转</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321147.png" alt="img"></p>
+<h4 id="旋转-1"><a href="#旋转-1" class="headerlink" title="旋转"></a>旋转</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321147.png" alt="img"></p>
 <h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>  <strong>新插入的节点是红色的（之所以将新插入的结点的颜色赋为红色，是因为：如果设为黑色，就会导致根到叶子的路径上有一条路上，多一个额外的黑结点，这个是很难调整的。但是设为红色结点后，可能会导致出现两个连续红色结点的冲突，那么可以通过颜色调换和树旋转来调整，这样简单多了）</strong>，插入修复操作如果遇到父节点的颜色为黑则修复操作结束。也就是说，只有在父节点为红色节点的时候是需要插入修复操作的。</p>
 <p>  插入修复操作分为以下的三种情况，而且新插入的节点和父节点都是红色的：</p>
 <p>· 叔叔节点也为红色。</p>
@@ -702,18 +702,18 @@
 <p>· 叔叔节点为空，且祖父节点、父节点和新节点不处于一条斜线上。</p>
 <p>（1）插入操作-case 1</p>
 <p>  case 1的操作是将父节点和叔叔节点与祖父节点的颜色互换，这样就符合了RBTRee的定义。即维持了高度的平衡，修复后颜色也符合RBTree定义的第三条和第四条。下图中，操作完成后A节点变成了新的节点。如果A节点的父节点不是黑色的话，则继续做修复操作。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321140.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321140.png" alt="img" style="zoom:67%;" />
 
 <p>（2）插入操作-case 2</p>
 <p>  case 2的操作是将B节点进行<strong>右旋</strong>操作，并且和父节点A互换颜色。通过该修复操作RBTRee的高度和颜色都符合红黑树的定义。如果B和C节点都是右节点的话，只要将操作变成左旋就可以了。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321137.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321137.png" alt="img" style="zoom:67%;" />
 
 <p>（3）插入操作-case 3</p>
 <p>  case 3的操作是将C节点进行左旋，这样就从case 3转换成case 2了，然后针对case 2进行操作处理就行了。case 2操作做了一个右旋操作和颜色互换来达到目的。如果树的结构是下图的镜像结构，则只需要将对应的左旋变成右旋，右旋变成左旋即可。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321146.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321146.png" alt="img" style="zoom:67%;" />
 
 <p>插入操作的总结：插入后的修复操作是一个向root节点回溯的操作，一旦牵涉的节点都符合了红黑树的定义，修复操作结束。</p>
-<h3 id="对比AVL树"><a href="#对比AVL树" class="headerlink" title="对比AVL树"></a>对比AVL树</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321240.png" alt="img" style="zoom:50%;" />
+<h3 id="对比AVL树"><a href="#对比AVL树" class="headerlink" title="对比AVL树"></a>对比AVL树</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321240.png" alt="img" style="zoom:50%;" />
 
 <ul>
 <li><p>从查找或者读取性质来说的话，AVL更好，因为AVL是更平衡的</p>
@@ -761,19 +761,19 @@
 <p>（1）insert插入（上滤）</p>
 <p>​    · 将新元素插入到下一个可用位置（保证结构性，即完全二叉树）</p>
 <p>​    · 比较新元素和其父节点元素的大小，若比父元素小，就交换两个位置，继续向上比较</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321252.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321252.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321194.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321194.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（2）deleteMin删除堆顶（下滤）</p>
 <p>  · 将堆最后一个元素放入堆顶，即删除堆顶元素</p>
 <p>  · 将该元素与两个儿子比较，与其中的较小者交换，并继续向下比较。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321505.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321505.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321239.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321239.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="d-堆"><a href="#d-堆" class="headerlink" title="d-堆"></a>d-堆</h2><p>  d-堆是二叉堆的简单推广，就像一个二叉堆，只是所有的节点需要有d个儿子。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321214.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321214.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="其他堆"><a href="#其他堆" class="headerlink" title="其他堆"></a>其他堆</h2><ul>
 <li><p>左式堆</p>
@@ -784,9 +784,9 @@
 </li>
 </ul>
 <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><p>参考：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/developer1024/posts">developer1024 - 知乎</a></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321491.png" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321491.png" alt="img" style="zoom:80%;" />
 
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310113755176.png" alt="image-20220310113755176"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310113755176.png" alt="image-20220310113755176"></p>
 <p><strong>在面试中最重要的就是O(nlogn)的三个排序算法：堆排、快排、归并排序</strong></p>
 <h2 id="基于比较的排序"><a href="#基于比较的排序" class="headerlink" title="基于比较的排序"></a>基于比较的排序</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>（1）算法：由N-1趟排序组成，对于p = 1到N-1趟，插入排序保证从位置0到位置p上的元素为已排序状态。</p>
 <p>（2）时间复杂度 O(N^2)</p>
@@ -820,10 +820,10 @@
 <p>  · 稳定性：不稳定</p>
 <p>  · 复杂性：较复杂</p>
 <p>（3）说明图</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321255.jpeg" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321255.jpeg" alt="img" style="zoom:80%;" />
 
 <p>（4）代码</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321268.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321268.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>（1）算法：</p>
 <p>① 将待排序的序列构造成一个最大堆，此时序列的最大值为根节点</p>
@@ -847,7 +847,7 @@
 <p>  · 排序方式：In-place</p>
 <p>  · 稳定性：稳定</p>
 <p>（3）说明图</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321287.jpeg" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321287.jpeg" alt="img" style="zoom:80%;" />
 
 <h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>（1）算法：</p>
 <p>  快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为两个子序列（sub-lists）。</p>
@@ -913,7 +913,7 @@
 <p>  · 空间复杂度：O(n * k)</p>
 <p>  · 稳定性：稳定</p>
 <p>（3）说明图</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321285.jpeg" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321285.jpeg" alt="img" style="zoom:80%;" />
 
 <h3 id="基数排序"><a href="#基数排序" class="headerlink" title="基数排序"></a>基数排序</h3><p>（1）算法</p>
 <p>  原理是将整数按位数切割成不同的数字，然后按每个位数分别比较。基数排序的方式可以采用LSD（Least significant digital）或MSD（Most significant digital），LSD的排序方式由键值的最右边开始，而MSD则相反，由键值的最左边开始。</p>
@@ -928,7 +928,7 @@
 <p>  · 空间复杂度：O(k + N)</p>
 <p>  · 稳定性：稳定</p>
 <p>（3）说明图</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321282.jpeg" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321282.jpeg" alt="img" style="zoom:80%;" />
 
 <h2 id="外部排序"><a href="#外部排序" class="headerlink" title="外部排序"></a>外部排序</h2><h3 id="概念-5"><a href="#概念-5" class="headerlink" title="概念"></a>概念</h3><p>  外部排序算法由两个阶段构成：</p>
 <p>（1）按照内存大小，将大文件分成若干长度为 l 的子文件（l 应小于内存的可使用容量），然后将各个子文件依次读入内存，使用适当的内部排序算法对其进行排序（排好序的子文件统称为“归并段”或者“顺段”），将排好序的归并段重新写入外存，为下一个子文件排序腾出内存空间；</p>
@@ -936,10 +936,10 @@
 <h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>例如，有一个含有 10000 个记录的文件，但是内存的可使用容量仅为 1000 个记录，毫无疑问需要使用外部排序算法，具体分为两步：</p>
 <p>· 将整个文件其等分为 10 个临时文件（每个文件中含有 1000 个记录），然后将这 10 个文件依次进入内存，采取适当的内存排序算法对其中的记录进行排序，将得到的有序文件（初始归并段）移至外存。</p>
 <p>· 对得到的 10 个初始归并段进行如图的两两归并，直至得到一个完整的有序文件。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321288.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321288.png" alt="img" style="zoom:67%;" />
 
 <p>  这里只用了2路进行归并，还有更多路平衡归并。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321326.png" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321326.png" alt="img" style="zoom:67%;" />
 
 <h1 id="图"><a href="#图" class="headerlink" title="图"></a>图</h1><h2 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h2><ol>
 <li><p>图是由顶点的有穷非空集合和顶点之间边的集合组成，通常表示为**G =(V,E)**；</p>
@@ -983,11 +983,11 @@
 </ol>
 <h2 id="图的表示"><a href="#图的表示" class="headerlink" title="图的表示"></a>图的表示</h2><p>（1）邻接矩阵（稠密图适用）</p>
 <p>  对于每条边（u, v）置<code>A[u][v]</code>等于true，否则数组的元素就是false。如果边有一个权，那么可以置<code>A[u][v]</code>等于该权，使用一个很大或者很小的全标记不存在的边。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310095830503.png" alt="image-20220310095830503"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310095830503.png" alt="image-20220310095830503"></p>
 <p>（2）邻接表（稀疏图适用）</p>
 <p>  对每个顶点，使用一个表存放所有<strong>邻接</strong>的顶点。由数组+链表组成。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310095856840.png" alt="image-20220310095856840"></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321331.jpeg" alt="img" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310095856840.png" alt="image-20220310095856840"></p>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321331.jpeg" alt="img" style="zoom:50%;" />
 
 <ul>
 <li>邻接矩阵需要为每个顶点都分配n个边的空间，其实很多边是不存在的，会造成一定空间的浪费</li>
@@ -1138,7 +1138,7 @@
 <li>广度有限搜素（BFS）是从某个顶点触发，一层一层的遍历顶点。</li>
 </ul>
 <p> 为了避免圈的出现，当访问一个顶点v的时候，由于我们当时已经到该点处，因此可以标记该点是访问过的，并且对于尚未被标记的所有邻接顶点递归调用搜索。</p>
-<h3 id="无向图"><a href="#无向图" class="headerlink" title="无向图"></a>无向图</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321563.jpeg" alt="img"></p>
+<h3 id="无向图"><a href="#无向图" class="headerlink" title="无向图"></a>无向图</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321563.jpeg" alt="img"></p>
 <p>  利用上述步骤，可以在无向图中构成深度优先生成树。</p>
 <h3 id="双连通性"><a href="#双连通性" class="headerlink" title="双连通性"></a>双连通性</h3><p>（1）双连通性</p>
 <p>​    一个连通的无向图如果不存在被删除之后使得剩下的图不在连通的顶点，那么这样的无向连通图就称为是<strong>双连通</strong>的。</p>
@@ -1148,11 +1148,11 @@
 <p>  可以得出，欧拉回路只有当图是连通的且每个顶点的度（即，边的条数）是偶数时才有可能存在。</p>
 <h2 id="最短路径算法"><a href="#最短路径算法" class="headerlink" title="最短路径算法"></a>最短路径算法</h2><p>  <strong>单源最短路径问题</strong>：给定一个赋权图G=（V，E）和一个特定顶点s作为输入，找出从s到G中每一个其他顶点的最短赋权路径。</p>
 <h3 id="无权最短路径"><a href="#无权最短路径" class="headerlink" title="无权最短路径"></a>无权最短路径</h3><p>  先搜索距离s为1的点，再搜索距离为2的点，依次往下，这种方法称为<strong>广度优先搜索</strong>（BFS）。这类似树中的层序遍历。同样适用队列进行算法运算。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210703122948002.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703122948002.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321373.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321373.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321359.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321359.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h3><p>（1）概念</p>
 <p>​    是解决单源最短路径问题（<strong>赋权图</strong>中）的一般解法。</p>
@@ -1160,17 +1160,17 @@
 <p>​    只要边的值没有负值，该算法总能顺利工作。</p>
 <p>（2）算法</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/40338107">（七）通俗易懂理解——dijkstra算法求最短路径 - 知乎</a></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321353.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321353.jpeg" alt="img"></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/24777208-d139d6fc2b0f1aaa.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321384-5231001.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321385.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321384.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321395.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321417.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321416.jpeg" alt="img"></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321424.jpeg" alt="img" style="zoom:50%;" />
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321384-5231001.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321385.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321384.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321395.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321417.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321416.jpeg" alt="img"></p>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321424.jpeg" alt="img" style="zoom:50%;" />
 
-<h3 id="具有负边值的图"><a href="#具有负边值的图" class="headerlink" title="具有负边值的图"></a>具有负边值的图</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321460.jpeg" alt="img" style="zoom:50%;" />
+<h3 id="具有负边值的图"><a href="#具有负边值的图" class="headerlink" title="具有负边值的图"></a>具有负边值的图</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321460.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="无圈图"><a href="#无圈图" class="headerlink" title="无圈图"></a>无圈图</h3><p>  以拓扑顺序选择顶点。当一个顶点v被选取后，按照拓扑顺序的法则它没有从unknown顶点发出的进入边，因此它的距离d可不再被降低。</p>
 <h2 id="最小生成树"><a href="#最小生成树" class="headerlink" title="最小生成树"></a>最小生成树</h2><h3 id="概念-6"><a href="#概念-6" class="headerlink" title="概念"></a>概念</h3><p>（1）最小生成树</p>
@@ -1179,24 +1179,24 @@
 <p>（3）最小生成树的边数为顶点总数V - 1</p>
 <p>（4）贪婪算法是成立的，即在建立生成树时所添加的边在所有避免成圈的边中其值最小。</p>
 <h3 id="Prim算法"><a href="#Prim算法" class="headerlink" title="Prim算法"></a>Prim算法</h3><p>  算法在每一阶段都可以通过选择边（u, v）使得（u，v）的值是所有u在树上但v不在树上的边的值中的最小者而找出一个新的顶点并把它添加到这棵树中。 </p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321464.jpeg" alt="img" style="zoom:67%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321464.jpeg" alt="img" style="zoom:67%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321465.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321465.jpeg" alt="img" style="zoom:50%;" />
 
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321466.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321510.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321512.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321516.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321512-5231001.jpeg" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321532.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321466.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321510.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321512.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321516.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321512-5231001.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321532.jpeg" alt="img"></p>
 <h3 id="Kruskal算法"><a href="#Kruskal算法" class="headerlink" title="Kruskal算法"></a>Kruskal算法</h3><p>  算法连续地按照最小的权选择边，并且当所选的边不产生圈时就把它作为所选定的边。</p>
 <p>  Kruskal算法也是贪婪算法。</p>
 <p>  算法在实施的任意时刻，两个顶点属于同一个集合当且仅当他们在当前的生成森林中连通。因此，每个顶点最初是在它自己的集合中，如果u和v在同一个集合中，那么连接他们的边就要放弃，由于他们已经连通了，因此再添加边（u, v）就会形成一个圈；如果这两个顶点不在同一个集合中，则将该边加入。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321544.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321544.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321547.jpeg" alt="img" style="zoom: 50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321547.jpeg" alt="img" style="zoom: 50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321555.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321555.jpeg" alt="img" style="zoom:50%;" />
 
 <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>​    这里列出常见的一些解决问题的方法，和其<strong>基本的理论知识</strong></p>
 <p>​    需要对照时间的例子，来更深层的理解，可以参考**<a href="https://jason-qianhao.github.io/2021/06/17/leetcode-shua-ti/">Leetcode分类刷题</a>**来进行训练。</p>
@@ -1217,7 +1217,7 @@
 <p>一般坚持<strong>子问题不相交</strong>的原则。</p>
 </li>
 </ul>
-<h3 id="主定理判断时间复杂度"><a href="#主定理判断时间复杂度" class="headerlink" title="主定理判断时间复杂度"></a>主定理判断时间复杂度</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210702210321549.jpeg" alt="img" style="zoom:50%;" />
+<h3 id="主定理判断时间复杂度"><a href="#主定理判断时间复杂度" class="headerlink" title="主定理判断时间复杂度"></a>主定理判断时间复杂度</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702210321549.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="分治代码模板"><a href="#分治代码模板" class="headerlink" title="分治代码模板"></a>分治代码模板</h3><pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">def</span> <span class="token function">divide_conquer</span><span class="token punctuation">(</span>problem<span class="token punctuation">,</span> param1<span class="token punctuation">,</span> param2<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
     <span class="token comment"># recursion terminator 递归终止条件</span>
@@ -1393,7 +1393,7 @@
 </ol>
 </li>
 </ul>
-<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><h4 id="背包分类"><a href="#背包分类" class="headerlink" title="背包分类"></a>背包分类</h4><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310130024575.png" alt="image-20220310130024575" />
+<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><h4 id="背包分类"><a href="#背包分类" class="headerlink" title="背包分类"></a>背包分类</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310130024575.png" alt="image-20220310130024575" />
 
 <p>如下图可以分为：</p>
 <ul>
@@ -1401,7 +1401,7 @@
 <ul>
 <li><p>二维dp方式</p>
 <p>注意点：<strong>初始化使用倒叙</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310133127775.png" alt="image-20220310133127775">、</p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310133127775.png" alt="image-20220310133127775">、</p>
 </li>
 <li><p>一维dp方式</p>
 <p>注意点：</p>
@@ -1413,7 +1413,7 @@
 <li><p>遍历背包时，只能倒叙遍历（这样能保证，后面的状态不依赖前面的状态，保证一个物品只取一遍）</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310133201688.png" alt="image-20220310133201688"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310133201688.png" alt="image-20220310133201688"></p>
 </li>
 </ul>
 </li>
@@ -1458,13 +1458,13 @@
 或者
 dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">max</span><span class="token punctuation">(</span>dp<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> dp<span class="token punctuation">[</span>i <span class="token operator">-</span> num<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ol>
-<h4 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310131816790.png" alt="image-20220310131816790"></p>
+<h4 id="常见场景"><a href="#常见场景" class="headerlink" title="常见场景"></a>常见场景</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310131816790.png" alt="image-20220310131816790"></p>
 <h2 id="字典树"><a href="#字典树" class="headerlink" title="字典树"></a>字典树</h2><p>​    字典树，即Trie树，又称单词查找树或键树，是一种树形结构。</p>
 <p>​    典型应用是用于统计和排序大量的字符串（但不限于字符串），所以经常被搜索引擎用于文本词频统计。</p>
 <p>​    优点：最大限度地减少无谓的字符串比较，查询效率比哈希表高。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310112704367.png" alt="image-20220310112704367"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310112704367.png" alt="image-20220310112704367"></p>
 <p><strong>代码实现参考leetcode208，典型例题leetcode212 单词搜索II</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310112855557.png" alt="image-20220310112855557"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310112855557.png" alt="image-20220310112855557"></p>
 <h2 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h2><p>详细可以参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/93647900/">并查集</a></p>
 <p>并查集被很多OIer认为是最简洁而优雅的数据结构之一，主要用于解决一些<strong>元素分组</strong>的问题。它管理一系列<strong>不相交的集合</strong>，并支持两种操作：</p>
 <ul>
@@ -1473,13 +1473,13 @@ dp<span class="token punctuation">[</span>i<span class="token punctuation">]</sp
 </ul>
 <h2 id="位运算"><a href="#位运算" class="headerlink" title="位运算"></a>位运算</h2><ul>
 <li><p>XOR 异或</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310113619817.png" alt="image-20220310113619817"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310113619817.png" alt="image-20220310113619817"></p>
 </li>
 <li><p>指定位置的位运算</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310113634465.png" alt="image-20220310113634465"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310113634465.png" alt="image-20220310113634465"></p>
 </li>
 <li><p>一些常见运用和场景</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220310113700353.png" alt="image-20220310113700353"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220310113700353.png" alt="image-20220310113700353"></p>
 </li>
 </ul>
 <h2 id="随机化算法"><a href="#随机化算法" class="headerlink" title="随机化算法"></a>随机化算法</h2><p>（1）算法</p>
@@ -2018,7 +2018,7 @@ dp<span class="token punctuation">[</span>i<span class="token punctuation">]</sp
                 <a href="/2020/12/09/docker-jian-jie/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-mp53pk.jpg" class="responsive-img" alt="Docker简介">
+                        <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/wallhaven-mp53pk.jpg" class="responsive-img" alt="Docker简介">
                         
                         <span class="card-title">Docker简介</span>
                     </div>
@@ -2258,7 +2258,7 @@ dp<span class="token punctuation">[</span>i<span class="token punctuation">]</sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

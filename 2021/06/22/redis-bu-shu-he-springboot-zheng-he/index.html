@@ -497,7 +497,7 @@
 <h2 id="安装包方式"><a href="#安装包方式" class="headerlink" title="安装包方式"></a>安装包方式</h2><ol>
 <li><p>下载安装包</p>
 <p>去<a target="_blank" rel="noopener" href="https://redis.io/download">Redis官网下载</a><strong>Stable</strong> 稳定版</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622143154263.png" alt="image-20210622143154263" style="zoom:40%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622143154263.png" alt="image-20210622143154263" style="zoom:40%;" /></li>
 <li><p>安装</p>
 <p>这里通过命令行安装，在解压后的目录下<code>redis-6.2.2</code>：</p>
 </li>
@@ -509,33 +509,33 @@
 <p>安装完后可以看见目录如下：</p>
 </li>
 </ul>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622144110428.png" alt="image-20210622144110428" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622144110428.png" alt="image-20210622144110428" style="zoom:50%;" />
 
 <ol start="3">
 <li><p>Redis配置</p>
 <p>注意这里坑比较多！！！先找到<code>redis.conf</code>文件，这是redis的配置文件，我们一般需要配置的是服务器的登陆密码。可以打开文件后搜索<code>requirepass</code> 修改后面的的密码即可，注意还要去掉前面的<code>#</code>。</p>
 </li>
 </ol>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622144447552.png" alt="image-20210622144447552" style="zoom:40%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622144447552.png" alt="image-20210622144447552" style="zoom:40%;" />
 
 <p>​        <strong>还可以继续配置aof或者rdb的持久方式：</strong></p>
 <ul>
 <li><p>开启RDB</p>
 <p>将包含save的那几行的<code>#</code>去掉即可</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220322144253193.png" alt="image-20220322144253193" style="zoom:67%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220322144253193.png" alt="image-20220322144253193" style="zoom:67%;" /></li>
 <li><p>开启AOF</p>
 <p>将apeendonly的值改为yes即可</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220322144345818.png" alt="image-20220322144345818" style="zoom:67%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220322144345818.png" alt="image-20220322144345818" style="zoom:67%;" /></li>
 </ul>
 <ol start="4">
 <li><p>启动Redis服务</p>
 <p>这里是个大坑！！！注意到上一步我们设置了conf文件，如果想要配置生效，启动的时候需要加上conf文件。直接打开终端，将conf和<code>redis-server</code>文件拖入，后者先cd进入上面的redis解压目录。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622144847683.png" alt="image-20210622144847683" style="zoom:50%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622144847683.png" alt="image-20210622144847683" style="zoom:50%;" /></li>
 </ol>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622145120931.png" alt="image-20210622145120931" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622145120931.png" alt="image-20210622145120931" style="zoom:50%;" />
 
 <p>​    然后回车即可看见服务正常启动，看到下面的界面就可以了。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622145342686.png" alt="image-20210622145342686" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622145342686.png" alt="image-20210622145342686" style="zoom:50%;" />
 
 <p>​    这里如果觉得每次麻烦，可以封装成一个执行文件:</p>
 <ul>
@@ -552,7 +552,7 @@
 <p>上述带有conf文件的启动方式，即使你通过<code>control+c</code>关掉服务后，redis服务会依然在后台启动，若是修改配置后重启，可以在mac的<code>活动监视器</code>搜索<code>redis    </code>关掉服务，再通过步骤4启动服务。</p>
 </li>
 </ol>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20210622145259965.png" alt="image-20210622145259965" style="zoom:40%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210622145259965.png" alt="image-20210622145259965" style="zoom:40%;" />
 
 <h2 id="homebrew方式"><a href="#homebrew方式" class="headerlink" title="homebrew方式"></a>homebrew方式</h2><ol>
 <li><p>需要先配置homebrew</p>
@@ -1720,7 +1720,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

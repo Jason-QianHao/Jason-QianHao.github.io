@@ -503,8 +503,8 @@
 </blockquote>
 <h1 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h1><h2 id="机械硬盘"><a href="#机械硬盘" class="headerlink" title="机械硬盘"></a>机械硬盘</h2><h3 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h3><p>常见的机械磁盘，分磁盘面、磁道、柱面和扇区。</p>
 <p>机械硬盘拆开以后，结构如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102349744.png" alt="image-20220302102349744"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302101558496.png" alt="image-20220302101558496"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102349744.png" alt="image-20220302102349744"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302101558496.png" alt="image-20220302101558496"></p>
 <p>可见有以下概念 ：</p>
 <ol>
 <li><p>磁盘面：磁盘是由一叠磁盘面叠加组合构成，每个磁盘面上都会有一个磁头负责读写。</p>
@@ -532,19 +532,19 @@
 <p>把一个文件分成N片，每一片都散列在不同的硬盘上。这样当文件进行读取的时候，就可以N块硬盘一起来工作，从而达到读取速度提高到N倍的效果，这就是RAID 0。</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102359897.png" alt="image-20220302102359897"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102359897.png" alt="image-20220302102359897"></p>
 <p>​        不过这个方案没有解决容易坏的问题，任何一块硬盘坏了都会导致存储系统故障。</p>
 <ul>
 <li><p>RAID1</p>
 <p>仍然把文件分片，但是所有的分片都存在一块硬盘上，其它的硬盘只存拷贝。这既提高了硬盘的访问速度，也解决了坏的问题。任意一块硬盘坏了，存储系统都可以正常使用，只不过速度会打一点折扣。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102407195.png" alt="image-20220302102407195"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102407195.png" alt="image-20220302102407195"></p>
 <p>不过这个方案又带来了新的问题，那就是实现成本有点高了。假如我们用256G硬盘想实现512G的存储容量的话，最少得需要4块硬盘才能实现。</p>
 </li>
 <li><p>RAID5</p>
 <p>最常见的raid5 RAID 5同样要对文件进行分片，但是不对存储的数据进行备份，而是会再单独存一个校验数据片。假如文件分为A1 A2 A3，然后需要再存一个校验片到别的磁盘上。这样不管A1，A2还是A3那一片丢失了，都可以根据另外两片和校验片合成出来。既保证了数据的安全性，又只用了一块磁盘做冗余存储。</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102413105.png" alt="image-20220302102413105"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102413105.png" alt="image-20220302102413105"></p>
 <p>​    假如我们有8块256GB的硬盘，那么RAID5方案下的磁盘阵列从用户角度来看可用的存储空间是7<em>256GB，只“浪费”了一块盘的空间，所以*<em>目前RAID5应用比较广泛~~</em></em></p>
 <h4 id="RAID缓存"><a href="#RAID缓存" class="headerlink" title="RAID缓存"></a>RAID缓存</h4><p>磁盘本身也基本都带了缓存，另外在一些比较新的raid卡里，硬件开发者们又搞出来了一层“内存”，并且还自己附带一块电池，这就是RAID卡缓存。</p>
 <p>电池的作用就是当发现主机意外断电的时候，能够快速把缓存中的数据写回到磁盘中去。对于写入，一般操作系统写到这个RAID卡里就完事了，所以速度快。对于读取也是，只要缓存里有，就不会透传到磁盘的机械轴上。</p>
@@ -563,7 +563,7 @@
 </ul>
 </blockquote>
 <h2 id="固态硬盘"><a href="#固态硬盘" class="headerlink" title="固态硬盘"></a>固态硬盘</h2><h3 id="结构-1"><a href="#结构-1" class="headerlink" title="结构"></a>结构</h3><p>机械硬盘和ssd虽然都同为硬盘，但底层实现技术却完全不一样，机械硬盘使用的是磁性材料记忆，而<strong>SSD用的是类似u盘的闪存技术</strong>。实现技术的不同，必然在硬盘内部结构上他们就有天壤之别。他们的果照对比如下图所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102419990.png" alt="image-20220302102419990"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102419990.png" alt="image-20220302102419990"></p>
 <ul>
 <li><p>SSD是由一些电路和<strong>黑色的存储颗粒构成</strong>。</p>
 <p>SSD硬盘是基于NAND Flash存储技术的，属于非易失性存储设备，换成人话说，就是掉电了数据不会丢。</p>
@@ -571,7 +571,7 @@
 <li><p>其中每一个黑色的存储颗粒也叫做一个<strong>Die</strong>。我们“拆开”一个Die来看一下</p>
 </li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102426747.png" alt="image-20220302102426747"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102426747.png" alt="image-20220302102426747"></p>
 <ul>
 <li><p>每个Die有若干个<strong>Plane</strong></p>
 </li>
@@ -582,21 +582,21 @@
 </li>
 <li><p>每一个Page里，又包含了许许多多的<strong>闪存单元</strong>。</p>
 <p>现代的闪存单元有多种类型，目前主流的主要分为SLC、MLC和TLC。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102434489.png" alt="image-20220302102434489"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102434489.png" alt="image-20220302102434489"></p>
 <p>以上三种闪存单元对比：从性能和稳定性角度来看，SLC最好。从容量角度看，TLC最大。</p>
 <p>这就是为什么日常我们看到的工业级的SSD要比笔记本SSD要贵很多，其中一个很重要的原因就是<strong>工业级的盘往往采用的闪存单元是SLC或MLC，而我们家用的笔记本一般都是TCL，因为便宜嘛</strong>。我们用表格再对它们直观对比一下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102442132.png" alt="image-20220302102442132"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102442132.png" alt="image-20220302102442132"></p>
 <p>目前主流闪存类型TLC居多，因为价格便宜，容量大。</p>
 </li>
 </ul>
 <h3 id="扇区"><a href="#扇区" class="headerlink" title="扇区"></a>扇区</h3><p>新的机械硬盘虽然把物理扇区已经做到4KB的了，但为了兼容老系统还得整出个逻辑扇区的概念来适配。到了SSD里也一样，虽然每一个物理Page的大小为2K到16K不等，但是<strong>为了兼容性，也必须得整出个逻辑扇区才行。</strong></p>
 <p>SSD控制器在逻辑上会把整个磁盘再重新划分成一个个的“扇区”，采用和新机械硬盘一样的LBA方式来进行编址（整个磁盘的扇区从0到某个最大值方式排列，并连成一条线）。、</p>
 <p>当需要读取某几个”扇区”上数据的时候，SSD控制器通过访问这个<code>LBA MapTable</code>, 再来找到要实际访问的物理Page，如下图：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102451208.png" alt="image-20220302102451208"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102451208.png" alt="image-20220302102451208"></p>
 <p><strong>不过SSD最小的读写单位就是Page，他是没办法用扇区来进行读写的。</strong></p>
 <h3 id="文件存储方式"><a href="#文件存储方式" class="headerlink" title="文件存储方式"></a>文件存储方式</h3><p>假设某SSD的Page大小是4KB，一个文件是16KB。那么该文件是存在一个黑色的存储颗粒里,还是多个颗粒里？</p>
 <p>我们先把SSD的逻辑结构用个直观一点的图来看：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102458183.png" alt="image-20220302102458183"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102458183.png" alt="image-20220302102458183"></p>
 <p>假设只写在一个颗粒里，那么对该文件进行读取的时候，就只能用到一条Flash通道，这样速度就会比较慢。如果存在相邻的4个颗粒里，每个写入4KB。这样多个Flash通道的带宽会充分发挥出来，传输速度也更快。所以，实际中是分散在多个。</p>
 <h2 id="Linux查看磁盘信息"><a href="#Linux查看磁盘信息" class="headerlink" title="Linux查看磁盘信息"></a>Linux查看磁盘信息</h2><ul>
 <li><p><code>lsblk</code>，查看服务器上安装的硬盘数量以及大小</p>
@@ -648,7 +648,7 @@ Partition <span class="token number">1</span> does not end on cylinder boundary.
 </li>
 <li><p>虚拟的磁头head和磁道cylinders</p>
 <p>从磁盘上拆下来的磁头的真实照片</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102507282.png" alt="image-20220302102507282"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102507282.png" alt="image-20220302102507282"></p>
 <p>上面的图片里只有几个磁头，如果硬盘里真的装下255个这样的磁头的话，很难想象磁盘得有多厚。而且磁头多了以后硬盘的可靠性就越差，因为多磁头出故障的几率总会比单磁头要高一些。所以<code>fdisk -l</code>里看到的255 heads其实和扇区一样，也是虚拟出来的。 另外cylinders也一样，也是虚拟出来的。</p>
 </li>
 </ol>
@@ -662,9 +662,9 @@ Partition <span class="token number">1</span> does not end on cylinder boundary.
 <li>第三步，向目标扇区读取或者写入数据，这部分时间叫存取时间。这个是电磁操作，所以一般耗时较短，为零点几ms。</li>
 </ul>
 <p>到此为止，<strong>单次磁盘IO时间 = 寻道时间 + 旋转延迟 + 存取时间</strong></p>
-<h2 id="Linux-IO-读取"><a href="#Linux-IO-读取" class="headerlink" title="Linux IO 读取"></a>Linux IO 读取</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640.png" alt="640"></p>
+<h2 id="Linux-IO-读取"><a href="#Linux-IO-读取" class="headerlink" title="Linux IO 读取"></a>Linux IO 读取</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640.png" alt="640"></p>
 <p>Linux读取文件的过程：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640%20(1).png" alt="640 (1)"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640%20(1).png" alt="640 (1)"></p>
 <ul>
 <li><p><strong>如果 Page Cache 命中的话，根本就没有磁盘 IO 产生</strong>。</p>
 </li>
@@ -681,7 +681,7 @@ Partition <span class="token number">1</span> does not end on cylinder boundary.
 </ul>
 </li>
 </ul>
-<h2 id="Linux-IO-写入"><a href="#Linux-IO-写入" class="headerlink" title="Linux IO 写入"></a>Linux IO 写入</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102643747.png" alt="image-20220302102643747"></p>
+<h2 id="Linux-IO-写入"><a href="#Linux-IO-写入" class="headerlink" title="Linux IO 写入"></a>Linux IO 写入</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102643747.png" alt="image-20220302102643747"></p>
 <p>绝大部分情况都是写入到PageCache中就返回了，这时并没有真正写入磁盘。我们的数据会在如下三个时机下被真正发起写磁盘IO请求：</p>
 <ul>
 <li>第一种情况，如果write系统调用时，如果发现PageCache中脏页占比太多，超过了dirty_ratio或dirty_bytes，write就必须等待了。</li>
@@ -708,8 +708,8 @@ Partition <span class="token number">1</span> does not end on cylinder boundary.
 </li>
 <li><p><code>fdisk</code>命令分区</p>
 <p>分区的过程就是你输入起始柱面号和截至柱面号的过程。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102654287.png" alt="image-20220302102654287"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102844649.png" alt="image-20220302102844649"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102654287.png" alt="image-20220302102654287"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102844649.png" alt="image-20220302102844649"></p>
 <p>不过在实际中，<strong>分区并不能从0号柱面开始的，因为磁盘的第一个磁道对应的柱面会被用来安装引导加载程序以及磁盘分区表。</strong></p>
 </li>
 </ul>
@@ -767,7 +767,7 @@ Inode size:               <span class="token number">256</span><span aria-hidden
 <li><p>创建目录的时候，操作系统会在inode位图上寻找尚未使用的inode编号，找到后把inode分配给你。</p>
 </li>
 <li><p>目录会默认分配一个block，所以还需要查询block位图，找到后分配一个block。在block里面，存储的就是文件系统自己定义的目录项数据结构了，例如ext4_dir_entry_2。每一个结构里会保存其下的文件名，文件的inode编号等信息。某个实际文件夹在磁盘上最终使用的空间如下图所示：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102703419.png" alt="image-20220302102703419"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102703419.png" alt="image-20220302102703419"></p>
 </li>
 </ul>
 <p>目录的block中保存的是其下面的文件和子目录的目录项结构体，保存着它们的文件名和inode号。理解了目录，对于文件也是一样的。也需要消耗inode，当有数据写入的时候，再去申请block。</p>
@@ -795,7 +795,7 @@ Block size<span class="token operator">:</span>               <span class="token
 #define EXT2_N_BLOCKS              (EXT2_TIND_BLOCK + 1)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>就按4K的block size来看，15个block只够存的下15*4=60K的文件。 这个文件大小相信你一定不满意，你存一个avi大片都得上G了。那Linux是怎么实现大文件存储的呢？嗯，其实上面宏的定义过程已经告诉你了，就是只有12个数组直接存block指针，其余的用来做间接索引（EXT2_IND_BLOCK），二级间接索引（EXT2_DIND_BLOCK）和三级索引（EXT2_TIND_BLOCK）。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102711581.png" alt="image-20220302102711581"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102711581.png" alt="image-20220302102711581"></p>
 <p>这样，一个文件可以使用的空间就指数倍的扩展了。 文件小的时候，都用直接索引，磁盘IO少，性能好。文件大的时候，访问一个block可能得先进行三次的IO，性能略慢，不过有OS层面的页缓存、目录项缓存的加持，也还好。</p>
 <h2 id="删除文件后依然占空间"><a href="#删除文件后依然占空间" class="headerlink" title="删除文件后依然占空间"></a>删除文件后依然占空间</h2><p>文件夹下的文件都已经删了，该文件夹为什么还占用72K的磁盘空间？ </p>
 <p>问题关键在于<code>ext4_dir_entry中的</code>rec_len<code>。这个变量存储了当前整个</code>ext4_dir_entry对象的长度，这样操作系统在遍历文件夹的时候，就可以通过当前的指针，加上这个长度就可以找到文件夹中下一个文件的<code>dir_entry</code>了。这样的优势是遍历起来非常方便，有点像是一个链表，一个一个穿起来的。 </p>
@@ -827,7 +827,7 @@ Superblock backups stored on blocks:
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">mke2fs</span> -j -L <span class="token string">"卷标"</span> -b <span class="token number">2048</span> -i <span class="token number">8192</span> /dev/sdb1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>块组groups</p>
 <p>格式化后的所有inode并不是挨着一起放的，同样block也不是。而是分成了一个个的group，每一个group里都有一些inode和block。逻辑图如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302102722093.png" alt="image-20220302102722093"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102722093.png" alt="image-20220302102722093"></p>
 </li>
 </ul>
 
@@ -1575,7 +1575,7 @@ Superblock backups stored on blocks:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

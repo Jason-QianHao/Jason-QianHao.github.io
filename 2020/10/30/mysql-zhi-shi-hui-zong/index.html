@@ -488,7 +488,7 @@
 <p>数据库管理系统（Database Management System）。数据库是通过DBMS创建和操作的容器</p>
 <p>（3）SQL</p>
 <p>结构化查询语言（Structure Query Language）：专门用来与数据库通信的语言</p>
-<h1 id="MySql逻辑架构"><a href="#MySql逻辑架构" class="headerlink" title="MySql逻辑架构"></a>MySql逻辑架构</h1><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745542.jpeg" style="zoom: 50%;" />
+<h1 id="MySql逻辑架构"><a href="#MySql逻辑架构" class="headerlink" title="MySql逻辑架构"></a>MySql逻辑架构</h1><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745542.jpeg" style="zoom: 50%;" />
 
 <h2 id="连接-线程管理"><a href="#连接-线程管理" class="headerlink" title="连接/线程管理"></a>连接/线程管理</h2><p>（1）每个客户端连接都会在服务器进程中拥有一个线程</p>
 <p>（2）数据库连接池</p>
@@ -540,7 +540,7 @@
 <li><p>常见的非关系型数据库有 Neo4j、MongoDB、<strong>Redis</strong>、Memcached、MemcacheDB 和 HBase 等。</p>
 </li>
 <li><p>分类</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745513.png"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745513.png"></p>
 </li>
 <li><p>共同的特点</p>
 <ol>
@@ -622,7 +622,7 @@
 <li>REPEATABLE READ 可重复读/<strong>幻读</strong>。<strong>是MySQL的默认事务隔离级别</strong>，保证了在同一个事务中多次读取同样记录的结果一致。可能发生幻读：一个事务在读取某个范围内的记录时，另一个事务在范围内插入记录，导致<strong>幻行</strong>。通过<strong>MVCC</strong>多版本并发控制解决问题。</li>
 <li>SERIALIZEABLE 可串行化。最高的隔离级别，强制事务串行执行。本质是在读取的每一行数据上都加锁。</li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745542.png" alt="image"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745542.png" alt="image"></p>
 <p>（4）持久性</p>
 <p>   一旦事务提交，则其所做的修改就会永久保存到数据库中。</p>
 <h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><ul>
@@ -655,7 +655,7 @@
 <p>指写入回滚段(rollback segment)的 undo log record (撤销日志记录记录)。 如果一行记录被更新, 则 undo log record 包含 ‘重建该行记录被更新之前内容’ 所必须的信息</p>
 <p>（3） 新行插入而单调递增的ID DB_ROW_ID</p>
 <p>如果我们的表中没有主键或合适的唯一索引, 也就是无法生成聚簇索引的时候, InnoDB会帮我们自动生成聚集索引, 但聚簇索引会使用DB_ROW_ID的值来作为主键; 如果我们有自己的主键或者合适的唯一索引, 那么聚簇索引中也就不会包含 DB_ROW_ID 了</p>
-<h3 id="更新步骤"><a href="#更新步骤" class="headerlink" title="更新步骤"></a>更新步骤</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745607.png" alt="image"/>
+<h3 id="更新步骤"><a href="#更新步骤" class="headerlink" title="更新步骤"></a>更新步骤</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745607.png" alt="image"/>
 
 <p>（1）排他锁锁定该行</p>
 <p>（2）记录redo-log</p>
@@ -703,7 +703,7 @@
 </ul>
 <p><strong>· 注意</strong><br>   “聚集索引”是一种数据存储方式，同时保存索引和数据行。一个表中只能有一个聚集索引。</p>
 <h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h2><p>索引用来快速地寻找那些具有特定值的记录，<strong>所有MySQL索引都以B-树的形式保存</strong>。如果没有索引，执行查询时MySQL必须<strong>从第一个记录开始扫描整个表的所有记录</strong>，直至找到符合要求的记录。</p>
-<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><h3 id="B-Tree索引"><a href="#B-Tree索引" class="headerlink" title="B-Tree索引"></a>B-Tree索引</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745528.png" alt="image"></p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><h3 id="B-Tree索引"><a href="#B-Tree索引" class="headerlink" title="B-Tree索引"></a>B-Tree索引</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745528.png" alt="image"></p>
 <p>（1）按顺序存储值，每一个叶子节点到根距离相同。</p>
 <p>（2）B+Tree：叶节点指向下一个叶节点，方便叶节点遍历</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bengshakalakaka/article/details/89255902">B树与B+树与磁盘读取的联系_键盘上的青春-CSDN博客_b树 磁盘</a></p>
@@ -792,14 +792,14 @@
 <p>InooDB索引结构是B+Tree，其索引就是一个个key。但是<strong>主键索引和辅助索引在叶子节点的存储结构上有一点不同</strong>。</p>
 <ul>
 <li><p>对于主键索引，其存储结构可能如下（仅做示意）</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220309103430624.png" alt="image-20220309103430624"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220309103430624.png" alt="image-20220309103430624"></p>
 <p>因此若执行select * from this_table where id = 3，就会执行：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220309103513340.png" alt="image-20220309103513340"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220309103513340.png" alt="image-20220309103513340"></p>
 </li>
 <li><p>辅助索引结构示意图：顺序是ASCII码</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220309103535679.png" alt="image-20220309103535679"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220309103535679.png" alt="image-20220309103535679"></p>
 <p>可见，<strong>辅助索引中存储的是主键索引，而不是真正的数据值。</strong><br>因此若执行select * from this_table where name = cxy，就会执行</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220309103556999.png" alt="image-20220309103556999"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220309103556999.png" alt="image-20220309103556999"></p>
 <p><strong>从辅助索引回到主键索引树搜索的过程，即为回表</strong></p>
 </li>
 <li><p><strong>注意</strong></p>
@@ -842,7 +842,7 @@
 </ul>
 <h2 id="使用索引的代价"><a href="#使用索引的代价" class="headerlink" title="使用索引的代价"></a>使用索引的代价</h2><p>对DML(update、delete、insert)语句的效率，增删改会对索引影响，因为索引要重新整理。</p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>（1）存储引擎对索引的支持</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20220308113957522.png" alt="image"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220308113957522.png" alt="image"></p>
 <p>（2）什么时候加索引</p>
 <ul>
 <li>查询作为查询条件字段应该创建索引</li>
@@ -947,7 +947,7 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
 <p>  要执行的这条语句，刚好这条语句涉及到的<strong>表</strong>，别人在用，并且加锁了，我们拿不到锁，只能慢慢等待别人释放锁了。或者，表没有加锁，但要使用到的某个一行被加锁了。</p>
 <h3 id="一直很慢"><a href="#一直很慢" class="headerlink" title="一直很慢"></a>一直很慢</h3><p>(1) 没有用上索引：例如该字段没有索引；由于对字段进行运算、函数操作导致无法用索引。</p>
 <p>(2) 数据库选错了索引。</p>
-<h2 id="一条SQL语句的执行过程"><a href="#一条SQL语句的执行过程" class="headerlink" title="一条SQL语句的执行过程"></a>一条SQL语句的执行过程</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630204745577.jpeg" style="zoom:50%;" />
+<h2 id="一条SQL语句的执行过程"><a href="#一条SQL语句的执行过程" class="headerlink" title="一条SQL语句的执行过程"></a>一条SQL语句的执行过程</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630204745577.jpeg" style="zoom:50%;" />
 
 <h2 id="MySQL数据库的高可用"><a href="#MySQL数据库的高可用" class="headerlink" title="MySQL数据库的高可用"></a>MySQL数据库的高可用</h2><p><a target="_blank" rel="noopener" href="https://www.jb51.net/article/83400.htm">MySQL数据库的高可用方案总结</a></p>
 
@@ -1459,7 +1459,7 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
                 <a href="/2020/11/02/ji-suan-ji-wang-luo/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-3z3grv.jpg" class="responsive-img" alt="计算机网络">
+                        <img src="/medias/featureimages/3.png" class="responsive-img" alt="计算机网络">
                         
                         <span class="card-title">计算机网络</span>
                     </div>
@@ -1511,7 +1511,7 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
                 <a href="/2020/10/28/java-chang-jian-wen-ti-hui-zong/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-01kegg.jpg" class="responsive-img" alt="Java常见问题汇总">
+                        <img src="/medias/featureimages/47.jpg" class="responsive-img" alt="Java常见问题汇总">
                         
                         <span class="card-title">Java常见问题汇总</span>
                     </div>
@@ -1691,7 +1691,7 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

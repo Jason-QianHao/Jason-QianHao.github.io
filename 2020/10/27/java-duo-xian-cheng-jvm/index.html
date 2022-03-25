@@ -599,7 +599,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
 · Thread（Runable r, String name）分配一个新的Thread对象<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h3><p>线程从创建、运行到结束总是处于下面五个状态之一：<strong>新建状态、就绪状态、运行状态、阻塞状态及死亡状态</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739865.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739865.png" alt="img"></p>
 <p>（1）新建状态</p>
 <p>​    当用new操作符创建一个线程时。</p>
 <p>（2）就绪状态</p>
@@ -646,7 +646,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
    <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>字节码底层机制：同步块是由monitorenter指令进入，然后monitorexit释放锁，在执行monitorenter之前需要尝试获取锁，如果这个对象没有被锁定，或者当前线程已经拥有了这个对象的锁，那么就把锁的计数器加1。当执行monitorexit指令时，锁的计数器也会减1。当获取锁失败时会被阻塞，一直等待锁被释放。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/v2-da522fd0c4ed856125b7f6d0c154461f_1440w.jpg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/v2-da522fd0c4ed856125b7f6d0c154461f_1440w.jpg" alt="img" style="zoom:50%;" />
 
 <p>（2）同步方法</p>
 <p>  使用this对象作为锁。</p>
@@ -661,7 +661,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
    <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>字节码底层机制：在方法的flags里面多了一个<code>ACC_SYNCHRONIZED</code>标志，这标志用来告诉JVM这是一个同步方法，在进入该方法之前先获取相应的锁，锁的计数器加1，方法结束后计数器-1，如果获取失败就阻塞住，知道该锁被释放。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/v2-7ee20b20506f94c4421b45229e1ae877_1440w.jpg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/v2-7ee20b20506f94c4421b45229e1ae877_1440w.jpg" alt="img" style="zoom:50%;" />
 
 <p>（3）静态同步方法</p>
 <p>  当方法被static关键字修饰，锁使用class对象，即当前类的字节码文件</p>
@@ -701,13 +701,13 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
 <li>公平锁</li>
 </ul>
 <p>​    按照发出请求顺序获得锁。如果没有获取到锁，则直接加入队列<strong>尾部</strong>。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739845-5039859.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739845-5039859.png" alt="img" style="zoom:50%;" />
 
 <ul>
 <li>非公平锁（默认）</li>
 </ul>
 <p>​    如果线程在发出请求的同时该锁的状态变为可用，那么这个线程将跳过队列中所有的等待线程并获得这个锁。尝试获取锁会进行两次，两次都失败则直接加入CLH队列尾部，后面流程和公平锁一致。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739976.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739976.png" alt="img" style="zoom:50%;" />
 
 <p>（2）特性</p>
 <p>​    在激烈竞争时，非公平锁性能高于公平锁的性能。</p>
@@ -760,7 +760,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>（4）底层原理</p>
 <p>​    利用ThreadLocal.ThreadLocalMap&lt;Thread, T&gt;保存变量</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740065.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740065.png" alt="img"/>
 
 <h3 id="活跃性与性能"><a href="#活跃性与性能" class="headerlink" title="活跃性与性能"></a>活跃性与性能</h3><p>（1）不良并发</p>
 <p>​    可同时调用的用户请求数量，不仅受到可用处理资源的限制，还受到应用程序本身结构的限制。</p>
@@ -776,7 +776,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
 <p>· JMM定义了线程和主内存之间的抽象关系：线程之间的<strong>共享变量存储在主内存</strong>（main memory）中，每个线程都有一个私有的<strong>本地内存</strong>（local memory），本地内存中存储了该线程以读/写共享变量的副本。</p>
 <p>· 本地内存是JMM的一个抽象概念，并不真实存在。它涵盖了<strong>缓存，写缓冲区，寄存器</strong>以及其他的硬件和编译器优化。</p>
 <p>（2）模型图</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630162553671.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630162553671.png" alt="img"></p>
 <p>​    当线程A和线程B需要通信时，线程A首先会把自己本地内存中修改后的值刷新到主内存中，随后，线程B到主内存中去读取线程A更新后的值。</p>
 <p>​    如果线程本地内存没有及时刷新到主内存中，则可能发生线程安全问题。</p>
 <p>（3）意义</p>
@@ -878,7 +878,7 @@ publicclass <span class="token class-name">ThreadDemo2</span> <span class="token
 <h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><p>（1）概念</p>
 <p>​    多个线程同时被阻塞，他们中的一个或者全部都在等待某个资源被释放。由于线程被无限期地阻塞，因此程序不可能正常终止。</p>
 <p>​    同步中嵌套同步,导致锁无法释放。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155741003.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155741003.png" alt="img"/>
 
 <p>（2）死锁条件</p>
 <p>​    · 互斥：任意时刻资源只能由一个线程占用</p>
@@ -953,9 +953,9 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h4 id="TheadPoolExecutor"><a href="#TheadPoolExecutor" class="headerlink" title="TheadPoolExecutor"></a>TheadPoolExecutor</h4><p>（1）Executors框架的弊端</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739852.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739852.png" alt="img"></p>
 <p>（2）TheadPoolExecutor构造方法</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739855.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739855.png" alt="img"></p>
 <p>（3）构造参数分析</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"> <span class="token comment">/**
  \* ⽤给定的初始参数创建⼀个新的ThreadPoolExecutor。
@@ -1014,7 +1014,7 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
    <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>（4）原理分析</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739887.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739887.png" alt="img"/>
 
 <h2 id="悲观锁与乐观锁"><a href="#悲观锁与乐观锁" class="headerlink" title="悲观锁与乐观锁"></a>悲观锁与乐观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>（1）概念</p>
 <p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次<strong>在拿数据的时候都会上锁</strong>，这样别人想拿这个数据就会阻塞直到它拿到锁（<strong>共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程</strong>）</p>
@@ -1030,7 +1030,7 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
 <p>（2）原理</p>
 <p>  · 三个操作数：需要读写的内存值 V，进行比较的值 A，拟写入的新值 B。</p>
 <p>· 当且仅当 V 的值等于 A时，CAS通过原子方式用新值B来更新V的值，否则不会执行任何操作（比较和替换是一个原子操作）。一般情况下是一个<strong>自旋操作</strong>，即<strong>不断的重试</strong>。（结合JMM内存模型理解）</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739918.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739918.png" alt="img"/>
 
 <p>（3）CAS算法缺点</p>
 <p>  <strong>· ABA问题</strong></p>
@@ -1047,7 +1047,7 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
 <h3 id="AQS原理"><a href="#AQS原理" class="headerlink" title="AQS原理"></a>AQS原理</h3><p>（1）AQS 核心思想</p>
 <p>如果被请求的共享资源空闲，则将当前请求资源的线程设置为有效的工作线程，并且将共享资源设置为锁定状态。如果被请求的共享资源被占用，那么就<strong>需要一套线程阻塞等待以及被唤醒时锁分配的机制</strong>，这个机制 AQS 是用 CLH 队列锁实现的，即将暂时获取不到锁的线程加入到队列中。</p>
 <p>  CLH(Craig,Landin,and Hagersten)队列是一个虚拟的双向队列（虚拟的双向队列即不存在队列实例，仅存在结点之间的关联关系）。AQS 是将每条请求共享资源的线程封装成一个 CLH 锁队列的一个结点（Node）来实现锁的分配。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739897.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739897.png" alt="img"/>
 
 <p>（2）源码分析</p>
 <p>  AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。</p>
@@ -1226,7 +1226,7 @@ threadPool<span class="token punctuation">.</span><span class="token function">s
 <h4 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h4><p>（1）概念</p>
 <p>  在类加载的时候，系统会首先判断当前类是否被加载过。已经被加载的类会直接返回，否则才会尝试加载。</p>
 <p>加载的时候，<strong>首先会把该请求委派该父类加载器</strong>的 loadClass() 处理，因此所有的请求最终都应该传送到顶层的启动类加载器 BootstrapClassLoader 中。当父类加载器无法处理时，才由自己来处理。当父类加载器为null时，会使用启动类加载器 BootstrapClassLoader 作为父类加载器。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739924.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739924.png" alt="img"/>
 
 <p>（2）每个类加载都有一个父类加载器</p>
 <p>AppClassLoader的父类加载器为ExtClassLoader ExtClassLoader的父类加载器为null，<strong>null并不代表ExtClassLoader没有父类加载器，而是 BootstrapClassLoader</strong>。</p>
@@ -1271,13 +1271,13 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p> <strong>自定义加载器的话，需要继承 ClassLoader 。</strong></p>
 <p>​    如果我们不想打破双亲委派模型，就重写 ClassLoader 类中的 findClass() 方法即可，无法被父类加载器加载的类最终会通过这个方法被加载。</p>
 <p>​    但是，如果想打破双亲委派模型则需要重写 loadClass() 方法</p>
-<h3 id="加载class文件过程"><a href="#加载class文件过程" class="headerlink" title="加载class文件过程"></a>加载class文件过程</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739925.png" alt="img"></p>
+<h3 id="加载class文件过程"><a href="#加载class文件过程" class="headerlink" title="加载class文件过程"></a>加载class文件过程</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739925.png" alt="img"></p>
 <h4 id="加载"><a href="#加载" class="headerlink" title="加载"></a>加载</h4><p>  · 通过全类名获取定义此类的二进制字节流</p>
 <p>  · 将字节流所代表的静态存储结构转换为方法区的运行时数据结构</p>
 <p>  · 在内存中生成一个代表该类的 Class 对象,作为方法区这些数据的访问入口</p>
 <p>  .class文件 —》 findClass() —》 defineClass()</p>
 <h4 id="链接（Link）"><a href="#链接（Link）" class="headerlink" title="链接（Link）"></a>链接（Link）</h4><p>（1）验证</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739934.png" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739934.png" />
 
 <p>（2）准备</p>
 <p><strong>准备阶段是正式为类变量分配内存并设置类变量初始值的阶段</strong>，这些内存都将在方法区中分配。</p>
@@ -1303,7 +1303,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>（5）ExceptionInInitializerError</p>
 <h2 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenwansangz/article/details/95601232">什么是JIT</a></p>
 <p>​    JIT编译（just-in-time compilation）狭义来说是当某段代码即将第一次被执行时进行编译，因而叫“即时编译”。JIT编译是动态编译的一种特例。JIT编译一词后来被泛化，时常与动态编译等价；但要注意广义与狭义的JIT编译所指的区别。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/20160812104144969" alt="JVM运行原理"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20160812104144969" alt="JVM运行原理"></p>
 <p>​    当虚拟机发现某个方法或代码块的运行特别频繁时，就会把这些代码认定为“<em>热点代码</em>”。为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各种层次的优化，完成这个任务的编译器称为<em>即时编译器</em>（Just In Time Compiler）</p>
 <h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><p>（1）分类</p>
 <p>​    · 物理内存 RAM，调用操作系统接口访问。</p>
@@ -1312,7 +1312,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>​    · 内核空间，操作系统程序逻辑</p>
 <p>​    · 用户空间，每一次系统调用，都存在两个空间的内存切换</p>
 <h2 id="Java内存区域"><a href="#Java内存区域" class="headerlink" title="Java内存区域"></a>Java内存区域</h2><p>​    还有很多叫法，如JVM内存结构，运行时数据区域。（一定要与Java内存模型JMM分开）。    </p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739954.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739954.png" alt="img"></p>
 <p>（1）程序计数器（PC寄存器）</p>
 <p>  · 字节码解释器通过改变程序计数器来依次读取指令，从而实现代码的流程控制，如：顺序执行、选择、循环、异常处理。</p>
 <p>  · 在多线程的情况下，程序计数器用于记录当前线程执行的位置，从而当线程被切换回来的时候能够知道该线程上次运行到哪儿了。</p>
@@ -1326,16 +1326,16 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>Java 堆是垃圾收集器管理的主要区域，因此也被称作<strong>GC 堆（Garbage Collected Heap）</strong>.从垃圾回收的角度，由于现在收集器基本都采用分代垃圾收集算法，所以 Java 堆还可以细分为：新生代和老年代：再细致一点有：Eden 空间、From Survivor、To Survivor 空间等。<strong>进一步划分的目的是更好地回收内存，或者更快地分配内存。</strong></p>
 <p>（5）方法区</p>
 <p>用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据。虽然<strong>Java 虚拟机规范把方法区描述为堆的一个逻辑部分</strong>，但是它却有一个别名叫做<strong>Non-Heap（非堆）</strong>，目的应该是与 Java 堆区分开来。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739956.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739956.png" alt="img" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739975.png" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739975.png" alt="img" style="zoom:80%;" />
 
 <p><strong>方法区和永久代的关系很像 Java 中接口和类的关系，类实现了接口，而永久代就是 HotSpot 虚拟机对虚拟机规范中方法区的一种实现方式。</strong>也就是说，永久代是 HotSpot 的概念，方法区是 Java 虚拟机规范中的定义，是一种规范，而永久代是一种实现，一个是标准一个是实现，其他的虚拟机实现并没有永久代这一说法</p>
-<h2 id="Java对象创建过程"><a href="#Java对象创建过程" class="headerlink" title="Java对象创建过程"></a>Java对象创建过程</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739978.png" alt="img"></p>
+<h2 id="Java对象创建过程"><a href="#Java对象创建过程" class="headerlink" title="Java对象创建过程"></a>Java对象创建过程</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739978.png" alt="img"></p>
 <h3 id="类加载检查"><a href="#类加载检查" class="headerlink" title="类加载检查"></a>类加载检查</h3><p>  虚拟机遇到一条 new 指令时，首先将去检查这个指令的参数是否能在常量池中定位到这个类的符号引用，并且检查这个符号引用代表的类是否已被加载过、解析和初始化过。如果没有，那必须先执行相应的类加载过程。</p>
 <h3 id="分配内存"><a href="#分配内存" class="headerlink" title="分配内存"></a>分配内存</h3><p>  对象所需的内存大小在类加载完成后便可确定，为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。</p>
 <p>  共有两种内存分配方式，选择两种方式中的哪一种，取决于 Java 堆内存是否规整。而 Java 堆内存是否规整，取决于 GC 收集器的算法是”标记-清除”，还是”标记-整理”（也称作”标记-压缩”），值得注意的是，复制算法内存也是规整的。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740539.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740539.png" alt="img"/>
 
 <p>（1）指针碰撞</p>
 <p>​    · 使用场合：堆内存规整</p>
@@ -1361,21 +1361,21 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>​    · 引用计数法：引用计数为0时，等待回收</p>
 <p>​    · 可达性分析：为不可达集合时，等待回收</p>
 <h2 id="垃圾收集算法"><a href="#垃圾收集算法" class="headerlink" title="垃圾收集算法"></a>垃圾收集算法</h2><h3 id="标记-清除算法"><a href="#标记-清除算法" class="headerlink" title="标记-清除算法"></a>标记-清除算法</h3><p>  首先标记出所有不需要回收的对象，在标记完成后统一回收掉所有没有被标记的对象。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740005.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740005.jpeg" alt="img" style="zoom:50%;" />
 
 <p><strong>会产生大量不连续的碎片。</strong></p>
 <h3 id="复制算法"><a href="#复制算法" class="headerlink" title="复制算法"></a><strong>复制算法</strong></h3><p>  它可以将内存分为大小相同的两块，每次使用其中的一块。当这一块的内存使用完后，就将还存活的对象复制到另一块去，然后再把使用的空间一次清理掉。这样就使每次的内存回收都是对内存区间的一半进行回收。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739997.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739997.jpeg" alt="img" style="zoom:50%;" />
 
 <h3 id="标记-整理算法"><a href="#标记-整理算法" class="headerlink" title="标记-整理算法"></a>标记-整理算法</h3><p>根据<strong>老年代</strong>的特点提出的一种标记算法，标记过程仍然与“标记-清除”算法一样，但后续步骤不是直接对可回收对象回收，而是让所有存活的对象向一端移动，然后直接清理掉端边界以外的内存。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155739995.jpeg" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739995.jpeg" alt="img"/>
 
 <h3 id="分代收集算法"><a href="#分代收集算法" class="headerlink" title="分代收集算法"></a>分代收集算法</h3><p><strong>当前虚拟机的垃圾收集都采用分代收集算法</strong>，这种算法没有什么新的思想，只是根据对象存活周期的不同将内存分为几块。一般将 java 堆分为新生代和老年代，这样我们就可以根据各个年代的特点选择合适的垃圾收集算法。</p>
 <p><strong>在新生代中，</strong>每次收集都会有大量对象死去，所以可以选择<strong>复制算法</strong>，只需要付出少量对象的复制成本就可以完成每次垃圾收集<strong>。</strong></p>
 <p><strong>老年代</strong>的对象存活几率是比较高的，而且没有额外的空间对它进行分配担保，所以我们<strong>必须选择“标记-清除”或“标记-整理”算法</strong>进行垃圾收集<strong>。</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740014.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740014.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740036.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740036.png" alt="img" style="zoom:50%;" />
 
 <p>（1）堆内存分配策略</p>
 <ul>
@@ -1463,7 +1463,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>  并行，不是并发，用户使用仍然有停顿。</p>
 <h3 id="CMS"><a href="#CMS" class="headerlink" title="CMS"></a>CMS</h3><p>（1）CMS（Concurrent Mark Sweep）收集器是一种以获取最短回收停顿时间为目标的收集器。它非常符合在注重用户体验的应用上使用。CMS（Concurrent Mark Sweep）收集器是 HotSpot 虚拟机第一款真正意义上的并发收集器，它第一次实现了让垃圾收集线程与用户线程（基本上）同时工作。</p>
 <p>（2）步骤</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210630155740028.jpeg" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155740028.jpeg" alt="img"></p>
 <p><strong>CMS是“标记-清除”算法</strong>实现的。</p>
 <p><strong>· 初始标记：</strong>暂停所有的其他线程，并记录下直接与 root 相连的对象，速度很快 ；</p>
 <p><strong>· 并发标记：</strong>同时开启 GC 和用户线程，用一个闭包结构去记录可达对象。但在这个阶段结束，这个闭包结构并不能保证包含当前所有的可达对象。因为用户线程可能会不断的更新引用域，所以 GC 线程无法保证可达性分析的实时性。所以这个算法里会跟踪记录这些发生引用更新的地方。</p>
@@ -2052,7 +2052,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
                 <a href="/2020/10/28/java-chang-jian-wen-ti-hui-zong/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/wallhaven-01kegg.jpg" class="responsive-img" alt="Java常见问题汇总">
+                        <img src="/medias/featureimages/47.jpg" class="responsive-img" alt="Java常见问题汇总">
                         
                         <span class="card-title">Java常见问题汇总</span>
                     </div>
@@ -2280,7 +2280,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

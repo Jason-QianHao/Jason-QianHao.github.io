@@ -486,7 +486,7 @@
 <p>  ActiveMQ解决了耦合调用、异步模型、抵御洪峰流量，保护了主业务，消峰。</p>
 <h2 id="MOM"><a href="#MOM" class="headerlink" title="MOM"></a>MOM</h2><p>  MOM 就是面向消息中间件（Message-oriented middleware），是用于以分布式应用或系统中的异步、松耦合、可靠、可扩展和安全通信的一类软件。MOM 的总体思想是它作为消息发送器和消息接收器之间的消息中介,这种中介提供了一个全新水平的松耦合。</p>
 <h2 id="JMS"><a href="#JMS" class="headerlink" title="JMS"></a>JMS</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>  JMS 叫做 Java 消息服务（Java Message Service）,是 Java 平台上有关面向 MOM 的技术规范，旨在通过提供标准的产生、发送、接收和处理消息的 API 简化企业应用的开发，类似于 JDBC 和关系型数据库通信方式的抽象。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926157.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926157.png" alt="img" />
 
 <h3 id="部件"><a href="#部件" class="headerlink" title="部件"></a>部件</h3><h4 id="JMS-provider"><a href="#JMS-provider" class="headerlink" title="JMS provider"></a>JMS provider</h4><p>  实现JMS 的消息中间件，也就是MQ服务器。</p>
 <h4 id="JMS-producer"><a href="#JMS-producer" class="headerlink" title="JMS producer"></a>JMS producer</h4><p>  消息生产者，创建和发送消息的客户端</p>
@@ -509,10 +509,10 @@
 <h3 id="其他概念"><a href="#其他概念" class="headerlink" title="其他概念"></a>其他概念</h3><p>（1）Domains：消息传递方式，包括点对点（P2P）、发布/订阅（Pub/Sub）两种</p>
 <p>（2）Connection factory：客户端使用连接工厂来创建与 JMS provider 的连接</p>
 <p>（3）Destination：消息被寻址、发送以及接收的对象，包括queue（点对点模式）和topic（发布订阅模式）</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926184.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926184.png" alt="img"/>
 
 <p>（4）broker 就是实现了用代码形式启动 ActiveMQ 将 MQ 内嵌到 Java 代码中，可以随时启动，节省资源，提高了可靠性。即将 MQ 服务器作为了 Java 对象</p>
-<h1 id="JMS模式"><a href="#JMS模式" class="headerlink" title="JMS模式"></a>JMS模式</h1><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926236.png" alt="img" />
+<h1 id="JMS模式"><a href="#JMS模式" class="headerlink" title="JMS模式"></a>JMS模式</h1><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926236.png" alt="img" />
 
 <h2 id="点对点模式（P2P）"><a href="#点对点模式（P2P）" class="headerlink" title="点对点模式（P2P）"></a>点对点模式（P2P）</h2><p>（1）使用queue作为Destination</p>
 <p>（2）消息接收方式</p>
@@ -610,7 +610,7 @@ messageConsumer<span class="token punctuation">.</span><span class="token functi
 <p>（3）工作模式</p>
 <p>  · “负载均衡”，当先启动两个消费者时，在启动生产者发出消息，此时的消息平均的被两个消费者消费。 并且消费者不会消费已经被消费的消息（即为已经出队的消息）。</p>
 <p>  · 多个 Consumer 可以注册到同一个 queue 上，但<strong>一个消息只能被一个 Consumer 所接收，</strong>然后由该 Consumer 来确认消息。并且在这种情况下，Provider 对所有注册的 Consumer <strong>以轮询的方式发送消息。</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926178.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926178.png" alt="img"/>
 
 <p>（4）有无状态</p>
 <p>​    Queue数据默认会在mq服务器上以文件形式保存，也可以配置成DB存储。比如ActiveMQ 一般保存在$AMQ_HOME\data\kr-store\data下面。</p>
@@ -620,7 +620,7 @@ messageConsumer<span class="token punctuation">.</span><span class="token functi
 <p>（2）消息接收方式</p>
 <p>​    同步和异步两种方式，同P2P模式。</p>
 <p>（3）工作模式</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926157-5124566.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926157-5124566.png" alt="img" />
 
 <p>  · 有订阅者，则所有订阅者都会受到消息。<strong>消息会按照订阅者的数量进行复制</strong>。故随着订阅者的增加，处理性能也会明显降低。</p>
 <p>  · 无订阅者，消息将会被丢弃。先要有订阅者，生产者才有意义</p>
@@ -809,7 +809,7 @@ messageProducer<span class="token punctuation">.</span><span class="token functi
 <p>  · activemq_msgs：用于存储消息，Queue和Topic都存储在这个表中</p>
 <h1 id="ActiveMQ部署模式"><a href="#ActiveMQ部署模式" class="headerlink" title="ActiveMQ部署模式"></a>ActiveMQ部署模式</h1><h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><p>   acitvemq单机存储方式，以本地的kahadb文件的方式存储，所以性能完全依赖于本地的磁盘IO，所以不能提供高可用。</p>
 <h2 id="无共享主从模式"><a href="#无共享主从模式" class="headerlink" title="无共享主从模式"></a>无共享主从模式</h2><p>​    主从节点分别存储 Message。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926163.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926163.png" alt="img"></p>
 <p>（1）主节点</p>
 <p>  · 当主节点收到持久消息，会等待从节点完成消息的处理（通常是持久化到存储），然后再自己完成消息的处理（如持久化到存储）后，再返回对 Producer 的回执。</p>
 <p>  · 主节点只能有一个从节点，并且从节点不允许再有其他从节点</p>
@@ -829,14 +829,14 @@ messageProducer<span class="token punctuation">.</span><span class="token functi
 <p>  有两种细分模式：基于数据库和基于文件系统</p>
 <p>（1）基于数据库</p>
 <p>  它会获取一个表上的排它锁，以确保没有其他 ActiveMQ 代理可以同时访问数据库。其他未获得锁的代理则处于轮询状态，就会被当做是从节点，不会开启传输也不会接受连接。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926177.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926177.png" alt="img"/>
 
 <p>（2）基于文件系统</p>
 <p>  需要获取分布式共享文件锁，linux 系统下推荐用 GFS2。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926201.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926201.png" alt="img"/>
 
 <h2 id="Zookeeper-ActiveMQ"><a href="#Zookeeper-ActiveMQ" class="headerlink" title="Zookeeper+ActiveMQ"></a>Zookeeper+ActiveMQ</h2><p>  具体搭建方法见：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72487d70c32">ActiveMQ集群的搭建（高可用） - 简书</a></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926203.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926203.png" alt="img"/>
 
 <p>（1）Zookeeper集群下，每个节点搭载一个ActiveMQ</p>
 <p>（2）启动后只有一个ActiveMQ可以被访问，即为Master节点，其余节点成为从节点，不提供服务</p>
@@ -875,9 +875,9 @@ activeMQConnectionFactory<span class="token punctuation">.</span><span class="to
      <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h2 id="定时投递与延时投递"><a href="#定时投递与延时投递" class="headerlink" title="定时投递与延时投递"></a>定时投递与延时投递</h2><p>（1）在配置文件中设置定时器开关 为 true</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926208.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926208.png" alt="img"></p>
 <p>（2）Java 代码中封装的辅助消息类型ScheduleMessage，可以设置的常用参数。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210701152926224.png" alt="img" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701152926224.png" alt="img" />
 
 <p>（3）demo</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">long</span> delay <span class="token operator">=</span> <span class="token number">3</span> <span class="token operator">*</span> <span class="token number">1000</span> <span class="token punctuation">;</span>
@@ -1641,7 +1641,7 @@ activeMQConnectionFactory<span class="token punctuation">.</span><span class="to
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

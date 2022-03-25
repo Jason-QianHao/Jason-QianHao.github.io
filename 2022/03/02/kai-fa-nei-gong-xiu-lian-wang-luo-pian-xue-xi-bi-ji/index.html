@@ -499,7 +499,7 @@
 
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="Linux的TCP-IP模型"><a href="#Linux的TCP-IP模型" class="headerlink" title="Linux的TCP/IP模型"></a>Linux的TCP/IP模型</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304091611470.png" alt="image-20220304091611470" style="zoom: 80%;" />
+<h2 id="Linux的TCP-IP模型"><a href="#Linux的TCP-IP模型" class="headerlink" title="Linux的TCP/IP模型"></a>Linux的TCP/IP模型</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304091611470.png" alt="image-20220304091611470" style="zoom: 80%;" />
 
 <p>内核和网络设备驱动是通过<strong>中断</strong>的方式来处理的。</p>
 <p>当设备上有数据到达的时候，会给CPU的相关引脚上触发一个电压变化，以通知CPU来处理数据。</p>
@@ -507,7 +507,7 @@
 <p>上半部是只进行最简单的工作，快速处理然后释放CPU，接着CPU就可以允许其它中断进来。剩下将绝大部分的工作都放到下半部中，可以慢慢从容处理。</p>
 <p>2.4以后的内核版本采用的<strong>下半部实现方式是软中断，由ksoftirqd内核线程全权处理</strong>。</p>
 <p><strong>和硬中断不同的是，硬中断是通过给CPU物理引脚施加电压变化，而软中断是通过给内存中的一个变量的二进制值以通知软中断处理程序。</strong></p>
-<h2 id="整体流程图"><a href="#整体流程图" class="headerlink" title="整体流程图"></a>整体流程图</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302152109074.png" alt="image-20220302152109074"></p>
+<h2 id="整体流程图"><a href="#整体流程图" class="headerlink" title="整体流程图"></a>整体流程图</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302152109074.png" alt="image-20220302152109074"></p>
 <ul>
 <li><p>当网卡上收到数据以后，Linux中第一个工作的模块是网络驱动。</p>
 <p>网络驱动会以DMA的方式把网卡上收到的帧写到内存里。</p>
@@ -548,8 +548,8 @@
 <li>poll函数将收到的包送到协议栈注册的ip_rcv函数中</li>
 <li>ip_rcv函数再讲包送到udp_rcv函数中（对于tcp包就送到tcp_rcv）</li>
 </ol>
-<h1 id="Linux网络发包"><a href="#Linux网络发包" class="headerlink" title="Linux网络发包"></a>Linux网络发包</h1><h2 id="整体流程图-1"><a href="#整体流程图-1" class="headerlink" title="整体流程图"></a>整体流程图</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303114109560.png" alt="image-20220303114109560"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115611888.png" alt="image-20220303115611888"></p>
+<h1 id="Linux网络发包"><a href="#Linux网络发包" class="headerlink" title="Linux网络发包"></a>Linux网络发包</h1><h2 id="整体流程图-1"><a href="#整体流程图-1" class="headerlink" title="整体流程图"></a>整体流程图</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303114109560.png" alt="image-20220303114109560"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115611888.png" alt="image-20220303115611888"></p>
 <h2 id="流程分析-1"><a href="#流程分析-1" class="headerlink" title="流程分析"></a>流程分析</h2><ol>
 <li><p><strong>网卡启动准备</strong></p>
 <p>现在的服务器上的网卡一般都是支持多队列的。每一个队列上都是由一个 RingBuffer 表示的，开启了多队列以后的的网卡就会对应有多个 RingBuffer。</p>
@@ -560,10 +560,10 @@
 <li>e1000_adv_tx_desc 数组：这个数组是网卡硬件使用的，硬件是可以通过 DMA 直接访问这块内存，通过 dma_alloc_coherent 分配。</li>
 </ul>
 <p>这个时候它们之间还没有啥联系。将来在发送的时候，这两个环形数组中相同位置的指针将都将指向同一个 skb。这样，内核和硬件就能共同访问同样的数据了，内核往 skb 里写数据，网卡硬件负责发送。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303114356241.png" alt="image-20220303114356241"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303114356241.png" alt="image-20220303114356241"></p>
 </li>
 <li><p><strong>accept 创建新 socket</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303114505930.png" alt="image-20220303114505930"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303114505930.png" alt="image-20220303114505930"></p>
 <p>在<strong>IO多路复用</strong>章节中详细介绍了，这里省略。</p>
 </li>
 <li><p><strong>发送数据真正开始</strong></p>
@@ -573,40 +573,40 @@
 <li>第一是在内核中把真正的 socket 找出来，在这个对象里记录着各种协议栈的函数地址。</li>
 <li>第二是构造一个 struct msghdr 对象，把用户传入的数据，比如 buffer地址、数据长度啥的，统统都装进去.</li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303114649110.png" alt="image-20220303114649110"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303114649110.png" alt="image-20220303114649110"></p>
 </li>
 <li><p>传输层处理</p>
 <p>在进入到协议栈 inet_sendmsg 以后，内核接着会找到 socket 上的具体协议发送函数。对于 TCP 协议来说，那就是 tcp_sendmsg（同样也是通过 socket 内核对象找到的）。</p>
 <p>在这个函数中，内核会申请一个内核态的 skb 内存，将用户待发送的数据拷贝进去。注意这个时候不一定会真正开始发送，如果没有达到发送条件的话很可能这次调用直接就返回了。大概过程如图：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303114801808.png" alt="image-20220303114801808"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303114801808.png" alt="image-20220303114801808"></p>
 <p>当满足真正发送条件的时候，无论调用的是 __tcp_push_pending_frames 还是 tcp_push_one 最终都实际会执行到 tcp_write_xmit。这个函数处理了<strong>传输层的拥塞控制、滑动窗口</strong>相关的工作。满足窗口要求的时候，设置一下 TCP 头然后将 skb 传到更低的网络层进行处理。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115024985.png" alt="image-20220303115024985"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115024985.png" alt="image-20220303115024985"></p>
 </li>
 <li><p>网络层发送处理</p>
 <p>Linux 内核网络层的发送的实现位于 net/ipv4/ip_output.c 这个文件。传输层调用到的 ip_queue_xmit 也在这里。（从文件名上也能看出来进入到 IP 层了，源文件名已经从 tcp_xxx 变成了 ip_xxx。）</p>
 <p>在网络层里主要处理路由项查找、IP 头设置、netfilter 过滤、skb 切分（大于 MTU 的话）等几项工作，处理完这些工作后会交给更下层的邻居子系统来处理。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115141005.png" alt="image-20220303115141005"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115141005.png" alt="image-20220303115141005"></p>
 </li>
 <li><p>邻居子系统</p>
 <p>邻居子系统是位于网络层和数据链路层中间的一个系统，其作用是对网络层提供一个封装，让网络层不必关心下层的地址信息，让下层来决定发送到哪个 MAC 地址。</p>
 <p>而且这个邻居子系统并不位于协议栈 net/ipv4/ 目录内，而是位于 net/core/neighbour.c。因为无论是对于 IPv4 还是 IPv6 ，都需要使用该模块。</p>
 <p>在邻居子系统里主要是查找或者创建邻居项，在创造邻居项的时候，有可能会发出实际的 arp 请求。然后封装一下 MAC 头，将发送过程再传递到更下层的网络设备子系统。大致流程如图：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115238353.png" alt="image-20220303115238353"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115238353.png" alt="image-20220303115238353"></p>
 </li>
 <li><p>网络设备子系统</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115305255.png" alt="image-20220303115305255"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115305255.png" alt="image-20220303115305255"></p>
 </li>
 <li><p>软中断调度</p>
 <p>软中断是由内核线程来运行的，该线程会进入到 net_tx_action 函数，在该函数中能获取到发送队列，并也最终调用到驱动程序里的入口函数 dev_hard_start_xmit。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115401570.png" alt="image-20220303115401570"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115401570.png" alt="image-20220303115401570"></p>
 </li>
 <li><p>网卡驱动发送</p>
 <p>调用到驱动里的发送函数 igb_xmit_frame，将 skb 会挂到 RingBuffer上，驱动调用完毕后，数据包将真正从网卡发送出去。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115455618.png" alt="image-20220303115455618"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115455618.png" alt="image-20220303115455618"></p>
 </li>
 <li><p>发送完成硬中断</p>
 <p>当发送完成的时候，网卡设备会触发一个硬中断来释放内存，执行 RingBuffer 内存的清理工作。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303115545938.png" alt="image-20220303115545938"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303115545938.png" alt="image-20220303115545938"></p>
 </li>
 </ul>
 </li>
@@ -615,34 +615,34 @@
 <ol>
 <li><p>网络层路由</p>
 <p>对于本机网络 IO 来说，特殊之处在于<strong>在 local 路由表中就能找到路由项，对应的设备都将使用 loopback 网卡，也就是我们常见的 lo</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120146334.png" alt="image-20220303120146334"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120146334.png" alt="image-20220303120146334"></p>
 <p>接下来的网络层仍然和跨机网络 IO 一样，最终会经过 ip_finish_output，最终进入到 邻居子系统的入口函数 dst_neigh_output 中。</p>
 </li>
 <li><p>网络设备子系统</p>
 <p>网络设备子系统的入口函数是 dev_queue_xmit。简单回忆下之前讲述跨机发送过程的时候，对于真的有队列的物理设备，在该函数中进行了一系列复杂的排队等处理以后，才调用 dev_hard_start_xmit，从这个函数 再进入驱动程序来发送。</p>
 <p>而本机通信没有队列的问题，直接进入 dev_hard_start_xmit。接着进入回环设备的“驱动”里的发送回调函数 loopback_xmit，将 skb “发送”出去。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120342731.png" alt="image-20220303120342731"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120342731.png" alt="image-20220303120342731"></p>
 </li>
 <li><p>驱动程序</p>
 <p>对于真实的 igb 网卡来说，它的驱动代码都在 drivers/net/ethernet/intel/igb/igb_main.c 文件里。 loopback 设备的“驱动”代码位置：drivers/net/loopback.c。</p>
 <p>dev_hard_start_xmit 调用实际上执行的是 loopback “驱动” 里的 loopback_xmit。为什么我把“驱动”加个引号呢，因为 loopback 是一个纯软件性质的虚拟接口，并没有真正意义上的驱动，它的工作流程大致如图。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120629730.png" alt="image-20220303120629730"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120629730.png" alt="image-20220303120629730"></p>
 </li>
 </ol>
 <h2 id="本机接收"><a href="#本机接收" class="headerlink" title="本机接收"></a>本机接收</h2><p>在本机的网络 IO 过程中，由于并不真的过网卡，所以网卡实际传输，硬中断就都省去了。直接从软中断开始，经过 process_backlog 后送进协议栈，大体过程如图。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120719903.png" alt="image-20220303120719903"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120719903.png" alt="image-20220303120719903"></p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总结一下本机网络 IO 的内核执行流程：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120802110.png" alt="image-20220303120802110"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120802110.png" alt="image-20220303120802110"></p>
 <p>跨机网络 IO 的流程是：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303120821513.png" alt="image-20220303120821513"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303120821513.png" alt="image-20220303120821513"></p>
 <p>本机网络 IO 和跨机 IO 比较起来，确实是节约了一些开销。<strong>发送数据不需要进 RingBuffer 的驱动队列，直接把 skb 传给接收协议栈（经过软中断）</strong>。但是在内核其它组件上，可是一点都没少，系统调用、协议栈（传输层、网络层等）、网络设备子系统、邻居子系统整个走了一个遍。连“驱动”程序都走了（虽然对于回环设备来说只是一个纯软件的虚拟出来的东东）。所以即使是本机网络 IO，也别误以为没啥开销。</p>
 <h1 id="TCP连接的深入分析"><a href="#TCP连接的深入分析" class="headerlink" title="TCP连接的深入分析"></a>TCP连接的深入分析</h1><h2 id="Socker-buffer数据包"><a href="#Socker-buffer数据包" class="headerlink" title="Socker buffer数据包"></a>Socker buffer数据包</h2><p>在软中断中，当一个包被内核从RingBuffer中摘下来的时候，在内核中是用<code>struct sk_buff</code>结构体来表示的(参见内核代码<code>include/linux/skbuff.h</code>)。其中的data成员是接收到的数据，在协议栈逐层被处理的时候，通过修改指针指向data的不同位置，来找到每一层协议关心的数据。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302153625688.png" alt="image-20220302153625688"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302153625688.png" alt="image-20220302153625688"></p>
 <p>对于TCP协议包来说，它的Header中有一个重要的字段-flags。如下图：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302153637579.png" alt="image-20220302153637579"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302153637579.png" alt="image-20220302153637579"></p>
 <p>通过设置不同的标记为，将TCP包分成SYNC、FIN、ACK、RST等类型。客户端通过connect系统调用命令内核发出SYNC、ACK等包来实现和服务器TCP连接的建立。</p>
 <h2 id="TCP连接的耗时"><a href="#TCP连接的耗时" class="headerlink" title="TCP连接的耗时"></a>TCP连接的耗时</h2><h3 id="TCP正常连接"><a href="#TCP正常连接" class="headerlink" title="TCP正常连接"></a>TCP正常连接</h3><p>在服务器端，可能会接收许许多多的连接请求，内核还需要借助一些辅助数据结构-<strong>半连接队列和全连接队列</strong>。我们来看一下整个连接过程：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302154126086.png" alt="image-20220302154126086"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302154126086.png" alt="image-20220302154126086"></p>
 <p>在这个连接过程中，我们来简单分析一下每一步的耗时</p>
 <ul>
 <li><p>客户端发出SYNC包：客户端一般是通过<strong>connect系统调用来发出SYN的</strong>，这里牵涉到本机的系统调用和软中断的CPU耗时开销</p>
@@ -677,7 +677,7 @@
 </li>
 <li><p><strong>半/全连接队列满</strong></p>
 <p>如果连接建立的过程中，<strong>任意一个队列满了，那么客户端发送过来的syn或者ack就会被丢弃</strong>。客户端等待很长一段时间无果后，然后会发出TCP Retransmission重传。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302154850780.png" alt="image-20220302154850780"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302154850780.png" alt="image-20220302154850780"></p>
 <p>也就是说一旦server端的连接队列导致连接建立不成功，那么光建立连接就至少需要秒级以上。而正常的在同机房的情况下只是不到1毫秒的事情，整整高了1000倍左右。尤其是对于给用户提供实时服务的程序来说，用户体验将会受到较大影响。如果连重传也没有握手成功的话，很可能等不及二次重试，这个用户访问直接就超时了。</p>
 <p><strong>解决办法</strong>：<code>netstat -s</code>可查看到当前系统半连接队列满导致的丢包统计，适当加大你的半/全连接队列的长度。</p>
 <ul>
@@ -714,7 +714,7 @@ Recv-Q Send-Q Local Address:Port Address:Port
 <p>有少部分握手耗时**3s+**，原因是半连接队列满了导致客户端等待超时后进行了SYN的重传。</p>
 </li>
 </ul>
-<h2 id="TCP三次握手深入"><a href="#TCP三次握手深入" class="headerlink" title="TCP三次握手深入"></a>TCP三次握手深入</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303123426662.png" alt="image-20220303123426662"></p>
+<h2 id="TCP三次握手深入"><a href="#TCP三次握手深入" class="headerlink" title="TCP三次握手深入"></a>TCP三次握手深入</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303123426662.png" alt="image-20220303123426662"></p>
 <ul>
 <li>服务器 listen 时，计算了全/半连接队列的长度，还申请了相关内存并初始化。</li>
 <li>客户端 connect 时，把本地 socket 状态设置成了 TCP_SYN_SENT，选则一个可用的端口，发出 SYN 握手请求并启动重传定时器。</li>
@@ -735,7 +735,7 @@ Recv-Q Send-Q Local Address:Port Address:Port
 <li>进程级：单个进程可打开的最大数量，通过fs.nr_open参数可修改</li>
 </ul>
 <p><strong>进程在打开文件时的内核数据结构：</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302162930495.png" alt="image-20220302162930495"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302162930495.png" alt="image-20220302162930495"></p>
 </li>
 <li><p>缓冲区</p>
 <p>一条空TCP连接大约占内存3.3KB左右。如果有数据流动就相应配置接收缓存区和发送缓冲区。</p>
@@ -763,7 +763,7 @@ net.core.wmem_max &#x3D; 8388608<span aria-hidden="true" class="line-numbers-row
 <li><p>空TCP连接的ESTABLISTH状态</p>
 <p>实验中，客户端的<strong>5w</strong>条连接，服务器的meminfo显示共消耗了163.8M，则一条空TCP连接消耗163.8M/50000=<strong>3.27KB左右</strong></p>
 <p>利用<code>slabtop</code>命令，可以看到当前内核对象的情况，<strong>每个TCP连接消耗TCP、denty等5个内核对象</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302161533472.png" alt="image-20220302161533472"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302161533472.png" alt="image-20220302161533472"></p>
 </li>
 <li><p>服务器接收数据的ESTABLISTH状态</p>
 <p>客户端发送“I am client!”，测试得到每个TCP连接平均消耗5.47KB</p>
@@ -774,10 +774,10 @@ net.core.wmem_max &#x3D; 8388608<span aria-hidden="true" class="line-numbers-row
 </li>
 <li><p>TIME_WAIT状态</p>
 <p>此时客户端的内核对象只剩下2个，<strong>每个TCP连接平均消耗0.5KB。</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302162442171.png" alt="image-20220302162442171"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302162442171.png" alt="image-20220302162442171"></p>
 </li>
 <li><p>总结</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220302162647604.png" alt="image-20220302162647604"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302162647604.png" alt="image-20220302162647604"></p>
 <p>内核在 socket 内存开销优化上采取了不少方法:</p>
 <ul>
 <li>内核会尽量及时回收发送缓存区、接收缓存区，但高版本做的更好</li>
@@ -863,7 +863,7 @@ ok<span class="token operator">:</span>
 
 <p>其中Listen就是一直监听端口的状态，有没有连接建立，有没有数据传输。</p>
 <p>在TCP连接中，listen 最主要的工作就是<strong>申请和初始化接收队列，包括全连接队列和半连接队列</strong>。其中全连接队列是一个链表，而半连接队列由于需要快速的查找，所以使用的是一个哈希表（其实半连接队列更准确的的叫法应该叫半连接哈希表）。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303122942902.png" alt="image-20220303122942902"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303122942902.png" alt="image-20220303122942902"></p>
 <p>内核是如何确定全/半连接队列的长度的：</p>
 <p><strong>1. 全连接队列的长度</strong><br>对于全连接队列来说，其最大长度是 listen 时传入的 backlog 和 net.core.somaxconn 之间较小的那个值。如果需要加大全连接队列长度，那么就是调整 backlog 和 somaxconn。</p>
 <p><strong>2. 半连接队列的长度</strong><br>在 listen 的过程中，内核我们也看到了对于半连接队列来说，其最大长度是 min(backlog, somaxconn, tcp_max_syn_backlog) + 1 再上取整到 2 的幂次，但最小不能小于16。如果需要加大半连接队列长度，那么需要一并考虑 backlog，somaxconn 和 tcp_max_syn_backlog 这三个参数。网上任何告诉你修改某一个参数就能提高半连接队列长度的文章都是错的。</p>
@@ -887,7 +887,7 @@ ok<span class="token operator">:</span>
 <li>epoll_wait：等待其管理的连接上的 IO 事件</li>
 </ul>
 <h2 id="accept创建socket"><a href="#accept创建socket" class="headerlink" title="accept创建socket"></a>accept创建socket</h2><p>当 accept 之后，进程会创建一个新的 socket 出来，专门用于和对应的客户端通信，然后把它放到当前进程的打开文件列表中。其中一条连接的 socket 内核对象更为具体一点的结构图如下:</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303101840474.png" alt="image-20220303101840474"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303101840474.png" alt="image-20220303101840474"></p>
 <p>accept的内核源码如下：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//file: net/socket.c</span>
 <span class="token function">SYSCALL_DEFINE4</span><span class="token punctuation">(</span>accept4<span class="token punctuation">,</span> <span class="token keyword">int</span><span class="token punctuation">,</span> fd<span class="token punctuation">,</span> <span class="token keyword">struct</span> <span class="token class-name">sockaddr</span> __user <span class="token operator">*</span><span class="token punctuation">,</span> upeer_sockaddr<span class="token punctuation">,</span>
@@ -914,9 +914,9 @@ ok<span class="token operator">:</span>
     <span class="token function">fd_install</span><span class="token punctuation">(</span>newfd<span class="token punctuation">,</span> newfile<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="初始化struct-socket对象"><a href="#初始化struct-socket对象" class="headerlink" title="初始化struct socket对象"></a>初始化struct socket对象</h3><p>调用 sock_alloc 申请一个 struct socket 对象出来。然后接着把 listen 状态的 socket 对象上的协议操作函数集合 ops 赋值给新的 socket。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303102155582.png" alt="image-20220303102155582"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303102155582.png" alt="image-20220303102155582"></p>
 <h3 id="为新-socket-对象申请-file"><a href="#为新-socket-对象申请-file" class="headerlink" title="为新 socket 对象申请 file"></a>为新 socket 对象申请 file</h3><p>struct socket 对象中有一个重要的成员 – file 内核对象指针。这个指针初始化的时候是空的。在 accept 方法里会调用 sock_alloc_file 来申请内存并初始化。然后将新 file 对象设置到 sock-&gt;file 上。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303102320428.png" alt="image-20220303102320428"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303102320428.png" alt="image-20220303102320428"></p>
 <h3 id="接收连接sock"><a href="#接收连接sock" class="headerlink" title="接收连接sock"></a>接收连接sock</h3><p>在 socket 内核对象中除了 file 对象指针以外，有一个<strong>核心成员 sock</strong>。accept方法中的<code>sock-&gt;ops-&gt;accept</code> 对应的方法是 inet_accept。它执行的时候会从握手队列里直接获取创建好的 sock。</p>
 <pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;file: include&#x2F;linux&#x2F;net.h
 struct socket &#123;
@@ -942,9 +942,9 @@ struct socket &#123;
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="创建一个-epoll-对象"><a href="#创建一个-epoll-对象" class="headerlink" title="创建一个 epoll 对象"></a>创建一个 epoll 对象</h2><p>在用户进程调用 epoll_create 时，内核会创建一个 struct eventpoll 的内核对象。并同样把它关联到当前进程的已打开文件列表中。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303103014524.png" alt="image-20220303103014524"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303103014524.png" alt="image-20220303103014524"></p>
 <p>struct eventpoll 对象，更详细的结构如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303103123635.png" alt="image-20220303103123635"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303103123635.png" alt="image-20220303103123635"></p>
 <p>struct eventpoll的内核源码：</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">// file：fs/eventpoll.c</span>
 <span class="token keyword">struct</span> <span class="token class-name">eventpoll</span> <span class="token punctuation">&#123;</span>
@@ -973,7 +973,7 @@ struct socket &#123;
 <li>3.将 epitem 插入到 epoll 对象的红黑树里</li>
 </ul>
 <p>通过 epoll_ctl 添加两个 socket 以后，这些内核数据结构最终在进程中的关系图大致如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303103427270.png" alt="image-20220303103427270"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303103427270.png" alt="image-20220303103427270"></p>
 <p>在 epoll_ctl 中首先根据传入 fd 找到 eventpoll、socket相关的内核对象 ，然后执行到 ep_insert 函数。所有的注册都是在这个函数中完成的。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//file: fs/eventpoll.c</span>
 <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">ep_insert</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">eventpoll</span> <span class="token operator">*</span>ep<span class="token punctuation">,</span> 
@@ -1025,29 +1025,29 @@ struct socket &#123;
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>将ep 指针指向 eventpoll 对象。另外用要添加的 socket 的 file、fd 来填充 epitem-&gt;ffd。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303104107941.png" alt="image-20220303104107941"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303104107941.png" alt="image-20220303104107941"></p>
 <h3 id="设置-socket-等待队列"><a href="#设置-socket-等待队列" class="headerlink" title="设置 socket 等待队列"></a>设置 socket 等待队列</h3><p>在创建 epitem 并初始化之后，ep_insert 中第二件事情就是<strong>设置 socket 对象上（在sock对象中）的等待任务队列</strong>。并把函数 fs/eventpoll.c 文件下的 ep_poll_callback 设置为数据就绪时候的回调函数（软中断将数据收到 socket 的接收队列后，会通过注册的这个 ep_poll_callback 函数来回调，进而通知到 epoll 对象）。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303104158930.png" alt="image-20220303104158930"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303104158930.png" alt="image-20220303104158930"></p>
 <h3 id="插入红黑树"><a href="#插入红黑树" class="headerlink" title="插入红黑树"></a>插入红黑树</h3><p>分配完 epitem 对象后，紧接着并把它插入到红黑树中。</p>
 <h2 id="epoll等待接收数据"><a href="#epoll等待接收数据" class="headerlink" title="epoll等待接收数据"></a>epoll等待接收数据</h2><p>当epoll_wait函数被调用时它观察 eventpoll-&gt;rdllist 链表里有没有数据即可。有数据就返回，没有数据就创建一个等待队列<strong>项</strong>（关联了当前进程current），将其添加到 eventpoll 的等待队列上，然后把自己阻塞掉就完事。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303105158157.png" alt="image-20220303105158157"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303105158157.png" alt="image-20220303105158157"></p>
 <blockquote>
 <p>注意：epoll_ctl 添加 socket 时也创建了等待队列项。不同的是这里的等待队列项是挂在 epoll 对象上的，而前者是挂在 socket 对象上的。</p>
 </blockquote>
 <h2 id="接收数据-1"><a href="#接收数据-1" class="headerlink" title="接收数据"></a>接收数据</h2><p>软中断在数据处理完之后依次进入各个回调函数，最后通知到用户进程。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303105728112.png" alt="image-20220303105728112"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303105728112.png" alt="image-20220303105728112"></p>
 <h3 id="接收数据到任务队列"><a href="#接收数据到任务队列" class="headerlink" title="接收数据到任务队列"></a>接收数据到任务队列</h3><p>tcp 协议栈处理网络帧时，首先根据收到的网络包的 header 里的 source 和 dest 信息来在本机上查询对应的 socket。</p>
 <p>进过一系列的处理，最后通过<strong>tcp_queue_rcv 函数</strong>中完成了将接收数据放到 socket （在其sock对象中）的接收队列，<strong>同时当前用户进程current放入socket的等待队列</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303110102561.png" alt="image-20220303110102561"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303110102561.png" alt="image-20220303110102561"></p>
 <h3 id="查找就绪回调函数"><a href="#查找就绪回调函数" class="headerlink" title="查找就绪回调函数"></a>查找就绪回调函数</h3><p>调用 tcp_queue_rcv 接收完成之后，接着再调用 sk_data_ready 来唤醒在 socket上等待的用户进程。当 socket 上数据就绪时候，内核将以 sk_data_ready （被设置为了sock_def_readable） 这个函数为入口，找到 epoll_ctl 添加 socket 时在其上设置的回调函数 <strong>ep_poll_callback</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303110454316.png" alt="image-20220303110454316"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303110454316.png" alt="image-20220303110454316"></p>
 <h3 id="执行-socket-就绪回调函数"><a href="#执行-socket-就绪回调函数" class="headerlink" title="执行 socket 就绪回调函数"></a>执行 socket 就绪回调函数</h3><p>等待任务队列项上的额外的 base 指针可以找到 epitem， 进而也可以找到 eventpoll对象。</p>
 <p>首先它做的第一件事就是<strong>把自己的 epitem 添加到 epoll 的就绪队列中</strong>。</p>
 <p>接着它又会查看 eventpoll 对象上的等待队列里是否有等待项（epoll_wait 执行的时候会设置）。</p>
 <p>如果没有，执行软中断的事情就做完了。如果有等待项，那就查找到等待项里设置的回调函数。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303112656743.png" alt="image-20220303112656743"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303112656743.png" alt="image-20220303112656743"></p>
 <h3 id="执行-epoll-就绪通知"><a href="#执行-epoll-就绪通知" class="headerlink" title="执行 epoll 就绪通知"></a>执行 epoll 就绪通知</h3><p>在default_wake_function 中找到等待队列项里的进程描述符，然后唤醒之。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303112937390.png" alt="image-20220303112937390"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303112937390.png" alt="image-20220303112937390"></p>
 <p>将epoll_wait进程推入可运行队列，等待内核重新调度进程。然后epoll_wait对应的这个进程重新运行后，就从 schedule 恢复</p>
 <p>当进程醒来后，继续从 epoll_wait 时暂停的代码继续执行。把 rdlist 中就绪的事件返回给用户进程</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//file: fs/eventpoll.c</span>
@@ -1064,15 +1064,15 @@ check_events<span class="token operator">:</span>
     <span class="token comment">//返回就绪事件给用户进程</span>
     <span class="token function">ep_send_events</span><span class="token punctuation">(</span>ep<span class="token punctuation">,</span> events<span class="token punctuation">,</span> maxevents<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="总结epoll模型"><a href="#总结epoll模型" class="headerlink" title="总结epoll模型"></a>总结epoll模型</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220303113433810.png" alt="image-20220303113433810"></p>
+<h2 id="总结epoll模型"><a href="#总结epoll模型" class="headerlink" title="总结epoll模型"></a>总结epoll模型</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220303113433810.png" alt="image-20220303113433810"></p>
 <h1 id="tcpdump内核抓包的实现"><a href="#tcpdump内核抓包的实现" class="headerlink" title="tcpdump内核抓包的实现"></a>tcpdump内核抓包的实现</h1><ol>
 <li><p><strong>tcpdump是如何工作的</strong></p>
 <p>用户态 tcpdump 命令是通过 socket 系统调用，在内核源码中用到的 ptype_all 中挂载了函数钩子上去。无论是在网络包接收过程中，还是在发送过程中，都会在网络设备层遍历 ptype_all 中的协议，并执行其中的回调。tcpdump 命令就是基于这个底层原理来工作的。</p>
 </li>
 <li><p><strong>netfilter 过滤的包 tcpdump是否可以抓的到</strong><br>关于这个问题，得分接收和发送过程分别来看。在网络包<strong>接收</strong>的过程中，由于 tcpdump 近水楼台先得月，所以完全可以捕获到命中 netfilter 过滤规则的包。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304092021627.png" alt="image-20220304092021627"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304092021627.png" alt="image-20220304092021627"></p>
 <p>但是在<strong>发送</strong>的过程中，恰恰相反。网络包先经过协议层，这时候被 netfilter 过滤掉的话，底层工作的 tcpdump 还没等看见就啥也没了。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304092046876.png" alt="image-20220304092046876"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304092046876.png" alt="image-20220304092046876"></p>
 </li>
 </ol>
 <h1 id="Linux网络虚拟化"><a href="#Linux网络虚拟化" class="headerlink" title="Linux网络虚拟化"></a>Linux网络虚拟化</h1><h2 id="veth"><a href="#veth" class="headerlink" title="veth"></a>veth</h2><p>网络虚拟化实现的第一步，就是用软件来模拟这个简单的网络连接实现过程。</p>
@@ -1152,7 +1152,7 @@ PING <span class="token number">192.168</span>.1.2 <span class="token punctuatio
 
 <p>由于两个设备之间是首次通信的，所以 veth0 首先先发出了一个 arp request，veth1 收到后回复了一个 arp reply。然后接下来就是正常的 ping 命令下的 IP 包了。</p>
 <h3 id="veth的数据包处理"><a href="#veth的数据包处理" class="headerlink" title="veth的数据包处理"></a>veth的数据包处理</h3><p>基于 veth 的网络 IO 过程和 lo 设备几乎一样，所不同的就是<strong>使用的驱动程序不一样</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304093355349.png" alt="image-20220304093355349"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304093355349.png" alt="image-20220304093355349"></p>
 <ul>
 <li><p>对于回环设备 lo 来说 netdev_ops 是 loopback_ops。那么 ops-&gt;ndo_start_xmit 对应的就是 loopback_xmit。</p>
 </li>
@@ -1161,12 +1161,12 @@ PING <span class="token number">192.168</span>.1.2 <span class="token punctuatio
 </ul>
 <h2 id="交换机Bridge的实现"><a href="#交换机Bridge的实现" class="headerlink" title="交换机Bridge的实现"></a>交换机Bridge的实现</h2><p>在物理机的网络环境中，多台不同的物理机之间是如何连接一起互相通信的呢？没错，那就是以太网交换机。同一网络内的多台物理机通过交换机连在一起，然后它们就可以相互通信了。</p>
 <p>在我们的网络虚拟化环境里，和物理网络中的交换机一样，也需要这样的一个软件实现的设备。它需要有很多个虚拟端口，能把更多的虚拟网卡连接在一起，通过自己的转发功能让这些虚拟网卡之间可以通信。在 Linux 下这个软件实现交换机的技术就叫做 bridge（再强调下，这是纯软件实现的）。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304093650125.png" alt="image-20220304093650125"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304093650125.png" alt="image-20220304093650125"></p>
 <p>各个 Docker 容器都通过 veth 连接到 bridge 上，bridge 负责在不同的“端口”之间转发数据包。这样各个 Docker 之间就可以互相通信了！</p>
 <h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><ol>
 <li><p>创建两个不同的网络空间</p>
 <p>Bridge 是用来连接<strong>两个不同的虚拟网络</strong>的，所以在准备实验 bridge 之前我们得先需要用 net namespace 构建出<strong>两个不同的网络空间</strong>来。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304093917775.png" alt="image-20220304093917775" style="zoom:70%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304093917775.png" alt="image-20220304093917775" style="zoom:70%;" />
 
 <ul>
 <li> ip netns 命令创建 net namespace</li>
@@ -1188,7 +1188,7 @@ PING <span class="token number">192.168</span>.1.2 <span class="token punctuatio
 </li>
 <li><p>把两个网络空间连接到一起</p>
 <p>这个时候这两个环境之间还不能互相通信。我们需要创建一个虚拟交换机 - bridge， 来把这两个网络环境连起来。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304094526387.png" alt="image-20220304094526387" style="zoom:70%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304094526387.png" alt="image-20220304094526387" style="zoom:70%;" />
 
 <ul>
 <li><p>创建一个 bridge 设备, 把刚刚创建的两对儿 veth 中剩下的两头“插”到 bridge 上来</p>
@@ -1220,11 +1220,11 @@ PING <span class="token number">192.168</span>.0.102 <span class="token punctuat
 </li>
 </ol>
 <h3 id="内核结构"><a href="#内核结构" class="headerlink" title="内核结构"></a>内核结构</h3><p>在内核中，bridge 是由两个相邻存储的内核对象来表示的。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304094654746.png" alt="image-20220304094654746"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304094908493.png" alt="image-20220304094908493"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304094654746.png" alt="image-20220304094654746"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304094908493.png" alt="image-20220304094908493"></p>
 <h3 id="数据包处理过程"><a href="#数据包处理过程" class="headerlink" title="数据包处理过程"></a>数据包处理过程</h3><p>连接到了网桥上的话，在设备层的 __netif_receive_skb_core 函数中和物理机过程有所不同。</p>
 <p>连在 bridge 上的 veth 在收到数据包的时候，<strong>不会进入协议栈，而是会进入网桥处理</strong>。网桥找到合适的转发口（另一个 veth），通过这个 veth 把数据转发出去。工作流程如下图。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304095116597.png" alt="image-20220304095116597"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304095116597.png" alt="image-20220304095116597"></p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//file: net/core/dev.c</span>
 <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">__netif_receive_skb_core</span><span class="token punctuation">(</span><span class="token keyword">struct</span> <span class="token class-name">sk_buff</span> <span class="token operator">*</span>skb<span class="token punctuation">,</span> bool pfmemalloc<span class="token punctuation">)</span>
 <span class="token punctuation">&#123;</span>
@@ -1246,18 +1246,18 @@ PING <span class="token number">192.168</span>.0.102 <span class="token punctuat
 
 <ol>
 <li><p>将 skb 上的设备 dev 改为了新的目的 dev</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304095410789.png" alt="image-20220304095410789"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304095410789.png" alt="image-20220304095410789"></p>
 </li>
 <li><p>后续的发送过程就是 dev_queue_xmit =&gt; dev_hard_start_xmit =&gt; veth_xmit。在 veth_xmit 中会获取到当前 veth 的对端，然后把数据给它发送过去</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304095500500.png" alt="image-20220304095500500"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304095500500.png" alt="image-20220304095500500"></p>
 </li>
 </ol>
 <p>总结如下：</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304095638548.png" alt="image-20220304095638548"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304095638548.png" alt="image-20220304095638548"></p>
 <h2 id="网络命名空间"><a href="#网络命名空间" class="headerlink" title="网络命名空间"></a>网络命名空间</h2><p>虚拟化中还有很重要的一步，那就是隔离。借用 Docker 的概念来说，那就是不能让 A 容器用到 B 容器的设备，甚至连看一眼都不可以。只有这样才能保证不同的容器之间复用硬件资源的同时，还不会影响其它容器的正常运行。</p>
 <p>在 Linux 上实现隔离的技术手段就是 namespace。通过 namespace 可以隔离容器的进程 PID、文件系统挂载点、主机名等多种资源。不过我们今天重点要介绍的是网络 namespace，简称 netns。它可以为不同的命名空间从<strong>逻辑上</strong>提供独立的网络协议栈，具体包括<strong>网络设备、路由表、arp表、iptables、以及套接字（socket）等</strong>。使得不同的网络空间就都好像运行在独立的网络中一样。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304095845290.png" alt="image-20220304095845290"></p>
-<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304100059248.png" alt="image-20220304100059248"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304095845290.png" alt="image-20220304095845290"></p>
+<h3 id="实现-1"><a href="#实现-1" class="headerlink" title="实现"></a>实现</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304100059248.png" alt="image-20220304100059248"></p>
 <ol>
 <li><p>创建一个新的网络命名空间</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># ip netns add net1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
@@ -1307,7 +1307,7 @@ PING <span class="token number">192.168</span>.0.100 <span class="token punctuat
 <span class="token number">64</span> bytes from <span class="token number">192.168</span>.0.100: <span class="token assign-left variable">icmp_seq</span><span class="token operator">=</span><span class="token number">2</span> <span class="token assign-left variable">ttl</span><span class="token operator">=</span><span class="token number">64</span> <span class="token assign-left variable">time</span><span class="token operator">=</span><span class="token number">0.010</span> ms<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 <h3 id="内核结构-1"><a href="#内核结构-1" class="headerlink" title="内核结构"></a>内核结构</h3><p>网络 namespace 的主要数据结构是struct net </p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304101802320.png" alt="image-20220304101802320"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304101802320.png" alt="image-20220304101802320"></p>
 <p>可见每个 net 下都包含了自己的路由表、iptable 以及内核参数配置等等。</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token comment">//file:include/net/net_namespace.h</span>
 <span class="token keyword">struct</span> <span class="token class-name">net</span> <span class="token punctuation">&#123;</span>
@@ -1379,22 +1379,22 @@ PING <span class="token number">192.168</span>.0.100 <span class="token punctuat
 <span class="token punctuation">&#125;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>各个子系统通过调用 register_pernet_subsys 或 register_pernet_device 将其初始化函数注册到<strong>网络命名空间系统的全局链表 pernet_list</strong> 中。你在源码目录下用这两个函数搜索的话，会看到各个子系统的注册过程。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304103202861.png" alt="image-20220304103202861"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304103202861.png" alt="image-20220304103202861"></p>
 </li>
 <li><p>添加设备</p>
 <p>在一个设备刚刚创建出来的时候，它是属于默认网络命名空间 init_net 的，包括 veth 设备。不过可以在创建完后修改设备到新的网络命名空间。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304103258454.png" alt="image-20220304103258454" style="zoom:50%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304103258454.png" alt="image-20220304103258454" style="zoom:50%;" /></li>
 </ol>
 <h2 id="模拟Docker通信"><a href="#模拟Docker通信" class="headerlink" title="模拟Docker通信"></a>模拟Docker通信</h2><p>让网络空间net1和外部进行通信，详细实验过程请看<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MjM5Njg5NDgwNA==&mid=2247487294&idx=1&sn=c03e1dfbb98075390d562cabaeac62c8&chksm=a6e30e0591948713ff1e03335d8d6292c5745a6c7044deeee1b054190310e46e995cef003026&cur_album_id=1532487451997454337&scene=189#wechat_redirect">这里</a></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304104125972.png" alt="image-20220304104125972" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304104125972.png" alt="image-20220304104125972" style="zoom:50%;" />
 
-<h3 id="虚拟网络到外网通信"><a href="#虚拟网络到外网通信" class="headerlink" title="虚拟网络到外网通信"></a>虚拟网络到外网通信</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304105702617.png" alt="image-20220304105702617" style="zoom:50%;" />
+<h3 id="虚拟网络到外网通信"><a href="#虚拟网络到外网通信" class="headerlink" title="虚拟网络到外网通信"></a>虚拟网络到外网通信</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304105702617.png" alt="image-20220304105702617" style="zoom:50%;" />
 
 <ol>
 <li><p>创建一个网络命名空间、veth、bridge</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304104903447.png" alt="image-20220304104903447" style="zoom:50%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304104903447.png" alt="image-20220304104903447" style="zoom:50%;" /></li>
 <li><p>请求宿主机外部网络</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304104941967.png" alt="image-20220304104941967" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304104941967.png" alt="image-20220304104941967" style="zoom:50%;" />
 
 <ul>
 <li><p>查看当前net1的路由表</p>
@@ -1429,7 +1429,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 </ol>
 <h3 id="外网到虚拟设备通信"><a href="#外网到虚拟设备通信" class="headerlink" title="外网到虚拟设备通信"></a>外网到虚拟设备通信</h3><p>虚拟网络环境中 192.168.0.2 这个 IP 外界是不认识它的。只有这个宿主机知道它是谁。所以我们同样还需要 NAT 功能。</p>
 <p>这次我们是要实现<strong>外部网络访问内部地址</strong>，所以需要的是 DNAT 配置。DNAT 和 SNAT 配置中有一个不一样的地方就是需要明确指定容器中的端口在宿主机上是对应哪个。比如在 docker 的使用中，是通过 -p 来指定端口的对应关系。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304110150796.png" alt="image-20220304110150796" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304110150796.png" alt="image-20220304110150796" style="zoom:50%;" />
 
 <ol>
 <li><p>docker指定端口和宿主机端口的对应关系</p>
@@ -1452,7 +1452,7 @@ Escape character is <span class="token string">'^]'</span><span class="token bui
 </ol>
 <h1 id="内核的namespace"><a href="#内核的namespace" class="headerlink" title="内核的namespace"></a>内核的namespace</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>在 Linux 中，很多我们平常熟悉的概念都是归属到某一个特定的网络 namespace 中的，比如进程、网卡设备、socket 等等。</p>
 <p><strong>Linux 中每个进程（线程）都是用 task_struct 来表示的</strong>。<strong>每个 task_struct 都要关联到一个 namespace 对象 nsproxy</strong>，而 nsproxy 又包含了 netns。对于网卡设备和 socket 来说，通过自己的成员来直接表明自己的归属。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304101210288.png" alt="image-20220304101210288" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304101210288.png" alt="image-20220304101210288" style="zoom:50%;" />
 
 <p>拿网络设备来举例，<strong>只有归属到当前 netns 下的时候才能够通过 ifconfig 看到，否则是不可见的。</strong></p>
 <h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
@@ -1493,7 +1493,7 @@ Escape character is <span class="token string">'^]'</span><span class="token bui
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
 <h2 id="操作ns"><a href="#操作ns" class="headerlink" title="操作ns"></a>操作ns</h2><p>Linux 上存在一个默认的网络命名空间，Linux 中的 1 号进程初始使用该默认空间。Linux 上其它所有进程都是由 1 号进程派生出来的，在派生 clone 的时候如果没有额外特别指定，所有的进程都将共享这个默认网络空间。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304102107853.png" alt="image-20220304102107853" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304102107853.png" alt="image-20220304102107853" style="zoom:50%;" />
 
 <p>内核提供了三种操作命名空间的方式，分别是 clone、setns 和 unshare。这里先<strong>介绍clone</strong>，ip netns add 使用的是 unshare，原理和 clone 是类似的。</p>
 <ul>
@@ -1521,28 +1521,28 @@ Escape character is <span class="token string">'^]'</span><span class="token bui
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>其中，<strong>setup_net 是初始化网络命名空间的</strong>！</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304102442773.png" alt="image-20220304102442773" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304102442773.png" alt="image-20220304102442773" style="zoom:50%;" />
 
 <h1 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h1><p>Linux 在内核网络组件中很多关键位置布置了 netfilter 过滤器。Iptables 就是基于 netfilter 来实现的。所以本文中 iptables 和 netfilter 这两个名词有时候就混着用了。</p>
 <p>Netfilter 的实现可以简单地归纳为四表五链</p>
 <h2 id="五链"><a href="#五链" class="headerlink" title="五链"></a>五链</h2><p>Linux 下的 netfilter 在内核协议栈的各个重要关卡埋下了五个钩子。每一个钩子都对应是一系列规则，以链表的形式存在，所以俗称<strong>五链</strong>。当网络包在协议栈中流转到这些关卡的时候，就会依次执行在这些钩子上注册的各种规则，进而实现对网络包的各种处理。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640-20220304110825906-20220304110838445.png" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220304110825906-20220304110838445.png" alt="图片"></p>
 <p>数据<strong>接收过程</strong>走的是 1 和 2，<strong>发送过程</strong>走的是 4 、5，<strong>转发过程</strong>是 1、3、5。有了这张图，我们能更清楚地理解 iptables 和内核的关系。</p>
 <ol>
 <li><p>接收</p>
 <p>Linux 在网络包接收在 IP 层的入口函数是 ip_rcv。网络在这里包碰到的<strong>第一个 HOOK 就是 PREROUTING</strong>。当该钩子上的规则都处理完后，会进行路由选择。如果发现是本设备的网络包，进入 ip_local_deliver 中，在这里<strong>又会遇到 INPUT 钩子</strong>。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304110556632.png" alt="image-20220304110556632" style="zoom:50%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304110556632.png" alt="image-20220304110556632" style="zoom:50%;" /></li>
 <li><p>发送</p>
 <p>Linux 在网络包发送的过程中，首先是发送的路由选择，然后碰到的第一个 <strong>HOOK 就是 OUTPUT</strong>，然后接着进入 <strong>POSTROUTING 链</strong>。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220304110722018.png" alt="image-20220304110722018" style="zoom:50%;" /></li>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304110722018.png" alt="image-20220304110722018" style="zoom:50%;" /></li>
 <li><p>转发</p>
 <p>其实除了接收和发送过程以外，Linux 内核还可以像路由器一样来工作。它将接收到网络包（不属于自己的），然后根据路由表选到合适的网卡设备将其转发出去。</p>
 <p>这个过程中，先是经历接收数据的前半段。在 ip_rcv 中经过 PREROUTING 链，然后路由后发现不是本设备的包，那就进入 ip_forward 函数进行转发，在这里又会遇到 <strong>FORWARD 链</strong>。最后还会进入 ip_output 进行真正的发送，遇到 POSTROUTING 链。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640-20220304110743833-20220304110748153.png" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220304110743833-20220304110748153.png" alt="图片"></p>
 </li>
 </ol>
 <h2 id="四表"><a href="#四表" class="headerlink" title="四表"></a>四表</h2><p>在每一个链上都可能是由许多个规则组成的。在 NF_HOOK 执行到这个链的时候，就会把规则按照优先级挨个过一遍。如果有符合条件的规则，则执行规则对应的动作。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640-20220304111005767.png" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220304111005767.png" alt="图片"></p>
 <p>而这些规则根据用途的不同，又可以raw、mangle、nat 和 filter。</p>
 <ul>
 <li>row 表的作用是将命中规则的包，跳过其它表的处理，它的优先级最高。</li>
@@ -1558,10 +1558,10 @@ Escape character is <span class="token string">'^]'</span><span class="token bui
 <p>NAT 分为 SNAT（Source NAT）和 DNAT（Destination NAT）两种，可能会工作在 PREROUTING、INPUT、OUTPUT、POSTROUTING 四个位置。</p>
 <p>Filter 只在 INPUT、OUTPUT 和 FORWARD 这三步中工作就够了。</p>
 <p>从整体上看，四链五表的关系如下图。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/640-20220304111005936.png" alt="图片"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220304111005936.png" alt="图片"></p>
 <p>这里再多说一点，<strong>每个命名空间都是有自己独立的 iptables 规则的</strong>。我们拿 NAT 来举例，内核在遍历 NAT 规则的时候，是从 net（命名空间变量）的 ipv4.nat_table 上取下来的。NF_HOOK 最终会执行到 nf_nat_rule_find 函数。</p>
 <h1 id="Linux路由"><a href="#Linux路由" class="headerlink" title="Linux路由"></a>Linux路由</h1><h2 id="发送数据时选路"><a href="#发送数据时选路" class="headerlink" title="发送数据时选路"></a>发送数据时选路</h2><p>Linux 之所以在发送数据包的时候需要进行路由选择，这是因为服务器上是可能会有多张网卡设备存在的。数据包在发送的时候，一路通过用户态、TCP 层到了 IP 层的时候，就要进行路由选择，以决定使用哪张网卡设备把数据包送出去。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220307174354514.png" alt="image-20220307174354514"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220307174354514.png" alt="image-20220307174354514"></p>
 <p>Linux 中可以有多张路由表，最重要和常用的是 local 和 main。</p>
 <p>local 路由表中统一记录本地，确切的说是本网络命名空间中的网卡设备 IP 的路由规则。</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#ip route list table local</span>
@@ -1571,13 +1571,13 @@ Escape character is <span class="token string">'^]'</span><span class="token bui
 <p>其它的路由规则，一般都是在 main 路由表中记录着的。可以用 <code>ip route list table local</code> 查看，也可以用更简短的 <code>route -n</code></p>
 <h2 id="接收数据时选路"><a href="#接收数据时选路" class="headerlink" title="接收数据时选路"></a>接收数据时选路</h2><p>接收数据包的时候也需要进行路由选择。这是因为 Linux 可能会像路由器一样工作，将收到的数据包通过合适的网卡将其转发出去。</p>
 <p>Linux 在 IP 层的接收入口 ip_rcv 执行后调用到 ip_rcv_finish。在这里展开路由选择。如果发现确实就是本设备的网络包，那么就通过 ip_local_deliver 送到更上层的 TCP 层进行处理。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220307174442681.png" alt="image-20220307174442681"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220307174442681.png" alt="image-20220307174442681"></p>
 <p>如果路由后发现非本设备的网络包，那就进入到 ip_forward 进行转发，最后通过 ip_output 发送出去。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220307174450801.png" alt="image-20220307174450801"></p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220307174540902.png" alt="image-20220307174540902"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220307174450801.png" alt="image-20220307174450801"></p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220307174540902.png" alt="image-20220307174540902"></p>
 <h1 id="Linux端口重用"><a href="#Linux端口重用" class="headerlink" title="Linux端口重用"></a>Linux端口重用</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>在 Linux 3.9 以前的版本中，一个端口只能被一个 socket 绑定。在多进程的场景下，无论是使用一个进程来在这个 socket 上 accept，还是说用多个 worker 来 accept 同一个 socket，在高并发的场景下性能都显得有那么一些低下。</p>
 <p>在 2013 年发布的 3.9 中添加了 reuseport 的特性。<strong>该特定允许多个进程分别用不同的 socket 绑定到同一个端口。当有流量到达的时候，在内核态以随机的方式进行负载均衡。避免了锁的开销</strong>。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/image-20220307174658411.png" alt="image-20220307174658411"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220307174658411.png" alt="image-20220307174658411"></p>
 <p>该特性允许同一机器上的多个进程同时创建<strong>不同的 socket 来 bind 和 listen 在相同的端口上</strong>。然后在<strong>内核层面实现多个用户进程的负载均衡</strong>。</p>
 <h2 id="配置REUSEPORT"><a href="#配置REUSEPORT" class="headerlink" title="配置REUSEPORT"></a>配置REUSEPORT</h2><p>想给自己的服务开启 REUSEPORT 很简单，就是给自己 server 里 listen 用的 socket 上加这么一句。（这里以 c 为 demo，其它语言可能会有差异，但基本上差不多）</p>
 <pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token function">setsockopt</span><span class="token punctuation">(</span>fd<span class="token punctuation">,</span> SOL_SOCKET<span class="token punctuation">,</span> SO_REUSEPORT<span class="token punctuation">,</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
@@ -2351,7 +2351,7 @@ Server 0.0.0.0 6000 (23183) accept success:21<span aria-hidden="true" class="lin
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

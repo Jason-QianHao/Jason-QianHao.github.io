@@ -497,19 +497,19 @@
 </ol>
 </blockquote>
 <h2 id="为什么要用缓存"><a href="#为什么要用缓存" class="headerlink" title="为什么要用缓存"></a>为什么要用缓存</h2><p>1）高性能</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621287-5361381.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621287-5361381.png" alt="img"></p>
 <p>  假设这么个场景，你有个操作，一个请求过来，吭哧吭哧你各种乱七八糟操作mysql，半天查出来一个结果，耗时600ms。但是这个结果可能接下来几个小时都不会变了，或者变了也可以不用立即反馈给用户。那么此时咋办？</p>
 <p>  缓存啊，折腾600ms查出来的结果，扔缓存里，一个key对应一个value，下次再有人查，别走mysql折腾600ms了。直接从缓存里，通过一个key查出来一个value，2ms搞定。性能提升300倍。</p>
 <p>  这就是所谓的高性能。就是把你一些复杂操作耗时查出来的结果，如果确定后面不咋变了，然后但是马上还有很多读请求，那么直接结果放缓存，后面直接读缓存就好了。</p>
 <p>2）高并发</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621282.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621282.png" alt="img"></p>
 <p>  mysql这么重的数据库，压根儿设计不是让你玩儿高并发的，虽然也可以玩儿，但是天然支持不好。mysql单机支撑到<strong>2000qps</strong>也开始容易报警了。</p>
 <p>  所以要是你有个系统，<strong>高峰期</strong>一秒钟过来的请求有1万，那一个mysql单机绝对会死掉。你这个时候就只能上缓存，把很多数据放缓存，别放mysql。缓存功能简单，说白了就是key-value式操作，单机支撑的并发量轻松一秒几万十几万，支撑高并发so easy。单机承载并发量是mysql单机的几十倍。</p>
 <h2 id="用了缓存之后的不良后果"><a href="#用了缓存之后的不良后果" class="headerlink" title="用了缓存之后的不良后果"></a>用了缓存之后的不良后果</h2><p>1）缓存与数据库双写不一致</p>
 <p>2）缓存雪崩</p>
 <p>3）缓存穿透</p>
 <p>4）缓存并发竞争</p>
-<h2 id="Redis的线程模型"><a href="#Redis的线程模型" class="headerlink" title="Redis的线程模型"></a>Redis的线程模型</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621287.png" alt="img"></p>
+<h2 id="Redis的线程模型"><a href="#Redis的线程模型" class="headerlink" title="Redis的线程模型"></a>Redis的线程模型</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621287.png" alt="img"></p>
 <p>1）文件事件处理器</p>
 <p>  redis基于reactor模式开发了网络事件处理器，这个处理器叫做文件事件处理器，file event handler。这个文件事件处理器，是单线程的，redis才叫做单线程的模型，采用IO多路复用机制同时监听多个socket，根据socket上的事件来选择对应的事件处理器来处理这个事件。</p>
 <p>  文件事件处理器的结构包含4个部分：多个socket，IO多路复用程序，文件事件分派器，事件处理器（命令请求处理器、命令回复处理器、连接应答处理器，等等）。</p>
@@ -575,15 +575,15 @@
 <p>光是redis是不够的，但是redis是整个大型的缓存架构中，支撑高并发的架构里面，非常重要的一个环节</p>
 <p>首先，你的底层的缓存中间件，缓存系统，必须能够支撑的起我们说的那种高并发，其次，再经过良好的整体的缓存架构的设计（多级缓存架构、热点缓存），支撑真正的上十万，甚至上百万的高并发</p>
 <h3 id="redis不能支撑高并发的瓶颈在哪里？"><a href="#redis不能支撑高并发的瓶颈在哪里？" class="headerlink" title="redis不能支撑高并发的瓶颈在哪里？"></a>redis不能支撑高并发的瓶颈在哪里？</h3><p>单机</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621291.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621291.png" alt="img"></p>
 <h3 id="如果redis要支撑超过10万-的并发，那应该怎么做？"><a href="#如果redis要支撑超过10万-的并发，那应该怎么做？" class="headerlink" title="如果redis要支撑超过10万+的并发，那应该怎么做？"></a>如果redis要支撑超过10万+的并发，那应该怎么做？</h3><p>单机的redis几乎不太可能说QPS超过10万+，除非一些特殊情况，比如你的机器性能特别好，配置特别高，物理机，维护做的特别好，而且你的整体的操作不是太复杂</p>
 <p>单机在几万</p>
 <p>读写分离，一般来说，对缓存，一般都是用来支撑读高并发的，写的请求是比较少的，可能写请求也就一秒钟几千，一两千</p>
 <p>大量的请求都是读，一秒钟二十万次读</p>
 <p>读写分离</p>
 <p><strong>主从架构 -&gt;</strong> <strong>读写分离 -&gt;</strong> <strong>支撑10万+读QPS的架构</strong></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621300.png" alt="img"></p>
-<h2 id="关于Redis的主从复制"><a href="#关于Redis的主从复制" class="headerlink" title="关于Redis的主从复制"></a>关于Redis的主从复制</h2><h3 id="redis-replication的核心机制"><a href="#redis-replication的核心机制" class="headerlink" title="redis replication的核心机制"></a>redis replication的核心机制</h3><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621329.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621300.png" alt="img"></p>
+<h2 id="关于Redis的主从复制"><a href="#关于Redis的主从复制" class="headerlink" title="关于Redis的主从复制"></a>关于Redis的主从复制</h2><h3 id="redis-replication的核心机制"><a href="#redis-replication的核心机制" class="headerlink" title="redis replication的核心机制"></a>redis replication的核心机制</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621329.png" alt="img"></p>
 <p>（1）redis采用<strong>异步方式</strong>复制数据到slave节点，不过redis 2.8开始，slave node会周期性地确认自己每次复制的数据量</p>
 <p>（2）一个master node是可以配置多个slave node的</p>
 <p>（3）slave node也可以连接其他的slave node</p>
@@ -603,7 +603,7 @@
 <p>当启动一个slave node的时候，它会发送一个<strong>PSYNC</strong>命令给master node</p>
 <p>如果这是slave node重新连接master node，那么master node仅仅会复制给slave部分缺少的数据; 否则<strong>如果是slave node第一次连接master node，那么会触发一次full resynchronization</strong></p>
 <p>开始full resynchronization的时候，master会启动一个<strong>后台线程，开始生成一份RDB快照文件</strong>，<strong>同时还会将从客户端收到的所有写命令缓存在内存中</strong>。RDB文件生成完毕之后，master会将这个RDB发送给slave，<strong>slave会先写入本地磁盘，然后再从本地磁盘加载到内存中</strong>。然后master会将内存中缓存的写命令发送给slave（<strong>异步</strong>），slave也会同步这些数据。</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621347.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621347.png" alt="img"></p>
 <p>slave node如果跟master node有网络故障，断开了连接，会自动重连。master如果发现有多个slave node都来重新连接，仅仅会启动一个rdb save操作，用一份数据服务所有slave node。</p>
 <p>（2）主从复制的<strong>断点续传</strong></p>
 <p>从redis 2.8开始，就支持主从复制的断点续传，如果主从复制过程中，网络连接断掉了，那么可以接着上次复制的地方，继续复制下去，而不是从头开始复制一份</p>
@@ -653,14 +653,14 @@
 <h3 id="redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂"><a href="#redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂" class="headerlink" title="redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂"></a>redis哨兵主备切换的数据丢失问题：异步复制、集群脑裂</h3><h4 id="两种数据丢失的情况"><a href="#两种数据丢失的情况" class="headerlink" title="两种数据丢失的情况"></a>两种数据丢失的情况</h4><p><strong>主备切换</strong>的过程，可能会导致数据丢失</p>
 <p>（1）<strong>异步复制</strong>导致的数据丢失</p>
 <p>因为master -&gt; slave的复制是异步的，所以可能有部分数据还没复制到slave，master就宕机了，此时这些部分数据就丢失了</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621331.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621331.png" alt="img"></p>
 <p>（2）<strong>脑裂</strong>导致的数据丢失</p>
 <p>脑裂，也就是说，某个master所在机器突然脱离了正常的网络，跟其他slave机器不能连接，但是实际上master还运行着</p>
 <p>此时哨兵可能就会认为master宕机了，然后开启选举，将其他slave切换成了master</p>
 <p>这个时候，集群里就会有两个master，也就是所谓的脑裂</p>
 <p>此时虽然某个slave被切换成了master，但是可能client还没来得及切换到新的master，还继续写向旧master的数据可能也丢失了</p>
 <p>因此旧master再次恢复的时候，会被作为一个slave挂到新的master上去，自己的数据会清空，重新从新的master复制数据</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621342.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621342.png" alt="img"></p>
 <h4 id="解决异步复制和脑裂导致的数据丢失"><a href="#解决异步复制和脑裂导致的数据丢失" class="headerlink" title="解决异步复制和脑裂导致的数据丢失"></a>解决异步复制和脑裂导致的数据丢失</h4><p>min-slaves-to-write 1</p>
 <p>min-slaves-max-lag 10</p>
 <p>要求至少有1个slave，数据复制和同步的延迟不能超过10秒</p>
@@ -668,13 +668,13 @@
 <p>上面两个配置可以减少异步复制和脑裂导致的数据丢失</p>
 <p>（1）减少异步复制的数据丢失</p>
 <p>有了min-slaves-max-lag这个配置，就可以确保说，一旦slave复制数据和ack延时太长，就认为可能master宕机后损失的数据太多了，那么就<strong>拒绝写请求</strong>，这样可以把master宕机时由于部分数据未同步到slave导致的数据丢失降低的可控范围内</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621395.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621395.png" alt="img"></p>
 <p>（2）减少脑裂的数据丢失</p>
 <p>如果一个master出现了脑裂，跟其他slave丢了连接，那么上面两个配置可以确保说，<strong>如果不能继续给指定数量的slave发送数据，而且slave超过10秒没有给自己ack消息，那么就直接拒绝客户端的写请求</strong></p>
 <p>这样脑裂后的旧master就不会接受client的新数据，也就避免了数据丢失</p>
 <p>上面的配置就确保了，如果跟任何一个slave丢了连接，在10秒后发现没有slave给自己ack，那么就拒绝新的写请求</p>
 <p>因此在脑裂场景下，最多就丢失10秒的数据</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621364.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621364.png" alt="img"></p>
 <h3 id="一些底层机制"><a href="#一些底层机制" class="headerlink" title="一些底层机制"></a>一些底层机制</h3><h4 id="哨兵集群的自动发现机制"><a href="#哨兵集群的自动发现机制" class="headerlink" title="哨兵集群的自动发现机制"></a>哨兵集群的自动发现机制</h4><p>哨兵互相之间的发现，是<strong>通过redis的pub/sub系统实现</strong>的，每个哨兵都会往**<strong>sentinel</strong>:hello**这个channel里发送一个消息，这时候所有其他哨兵都可以消费到这个消息，并感知到其他的哨兵的存在</p>
 <p>每隔两秒钟，每个哨兵都会往<strong>自己监控的某个master+slaves</strong>对应的__sentinel__:hello channel里发送一个消息，内容是自己的host、ip和runid还有对这个master的监控配置</p>
 <p>每个哨兵也会去监听自己监控的每个master+slaves对应的__sentinel__:hello channel，然后去感知到同样在监听这个master+slaves的其他哨兵的存在</p>
@@ -692,7 +692,7 @@
 <p>（2）如果slave priority相同，那么看replica offset，哪个slave复制了越多的数据，offset越靠后，优先级就越高</p>
 <p>（3）如果上面两个条件都相同，那么选择一个run id比较小的那个slave</p>
 <h2 id="Redis持久化"><a href="#Redis持久化" class="headerlink" title="Redis持久化"></a>Redis持久化</h2><h3 id="意义"><a href="#意义" class="headerlink" title="意义"></a>意义</h3><p>  redis持久化的意义，在于故障恢复</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621367.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621367.png" alt="img"></p>
 <p>如果没有持久化的话，redis遇到灾难性故障的时候，就会丢失所有的数据</p>
 <p>如果通过持久化将数据搞一份儿在磁盘上去，然后定期比如说同步和备份到一些云存储服务上去，那么就可以保证数据不丢失全部，还是可以恢复一部分数据回来的</p>
 <h3 id="RDB与AOF"><a href="#RDB与AOF" class="headerlink" title="RDB与AOF"></a>RDB与AOF</h3><h4 id="RDB和AOF两种持久化机制的介绍"><a href="#RDB和AOF两种持久化机制的介绍" class="headerlink" title="RDB和AOF两种持久化机制的介绍"></a>RDB和AOF两种持久化机制的介绍</h4><p>RDB持久化机制，对redis中的数据执行周期性的持久化</p>
@@ -711,7 +711,7 @@
 <p>（4）AOF日志文件的命令通过非常可读的方式进行记录，这个特性非常适合做灾难性的误删除的紧急恢复。比如某人不小心用flushall命令清空了所有数据，只要这个时候后台rewrite还没有发生，那么就可以立即拷贝AOF文件，将最后一条flushall命令给删了，然后再将该AOF文件放回去，就可以通过恢复机制，自动恢复所有数据</p>
 <h4 id="AOF持久化机制的缺点"><a href="#AOF持久化机制的缺点" class="headerlink" title="AOF持久化机制的缺点"></a>AOF持久化机制的缺点</h4><p>（1）对于同一份数据来说，<strong>AOF日志文件通常比RDB数据快照文件更大</strong></p>
 <p>  **Redis通过内存淘汰机制，淘汰内存数据后，AOF中指令和当前数据的相关性逐渐变小，通过AOF重写来解决AOF膨胀的问题。<br>**</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621386.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621386.png" alt="img"></p>
 <p><img src="../assets/Framework/1240-20210704091621428.png" alt="img"></p>
 <p>（2）AOF开启后，支持的写QPS会比RDB支持的写QPS低，因为AOF一般会配置成每秒fsync一次日志文件，当然，每秒一次fsync，性能也还是很高的</p>
 <p>（3）以前AOF发生过bug，就是通过AOF记录的日志，进行数据恢复的时候，没有恢复一模一样的数据出来。所以说，类似AOF这种较为复杂的基于命令日志/merge/回放的方式，比基于RDB每次持久化一份完整的数据快照文件的方式，更加脆弱一些，<strong>容易有bug</strong>。不过AOF就是为了避免rewrite过程导致的bug，因此每次rewrite并不是基于旧的指令日志进行merge的，而是基于当时内存中的数据进行指令的重新构建，这样健壮性会好很多。</p>
@@ -724,7 +724,7 @@
 <p>高可用，因为每个master都有salve节点，那么如果mater挂掉，redis cluster这套机制，就会自动将某个slave切换成master</p>
 <p>redis cluster（多master + 读写分离 + 高可用）</p>
 <p>我们只要基于redis cluster去搭建redis集群即可，不需要手工去搭建replication复制+主从架构+读写分离+哨兵集群+高可用</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621430.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621430.png" alt="img"></p>
 <p><img src="../assets/Framework/1240-20210704091621412.png" alt="img"></p>
 <p>（2）redis cluster vs. replication + sentinal</p>
 <p>  · 如果你的数据量很少，主要是承载<strong>高并发高性能</strong>的场景，比如你的缓存一般就几个G，单机足够了</p>
@@ -738,21 +738,21 @@
 <p>在redis cluster架构下，每个redis要放开两个端口号，比如一个是6379，另外一个就是加10000的端口号，比如16379</p>
 <p>16379端口号是用来进行节点间通信的，也就是cluster bus的东西，集群总线。cluster bus的通信，用来进行故障检测，配置更新，故障转移授权</p>
 <p>cluster bus用了另外一种二进制的协议，主要用于节点间进行高效的数据交换，占用更少的网络带宽和处理时间</p>
-<h4 id="最老土的hash算法和弊端（大量缓存重建）"><a href="#最老土的hash算法和弊端（大量缓存重建）" class="headerlink" title="最老土的hash算法和弊端（大量缓存重建）"></a>最老土的hash算法和弊端（大量缓存重建）</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20220305095109690.png" alt="img"></p>
-<h4 id="一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）"><a href="#一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）" class="headerlink" title="一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）"></a>一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621462.png" alt="img"></p>
+<h4 id="最老土的hash算法和弊端（大量缓存重建）"><a href="#最老土的hash算法和弊端（大量缓存重建）" class="headerlink" title="最老土的hash算法和弊端（大量缓存重建）"></a>最老土的hash算法和弊端（大量缓存重建）</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220305095109690.png" alt="img"></p>
+<h4 id="一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）"><a href="#一致性hash算法（自动缓存迁移）-虚拟节点（自动负载均衡）" class="headerlink" title="一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）"></a>一致性hash算法（自动缓存迁移）+虚拟节点（自动负载均衡）</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621462.png" alt="img"></p>
 <p><img src="../assets/Framework/1240-20210704091621480.png" alt="img"></p>
 <h4 id="redis-cluster的hash-slot算法"><a href="#redis-cluster的hash-slot算法" class="headerlink" title="redis cluster的hash slot算法"></a>redis cluster的hash slot算法</h4><p>redis cluster有固定的<strong>16384个hash slot</strong>，对每个key计算CRC16值，然后对16384取模，可以获取key对应的hash slot</p>
 <p>redis cluster中每个master都会持有部分slot，比如有3个master，那么可能每个master持有5000多个hash slot</p>
 <p>hash slot让node的增加和移除很简单，<strong>增加一个master，就将其他master的hash slot移动部分过去，减少一个master，就将它的hash slot移动到其他master上去</strong></p>
 <p>移动hash slot的成本是非常低的</p>
 <p>客户端的api，可以对指定的数据，让他们走同一个hash slot，通过hash tag来实现</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621448.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621448.png" alt="img"></p>
 <h3 id="集群节点间的通信"><a href="#集群节点间的通信" class="headerlink" title="集群节点间的通信"></a>集群节点间的通信</h3><h4 id="基础通信原理"><a href="#基础通信原理" class="headerlink" title="基础通信原理"></a>基础通信原理</h4><p>（1）redis cluster节点间采取<strong>gossip协议</strong>进行通信</p>
 <p>跟集中式不同，不是将集群元数据（节点信息，故障，等等）集中存储在某个节点上，而是互相之间不断通信，保持整个集群所有节点的数据是完整的</p>
 <p>集中式：好处在于，元数据的更新和读取，时效性非常好，一旦元数据出现了变更，立即就更新到集中式的存储中，其他节点读取的时候立即就可以感知到; 不好在于，所有的元数据的跟新压力全部集中在一个地方，可能会导致元数据的存储有压力</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621455.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621455.png" alt="img"></p>
 <p>gossip：好处在于，元数据的更新比较分散，不是集中在一个地方，更新请求会陆陆续续，打到所有节点上去更新，有一定的延时，降低了压力; 缺点，元数据更新有延时，可能导致集群的一些操作会有一些滞后</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621457.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621457.png" alt="img"></p>
 <p>（2）10000端口</p>
 <p>每个节点都有一个专门用于节点间通信的端口，就是<strong>自己提供服务的端口号+10000</strong>，比如7001，那么用于节点间通信的就是17001端口</p>
 <p>每隔节点每隔一段时间都会往另外几个节点发送ping消息，同时其他几点接收到ping之后返回pong</p>
@@ -790,14 +790,14 @@
 <p>从节点执行主备切换，从节点切换为主节点</p>
 <p>（4）与哨兵比较</p>
 <p>  整个流程跟哨兵相比，非常类似，所以说，<strong>redis cluster功能强大，直接集成了replication和sentinal的功能</strong></p>
-<h3 id="缓存问题"><a href="#缓存问题" class="headerlink" title="**缓存问题 **"></a>**缓存问题 **</h3><h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621489.png" alt="img"></p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621490.png" alt="img"></p>
+<h3 id="缓存问题"><a href="#缓存问题" class="headerlink" title="**缓存问题 **"></a>**缓存问题 **</h3><h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621489.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621490.png" alt="img"></p>
 <p>缓存雪崩的事前事中事后的解决方案</p>
 <p>事前：redis高可用，主从+哨兵，redis cluster，避免全盘崩溃</p>
 <p>事中：本地ehcache缓存 + hystrix限流&amp;降级，避免MySQL被打死</p>
 <p>事后：redis持久化，快速恢复缓存数据</p>
 <h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><p>缓存穿透的解决方法</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210704091621491.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704091621491.png" alt="img"></p>
 <p>另外还有，布隆过滤器可以有效缓解缓存穿透的问题。</p>
 <h3 id="缓存-数据库双写一致性问题"><a href="#缓存-数据库双写一致性问题" class="headerlink" title="缓存+数据库双写一致性问题"></a>缓存+数据库双写一致性问题</h3><h4 id="最经典的缓存-数据库读写的模式，cache-aside-pattern"><a href="#最经典的缓存-数据库读写的模式，cache-aside-pattern" class="headerlink" title="最经典的缓存+数据库读写的模式，cache aside pattern"></a>最经典的缓存+数据库读写的模式，cache aside pattern</h4><p>（1）Cache Aside Pattern</p>
 <p>  · 读的时候，先读缓存，缓存没有的话，那么就读数据库，然后取出数据后放入缓存，同时返回响应</p>
@@ -1559,7 +1559,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             

@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629152656549.png')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/36.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -473,8 +473,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em>由简书搬迁而来<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/263a6e3198cd"><strong>原文链接</strong></a></em></p>
-<blockquote>
+                <blockquote>
 <p>目录<br>  1 数据交换格式<br>  2 Java反射<br>  3 Spring简介<br>  4 Spring IOC<br>  5 代理<br>  6 Spring AOP<br>  7 Spring MVC<br>  8 Spring JDBC<br>  9 Spring 事务<br>  10 Spring 远端调用<br>  11 Spring代码  </p>
 <p>参考资料：  </p>
 <ul>
@@ -602,9 +601,9 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <h2 id="通过反射创建对象"><a href="#通过反射创建对象" class="headerlink" title="通过反射创建对象"></a>通过反射创建对象</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> forName <span class="token operator">=</span> <span class="token class-name">Class</span><span class="token punctuation">.</span><span class="token function">forName</span><span class="token punctuation">(</span><span class="token string">"com.qian.entity.User"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token comment">// 创建此Class 对象所表示的类的一个新实例 调用了User的无参数构造方法.</span>
 <span class="token class-name">Object</span> newInstance <span class="token operator">=</span> forName<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="相关API"><a href="#相关API" class="headerlink" title="相关API"></a>相关API</h2><p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319668.png" alt="img"></p>
+<h2 id="相关API"><a href="#相关API" class="headerlink" title="相关API"></a>相关API</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319668.png" alt="img"></p>
 <h1 id="Spring简介"><a href="#Spring简介" class="headerlink" title="Spring简介"></a>Spring简介</h1><p>​    spring是一个开源框架，它由Rod Johnson创建。它是为了解决企业应用开发的复杂性而创建的。Spring使用基本的JavaBean来完成以前只可能由EJB完成的事情。然而，Spring的用途不仅限于服务器端的开发。从简单性、可测试性和松耦合的角度而言，任何Java应用都可以从Spring中受益。<br>​    Spring是一个轻量级的控制反转(IoC)和面向切面(AOP)的容器框架。<br>     轻量，从大小与开销两方面而言Spring都是轻量的。完整的Spring框架可以在一个大小只有1MB多的JAR文件里发布。并且Spring所需的处理开销也是微不足道的。此外，Spring是非侵入式的：典型地，Spring应用中的对象不依赖于Spring的特定类。<br>​    控制反转，Spring通过一种称作控制反转（IoC）的技术促进了松耦合。当应用了IoC，一个对象依赖的其它对象会通过被动的方式传递进来，而不是这个对象自己创建或者查找依赖对象。你可以认为IoC与JNDI相反——不是对象从容器中查找依赖，而是容器在对象初始化时不等对象请求就主动将依赖传递给它。<br>​    面向切面，Spring提供了面向切面编程的丰富支持，允许通过分离应用的业务逻辑与系统级服务（例如审计（auditing）和事务（transaction）管理）进行内聚性的开发。应用对象只实现它们应该做的——完成业务逻辑——仅此而已。它们并不负责（甚至是意识）其它的系统级关注点，例如日志或事务支持。<br>​    容器，Spring包含并管理应用对象的配置和生命周期，在这个意义上它是一种容器，你可以配置你的每个bean如何被创建——基于一个可配置原型（prototype），你的bean可以创建一个单独的实例或者每次需要时都生成一个新的实例——以及它们是如何相互关联的。然而，Spring不应该被混同于传统的重量级的EJB容器，它们经常是庞大与笨重的，难以使用。<br>​    框架，Spring可以将简单的组件配置、组合成为复杂的应用。在Spring中，应用对象被声明式地组合，典型地是在一个XML文件里。Spring也提供了很多基础功能（事务管理、持久化框架集成等等），将应用逻辑的开发留给了你。<br>​    所有Spring的这些特征使你能够编写更干净、更可管理、并且更易于测试的代码。它们也为Spring中的各种模块提供了基础支持。<br>​    一般说的spring框架大都是Spring Framework，它是很多模块的集合，使用这些模块可以很方便地协助我们进行开发。这些模块包括核心容器、数据访问/集成、Web、AOP面向切面编程、工具、消息和测试模块。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319567.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319567.png" alt="img" style="zoom:50%;" />
 
 <ul>
 <li>列举一些重要的spring模块：<br>（1）Spring Core 包含IOC容器等。<br>（2）Spring Aspects 与AspectJ集成。<br>（3）Spring AOP 面向切面的编程实现。<br>（4）Spring JDBC 与Java数据库对接。<br>（5）Spring JMS Java消息服务。<br>（6）Spring ORM 支持Hibernate等ORM工具<br>（7）Spring Web 创建web应用程序提供支持<br>（8）Spring Test 提供对Junit和TestNG测试的支持。</li>
@@ -615,7 +614,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 </ul>
 <h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>  控制反转、依赖注入。<br>  对象之间的依赖关系可以通过把对象的依赖注入交给框架或者IOC容器来完成，降低代码的耦合度。在Spring的实现中，IOC容器是实现这个模式的载体，它可以在对象生成或初始化时直接将数据注入到对象中，也可以通过将对象引用注入到数据域中的方式来注入对方法调用的依赖。</p>
 <h2 id="IOC容器实现"><a href="#IOC容器实现" class="headerlink" title="IOC容器实现"></a>IOC容器实现</h2><p>  在Spring IOC容器的设计中，有两个主要的容器系列。一个是实现BeanFactory接口的简单容器系列，这个系列只实现了容器的最基本功能；另一个是ApplicationContext应用上下文，它作为容器的高级形态而存在。</p>
-<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629152656549.png" alt="img" style="zoom:50%;" />
+<h3 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629152656549.png" alt="img" style="zoom:50%;" />
 
 <h4 id="BeanFactory和FactoryBean区别"><a href="#BeanFactory和FactoryBean区别" class="headerlink" title="BeanFactory和FactoryBean区别"></a>BeanFactory和FactoryBean区别</h4><ul>
 <li>BeanFactory定义了 IOC 容器的最基本形式，并提供了 IOC 容器应遵守的的最基本的接口，也就是 Spring IOC 所遵守的最底层和最基本的编程规范。BeanFactory仅是个接口，并不是IOC容器的具体实现。所有的 Bean 都是由 BeanFactory( 也就是 IOC 容器 ) 来进行管理。<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BeanFactory</span> <span class="token punctuation">&#123;</span>
@@ -658,19 +657,19 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <ul>
 <li>BeanDefinition<br>BeanFactory 是 Bean 容器，那么 Bean 又是什么呢？这里的 BeanDefinition 就是我们所说的 Spring 的 Bean，我们自己定义的各个 Bean 其实会转换成一个个 BeanDefinition 存在于 Spring 的 BeanFactory 中。所以 Bean 在代码层面上可以简单认为是 BeanDefinition 的实例BeanDefinition 中保存了我们的 Bean 信息，比如这个 Bean 指向的是哪个类、是否是单例的、是否懒加载、这个 Bean 依赖了哪些 Bean 等等。</li>
 </ul>
-<h3 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h3><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319716.png" alt="img" style="zoom:50%;" />
+<h3 id="ApplicationContext"><a href="#ApplicationContext" class="headerlink" title="ApplicationContext"></a>ApplicationContext</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319716.png" alt="img" style="zoom:50%;" />
 
 <p>  是一个高级形态意义的IOC容器。</p>
 <p>  在BeanFactory的基础上添加的新特性：<br>（1）扩展MessageSource接口，支持不同的信息源。<br>（2）对ResourceLoader和Resource的支持，可以灵活得到Bean。<br>（3）继承接口ApplicationEventPublisher，支持应用事件<br>（4）丰富的附件功能，面向框架的风格。</p>
 <p>  一个具体的应用上下文，只需要实现和它自身设计相关的功能，如FileSystemXmlApplicationContext，需要实现：<br>（1）对实例化应用上下文的支持，启动IOC的refresh()过程。<br>（2）定义如何从文件加载Bean定义资源。</p>
-<h2 id="IOC源码分析"><a href="#IOC源码分析" class="headerlink" title="IOC源码分析"></a>IOC源码分析</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319869.jpeg" alt="img" style="zoom: 63%;" />
+<h2 id="IOC源码分析"><a href="#IOC源码分析" class="headerlink" title="IOC源码分析"></a>IOC源码分析</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319869.jpeg" alt="img" style="zoom: 63%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320045.jpeg" alt="img" style="zoom: 63%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320045.jpeg" alt="img" style="zoom: 63%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319668.jpeg" alt="img" style="zoom:63%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319668.jpeg" alt="img" style="zoom:63%;" />
 
 <p><em>IOC初始化过程</em>:</p>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319746.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319746.png" alt="img"></p>
 <ul>
 <li>一些注意点<br>（1）Bean的依赖注入发生在第一次getBean()方法调用时<br>（2）设置了lazyinit属性的Bean，在IOC容器初始化完成注入<br>（3）创建bean实例的两种方法：<pre><code>  - BeanUtils中的JVM反射
         - CGLIB
@@ -750,7 +749,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <p>（1）抽象角色：它的作用是定义一组行为规范。抽象角色一般呈现为接口（或抽象类），这些接口（或抽象类）中定义的方法就是待实现的。</p>
 <p>（2）真实角色：实现了抽象角色所定义的行为。真实角色就是个普通的类，它需要实现抽象角色定义的那些接口。</p>
 <p>（3）代理角色：代表真实角色的角色。根据上面代理的定义，我们可以知道代理角色需要至少完成（或实现）真实角色的功能。为了完成这一使命，那么代理角色也需要实现抽象角色所定义的行为（即代理类需要实现抽象角色所定义的接口），并且在实现接口方法的时候需要调用真实角色的相应方法。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319787.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319787.png" alt="img"/>
 
 <ul>
 <li><p>特点：需要手动生成代理类，并在实现接口方法的时候调用真实类的方法。</p>
@@ -768,7 +767,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <h3 id="JDK动态代理"><a href="#JDK动态代理" class="headerlink" title="JDK动态代理"></a>JDK动态代理</h3><h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><ul>
 <li>DK动态代理的实现是在运行时，根据一组接口定义，使用Proxy、InvocationHandler等工具类去生成一个代理类和代理类实例。这两个类都在jdk的反射包java.lang.reflect下面。Proxy是个工具类，有了它就可以为接口生成动态代理类了。</li>
 </ul>
-<p><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319938.png" alt="img"></p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319938.png" alt="img"></p>
 <ul>
 <li>生成的代理类$Proxy0对外只提供一个构造函数，这个构造函数接受一个InvocationHandler实例h，这个构造函数的逻辑非常简单，就是调用父类的构造函数，将参数h赋值给对象字段h。最终就是把所有的方法实现都分派到InvocationHandler实例h的invoke方法上。所以JDK动态代理的接口方法实现逻辑是完全由InvocationHandler实例的invoke方法决定的。</li>
 </ul>
@@ -853,7 +852,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <li><p>基于CGLIB的优势：<br>  <strong>无需实现接口</strong>，达到代理类无侵入，只操作关心的类，而不必为其他相关类增加工作量。高性能。</p>
 </li>
 </ul>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/24777208-76ed33817373b48c.png" alt="img"/>
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/24777208-76ed33817373b48c.png" alt="img"/>
 
 <h1 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h1><h2 id="概念和作用"><a href="#概念和作用" class="headerlink" title="概念和作用"></a>概念和作用</h2><p>​    AOP（Aspect Oriented Programming: 面向切面编程）能够将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。</p>
 <h2 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h2><p>  基于动态代理实现，且依赖于IOC，只对Bean有效。</p>
@@ -862,27 +861,27 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <p>  Spring 2.0 <strong>schema-based 配置</strong>：Spring 2.0 以后使用 XML 的方式来配置，使用 命名空间 <aop /></p>
 <p>  Spring 2.0 <strong>@AspectJ 配置</strong>：使用<strong>注解</strong>的方式来配置，这种方式感觉是最方便的，还有，这里虽然叫做 @AspectJ，但是这个和 AspectJ 其实没啥关系。</p>
 <h3 id="基于接口配置"><a href="#基于接口配置" class="headerlink" title="基于接口配置"></a>基于接口配置</h3><h4 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h4><p>（1）定义目标接口和其实现类</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319894.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319894.png" alt="img" style="zoom:50%;" />
 
 <p>（2）定义Advice</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319886.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319886.png" alt="img" style="zoom:50%;" />
 
 <p>（3）在spring配置文件中定义<strong>ProxyFactoryBean</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319949.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319949.png" alt="img" style="zoom:50%;" />
 
 <h4 id="拦截器配置"><a href="#拦截器配置" class="headerlink" title="拦截器配置"></a><strong>拦截器配置</strong></h4><p>  在上面的配置中，配置拦截器的时候，interceptorNames 除了指定为 Advice，是还可以指定为 Interceptor 和 Advisor 的。</p>
 <p>（1）Advice<br>  拦截器的粒度只控制到了类级别，类中所有的方法都进行了拦截。</p>
 <p>（2）Advisor<br>  <strong>它内部需要指定一个 Advice</strong>，Advisor 决定该拦截哪些方法，拦截后需要完成的工作还是内部的 Advice 来做。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320072.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320072.png" alt="img" style="zoom:50%;" />
 
 <p>（3）Interceptor<br>  类似JDK动态代理中的处理类的invoke方法。</p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151319956.png" alt="img" style="zoom:80%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151319956.png" alt="img" style="zoom:80%;" />
 
 <h4 id="autoproxy自动代理"><a href="#autoproxy自动代理" class="headerlink" title="autoproxy自动代理"></a>autoproxy自动代理</h4><p>  上述方法有个共同的问题，那就是我们得为每个 bean 都配置一个代理，之后获取 bean 的时候需要获取这个代理类的 bean 实例（如 (UserService) context.getBean(“userServiceProxy”)），这显然非常不方便，不利于我们之后要使用的自动根据类型注入。</p>
 <p>用autoproxy包中的<strong>BeanNameAutoProxyCreator代替ProxyFactoryBean。</strong></p>
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320023.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320023.png" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320007.png" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320007.png" alt="img" style="zoom:50%;" />
 
 <h3 id="基于注解"><a href="#基于注解" class="headerlink" title="基于注解"></a>基于注解</h3><h4 id="maven依赖-1"><a href="#maven依赖-1" class="headerlink" title="maven依赖"></a>maven依赖</h4><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
@@ -983,16 +982,16 @@ public void logArgs(JoinPoint joinPoint)&#123;
 &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意</strong>：第一，必须放置在第一个参数上；第二，如果是 @Around，我们通常会使用其子类 ProceedingJoinPoint，因为它有 procceed()/procceed(args[]) 方法。</p>
 <h3 id="schema-based-配置"><a href="#schema-based-配置" class="headerlink" title="schema-based 配置"></a>schema-based 配置</h3><p>  是 Spring 2.0 以后提供的基于<code> &lt;aop /&gt;</code> 命名空间的 XML 配置。这里说的 schema-based 就是指基于 aop 这个 schema。</p>
-<h2 id="AOP源码分析"><a href="#AOP源码分析" class="headerlink" title="AOP源码分析"></a>AOP源码分析</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320079.png" alt="img" style="zoom:50%;" />
+<h2 id="AOP源码分析"><a href="#AOP源码分析" class="headerlink" title="AOP源码分析"></a>AOP源码分析</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320079.png" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320066.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320066.jpeg" alt="img" style="zoom:50%;" />
 
-<img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320171.jpeg" alt="img" style="zoom:50%;" />
+<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320171.jpeg" alt="img" style="zoom:50%;" />
 
-<h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><h2 id="MVC模型"><a href="#MVC模型" class="headerlink" title="MVC模型"></a>MVC模型</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320143.jpeg" alt="img" style="zoom:50%;" />
+<h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><h2 id="MVC模型"><a href="#MVC模型" class="headerlink" title="MVC模型"></a>MVC模型</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320143.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="web环境中的IOC环境"><a href="#web环境中的IOC环境" class="headerlink" title="web环境中的IOC环境"></a>web环境中的IOC环境</h2><p>（1）由ContextLoaderListener 启动根上下文（IOC容器）。<br>（2）由WebApplicationContext 启动子上下文</p>
-<h2 id="工作流程图"><a href="#工作流程图" class="headerlink" title="工作流程图"></a>工作流程图</h2><img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210629151320184.png" alt="img"/>
+<h2 id="工作流程图"><a href="#工作流程图" class="headerlink" title="工作流程图"></a>工作流程图</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210629151320184.png" alt="img"/>
 
 <p>（1）用户向服务器发送请求，请求被Spring 前端控制Servelt DispatcherServlet捕获；</p>
 <p>（2）执行DispatcherServlet的doservice()方法，执行其中的doDispatcher()方法。</p>
@@ -1819,7 +1818,7 @@ public void logArgs(JoinPoint joinPoint)&#123;
                 <a href="/2020/10/07/mybatis-zhi-shi-hui-zong/">
                     <div class="card-image">
                         
-                        <img src="https://gitee.com/Object_Jason/my-pic-go/raw/master/img/1240-20210628172742146.png" class="responsive-img" alt="Mybatis知识汇总">
+                        <img src="/medias/featureimages/57.jpg" class="responsive-img" alt="Mybatis知识汇总">
                         
                         <span class="card-title">Mybatis知识汇总</span>
                     </div>
@@ -2003,7 +2002,7 @@ public void logArgs(JoinPoint joinPoint)&#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">453.5k</span>&nbsp;字
+                class="white-color">454.8k</span>&nbsp;字
             
             
             
