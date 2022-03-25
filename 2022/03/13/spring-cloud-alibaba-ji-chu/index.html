@@ -505,8 +505,20 @@
 <h2 id="安装Nacos"><a href="#安装Nacos" class="headerlink" title="安装Nacos"></a>安装Nacos</h2><p>下载地址：<a target="_blank" rel="noopener" href="https://github.com/alibaba/nacos/releases">https://github.com/alibaba/nacos/releases</a></p>
 <p>下载完成之后，解压。根据不同平台，执行不同命令，启动单机版Nacos服务：</p>
 <ul>
-<li>Linux/Unix/Mac：<code>sh startup.sh -m standalone</code></li>
-<li>Windows：<code>cmd startup.cmd -m standalone</code></li>
+<li><p>Linux/Unix/Mac：<code>sh startup.sh -m standalone</code></p>
+<p>注意，我在Mac环境下启动，发现shell脚本是加载mac自带的jdk，如果不进行更改，启动会失败。</p>
+<ul>
+<li><p><code>/usr/libexec/java_home -V</code></p>
+<p>查看mac的java环境，会显示有多个。</p>
+</li>
+<li><p>编辑<code>startup.sh</code>命令</p>
+<p>路径写上上述命令显示的自己的JDK路径</p>
+<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/202203252030049.png" alt="image-20220325203044999"></p>
+</li>
+</ul>
+</li>
+<li><p>Windows：<code>cmd startup.cmd -m standalone</code></p>
+</li>
 </ul>
 <blockquote>
 <p><code>startup.sh</code>脚本位于Nacos解压后的bin目录下</p>
@@ -514,7 +526,8 @@
 <p>启动完成之后，访问：<code>http://127.0.0.1:8848/nacos/</code>，可以进入Nacos的服务管理页面，<strong>默认用户名密码为：nacos</strong>，具体如下:</p>
 <p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-138.png" alt="img"></p>
 <h2 id="构建应用接入Nacos注册中心"><a href="#构建应用接入Nacos注册中心" class="headerlink" title="构建应用接入Nacos注册中心"></a>构建应用接入Nacos注册中心</h2><p>在完成了Nacos服务的安装和启动之后，下面我们就可以编写两个应用（服务提供者与服务消费者）来验证服务的注册与发现了。</p>
-<h3 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
+<h3 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p>这里注意Springboot版本和Nacos版本的兼容性问题，Springboot版本不要太高</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.0.5.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
@@ -889,27 +902,24 @@
 <ol>
 <li><p>必须包含<code>spring-boot-starter-actuator</code>包，不然启动会报错。</p>
 </li>
-<li><p>```<br>spring-cloud-starter-dubbo</p>
-<pre class="line-numbers language-none"><code class="language-none">
-   包需要注意&#96;groupId&#96;根据具体使用的spring cloud alibaba版本依赖来确定。
-
-   - 项目孵化期间，使用的&#96;groupId&#96;为：&#96;org.springframework.cloud&#96;；
-   - 项目孵化之后，使用的&#96;groupId&#96;修改为了&#96;com.alibaba.cloud&#96;，所以用户需要注意是否使用正确。避免加载不到对应JAR包的问题。
-
-### 配置文件
-
-&#96;&#96;&#96;properties
-spring.application.name&#x3D;alibaba-dubbo-server
-server.port&#x3D;8001
-
-spring.cloud.nacos.discovery.server-addr&#x3D;127.0.0.1:8848
-
-# 指定 Dubbo 服务实现类的扫描基准包
-dubbo.scan.base-packages&#x3D;com.didispace.alibaba.dubbo.server
-dubbo.protocol.name&#x3D;dubbo
-dubbo.protocol.port&#x3D;-1
-dubbo.registry.address&#x3D;spring-cloud:&#x2F;&#x2F;localhost<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><code>spring-cloud-starter-dubbo</code>包需要注意<code>groupId</code>根据具体使用的spring cloud alibaba版本依赖来确定。</p>
+<ul>
+<li>项目孵化期间，使用的<code>groupId</code>为：<code>org.springframework.cloud</code>；</li>
+<li>项目孵化之后，使用的<code>groupId</code>修改为了<code>com.alibaba.cloud</code>，所以用户需要注意是否使用正确。避免加载不到对应JAR包的问题。</li>
+</ul>
+</li>
 </ol>
+<h3 id="配置文件-2"><a href="#配置文件-2" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-dubbo-server</span>
+<span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8001</span>
+
+<span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span>
+
+<span class="token comment"># 指定 Dubbo 服务实现类的扫描基准包</span>
+<span class="token attr-name">dubbo.scan.base-packages</span><span class="token punctuation">=</span><span class="token attr-value">com.didispace.alibaba.dubbo.server</span>
+<span class="token attr-name">dubbo.protocol.name</span><span class="token punctuation">=</span><span class="token attr-value">dubbo</span>
+<span class="token attr-name">dubbo.protocol.port</span><span class="token punctuation">=</span><span class="token attr-value">-1</span>
+<span class="token attr-name">dubbo.registry.address</span><span class="token punctuation">=</span><span class="token attr-value">spring-cloud://localhost</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p>配置说明如下：</p>
 <ul>
 <li><code>dubbo.scan.base-packages</code>: 指定 Dubbo 服务实现类的扫描基准包</li>
@@ -966,7 +976,7 @@ dubbo.registry.address&#x3D;spring-cloud:&#x2F;&#x2F;localhost<span aria-hidden=
     //...
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="配置文件-2"><a href="#配置文件-2" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-dubbo-client</span>
+<h3 id="配置文件-3"><a href="#配置文件-3" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-dubbo-client</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8002</span>
 
 <span class="token attr-name">spring.cloud.nacos.discovery.server-addr</span><span class="token punctuation">=</span><span class="token attr-value">127.0.0.1:8848</span>
@@ -1055,7 +1065,7 @@ dubbo.registry.address&#x3D;spring-cloud:&#x2F;&#x2F;localhost<span aria-hidden=
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="配置文件-3"><a href="#配置文件-3" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-sentinel-rate-limiting</span>
+<h3 id="配置文件-4"><a href="#配置文件-4" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-sentinel-rate-limiting</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8001</span>
 
 <span class="token comment"># sentinel dashboard</span>
@@ -1167,7 +1177,7 @@ dubbo.registry.address&#x3D;spring-cloud:&#x2F;&#x2F;localhost<span aria-hidden=
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="配置文件-4"><a href="#配置文件-4" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-sentinel-datasource-nacos</span>
+<h3 id="配置文件-5"><a href="#配置文件-5" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-sentinel-datasource-nacos</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">8003</span>
 
 <span class="token comment"># sentinel dashboard</span>
@@ -1965,7 +1975,7 @@ dubbo.registry.address&#x3D;spring-cloud:&#x2F;&#x2F;localhost<span aria-hidden=
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">454.8k</span>&nbsp;字
+                class="white-color">454.9k</span>&nbsp;字
             
             
             
