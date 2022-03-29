@@ -675,7 +675,8 @@
 <pre class="line-numbers language-http" data-language="http"><code class="language-http"><span class="token header"><span class="token header-name keyword">http</span><span class="token punctuation">:</span><span class="token header-value">//localhost:8080/oauth/token?...</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>参数：grant_type固定填authorization_code，code为上一步获取到的授权码，client_id和redirect_uri必须和我们上面定义的一致。</p>
-<p>添加请求头：key为Authorization，value为<code>Basic</code>加上<code>client_id:client_secret</code>经过base64加密后的值</p>
+<p>添加请求头：key为Authorization，value为<code>Basic</code>加上<code>client_id:client_secret</code>经过base64加密(这里有个工具）后的值。</p>
+<p><strong>注意</strong>：不支持GET请求，可以<strong>使用POST请求</strong>。</p>
 </li>
 <li><p>得到令牌</p>
 <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
