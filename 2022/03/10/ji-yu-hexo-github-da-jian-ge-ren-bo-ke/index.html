@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -817,7 +817,7 @@ $ <span class="token function">npm</span> <span class="token function">install</
 <h3 id="修改-banner-图和文章特色图"><a href="#修改-banner-图和文章特色图" class="headerlink" title="修改 banner 图和文章特色图"></a>修改 banner 图和文章特色图</h3><p>你可以直接在 <code>/source/medias/banner</code> 文件夹中更换你喜欢的 <code>banner</code> 图片，主题代码中是每天动态切换一张，只需 <code>7</code> 张即可。如果你会 <code>JavaScript</code> 代码，可以修改成你自己喜欢切换逻辑，如：随机切换等，<code>banner</code> 切换的代码位置在 <code>/layout/_partial/bg-cover-content.ejs</code> 文件的 <code>&lt;script&gt;&lt;/script&gt;</code> 代码中：</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js"><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.bg-cover'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css</span><span class="token punctuation">(</span><span class="token string">'background-image'</span><span class="token punctuation">,</span> <span class="token string">'url(/medias/banner/'</span> <span class="token operator">+</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'.jpg)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p>在 <code>/source/medias/featureimages</code> 文件夹中默认有 24 张特色图片，你可以再增加或者减少，并需要在 <code>_config.yml</code> 做同步修改。</p>
+<p>在 <code>/sourcehttp://jason-qianhao.xyz/banner</code> 文件夹中默认有 24 张特色图片，你可以再增加或者减少，并需要在 <code>_config.yml</code> 做同步修改。</p>
 <h2 id="文章-Front-matter-介绍"><a href="#文章-Front-matter-介绍" class="headerlink" title="文章 Front-matter 介绍"></a>文章 Front-matter 介绍</h2><h3 id="Front-matter-选项详解"><a href="#Front-matter-选项详解" class="headerlink" title="Front-matter 选项详解"></a>Front-matter 选项详解</h3><p><code>Front-matter</code> 选项中的所有内容均为<strong>非必填</strong>的。但我仍然建议至少填写 <code>title</code> 和 <code>date</code> 的值。</p>
 <table>
 <thead>
@@ -1475,7 +1475,7 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 <a href="/2022/03/10/mybatis-generator/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/55.jpg" class="responsive-img" alt="Mybatis generator">
+                        <img src="http://jason-qianhao.xyz/banner/55.jpg" class="responsive-img" alt="Mybatis generator">
                         
                         <span class="card-title">Mybatis generator</span>
                     </div>
@@ -1527,7 +1527,7 @@ hexo d<span aria-hidden="true" class="line-numbers-rows"><span></span><span></sp
                 <a href="/2022/03/10/mongodb-zhi-shi-hui-zong/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/51.jpg" class="responsive-img" alt="MongoDB知识汇总">
+                        <img src="http://jason-qianhao.xyz/banner/51.jpg" class="responsive-img" alt="MongoDB知识汇总">
                         
                         <span class="card-title">MongoDB知识汇总</span>
                     </div>
