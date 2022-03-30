@@ -481,7 +481,7 @@
 <p>以后用到其他模块再来翻阅和做笔记，比如邮件服务器等等。</p>
 <p>现在有<a target="_blank" rel="noopener" href="https://wizardforcel.gitbooks.io/vbird-linux-server-3e/content/index.html">在线阅读</a>版本了</p>
 <h1 id="基础网络概念"><a href="#基础网络概念" class="headerlink" title="基础网络概念"></a>基础网络概念</h1><h2 id="计算机联网结构"><a href="#计算机联网结构" class="headerlink" title="计算机联网结构"></a>计算机联网结构</h2><p>本书的局域网结构</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113160210457.png" alt="image-20220113160210457"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113160210457.png" alt="image-20220113160210457"></p>
 <ul>
 <li><p>网络接口</p>
 <p>利用软件设计的网络接口，主要是提供网络地址IP</p>
@@ -502,7 +502,7 @@
 <h2 id="TCP-IP的数据链路层"><a href="#TCP-IP的数据链路层" class="headerlink" title="TCP/IP的数据链路层"></a>TCP/IP的数据链路层</h2><p>主要是以太网的相关概念</p>
 <ul>
 <li><p>局域网网络结构</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112164600244.png" alt="image-20220112164600244" style="zoom:80%;" />
+<img src="http://jason-qianhao.xyz/image-20220112164600244.png" alt="image-20220112164600244" style="zoom:80%;" />
 
 <p>以太网的传输主要是<strong>网络卡对网络卡</strong>之间的数据传递</p>
 <p>每个主机都是联机到集线器(hub/switch)，然后通过集线器向所有主机发起联机</p>
@@ -510,7 +510,7 @@
 <p>使用CSMA/CD协议进行通讯</p>
 </li>
 <li><p>可以使用MAC通讯</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112165013271.png" alt="image-20220112165013271"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220112165013271.png" alt="image-20220112165013271"></p>
 <p>MAC不能跨局域网通信！</p>
 </li>
 </ul>
@@ -525,7 +525,7 @@
 </ul>
 </blockquote>
 <p>主机连上Internet的必须参数如下：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112175213706.png" alt="image-20220112175213706"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220112175213706.png" alt="image-20220112175213706"></p>
 <h3 id="一些概念"><a href="#一些概念" class="headerlink" title="一些概念"></a>一些概念</h3><h4 id="网段与网域"><a href="#网段与网域" class="headerlink" title="网段与网域"></a>网段与网域</h4><ul>
 <li><p>物理网段</p>
 <p>当所有的主机都使用同一个网络媒体串在一起，这个时候这些主机在实体装置上其实是联机在一起的，那么就可以称为在同一个物理网段。</p>
@@ -554,26 +554,26 @@
 <h4 id="CIDR"><a href="#CIDR" class="headerlink" title="CIDR"></a>CIDR</h4><p>无等级网域间路由，在IP后标出网络号的位数</p>
 <p><code>IP/net number</code>，如<code>192.168.0.0/24</code></p>
 <p><strong>通常表示一个网段会使用<code>NetWork/Netmask</code>的方式</strong>，由此就可以算出Broadcast和可用IP。</p>
-<h3 id="IP分级"><a href="#IP分级" class="headerlink" title="IP分级"></a>IP分级</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112171210942.png" alt="image-20220112171210942"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112171219612.png" alt="image-20220112171219612"></p>
+<h3 id="IP分级"><a href="#IP分级" class="headerlink" title="IP分级"></a>IP分级</h3><p><img src="http://jason-qianhao.xyz/image-20220112171210942.png" alt="image-20220112171210942"><img src="http://jason-qianhao.xyz/image-20220112171219612.png" alt="image-20220112171219612"></p>
 <h3 id="IP分类"><a href="#IP分类" class="headerlink" title="IP分类"></a>IP分类</h3><ul>
 <li><p>Public IP</p>
 <p>公共IP，有这个IP才能连上Internet</p>
 </li>
 <li><p>Private IP</p>
 <p>不能直接连上Internet的IP，主要用于局域网的主机联机</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112171648445.png" alt="image-20220112171648445"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220112171648445.png" alt="image-20220112171648445"></p>
 <p>在私有IP后加上NAT服务即可连上Internet</p>
 </li>
 </ul>
 <h3 id="路由（网关相关）"><a href="#路由（网关相关）" class="headerlink" title="路由（网关相关）"></a>路由（网关相关）</h3><ul>
 <li>两个主机在两个网段时，不能直接IP广播通信，只能借助路由器</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112173211096.png" alt="image-20220112173211096"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220112173211096.png" alt="image-20220112173211096"></p>
 <ul>
 <li><p>在主机查询路由表时，没有符合的路由，就会把IP包送去预设路由器（<strong>默认网关，default gatway，大部分为广播地址，具体需要问管理员</strong>）</p>
 </li>
 <li><p>观察主机路由<code>route</code>命令</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220112173649795.png" alt="image-20220112173649795"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220112173649795.png" alt="image-20220112173649795"></p>
 <p>输出一共有8个字段，按顺序是：</p>
 <ul>
 <li><p>Destination</p>
@@ -618,7 +618,7 @@
 </li>
 </ul>
 <h3 id="Linux直接联网-与PC同地位"><a href="#Linux直接联网-与PC同地位" class="headerlink" title="Linux直接联网-与PC同地位"></a>Linux直接联网-与PC同地位</h3><p>此时如果ADSL是多IP的（可以拨接2-8个IP）的情况，可以使用这个模式。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113153802132.png" alt="image-20220113153802132"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113153802132.png" alt="image-20220113153802132"></p>
 <p>每个节点可以直接通过私有IP进行联机</p>
 <p>每个节点可以自行通过ADSL拨接连接Internet</p>
 <p>局限性：</p>
@@ -628,30 +628,30 @@
 <li>内外部网络没有明确的分开</li>
 </ul>
 <h3 id="Linux直接联网-与一般PC分开网域"><a href="#Linux直接联网-与一般PC分开网域" class="headerlink" title="Linux直接联网-与一般PC分开网域"></a>Linux直接联网-与一般PC分开网域</h3><p>如果有多个Public IP，可以将Linux和其他节点的网域分开。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113154314575.png" alt="image-20220113154314575"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113154314575.png" alt="image-20220113154314575"></p>
 <p>LAN的每个节点可以直接通过私有IP进行联机</p>
 <p>LAN的每个节点必须通过IP分享器（一个类似网关的设备）连接到Internet，IP分享器也可以设置一些简单的防火墙规则。</p>
 <p>LAN内的节点方便维护</p>
 <h3 id="Linux直接联网-让Linux直接管理LAN"><a href="#Linux直接联网-让Linux直接管理LAN" class="headerlink" title="Linux直接联网-让Linux直接管理LAN"></a>Linux直接联网-让Linux直接管理LAN</h3><p>没有IP分享器的时候，可以让Linux充当。此时<strong>Linux必须具备两张网卡，一个对外，一个对内</strong>。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113155125601.png" alt="image-20220113155125601"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113155125601.png" alt="image-20220113155125601"></p>
 <p>Linux可以作为内网对外的防火墙使用。</p>
 <p>维护内网简单，但是Linux一旦挂点，整个内网就不能对外联机。</p>
 <p><strong>比较推荐！</strong></p>
 <h3 id="Linux放在防火墙后-让Linux使用Private-IP"><a href="#Linux放在防火墙后-让Linux使用Private-IP" class="headerlink" title="Linux放在防火墙后-让Linux使用Private IP"></a>Linux放在防火墙后-让Linux使用Private IP</h3><p>依然使用IP分享器充当防火墙的角色</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113155531262.png" alt="image-20220113155531262"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113155531262.png" alt="image-20220113155531262"></p>
 <h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><h3 id="网络卡"><a href="#网络卡" class="headerlink" title="网络卡"></a>网络卡</h3><p>网络卡的装置有自己的代号，默认的网卡是eth0，第二张网络卡为eth1，依次类推。</p>
 <h4 id="网卡硬件信息查看dmesg"><a href="#网卡硬件信息查看dmesg" class="headerlink" title="网卡硬件信息查看dmesg"></a>网卡硬件信息查看dmesg</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">dmesg</span> <span class="token operator">|</span> <span class="token function">grep</span> -in eth<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113161442057.png" alt="image-20220113161442057"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113161442057.png" alt="image-20220113161442057"></p>
 <p>e1000是网卡核心模块的名字。</p>
 <h4 id="确认网卡是否被载入lsmod-modinfo"><a href="#确认网卡是否被载入lsmod-modinfo" class="headerlink" title="确认网卡是否被载入lsmod\modinfo"></a>确认网卡是否被载入lsmod\modinfo</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">lsmod <span class="token operator">|</span> <span class="token function">grep</span> <span class="token number">1000</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113161738021.png" alt="image-20220113161738021"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113161738021.png" alt="image-20220113161738021"></p>
 <h3 id="Internet参数设置"><a href="#Internet参数设置" class="headerlink" title="Internet参数设置"></a>Internet参数设置</h3><p>有多种上网方式可以进行设置。</p>
 <h4 id="网络相关配置文件"><a href="#网络相关配置文件" class="headerlink" title="网络相关配置文件"></a>网络相关配置文件</h4><ul>
 <li>参数配置文件</li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113161923962.png" alt="image-20220113161923962" style="zoom:80%;" />
+<img src="http://jason-qianhao.xyz/image-20220113161923962.png" alt="image-20220113161923962" style="zoom:80%;" />
 
 <ul>
 <li><p>相关命令脚本</p>
@@ -665,27 +665,27 @@
 </ul>
 </li>
 </ul>
-<h4 id="手动设定固定IP"><a href="#手动设定固定IP" class="headerlink" title="手动设定固定IP"></a>手动设定固定IP</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113162617115.png" alt="image-20220113162617115"></p>
+<h4 id="手动设定固定IP"><a href="#手动设定固定IP" class="headerlink" title="手动设定固定IP"></a>手动设定固定IP</h4><p><img src="http://jason-qianhao.xyz/image-20220113162617115.png" alt="image-20220113162617115"></p>
 <ul>
 <li><p>IP相关参数</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113162734504.png" alt="image-20220113162734504"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113162734504.png" alt="image-20220113162734504"></p>
 <p>注意，其中<code>GATEWAY</code>是整个系统的默认网关，在有多个网卡的时候，只需要一个网卡的配置文件设置即可。</p>
 </li>
 <li><p>DNS</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113163402840.png" alt="image-20220113163402840"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113163402840.png" alt="image-20220113163402840"></p>
 <p>使用<code>dig</code>命令可以测试是否设置正确</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113163514976.png" alt="image-20220113163514976"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113163514976.png" alt="image-20220113163514976"></p>
 </li>
 <li><p>hostname</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113163652825.png" alt="image-20220113163652825"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113163652825.png" alt="image-20220113163652825"></p>
 <p>设置完后一定要reboot（重启）。</p>
 </li>
 </ul>
 <h4 id="自动取得IP"><a href="#自动取得IP" class="headerlink" title="自动取得IP"></a>自动取得IP</h4><p>利用DHCP功能，从DHCP服务器（比如IP分享器）取得IP。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113164150770.png" alt="image-20220113164150770"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113164150770.png" alt="image-20220113164150770"></p>
 <p>文件里面的其他参数都可以用#注释掉，特别是<strong>GATEWAY参数一定不能设置</strong>。</p>
 <h3 id="通过无线网的连接设置"><a href="#通过无线网的连接设置" class="headerlink" title="通过无线网的连接设置"></a>通过无线网的连接设置</h3><p>无线网络（Wireless LAN，WLAN)的机制非常多，场景的WIFI是IEEE 802.11b标准。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113165122560.png" alt="image-20220113165122560"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113165122560.png" alt="image-20220113165122560"></p>
 <h4 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h4><p>WLAN中有两个重要的网络设备：无线基地台（Wireless Access Point，AP）和无线网卡。</p>
 <p>AP本身就是一个IP分享器，一个对外连接Internet，一个对内接收无线网卡的数据。<strong>常见的AP设备如TP-Link</strong>。</p>
 <p>AP一般需要做一些限制，来保护内部的WLAN，常见的就是连接AP时需要验证密钥。主要是两个参数：</p>
@@ -702,7 +702,7 @@
 </li>
 </ul>
 <h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><p>也在<code>/etc/sysconfig/network-scripts</code>下面</p>
-<h4 id="查看无线网卡状态iwconfig"><a href="#查看无线网卡状态iwconfig" class="headerlink" title="查看无线网卡状态iwconfig"></a>查看无线网卡状态iwconfig</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113165815458.png"></p>
+<h4 id="查看无线网卡状态iwconfig"><a href="#查看无线网卡状态iwconfig" class="headerlink" title="查看无线网卡状态iwconfig"></a>查看无线网卡状态iwconfig</h4><p><img src="http://jason-qianhao.xyz/image-20220113165815458.png"></p>
 <p>然后可以继续使用<code>modinfo</code>来查看加载状况。</p>
 <h4 id="启动无线网卡"><a href="#启动无线网卡" class="headerlink" title="启动无线网卡"></a>启动无线网卡</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ifconfig</span> netcardid up<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -711,11 +711,11 @@
 
 <h4 id="侦测AP"><a href="#侦测AP" class="headerlink" title="侦测AP"></a>侦测AP</h4><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">iwlist netcardid scan<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220113170427618.png" alt="image-20220113170427618"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220113170427618.png" alt="image-20220113170427618"></p>
 <p>利用上述得到的参数，修改配置文件，在<code>/etc/Wireless</code>目录下，比较麻烦。</p>
 <h1 id="Linux网络安全"><a href="#Linux网络安全" class="headerlink" title="Linux网络安全"></a>Linux网络安全</h1><h2 id="主机的基本防护"><a href="#主机的基本防护" class="headerlink" title="主机的基本防护"></a>主机的基本防护</h2><p>主机的基本防护包含：<strong>软件自动更新、限制联机端口、启动SELinux</strong>等。</p>
 <p>软件更新，可以修复当前版本的一些系统BUG。</p>
-<h3 id="Internet数据包进入主机的过程"><a href="#Internet数据包进入主机的过程" class="headerlink" title="Internet数据包进入主机的过程"></a>Internet数据包进入主机的过程</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114155700063.png" alt="image-20220114155700063"></p>
+<h3 id="Internet数据包进入主机的过程"><a href="#Internet数据包进入主机的过程" class="headerlink" title="Internet数据包进入主机的过程"></a>Internet数据包进入主机的过程</h3><p><img src="http://jason-qianhao.xyz/image-20220114155700063.png" alt="image-20220114155700063"></p>
 <ol>
 <li><p>防火墙分析</p>
 <p>Linux 系统有内建的防火墙机制，预设的 Linux 防火墙就有两个机制，这两个机制都是独立存在的：</p>
@@ -820,7 +820,7 @@
 </li>
 <li><p>Proxy (代理服务器) </p>
 <p>其实代理服务器是一种网络服务，它可以『代理』用户的需求，而代为前往服务器取得相关的资料。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117141613116.png" alt="image-20220117141613116"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117141613116.png" alt="image-20220117141613116"></p>
 <ul>
 <li>client 会向 proxy server 要求数据，请 proxy 帮忙处理； </li>
 <li>proxy 可以分析使用者的 IP 来源是否合法？使用者想要去的服务器是否合法？如果这个 client 的要求都合法的话，那么 proxy 就会主动的帮忙 client 前往服务器取得资料；服务器回传的数据是传给 proxy server 的，所以服务器上面看到的是 proxy server 的 IP</li>
@@ -842,9 +842,9 @@
 </ul>
 <p>Linux主要是iptables这个防火墙机制。有个具体的例子，用到的时候再翻看<strong>9.4小节</strong>。</p>
 <h4 id="防火墙规则的顺序"><a href="#防火墙规则的顺序" class="headerlink" title="防火墙规则的顺序"></a>防火墙规则的顺序</h4><p>​    如果这个封包并不符合 Rule 1 的比对，那就会进入 Rule 2 的比对了！如此一 个一个规则去进行比对就是了。 <strong>如果所有的规则都不符合，此时就会透过预设动作 (封包政策, Policy) 来决定这个封包的去向。</strong></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117143154340.png" alt="image-20220117143154340"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117143154340.png" alt="image-20220117143154340"></p>
 <h4 id="iptables的表格与链"><a href="#iptables的表格与链" class="headerlink" title="iptables的表格与链"></a>iptables的表格与链</h4><p>​    防火墙软件里面有多个表格 (table) ，每个表格都定义出自己的默认政 策与规则， 且每个表格的用途都不相同。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117143303067.png" alt="image-20220117143303067"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117143303067.png" alt="image-20220117143303067"></p>
 <p>Linux 的 iptables 至少就有三个表格，包括管理本机进出的 filter 、管理后端主机 (防火墙内部的其他计算机) 的 nat 、管理特殊旗标使用的 mangle (较少使用) </p>
 <ul>
 <li>filter (过滤器)：主要跟进入 Linux 本机的封包有关，这个是预设的 table <ul>
@@ -862,12 +862,12 @@
 <li>mangle (破坏者)：这个表格主要是与特殊的封包的路由旗标有关， 早期仅有 PREROUTING 及 OUTPUT 链，不过从 kernel 2.4.18 之后加入了 INPUT 及 FORWARD 链。</li>
 </ul>
 <p>iptables内建表格与链的相关性（不含mangle)：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117143800107.png" alt="image-20220117143800107"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117143800107.png" alt="image-20220117143800107"></p>
 <h4 id="iptables设定"><a href="#iptables设定" class="headerlink" title="iptables设定"></a>iptables设定</h4><ul>
 <li><p>iptables查看</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117144001301.png" alt="image-20220117144001301"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117144001301.png" alt="image-20220117144001301"></p>
 <p>每条记录的格式如下：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117144101510.png" alt="image-20220117144101510"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117144101510.png" alt="image-20220117144101510"></p>
 <ul>
 <li>target：代表进行的动作， ACCEPT 是放行，而 REJECT 则是拒绝，此外， 尚有 DROP (丢弃) 的项目！</li>
 <li>prot：代表使用的封包协议，主要有 tcp, udp 及 icmp 三种封包格式；</li>
@@ -876,25 +876,25 @@
 <li>destination ：代表此规则是针对哪个『目标 IP』进行限制</li>
 </ul>
 <p>另外，<code>iptables-save</code> 会列出完整的防火墙规则，只但是并没有规格化输出</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117144341435.png" alt="image-20220117144341435"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117144341435.png" alt="image-20220117144341435"></p>
 </li>
 <li><p>清除规则</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117144510107.png" alt="image-20220117144510107"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117144519802.png" alt="image-20220117144519802"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117144510107.png" alt="image-20220117144510107"><img src="http://jason-qianhao.xyz/image-20220117144519802.png" alt="image-20220117144519802"></p>
 </li>
 <li><p>定义预设规则policy</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117145604909.png" alt="image-20220117145604909"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117145604909.png" alt="image-20220117145604909"></p>
 </li>
 <li><p>定义一般规则</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117145856124.png" alt="image-20220117145856124"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117145902235.png" alt="image-20220117145902235"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117145856124.png" alt="image-20220117145856124"><img src="http://jason-qianhao.xyz/image-20220117145902235.png" alt="image-20220117145902235"></p>
 <p>也可以通过端口来设定</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117145951396.png" alt="image-20220117145951396"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117145959547.png" alt="image-20220117145959547"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117145951396.png" alt="image-20220117145951396"><img src="http://jason-qianhao.xyz/image-20220117145959547.png" alt="image-20220117145959547"></p>
 </li>
 <li><p>设定iptables的外挂模块</p>
 <p>针对特殊<strong>mac</strong>和<strong>已经响应的封包</strong>的规则设置</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117150138320.png" alt="image-20220117150138320"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117150138320.png" alt="image-20220117150138320"></p>
 </li>
 <li><p>设定是否响应ping（ICMP数据包）</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117150409962.png" alt="image-20220117150409962"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117150417683.png" alt="image-20220117150417683"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117150409962.png" alt="image-20220117150409962"><img src="http://jason-qianhao.xyz/image-20220117150417683.png" alt="image-20220117150417683"></p>
 </li>
 </ul>
 <h3 id="TCP-Wrappers"><a href="#TCP-Wrappers" class="headerlink" title="TCP Wrappers"></a>TCP Wrappers</h3><p>TCP wrappers 就是透过 /etc/hosts.allow, /etc/hosts.deny 这两个文件来管理的一个类似防火墙的机制。</p>
@@ -921,10 +921,10 @@
 <li>公钥 (public key)：提供给远程主机进行数据加密的行为，也就是说，大家都能取得你的公钥来将数据加密的意思；</li>
 <li>私钥 (private key)：远程主机使用你的公钥加密的数据，在本地端就能够使用私钥来进行解密。由于私钥是这么的重要， 因此私钥是不能够外流的！只 能保护在自己的主机上。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117152713802.png"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117152713802.png"></p>
 <p>​    目前 SSH 的协议版本有两种，分别是 version 1 与 version 2 ，其中 V2 由于加上 了联机检测的机制， 可以避免联机期间被插入恶意的攻击码，因此比 V1 还要更加的安全。所以啰，请尽量使用 V2 版本即可，不要使用 V1 ！</p>
 <p>ssh联机的步骤如下：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117152937190.png" alt="image-20220117152937190"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117152937190.png" alt="image-20220117152937190"></p>
 <ol>
 <li><p>服务器建立公钥档： 每一次启动 sshd 服务时，该服务会主动去找<code>/etc/ssh/ssh_host*</code>的档案，若系统刚刚安装完成时，由于没有这些公钥档案， 因此 sshd 会主动去计算出这些需要的公钥档案，同时也会计算出服务器自己需要的私钥档；</p>
 </li>
@@ -958,22 +958,22 @@
 <p>启动后，同时在22端口提供了FTP服务！</p>
 <h3 id="client使用ssh"><a href="#client使用ssh" class="headerlink" title="client使用ssh"></a>client使用ssh</h3><ul>
 <li><p>登入远程主机</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117153629031.png" alt="image-20220117153629031"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117153642809.png" alt="image-20220117153642809"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117153629031.png" alt="image-20220117153629031"><img src="http://jason-qianhao.xyz/image-20220117153642809.png" alt="image-20220117153642809"></p>
 </li>
 <li><p>文件传输sftp</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sftp</span> <span class="token punctuation">[</span>账号@<span class="token punctuation">]</span>IP<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>档案异地直接复制scp</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117154036350.png" alt="image-20220117154036350"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117154036350.png" alt="image-20220117154036350"></p>
 </li>
 </ul>
 <h3 id="ssh配置"><a href="#ssh配置" class="headerlink" title="ssh配置"></a>ssh配置</h3><p>都在<code>/etc/ssh/sshd_config</code>里面</p>
 <h2 id="VNC"><a href="#VNC" class="headerlink" title="VNC"></a>VNC</h2><p>​    VNC server 会在服务器端启动一个监听用户要求的端口，一般端口号码在 5901 ~ 5910 之间。当客户端启动 X server 联机到 5901 之后， VNC server 再将一 堆预先设定好的 X client 透过这个联机传递到客户端上，最终就能够在客户端显示服务器的图形接口了。</p>
 <ul>
 <li><p>设置和连接VNC</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117154702762.png" alt="image-20220117154702762"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117154733884.png" alt="image-20220117154733884"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117154702762.png" alt="image-20220117154702762"><img src="http://jason-qianhao.xyz/image-20220117154733884.png" alt="image-20220117154733884"></p>
 </li>
 <li><p>修改VNC密码</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220117154853886.png" alt="image-20220117154853886"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220117154853886.png" alt="image-20220117154853886"></p>
 </li>
 <li><p>客户端软件</p>
 <p>Linux下是vncviewer.</p>
@@ -985,49 +985,49 @@ vncviewer ip:号码<span aria-hidden="true" class="line-numbers-rows"><span></sp
 <h1 id="Linux网络常用指令总结"><a href="#Linux网络常用指令总结" class="headerlink" title="Linux网络常用指令总结"></a>Linux网络常用指令总结</h1><h2 id="网络参数设定"><a href="#网络参数设定" class="headerlink" title="网络参数设定"></a>网络参数设定</h2><h3 id="设定与开闭IP参数"><a href="#设定与开闭IP参数" class="headerlink" title="设定与开闭IP参数"></a>设定与开闭IP参数</h3><ul>
 <li><p><code>ifconfig</code></p>
 <p>手动的启动、观察与修改网络接口的相关参数，IP参数以及MTU等</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114145519188.png" alt="image-20220114145519188"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114145519188.png" alt="image-20220114145519188"></p>
 </li>
 <li><p><code>ifup</code>和<code>ifdown</code></p>
 <p>手动修改完<code>/etc/sysconfig/network-scripts</code>目录下的文件后，使用<code>ifup</code>使得配置生效。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114145836004.png" alt="image-20220114145836004"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114145836004.png" alt="image-20220114145836004"></p>
 </li>
 </ul>
-<h3 id="路由修改route"><a href="#路由修改route" class="headerlink" title="路由修改route"></a>路由修改route</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114150140306.png" alt="image-20220114150140306"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114150151057.png" alt="image-20220114150151057"></p>
-<h3 id="网络参数综合指令ip"><a href="#网络参数综合指令ip" class="headerlink" title="网络参数综合指令ip"></a>网络参数综合指令ip</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114150827884.png" alt="image-20220114150827884"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114150834996.png" alt="image-20220114150834996"></p>
+<h3 id="路由修改route"><a href="#路由修改route" class="headerlink" title="路由修改route"></a>路由修改route</h3><p><img src="http://jason-qianhao.xyz/image-20220114150140306.png" alt="image-20220114150140306"><img src="http://jason-qianhao.xyz/image-20220114150151057.png" alt="image-20220114150151057"></p>
+<h3 id="网络参数综合指令ip"><a href="#网络参数综合指令ip" class="headerlink" title="网络参数综合指令ip"></a>网络参数综合指令ip</h3><p><img src="http://jason-qianhao.xyz/image-20220114150827884.png" alt="image-20220114150827884"><img src="http://jason-qianhao.xyz/image-20220114150834996.png" alt="image-20220114150834996"></p>
 <h3 id="无线网络"><a href="#无线网络" class="headerlink" title="无线网络"></a>无线网络</h3><p><code>iwlist</code>和<code>iwconfig</code></p>
 <h3 id="设置DCHP方式"><a href="#设置DCHP方式" class="headerlink" title="设置DCHP方式"></a>设置DCHP方式</h3><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">dhclient netcardid<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="网络侦错与观察指令"><a href="#网络侦错与观察指令" class="headerlink" title="网络侦错与观察指令"></a>网络侦错与观察指令</h2><h3 id="两步主机沟通ping"><a href="#两步主机沟通ping" class="headerlink" title="两步主机沟通ping"></a>两步主机沟通ping</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114151217677.png" alt="image-20220114151217677"></p>
-<h3 id="两主机间各节点分析traceroute"><a href="#两主机间各节点分析traceroute" class="headerlink" title="两主机间各节点分析traceroute"></a>两主机间各节点分析traceroute</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114151423163.png" alt="image-20220114151423163"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114151431855.png" alt="image-20220114151431855"></p>
-<h3 id="查看本机的网络联机与后门netstat"><a href="#查看本机的网络联机与后门netstat" class="headerlink" title="查看本机的网络联机与后门netstat"></a>查看本机的网络联机与后门netstat</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114151606099.png" alt="image-20220114151606099"></p>
+<h2 id="网络侦错与观察指令"><a href="#网络侦错与观察指令" class="headerlink" title="网络侦错与观察指令"></a>网络侦错与观察指令</h2><h3 id="两步主机沟通ping"><a href="#两步主机沟通ping" class="headerlink" title="两步主机沟通ping"></a>两步主机沟通ping</h3><p><img src="http://jason-qianhao.xyz/image-20220114151217677.png" alt="image-20220114151217677"></p>
+<h3 id="两主机间各节点分析traceroute"><a href="#两主机间各节点分析traceroute" class="headerlink" title="两主机间各节点分析traceroute"></a>两主机间各节点分析traceroute</h3><p><img src="http://jason-qianhao.xyz/image-20220114151423163.png" alt="image-20220114151423163"><img src="http://jason-qianhao.xyz/image-20220114151431855.png" alt="image-20220114151431855"></p>
+<h3 id="查看本机的网络联机与后门netstat"><a href="#查看本机的网络联机与后门netstat" class="headerlink" title="查看本机的网络联机与后门netstat"></a>查看本机的网络联机与后门netstat</h3><p><img src="http://jason-qianhao.xyz/image-20220114151606099.png" alt="image-20220114151606099"></p>
 <h3 id="侦测主机名与IP对应"><a href="#侦测主机名与IP对应" class="headerlink" title="侦测主机名与IP对应"></a>侦测主机名与IP对应</h3><p>除了<code>dig</code>还有<code>host</code>和<code>nslookup</code></p>
 <ul>
 <li><p><code>host</code></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114152355932.png" alt="image-20220114152355932">‘</p>
+<p><img src="http://jason-qianhao.xyz/image-20220114152355932.png" alt="image-20220114152355932">‘</p>
 </li>
 <li><p><code>nslookup</code></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114152452562.png" alt="image-20220114152452562"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114152452562.png" alt="image-20220114152452562"></p>
 </li>
 </ul>
-<h2 id="远程联机指令与实时通讯软件"><a href="#远程联机指令与实时通讯软件" class="headerlink" title="远程联机指令与实时通讯软件"></a>远程联机指令与实时通讯软件</h2><h3 id="终端机联机服务器"><a href="#终端机联机服务器" class="headerlink" title="终端机联机服务器"></a>终端机联机服务器</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114152628945.png" alt="image-20220114152628945"></p>
+<h2 id="远程联机指令与实时通讯软件"><a href="#远程联机指令与实时通讯软件" class="headerlink" title="远程联机指令与实时通讯软件"></a>远程联机指令与实时通讯软件</h2><h3 id="终端机联机服务器"><a href="#终端机联机服务器" class="headerlink" title="终端机联机服务器"></a>终端机联机服务器</h3><p><img src="http://jason-qianhao.xyz/image-20220114152628945.png" alt="image-20220114152628945"></p>
 <h3 id="FTP联机"><a href="#FTP联机" class="headerlink" title="FTP联机"></a>FTP联机</h3><ul>
 <li><p><code>ftp</code></p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">ftp</span> <span class="token punctuation">[</span>host<span class="token operator">|</span>IP<span class="token punctuation">]</span> <span class="token punctuation">[</span>port<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p><code>Iftp</code></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114152835510.png" alt="image-20220114152835510"><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114152845131.png" alt="image-20220114152845131"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114152835510.png" alt="image-20220114152835510"><img src="http://jason-qianhao.xyz/image-20220114152845131.png" alt="image-20220114152845131"></p>
 </li>
 </ul>
 <h2 id="文字接口网页浏览"><a href="#文字接口网页浏览" class="headerlink" title="文字接口网页浏览"></a>文字接口网页浏览</h2><h3 id="文字浏览器links"><a href="#文字浏览器links" class="headerlink" title="文字浏览器links"></a>文字浏览器links</h3><p>进行网页的浏览</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114153920989.png" alt="image-20220114153920989"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114153920989.png" alt="image-20220114153920989"></p>
 <h3 id="文字接口下载器wget"><a href="#文字接口下载器wget" class="headerlink" title="文字接口下载器wget"></a>文字接口下载器wget</h3><p>网页数据的取得</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114154325906.png" alt="image-20220114154325906"></p>
-<h2 id="数据包获取"><a href="#数据包获取" class="headerlink" title="数据包获取"></a>数据包获取</h2><h3 id="文字接口数据包获取器tcpdump"><a href="#文字接口数据包获取器tcpdump" class="headerlink" title="文字接口数据包获取器tcpdump"></a>文字接口数据包获取器tcpdump</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114154428798.png" alt="image-20220114154428798"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114154325906.png" alt="image-20220114154325906"></p>
+<h2 id="数据包获取"><a href="#数据包获取" class="headerlink" title="数据包获取"></a>数据包获取</h2><h3 id="文字接口数据包获取器tcpdump"><a href="#文字接口数据包获取器tcpdump" class="headerlink" title="文字接口数据包获取器tcpdump"></a>文字接口数据包获取器tcpdump</h3><p><img src="http://jason-qianhao.xyz/image-20220114154428798.png" alt="image-20220114154428798"></p>
 <h3 id="图形接口数据包获取器wireshark"><a href="#图形接口数据包获取器wireshark" class="headerlink" title="图形接口数据包获取器wireshark"></a>图形接口数据包获取器wireshark</h3><p>安装</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">yum <span class="token function">install</span> wireshark wireshark-gnome<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>必须要在X Window底下运行。</p>
 <h3 id="任意端口的数据包监听和连接"><a href="#任意端口的数据包监听和连接" class="headerlink" title="任意端口的数据包监听和连接"></a>任意端口的数据包监听和连接</h3><p>​    可以监听某些服务的port，也可以和其他端口连接（同步显示stdout等）</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220114155103815.png" alt="image-20220114155103815"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220114155103815.png" alt="image-20220114155103815"></p>
 
                 
             </div>
@@ -1534,12 +1534,12 @@ vncviewer ip:号码<span aria-hidden="true" class="line-numbers-rows"><span></sp
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/03/rabbitmq-ru-men/">
+                <a href="/2022/02/03/rabbitmq-bu-shu-he-springboot-zheng-he/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/53.jpg" class="responsive-img" alt="RabbitMQ入门">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="RabbitMQ部署和Springboot整合">
                         
-                        <span class="card-title">RabbitMQ入门</span>
+                        <span class="card-title">RabbitMQ部署和Springboot整合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1569,6 +1569,14 @@ vncviewer ip:号码<span aria-hidden="true" class="line-numbers-rows"><span></sp
                     
                     <a href="/tags/MQ/">
                         <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                     <a href="/tags/RabbitMQ/">

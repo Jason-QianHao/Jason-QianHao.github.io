@@ -498,7 +498,7 @@
 <p>第八层：exchange层，信息交换层，封装请求响应模式，同步转异步</p>
 <p>第九层：transport层，网络传输层，抽象mina和netty为统一接口</p>
 <p>第十层：serialize层，数据序列化层</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704093732783.png" alt="image.gif" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210704093732783.png" alt="image.gif" style="zoom:50%;" />
 ***工作流程***：
 
 <p>1）第一步，provider向注册中心去注册</p>
@@ -507,7 +507,7 @@
 <p>4）第四步，consumer和provider都异步的通知监控中心</p>
 <h3 id="（2）注册中心挂了可以继续通信吗？"><a href="#（2）注册中心挂了可以继续通信吗？" class="headerlink" title="（2）注册中心挂了可以继续通信吗？"></a>（2）注册中心挂了可以继续通信吗？</h3><p>可以，因为刚开始初始化的时候，消费者会将提供者的地址等信息拉取到本地缓存，所以注册中心挂了可以继续通信</p>
 <h2 id="dubbo支持哪些通信协议？支持哪些序列化协议？"><a href="#dubbo支持哪些通信协议？支持哪些序列化协议？" class="headerlink" title="dubbo支持哪些通信协议？支持哪些序列化协议？"></a>dubbo支持哪些通信协议？支持哪些序列化协议？</h2><h3 id="dubbo支持不同的通信协议"><a href="#dubbo支持不同的通信协议" class="headerlink" title="dubbo支持不同的通信协议"></a>dubbo支持不同的通信协议</h3><h4 id="dubbo协议"><a href="#dubbo协议" class="headerlink" title="dubbo协议"></a>dubbo协议</h4><p>dubbo://192.168.0.1:20188</p>
-<p>默认就是走dubbo协议的，单一<strong>长连接</strong>，NIO异步通信，<strong>基于hessian作为序列化协议</strong><br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704093732681.png" alt="image.gif" style="zoom:50%;" /></p>
+<p>默认就是走dubbo协议的，单一<strong>长连接</strong>，NIO异步通信，<strong>基于hessian作为序列化协议</strong><br><img src="http://jason-qianhao.xyz/1240-20210704093732681.png" alt="image.gif" style="zoom:50%;" /></p>
 <p>适用的场景就是：传输数据量很小（每次请求在100kb以内），但是并发量很高</p>
 <p>为了要支持高并发场景，一般是服务提供者就几台机器，但是服务消费者有上百台，可能每天调用量达到上亿次！此时用长连接是最合适的，就是跟每个服务消费者维持一个长连接就可以，可能总共就100个连接。然后后面直接基于长连接NIO异步通信，可以支撑高并发请求。</p>
 <p>否则如果上亿次请求每次都是短连接的话，服务提供者会扛不住。</p>
@@ -517,7 +517,7 @@
 <h4 id="http协议"><a href="#http协议" class="headerlink" title="http协议"></a>http协议</h4><p>走json序列化</p>
 <h4 id="webservice"><a href="#webservice" class="headerlink" title="webservice"></a>webservice</h4><p>走SOAP文本序列化</p>
 <h3 id="dubbo支持的序列化协议"><a href="#dubbo支持的序列化协议" class="headerlink" title="dubbo支持的序列化协议"></a>dubbo支持的序列化协议</h3><p>所以dubbo实际基于不同的通信协议，支持hessian、java二进制序列化、json、SOAP文本序列化多种序列化协议。但是hessian是其默认的序列化协议。</p>
-<h2 id="dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？"><a href="#dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？" class="headerlink" title="dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？"></a>dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？</h2><h3 id="dubbo负载均衡策略"><a href="#dubbo负载均衡策略" class="headerlink" title="dubbo负载均衡策略"></a>dubbo负载均衡策略</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704093732659.jpeg" alt="image.jpeg" style="zoom:50%;" />
+<h2 id="dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？"><a href="#dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？" class="headerlink" title="dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？"></a>dubbo负载均衡策略和集群容错策略都有哪些？动态代理策略呢？</h2><h3 id="dubbo负载均衡策略"><a href="#dubbo负载均衡策略" class="headerlink" title="dubbo负载均衡策略"></a>dubbo负载均衡策略</h3><img src="http://jason-qianhao.xyz/1240-20210704093732659.jpeg" alt="image.jpeg" style="zoom:50%;" />
 
 <p>1）random loadbalance</p>
 <p>默认情况下，dubbo是random load balance随机调用实现负载均衡，可以对provider不同实例设置不同的权重，会按照权重来负载均衡，权重越大分配流量越高，一般就用这个默认的就可以了。</p>
@@ -542,7 +542,7 @@
 <p>逐个调用所有的provider</p>
 <h3 id="dubbo动态代理策略"><a href="#dubbo动态代理策略" class="headerlink" title="dubbo动态代理策略"></a>dubbo动态代理策略</h3><p>默认使用javassist动态字节码生成，创建代理类</p>
 <p>但是可以通过spi扩展机制配置自己的动态代理策略</p>
-<h2 id="dubbo的spi思想是什么？"><a href="#dubbo的spi思想是什么？" class="headerlink" title="dubbo的spi思想是什么？"></a>dubbo的spi思想是什么？</h2><p>  spi，简单来说，就是service provider interface，说白了是什么意思呢，比如你有个接口，现在这个接口有3个实现类，那么在系统运行的时候对这个接口到底选择哪个实现类呢？这就需要spi了，需要根据指定的配置或者是默认的配置，去找到对应的实现类加载进来，然后用这个实现类的实例对象。<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704093732665.jpeg" alt="image.jpeg"></p>
+<h2 id="dubbo的spi思想是什么？"><a href="#dubbo的spi思想是什么？" class="headerlink" title="dubbo的spi思想是什么？"></a>dubbo的spi思想是什么？</h2><p>  spi，简单来说，就是service provider interface，说白了是什么意思呢，比如你有个接口，现在这个接口有3个实现类，那么在系统运行的时候对这个接口到底选择哪个实现类呢？这就需要spi了，需要根据指定的配置或者是默认的配置，去找到对应的实现类加载进来，然后用这个实现类的实例对象。<br><img src="http://jason-qianhao.xyz/1240-20210704093732665.jpeg" alt="image.jpeg"></p>
 <h3 id="Java的SPI"><a href="#Java的SPI" class="headerlink" title="Java的SPI"></a>Java的SPI</h3><p>接口A -&gt; 实现A1，实现A2，实现A3</p>
 <p>配置一下，接口A = 实现A2</p>
 <p>在系统实际运行的时候，会加载你的配置，用实现A2实例化一个对象来提供服务</p>

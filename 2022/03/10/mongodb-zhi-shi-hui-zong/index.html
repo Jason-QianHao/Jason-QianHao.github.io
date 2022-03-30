@@ -498,7 +498,7 @@
 <p>在高负载的情况下，添加更多的节点，可以保证服务器性能。</p>
 <p>MongoDB 旨在为WEB应用提供可扩展的高性能数据存储解决方案。</p>
 <p>MongoDB 将数据存储为一个文档，数据结构由键值(key=&gt;value)对组成。MongoDB 文档类似于 JSON 对象。字段值可以包含其他文档，数组及文档数组。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/crud-annotated-document.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/crud-annotated-document.png" alt="img"></p>
 <h2 id="主要特点"><a href="#主要特点" class="headerlink" title="主要特点"></a>主要特点</h2><ul>
 <li>MongoDB的提供了一个面向文档存储，操作起来比较简单和容易。</li>
 <li>你可以在MongoDB记录中设置任何属性的索引 (如：FirstName=”Sameer”,Address=”8 Gandhi Road”)来实现更快的排序。</li>
@@ -679,7 +679,7 @@
 </tr>
 </tbody></table>
 <p>通过下图实例，我们也可以更直观的的了解Mongo中的一些概念：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/Figure-1-Mapping-Table-to-Collection-1.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/Figure-1-Mapping-Table-to-Collection-1.png" alt="img"></p>
 <h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>一个mongodb中可以建立多个数据库。</p>
 <p>MongoDB的默认数据库为”db”，该数据库存储在data目录中。</p>
 <p>MongoDB的单个实例可以容纳多个独立的数据库，每一个都有自己的集合和权限，不同的数据库也放置在不同的文件中。</p>
@@ -1344,7 +1344,7 @@ WriteResult(&#123; &quot;nInserted&quot; : 1 &#125;)<span aria-hidden="true" cla
 </ul>
 <hr>
 <h2 id="MongoDB分片-1"><a href="#MongoDB分片-1" class="headerlink" title="MongoDB分片"></a>MongoDB分片</h2><p>下图展示了在MongoDB中使用分片集群结构分布：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/sharding.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/sharding.png" alt="img"></p>
 <p>上图中主要有如下所述三个主要组件：</p>
 <ul>
 <li><p>Shard:</p>
@@ -1408,7 +1408,7 @@ mongos&gt; db.runCommand(&#123; shardcollection: &quot;test.log&quot;, key: &#12
 <p>主节点记录在其上的所有操作oplog，从节点定期轮询主节点获取这些操作，然后对自己的数据副本执行</p>
 <p>这些操作，从而保证从节点的数据与主节点一致。</p>
 <p>MongoDB复制结构图如下所示：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/replication.png" alt="MongoDB复制结构图"></p>
+<p><img src="http://jason-qianhao.xyz/replication.png" alt="MongoDB复制结构图"></p>
 <p>以上结构图总，客户端总主节点读取数据，在客户端写入数据到主节点是， 主节点与从节点进行数据交互保障数据的一致性。</p>
 <h2 id="Master-Slave-主从复制"><a href="#Master-Slave-主从复制" class="headerlink" title="Master-Slave 主从复制"></a>Master-Slave 主从复制</h2><p>实现数据同步只需要在某一台服务器启动时加上”-master”参数，以指明此服务器的角色是primary；另一台服务器加上”-slave”和”-source”参数，以指明此服务器的角色是slave。</p>
 <p>主从复制的优点如下：</p>

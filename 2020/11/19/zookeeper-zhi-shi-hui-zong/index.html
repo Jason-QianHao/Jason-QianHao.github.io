@@ -494,7 +494,7 @@
 <h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><p>  事务的四个特征，原子性、一致性、隔离性（隔离级别：未提交读、提交读、可重复读、串行化）、持久性。</p>
 <h3 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>  指事务的参与者、支持事务的服务器、资源服务器以及事务管理器分别位于分布式系统的不同节点上。</p>
 <p>  分布式的操作序列称为子事务，也可以说是嵌套型的事务。</p>
-<h4 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045650.jpeg" alt="img" style="zoom:50%;" />
+<h4 id="CAP理论"><a href="#CAP理论" class="headerlink" title="CAP理论"></a>CAP理论</h4><img src="http://jason-qianhao.xyz/1240-20210701160045650.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（1）定义：一个分布式系统不可能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三个基本需求，最多只能同时满足其中的两项</p>
 <p>（2）一致性</p>
@@ -590,13 +590,13 @@
 <p><strong>（2）阶段二：</strong></p>
 <p>  · 如果Proposer收到<strong>半数以上</strong>Acceptor对其发出的编号为N的Prepare请求的<strong>响应</strong>，那么它就会发送一个针对**[N,V]提案<strong>的</strong>Accept请求<strong>给</strong>半数以上<strong>的Acceptor。注意：V就是收到的</strong>响应<strong>中</strong>编号最大的提案的value<strong>，如果响应中</strong>不包含任何提案<strong>，那么V就由Proposer</strong>自己决定**。</p>
 <p>  · 如果Acceptor收到一个针对编号为N的提案的Accept请求，只要该Acceptor<strong>没有</strong>对编号<strong>大于N</strong>的<strong>Prepare请求</strong>做出过<strong>响应</strong>，它就<strong>接受该提案</strong>。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045691.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045691.jpeg" alt="img"/>
 
 <h3 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h3><p>（1）Learner学习被选定的value</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045800.png" alt="img" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045800.png" alt="img" />
 
 <p>（2）如何保证Paxos算法的活性</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045906.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045906.png" alt="img"/>
 
 
 
@@ -687,7 +687,7 @@
 <p>（2）分布式全局唯一ID</p>
 <p>  · UUID：32位字符和4个短线的字符串，缺点是字符串过长，占空间</p>
 <p>  · Zookeeper顺序节点：在API返回值中返回节点的完整名字，后面的数字为自动递增的</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045719-5126445.jpeg"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045719-5126445.jpeg"/>
 
 <h2 id="分布式协调-通知"><a href="#分布式协调-通知" class="headerlink" title="分布式协调/通知"></a>分布式协调/通知</h2><h3 id="通常做法"><a href="#通常做法" class="headerlink" title="通常做法"></a>通常做法</h3><p>​    不同的客户端都对Zookeeper上同一个节点进行Watcher注册，监听数据节点变化，所有订阅的客户端都会收到相应的通知并作出相应处理</p>
 <h3 id="通用的分布式系统机器间通信"><a href="#通用的分布式系统机器间通信" class="headerlink" title="通用的分布式系统机器间通信"></a>通用的分布式系统机器间通信</h3><p>（1）心跳检测</p>
@@ -710,7 +710,7 @@
 <p>​    在海量数据处理中，非常耗费I/O和CPU，只让client集群中的一台去处理数据，结果共享。选举的Master就会负责进行一系列的海量数据处理。</p>
 <p>（2）方式</p>
 <p>​    Client集群每天定时在Zookeeper上创建一个临时节点，只有一个客户端能够成功创建它就成为Master，如果挂了，就重新选举。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045977.jpeg" alt="img" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045977.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="排他锁"><a href="#排他锁" class="headerlink" title="排他锁"></a>排他锁</h3><p>（1）获取锁</p>
 <p>​    创建<strong>临时子节点</strong>成功，即获得锁</p>
@@ -733,31 +733,31 @@
 <p>​    · 创建临时子节点</p>
 <p>​    · 调用getChildren()接口获取节点下的所有子节点，知道子节点个数满足才执行</p>
 <h1 id="系统模型-1"><a href="#系统模型-1" class="headerlink" title="系统模型"></a>系统模型</h1><h2 id="数据模型"><a href="#数据模型" class="headerlink" title="数据模型"></a>数据模型</h2><p>（1）树状结构</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045662.jpeg" alt="img" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045662.jpeg" alt="img" style="zoom:50%;" />
 
 <p>（2）ZNode</p>
 <p>​    除了分为四类节点外，还有一个Stat对象保存节点信息，Stat对象属性如下：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045784.jpeg" alt="img" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045784.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="版本-1"><a href="#版本-1" class="headerlink" title="版本"></a>版本</h2><p>  在数据节点中引入三个版本号。</p>
 <p>（1）作用：保证分布式数据原子性操作</p>
 <p>（2）version属性正是用来实现乐观锁机制中的“写入校验”</p>
 <p>（3）具体实现：在Zookeeper服务器中的PrepRequestProcessor处理器中，处理每一个数据更新请求（setDataRequest）时，比较当前请求的版本version和当前服务器上该数据的最新版本currentVersion，不匹配抛异常。</p>
-<h2 id="Watcher-1"><a href="#Watcher-1" class="headerlink" title="Watcher"></a>Watcher</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/835.jpeg" alt="img"></p>
+<h2 id="Watcher-1"><a href="#Watcher-1" class="headerlink" title="Watcher"></a>Watcher</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><p><img src="http://jason-qianhao.xyz/835.jpeg" alt="img"></p>
 <p>（1）Watcher机制主要包括<strong>客户端线程</strong>、<strong>客户端WatchManager</strong>和<strong>Zookeeper服务器</strong>。</p>
 <p>（2）客户端在向Zookeeper服务器注册Watcher的同时，会将Watcher对象存储在客户端的WatcherManager中。当Zookeeper服务器触发Watcher事件后，会向客户端发送通知，客户端线程从WatcherManager中取出对应的Watcher对象来执行回调逻辑。</p>
 <h3 id="Watcher接口"><a href="#Watcher接口" class="headerlink" title="Watcher接口"></a>Watcher接口</h3><p>  接口主要包含以下属性</p>
 <p>（1）KeeperState枚举类</p>
 <p>（2）EventType枚举类</p>
 <p>（3）process（WatchedEvent event）回调方法</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045778.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045778.jpeg" alt="img"/>
 
 <h3 id="WatchedEvent"><a href="#WatchedEvent" class="headerlink" title="WatchedEvent"></a>WatchedEvent</h3><p>  在回调方法process（WatchedEvent event）中，传入参数WatchedEvent</p>
 <p>（1）包含通知状态（keeperState）、事件类型（eventType）和节点路径（path）三个基本属性。用来封装事件传递给Watcher。</p>
 <p>（2）服务器生成WathedEvent后，调用<strong>getWrapper</strong>方法将自己包装成一个可序列化的、可以用于网络传输的<strong>WatcherEvent</strong>事件</p>
 <p>（3）客户端接收到WatcherEvent事件后，先还原成一个WatchedEvent事件，并传递给process方法处理</p>
 <h3 id="工作机制"><a href="#工作机制" class="headerlink" title="工作机制"></a>工作机制</h3><p>  总体分为三个过程：客户端注册Watcher、服务端处理Watcher和客户端回调Watcher。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045769.jpeg" alt="img" style="zoom:70%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045769.jpeg" alt="img" style="zoom:70%;" />
 
 <h4 id="客户端注册Watcher"><a href="#客户端注册Watcher" class="headerlink" title="客户端注册Watcher"></a>客户端注册Watcher</h4><p>（1）注册方式</p>
 <p>​    · new Zookeeper（…..Watcher watcher）；</p>
@@ -765,7 +765,7 @@
 <p>​    · getChildren（…）;</p>
 <p>​    · exist（…）；</p>
 <p>（2）流程</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045790.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045790.jpeg" alt="img"/>
 
 <ul>
 <li><p><strong>为什么只传部分参数</strong></p>
@@ -773,26 +773,26 @@
 </li>
 </ul>
 <p>​    在运行过程中，始终保持着数据节点路径和Wather对象的一一映射。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045803.jpeg" alt="img" style="zoom:70%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045803.jpeg" alt="img" style="zoom:70%;" />
 
 <h4 id="服务端处理Watcher"><a href="#服务端处理Watcher" class="headerlink" title="服务端处理Watcher"></a>服务端处理Watcher</h4><p>注意服务端WatcherManager和ClientWatcherManager的区别，参考：<a target="_blank" rel="noopener" href="https://zookeeper系列/">Watcher机制</a></p>
 <p>（1）分为Servercnxn存储和Watcher触发两部分</p>
 <p>（2）流程</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045839.jpeg" alt="img" style="zoom:80%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045839.jpeg" alt="img" style="zoom:80%;" />
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045813.jpeg" alt="img" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045813.jpeg" alt="img" style="zoom:50%;" />
 
 <ul>
 <li><p><strong>为什么Watcher一次性有效</strong></p>
 <p>参考：<a target="_blank" rel="noopener" href="https://nightfield.com.cn/index.php/archives/194/">漫谈zookeeper watcher单次触发特性</a></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210701163144724.png" alt="image-20210701163144724" />
+<img src="http://jason-qianhao.xyz/image-20210701163144724.png" alt="image-20210701163144724" />
 
 <p>所以，在<code>getData()</code>、<code>exists()</code> 和 <code>getChildren()</code> 的操作中，添加了一个 <code>Watcher</code> 参数，用于重新注册watcher。</p>
 </li>
 </ul>
 <h4 id="客户端回调Watcher"><a href="#客户端回调Watcher" class="headerlink" title="客户端回调Watcher"></a>客户端回调Watcher</h4><p>（1）分为<strong>SendThread接收事件通知</strong>和<strong>EventThread处理事件通知</strong>两部分。</p>
 <p>（2）流程</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045853.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045853.jpeg" alt="img"/>
 
 <h1 id="序列化与协议"><a href="#序列化与协议" class="headerlink" title="序列化与协议"></a>序列化与协议</h1><h2 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h2><p>  对于一个网络通信，首先需要解决的就是对数据的序列化和反序列化处理。ZooKeeper使用Jute组件进行序列化。</p>
 <h2 id="使用Jute的步骤"><a href="#使用Jute的步骤" class="headerlink" title="使用Jute的步骤"></a>使用Jute的步骤</h2><p>（1）实体类需要实现Record接口的serialize和deserialize方法</p>
@@ -800,7 +800,7 @@
 <p>（3）序列化，调用实体类的serialize方法</p>
 <p>（4）反序列化。调用实体类的deserialize方法</p>
 <h2 id="序列化器"><a href="#序列化器" class="headerlink" title="序列化器"></a>序列化器</h2><p>（1）Record接口</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045832.jpeg" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210701160045832.jpeg" alt="img"></p>
 <p>（2）底层真正的序列化器</p>
 <p>  · OutputArchive接口 Jute底层序列化器，基于OutputStream实现，有3种常见实现</p>
 <p>  · InputArchive接口 Jute底层反序列化器，基于InputStream实现</p>
@@ -810,10 +810,10 @@
 <p>（2）ClientWatchManager：客户端Watcher管理器</p>
 <p>（3）HostProvider：客户端地址列表管理器</p>
 <p>（4）ClientCnxn：客户端核心线程，分为两个：SendThread是I/O线程，主要负责ZooKeeper客户端和服务器之间的网络I/O通信；EventThread是事件线程，主要负责对服务端事件进行处理。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045858.jpeg" alt="img" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045858.jpeg" alt="img" />
 
 <h2 id="会话创建"><a href="#会话创建" class="headerlink" title="会话创建"></a>会话创建</h2><p>  分为三个阶段：初始化阶段、会话阶段、响应处理阶段。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045880.jpeg" alt="img" style="zoom:80%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045880.jpeg" alt="img" style="zoom:80%;" />
 
 <h3 id="初始化阶段"><a href="#初始化阶段" class="headerlink" title="初始化阶段"></a>初始化阶段</h3><p>（1）初始化Zookeeper对象</p>
 <p>​    实例化一个ZooKeeper对象，并创建一个Watcher管理器：ClientWatcherManager</p>
@@ -852,10 +852,10 @@
 <p>（3）解析器解析ChrootPath：命名空间，实则的相对路径</p>
 <p>（4）HostProvider地址列表管理器</p>
 <p>​      解析器将IP和端口封装成InetSocketAddress对象，以ArrayList形式保存到ConnectStringParser的相应属性中，进一步封装到HostProvider的默认实现类StaticHostProvider中。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045864.jpeg" alt="img" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045864.jpeg" alt="img" style="zoom:50%;" />
 
 <p>​    StaticHostProvdier类中解析InetSocketAddress后，将地址打散重排形成一个环形循环队列。next()方法每次按照顺序返回一个已经解析过的InetSocketAddress。</p>
-<h2 id="ClientCnxn"><a href="#ClientCnxn" class="headerlink" title="ClientCnxn"></a>ClientCnxn</h2><h3 id="Packet"><a href="#Packet" class="headerlink" title="Packet"></a>Packet</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045873.jpeg" alt="img" />
+<h2 id="ClientCnxn"><a href="#ClientCnxn" class="headerlink" title="ClientCnxn"></a>ClientCnxn</h2><h3 id="Packet"><a href="#Packet" class="headerlink" title="Packet"></a>Packet</h3><img src="http://jason-qianhao.xyz/1240-20210701160045873.jpeg" alt="img" />
 
 <p>（1）Packet是ClientCnxn内部定义的一个对协议层的封装</p>
 <p>（2）Packet中包含了最基本的请求头、响应头、请求体、响应体、节点路径和注册的Watcher等信息</p>
@@ -884,7 +884,7 @@
 <h3 id="SessionTracker"><a href="#SessionTracker" class="headerlink" title="SessionTracker"></a>SessionTracker</h3><p>  是ZooKeeper服务端的会话管理器，辅助会话的创建、管理和清理等工作。</p>
 <h4 id="分桶策略"><a href="#分桶策略" class="headerlink" title="分桶策略"></a>分桶策略</h4><p>  将类似的会话放在同一区块中进行管理，以便于ZooKeeper对会话进行不同区块的隔离处理以及同一区块的统一处理。</p>
 <p>  分配区块的原则是“下次超时时间点”。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045876.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045876.jpeg" alt="img"/>
 
 <h4 id="会话激活"><a href="#会话激活" class="headerlink" title="会话激活"></a>会话激活</h4><p>  服务端不断受到来自客户端的这个心跳检测，并需要重新激活对应的客户端会话。</p>
 <p>（1）步骤</p>
@@ -892,16 +892,16 @@
 <p>​    · 计算会话新的超时时间</p>
 <p>​    · 定位该会话当前的区块</p>
 <p>​    · 迁移会话</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045881.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045881.jpeg" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045920.jpeg" alt="img" />
+<img src="http://jason-qianhao.xyz/1240-20210701160045920.jpeg" alt="img" />
 
 <h4 id="会话超时检查"><a href="#会话超时检查" class="headerlink" title="会话超时检查"></a>会话超时检查</h4><p>  创建了一个单独的线程专门进行会话超时检查。</p>
 <p>  逐个对会话桶中剩下的会话进行清理。</p>
-<h1 id="服务器启动"><a href="#服务器启动" class="headerlink" title="服务器启动"></a>服务器启动</h1><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045923.jpeg" alt="img" />
+<h1 id="服务器启动"><a href="#服务器启动" class="headerlink" title="服务器启动"></a>服务器启动</h1><img src="http://jason-qianhao.xyz/1240-20210701160045923.jpeg" alt="img" />
 
 <h2 id="单机版"><a href="#单机版" class="headerlink" title="单机版"></a>单机版</h2><p>  主要分为五大步骤：配置文件解析、初始化数据管理器、初始化网络I/O管理器、数据恢复和对外服务。可以概括为预启动和初始化两大类。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160047286.jpeg" alt="img" />
+<img src="http://jason-qianhao.xyz/1240-20210701160047286.jpeg" alt="img" />
 
 <h3 id="预启动"><a href="#预启动" class="headerlink" title="预启动"></a>预启动</h3><p>（1）统一由QuorumPeerMain作为启动类</p>
 <p>​    是由zkServer.cmd和zkServer.sh两个脚本中配置的启动类</p>
@@ -934,7 +934,7 @@
 <p>​    将服务器运行时的一些信息以JMX（Java 管理扩展）的方式暴露给外部。</p>
 <p>（11）注册ZooKeeper服务器实例</p>
 <p>​    将已经完成初始化的ZookeeperServer实例注册到ServerCnxnFactory即可。</p>
-<h2 id="集群版"><a href="#集群版" class="headerlink" title="集群版"></a>集群版</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045898.jpeg" alt="img" />
+<h2 id="集群版"><a href="#集群版" class="headerlink" title="集群版"></a>集群版</h2><img src="http://jason-qianhao.xyz/1240-20210701160045898.jpeg" alt="img" />
 
 <h3 id="预启动-1"><a href="#预启动-1" class="headerlink" title="预启动"></a>预启动</h3><p>（1）统一由QuroumPeerMain作为启动类</p>
 <p>（2）解析配置文件zoo.cfg</p>
@@ -962,7 +962,7 @@
 <p>​    启动阶段，QuorumPeer是LOOKING，开始进行Leader选举</p>
 <p>（4）leader选举</p>
 <h3 id="Leader和Follower的启动"><a href="#Leader和Follower的启动" class="headerlink" title="Leader和Follower的启动"></a>Leader和Follower的启动</h3><p>（1）交互期</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045933.jpeg" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210701160045933.jpeg" alt="img"/>
 
 <p>（2）启动</p>
 <p>  · 创建并启动会话管理器</p>
@@ -990,7 +990,7 @@
 <p>（6）改变服务器状态</p>
 <h1 id="数据与存储"><a href="#数据与存储" class="headerlink" title="数据与存储"></a>数据与存储</h1><p>.  ZooKeeper中数据存储分为内存数据存储和磁盘数据存储两部分。</p>
 <h2 id="内存数据"><a href="#内存数据" class="headerlink" title="内存数据"></a>内存数据</h2><p>  ZooKeeper会定时将所有的节点路径、节点数据及其ACL信息等存储到磁盘上。</p>
-<h3 id="DataTree"><a href="#DataTree" class="headerlink" title="DataTree"></a>DataTree</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210701160045950.jpeg" alt="img" style="zoom:70%;" />
+<h3 id="DataTree"><a href="#DataTree" class="headerlink" title="DataTree"></a>DataTree</h3><img src="http://jason-qianhao.xyz/1240-20210701160045950.jpeg" alt="img" style="zoom:70%;" />
 
 <p>（1）DataTree是内存属性核心，是一个“树”结构，代表了内存中的一份完整的数据</p>
 <p>（2）DataNode是数据存储的最小单元</p>

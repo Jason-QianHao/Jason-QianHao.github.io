@@ -478,7 +478,7 @@
 </blockquote>
 <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><h2 id="操作系统概念"><a href="#操作系统概念" class="headerlink" title="操作系统概念"></a>操作系统概念</h2><p>  程序员不会直接和硬件打交道，故在硬件的基础之上，计算机安装了一层软件，这层软件能够通过响应用户输入的指令达到控制硬件的效果，从而满足用户需求，这种软件称之为<strong>操作系统 Operating System（OS）</strong>。</p>
 <p>  常见的操作系统有Windows、Linux、FreeBSD或OS X，这种带有图形界面的操作系统统称为<strong>图形用户界面（Graphical User Interface, GUI）</strong>；而基于文本、命令行的通常称为<strong>Shell</strong>。两者统称为<strong>用户接口程序</strong>。</p>
-<h2 id="系统中进程的分类"><a href="#系统中进程的分类" class="headerlink" title="系统中进程的分类"></a>系统中进程的分类</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611820.png" alt="img"></p>
+<h2 id="系统中进程的分类"><a href="#系统中进程的分类" class="headerlink" title="系统中进程的分类"></a>系统中进程的分类</h2><p><img src="http://jason-qianhao.xyz/1240-20210703125611820.png" alt="img"></p>
 <p>（1）内核态：软件中最基础的部分是操作系统，运行在内核态。</p>
 <p>（2）用户态：运行用户接口程序，可以直接读取用户程序的数据。</p>
 <p>  为了获取操作系统的服务，用户程序必须使用<strong>系统调用（System Call）</strong>，系统调用会转换为内核态并且调用操作系统。</p>
@@ -487,10 +487,10 @@
 <p>· CPU（Central Processing Unit）中央处理器<br>  · 组成：控制器+运算器<br>  · 根本任务：执行命令</p>
 <p>· Kernel内核<br>  · 连接应用程序和硬件的桥梁<br>  · 决定者操作系统的性能和稳定性</p>
 <h2 id="计算机硬件"><a href="#计算机硬件" class="headerlink" title="计算机硬件"></a>计算机硬件</h2><p>（1）计算机组件</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611597.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210703125611597.png" alt="img"></p>
 <p>（2）存储器</p>
 <p>​    存储器系统采用一种分层次的结构。顶层的存储器速度最快，但容量小，成本高。层级机构越向下，其访问效率越低，容量越大，造价越便宜。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611630.png" alt="img" style="zoom:67%;" />
+<img src="http://jason-qianhao.xyz/1240-20210703125611630.png" alt="img" style="zoom:67%;" />
 
 <p>· 主存通常是RAM，是内存系统的主力军。</p>
 <p>· 还有一些ROM（不可重复写）用于启动计算机的引导加载模块（bootstrap）。</p>
@@ -511,25 +511,25 @@
 <h1 id="系统调用"><a href="#系统调用" class="headerlink" title="系统调用"></a>系统调用</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>  运行用户程序时，凡是与内核态级别的资源有关的操作（若文件管理、进程控制、内存管理等），都必须通过系统调用方式向操作系统提出服务请求，并由操作系统代为完成。</p>
 <p>  只有通过系统调用才能进入内核态。</p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><code>count = read(fd,buffer,nbytes);</code></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611628.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611628.png" alt="img"/>
 
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>  可移植操作系统接口(POSIX)常用系统调用（UNIX）如下。 pid是系统进程id，fd是文件描述符，n是字节数，position是在文件中的偏移量，seconds是流逝时间。</p>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611614.png" alt="img"></p>
+<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><p><img src="http://jason-qianhao.xyz/1240-20210703125611614.png" alt="img"></p>
 <p>图 2-2 进程管理系统调用</p>
-<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611656.png" alt="img"></p>
-<h3 id="目录和文件系统管理"><a href="#目录和文件系统管理" class="headerlink" title="目录和文件系统管理"></a>目录和文件系统管理</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611629.png" alt="img"></p>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611671.png" alt="img"></p>
+<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><p><img src="http://jason-qianhao.xyz/1240-20210703125611656.png" alt="img"></p>
+<h3 id="目录和文件系统管理"><a href="#目录和文件系统管理" class="headerlink" title="目录和文件系统管理"></a>目录和文件系统管理</h3><p><img src="http://jason-qianhao.xyz/1240-20210703125611629.png" alt="img"></p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p><img src="http://jason-qianhao.xyz/1240-20210703125611671.png" alt="img"></p>
 <h2 id="Windows系统调用"><a href="#Windows系统调用" class="headerlink" title="Windows系统调用"></a>Windows系统调用</h2><p>  Windows中，函数库的调用和实际的系统调用几乎是不对应的。微软定义了一系列过程，称为Win32应用编程接口（Application Programming Interface），即Win32 API。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220304143358901.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20220304143358901.png" alt="img"></p>
 <h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><h2 id="进程概念"><a href="#进程概念" class="headerlink" title="进程概念"></a>进程概念</h2><p>（1）进程的本质就是操作系统执行的一个程序。</p>
 <p>（2）地址空间：进程在其中可以进行读写操作和记录相关的资源级，包括程序计数器、堆栈指针、打开文件的清单等</p>
 <p>（3）操作系统中存在一个<strong>进程表</strong>，是数组或者链表结构，当前存在的每个进程都要占据其中的一项。故一个挂起的进程包括：进程的地址空间和对应的进程表项。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611850.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611850.png" alt="img"/>
 
 <h2 id="对比线程"><a href="#对比线程" class="headerlink" title="对比线程"></a>对比线程</h2><p>（1）线程是进程的更小运行单位，一个进程可以有多个线程</p>
 <p>（2）进程基本上独立，但线程会相互影响</p>
 <p>（3）线程开销小，但不利于资源的管理和保护，但进程相反。</p>
-<h2 id="进程生命周期"><a href="#进程生命周期" class="headerlink" title="进程生命周期"></a>进程生命周期</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611675.png" alt="img"/>
+<h2 id="进程生命周期"><a href="#进程生命周期" class="headerlink" title="进程生命周期"></a>进程生命周期</h2><img src="http://jason-qianhao.xyz/1240-20210703125611675.png" alt="img"/>
 
 <p>（1）创建状态（new）</p>
 <p>  · 进程正在被创建，尚未到就绪状态。</p>
@@ -576,9 +576,9 @@
 <h1 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><p>  操作系统的内存管理主要负责内存的分配与回收（malloc 函数：申请内存，free 函数：释放内存），另外地址转换也就是将逻辑地址转换成相应的物理地址等功能也是操作系统内存管理做的事情。</p>
 <h2 id="内存管理方式"><a href="#内存管理方式" class="headerlink" title="内存管理方式"></a>内存管理方式</h2><p><strong>（1）块式管理</strong> ： 远古时代的计算机操系统的内存管理方式。将内存分为几个固定大小的块，每个块中只包含一个进程。如果程序运行需要内存的话，操作系统就分配给它一块，如果程序运行只需要很小的空间的话，分配的这块内存很大一部分几乎被浪费了。这些在<strong>每个块中未被利用的空间，我们称之为碎片</strong>。</p>
 <p><strong>（2）页式管理</strong> ：把主存分为大小相等且固定的一页一页的形式，页较小，相对相比于块式管理的划分力度更大，提高了内存利用率，减少了碎片。页式管理<strong>通过页表</strong>对应<strong>逻辑地址和物理地址</strong>。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611708-5288171.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611708-5288171.png" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611693.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611693.png" alt="img"/>
 
 <p><strong>（3）段式管理</strong> ： 页式管理虽然提高了内存利用率，但是页式管理其中的页实际并无任何实际意义。 段式管理把主存分为一段段的，每一段的空间又要比一页的空间小很多 。但是，最重要的是<strong>段是有实际意义的，每个段定义了一组逻辑信息，例如,有主程序段 MAIN、子程序段 X、数据段 D 及栈段 S 等</strong>。 段式管理通过<strong>段表</strong>对应逻辑地址和物理地址。</p>
 <p><strong>（4）段页式管理机制</strong> 。段页式管理机制结合了段式管理和页式管理的优点。简单来说段页式管理机制就是把主存先分成若干段，每个段又分成若干页，也就是说 <strong>段页式管理机制</strong> 中段与段之间以及段的内部的都是离散的。</p>
@@ -593,8 +593,8 @@
 <p>  为了避免把全部页表一直放在内存中占用过多空间，特别是那些根本就不需要的页表就不需要保留在内存中。多级页表属于时间换空间的典型场景</p>
 <p>（2）实现</p>
 <p>  页表一定要覆盖全部虚拟空间，使用多级可以减少第一级页表大小。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/663-20220304143628139.png" alt="img"></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611716.png" alt="img"/>
+<p><img src="http://jason-qianhao.xyz/663-20220304143628139.png" alt="img"></p>
+<img src="http://jason-qianhao.xyz/1240-20210703125611716.png" alt="img"/>
 
 <p>（3）原理</p>
 <p>  · 二级页表可以不存在。很多一级页表项没有用，则不用创建二级页表。</p>
@@ -602,9 +602,9 @@
 <h2 id="虚拟地址空间"><a href="#虚拟地址空间" class="headerlink" title="虚拟地址空间"></a>虚拟地址空间</h2><h3 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h3><p>  <strong>逻辑地址（虚拟地址）和物理地址</strong></p>
 <p>  我们编程一般只有可能和逻辑地址打交道，比如在 C 语言中，指针里面存储的数值就可以理解成为内存里的一个地址，这个地址也就是我们说的逻辑地址，逻辑地址由操作系统决定。物理地址指的是真实物理内存中地址，更具体一点来说就是内存地址寄存器中的地址。物理地址是内存单元真正的地址。</p>
 <h3 id="CPU寻址"><a href="#CPU寻址" class="headerlink" title="CPU寻址"></a>CPU寻址</h3><p>  现代处理器使用的是一种称为 <strong>虚拟寻址(Virtual Addressing)</strong> 的寻址方式。<strong>使用虚拟寻址，CPU 需要将虚拟地址翻译成物理地址，这样才能访问到真实的物理内存。</strong> 实际上完成虚拟地址转换为物理地址转换的硬件是 CPU 中含有一个被称为 <strong>内存管理单元（Memory Management Unit, MMU）</strong> 的硬件。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611719.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611719.png" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611773.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611773.png" alt="img"/>
 
 <h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>  如果直接把物理地址暴露出来的话会带来严重问题，比如可能对操作系统造成伤害以及给同时运行多个程序造成困难。</p>
 <h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><p>（1）程序可以使用一系列相邻的虚拟地址来访问物理内存中不相邻的大内存缓冲区。</p>
@@ -627,21 +627,21 @@
 <p><strong>（2）FIFO（First In First Out） 页面置换算法（先进先出页面置换算法）</strong> : 总是淘汰最先进入内存的页面，即选择在内存中驻留时间最久的页面进行淘汰。</p>
 <p><strong>（3）LRU （Least Currently Used）页面置换算法（最近最久未使用页面置换算法）</strong> ：LRU算法赋予每个页面一个访问字段，用来记录一个页面自上次被访问以来所经历的时间 T，当须淘汰一个页面时，选择现有页面中其 T 值最大的，即最近最久未使用的页面予以淘汰。</p>
 <p><strong>（4）LFU （Least Frequently Used）页面置换算法（最少使用页面置换算法）</strong> : 该置换算法选择在之前时期使用最少的页面作为淘汰页。</p>
-<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611961.png" alt="img"/>
+<h1 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h1><h2 id="文件命名"><a href="#文件命名" class="headerlink" title="文件命名"></a>文件命名</h2><img src="http://jason-qianhao.xyz/1240-20210703125611961.png" alt="img"/>
 
-<h2 id="访问路径"><a href="#访问路径" class="headerlink" title="访问路径"></a>访问路径</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611758.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611756.png" alt="img"></p>
-<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611786.png" alt="img"></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611788.png" alt="img" />
+<h2 id="访问路径"><a href="#访问路径" class="headerlink" title="访问路径"></a>访问路径</h2><p><img src="http://jason-qianhao.xyz/1240-20210703125611758.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210703125611756.png" alt="img"></p>
+<h2 id="磁盘分区"><a href="#磁盘分区" class="headerlink" title="磁盘分区"></a>磁盘分区</h2><p><img src="http://jason-qianhao.xyz/1240-20210703125611786.png" alt="img"></p>
+<img src="http://jason-qianhao.xyz/1240-20210703125611788.png" alt="img" />
 
 <h1 id="I-O"><a href="#I-O" class="headerlink" title="I/O"></a>I/O</h1><h2 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h2><p>  IO设备分为块设备和字符设备。</p>
 <p>· 块设备：固定大小块信息。硬盘、光盘、USB等</p>
 <p>· 字符设备：键盘、鼠标等</p>
-<h2 id="IO设备形式"><a href="#IO设备形式" class="headerlink" title="IO设备形式"></a>IO设备形式</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220304144407093.png" alt="img" />
+<h2 id="IO设备形式"><a href="#IO设备形式" class="headerlink" title="IO设备形式"></a>IO设备形式</h2><img src="http://jason-qianhao.xyz/1240-20220304144407093.png" alt="img" />
 
 <h2 id="寻址方式"><a href="#寻址方式" class="headerlink" title="寻址方式"></a>寻址方式</h2><p>（1）内存映射IO</p>
 <p>（2）直接内存访问</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210703125611816.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210703125611816.png" alt="img"/>
 
 <p>  不管DMA控制器的物理地址在哪，它都能独立于CPU从而访问系统总线。</p>
 <h2 id="IO模型"><a href="#IO模型" class="headerlink" title="IO模型"></a>IO模型</h2><p>[<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_42351880/article/details/91151401">Linux] 操作系统五种IO模型_giturtle’s blog-CSDN博客_操作系统io模型</a></p>
@@ -683,7 +683,7 @@
 <li>对描述符进行监控，采用的是<strong>事件触发</strong>方式（异步）进行监控，为每一个要监控的描述符都定义了一个事件，并且对这个事件定义一个事件回调函数。</li>
 <li>将就绪的描述符对应事件<strong>拷贝一份到用户态</strong>，直接告诉用户有哪些描述符就绪，用户可以直接操作就绪的描述符。</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304144302482.png" alt="image-20220304144302482"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220304144302482.png" alt="image-20220304144302482"></p>
 </li>
 </ul>
 
@@ -1247,7 +1247,7 @@
                 <a href="/2020/12/11/she-ji-mo-shi/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304142031111.png" class="responsive-img" alt="设计模式">
+                        <img src="http://jason-qianhao.xyz/image-20220304142031111.png" class="responsive-img" alt="设计模式">
                         
                         <span class="card-title">设计模式</span>
                     </div>

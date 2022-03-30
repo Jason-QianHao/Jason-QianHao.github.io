@@ -507,7 +507,7 @@
 <h1 id="Repository-存储仓库"><a href="#Repository-存储仓库" class="headerlink" title="Repository 存储仓库"></a>Repository 存储仓库</h1><p>在<code>Spring Data</code>中，都是基于存储仓库<code>Repository</code>对实体类对象进行<code>CRUD</code>操作的。</p>
 <p><strong>其中，最核心的是dao层的<code>Repository</code>接口，在<code>org.springframework.data.repository</code>包中定义。</strong></p>
 <p><code>Repository</code>接口需要指定操作的**<code>实体类的类型</code>、<code>实体类ID的类型</code>**。在该接口中，是没有任何方法的，只是用于标记让Spring Data知道。通常我们会使用<code>CurdRepository</code>这个接口，当然，这个接口也是不包含JPA特性的，我们需要使用JPA特性的话，一般用的是<code>JpaRepository</code>接口。JPA的接口关系图如下：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/20200310174334174.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/20200310174334174.png" alt="img"></p>
 <h2 id="Repository"><a href="#Repository" class="headerlink" title="Repository"></a>Repository</h2><p>父接口标记型接口，不包含任何方法.</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">package</span> <span class="token namespace">org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>data<span class="token punctuation">.</span>repository</span><span class="token punctuation">;</span>
  
@@ -744,10 +744,10 @@
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h1><p><strong><code>Pageable</code><strong>是<code>Spring Data</code>提供出来进行分页查询参数输入的</strong>接口</strong>，里面主要定义多个与页面设定的方法：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/4538433-39824eae32b620bf.jpg" alt="img" style="zoom:67%;" />
+<img src="http://jason-qianhao.xyz/4538433-39824eae32b620bf.jpg" alt="img" style="zoom:67%;" />
 
 <h2 id="PageRequest"><a href="#PageRequest" class="headerlink" title="PageRequest"></a>PageRequest</h2><p>**<code>Pageable</code><strong>实现有很多，最常用的是</strong><code>PageRequest</code>**：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/4538433-5c74c04239469f84.jpg" alt="img" style="zoom: 67%;" />
+<img src="http://jason-qianhao.xyz/4538433-5c74c04239469f84.jpg" alt="img" style="zoom: 67%;" />
 
 <p><code>PageRequest</code>废弃了原本的<code>new</code>方式来构建分页参数，建议使用类中提供的<code>of(...)</code>静态方法来创建相关的分页参数实体。</p>
 <p> <code>of(...)</code>分页查询中允许带上<code>排序字段</code>以及<code>排序方向</code>两个参数，在源码中，这两个共同构建成了<code>Sort</code>实体。这是很多业务中需要使用上的，首先需要讲内容进行排序，然后再分页列出。</p>
@@ -783,6 +783,7 @@
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">try</span> <span class="token punctuation">(</span><span class="token class-name">Stream</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">User</span><span class="token punctuation">></span></span> stream <span class="token operator">=</span> repository<span class="token punctuation">.</span><span class="token function">findAllByCustomQueryAndStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
   stream<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>…<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>

@@ -505,7 +505,7 @@
 <p>所以，Elastic 数据管理的顶层单位就叫做 Index（索引）。它是单个数据库的同义词。每个 Index （即数据库）的名字必须是小写。</p>
 <h2 id="Type（类型）7-0废弃"><a href="#Type（类型）7-0废弃" class="headerlink" title="Type（类型）7.0废弃"></a>Type（类型）7.0废弃</h2><p>在index（索引）中，可以定义一个或多个类型，类似于mysql中的table，同一种类型的数据放在一起</p>
 <h2 id="Document（文档）"><a href="#Document（文档）" class="headerlink" title="Document（文档）"></a>Document（文档）</h2><p>保存在某个索引（Index）下、某种类型（Type）的一个数据（Document），<strong>文档是json格式的数据</strong>，Document1相当于mysql中某个table数据</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1460000038895417.png" alt="elasticsearch概念"></p>
+<p><img src="http://jason-qianhao.xyz/1460000038895417.png" alt="elasticsearch概念"></p>
 <h2 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h2><p>单个节点由于物理机硬件限制，存储的文档是有限的，如果一个索引包含海量文档，则不能在单个节点存储。ES 提供分片机制，同一个索引可以存储在不同分片（数据容器）中。</p>
 <p>分片分为主分片 (primary shard) 以及从分片 (replica shard)。主分片会被尽可能平均地 (rebalance) 分配在不同的节点上。</p>
 <blockquote>
@@ -825,7 +825,8 @@
       ]
     &#125;
   &#125;
-&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></blockquote>
+&#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
 
                 
             </div>

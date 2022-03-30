@@ -481,14 +481,14 @@
 <p>目录<br>  1 应用架构演变<br>  2 RPC<br>  3 Dubbo概述<br>  4 Dubbo配置<br>  5 Dubbo协议<br>  6 高可用<br>  7 Dubbo原理<br>  8 Dubbo源码分析<br>  9 Dubbox<br>  10 基于Spring的Dubbo整合<br>  11 常见面试题总结  </p>
 <p>参考目录<br>  · 尚硅谷Dubbo<br>  · CSDN  </p>
 </blockquote>
-<h1 id="应用架构演变"><a href="#应用架构演变" class="headerlink" title="应用架构演变"></a>应用架构演变</h1><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220304130211967.png" alt="image-20220304130211967"></p>
+<h1 id="应用架构演变"><a href="#应用架构演变" class="headerlink" title="应用架构演变"></a>应用架构演变</h1><p><img src="http://jason-qianhao.xyz/image-20220304130211967.png" alt="image-20220304130211967"></p>
 <h2 id="单一应用架构"><a href="#单一应用架构" class="headerlink" title="单一应用架构"></a>单一应用架构</h2><p>  当网站流量很小时，只需一个应用，将所有功能都部署在一起，以减少部署节点和成本。 此时，用于简化增删改查工作量的数据访问框架**(ORM) 是关键**。</p>
 <h2 id="垂直应用架构"><a href="#垂直应用架构" class="headerlink" title="垂直应用架构"></a>垂直应用架构</h2><p>  当访问量逐渐增大，单一应用增加机器带来的加速度越来越小，将应用拆成互不相干的几个应用，以提升效率。 此时，用于加速前端页面开发的Web框架**(MVC) 是关键**。</p>
 <h2 id="分布式服务架构"><a href="#分布式服务架构" class="headerlink" title="分布式服务架构"></a>分布式服务架构</h2><p>  当垂直应用越来越多，应用之间交互不可避免，将核心业务抽取出来，作为独立的服务，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求。 此时，用于提高业务复用及整合的分布式服务框架**(RPC) 是关键**。</p>
 <h2 id="流动计算架构"><a href="#流动计算架构" class="headerlink" title="流动计算架构"></a>流动计算架构</h2><p>  当服务越来越多，容量的评估，小服务资源的浪费等问题逐渐显现，此时需增加一个调度中心基于访问压力实时管理集群容量，提高集群利用率。 此时，用于提高机器利用率的资源调度和治理中心**(SOA) 是关键**。</p>
 <h1 id="RPC"><a href="#RPC" class="headerlink" title="RPC"></a>RPC</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>  RPC【Remote Procedure Call】是指远程过程调用，是一种<strong>进程间通信方式</strong>，他是一种技术的思想，而不是规范。它允许程序调用另一个地址空间（通常是共享网络的另一台机器上）的过程或函数，而不用程序员显式编码这个远程调用的细节。</p>
 <p>  另外，<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/50678735">总结：详解RMI与RPC的区别 - 知乎</a></p>
-<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201531.png" alt="img" />
+<h2 id="结构"><a href="#结构" class="headerlink" title="结构"></a>结构</h2><img src="http://jason-qianhao.xyz/1240-20210702161201531.png" alt="img" />
 
 <p>​    RPC 服务方通过 RpcServer 去导出（export）远程接口方法，而客户方通过 RpcClient 去引入（import）远程接口方法。客户方像调用本地方法一样去调用远程接口方法，RPC 框架提供接口的代理实现，实际的调用将委托给代理RpcProxy 。代理封装调用信息并将调用转交给RpcInvoker 去实际执行。在客户端的RpcInvoker 通过连接器RpcConnector 去维持与服务端的通道RpcChannel，并使用RpcProtocol 执行协议编码（encode）并将编码后的请求消息通过通道发送给服务方。</p>
 <p>  具体功能如下：</p>
@@ -503,9 +503,9 @@
 <p>（7）RpcAcceptor   负责接收客户方请求并返回请求结果 </p>
 <p>（8）RpcProcessor  负责在服务方控制调用过程，包括管理调用线程池、超时时间等 </p>
 <p>（9）RpcChannel   数据传输通道</p>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240.jpeg" alt="img"/>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><img src="http://jason-qianhao.xyz/1240.jpeg" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201564.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210702161201564.png" alt="img"/>
 
 <p>（1）Client像调用本地服务似的调用远程服务；</p>
 <p>（2）Client stub接收到调用后，将方法、参数序列化</p>
@@ -525,7 +525,7 @@
 <h2 id="三大核心能力"><a href="#三大核心能力" class="headerlink" title="三大核心能力"></a>三大核心能力</h2><p>（1）远程通讯，提供对多种基于长连接的NiO框架抽象封装，包括多种线程模型，序列化，以及“请求一响应”模式的信息交换方式。</p>
 <p>（2）集群容错: 提供基于接口方法的透明远程过程调用，包括多协议支持。以及负载均衡，失败容错，地址路由，动态配置等集群支持。</p>
 <p><strong>（3）自动发现:基于注册中心目录服务，使用服务消费能动态查找服务提供方,使地址透明,使用服务提供方可以平滑增加或减少服务器</strong></p>
-<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201516.png" alt="img"/>
+<h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><img src="http://jason-qianhao.xyz/1240-20210702161201516.png" alt="img"/>
 
 <p><strong>（1）服务提供者</strong>（Provider）：暴露服务的服务提供方，服务提供者在启动时，向注册中心注册自己提供的服务。</p>
 <p><strong>（2）服务消费者</strong>（Consumer）**:调用远程服务的服务消费方，服务消费者在启动时，向注册中心订阅自己所需的服务，服务消费者，从提供者地址列表中，<strong>基于软负载均衡算法，选一台提供者进行调用，如果调用失败，再选另一台调用</strong>。</p>
@@ -543,9 +543,9 @@
 <p>​    · Dubbo未对Zookeeper服务器端做任何侵入修改，只需安装原生的Zookeeper服务器即可， 所有注册中心逻辑适配都在调用Zookeeper客户端时完成</p>
 <p>​    · <strong>Dubbo使用ZooKeeper发布服务时，使用的是ZooKeeper的持久节点</strong></p>
 <p>  具体如何通过Zookeeper和Redis构建，参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/baoyu_G/article/details/82314435?utm_source=blogxgwz8">Dubbo（一）——Dubbo及注册中心原理_baoyu_G的博客-CSDN博客_dubbo注册</a></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/70.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/70.png" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/70-20210702161933427.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/70-20210702161933427.png" alt="img"/>
 
 <h2 id="Dubbo的特性"><a href="#Dubbo的特性" class="headerlink" title="Dubbo的特性"></a><strong>Dubbo的特性</strong></h2><p><strong>（1）健状性：</strong></p>
 <p>​    · 监控中心宕掉不影响使用，只是丢失部分采样数据</p>
@@ -566,7 +566,7 @@
 <p>​    ·服务降级</p>
 <p>​    ·访问控制</p>
 <p>​    ·权重调整 负载均衡等管理功能</p>
-<h1 id="Dubbo配置"><a href="#Dubbo配置" class="headerlink" title="Dubbo配置"></a>Dubbo配置</h1><h2 id="配置原则"><a href="#配置原则" class="headerlink" title="配置原则"></a>配置原则</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201576.png" alt="img" />
+<h1 id="Dubbo配置"><a href="#Dubbo配置" class="headerlink" title="Dubbo配置"></a>Dubbo配置</h1><h2 id="配置原则"><a href="#配置原则" class="headerlink" title="配置原则"></a>配置原则</h2><img src="http://jason-qianhao.xyz/1240-20210702161201576.png" alt="img" />
 
 <p>· JVM启动 -D 参数优先，这样可以使用户在部署和启动时进行参数重写，比如在启动时需改变协议的端口。</p>
 <p>· XML次之，如果在 XML 中有配置，则 dubbo.properties 中的相应配置项无效。</p>
@@ -782,7 +782,7 @@ public class HelloServiceImpl implements HelloService &#123;
 <p>（2）游戏开发中，底层使用netty通讯。</p>
 <h3 id="TCP粘包和拆包"><a href="#TCP粘包和拆包" class="headerlink" title="TCP粘包和拆包"></a>TCP粘包和拆包</h3><p>（1）概念</p>
 <p>​    一个完整的业务可能会被TCP拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送，这个就是TCP的拆包和封包问题。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201476.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210702161201476.png" alt="img"/>
 
 <p>（2）由于网络的复杂性，可能数据会被分离成N多个复杂的拆包/粘包的情况，所以在做TCP服务器的时候就需要首先解决该问题。</p>
 <p>  · 消息定长，报文大小固定长度，不够空格补全，发送和接收方遵循相同的约定，这样即使粘包了通过接收方编程实现获取定长报文也能区分。</p>
@@ -1134,7 +1134,7 @@ sc.pipeline().addLast(**new** DelimiterBasedFrameDecoder(1024, buf));<span aria-
 <p>（3）通过java.util.ServiceLoader的加载机制来发现</p>
 <h4 id="SPI实例"><a href="#SPI实例" class="headerlink" title="SPI实例"></a>SPI实例</h4><p>  JDK官方提供了java.sql.Driver这个驱动扩展点，但是你们并没有看到JDK中有对应的Driver实现。</p>
 <p>  以连接Mysql为例，我们需要添加mysql-connector-java依赖。你们可以在这个jar包中找到SPI的配置信息。所以java.sql.Driver由各个数据库厂商自行实现。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201499.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210702161201499.png" alt="img"></p>
 <h4 id="SPI的缺点"><a href="#SPI的缺点" class="headerlink" title="SPI的缺点"></a>SPI的缺点</h4><p>（1）JDK标准的SPI会一次性加载实例化扩展点的所有实现</p>
 <p>​    就是如果你在META-INF/service下的文件里面加了<strong>N个实现类</strong>，那么JDK启动的时候都会<strong>一次性全部加载</strong>。</p>
 <p>​    那么如果有的扩展点实现初始化很耗时或者如果有些实现类并没有用到，那么会很浪费资源</p>
@@ -1204,10 +1204,10 @@ publicinterfaceProtocol<span class="token punctuation">&#123;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>· 方法调用</strong></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201555.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210702161201555.png" alt="img"/>
 
 <h1 id="Dubbo源码分析"><a href="#Dubbo源码分析" class="headerlink" title="Dubbo源码分析"></a>Dubbo源码分析</h1><h2 id="框架设计"><a href="#框架设计" class="headerlink" title="框架设计"></a>框架设计</h2><p>  总体分为Business、RPC和Remoting三层设计</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201789.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210702161201789.png" alt="img"/>
 
 <p>· Service服务接口层：该层是与实际业务逻辑相关的，根据服务提供方和服务消费方的业务设计对应的接口和实现。</p>
 <p>· config配置层：对外配置接口，以 ServiceConfig, ReferenceConfig 为中心，可以直接初始化配置类，也可以通过 spring 解析配置生成配置类</p>
@@ -1221,23 +1221,23 @@ publicinterfaceProtocol<span class="token punctuation">&#123;</span>
 <p>· serialize数据序列化层：可复用的一些工具，扩展接口为 Serialization, ObjectInput, ObjectOutput, ThreadPool</p>
 <h2 id="dubbo原理-启动解析、加载配置信息"><a href="#dubbo原理-启动解析、加载配置信息" class="headerlink" title="dubbo原理-启动解析、加载配置信息"></a>dubbo原理-启动解析、加载配置信息</h2><p>（1）解析XML</p>
 <p>  在dubboNamespaceHandler中将<code>&lt;dubbo:provider&gt;</code>等解析为对应的xxxConfig对象.</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201608.png" alt="img" style="zoom:67%;" />
+<img src="http://jason-qianhao.xyz/1240-20210702161201608.png" alt="img" style="zoom:67%;" />
 
 <p>（2）标签内容解析，封装为beanDefinition对象</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201617.png" alt="img"></p>
-<h2 id="dubbo原理-服务暴露"><a href="#dubbo原理-服务暴露" class="headerlink" title="dubbo原理 -服务暴露"></a>dubbo原理 -服务暴露</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161202244.png" alt="img" style="zoom:67%;" />
+<p><img src="http://jason-qianhao.xyz/1240-20210702161201617.png" alt="img"></p>
+<h2 id="dubbo原理-服务暴露"><a href="#dubbo原理-服务暴露" class="headerlink" title="dubbo原理 -服务暴露"></a>dubbo原理 -服务暴露</h2><img src="http://jason-qianhao.xyz/1240-20210702161202244.png" alt="img" style="zoom:67%;" />
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220304131354699.png" alt="img" />
+<img src="http://jason-qianhao.xyz/1240-20220304131354699.png" alt="img" />
 
 <p>  Invoker是用户接口的代理对象实例，会经过层层包装。</p>
 <p>  在使用Protocol时，会调用两个protocol。一个是DubboProtocol，其对应的DubboExporter打开Nttey服务器，监听对应的服务提供者端口；一个是RegistryProtocol，其对应的RegistryExporter对将提供者地址（服务器地址，如<a href="http://127.0.0.1:20880）作为key,实例化的Invoker（具体服务接口的实现serviceImpl）作为value添加到注册表中，并向Zookeeper注册中心注册服务（添加节点信息）。">http://127.0.0.1:20880）作为key,实例化的Invoker（具体服务接口的实现serviceImpl）作为value添加到注册表中，并向Zookeeper注册中心注册服务（添加节点信息）。</a></p>
 <h2 id="dubbo原理-服务引用"><a href="#dubbo原理-服务引用" class="headerlink" title="dubbo原理 -服务引用"></a>dubbo原理 -服务引用</h2><p>  首先ReferenceConfig类的init方法调用Protocol的refer方法生成Invoker实例，这是服务消费的关键。接下来把Invoker转换为客户端需要的接口(如：HelloWorld)。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201667.png" alt="img"></p>
-<h2 id="dubbo原理-服务调用"><a href="#dubbo原理-服务调用" class="headerlink" title="dubbo原理 -服务调用"></a>dubbo原理 -服务调用</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201804.png" alt="img" />
+<p><img src="http://jason-qianhao.xyz/1240-20210702161201667.png" alt="img"></p>
+<h2 id="dubbo原理-服务调用"><a href="#dubbo原理-服务调用" class="headerlink" title="dubbo原理 -服务调用"></a>dubbo原理 -服务调用</h2><img src="http://jason-qianhao.xyz/1240-20210702161201804.png" alt="img" />
 
 <p>  集群容错模式选择：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220304131450137.png" alt="img"></p>
-<h1 id="Dubbox"><a href="#Dubbox" class="headerlink" title="Dubbox"></a>Dubbox</h1><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210702161201716.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20220304131450137.png" alt="img"></p>
+<h1 id="Dubbox"><a href="#Dubbox" class="headerlink" title="Dubbox"></a>Dubbox</h1><p><img src="http://jason-qianhao.xyz/1240-20210702161201716.png" alt="img"></p>
 <h1 id="基于Spring的Dubbo整合"><a href="#基于Spring的Dubbo整合" class="headerlink" title="基于Spring的Dubbo整合"></a>基于Spring的Dubbo整合</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.alibaba<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>dubbo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>

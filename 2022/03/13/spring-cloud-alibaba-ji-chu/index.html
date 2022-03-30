@@ -498,7 +498,7 @@
 </blockquote>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Spring Cloud Alibaba从名字上看，就知道一定跟Spring Cloud有关，但是我们为什么在Spring Cloud官方文档中看不到它的影子呢？因为它目前还是一个孵化项目，它的仓库也位于Spring Cloud孵化器中，Github地址：<a target="_blank" rel="noopener" href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba%E3%80%82">https://github.com/spring-cloud-incubator/spring-cloud-alibaba。</a></p>
 <p>Spring Cloud Alibaba不是一个简单的组件，而是一个综合套件。其中涵盖了非常多的内容，包括：服务治理、配置管理、限流降级以及对阿里开源生态（Dubbo、RocketMQ等）支持的诸多组件。更多详细详细，读者可查阅其<a target="_blank" rel="noopener" href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba/blob/master/README-zh.md">官方文档</a>。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640.jpeg" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640.jpeg" style="zoom:50%;" />
 
 <h1 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h1><h2 id="什么是Nacos"><a href="#什么是Nacos" class="headerlink" title="什么是Nacos"></a>什么是Nacos</h2><p>Nacos致力于帮助您<strong>发现、配置和管理微服务</strong>。Nacos提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。Nacos帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</p>
 <p>使用Nacos作为微服务架构中的注册中心（替代：eurekba、consul等传统方案）以及配置中心（spring cloud config）来使用。</p>
@@ -513,7 +513,7 @@
 </li>
 <li><p>编辑<code>startup.sh</code>命令</p>
 <p>路径写上上述命令显示的自己的JDK路径</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/202203252030049.png" alt="image-20220325203044999"></p>
+<p><img src="http://jason-qianhao.xyz/202203252030049.png" alt="image-20220325203044999"></p>
 </li>
 </ul>
 </li>
@@ -524,7 +524,7 @@
 <p><code>startup.sh</code>脚本位于Nacos解压后的bin目录下</p>
 </blockquote>
 <p>启动完成之后，访问：<code>http://127.0.0.1:8848/nacos/</code>，可以进入Nacos的服务管理页面，<strong>默认用户名密码为：nacos</strong>，具体如下:</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-138.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-138.png" alt="img"></p>
 <h2 id="构建应用接入Nacos注册中心"><a href="#构建应用接入Nacos注册中心" class="headerlink" title="构建应用接入Nacos注册中心"></a>构建应用接入Nacos注册中心</h2><p>在完成了Nacos服务的安装和启动之后，下面我们就可以编写两个应用（服务提供者与服务消费者）来验证服务的注册与发现了。</p>
 <h3 id="服务提供者"><a href="#服务提供者" class="headerlink" title="服务提供者"></a>服务提供者</h3><h4 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h4><p>这里注意Springboot版本和Nacos版本的兼容性问题，Springboot版本不要太高</p>
 <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
@@ -597,7 +597,7 @@
 
 <h4 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h4><p>启动上面创建的应用。可以在启动时候增加<code>-Dserver.port=8001</code>的形式在本机的不同端口上启动多个实例。</p>
 <p>Nacos页面显示：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-139.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-139.png" alt="img"></p>
 <h3 id="服务消费者"><a href="#服务消费者" class="headerlink" title="服务消费者"></a>服务消费者</h3><h4 id="依赖-1"><a href="#依赖-1" class="headerlink" title="依赖"></a>依赖</h4><p>与服务提供者相同</p>
 <h4 id="配置文件-1"><a href="#配置文件-1" class="headerlink" title="配置文件"></a>配置文件</h4><pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.application.name</span><span class="token punctuation">=</span><span class="token attr-value">alibaba-nacos-discovery-client-common</span>
 <span class="token attr-name">server.port</span><span class="token punctuation">=</span><span class="token attr-value">9000</span>
@@ -634,7 +634,7 @@
 
 <h2 id="Nacos作为配置中心"><a href="#Nacos作为配置中心" class="headerlink" title="Nacos作为配置中心"></a>Nacos作为配置中心</h2><p>Nacos除了实现了服务的注册发现之外，还将配置中心功能整合在了一起。通过Nacos的配置管理功能，我们可以将整个架构体系内的所有配置都集中在Nacos中存储，都通过<code>DataId</code>和<code>Group</code>来定位配置内容</p>
 <h3 id="新建配置"><a href="#新建配置" class="headerlink" title="新建配置"></a>新建配置</h3><p>进入Nacos的控制页面，在配置列表功能页面中，点击右上角的“+”按钮，进入“新建配置”页面：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-144.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-144.png" alt="img"></p>
 <p>其中：</p>
 <ul>
 <li><code>Data ID</code>：填入<code>alibaba-nacos-config-client.properties</code></li>
@@ -729,7 +729,7 @@
 <h3 id="启动应用"><a href="#启动应用" class="headerlink" title="启动应用"></a>启动应用</h3><p>在启动的时候，我们可以看到类似上面的日志信息，这里会输出应用程序要从Nacos中获取配置的dataId和group。如果在启动之后，发现配置信息没有获取到的时候，可以先从这里着手，看看配置加载的目标是否正确。</p>
 <h2 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h2><p>默认情况下，Nacos使用嵌入式数据库实现数据的存储。所以，如果启动多个默认配置下的Nacos节点，数据存储是存在一致性问题的。为了解决这个问题，Nacos采用了集中式存储的方式来支持集群化部署，目前只要支持MySQL的存储。</p>
 <h3 id="新建数据库"><a href="#新建数据库" class="headerlink" title="新建数据库"></a>新建数据库</h3><p>数据库初始化文件：<code>nacos-mysql.sql</code>，该文件可以在Nacos程序包下的<code>conf</code>目录下获得。执行完成后可以得到如下图所示的表结构：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-149.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-149.png" alt="img"></p>
 <h3 id="修改Nacos配置文件"><a href="#修改Nacos配置文件" class="headerlink" title="修改Nacos配置文件"></a>修改Nacos配置文件</h3><p>修改<code>conf/application.properties</code>文件，增加支持MySQL数据源配置，添加（目前只支持mysql）数据源的url、用户名和密码。配置样例如下：</p>
 <pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token attr-name">spring.datasource.platform</span><span class="token punctuation">=</span><span class="token attr-value">mysql</span>
 
@@ -739,7 +739,7 @@
 <span class="token attr-name">db.password</span><span class="token punctuation">=</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="Nacos集群"><a href="#Nacos集群" class="headerlink" title="Nacos集群"></a>Nacos集群</h2><p>根据官方文档的介绍，Nacos的集群架构大致如下图所示（省略了集中化存储信息的MySQL）：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-150.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-150.png" alt="img"></p>
 <p><strong>Nacos的集群需要3个或3个以上的节点，并且确保这三个节点之间是可以互相访问的。</strong></p>
 <h3 id="每个节点配置mysql持久化"><a href="#每个节点配置mysql持久化" class="headerlink" title="每个节点配置mysql持久化"></a>每个节点配置mysql持久化</h3><p>具体备至见上述”持久化“</p>
 <h3 id="集群配置"><a href="#集群配置" class="headerlink" title="集群配置"></a>集群配置</h3><p>在Nacos的<code>conf</code>目录下有一个<code>cluster.conf.example</code>，可以直接把<code>example</code>扩展名去掉来使用，也可以单独创建一个<code>cluster.conf</code>文件，然后打开将后续要部署的Nacos实例地址配置在这里。</p>
@@ -750,7 +750,7 @@
 
 <p>配置完后，启动3个Nacos实例。</p>
 <h3 id="Proxy配置"><a href="#Proxy配置" class="headerlink" title="Proxy配置"></a>Proxy配置</h3><p>需要为上面启动的的三个Nacos实例做一个可以为它们实现负载均衡的访问点，这里以Nginx为例：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-152.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-152.png" alt="img"></p>
 <h1 id="服务消费者-1"><a href="#服务消费者-1" class="headerlink" title="服务消费者"></a>服务消费者</h1><h2 id="使用RestTemplate"><a href="#使用RestTemplate" class="headerlink" title="使用RestTemplate"></a>使用RestTemplate</h2><p>在之前的例子中，已经使用过<code>RestTemplate</code>来向服务的某个具体实例发起HTTP请求，但是具体的请求路径是通过拼接完成的，对于开发体验并不好。但是，实际上，在Spring Cloud中对RestTemplate做了增强，只需要稍加配置，就能简化之前的调用方式。</p>
 <p>比如：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@EnableDiscoveryClient</span>
@@ -1118,7 +1118,7 @@
 </li>
 <li><p>访问控制页面</p>
 <p>通过访问：<code>localhost:8080</code>来验证是否已经启动成功，如果一切顺利的话，可以看到如下页面：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-211.png" alt="img" style="zoom: 50%;" />
+<img src="http://jason-qianhao.xyz/pasted-211.png" alt="img" style="zoom: 50%;" />
 
 <p>默认用户名和密码都是<code>sentinel</code>。对于用户登录的相关配置可以在启动命令中增加下面的参数来进行配置：</p>
 <ul>
@@ -1127,7 +1127,7 @@
 <li><code>-Dserver.servlet.session.timeout=7200</code>: 用于指定 Spring Boot 服务端 session 的过期时间，如 7200 表示 7200 秒；60m 表示 60 分钟，默认为 30 分钟；</li>
 </ul>
 <p>登录后可以看见：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-203.png" alt="upload successful"></p>
+<p><img src="http://jason-qianhao.xyz/pasted-203.png" alt="upload successful"></p>
 </li>
 </ul>
 <h3 id="依赖-4"><a href="#依赖-4" class="headerlink" title="依赖"></a>依赖</h3><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
@@ -1178,7 +1178,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>访问接口后，可以看见：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-202.png" alt="upload successful" style="zoom:70%;" />
+<img src="http://jason-qianhao.xyz/pasted-202.png" alt="upload successful" style="zoom:70%;" />
 
 <p>也可以在此页面进行相关的限流规则配置</p>
 <h2 id="Sentinel实现方法限流"><a href="#Sentinel实现方法限流" class="headerlink" title="Sentinel实现方法限流"></a>Sentinel实现方法限流</h2><p>在上述<em>Sentinel实现接口限流</em>基础上进行修改</p>
@@ -1302,7 +1302,7 @@
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="Nacos创建限流规则的配置"><a href="#Nacos创建限流规则的配置" class="headerlink" title="Nacos创建限流规则的配置"></a>Nacos创建限流规则的配置</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/pasted-204.png" alt="upload successful" style="zoom:67%;" />
+<h3 id="Nacos创建限流规则的配置"><a href="#Nacos创建限流规则的配置" class="headerlink" title="Nacos创建限流规则的配置"></a>Nacos创建限流规则的配置</h3><img src="http://jason-qianhao.xyz/pasted-204.png" alt="upload successful" style="zoom:67%;" />
 
 <ul>
 <li>resource：资源名，即限流规则的作用对象</li>

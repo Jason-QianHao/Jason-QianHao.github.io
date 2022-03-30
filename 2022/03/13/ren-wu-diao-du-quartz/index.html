@@ -503,7 +503,7 @@
 </ul>
 <h2 id="Scheduler"><a href="#Scheduler" class="headerlink" title="Scheduler"></a>Scheduler</h2><p>scheduler 是quartz的核心所在，所有的任务都是通过scheduler开始。 </p>
 <p>scheduler是一个接口类，所有的具体实现类都是通过SchedulerFactory工厂类实现，但是SchedulerFactory有两个具体的实现类，如图： </p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220313115024272.png" alt="image-20220313115024272" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/image-20220313115024272.png" alt="image-20220313115024272" style="zoom:50%;" />
 
 <ul>
 <li>StdSchedulerFactory：默认值加载是当前工作目录下的”quartz.properties”属性文件。如果加载失败，会去加载org/quartz包下的”quartz.properties”属性文件。一般使用这个实现类就能满足我们的要求。</li>
@@ -526,7 +526,7 @@
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>Trigger的重点内容就是在withSchedule这个方法，从参数开始：查看SchedulerBuilder，这个是个抽象类，一共有4种具体实现方法，如图： </p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220313115258319.png" alt="image-20220313115258319" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/image-20220313115258319.png" alt="image-20220313115258319" style="zoom:50%;" />
 
 <h3 id="SimpleScheduleBuilder"><a href="#SimpleScheduleBuilder" class="headerlink" title="SimpleScheduleBuilder"></a>SimpleScheduleBuilder</h3><p>最简单的触发器，表示从某一时刻开始，以一定的时间间隔执行任务。<br>属性： </p>
 <ul>

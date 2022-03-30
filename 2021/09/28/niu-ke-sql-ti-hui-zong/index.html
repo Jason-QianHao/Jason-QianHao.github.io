@@ -477,7 +477,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="牛客SQL总结"><a href="#牛客SQL总结" class="headerlink" title="牛客SQL总结"></a>牛客SQL总结</h1><h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><h2 id="SQL36"><a href="#SQL36" class="headerlink" title="SQL36"></a>SQL36</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929111953766.png" alt="image-20210929111953766" style="zoom:50%;" />
+                <h1 id="牛客SQL总结"><a href="#牛客SQL总结" class="headerlink" title="牛客SQL总结"></a>牛客SQL总结</h1><h1 id="建表"><a href="#建表" class="headerlink" title="建表"></a>建表</h1><h2 id="SQL36"><a href="#SQL36" class="headerlink" title="SQL36"></a>SQL36</h2><img src="http://jason-qianhao.xyz/image-20210929111953766.png" alt="image-20210929111953766" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">table</span> actor_name
 <span class="token punctuation">(</span>
@@ -487,18 +487,18 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">select</span> first_name<span class="token punctuation">,</span>last_name
 <span class="token keyword">from</span> actor<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="SQL39"><a href="#SQL39" class="headerlink" title="SQL39"></a>SQL39</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929112125985.png" alt="image-20210929112125985" style="zoom:50%;" />
+<h2 id="SQL39"><a href="#SQL39" class="headerlink" title="SQL39"></a>SQL39</h2><img src="http://jason-qianhao.xyz/image-20210929112125985.png" alt="image-20210929112125985" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span>
 <span class="token keyword">from</span> salaries
 <span class="token keyword">force</span> <span class="token keyword">index</span> <span class="token punctuation">(</span>idx_emp_no<span class="token punctuation">)</span>
 <span class="token keyword">where</span> emp_no<span class="token operator">=</span><span class="token number">10005</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="SQL40"><a href="#SQL40" class="headerlink" title="SQL40"></a>SQL40</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929112210893.png" alt="image-20210929112210893" style="zoom:50%;" />
+<h2 id="SQL40"><a href="#SQL40" class="headerlink" title="SQL40"></a>SQL40</h2><img src="http://jason-qianhao.xyz/image-20210929112210893.png" alt="image-20210929112210893" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> actor <span class="token keyword">ADD</span> create_date <span class="token keyword">datetime</span> <span class="token operator">NOT</span> <span class="token boolean">NULL</span> <span class="token keyword">DEFAULT</span> <span class="token string">'2020-10-01 00:00:00'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h2 id="SQL41（触发器）"><a href="#SQL41（触发器）" class="headerlink" title="SQL41（触发器）"></a>SQL41（触发器）</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211008125722460.png" alt="image-20211008125722460" style="zoom:50%;" />
+<h2 id="SQL41（触发器）"><a href="#SQL41（触发器）" class="headerlink" title="SQL41（触发器）"></a>SQL41（触发器）</h2><img src="http://jason-qianhao.xyz/image-20211008125722460.png" alt="image-20211008125722460" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">create</span> <span class="token keyword">trigger</span> audit_log 
 <span class="token keyword">after</span> <span class="token keyword">insert</span> <span class="token keyword">on</span> employees_test
@@ -507,13 +507,13 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
     <span class="token keyword">insert</span> <span class="token keyword">into</span> audit <span class="token keyword">values</span><span class="token punctuation">(</span>new<span class="token punctuation">.</span>id<span class="token punctuation">,</span>new<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">end</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="SQL46"><a href="#SQL46" class="headerlink" title="SQL46"></a>SQL46</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211008145453608.png" alt="image-20211008145453608" style="zoom:50%;" />
+<h2 id="SQL46"><a href="#SQL46" class="headerlink" title="SQL46"></a>SQL46</h2><img src="http://jason-qianhao.xyz/image-20211008145453608.png" alt="image-20211008145453608" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> audit
 <span class="token keyword">ADD</span> <span class="token keyword">CONSTRAINT</span> <span class="token keyword">FOREIGN</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>emp_no<span class="token punctuation">)</span>
 <span class="token keyword">REFERENCES</span> employees_test<span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="最值"><a href="#最值" class="headerlink" title="最值"></a>最值</h2><h3 id="SQL2"><a href="#SQL2" class="headerlink" title="SQL2"></a>SQL2</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928160517266.png" alt="image-20210928160517266" style="zoom:50%;" />
+<h1 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h1><h2 id="最值"><a href="#最值" class="headerlink" title="最值"></a>最值</h2><h3 id="SQL2"><a href="#SQL2" class="headerlink" title="SQL2"></a>SQL2</h3><img src="http://jason-qianhao.xyz/image-20210928160517266.png" alt="image-20210928160517266" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
 	<span class="token operator">*</span> 
@@ -524,7 +524,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">limit</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>主页limit第一参数为(页数 - 1)*每页数量</p>
-<h2 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h2><h3 id="SQL8"><a href="#SQL8" class="headerlink" title="SQL8"></a>SQL8</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928161305190.png" alt="image-20210928161305190" style="zoom:50%;" />
+<h2 id="去重"><a href="#去重" class="headerlink" title="去重"></a>去重</h2><h3 id="SQL8"><a href="#SQL8" class="headerlink" title="SQL8"></a>SQL8</h3><img src="http://jason-qianhao.xyz/image-20210928161305190.png" alt="image-20210928161305190" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     <span class="token keyword">DISTINCT</span> salary
@@ -533,7 +533,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
     salary <span class="token keyword">desc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="SQL10"><a href="#SQL10" class="headerlink" title="SQL10"></a>SQL10</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928161526148.png" alt="image-20210928161526148" style="zoom:50%;" />
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="SQL10"><a href="#SQL10" class="headerlink" title="SQL10"></a>SQL10</h3><img src="http://jason-qianhao.xyz/image-20210928161526148.png" alt="image-20210928161526148" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     employees<span class="token punctuation">.</span>emp_no
@@ -546,7 +546,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">WHERE</span>
     dept_manager<span class="token punctuation">.</span>emp_no <span class="token operator">is</span> <span class="token boolean">null</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL11"><a href="#SQL11" class="headerlink" title="SQL11"></a>SQL11</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928161633124.png" alt="image-20210928161633124" style="zoom:50%;" />
+<h3 id="SQL11"><a href="#SQL11" class="headerlink" title="SQL11"></a>SQL11</h3><img src="http://jason-qianhao.xyz/image-20210928161633124.png" alt="image-20210928161633124" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
@@ -562,9 +562,9 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">group</span> <span class="token keyword">BY</span>
     e<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL12"><a href="#SQL12" class="headerlink" title="SQL12"></a>SQL12</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220308115000735.png" alt="image-20220308115000735" style="zoom:50%;" />
+<h3 id="SQL12"><a href="#SQL12" class="headerlink" title="SQL12"></a>SQL12</h3><img src="http://jason-qianhao.xyz/image-20220308115000735.png" alt="image-20220308115000735" style="zoom:50%;" />
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220308115020098.png" alt="image-20220308115020098" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/image-20220308115020098.png" alt="image-20220308115020098" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     t<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span> 
@@ -592,7 +592,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">order</span> <span class="token keyword">by</span> 
     t<span class="token punctuation">.</span>dept_no <span class="token keyword">asc</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL19"><a href="#SQL19" class="headerlink" title="SQL19"></a>SQL19</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928162304345.png" alt="image-20210928162304345" style="zoom:50%;" />
+<h3 id="SQL19"><a href="#SQL19" class="headerlink" title="SQL19"></a>SQL19</h3><img src="http://jason-qianhao.xyz/image-20210928162304345.png" alt="image-20210928162304345" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     e<span class="token punctuation">.</span>last_name<span class="token punctuation">,</span>
@@ -609,7 +609,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ON</span>
     de<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> d<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL21"><a href="#SQL21" class="headerlink" title="SQL21"></a>SQL21</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929105618744.png" alt="image-20210929105618744" style="zoom:50%;" />
+<h3 id="SQL21"><a href="#SQL21" class="headerlink" title="SQL21"></a>SQL21</h3><img src="http://jason-qianhao.xyz/image-20210929105618744.png" alt="image-20210929105618744" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 本题应该考虑降薪的问题:题中没有讲员工不降薪，所以不能直接使用最大薪水-最小薪水求值</span>
 <span class="token keyword">SELECT</span> 
@@ -637,7 +637,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
     <span class="token keyword">ON</span> s1<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> s2<span class="token punctuation">.</span>emp_no  
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> growth <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL22"><a href="#SQL22" class="headerlink" title="SQL22"></a>SQL22</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929105949261.png" alt="image-20210929105949261" style="zoom:50%;" />
+<h3 id="SQL22"><a href="#SQL22" class="headerlink" title="SQL22"></a>SQL22</h3><img src="http://jason-qianhao.xyz/image-20210929105949261.png" alt="image-20210929105949261" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     d<span class="token punctuation">.</span>dept_no<span class="token punctuation">,</span>
@@ -662,7 +662,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ON</span>
     d<span class="token punctuation">.</span>dept_no <span class="token operator">=</span> t<span class="token punctuation">.</span>dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL25"><a href="#SQL25" class="headerlink" title="SQL25"></a>SQL25</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929110544985.png" alt="image-20210929110544985" style="zoom:50%;" />
+<h3 id="SQL25"><a href="#SQL25" class="headerlink" title="SQL25"></a>SQL25</h3><img src="http://jason-qianhao.xyz/image-20210929110544985.png" alt="image-20210929110544985" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     de<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
@@ -693,13 +693,13 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">WHERE</span>
     s<span class="token punctuation">.</span>salary <span class="token operator">></span> t<span class="token punctuation">.</span>manager_salary<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL57"><a href="#SQL57" class="headerlink" title="SQL57"></a>SQL57</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014110619032.png" alt="image-20211014110619032" style="zoom:50%;" />
+<h3 id="SQL57"><a href="#SQL57" class="headerlink" title="SQL57"></a>SQL57</h3><img src="http://jason-qianhao.xyz/image-20211014110619032.png" alt="image-20211014110619032" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> employees e
 <span class="token keyword">where</span> <span class="token operator">not</span> <span class="token keyword">exists</span>
 <span class="token punctuation">(</span><span class="token keyword">select</span> emp_no <span class="token keyword">from</span> dept_emp d <span class="token keyword">where</span> d<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> e<span class="token punctuation">.</span>emp_no<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL59"><a href="#SQL59" class="headerlink" title="SQL59"></a>SQL59</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014110731335.png" alt="image-20211014110731335" style="zoom:50%;" />
+<h3 id="SQL59"><a href="#SQL59" class="headerlink" title="SQL59"></a>SQL59</h3><img src="http://jason-qianhao.xyz/image-20211014110731335.png" alt="image-20211014110731335" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> 
     e<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> 
@@ -721,7 +721,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
     s<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> e<span class="token punctuation">.</span>emp_no <span class="token operator">AND</span> 
     s<span class="token punctuation">.</span>to_date<span class="token operator">=</span><span class="token string">'9999-01-01'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL64"><a href="#SQL64" class="headerlink" title="SQL64"></a>SQL64</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014111431630.png" alt="image-20211014111431630" style="zoom:50%;" />
+<h3 id="SQL64"><a href="#SQL64" class="headerlink" title="SQL64"></a>SQL64</h3><img src="http://jason-qianhao.xyz/image-20211014111431630.png" alt="image-20211014111431630" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     p<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
@@ -734,7 +734,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">on</span>
     p<span class="token punctuation">.</span>id <span class="token operator">=</span> t<span class="token punctuation">.</span>person_id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL82"><a href="#SQL82" class="headerlink" title="SQL82"></a>SQL82</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019162627904.png" alt="image-20211019162627904" style="zoom:50%;" />
+<h3 id="SQL82"><a href="#SQL82" class="headerlink" title="SQL82"></a>SQL82</h3><img src="http://jason-qianhao.xyz/image-20211019162627904.png" alt="image-20211019162627904" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     o<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
@@ -772,7 +772,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
     o<span class="token punctuation">.</span>product_name <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token string">'C++'</span><span class="token punctuation">,</span> <span class="token string">'Java'</span><span class="token punctuation">,</span> <span class="token string">'Python'</span><span class="token punctuation">)</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL83"><a href="#SQL83" class="headerlink" title="SQL83"></a>SQL83</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019162736374.png" alt="image-20211019162736374" style="zoom:50%;" />
+<h3 id="SQL83"><a href="#SQL83" class="headerlink" title="SQL83"></a>SQL83</h3><img src="http://jason-qianhao.xyz/image-20211019162736374.png" alt="image-20211019162736374" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span>
     <span class="token keyword">case</span> o<span class="token punctuation">.</span>client_id
@@ -816,7 +816,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">order</span> <span class="token keyword">BY</span>
     source<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL86"><a href="#SQL86" class="headerlink" title="SQL86"></a>SQL86</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019163146236.png" alt="image-20211019163146236" style="zoom:50%;" />
+<h3 id="SQL86"><a href="#SQL86" class="headerlink" title="SQL86"></a>SQL86</h3><img src="http://jason-qianhao.xyz/image-20211019163146236.png" alt="image-20211019163146236" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 查询在2025年投递简历的每个岗位，每个月内收到简历的数量和，对应的2026年的同月同岗位收到简历的数量，最后的结果先按first_year_mon月份降序，再按job降序排序显示</span>
 <span class="token keyword">SELECT</span> h1<span class="token punctuation">.</span>job<span class="token punctuation">,</span>first_year_mon<span class="token punctuation">,</span>first_year_cnt<span class="token punctuation">,</span>second_year_mon<span class="token punctuation">,</span>second_year_cnt 
@@ -839,7 +839,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token comment">-- 排序</span>
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> first_year_mon <span class="token keyword">DESC</span><span class="token punctuation">,</span>h1<span class="token punctuation">.</span>job <span class="token keyword">DESC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL90"><a href="#SQL90" class="headerlink" title="SQL90"></a>SQL90</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211021110055820.png" alt="image-20211021110055820" style="zoom:50%;" />
+<h3 id="SQL90"><a href="#SQL90" class="headerlink" title="SQL90"></a>SQL90</h3><img src="http://jason-qianhao.xyz/image-20211021110055820.png" alt="image-20211021110055820" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     <span class="token keyword">user</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> 
@@ -872,7 +872,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">order</span> <span class="token keyword">by</span>
     <span class="token keyword">user</span><span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL91"><a href="#SQL91" class="headerlink" title="SQL91"></a>SQL91</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211021110222209.png" alt="image-20211021110222209" style="zoom:50%;" />
+<h3 id="SQL91"><a href="#SQL91" class="headerlink" title="SQL91"></a>SQL91</h3><img src="http://jason-qianhao.xyz/image-20211021110222209.png" alt="image-20211021110222209" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     <span class="token keyword">user</span><span class="token punctuation">.</span>id<span class="token punctuation">,</span> 
@@ -902,7 +902,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">on</span> t<span class="token punctuation">.</span>user_id<span class="token operator">=</span><span class="token keyword">user</span><span class="token punctuation">.</span>id
 <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">user</span><span class="token punctuation">.</span>id <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="排名序号"><a href="#排名序号" class="headerlink" title="排名序号"></a>排名序号</h2><h3 id="SQL23"><a href="#SQL23" class="headerlink" title="SQL23"></a>SQL23</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929110105165.png" alt="image-20210929110105165" style="zoom:50%;" />
+<h2 id="排名序号"><a href="#排名序号" class="headerlink" title="排名序号"></a>排名序号</h2><h3 id="SQL23"><a href="#SQL23" class="headerlink" title="SQL23"></a>SQL23</h3><img src="http://jason-qianhao.xyz/image-20210929110105165.png" alt="image-20210929110105165" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span>
@@ -919,7 +919,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
     t_rank<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL63"><a href="#SQL63" class="headerlink" title="SQL63"></a>SQL63</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014111320786.png" alt="image-20211014111320786" style="zoom:50%;" />
+<h3 id="SQL63"><a href="#SQL63" class="headerlink" title="SQL63"></a>SQL63</h3><img src="http://jason-qianhao.xyz/image-20211014111320786.png" alt="image-20211014111320786" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     p1<span class="token punctuation">.</span>id<span class="token punctuation">,</span>
@@ -936,7 +936,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">order</span> <span class="token keyword">BY</span>
     t_rank<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL81"><a href="#SQL81" class="headerlink" title="SQL81"></a>SQL81</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019162524334.png" alt="image-20211019162524334" style="zoom:50%;" />
+<h3 id="SQL81"><a href="#SQL81" class="headerlink" title="SQL81"></a>SQL81</h3><img src="http://jason-qianhao.xyz/image-20211019162524334.png" alt="image-20211019162524334" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     a<span class="token punctuation">.</span>user_id <span class="token punctuation">,</span> 
@@ -986,7 +986,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> 
     a<span class="token punctuation">.</span>user_id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h3 id="SQL87"><a href="#SQL87" class="headerlink" title="SQL87"></a>SQL87</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019163337353.png" alt="image-20211019163337353" style="zoom:50%;" />
+<h3 id="SQL87"><a href="#SQL87" class="headerlink" title="SQL87"></a>SQL87</h3><img src="http://jason-qianhao.xyz/image-20211019163337353.png" alt="image-20211019163337353" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> grade<span class="token punctuation">,</span> <span class="token function">sum</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">)</span> t_rank 
 <span class="token keyword">from</span> class_grade 
@@ -994,7 +994,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 
 
-<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><h4 id="SQL16"><a href="#SQL16" class="headerlink" title="SQL16"></a>SQL16</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210928162059085.png" alt="image-20210928162059085" style="zoom:50%;" />
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><h4 id="SQL16"><a href="#SQL16" class="headerlink" title="SQL16"></a>SQL16</h4><img src="http://jason-qianhao.xyz/image-20210928162059085.png" alt="image-20210928162059085" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     t<span class="token punctuation">.</span>title<span class="token punctuation">,</span>
@@ -1010,7 +1010,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
     <span class="token function">avg</span><span class="token punctuation">(</span>s<span class="token punctuation">.</span>salary<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL54"><a href="#SQL54" class="headerlink" title="SQL54"></a>SQL54</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014110031225.png" alt="image-20211014110031225" style="zoom:50%;" />
+<h4 id="SQL54"><a href="#SQL54" class="headerlink" title="SQL54"></a>SQL54</h4><img src="http://jason-qianhao.xyz/image-20211014110031225.png" alt="image-20211014110031225" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     <span class="token function">AVG</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span>
@@ -1033,25 +1033,25 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
         <span class="token keyword">where</span> to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
     <span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL62"><a href="#SQL62" class="headerlink" title="SQL62"></a>SQL62</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014111141842.png" alt="image-20211014111141842" style="zoom:50%;" />
+<h4 id="SQL62"><a href="#SQL62" class="headerlink" title="SQL62"></a>SQL62</h4><img src="http://jason-qianhao.xyz/image-20211014111141842.png" alt="image-20211014111141842" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> number <span class="token keyword">from</span> grade <span class="token keyword">group</span> <span class="token keyword">by</span> number <span class="token keyword">having</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token operator">>=</span><span class="token number">3</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 
 
-<h3 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h3><h4 id="SQL32"><a href="#SQL32" class="headerlink" title="SQL32"></a>SQL32</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929111619847.png" alt="image-20210929111619847" style="zoom:50%;" />
+<h3 id="系统函数"><a href="#系统函数" class="headerlink" title="系统函数"></a>系统函数</h3><h4 id="SQL32"><a href="#SQL32" class="headerlink" title="SQL32"></a>SQL32</h4><img src="http://jason-qianhao.xyz/image-20210929111619847.png" alt="image-20210929111619847" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     CONCAT<span class="token punctuation">(</span>last_name<span class="token punctuation">,</span> <span class="token string">' '</span><span class="token punctuation">,</span> first_name<span class="token punctuation">)</span>
 <span class="token keyword">from</span>
     employees<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL51"><a href="#SQL51" class="headerlink" title="SQL51"></a>SQL51</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211012164126524.png" alt="image-20211012164126524" style="zoom:50%;" />
+<h4 id="SQL51"><a href="#SQL51" class="headerlink" title="SQL51"></a>SQL51</h4><img src="http://jason-qianhao.xyz/image-20211012164126524.png" alt="image-20211012164126524" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     LENGTH<span class="token punctuation">(</span><span class="token string">"10,A,B"</span><span class="token punctuation">)</span> <span class="token operator">-</span> LENGTH<span class="token punctuation">(</span><span class="token keyword">REPLACE</span><span class="token punctuation">(</span><span class="token string">"10,A,B"</span><span class="token punctuation">,</span> <span class="token string">","</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">as</span> cnt<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<h4 id="SQL52"><a href="#SQL52" class="headerlink" title="SQL52"></a>SQL52</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211012164214515.png" alt="image-20211012164214515" style="zoom:50%;" />
+<h4 id="SQL52"><a href="#SQL52" class="headerlink" title="SQL52"></a>SQL52</h4><img src="http://jason-qianhao.xyz/image-20211012164214515.png" alt="image-20211012164214515" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     first_name
@@ -1060,13 +1060,13 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span>
     SUBSTR<span class="token punctuation">(</span>first_name<span class="token punctuation">,</span> LENGTH<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> LENGTH<span class="token punctuation">(</span>first_name<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL53"><a href="#SQL53" class="headerlink" title="SQL53"></a>SQL53</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014105909840.png" alt="image-20211014105909840" style="zoom:50%;" />
+<h4 id="SQL53"><a href="#SQL53" class="headerlink" title="SQL53"></a>SQL53</h4><img src="http://jason-qianhao.xyz/image-20211014105909840.png" alt="image-20211014105909840" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> dept_no<span class="token punctuation">,</span> group_concat<span class="token punctuation">(</span>emp_no<span class="token punctuation">)</span> <span class="token keyword">as</span> employees
 <span class="token keyword">from</span> dept_emp
 <span class="token keyword">group</span> <span class="token keyword">by</span> dept_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL60"><a href="#SQL60" class="headerlink" title="SQL60"></a>SQL60</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014110905479.png" alt="image-20211014110905479" style="zoom:50%;" />
+<h4 id="SQL60"><a href="#SQL60" class="headerlink" title="SQL60"></a>SQL60</h4><img src="http://jason-qianhao.xyz/image-20211014110905479.png" alt="image-20211014110905479" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
 <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span>salary<span class="token punctuation">)</span>
@@ -1077,7 +1077,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">WHERE</span> s1<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> s1<span class="token punctuation">.</span>emp_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL65"><a href="#SQL65" class="headerlink" title="SQL65"></a>SQL65</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014111602913.png" alt="image-20211014111602913" style="zoom:50%;" />
+<h4 id="SQL65"><a href="#SQL65" class="headerlink" title="SQL65"></a>SQL65</h4><img src="http://jason-qianhao.xyz/image-20211014111602913.png" alt="image-20211014111602913" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     email<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">,</span> 
@@ -1104,7 +1104,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">order</span> <span class="token keyword">by</span> 
     email<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL69"><a href="#SQL69" class="headerlink" title="SQL69"></a>SQL69</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018142049652.png" alt="image-20211018142049652" style="zoom:50%;" />
+<h4 id="SQL69"><a href="#SQL69" class="headerlink" title="SQL69"></a>SQL69</h4><img src="http://jason-qianhao.xyz/image-20211018142049652.png" alt="image-20211018142049652" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     <span class="token keyword">distinct</span> <span class="token keyword">date</span><span class="token punctuation">,</span>
@@ -1124,7 +1124,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token keyword">date</span>
 <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL70"><a href="#SQL70" class="headerlink" title="SQL70"></a>SQL70</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018142212720.png" alt="image-20211018142212720" style="zoom:50%;" />
+<h4 id="SQL70"><a href="#SQL70" class="headerlink" title="SQL70"></a>SQL70</h4><img src="http://jason-qianhao.xyz/image-20211018142212720.png" alt="image-20211018142212720" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     <span class="token keyword">date</span><span class="token punctuation">,</span>
@@ -1161,7 +1161,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">group</span> <span class="token keyword">by</span> <span class="token keyword">date</span>
 <span class="token keyword">order</span> <span class="token keyword">by</span> <span class="token keyword">date</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL85"><a href="#SQL85" class="headerlink" title="SQL85"></a>SQL85</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211019162856125.png" alt="image-20211019162856125" style="zoom:50%;" />
+<h4 id="SQL85"><a href="#SQL85" class="headerlink" title="SQL85"></a>SQL85</h4><img src="http://jason-qianhao.xyz/image-20211019162856125.png" alt="image-20211019162856125" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">-- 按月统计数量并排序</span>
 <span class="token keyword">select</span> job<span class="token punctuation">,</span>date_format<span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">,</span><span class="token string">'%Y-%m'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> mon<span class="token punctuation">,</span><span class="token function">sum</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token keyword">as</span> cnt
@@ -1172,7 +1172,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 
 
-<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><h4 id="SQL61"><a href="#SQL61" class="headerlink" title="SQL61"></a>SQL61</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014111026521.png" alt="image-20211014111026521" style="zoom:50%;" />
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><h4 id="SQL61"><a href="#SQL61" class="headerlink" title="SQL61"></a>SQL61</h4><img src="http://jason-qianhao.xyz/image-20211014111026521.png" alt="image-20211014111026521" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     e<span class="token punctuation">.</span>first_name
@@ -1186,7 +1186,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">ON</span> e<span class="token punctuation">.</span>first_name <span class="token operator">=</span> t<span class="token punctuation">.</span>first_name
 <span class="token keyword">WHERE</span> t<span class="token punctuation">.</span>r_num <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL68"><a href="#SQL68" class="headerlink" title="SQL68"></a>SQL68</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018141757866.png" alt="image-20211018141757866" style="zoom:50%;" />
+<h4 id="SQL68"><a href="#SQL68" class="headerlink" title="SQL68"></a>SQL68</h4><img src="http://jason-qianhao.xyz/image-20211018141757866.png" alt="image-20211018141757866" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
 <span class="token function">round</span><span class="token punctuation">(</span><span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> user_id<span class="token punctuation">)</span><span class="token operator">*</span><span class="token number">1.0</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> user_id<span class="token punctuation">)</span> <span class="token keyword">from</span> login<span class="token punctuation">)</span> <span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">)</span>
@@ -1194,7 +1194,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">where</span> <span class="token punctuation">(</span>user_id<span class="token punctuation">,</span><span class="token keyword">date</span><span class="token punctuation">)</span>
 <span class="token operator">in</span> <span class="token punctuation">(</span><span class="token keyword">select</span> user_id<span class="token punctuation">,</span>DATE_ADD<span class="token punctuation">(</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token keyword">date</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token keyword">INTERVAL</span> <span class="token number">1</span> <span class="token keyword">DAY</span><span class="token punctuation">)</span> <span class="token keyword">from</span> login <span class="token keyword">group</span> <span class="token keyword">by</span> user_id<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL71"><a href="#SQL71" class="headerlink" title="SQL71"></a>SQL71</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018142622482.png" alt="image-20211018142622482" style="zoom:50%;" />
+<h4 id="SQL71"><a href="#SQL71" class="headerlink" title="SQL71"></a>SQL71</h4><img src="http://jason-qianhao.xyz/image-20211018142622482.png" alt="image-20211018142622482" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> u<span class="token punctuation">.</span>name <span class="token keyword">as</span> u_n
         <span class="token punctuation">,</span>p<span class="token punctuation">.</span><span class="token keyword">date</span> <span class="token keyword">as</span> <span class="token keyword">date</span>
@@ -1203,7 +1203,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">where</span> p<span class="token punctuation">.</span>user_id<span class="token operator">=</span>u<span class="token punctuation">.</span>id
 <span class="token keyword">order</span> <span class="token keyword">by</span> p<span class="token punctuation">.</span><span class="token keyword">date</span><span class="token punctuation">,</span>u<span class="token punctuation">.</span>name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL74"><a href="#SQL74" class="headerlink" title="SQL74"></a>SQL74</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018142935185.png" alt="image-20211018142935185" style="zoom:50%;" />
+<h4 id="SQL74"><a href="#SQL74" class="headerlink" title="SQL74"></a>SQL74</h4><img src="http://jason-qianhao.xyz/image-20211018142935185.png" alt="image-20211018142935185" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> a<span class="token punctuation">.</span>id<span class="token punctuation">,</span> l<span class="token punctuation">.</span>name<span class="token punctuation">,</span> a<span class="token punctuation">.</span>score
 <span class="token keyword">FROM</span>
@@ -1215,7 +1215,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">WHERE</span> rank_num <span class="token operator">&lt;=</span><span class="token number">2</span>
 <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> l<span class="token punctuation">.</span>name<span class="token punctuation">,</span> a<span class="token punctuation">.</span>score <span class="token keyword">DESC</span><span class="token punctuation">,</span> a<span class="token punctuation">.</span>id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL76"><a href="#SQL76" class="headerlink" title="SQL76"></a>SQL76</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211018143208316.png" alt="image-20211018143208316" style="zoom:50%;" />
+<h4 id="SQL76"><a href="#SQL76" class="headerlink" title="SQL76"></a>SQL76</h4><img src="http://jason-qianhao.xyz/image-20211018143208316.png" alt="image-20211018143208316" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     id
@@ -1249,7 +1249,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 <span class="token keyword">order</span> <span class="token keyword">by</span> id<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL88"><a href="#SQL88" class="headerlink" title="SQL88"></a>SQL88</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211021105800133.png" alt="image-20211021105800133" style="zoom:50%;" />
+<h4 id="SQL88"><a href="#SQL88" class="headerlink" title="SQL88"></a>SQL88</h4><img src="http://jason-qianhao.xyz/image-20211021105800133.png" alt="image-20211021105800133" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> grade
 <span class="token keyword">from</span>
@@ -1262,7 +1262,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">where</span> a <span class="token operator">>=</span> total<span class="token operator">/</span><span class="token number">2</span> <span class="token operator">and</span> b <span class="token operator">>=</span> total<span class="token operator">/</span><span class="token number">2</span>  <span class="token comment">-- 正序逆序均大于整个数列数字个数的一半</span>
 <span class="token keyword">order</span> <span class="token keyword">by</span> grade<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h4 id="SQL89"><a href="#SQL89" class="headerlink" title="SQL89"></a>SQL89</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211021105926913.png" alt="image-20211021105926913" style="zoom:50%;" />
+<h4 id="SQL89"><a href="#SQL89" class="headerlink" title="SQL89"></a>SQL89</h4><img src="http://jason-qianhao.xyz/image-20211021105926913.png" alt="image-20211021105926913" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">select</span> 
     u<span class="token punctuation">.</span>name<span class="token punctuation">,</span> 
@@ -1284,7 +1284,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 
 
-<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><h3 id="SQL55"><a href="#SQL55" class="headerlink" title="SQL55"></a>SQL55</h3><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211014110439716.png" alt="image-20211014110439716" style="zoom:50%;" />
+<h2 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h2><h3 id="SQL55"><a href="#SQL55" class="headerlink" title="SQL55"></a>SQL55</h3><img src="http://jason-qianhao.xyz/image-20211014110439716.png" alt="image-20211014110439716" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>
     <span class="token operator">*</span>
@@ -1294,7 +1294,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 
 
-<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><h2 id="SQL34"><a href="#SQL34" class="headerlink" title="SQL34"></a>SQL34</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929111755733.png" alt="image-20210929111755733" style="zoom:50%;" />
+<h1 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h1><h2 id="SQL34"><a href="#SQL34" class="headerlink" title="SQL34"></a>SQL34</h2><img src="http://jason-qianhao.xyz/image-20210929111755733.png" alt="image-20210929111755733" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">INSERT</span> <span class="token keyword">INTO</span> actor<span class="token punctuation">(</span>actor_id<span class="token punctuation">,</span>
                   first_name<span class="token punctuation">,</span>
@@ -1303,7 +1303,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token keyword">VALUES</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">'PENELOPE'</span><span class="token punctuation">,</span><span class="token string">'GUINESS'</span><span class="token punctuation">,</span><span class="token string">'2006-02-15 12:34:33'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
       <span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">'NICK'</span><span class="token punctuation">,</span><span class="token string">'WAHLBERG'</span><span class="token punctuation">,</span><span class="token string">'2006-02-15 12:34:33'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="SQL35"><a href="#SQL35" class="headerlink" title="SQL35"></a>SQL35</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210929111844515.png" alt="image-20210929111844515" style="zoom:50%;" />
+<h2 id="SQL35"><a href="#SQL35" class="headerlink" title="SQL35"></a>SQL35</h2><img src="http://jason-qianhao.xyz/image-20210929111844515.png" alt="image-20210929111844515" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># mysql中常用的三种插入数据的语句:</span>
 <span class="token comment"># insert into表示插入数据，数据库会检查主键，如果出现重复会报错；</span>
@@ -1312,7 +1312,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 <span class="token comment"># insert ignore表示，如果中已经存在相同的记录，则忽略当前新数据；</span>
 <span class="token keyword">insert</span> <span class="token keyword">ignore</span> <span class="token keyword">into</span> actor <span class="token keyword">values</span><span class="token punctuation">(</span><span class="token string">"3"</span><span class="token punctuation">,</span><span class="token string">"ED"</span><span class="token punctuation">,</span><span class="token string">"CHASE"</span><span class="token punctuation">,</span><span class="token string">"2006-02-15 12:34:33"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><h2 id="SQL42"><a href="#SQL42" class="headerlink" title="SQL42"></a>SQL42</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211008143658302.png" alt="image-20211008143658302" style="zoom:50%;" />
+<h1 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h1><h2 id="SQL42"><a href="#SQL42" class="headerlink" title="SQL42"></a>SQL42</h2><img src="http://jason-qianhao.xyz/image-20211008143658302.png" alt="image-20211008143658302" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">DELETE</span>
     t2<span class="token punctuation">.</span><span class="token operator">*</span>
@@ -1323,7 +1323,7 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
     t1<span class="token punctuation">.</span>emp_no <span class="token operator">=</span> t2<span class="token punctuation">.</span>emp_no <span class="token operator">and</span>
     t1<span class="token punctuation">.</span>id <span class="token operator">&lt;</span> t2<span class="token punctuation">.</span>id<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><h2 id="SQL48"><a href="#SQL48" class="headerlink" title="SQL48"></a>SQL48</h2><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211008145613875.png" alt="image-20211008145613875" style="zoom:50%;" />
+<h1 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h1><h2 id="SQL48"><a href="#SQL48" class="headerlink" title="SQL48"></a>SQL48</h2><img src="http://jason-qianhao.xyz/image-20211008145613875.png" alt="image-20211008145613875" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">UPDATE</span>
     salaries

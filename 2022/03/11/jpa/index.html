@@ -495,7 +495,7 @@
 <p>JDBC是Java语言定义的一套标准，规范了客户端程序访问关系数据库（如MySQL、Oracle、Postgres、SQLServer等）的应用程序接口，接口的具体实现（即数据库驱动）由各关系数据库自己实现。</p>
 <p>随着业务系统的复杂，直接用JDBC访问数据库对开发者来说变得很繁琐，代码难以维护，为解决此问题，ORM（Object Relation Mapping）框架出现了，如MyBatis、Hibernate等，百花齐放。</p>
 <p>爱大一统的Java又出手了，Java针对ORM提出了JPA，JPA 本质上是一种 ORM 规范，不是 ORM 框架，只是定制了一些规范，提供了一些编程的 API 接口，具体实现由 ORM 厂商实现，如Hiernate、Eclipselink等都是JAP的具体实现，主要有：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/568153-20190719101311621-1093504698.png"></p>
+<p><img src="http://jason-qianhao.xyz/568153-20190719101311621-1093504698.png"></p>
 <p>另：关于Java Persistence规范的演进（OMG、EJB1.0 CMP、EJB2.0 CMP等）可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/What_is_JPA%3F">https://en.wikibooks.org/wiki/Java_Persistence/What_is_JPA%3F</a></p>
 <blockquote>
 <p>JPA was meant to unify the EJB 2 CMP, JDO, Hibernate, and TopLink APIs and products</p>
@@ -516,10 +516,10 @@
 <li><strong>JPQL</strong>查询语言：提供面向Java对象而非面向数据库自动的查询语言，避免程序与SQL语句耦合</li>
 </ol>
 <p>关系图：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/568153-20190829111235665-523591815.png"></p>
+<p><img src="http://jason-qianhao.xyz/568153-20190829111235665-523591815.png"></p>
 <p><strong>Spring Data JPA</strong>是Spring提供的一套简化JPA开发的框架（Criteria API还是太复杂了），按照约定好的【方法命名规则】写dao层接口，就可以<strong>在不写接口实现的情况下，实现对数据库的访问和操作</strong>。同时提供了很多除了CRUD之外的功能，如分页、排序、复杂查询等等。</p>
 <p>关系图：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/568153-20190829111315277-1589873234.png" alt="点击全屏显示"></p>
+<p><img src="http://jason-qianhao.xyz/568153-20190829111315277-1589873234.png" alt="点击全屏显示"></p>
 <p>通过Repository来支持上述功能，默认提供的几种Repository已经满足了绝大多数需求：</p>
 <ul>
 <li><p>JpaRepository（ 为Repository的子接口：JpaRepository -&gt; PagingAndSortingRepository -&gt; CrudRepository -&gt; Repository）</p>
@@ -638,7 +638,7 @@
 <h1 id="JPA对象属性与数据库列的映射"><a href="#JPA对象属性与数据库列的映射" class="headerlink" title="JPA对象属性与数据库列的映射"></a>JPA对象属性与数据库列的映射</h1><p>（attribute map between object model and data model）</p>
 <p>基本类型（String、Integer等）、时间、枚举、复杂对象如何自动映射到数据库列，详情可参阅：<a target="_blank" rel="noopener" href="https://en.wikibooks.org/wiki/Java_Persistence/Basic_Attributes">https://en.wikibooks.org/wiki/Java_Persistence/Basic_Attributes</a></p>
 <p>以下是基本类型的映射：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/568153-20190901214340682-1664473771.png" alt="点击全屏显示"></p>
+<p><img src="http://jason-qianhao.xyz/568153-20190901214340682-1664473771.png" alt="点击全屏显示"></p>
 <p><strong>对于非基本类型的属性，其映射</strong>：</p>
 <ul>
 <li>法1：</li>
@@ -675,6 +675,7 @@
         <span class="token keyword">this</span><span class="token punctuation">.</span>isActive <span class="token operator">=</span> <span class="token string">"T"</span><span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>isActive<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>

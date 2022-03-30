@@ -483,7 +483,7 @@
 <li>B站三更草堂《SpringSecurity从入门到精通》</li>
 </ul>
 </blockquote>
-<h1 id="SpringSecurity从入门到精通"><a href="#SpringSecurity从入门到精通" class="headerlink" title="SpringSecurity从入门到精通"></a>SpringSecurity从入门到精通</h1><h2 id="课程介绍"><a href="#课程介绍" class="headerlink" title="课程介绍"></a>课程介绍</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211219121555979.png" alt="image-20211219121555979"></p>
+<h1 id="SpringSecurity从入门到精通"><a href="#SpringSecurity从入门到精通" class="headerlink" title="SpringSecurity从入门到精通"></a>SpringSecurity从入门到精通</h1><h2 id="课程介绍"><a href="#课程介绍" class="headerlink" title="课程介绍"></a>课程介绍</h2><p><img src="http://jason-qianhao.xyz/image-20211219121555979.png" alt="image-20211219121555979"></p>
 <h2 id="0-简介"><a href="#0-简介" class="headerlink" title="0. 简介"></a>0. 简介</h2><p>​    <strong>Spring Security</strong> 是 Spring 家族中的一个安全管理框架。相比与另外一个安全框架<strong>Shiro</strong>，它提供了更丰富的功能，社区资源也比Shiro丰富。</p>
 <p>​    一般来说中大型的项目都是使用<strong>SpringSecurity</strong> 来做安全框架。小项目有Shiro的比较多，因为相比与SpringSecurity，Shiro的上手更加的简单。</p>
 <p>​     一般Web应用的需要进行<strong>认证</strong>和<strong>授权</strong>。</p>
@@ -544,18 +544,18 @@
 
 <p>​    引入依赖后我们在尝试去访问之前的接口就会自动跳转到一个SpringSecurity的默认登陆页面，默认用户名是user,密码会输出在控制台。</p>
 <p>​    必须登陆之后才能对接口进行访问。</p>
-<h2 id="2-认证"><a href="#2-认证" class="headerlink" title="2. 认证"></a>2. 认证</h2><h3 id="2-1-登陆校验流程"><a href="#2-1-登陆校验流程" class="headerlink" title="2.1 登陆校验流程"></a>2.1 登陆校验流程</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211215094003288.png" alt="image-20211215094003288"></p>
+<h2 id="2-认证"><a href="#2-认证" class="headerlink" title="2. 认证"></a>2. 认证</h2><h3 id="2-1-登陆校验流程"><a href="#2-1-登陆校验流程" class="headerlink" title="2.1 登陆校验流程"></a>2.1 登陆校验流程</h3><p><img src="http://jason-qianhao.xyz/image-20211215094003288.png" alt="image-20211215094003288"></p>
 <h3 id="2-2-原理初探"><a href="#2-2-原理初探" class="headerlink" title="2.2 原理初探"></a>2.2 原理初探</h3><p>​    想要知道如何实现自己的登陆流程就必须要先知道入门案例中SpringSecurity的流程。</p>
 <h4 id="2-2-1-SpringSecurity完整流程"><a href="#2-2-1-SpringSecurity完整流程" class="headerlink" title="2.2.1 SpringSecurity完整流程"></a>2.2.1 SpringSecurity完整流程</h4><p>​    SpringSecurity的原理其实就是一个过滤器链，内部包含了提供各种功能的过滤器。这里我们可以看看入门案例中的过滤器。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211214144425527.png" alt="image-20211214144425527"></p>
+<p><img src="http://jason-qianhao.xyz/image-20211214144425527.png" alt="image-20211214144425527"></p>
 <p>​    图中只展示了核心过滤器，其它的非核心过滤器并没有在图中展示。</p>
 <p><strong>UsernamePasswordAuthenticationFilter</strong>:负责处理我们在登陆页面填写了用户名密码后的登陆请求。入门案例的认证工作主要有它负责。</p>
 <p><strong>ExceptionTranslationFilter：</strong>处理过滤器链中抛出的任何AccessDeniedException和AuthenticationException 。</p>
 <p><strong>FilterSecurityInterceptor：</strong>负责权限校验的过滤器。</p>
 <p>​    </p>
 <p>​    我们可以通过Debug查看当前系统中SpringSecurity过滤器链中有哪些过滤器及它们的顺序。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211214145824903.png" alt="image-20211214145824903"></p>
-<h4 id="2-2-2-认证流程详解"><a href="#2-2-2-认证流程详解" class="headerlink" title="2.2.2 认证流程详解"></a>2.2.2 认证流程详解</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211214151515385.png" alt="image-20211214151515385"></p>
+<p><img src="http://jason-qianhao.xyz/image-20211214145824903.png" alt="image-20211214145824903"></p>
+<h4 id="2-2-2-认证流程详解"><a href="#2-2-2-认证流程详解" class="headerlink" title="2.2.2 认证流程详解"></a>2.2.2 认证流程详解</h4><p><img src="http://jason-qianhao.xyz/image-20211214151515385.png" alt="image-20211214151515385"></p>
 <p>概念速查:</p>
 <p>Authentication接口: 它的实现类，表示当前访问系统的用户，封装了用户相关信息。</p>
 <p>AuthenticationManager接口：定义了认证Authentication的方法 </p>
@@ -1364,7 +1364,7 @@
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>注意：如果要测试，需要往用户表中写入用户数据，并且如果你想让用户的密码是明文存储，需要在密码前加{noop}。例如</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211216123945882.png" alt="image-20211216123945882"></p>
+<p><img src="http://jason-qianhao.xyz/image-20211216123945882.png" alt="image-20211216123945882"></p>
 <p>这样登陆的时候就可以用sg作为用户名，1234作为密码来登陆了。</p>
 <h5 id="2-3-3-2-密码加密存储"><a href="#2-3-3-2-密码加密存储" class="headerlink" title="2.3.3.2 密码加密存储"></a>2.3.3.2 密码加密存储</h5><p>​    实际项目中我们不会把密码明文存储在数据库中。</p>
 <p>​    默认使用的PasswordEncoder要求数据库中的密码格式为：{id}password 。它会根据id去判断密码的加密方式。但是我们一般不会采用这种方式。所以就需要替换PasswordEncoder。</p>
@@ -1754,7 +1754,7 @@
 
 
 <h4 id="3-2-3-从数据库查询权限信息"><a href="#3-2-3-从数据库查询权限信息" class="headerlink" title="3.2.3 从数据库查询权限信息"></a>3.2.3 从数据库查询权限信息</h4><h5 id="3-2-3-1-RBAC权限模型"><a href="#3-2-3-1-RBAC权限模型" class="headerlink" title="3.2.3.1 RBAC权限模型"></a>3.2.3.1 RBAC权限模型</h5><p>​    RBAC权限模型（Role-Based Access Control）即：基于角色的权限控制。这是目前最常被开发者使用也是相对易用、通用权限模型。</p>
-<p>​    <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211222110249727.png" alt="image-20211222110249727"></p>
+<p>​    <img src="http://jason-qianhao.xyz/image-20211222110249727.png" alt="image-20211222110249727"></p>
 <h5 id="3-2-3-2-准备工作"><a href="#3-2-3-2-准备工作" class="headerlink" title="3.2.3.2 准备工作"></a>3.2.3.2 准备工作</h5><pre class="line-numbers language-sql" data-language="sql"><code class="language-sql">
 <span class="token keyword">CREATE</span> <span class="token keyword">DATABASE</span> <span class="token comment">/*!32312 IF NOT EXISTS*/</span><span class="token identifier"><span class="token punctuation">`</span>sg_security<span class="token punctuation">`</span></span> <span class="token comment">/*!40100 DEFAULT CHARACTER SET utf8mb4 */</span><span class="token punctuation">;</span>
 

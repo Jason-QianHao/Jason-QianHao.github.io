@@ -576,10 +576,10 @@
 <td align="left">4</td>
 </tr>
 </tbody></table>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220324114242984.png" alt="图片" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640-20220324114242984.png" alt="图片" style="zoom:50%;" />
 
 <h2 id="高效查询设计"><a href="#高效查询设计" class="headerlink" title="高效查询设计"></a>高效查询设计</h2><p>从根节点开始，给<code>董事长</code>左值设为<code>1</code>，下级部门<code>总经理</code>左值设为<code>2</code>，以此类推地<code>沿着边缘</code>开始遍历，给每个节点加上<code>左值</code>，遇到叶子节点处给节点加上<code>右值</code>，再继续向上沿着边缘继续遍历，遍历结束回到根节点<code>右侧</code>，你将得到类似这样的结构：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220324114738298.png" alt="图片" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640-20220324114738298.png" alt="图片" style="zoom:50%;" />
 
 <p>对应的数据库表为：</p>
 <table>
@@ -682,7 +682,7 @@
 <p><code>董事长</code>，<code>20 - 1 != 1</code>，因此他不是叶子节点。</p>
 <h1 id="CURD"><a href="#CURD" class="headerlink" title="CURD"></a>CURD</h1><h2 id="新增部门"><a href="#新增部门" class="headerlink" title="新增部门"></a>新增部门</h2><p>当新增一个部门时，需要对新增节点位置的<code>后续边缘</code>进行<code>加2</code>操作，因为每一个节点有左右两个数值。这个操作通常需要放到<code>事务</code>中进行处理。</p>
 <p><strong>新增或删除节点时右节点判断条件应该是 lft &gt;= 当前节点的 lft。</strong></p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220324115505310.png" alt="图片" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640-20220324115505310.png" alt="图片" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@lft</span> :<span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span><span class="token comment">/*新部门的左值*/</span>
 <span class="token keyword">SET</span> <span class="token variable">@rgt</span> :<span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span><span class="token comment">/*新部门的左值*/</span>
@@ -698,7 +698,7 @@
 <span class="token comment">/*rollback;*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="删除部门"><a href="#删除部门" class="headerlink" title="删除部门"></a>删除部门</h2><p>删除部门与新增部门类似，不同的是需要对删除节点的<code>后续边缘</code>节点<code>减2</code>操作。例如：删除刚刚添加的新部门：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220324115545986.png" alt="图片" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640-20220324115545986.png" alt="图片" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@lft</span> :<span class="token operator">=</span> <span class="token number">7</span><span class="token punctuation">;</span><span class="token comment">/*要删除的节点左值*/</span>
 <span class="token keyword">SET</span> <span class="token variable">@rgt</span> :<span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span><span class="token comment">/*要删除的节点右值*/</span>
@@ -713,7 +713,7 @@
 <span class="token comment">/*rollback*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="查询直接子部门"><a href="#查询直接子部门" class="headerlink" title="查询直接子部门"></a>查询直接子部门</h2><p>查询某部门的直接子部门（即不包含孙子部门），例如：查询<code>总经理</code>下的直接子部门。正常需要返回<code>产品部</code>和<code>行政总监</code>。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/640-20220324115628846.png" alt="图片" style="zoom:50%;" />
+<img src="http://jason-qianhao.xyz/640-20220324115628846.png" alt="图片" style="zoom:50%;" />
 
 <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SET</span> <span class="token variable">@level</span> :<span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">/*总经理的level*/</span>
 <span class="token keyword">SET</span> <span class="token variable">@lft</span> :<span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span><span class="token comment">/*总经理的左值*/</span>
@@ -726,6 +726,7 @@
 <span class="token keyword">SET</span> <span class="token variable">@rgt</span> :<span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span><span class="token comment">/*产品部右值*/</span>
 
 <span class="token keyword">SELECT</span> <span class="token operator">*</span> <span class="token keyword">FROM</span> department <span class="token keyword">WHERE</span> lft <span class="token operator">&lt;</span> <span class="token variable">@lft</span> <span class="token operator">AND</span> rgt <span class="token operator">></span> <span class="token variable">@rgt</span> <span class="token keyword">ORDER</span> <span class="token keyword">BY</span> lft <span class="token keyword">ASC</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
                 
             </div>
             <hr/>

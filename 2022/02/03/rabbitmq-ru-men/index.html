@@ -498,13 +498,13 @@
 <p>RabbitMQ：（Rabbit，兔子）由erlang语言开发，基于AMQP协议，在erlang语言特性的加持下，RabbitMQ稳定性要比其他的MQ产品好一些，而且erlang语言本身是面向高并发的编程的语言，所以RabbitMQ速度也非常快。且它基于AMQP协议，对分布式、微服务更友好。</p>
 <h2 id="virtual-host"><a href="#virtual-host" class="headerlink" title="virtual host"></a>virtual host</h2><p>可以通过MySQL和MySQL中的数据库来理解RabbitMQ和virtual host的关系。</p>
 <p>MySQL大家都不陌生，经常会出现多个业务线混用一个MySQL数据库的情况，就像下图这样，每个业务线都在MySQL中创建自己的数据库，使用时各自往各自的数据库中存储数据，彼此相互不干涉。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162008852-1886576080.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1496926-20201206162008852-1886576080.png" alt="img"></p>
 <p>RabbitMQ和virtual host的关系也差不多，可以让多个业务线同时使用一个RabbitMQ，只要为业务线各个业务线绑定上不同的virtual host即可：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162009680-1992407247-20220303174536901.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1496926-20201206162009680-1992407247-20220303174536901.png" alt="img"></p>
 <h1 id="RabbitMQ的五种消息模型"><a href="#RabbitMQ的五种消息模型" class="headerlink" title="RabbitMQ的五种消息模型"></a>RabbitMQ的五种消息模型</h1><p>RabbitMQ支持以下五种消息模型，第六种RPC本质上是服务调用，所以不算做服务通信消息模型。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162020922-723030915-20220303174700487.png" alt="img"></p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162022288-710990876-20220303174712592.png" alt="img"></p>
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20190708125542629-2135674001.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1496926-20201206162020922-723030915-20220303174700487.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1496926-20201206162022288-710990876-20220303174712592.png" alt="img"></p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><p><img src="http://jason-qianhao.xyz/1496926-20190708125542629-2135674001.png" alt="img"></p>
 <p>P（producer/ publisher）：生产者，发送消息的服务</p>
 <p>C（consumer）：消费者，接收消息的服务</p>
 <p>红色区域就是MQ中的Queue，可以把它理解成一个邮箱</p>
@@ -513,7 +513,7 @@
 <li>其次,它是有最大容量的(受主机和磁盘的限制,是一个缓存区)</li>
 <li>允许多个消费者监听同一个队列，争抢消息</li>
 </ul>
-<h2 id="Worker模型"><a href="#Worker模型" class="headerlink" title="Worker模型"></a>Worker模型</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20190708125528529-1014015990-20220303174847222.png" alt="img"></p>
+<h2 id="Worker模型"><a href="#Worker模型" class="headerlink" title="Worker模型"></a>Worker模型</h2><p><img src="http://jason-qianhao.xyz/1496926-20190708125528529-1014015990-20220303174847222.png" alt="img"></p>
 <p>Worker模型中也只有一个工作队列。但它是一种竞争消费模式。可以看到同一个队列我们绑定上了多个消费者，消费者争抢着消费消息，<strong>这可以有效的避免消息堆积</strong>。</p>
 <p>比如对于短信微服务集群来说就可以使用这种消息模型，来了请求大家抢着消费掉。</p>
 <p>如何实现这种架构：对于上面的HelloWorld这其实就是相同的服务我们启动了多次罢了，自然就是这种架构。</p>
@@ -524,25 +524,25 @@
 <li>Direct（定向）: 把消息发送给拥有指定Routing Key (路由键)的队列。</li>
 <li>Topic（通配符）: 把消息传递给拥有 符合Routing Patten(路由模式)的队列。</li>
 </ol>
-<h3 id="订阅之Fanout模型"><a href="#订阅之Fanout模型" class="headerlink" title="订阅之Fanout模型"></a>订阅之Fanout模型</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20190708125522017-1931971535-20220303174843639.png" alt="img"></p>
+<h3 id="订阅之Fanout模型"><a href="#订阅之Fanout模型" class="headerlink" title="订阅之Fanout模型"></a>订阅之Fanout模型</h3><p><img src="http://jason-qianhao.xyz/1496926-20190708125522017-1931971535-20220303174843639.png" alt="img"></p>
 <p>这个模型的特点就是它在发送消息的时候,并没有指明Rounting Key , 或者说他指定了Routing Key,但是所有的消费者都知道,大家都能接收到消息,就像听广播。</p>
-<h3 id="订阅之Direct模型"><a href="#订阅之Direct模型" class="headerlink" title="订阅之Direct模型"></a>订阅之Direct模型</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162023832-709293422.png" alt="img"></p>
+<h3 id="订阅之Direct模型"><a href="#订阅之Direct模型" class="headerlink" title="订阅之Direct模型"></a>订阅之Direct模型</h3><p><img src="http://jason-qianhao.xyz/1496926-20201206162023832-709293422.png" alt="img"></p>
 <p>P：生产者，向Exchange发送消息，发送消息时，会指定一个routing key。</p>
 <p>X：Exchange（交换机），接收生产者的消息，然后把消息递交给 与routing key完全匹配的队列</p>
 <p>C1：消费者，其所在队列指定了需要routing key 为 error 的消息</p>
 <p>C2：消费者，其所在队列指定了需要routing key 为 info、error、warning 的消息</p>
 <p>拥有不同的RoutingKey的消费者，会收到来自交换机的不同信息，而不是大家都使用同一个Routing Key 和广播模型区分开来。</p>
-<h3 id="订阅之Topic模型"><a href="#订阅之Topic模型" class="headerlink" title="订阅之Topic模型"></a>订阅之Topic模型</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162025176-1413299944.png" alt="img"></p>
+<h3 id="订阅之Topic模型"><a href="#订阅之Topic模型" class="headerlink" title="订阅之Topic模型"></a>订阅之Topic模型</h3><p><img src="http://jason-qianhao.xyz/1496926-20201206162025176-1413299944.png" alt="img"></p>
 <p>类似于Direct模型。区别是Topic的Routing Key支持通配符。</p>
-<h1 id="消息确认机制"><a href="#消息确认机制" class="headerlink" title="消息确认机制"></a>消息确认机制</h1><h2 id="ACK机制"><a href="#ACK机制" class="headerlink" title="ACK机制"></a>ACK机制</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162109581-1996261690-20220303175144641.png" alt="img"></p>
+<h1 id="消息确认机制"><a href="#消息确认机制" class="headerlink" title="消息确认机制"></a>消息确认机制</h1><h2 id="ACK机制"><a href="#ACK机制" class="headerlink" title="ACK机制"></a>ACK机制</h2><p><img src="http://jason-qianhao.xyz/1496926-20201206162109581-1996261690-20220303175144641.png" alt="img"></p>
 <p>所谓的ACK确认机制：</p>
 <p>自动ACK：消费者接收到消息后自动发送ACK给RabbitMQ。</p>
 <p>手动ACK：我们手动控制消费者接收到并成功消息后发送ACK给RabbitMQ。</p>
 <p>你可以看上图：如果使用自动ACK，当消息者将消息从channel中取出后，RabbitMQ随即将消息给删除。接着不幸的是，消费者没来得及处理消息就挂了。那也就意味着消息其实丢失了。</p>
 <p>你可能会说：会不会存在重复消费的情况呢？这其实就不是MQ的问题了。你完全可以在你代码的逻辑层面上进行诸如去重、插入前先检查是否已存在等逻辑规避重复消费问题。</p>
-<h2 id="持久化交换机"><a href="#持久化交换机" class="headerlink" title="持久化交换机"></a>持久化交换机</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162110162-847281033-20220303175155337.png" alt="img"></p>
-<h2 id="持久化队列"><a href="#持久化队列" class="headerlink" title="持久化队列"></a>持久化队列</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162110748-548903954.png" alt="img"></p>
-<h2 id="持久化消息"><a href="#持久化消息" class="headerlink" title="持久化消息"></a>持久化消息</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1496926-20201206162111757-631883304.png" alt="img"></p>
+<h2 id="持久化交换机"><a href="#持久化交换机" class="headerlink" title="持久化交换机"></a>持久化交换机</h2><p><img src="http://jason-qianhao.xyz/1496926-20201206162110162-847281033-20220303175155337.png" alt="img"></p>
+<h2 id="持久化队列"><a href="#持久化队列" class="headerlink" title="持久化队列"></a>持久化队列</h2><p><img src="http://jason-qianhao.xyz/1496926-20201206162110748-548903954.png" alt="img"></p>
+<h2 id="持久化消息"><a href="#持久化消息" class="headerlink" title="持久化消息"></a>持久化消息</h2><p><img src="http://jason-qianhao.xyz/1496926-20201206162111757-631883304.png" alt="img"></p>
 
                 
             </div>
@@ -1049,12 +1049,12 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/02/03/rabbitmq-bu-shu-he-springboot-zheng-he/">
+                <a href="/2022/02/03/rabbitmq-shi-yong-si-xin-dui-lie-shi-xian-yan-shi-xiao-xi-zhuan-zai/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="RabbitMQ部署和Springboot整合">
+                        <img src="/medias/featureimages/54.jpg" class="responsive-img" alt="RabbitMQ使用死信队列实现延时消息(转载)">
                         
-                        <span class="card-title">RabbitMQ部署和Springboot整合</span>
+                        <span class="card-title">RabbitMQ使用死信队列实现延时消息(转载)</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1109,12 +1109,12 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/01/12/niao-ge-de-linux-si-fang-cai-fu-wu-qi-pian-bi-ji/">
+                <a href="/2022/02/03/rabbitmq-bu-shu-he-springboot-zheng-he/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/32.jpg" class="responsive-img" alt="《鸟哥的LINUX私房菜_服务器篇》笔记">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="RabbitMQ部署和Springboot整合">
                         
-                        <span class="card-title">《鸟哥的LINUX私房菜_服务器篇》笔记</span>
+                        <span class="card-title">RabbitMQ部署和Springboot整合</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1125,14 +1125,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-03
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
+                            <a href="/categories/MQ/" class="post-category">
+                                    MQ
                                 </a>
                             
                             
@@ -1142,12 +1142,20 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">操作系统</span>
+                    <a href="/tags/MQ/">
+                        <span class="chip bg-color">MQ</span>
                     </a>
                     
-                    <a href="/tags/Linux/">
-                        <span class="chip bg-color">Linux</span>
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
+                    </a>
+                    
+                    <a href="/tags/RabbitMQ/">
+                        <span class="chip bg-color">RabbitMQ</span>
                     </a>
                     
                 </div>

@@ -492,19 +492,19 @@
 <li>hystrix</li>
 </ol>
 </blockquote>
-<h2 id="分布式系统是什么"><a href="#分布式系统是什么" class="headerlink" title="分布式系统是什么"></a>分布式系统是什么</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/202203251653249.png" alt="image"></p>
-<h2 id="分布式服务接口的幂等性如何设计"><a href="#分布式服务接口的幂等性如何设计" class="headerlink" title="分布式服务接口的幂等性如何设计"></a>分布式服务接口的幂等性如何设计</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507257.png" alt="image"></p>
+<h2 id="分布式系统是什么"><a href="#分布式系统是什么" class="headerlink" title="分布式系统是什么"></a>分布式系统是什么</h2><p><img src="http://jason-qianhao.xyz/202203251653249.png" alt="image"></p>
+<h2 id="分布式服务接口的幂等性如何设计"><a href="#分布式服务接口的幂等性如何设计" class="headerlink" title="分布式服务接口的幂等性如何设计"></a>分布式服务接口的幂等性如何设计</h2><p><img src="http://jason-qianhao.xyz/1240-20210704092507257.png" alt="image"></p>
 <p>所谓幂等性，就是说一个接口，多次发起同一个请求，你这个接口得保证结果是准确的，比如不能多扣款，不能多插入一条数据，不能将统计值多加了1。这就是幂等性，不给大家来学术性词语了。</p>
 <p>其实保证幂等性主要是三点：</p>
 <p>（1）对于<strong>每个请求必须有一个唯一的标识</strong>，举个例子：订单支付请求，肯定得包含订单id，一个订单id最多支付一次，对吧</p>
 <p>（2）每次处理完请求之后，<strong>必须有一个记录标识这个请求处理过了</strong>，比如说常见的方案是在mysql中记录个状态啥的</p>
 <p>（3）每次接收请求需要进行<strong>判断之前是否处理过的逻辑处理</strong>，比如说，如果有一个订单已经支付了，就已经有了一条支付流水，那么如果重复发送这个请求，则此时先插入支付流水，orderId已经存在了，唯一键约束生效，报错插入不进去的。然后你就不用再扣款了。</p>
 <p>  上面只是给大家举个例子，实际运作过程中，你要结合自己的业务来，比如说用redis用orderId作为唯一键。只有成功插入这个支付流水，才可以执行实际的支付扣款。要求是支付一个订单，必须插入一条支付流水，order_id建一个唯一键，unique key。所以你在支付一个订单之前，先插入一条支付流水，order_id就已经进去了。你就可以写一个标识到redis里面去，set order_id payed，下一次重复请求过来了，先查redis的order_id对应的value，如果是payed就说明已经支付过了，你就别重复支付了。然后呢，你再重复支付这个订单的时候，你也尝试插入一条支付流水，数据库给你报错了，说unique key冲突了，整个事务回滚就可以了。<br>  保存一个是否处理过的标识也可以，服务的不同实例可以一起操作redis。</p>
-<h2 id="分布式服务接口请求的顺序性如何保证"><a href="#分布式服务接口请求的顺序性如何保证" class="headerlink" title="分布式服务接口请求的顺序性如何保证"></a>分布式服务接口请求的顺序性如何保证</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507291.png" alt="image"></p>
+<h2 id="分布式服务接口请求的顺序性如何保证"><a href="#分布式服务接口请求的顺序性如何保证" class="headerlink" title="分布式服务接口请求的顺序性如何保证"></a>分布式服务接口请求的顺序性如何保证</h2><p><img src="http://jason-qianhao.xyz/1240-20210704092507291.png" alt="image"></p>
 <p>（1）特定表示通过一致性哈希到同一台机器 + 内存队列保存顺序 + 同一线程读取</p>
 <p>（2）MQ保证顺序，做成异步</p>
 <p>（3）Zookeeper分布式锁（开销大）或顺序节点</p>
-<h2 id="集群部署时的分布式session如何实现"><a href="#集群部署时的分布式session如何实现" class="headerlink" title="集群部署时的分布式session如何实现"></a>集群部署时的分布式session如何实现</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220305105658986.png" alt="image"></p>
+<h2 id="集群部署时的分布式session如何实现"><a href="#集群部署时的分布式session如何实现" class="headerlink" title="集群部署时的分布式session如何实现"></a>集群部署时的分布式session如何实现</h2><p><img src="http://jason-qianhao.xyz/1240-20220305105658986.png" alt="image"></p>
 <p>其实方法很多，但是常见常用的是两种：</p>
 <h3 id="tomcat-redis"><a href="#tomcat-redis" class="headerlink" title="tomcat + redis"></a>tomcat + redis</h3><p>这个其实还挺方便的，就是使用session的代码跟以前一样，还是基于tomcat原生的session支持即可，然后就是用一个叫做<strong>Tomcat RedisSessionManager的东西，让所有我们部署的tomcat都将session数据存储到redis即可。</strong></p>
 <p>在tomcat的配置文件中，配置一下：</p>
@@ -603,9 +603,9 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>上面的代码就是ok的，给sping session配置基于redis来存储session数据，然后配置了一个spring session的过滤器，这样的话，session相关操作都会交给spring session来管了。接着在代码中，就用原生的session操作，就是直接基于spring sesion从redis中获取数据了。</p>
 <p>实现分布式的会话，有很多种很多种方式，我说的只不过比较常见的两种方式，tomcat + redis早期比较常用；近些年，重耦合到tomcat中去，通过spring session来实现。</p>
-<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507278.png" alt="image.png"><br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507280.png" alt="image.png"></p>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p><img src="http://jason-qianhao.xyz/1240-20210704092507278.png" alt="image.png"><br><img src="http://jason-qianhao.xyz/1240-20210704092507280.png" alt="image.png"></p>
 <p>  在实际场景中，只有1%，0.1%，0.01%的业务，如资金、交易、订单，我们会用分布式事务方案来保证，会员积分、优惠券、商品信息，其实不要这么搞了，不然是的系统设计过于复杂而不可靠。</p>
-<h3 id="两阶段提交方案-XA方案"><a href="#两阶段提交方案-XA方案" class="headerlink" title="两阶段提交方案/XA方案"></a>两阶段提交方案/XA方案</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507273.png" alt="image.png"></p>
+<h3 id="两阶段提交方案-XA方案"><a href="#两阶段提交方案-XA方案" class="headerlink" title="两阶段提交方案/XA方案"></a>两阶段提交方案/XA方案</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507273.png" alt="image.png"></p>
 <p>也叫做<strong>两阶段提交事务方案</strong>，这个举个例子，比如说咱们公司里经常tb是吧（就是团建,team building），然后一般会有个tb主席（就是负责组织团建的那个人）。</p>
 <blockquote>
 <p>第一个阶段，一般tb主席会提前一周问一下团队里的每个人，说，大家伙，下周六我们去滑雪+烧烤，去吗？这个时候tb主席开始等待每个人的回答，如果所有人都说ok，那么就可以决定一起去这次tb。如果这个阶段里，任何一个人回答说，我有事不去了，那么tb主席就会取消这次活动。</p>
@@ -618,7 +618,7 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 <p><strong>这个方案，我们很少用，一般来说某个系统内部如果出现跨多个库的这么一个操作，是不合规的</strong>。我可以给大家介绍一下， 现在微服务，一个大的系统分成几百个服务，几十个服务。一般来说，我们的规定和规范，是要求说每个服务只能操作自己对应的一个数据库。</p>
 <p>如果你要操作别的服务对应的库，不允许直连别的服务的库，违反微服务架构的规范，你随便交叉胡乱访问，几百个服务的话，全体乱套，这样的一套服务是没法管理的，没法治理的，经常数据被别人改错，自己的库被别人写挂。</p>
 <p>如果你要操作别人的服务的库，你必须是通过调用别的服务的接口来实现，绝对不允许你交叉访问别人的数据库！</p>
-<h3 id="TCC方案"><a href="#TCC方案" class="headerlink" title="TCC方案"></a>TCC方案</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507322.png" alt="image.png"></p>
+<h3 id="TCC方案"><a href="#TCC方案" class="headerlink" title="TCC方案"></a>TCC方案</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507322.png" alt="image.png"></p>
 <p>TCC的全称是：Try、Confirm、Cancel。</p>
 <p>这个其实是用到了补偿的概念，分为了三个阶段：</p>
 <p>1）Try阶段：这个阶段说的是对各个服务的资源做检测以及对资源进行锁定或者预留</p>
@@ -633,7 +633,7 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 <p><strong>比较适合的场景：这个就是除非你是真的一致性要求太高，是你系统中核心之核心的场景，比如常见的就是资金类的场景，那你可以用TCC方案了，自己编写大量的业务逻辑，自己判断一个事务中的各个环节是否ok，不ok就执行补偿/回滚代码</strong>。</p>
 <p>而且最好是你的各个业务执行的时间都比较短。</p>
 <p><strong>但是说实话，一般尽量别这么搞，自己手写回滚逻辑，或者是补偿逻辑，实在太恶心了，那个业务代码很难维护</strong>。</p>
-<h3 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507299.png" alt="image.png"></p>
+<h3 id="本地消息表"><a href="#本地消息表" class="headerlink" title="本地消息表"></a>本地消息表</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507299.png" alt="image.png"></p>
 <p>国外的ebay搞出来的这么一套思想</p>
 <p>这个大概意思是这样的</p>
 <pre class="line-numbers language-none"><code class="language-none">1）A系统在自己本地一个事务里操作同时，插入一条数据到消息表
@@ -648,7 +648,7 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 
 6）这个方案保证了最终一致性，哪怕B事务失败了，但是A会不断重发消息，直到B那边成功为止<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这个方案说实话<em><strong>最大的问题</strong></em>就在于严重依赖于数据库的消息表来管理事务啥的？？？这个会导致如果是高并发场景咋办呢？咋扩展呢？所以一般确实很少用</p>
-<h3 id="可靠消息最终一致性方案"><a href="#可靠消息最终一致性方案" class="headerlink" title="可靠消息最终一致性方案"></a>可靠消息最终一致性方案</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507296.png" alt="image.png"></p>
+<h3 id="可靠消息最终一致性方案"><a href="#可靠消息最终一致性方案" class="headerlink" title="可靠消息最终一致性方案"></a>可靠消息最终一致性方案</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507296.png" alt="image.png"></p>
 <p>这个的意思，就是干脆不要用本地的消息表了，直接基于MQ来实现事务。比如阿里的RocketMQ就支持消息事务。</p>
 <p>大概的意思就是：</p>
 <pre class="line-numbers language-none"><code class="language-none">1）A系统先发送一个prepared消息到mq，如果这个prepared消息发送失败那么就直接取消操作别执行了
@@ -657,11 +657,11 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 4）mq会自动定时轮询所有prepared消息回调你的接口，问你，这个消息是不是本地事务处理失败了，没发送确认消息？那是继续重试还是回滚？一般来说这里你就可以查下数据库看之前本地事务是否执行，如果回滚了，那么这里也回滚吧。这个就是避免可能本地事务执行成功了，别确认消息发送失败了。
 5）这个方案里，要是系统B的事务失败了咋办？重试咯，自动不断重试直到成功，如果实在是不行，要么就是针对重要的资金类业务进行回滚，比如B系统本地回滚后，想办法通知系统A也回滚；或者是发送报警由人工来手工回滚和补偿<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这个还是比较合适的，目前国内互联网公司大都是这么玩儿的，要不你举用RocketMQ支持的，要不你就自己基于类似ActiveMQ？RabbitMQ？自己封装一套类似的逻辑出来，总之思路就是这样子的</p>
-<h3 id="最大努力通知方案"><a href="#最大努力通知方案" class="headerlink" title="最大努力通知方案"></a>最大努力通知方案</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507327.png" alt="image.png"><br>这个方案的大致意思就是：</p>
+<h3 id="最大努力通知方案"><a href="#最大努力通知方案" class="headerlink" title="最大努力通知方案"></a>最大努力通知方案</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507327.png" alt="image.png"><br>这个方案的大致意思就是：</p>
 <pre class="line-numbers language-none"><code class="language-none">1）系统A本地事务执行完之后，发送个消息到MQ
 2）这里会有个专门消费MQ的最大努力通知服务，这个服务会消费MQ然后写入数据库中记录下来，或者是放入个内存队列也可以，接着调用系统B的接口
 3）要是系统B执行成功就ok了；要是系统B执行失败了，那么最大努力通知服务就定时尝试重新调用系统B，反复N次，最后还是不行就放弃<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h2 id="如何设计一个高并发系统"><a href="#如何设计一个高并发系统" class="headerlink" title="如何设计一个高并发系统"></a>如何设计一个高并发系统</h2><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507323.png" alt="image.png"><br>（1)系统拆分，将一个系统拆分为多个子系统，用dubbo来搞。然后每个系统连一个数据库，这样本来就一个库，现在多个数据库，不也可以抗高并发么。</p>
+<h2 id="如何设计一个高并发系统"><a href="#如何设计一个高并发系统" class="headerlink" title="如何设计一个高并发系统"></a>如何设计一个高并发系统</h2><p><img src="http://jason-qianhao.xyz/1240-20210704092507323.png" alt="image.png"><br>（1)系统拆分，将一个系统拆分为多个子系统，用dubbo来搞。然后每个系统连一个数据库，这样本来就一个库，现在多个数据库，不也可以抗高并发么。</p>
 <p>（2）缓存，必须得用缓存。大部分的高并发场景，都是读多写少，那你完全可以在数据库和缓存里都写一份，然后读的时候大量走缓存不就得了。毕竟人家redis轻轻松松单机几万的并发啊。没问题的。所以你可以考虑考虑你的项目里，那些承载主要请求的读场景，怎么用缓存来抗高并发。</p>
 <p>（3）MQ，必须得用MQ。可能你还是会出现高并发写的场景，比如说一个业务操作里要频繁搞数据库几十次，增删改增删改，疯了。那高并发绝对搞挂你的系统，你要是用redis来承载写那肯定不行，人家是缓存，数据随时就被LRU了，数据格式还无比简单，没有事务支持。所以该用mysql还得用mysql啊。那你咋办？用MQ吧，大量的写请求灌入MQ里，排队慢慢玩儿，后边系统消费后慢慢写，控制在mysql承载范围之内。所以你得考虑考虑你的项目里，那些承载复杂写业务逻辑的场景里，如何用MQ来异步写，提升并发性。MQ单机抗几万并发也是ok的，这个之前还特意说过。</p>
 <p>（4）分库分表，可能到了最后数据库层面还是免不了抗高并发的要求，好吧，那么就将一个数据库拆分为多个库，多个库来抗更高的并发；然后将一个表拆分为多个表，每个表的数据量保持少一点，提高sql跑的性能。</p>
@@ -673,13 +673,13 @@ maxInactiveInterval&#x3D;&quot;60&quot;&#x2F;&gt;<span aria-hidden="true" class=
 <p>我个人建议，一个服务的代码不要太多，1万行左右，两三万撑死了吧</p>
 <p>大部分的系统，是要进行多轮拆分的，第一次拆分，可能就是将以前的多个模块该拆分开来了，比如说将电商系统拆分成订单系统、商品系统、采购系统、仓储系统、用户系统，等等吧。</p>
 <p>但是后面可能每个系统又变得越来越复杂了，比如说采购系统里面又分成了供应商管理系统、采购单管理系统，订单系统又拆分成了购物车系统、价格系统、订单管理系统</p>
-<h2 id="zk都有哪些使用场景"><a href="#zk都有哪些使用场景" class="headerlink" title="zk都有哪些使用场景"></a>zk都有哪些使用场景</h2><h3 id="分布式协调："><a href="#分布式协调：" class="headerlink" title="分布式协调："></a>分布式协调：</h3><p>  这个其实是zk很经典的一个用法，简单来说，就好比，你A系统发送个请求到mq，然后B消息消费之后处理了。那A系统如何知道B系统的处理结果？用zk就可以实现分布式系统之间的协调工作。A系统发送请求之后可以在zk上对某个节点的值注册个监听器，一旦B系统处理完了就修改zk那个节点的值，A立马就可以收到通知，完美解决。<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507342.png" alt="image.png"></p>
-<h3 id="分布式锁："><a href="#分布式锁：" class="headerlink" title="分布式锁："></a>分布式锁：</h3><p>  对某一个数据连续发出两个修改操作，两台机器同时收到了请求，但是只能一台机器先执行另外一个机器再执行。那么此时就可以使用zk分布式锁，一个机器接收到了请求之后先获取zk上的一把分布式锁，就是可以去创建一个znode，接着执行操作；然后另外一个机器也尝试去创建那个znode，结果发现自己创建不了，因为被别人创建了。。。。那只能等着，等第一个机器执行完了自己再执行。<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507370.png" alt="image.png"></p>
-<h3 id="元数据-配置信息管理："><a href="#元数据-配置信息管理：" class="headerlink" title="元数据/配置信息管理："></a>元数据/配置信息管理：</h3><p>zk可以用作很多系统的配置信息的管理，比如kafka、storm等等很多分布式系统都会选用zk来做一些元数据、配置信息的管理，包括dubbo注册中心不也支持zk么<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507324.png" alt="image.png"></p>
-<h3 id="HA高可用性："><a href="#HA高可用性：" class="headerlink" title="HA高可用性："></a>HA高可用性：</h3><p>这个应该是很常见的，比如hadoop、hdfs、yarn等很多大数据系统，都选择基于zk来开发HA高可用机制，就是一个重要进程一般会做主备两个，主进程挂了立马通过zk感知到切换到备用进程<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507334.png" alt="image.png"></p>
+<h2 id="zk都有哪些使用场景"><a href="#zk都有哪些使用场景" class="headerlink" title="zk都有哪些使用场景"></a>zk都有哪些使用场景</h2><h3 id="分布式协调："><a href="#分布式协调：" class="headerlink" title="分布式协调："></a>分布式协调：</h3><p>  这个其实是zk很经典的一个用法，简单来说，就好比，你A系统发送个请求到mq，然后B消息消费之后处理了。那A系统如何知道B系统的处理结果？用zk就可以实现分布式系统之间的协调工作。A系统发送请求之后可以在zk上对某个节点的值注册个监听器，一旦B系统处理完了就修改zk那个节点的值，A立马就可以收到通知，完美解决。<br><img src="http://jason-qianhao.xyz/1240-20210704092507342.png" alt="image.png"></p>
+<h3 id="分布式锁："><a href="#分布式锁：" class="headerlink" title="分布式锁："></a>分布式锁：</h3><p>  对某一个数据连续发出两个修改操作，两台机器同时收到了请求，但是只能一台机器先执行另外一个机器再执行。那么此时就可以使用zk分布式锁，一个机器接收到了请求之后先获取zk上的一把分布式锁，就是可以去创建一个znode，接着执行操作；然后另外一个机器也尝试去创建那个znode，结果发现自己创建不了，因为被别人创建了。。。。那只能等着，等第一个机器执行完了自己再执行。<br><img src="http://jason-qianhao.xyz/1240-20210704092507370.png" alt="image.png"></p>
+<h3 id="元数据-配置信息管理："><a href="#元数据-配置信息管理：" class="headerlink" title="元数据/配置信息管理："></a>元数据/配置信息管理：</h3><p>zk可以用作很多系统的配置信息的管理，比如kafka、storm等等很多分布式系统都会选用zk来做一些元数据、配置信息的管理，包括dubbo注册中心不也支持zk么<br><img src="http://jason-qianhao.xyz/1240-20210704092507324.png" alt="image.png"></p>
+<h3 id="HA高可用性："><a href="#HA高可用性：" class="headerlink" title="HA高可用性："></a>HA高可用性：</h3><p>这个应该是很常见的，比如hadoop、hdfs、yarn等很多大数据系统，都选择基于zk来开发HA高可用机制，就是一个重要进程一般会做主备两个，主进程挂了立马通过zk感知到切换到备用进程<br><img src="http://jason-qianhao.xyz/1240-20210704092507334.png" alt="image.png"></p>
 <h2 id="使用redis如何设计分布式锁？使用zk来设计分布式锁可以吗？这两种分布式锁的实现方式哪种效率比较高？"><a href="#使用redis如何设计分布式锁？使用zk来设计分布式锁可以吗？这两种分布式锁的实现方式哪种效率比较高？" class="headerlink" title="使用redis如何设计分布式锁？使用zk来设计分布式锁可以吗？这两种分布式锁的实现方式哪种效率比较高？"></a>使用redis如何设计分布式锁？使用zk来设计分布式锁可以吗？这两种分布式锁的实现方式哪种效率比较高？</h2><h3 id="redis分布式锁"><a href="#redis分布式锁" class="headerlink" title="redis分布式锁"></a>redis分布式锁</h3><p>官方叫做RedLock算法，是redis官方支持的分布式锁算法。</p>
 <p>这个分布式锁有3个重要的考量点，互斥（只能有一个客户端获取锁），不能死锁，容错（大部分redis节点或者这个锁就可以加可以释放）</p>
-<p><strong>第一个最普通的实现方式，如果就是在redis里创建一个key算加锁</strong><br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507339.png" alt="image.png"><br><code>SET my:lock 随机值 NX PX 30000</code><br>这个命令就ok，这个的NX的意思就是只有key不存在的时候才会设置成功，PX 30000的意思是30秒后锁自动释放。别人创建的时候如果发现已经有了就不能加锁了。</p>
+<p><strong>第一个最普通的实现方式，如果就是在redis里创建一个key算加锁</strong><br><img src="http://jason-qianhao.xyz/1240-20210704092507339.png" alt="image.png"><br><code>SET my:lock 随机值 NX PX 30000</code><br>这个命令就ok，这个的NX的意思就是只有key不存在的时候才会设置成功，PX 30000的意思是30秒后锁自动释放。别人创建的时候如果发现已经有了就不能加锁了。</p>
 <p>释放锁就是删除key，但是一般可以用lua脚本删除，判断value一样才删除：</p>
 <p>关于redis如何执行lua脚本，自行百度</p>
 <pre class="line-numbers language-none"><code class="language-none">if redis.call(&quot;get&quot;,KEYS[1]) &#x3D;&#x3D; ARGV[1] then
@@ -689,9 +689,9 @@ else
 end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>为啥要用随机值呢？因为如果某个客户端获取到了锁，但是阻塞了很长时间才执行完，此时可能已经自动释放锁了，此时可能别的客户端已经获取到了这个锁，要是你这个时候直接删除key的话会有问题，所以得用随机值加上面的lua脚本来释放锁。</p>
 <p>但是这样是肯定不行的。因为如果是普通的redis单实例，那就是单点故障。或者是redis普通主从，那redis主从异步复制，如果主节点挂了，key还没同步到从节点，此时从节点切换为主节点，别人就会拿到锁。</p>
-<p><strong>第二个问题，RedLock算法</strong><br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507373.png" alt="image.png"><br>这个场景是假设有一个redis cluster，有5个redis master实例。然后执行如下步骤获取一把锁：</p>
+<p><strong>第二个问题，RedLock算法</strong><br><img src="http://jason-qianhao.xyz/1240-20210704092507373.png" alt="image.png"><br>这个场景是假设有一个redis cluster，有5个redis master实例。然后执行如下步骤获取一把锁：</p>
 <p>1）获取当前时间戳，单位是毫秒<br>2）跟上面类似，轮流尝试在每个master节点上创建锁，过期时间较短，一般就几十毫秒<br>3）尝试在大多数节点上建立一个锁，比如5个节点就要求是3个节点<em><strong>（n / 2 +1）</strong></em><br>4）客户端计算建立好锁的时间，如果建立锁的时间小于超时时间，就算建立成功了<br>5）要是锁建立失败了，那么就依次删除这个锁<br>6）只要别人建立了一把分布式锁，你就得不断轮询去尝试获取锁</p>
-<h3 id="zk分布式锁"><a href="#zk分布式锁" class="headerlink" title="zk分布式锁"></a>zk分布式锁</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507381.png" alt="image.png"><br>  zk分布式锁，其实可以做的比较简单，就是某个节点尝试创建<strong>临时znode</strong>，此时创建成功了就获取了这个锁；这个时候别的客户端来创建锁会失败，只要<strong>注册个监听器监听这个锁</strong>。释放锁就是删除这个znode，一旦释放掉就会通知客户端，然后有一个等待着的客户端就可以再次重新加锁。</p>
+<h3 id="zk分布式锁"><a href="#zk分布式锁" class="headerlink" title="zk分布式锁"></a>zk分布式锁</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507381.png" alt="image.png"><br>  zk分布式锁，其实可以做的比较简单，就是某个节点尝试创建<strong>临时znode</strong>，此时创建成功了就获取了这个锁；这个时候别的客户端来创建锁会失败，只要<strong>注册个监听器监听这个锁</strong>。释放锁就是删除这个znode，一旦释放掉就会通知客户端，然后有一个等待着的客户端就可以再次重新加锁。</p>
 <h3 id="redis分布式锁和zk分布式锁的对比"><a href="#redis分布式锁和zk分布式锁的对比" class="headerlink" title="redis分布式锁和zk分布式锁的对比"></a>redis分布式锁和zk分布式锁的对比</h3><p>redis分布式锁，其实需要自己不断去尝试获取锁，比较消耗性能</p>
 <p>zk分布式锁，获取不到锁，注册个监听器即可，不需要不断主动尝试获取锁，性能开销较小</p>
 <p>另外一点就是，如果是redis获取锁的那个客户端bug了或者挂了，那么只能等待超时时间之后才能释放锁；而zk的话，因为创建的是临时znode，只要客户端挂了，znode就没了，此时就自动释放锁</p>
@@ -699,7 +699,7 @@ end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p>所以先不分析太多的东西，就说这两点，我个人实践认为zk的分布式锁比redis的分布式锁牢靠、而且模型简单易用</p>
 <h2 id="hystrix"><a href="#hystrix" class="headerlink" title="hystrix"></a>hystrix</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="hystrix是什么？"><a href="#hystrix是什么？" class="headerlink" title="hystrix是什么？"></a>hystrix是什么？</h4><p>netflix（国外最大的类似于，爱奇艺，优酷）视频网站，五六年前，也是，感觉自己的系统，整个网站，经常出故障，可用性不太高.</p>
 <p>hystrix，框架，提供了高可用相关的各种各样的功能，然后确保说在hystrix的保护下，整个系统可以长期处于高可用的状态，100%，99.99999%</p>
-<p>最理想的状况下，软件的故障，就不应该说导致整个系统的崩溃，服务器硬件的一些故障，服务的冗余<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507391.png" alt="image.png"></p>
+<p>最理想的状况下，软件的故障，就不应该说导致整个系统的崩溃，服务器硬件的一些故障，服务的冗余<br><img src="http://jason-qianhao.xyz/1240-20210704092507391.png" alt="image.png"></p>
 <p>唯一有可能导致系统彻底崩溃，就是类似于之前，支付宝的那个事故，工人施工，挖断了电缆，导致几个机房都停电</p>
 <h4 id="高可用系统架构"><a href="#高可用系统架构" class="headerlink" title="高可用系统架构"></a>高可用系统架构</h4><p><strong>资源隔离、限流、熔断、降级、运维监控</strong></p>
 <ul>
@@ -721,9 +721,9 @@ end<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <h4 id="Hystrix要解决的问题是什么"><a href="#Hystrix要解决的问题是什么" class="headerlink" title="Hystrix要解决的问题是什么"></a>Hystrix要解决的问题是什么</h4><p>在复杂的分布式系统架构中，每个服务都有很多的依赖服务，而<strong>每个依赖服务都可能会故障。如果服务没有和自己的依赖服务进行隔离，那么可能某一个依赖服务的故障就会拖垮当前这个服务</strong></p>
 <p>举例来说，某个服务有30个依赖服务，每个依赖服务的可用性非常高，已经达到了99.99%的高可用性。那么该服务的可用性就是99.99%的30次方，也就是99.7%的可用性</p>
 <p>99.7%的可用性就意味着3%的请求可能会失败，因为3%的时间内系统可能出现了故障不可用了。对于1亿次访问来说，3%的请求失败，也就意味着300万次请求会失败，也意味着每个月有2个小时的时间系统是不可用的。在真实生产环境中，可能更加糟糕</p>
-<p>画图分析说，当某一个依赖服务出现了调用延迟或者调用失败时，为什么会拖垮当前这个服务？以及在分布式系统中，故障是如何快速蔓延的？<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507383.png" alt="image.png"></p>
+<p>画图分析说，当某一个依赖服务出现了调用延迟或者调用失败时，为什么会拖垮当前这个服务？以及在分布式系统中，故障是如何快速蔓延的？<br><img src="http://jason-qianhao.xyz/1240-20210704092507383.png" alt="image.png"></p>
 <h4 id="Hystrix是如何实现它的目标的？"><a href="#Hystrix是如何实现它的目标的？" class="headerlink" title="Hystrix是如何实现它的目标的？"></a>Hystrix是如何实现它的目标的？</h4><p>（1）通过<code>HystrixCommand</code>或者<code>HystrixObservableCommand</code>来封装对外部依赖的访问请求，这个访问请求一般会运行在独立的线程中，资源隔离<br>（2）对于超出我们设定阈值的服务调用，直接进行超时，不允许其耗费过长时间阻塞住。这个超时时间默认是99.5%的访问时间，但是一般我们可以自己设置一下<br>（3）为每一个依赖服务维护一个独立的<code>线程池</code>，或者是<code>semaphore</code>，当线程池已满时，直接拒绝对这个服务的调用<br>（4）对依赖服务的调用的成功次数，失败次数，拒绝次数，超时次数，进行统计<br>（5）如果对一个依赖服务的调用失败次数超过了一定的阈值，自动进行熔断，在一定时间内对该服务的调用直接降级，一段时间后再自动尝试恢复<br>（6）当一个服务调用出现失败，被拒绝，超时，短路等异常情况时，自动调用fallback降级机制<br>（7）对属性和配置的修改提供近实时的支持</p>
-<p>画图分析，对依赖进行资源隔离后，如何避免依赖服务调用延迟或失败导致当前服务的故障<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20220305110114316.png" alt="image.png"></p>
+<p>画图分析，对依赖进行资源隔离后，如何避免依赖服务调用延迟或失败导致当前服务的故障<br><img src="http://jason-qianhao.xyz/1240-20220305110114316.png" alt="image.png"></p>
 <h3 id="一个Demo"><a href="#一个Demo" class="headerlink" title="一个Demo"></a>一个Demo</h3><h4 id="pom-xml"><a href="#pom-xml" class="headerlink" title="pom.xml"></a>pom.xml</h4><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.netflix.hystrix<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>hystrix-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -828,13 +828,13 @@ fWorld<span class="token punctuation">.</span><span class="token function">subsc
     <span class="token punctuation">&#125;</span>
 
 <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507394.png" alt="image.png"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210704092507394.png" alt="image.png"></p>
 <h3 id="Demo中利用hystrix第二种隔离技术semaphore"><a href="#Demo中利用hystrix第二种隔离技术semaphore" class="headerlink" title="Demo中利用hystrix第二种隔离技术semaphore"></a>Demo中利用hystrix第二种隔离技术semaphore</h3><h4 id="线程池隔离技术与信号量隔离技术的区别"><a href="#线程池隔离技术与信号量隔离技术的区别" class="headerlink" title="线程池隔离技术与信号量隔离技术的区别"></a>线程池隔离技术与信号量隔离技术的区别</h4><p>hystrix的资源隔离，两种技术：</p>
 <ul>
 <li>线程池的资源隔离</li>
 <li>信号量的资源隔离，信号量，semaphore</li>
 </ul>
-<p>信号量跟线程池，两种资源隔离的技术，区别到底在哪儿呢？<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507426-5361907.png"></p>
+<p>信号量跟线程池，两种资源隔离的技术，区别到底在哪儿呢？<br><img src="http://jason-qianhao.xyz/1240-20210704092507426-5361907.png"></p>
 <h4 id="线程池隔离技术和信号量隔离技术，分别在什么样的场景下去使用呢？？"><a href="#线程池隔离技术和信号量隔离技术，分别在什么样的场景下去使用呢？？" class="headerlink" title="线程池隔离技术和信号量隔离技术，分别在什么样的场景下去使用呢？？"></a>线程池隔离技术和信号量隔离技术，分别在什么样的场景下去使用呢？？</h4><p>线程池：适合绝大多数的场景，99%的，线程池，对依赖服务的网络请求的调用和访问，timeout这种问题</p>
 <p>信号量：适合，你的访问不是对外部依赖的访问，而是对内部的一些比较复杂的业务逻辑的访问，但是像这种访问，系统内部的代码，其实不涉及任何的网络请求，那么只要做信号量的普通限流就可以了，因为不需要去捕获timeout类似的问题，算法+数据结构的效率不是太高，并发量突然太高，因为这里稍微耗时一些，导致很多线程卡在这里的话，不太好，所以进行一个基本的资源隔离和访问，避免内部复杂的低效率的代码，导致大量的线程被hang住</p>
 <h4 id="采用信号量技术对地理位置获取逻辑进行资源隔离与限流"><a href="#采用信号量技术对地理位置获取逻辑进行资源隔离与限流" class="headerlink" title="采用信号量技术对地理位置获取逻辑进行资源隔离与限流"></a>采用信号量技术对地理位置获取逻辑进行资源隔离与限流</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">super</span><span class="token punctuation">(</span><span class="token class-name">Setter</span><span class="token punctuation">.</span><span class="token function">withGroupKey</span><span class="token punctuation">(</span><span class="token class-name">HystrixCommandGroupKey<span class="token punctuation">.</span>Factory</span><span class="token punctuation">.</span><span class="token function">asKey</span><span class="token punctuation">(</span><span class="token string">"ExampleGroup"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
@@ -905,7 +905,7 @@ fWorld<span class="token punctuation">.</span><span class="token function">subsc
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">HystrixThreadPoolProperties<span class="token punctuation">.</span>Setter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
    <span class="token punctuation">.</span><span class="token function">withCoreSize</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>一般来说，用这个默认的10个线程大小就够了</p>
-<h4 id="queueSizeRejectionThreshold"><a href="#queueSizeRejectionThreshold" class="headerlink" title="queueSizeRejectionThreshold"></a>queueSizeRejectionThreshold</h4><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507400.png" alt="image.png"><br>控制queue满后reject的threshold，因为maxQueueSize不允许热修改，因此提供这个参数可以热修改，控制队列的最大大小</p>
+<h4 id="queueSizeRejectionThreshold"><a href="#queueSizeRejectionThreshold" class="headerlink" title="queueSizeRejectionThreshold"></a>queueSizeRejectionThreshold</h4><p><img src="http://jason-qianhao.xyz/1240-20210704092507400.png" alt="image.png"><br>控制queue满后reject的threshold，因为maxQueueSize不允许热修改，因此提供这个参数可以热修改，控制队列的最大大小</p>
 <p>HystrixCommand在提交到线程池之前，其实会先进入一个队列中，这个队列满了之后，才会reject</p>
 <p>默认值是5</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">HystrixThreadPoolProperties<span class="token punctuation">.</span>Setter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -915,7 +915,7 @@ fWorld<span class="token punctuation">.</span><span class="token function">subsc
 <p>默认值是10，设置的小一些，否则因为信号量是基于调用线程去执行command的，而且不能从timeout中抽离，因此一旦设置的太大，而且有延时发生，可能瞬间导致tomcat本身的线程资源本占满</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">HystrixCommandProperties<span class="token punctuation">.</span>Setter</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
    <span class="token punctuation">.</span><span class="token function">withExecutionIsolationSemaphoreMaxConcurrentRequests</span><span class="token punctuation">(</span><span class="token keyword">int</span> value<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="hystrix执行时的8大流程以及内部原理"><a href="#hystrix执行时的8大流程以及内部原理" class="headerlink" title="hystrix执行时的8大流程以及内部原理"></a>hystrix执行时的8大流程以及内部原理</h3><p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507403.png" alt="image.png"></p>
+<h3 id="hystrix执行时的8大流程以及内部原理"><a href="#hystrix执行时的8大流程以及内部原理" class="headerlink" title="hystrix执行时的8大流程以及内部原理"></a>hystrix执行时的8大流程以及内部原理</h3><p><img src="http://jason-qianhao.xyz/1240-20210704092507403.png" alt="image.png"></p>
 <h4 id="构建一个HystrixCommand或者HystrixObservableCommand"><a href="#构建一个HystrixCommand或者HystrixObservableCommand" class="headerlink" title="构建一个HystrixCommand或者HystrixObservableCommand"></a>构建一个HystrixCommand或者HystrixObservableCommand</h4><p>一个HystrixCommand或一个HystrixObservableCommand对象，代表了对某个依赖服务发起的一次请求或者调用</p>
 <p>构造的时候，可以在构造函数中传入任何需要的参数</p>
 <p>HystrixCommand主要用于仅仅会返回一个结果的调用<br>HystrixObservableCommand主要用于可能会返回多条结果的调用</p>
@@ -974,7 +974,7 @@ fWorld<span class="token punctuation">.</span><span class="token function">subsc
 <p>HystrixRequestContext context = HystrixRequestContext.initializeContext();</p>
 <p>然后在请求结束之后，需要关闭request context</p>
 <p>context.shutdown();</p>
-<p>一般来说，在java web来的应用中，都是通过filter过滤器来实现的<br><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210704092507426.png" alt="image.png"></p>
+<p>一般来说，在java web来的应用中，都是通过filter过滤器来实现的<br><img src="http://jason-qianhao.xyz/1240-20210704092507426.png" alt="image.png"></p>
 <h3 id="fallback降级"><a href="#fallback降级" class="headerlink" title="fallback降级"></a>fallback降级</h3><ul>
 <li>创建command</li>
 <li>执行command</li>

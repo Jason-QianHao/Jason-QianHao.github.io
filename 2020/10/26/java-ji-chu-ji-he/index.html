@@ -508,7 +508,7 @@
 <p>　　第一个和第二个输出结果没有什么疑问。第三句由于 a+b包含了算术运算，因此会触发自动拆箱过程（会调用intValue方法），因此它们比较的是数值是否相等。而对于c.equals(a+b)会先触发自动拆箱过程，再触发自动装箱过程，也就是说a+b，会先各自调用intValue方法，得到了加法运算后的数值之后，便调用Integer.valueOf方法，再进行equals比较。同理对于后面的也是这样，不过要注意倒数第二个和最后一个输出的结果（如果数值是int类型的，装箱过程调用的是Integer.valueOf；如果是long类型的，装箱调用的Long.valueOf方法）。</p>
 <p>（2）存储位置：堆栈</p>
 <p>（3）8中基本类型的字节大小。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951587.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210630144951587.png" alt="img"></p>
 <h3 id="不需要手动销毁对象"><a href="#不需要手动销毁对象" class="headerlink" title="不需要手动销毁对象"></a>不需要手动销毁对象</h3><p>  · 作用域：花括号决定</p>
 <p>  · GC机制决定不需要手动销毁对象。</p>
 <h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>（1）成员变量（字段）、成员函数（方法）。其中对于基本类型的成员变量有默认值。</p>
@@ -523,7 +523,7 @@
 <li><p>对象头</p>
 <ul>
 <li><p>Mark Word</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20210630145316284.png" alt="image-20210630145316284"/></li>
+<img src="http://jason-qianhao.xyz/image-20210630145316284.png" alt="image-20210630145316284"/></li>
 <li><p>指向类的指针</p>
 </li>
 <li><p>数组长度（只有数组对象才有）</p>
@@ -620,7 +620,7 @@
 <h2 id="复用类"><a href="#复用类" class="headerlink" title="复用类"></a>复用类</h2><h3 id="组合类"><a href="#组合类" class="headerlink" title="组合类"></a>组合类</h3><p>  在类的字段中包含对其他类的引用。</p>
 <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>  <strong>所有类都隐式继承Object类。</strong></p>
 <p>  Object类的方法：</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144950882.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144950882.png" alt="img"/>
 
 <p>  · 关于clone方法：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/94dbef2de298">Java 浅拷贝和深拷贝 - 简书</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/xinghuo0007/article/details/78896726">java中clone方法的理解（深拷贝、浅拷贝）_xinghuo0007的博客-CSDN博客</a></p>
 <p>（1）语法</p>
@@ -710,7 +710,7 @@
 <p>（5）异常说明 throws</p>
 <p>（6）发现异常时的清理：在创建需要清理的对象之后，立即进入try-catch-fianlly（嵌套）</p>
 <p>（7）java.lang.Throwable</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951512.png" />
+<img src="http://jason-qianhao.xyz/1240-20210630144951512.png" />
 
 <ul>
 <li><p>Error（错误）：是程序无法处理的错误，表示运行应用程序中较严重问题。<strong>编译时和系统错误</strong>。</p>
@@ -729,7 +729,7 @@
 <li><p>方法区的常量池</p>
 <img src="E:\我的\GithubBlog\Jason-QianHao.github.io\assets\Java\1240-20210630155739956.png" alt="img" />
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630155739975.png" alt="img" style="zoom:80%;" />
+<img src="http://jason-qianhao.xyz/1240-20210630155739975.png" alt="img" style="zoom:80%;" />
 
 <p>运行时常量池相对于CLass文件常量池的另外一个重要特征是具备动态性，Java语言并不要求常量一定只有编译期才能产生，也就是并非预置入CLass文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中，这种特性被开发人员利用比较多的就是String类的intern()方法。</p>
 </li>
@@ -942,22 +942,22 @@
 <ul>
 <li>标准访问文件方式：先查缓存，再查磁盘。write()时，内核缓存同步sync时间由操作系统决定。</li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952261.jpeg" alt="img" style="zoom:40%;" />
+<img src="http://jason-qianhao.xyz/1240-20210630144952261.jpeg" alt="img" style="zoom:40%;" />
 
 <ul>
 <li>直接IO： 不经过内核空间</li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952818.jpeg" alt="img" style="zoom:40%;" />
+<img src="http://jason-qianhao.xyz/1240-20210630144952818.jpeg" alt="img" style="zoom:40%;" />
 
 <ul>
 <li>同步访问文件：数据写到磁盘才返回成功标志给应用程序。</li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951310.jpeg" alt="img" style="zoom:40%;" />
+<img src="http://jason-qianhao.xyz/1240-20210630144951310.jpeg" alt="img" style="zoom:40%;" />
 
 <ul>
 <li>异步访问文件：不阻塞等待</li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951439.jpeg" alt="img" style="zoom:40%;" />
+<img src="http://jason-qianhao.xyz/1240-20210630144951439.jpeg" alt="img" style="zoom:40%;" />
 
 <h3 id="Java序列化技术"><a href="#Java序列化技术" class="headerlink" title="Java序列化技术"></a>Java序列化技术</h3><p>  （1）java序列化技术就是将一个<strong>对象转化成一串二进制表示的字节数组</strong>，通过保存或转移这些字节数据来达到持久化的目的。</p>
 <p>  （2）对象必须继承java.io.Serializable接口。</p>
@@ -977,9 +977,9 @@
 </code></pre>
 </li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951737.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951737.png" alt="img"/>
 
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951769.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951769.png" alt="img"/>
 
 <h4 id="Buffers缓冲区"><a href="#Buffers缓冲区" class="headerlink" title="Buffers缓冲区"></a><strong>Buffers缓冲区</strong></h4><p>（1）java.nio包中定义对基本类型的容器。</p>
 <p>　　Buffer就像一个数组，可以保存多个相同类型的数据。根据类型不同（<strong>boolean除外</strong>），有以下Buffer常用子类：</p>
@@ -1006,12 +1006,12 @@
 <p>​    ·标记（mark）与重置（reset）：标记是一个索引，通过Buffer中的mark()方法指定Buffer中一个特定的position，之后可以通过调用reset()方法恢复到这个position。</p>
 <p>（3）分类</p>
 <p>  · <strong>非直接缓冲区</strong>：通过allocate() 方法分配缓冲区，将缓冲区建立在 JVM 的内存中。数据存储传输需要先复制到内存地址空间，再到磁盘。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951861.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951861.png" alt="img"/>
 
 <p>  · <strong>直接缓冲区</strong>：</p>
 <p>​    · 通过allocateDirect() 方法分配直接缓冲区，将缓冲区建立在物理内存中。可以提高效率。</p>
 <p>​    · 也可以通过FileChannel 的 map() 方法 将文件区域直接映射到内存中来创建。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952413.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144952413.png" alt="img"/>
 
 <h4 id="Channels通道"><a href="#Channels通道" class="headerlink" title="Channels通道"></a>Channels通道</h4><p>（1）作用</p>
 <p>​    表示打开到IO 设备(例如：文件、套接字)的连接。若需要使用NIO 系统，需要获取用于连接 IO 设备的通道以及用于容纳数据的缓冲区。然后操作缓冲区，对数据进行处理。Channel 负责传输， Buffer 负责存储。</p>
@@ -1023,7 +1023,7 @@
 <p>（3）分散读取、聚集写入</p>
 <p>​      scattering Reads：将通道中的数据分散到多个缓冲区中。</p>
 <p>​      gathering Writes：将多个缓冲区的数据聚集到通道中</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951884.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951884.png" alt="img"/>
 
 <h4 id="阻塞与非阻塞"><a href="#阻塞与非阻塞" class="headerlink" title="阻塞与非阻塞"></a>阻塞与非阻塞</h4><p>（1）阻塞：客户端连接请求时，服务器只能等待连接请求，不能处理其他事情。</p>
 <p>（2）非阻塞：客户端连接注册到多路复用器上，当轮询到连接有I/O请求时，才启动线程处理。</p>
@@ -1032,7 +1032,7 @@
 <p>  NIO：同步非阻塞式IO，服务器实现模式为<strong>一个请求一个线程</strong>，即客户端发送的连接请求都会注册到多路复用器上，<strong>多路复用器</strong>轮询到连接有I/O请求时才启动一个线程进行处理。 </p>
 <p>  AIO(NIO.2)：异步非阻塞式IO，服务器实现模式为一个有效请求一个线程，客户端的I/O请求都是由<strong>OS先完成了</strong>再通知服务器应用去启动线程进行处理。 </p>
 <p>  伪异步：使用线程池管理</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951795.png" alt="img"></p>
+<p><img src="http://jason-qianhao.xyz/1240-20210630144951795.png" alt="img"></p>
 <h4 id="Selector选择器"><a href="#Selector选择器" class="headerlink" title="Selector选择器"></a>Selector选择器</h4><p>（1）SelectionKey类</p>
 <p>  在SelectionKey类的源码中我们可以看到如下的4中属性，四个变量用来表示四种不同类型的事件：可读、可写、可连接、可接受连接</p>
 <p>​    ·SelectionKey.OP_CONNECT</p>
@@ -1041,8 +1041,8 @@
 <p>​    ·SelectionKey.OP_WRITE</p>
 <p>  如果你对不止一种事件感兴趣，那么可以用“位或”操作符将常量连接起来，如下：</p>
 <p>​    int interestSet = SelectionKey.OP_READ | SelectionKey.OP_WRITE;</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951883.png" alt="img"></p>
-<h4 id="NIO的Socket请求"><a href="#NIO的Socket请求" class="headerlink" title="NIO的Socket请求"></a>NIO的Socket请求</h4><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952138.jpeg" alt="img"/>
+<p><img src="http://jason-qianhao.xyz/1240-20210630144951883.png" alt="img"></p>
+<h4 id="NIO的Socket请求"><a href="#NIO的Socket请求" class="headerlink" title="NIO的Socket请求"></a>NIO的Socket请求</h4><img src="http://jason-qianhao.xyz/1240-20210630144952138.jpeg" alt="img"/>
 
 <p>  分为两个线程共工作，一个监听客户端连接，一个用于处理数据交互。</p>
 <h2 id="JPA"><a href="#JPA" class="headerlink" title="JPA"></a>JPA</h2><p>（1）Java Persistence API 持久层API</p>
@@ -1309,10 +1309,10 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
 <p>  · 判断该元素与存入的元素的hash值和key是否相同，相同则直接覆盖，不相同就通过“拉链法”解决冲突。</p>
 <h4 id="底层数据结构"><a href="#底层数据结构" class="headerlink" title="底层数据结构"></a>底层数据结构</h4><p>（1）JDK1.8之前，使用数组+链表</p>
 <p>​    数组中存储Node&lt;K,V&gt;（implements Map.Entry&lt;K,V&gt;）。数组初始大小为16.</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951918.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951918.png" alt="img"/>
 
 <p>（2）JDK1.8之后，使用数组+链表+红黑树，当链表的长度大于阈值（默认8）时 ，变为红黑树</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952126.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144952126.png" alt="img"/>
 
 <h4 id="rehash扩容机制"><a href="#rehash扩容机制" class="headerlink" title="rehash扩容机制"></a>rehash扩容机制</h4><p>（1）哈希桶数组table的长度length大小必须为2的n次方(一定是合数)，这是一种非常规的设计，常规的设计是把桶的大小设计为素数。相对来说素数导致冲突的概率要小于合数</p>
 <p>为什么要是2的n次方：取余（%）操作中，如果除数是2的幂次则等价于其除数减一的与（<br>&amp;）操作，即hash%length == hash &amp; (length - 1)。采用二进制的位操作后，相对于%能提高运算效率。</p>
@@ -1364,16 +1364,16 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
 <p>（3）采用基于访问的最近最少使用（LRU）算法，没有被访问过的元素就会出现在队列的前面。</p>
 <h3 id="HashTable"><a href="#HashTable" class="headerlink" title="HashTable"></a>HashTable</h3><p>（1）线程安全，内部的方法基本都是经过synchronized修饰，其他使用与HashMap类似。</p>
 <p>（2）与concurrentHashMap相比，<strong>HashTable使用全表锁</strong>。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951990.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951990.png" alt="img"/>
 
 <h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><p>  与HashMap相比，<strong>线程安全，适合并发环境。</strong></p>
 <p>（1）JDK1.7 分段锁</p>
 <p>​    对整个通数组进行分割分段（Segment），多线程访问容器不同段数据时，不会存在锁竞争，提高并发访问效率。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144951949.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144951949.png" alt="img"/>
 
 <p>（2）JDK1.8 synchronized + CAS</p>
 <p>​    看起来是一个优化过且线程安全的HashMap。synchronized只锁定当前链表或红黑树的首节点。</p>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/1240-20210630144952016.png" alt="img"/>
+<img src="http://jason-qianhao.xyz/1240-20210630144952016.png" alt="img"/>
 
 <h2 id="Queue-1"><a href="#Queue-1" class="headerlink" title="Queue"></a>Queue</h2><p>  先进先出（FIFO）的容器，在一端进行插入而在另一端进行删除的<strong>表</strong>。</p>
 <h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>（1）Deque接口，双端队列，底层实现可以选择LinkedList。</p>

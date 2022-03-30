@@ -504,7 +504,7 @@
 <h2 id="Linux的CPU"><a href="#Linux的CPU" class="headerlink" title="Linux的CPU"></a>Linux的CPU</h2><ul>
 <li><p><code>top</code>命令</p>
 <p>其实我们通过top命令看到的CPU核是逻辑核</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302101308390.png" alt="image-20220302101308390"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220302101308390.png" alt="image-20220302101308390"></p>
 </li>
 <li><p>更详细信息</p>
 <p>在linux系统下，通过查看<code>/proc/cpuinfo</code>可以看到CPU更为详细的信息。我们<strong>通过physical id 可以看到真正的物理CPU的个数</strong>，如下：</p>
@@ -535,7 +535,7 @@ core <span class="token function">id</span>         <span class="token builtin c
 </ul>
 <h1 id="CPU缓存"><a href="#CPU缓存" class="headerlink" title="CPU缓存"></a>CPU缓存</h1><h2 id="L1-L2-L3缓存"><a href="#L1-L2-L3缓存" class="headerlink" title="L1\L2\L3缓存"></a>L1\L2\L3缓存</h2><p>CPU越来越快，现在CPU的速度比内存要快百倍以上，所以就逐步演化出了L1、L2、L3三级缓存结构，而且都集成到的CPU芯片里，以进一步提高访问速度。</p>
 <p>现代Intel的CPU架构的基本结构：</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102323668.png" alt="image-20220302102323668"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220302102323668.png" alt="image-20220302102323668"></p>
 <p>越往下，速度越慢，容量越大</p>
 <ul>
 <li><p>L1最接近于CPU，速度也最快，但是容量最小。一般现代CPU的L1会分成两个，一个用来cache data，一个用来cache code，这是因为code和data的更新策略并不相同，而且因为CISC的变长指令，code cache要做特殊优化。一般每个核都有自己独立的data L1和code L1。</p>
@@ -546,7 +546,7 @@ core <span class="token function">id</span>         <span class="token builtin c
 <p>UEFIBlog里提供了一个比较好的物理解剖图，比较好地展示了出来：</p>
 </li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20220302102332354.png" alt="image-20220302102332354"></p>
+<p><img src="http://jason-qianhao.xyz/image-20220302102332354.png" alt="image-20220302102332354"></p>
 <h2 id="查看Linux的三级缓存"><a href="#查看Linux的三级缓存" class="headerlink" title="查看Linux的三级缓存"></a>查看Linux的三级缓存</h2><p><strong>L1一级缓存查看：</strong></p>
 <pre class="line-numbers language-none"><code class="language-none"># cat cpu0&#x2F;cache&#x2F;index0&#x2F;level
 1

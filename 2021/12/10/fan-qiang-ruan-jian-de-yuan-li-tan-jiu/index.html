@@ -520,7 +520,7 @@
 </ol>
 <h1 id="封锁HTTP代理"><a href="#封锁HTTP代理" class="headerlink" title="封锁HTTP代理"></a>封锁HTTP代理</h1><p>对于没有办法搭建VPS的人来说，最好的办法就是使用HTTP代理。</p>
 <h2 id="HTTP代理和封锁"><a href="#HTTP代理和封锁" class="headerlink" title="HTTP代理和封锁"></a>HTTP代理和封锁</h2><p>客户端不在直接请求目标服务器，而是请求代理服务器，代理服务器在去请求目标服务器。然后返回结果。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/202203251705433.png" alt="代理示意图"></p>
+<p><img src="http://jason-qianhao.xyz/202203251705433.png" alt="代理示意图"></p>
 <p>对于HTTP代理来说，封锁起来非常简单。因为HTTP协议是明文，Request Message中就带有要请求的URL或IP地址，这样很容易就被检测到。对于HTTPS来说，虽然通信是进行加密了，但是在建连之前会给代理服务器发送CONNECT方法，这里也会带上要访问的远端服务器地址。如果代理服务器在国外，在出去前就会被检测到。 如果代理服务器在国内，呵呵，你也出不去啊。</p>
 <p>对于HTTP代理，因为是明文，所以很容易被服务器了解你的一些数据。<strong>所以不要随便使用第三方的HTTP代理访问HTTP网站，而HTTPS虽然不知道你的数据，但是可以知道你去了那里。</strong></p>
 <h2 id="解决方法-1"><a href="#解决方法-1" class="headerlink" title="解决方法"></a>解决方法</h2><p>解决办法：</p>
@@ -529,9 +529,9 @@
 <li>使用第三方VPN</li>
 </ol>
 <h1 id="封锁VPN"><a href="#封锁VPN" class="headerlink" title="封锁VPN"></a>封锁VPN</h1><h2 id="VPN"><a href="#VPN" class="headerlink" title="VPN"></a>VPN</h2><p><strong>虚拟专用网</strong>（英语：<strong>Virtual Private Network</strong>，简称<strong>VPN</strong>），是一种常用于连接中、大型企业或团体与团体间的私人网络的通讯方法。虚拟私人网络的讯息透过公用的网络架构（例如：<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91">互联网</a>）来传送<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E5%86%85%E9%83%A8%E7%BD%91">内联网</a>的网络讯息。它利用已加密的<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E9%9A%A7%E9%81%93%E5%8D%8F%E8%AE%AE">通道协议</a>（Tunneling Protocol）来达到保密、发送端认证、消息准确性等私人消息安全效果。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/2.jpg" alt="VPN示意图"></p>
+<p><img src="http://jason-qianhao.xyz/2.jpg" alt="VPN示意图"></p>
 <p>正常网络通信时，所有网络请求都是通过我们的物理网卡直接发送出去。而VPN是客户端使用相应的VPN协议先与VPN服务器进行通信，成功连接后就在操作系统内建立一个虚拟网卡，一般来说默认PC上所有网络通信都从这虚拟网卡上进出，经过VPN服务器中转之后再到达目的地。</p>
-<p><img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/3.png" alt="VPN发送流程示意图"></p>
+<p><img src="http://jason-qianhao.xyz/3.png" alt="VPN发送流程示意图"></p>
 <p>通常VPN协议都会对数据流进行强加密处理，从而使得第三方无法知道数据内容，这样就实现了翻墙。翻墙时VPN服务器知道你干的所有事情（HTTP，对于HTTPS，它知道你去了哪）。</p>
 <p>VPN有多种协议：OPENVPN、PPTP、L2TP/IPSec、SSLVPN、IKEv2 VPN，Cisco VPN等。其中的PPTP和L2TP是明文传输协议。只负责传输，不负责加密。分别利用了MPPE和IPSec进行加密。</p>
 <h2 id="封锁方式"><a href="#封锁方式" class="headerlink" title="封锁方式"></a>封锁方式</h2><p>对于VPN和其他一些加密的传输的协议来说，没有办法直接获取明文的请求信息，所以没有办法直接封锁，而是使用了监控的方式：</p>
@@ -550,7 +550,7 @@
 <p><strong>深度数据包检测</strong>（英语：Deep packet inspection，缩写为 DPI），又称<strong>完全数据包探测</strong>（complete packet inspection）或<strong>信息萃取</strong>（Information eXtraction，IX），是一种电脑网络数据包过滤技术，用来检查通过检测点之<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B6%B2%E8%B7%AF%E5%B0%81%E5%8C%85">数据包</a>的数据部分（亦可能包含其<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E5%A4%B4">标头</a>），以搜索不匹配规范之协议、病毒、垃圾邮件、入侵，或以预定之准则来决定数据包是否可通过或需被路由至其他不同目的地，亦或是为了收集统计数据之目的。</p>
 </li>
 </ul>
-<img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/11.png" alt="VPN原理示意图" style="zoom:67%;" />
+<img src="http://jason-qianhao.xyz/11.png" alt="VPN原理示意图" style="zoom:67%;" />
 
 <h1 id="Shadowsocks"><a href="#Shadowsocks" class="headerlink" title="Shadowsocks"></a>Shadowsocks</h1><h2 id="Socks代理-SSH-Socks"><a href="#Socks代理-SSH-Socks" class="headerlink" title="Socks代理/SSH Socks"></a>Socks代理/SSH Socks</h2><p><strong>SOCKS</strong>是一种网络传输协议，主要用于客户端与外网服务器之间通讯的中间传递。SOCKS是”SOCKetS”的缩写[1]。<br>当防火墙后的客户端要访问外部的服务器时，就跟SOCKS代理服务器连接。这个代理服务器控制客户端访问外网的资格，允许的话，就将客户端的请求发往外部的服务器。<br>这个协议最初由David Koblas开发，而后由NEC的Ying-Da Lee将其扩展到版本4。最新协议是版本5，与前一版本相比，增加支持UDP、验证，以及IPv6。<br>根据OSI模型，SOCKS是会话层的协议，位于表示层与传输层之间</p>
 <ul>
@@ -1138,7 +1138,7 @@ designed to protect your Internet traffic.<span aria-hidden="true" class="line-n
                 <a href="/2021/12/10/wo-de-xue-sheng-shi-dai/">
                     <div class="card-image">
                         
-                        <img src="https://raw.githubusercontent.com/Jason-QianHao/picgo-imgs/main/img/image-20211215154735989.png" class="responsive-img" alt="我的学生时代">
+                        <img src="http://jason-qianhao.xyz/image-20211215154735989.png" class="responsive-img" alt="我的学生时代">
                         
                         <span class="card-title">我的学生时代</span>
                     </div>
