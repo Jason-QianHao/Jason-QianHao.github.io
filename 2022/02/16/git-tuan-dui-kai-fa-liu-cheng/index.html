@@ -443,7 +443,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    372
+                    376
                 </div>
                 
 
@@ -477,31 +477,29 @@
 <h1 id="开工第一件事"><a href="#开工第一件事" class="headerlink" title="开工第一件事"></a>开工第一件事</h1><p>从git仓库拉取最新代码</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> pull<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
-<h1 id="收工最后一件事"><a href="#收工最后一件事" class="headerlink" title="收工最后一件事"></a>收工最后一件事</h1><p>进行了一天的本地代码修改，收工之前需要进行代码的更新，这里小型团队开发就直接在main上做整合了（**开发环境可不能这样!**）</p>
+<p>当存在多个分支时，如开发分支为dev，自己分支为jason</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">git checkout dev &#x2F;&#x2F; 切换到dev
+git pull origin dev &#x2F;&#x2F;更新远端dev分支到本地dev，相当于git fetch origin dev + git merge origin&#x2F;dev
+git checkout jason &#x2F;&#x2F; 切换到自己分支
+git merge dev &#x2F;&#x2F;合并远端的最新代码到自己分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="收工最后一件事"><a href="#收工最后一件事" class="headerlink" title="收工最后一件事"></a>收工最后一件事</h1><p>进行了一天的本地代码修改，收工之前需要进行代码的更新，更新到自己的jason分支并合并到dev分支</p>
 <ol>
-<li><p>创建新分支</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> checkout -b branchname<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 <li><p>代码修改的保存和分支提交</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> status 查看本地代码的更改情况
-<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> 将所有更改添加到缓冲区
-<span class="token function">git</span> commit -m <span class="token string">'本次提交的备注'</span> 进行一次提交
-<span class="token function">git</span> push origin branchname 将代码更新到远端分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> status //查看本地代码的更改情况
+<span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> //将所有更改添加到缓冲区
+<span class="token function">git</span> commit -m <span class="token string">'本次提交的备注'</span> //进行一次提交
+<span class="token function">git</span> push origin jason //将代码更新到远端分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 <li><p>冲突合并和解决冲突</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> checkout branchname 确保在本次的分支上
-<span class="token function">git</span> pull -r origin main 更新主分支代码，并进行冲突合并<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> checkout dev // 切换到dev分支，准备合并
+<span class="token function">git</span> pull origin dev // 重新更新远端dev分支到本地dev
+<span class="token function">git</span> merge jason // 合并jason分支到dev
+<span class="token function">git</span> push oirign dev //推到到远端dev分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>如果遇到冲突（CONFLICT），按照提示进行冲突解决，解决后：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> 保存修改
-<span class="token function">git</span> rebase --continue 继续进行冲突合并，如果还有冲突，继续解决冲突
-<span class="token function">git</span> push origin branchname 更新分支代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
-<li><p>合并分支</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> checkout main 切换到主分支
-<span class="token function">git</span> merge branchname 合并分支到主分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>删除本次开发的分支</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> branch -d branchname 删除本地分支
-<span class="token function">git</span> push origin -d branchname 删除远端分支<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>主分支main代码更新到远端git仓库</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> push origin main 更新本地main分支代码到远端<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> <span class="token function">add</span> <span class="token builtin class-name">.</span> //保存修改
+<span class="token function">git</span> rebase --continue //继续进行冲突合并，如果还有冲突，继续解决冲突
+<span class="token function">git</span> push origin dev //更新分支代码<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
 </ol>
 
                 
@@ -1244,7 +1242,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">458.5k</span>&nbsp;字
+                class="white-color">458.8k</span>&nbsp;字
             
             
             

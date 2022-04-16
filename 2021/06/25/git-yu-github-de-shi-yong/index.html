@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.1k
+                    2.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -479,6 +479,11 @@
             <div id="articleContent">
                 <h1 id="git与github的使用"><a href="#git与github的使用" class="headerlink" title="git与github的使用"></a>git与github的使用</h1><blockquote>
 <p>推荐的资料 <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1ZInXIR74MYQfCNK9X-7YGw?pwd=pkp1">点击下载</a></p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/FengZeng666/p/15640934.html">https://www.cnblogs.com/FengZeng666/p/15640934.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/hudashi/article/details/7664631/">https://blog.csdn.net/hudashi/article/details/7664631/</a></li>
+</ul>
 </blockquote>
 <h1 id="git简介"><a href="#git简介" class="headerlink" title="git简介"></a>git简介</h1><p>Git 是 Linux 发明者 Linus 开发的一款新时代的版本控制系统，那什么是版本控制系统呢?怎 么理解?网上一大堆详细的介绍，但是大多枯燥乏味，对于新手也很难理解，这里我只举几 个例子来帮助你们理解。</p>
 <p>熟悉编程的知道，我们在软件开发中源代码其实是最重要的，那么对源代码的管理变得异常重要:</p>
@@ -493,9 +498,22 @@
 </li>
 </ul>
 <p>等等等类似以上的情况，这些都是版本控制系统能解决的问题。所以说，版本控制是一种记 录一个或若干文件内容变化，以便将来查阅特定版本修订情况的系统，对于软件开发领域来 说版本控制是最重要的一环，而 Git 毫无疑问是当下最流行、最好用的版本控制系统。</p>
-<h1 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h1><p>​        这里有份指南我觉得定好的 <a target="_blank" rel="noopener" href="https://m.runoob.com/manual/git-guide/">git-简明指南</a></p>
-<p>​        我自己学习git的时候也看了很多资料，这里有一份pdf推荐<a href="/../assets/files/%E4%BB%8E0%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0GitHub%E7%B3%BB%E5%88%97.pdf">点击下载</a></p>
-<p>​        安装好git后，我们先不着急学习git命令，我的理解是git命令也是用来和仓库交互的，直接看命令会让人头大啊～。所以我们先看看github。</p>
+<h1 id="git安装"><a href="#git安装" class="headerlink" title="git安装"></a>git安装</h1><p>这里有份指南我觉得定好的 <a target="_blank" rel="noopener" href="https://m.runoob.com/manual/git-guide/">git-简明指南</a></p>
+<p>全局设置git信息，在提交的时候，用户信息会记入到commit</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">git config —global user.name &quot;username&quot;
+git config —global user.email &quot;user email&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="git基本原理"><a href="#git基本原理" class="headerlink" title="git基本原理"></a>git基本原理</h1><p>我自己学习git的时候也看了很多资料，这里有一份pdf推荐<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/19QRcY6V8x8r83d9d1GPXmQ?pwd=58k6">点击下载</a></p>
+<p>你的本地仓库由 git 维护的三棵“树”组成。第一个是你的 <code>工作目录</code>，它持有实际文件；第二个是 <code>暂存区（Index）</code>，它像个缓存区域，临时保存你的改动；最后是版本库<code>Repository</code>，其中有个 <code>HEAD</code>，它指向你最后一次提交的结果。</p>
+<p><img src="http://jason-qianhao.xyz/202204161655553.jpeg" alt="img"></p>
+<h1 id="Merge和Rebase的区别"><a href="#Merge和Rebase的区别" class="headerlink" title="Merge和Rebase的区别"></a>Merge和Rebase的区别</h1><ul>
+<li><p>git merge branchname</p>
+<p>结果看起来就像一个新的”合并的提交”(merge commit):</p>
+<img src="http://jason-qianhao.xyz/202204161658071.png" alt="image-20220416165811032" style="zoom: 50%;" /></li>
+<li><p>git rebase mywork</p>
+<p>这些命令会把你的”mywork”分支里的每个提交(commit)取消掉，并且把它们临时 保存为补丁(patch)(这些补丁放到”.git/rebase”目录中),然后把”mywork”分支更新 为最新的”origin”分支，最后把保存的这些补丁应用到”mywork”分支上。</p>
+<img src="http://jason-qianhao.xyz/202204161659298.png" alt="image-20220416165914263" style="zoom:50%;" /></li>
+</ul>
 <h1 id="github简介"><a href="#github简介" class="headerlink" title="github简介"></a>github简介</h1><p>​    2008年4月10日，GitHub正式成立，地址:How people build software · GitHub ，主要提供基 于git的版本托管服务。一经上线，它的发展速度惊为天人，截止目前，GitHub 已经发展成全 球最大的开(同)源(性)社区。</p>
 <p>**GitHub有什么用 **</p>
 <ul>
@@ -539,27 +557,6 @@
 git commit -m &#39;提交信息&#39; &#x2F;&#x2F; 提交修改
 git push origin main &#x2F;&#x2F; 把本地项目推到github仓库，其中main是分支的名字<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
-<h1 id="我常使用的命令"><a href="#我常使用的命令" class="headerlink" title="我常使用的命令"></a>我常使用的命令</h1><p>​    目前都属于个人开发，用到的命令很有限，但是入门还是很不错的，有些命令上面已经提到了，这里总结一下：</p>
-<pre class="line-numbers language-none"><code class="language-none">1. git clone sshurl &#x2F;&#x2F; 克隆仓库到本地
-
-2. git status &#x2F;&#x2F; 查看此时本地仓库到状态，有没有修改之类的，可以多用
-
-3. git init &#x2F;&#x2F; 在本地新建一个git仓库，注意和clone的区别：使用clone时，本地仓库和远程仓库已经建立关联；使用init时，只是在本地建立了一个仓库，没有任何远程仓库关联，使用git push会报错，要先使用git remote进行远程关联
-
-4. git remote add origin sshurl &#x2F;&#x2F; 将本地git仓库与远程仓库关联
-
-5. git add . &#x2F;&#x2F;添加修改到暂存区
-
-6. git commit -m &#39;提交信息&#39; &#x2F;&#x2F; 提交修改
-
-7. git push origin main &#x2F;&#x2F; 把本地项目推到github仓库，其中main是分支的名字
-
-8. git branch &#x2F;&#x2F; 查看所有分支，当前分支前面又个*
-
-9. git tag version &#x2F;&#x2F; 给当前commit打标签version，一般用作版本号
-
-10. git push origin -tags &#x2F;&#x2F; 把标签推到github远程仓库<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
 <h1 id="关于branch"><a href="#关于branch" class="headerlink" title="关于branch"></a>关于branch</h1><p>​    这里有个小坑，源于github到默认branch。</p>
 <ul>
 <li>如果你使用<code>git init</code>命令在本地创建仓库，当前分支默认是<code>master</code></li>
@@ -567,11 +564,32 @@ git push origin main &#x2F;&#x2F; 把本地项目推到github仓库，其中main
 </ul>
 <p>所有对于不同版本或者不同操纵导致主分支操作不一样时，可以按早下面方法试试：</p>
 <ul>
-<li><p><a target="_blank" rel="noopener" href="https://www.51oneday.com/2020/10/gitfenzhicongmasterqiehuandaomain/">git分支从master切换到main</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20042935/article/details/107222147">Git删除远程仓库分支</a></p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.51oneday.com/2020/10/gitfenzhicongmasterqiehuandaomain/">git分支从master切换到main</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_20042935/article/details/107222147">Git删除远程仓库分支</a></li>
 </ul>
+<h1 id="我常使用的命令"><a href="#我常使用的命令" class="headerlink" title="我常使用的命令"></a>我常使用的命令</h1><p>​    目前都属于个人开发，用到的命令很有限，但是入门还是很不错的，有些命令上面已经提到了，这里总结一下：</p>
+<blockquote>
+<ol>
+<li>git clone sshurl // 克隆仓库到本地</li>
+<li>git status // 查看此时本地仓库到状态，有没有修改之类的，可以多用</li>
+<li>git init // 在本地新建一个git仓库，注意和clone的区别：使用clone时，本地仓库和远程仓库已经建立关联；使用init时，只是在本地建立了一个仓库，没有任何远程仓库关联，使用git push会报错，要先使用git remote进行远程关联</li>
+<li>git remote add origin sshurl // 将本地git仓库与远程仓库关联</li>
+<li>git add . //添加修改到暂存区</li>
+<li>git commit -m ‘提交信息’ // 提交修改</li>
+<li>git push origin main // 把本地项目推到github仓库，其中main是分支的名字</li>
+<li>git pull [origin branchname] // 远端分支(可以指定某个分支)代码更新到本地分支</li>
+<li>git branch // 查看所有分支，当前分支前面又个*</li>
+<li>git branch -d branchname // 删除branchname分支</li>
+<li>git push origin -d branchname // 删除远端branchname分支</li>
+<li>git tag version // 给当前commit打标签version，一般用作版本号</li>
+<li>git push origin -tags // 把标签推到github远程仓库</li>
+<li>git fetch origin branchname // 更新远端branchname代码到暂存区</li>
+<li>git merge origin/branchanme // 将暂存区的branchname分支合并到本地分支</li>
+<li>git log //查看当前分支提交历史</li>
+<li>git checkout . //放弃所有修改，但是新建的文件不行，需要手动删除</li>
+<li>git checkout [-b] branchname // 切换到某分支，-b 参数代表，不存在时就新建</li>
+</ol>
+</blockquote>
 <h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>​    git的功能非常强大，也是公司里面开发人员的必备知识。以上这些作用为git和github的入门知识还是不错的～</p>
 <p>​    欢迎来<a target="_blank" rel="noopener" href="https://github.com/Jason-QianHao">我的github主页</a>交流</p>
 
@@ -1315,7 +1333,7 @@ git push origin main &#x2F;&#x2F; 把本地项目推到github仓库，其中main
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">458.5k</span>&nbsp;字
+                class="white-color">458.8k</span>&nbsp;字
             
             
             
