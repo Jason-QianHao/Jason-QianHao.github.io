@@ -440,19 +440,25 @@ MySQL分页查询优化分页查询的性能优化方案sql进行Order by排序�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/06/26/mybatis-de-maven-yi-lai-wen-ti/">
+                    <a href="/2021/06/26/mybatis-mapper-ceng-zhong-de-chuan-can-wen-ti/">
                         <div class="card-image">
                             
-                            <img src="http://jason-qianhao.xyz/banner/6.jpg" class="responsive-img" alt="Mybatis的maven依赖问题">
+                            <img src="http://jason-qianhao.xyz/banner/1.jpg" class="responsive-img" alt="Mybatis mapper层的传参问题">
                             
-                            <span class="card-title">Mybatis的maven依赖问题</span>
+                            <span class="card-title">Mybatis mapper层的传参问题</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Mybatis的Maven依赖，如果引用了，但是没有配置mysql会在启动报错这个地方主要在maven项目中含有父模块、子模块的时候可能会碰到，注意一下可以将Mybatis的依赖放到需要使用mysql的子模块中，就不要放到父模块中统一配置了
+                                Mybatis对mapper层中，参数的绑定
+参考链接：
+
+https://www.cnblogs.com/lenve/p/11229590.html
+
+
+在写项目的过程中用到mybatis层中，有关于@Param的使用和参数的绑定一直是个
                             
                         </div>
                         <div class="publish-info">
@@ -490,25 +496,19 @@ MySQL分页查询优化分页查询的性能优化方案sql进行Order by排序�
             
             <div class="article col s12 m6 l4" data-aos="zoom-in">
                 <div class="card">
-                    <a href="/2021/06/26/mybatis-mapper-ceng-zhong-de-chuan-can-wen-ti/">
+                    <a href="/2021/06/26/mybatis-de-maven-yi-lai-wen-ti/">
                         <div class="card-image">
                             
-                            <img src="http://jason-qianhao.xyz/banner/1.jpg" class="responsive-img" alt="Mybatis mapper层的传参问题">
+                            <img src="http://jason-qianhao.xyz/banner/6.jpg" class="responsive-img" alt="Mybatis的maven依赖问题">
                             
-                            <span class="card-title">Mybatis mapper层的传参问题</span>
+                            <span class="card-title">Mybatis的maven依赖问题</span>
                         </div>
                     </a>
 
                     <div class="card-content article-content">
                         <div class="summary block-with-text">
                             
-                                Mybatis对mapper层中，参数的绑定
-参考链接：
-
-https://www.cnblogs.com/lenve/p/11229590.html
-
-
-在写项目的过程中用到mybatis层中，有关于@Param的使用和参数的绑定一直是个
+                                Mybatis的Maven依赖，如果引用了，但是没有配置mysql会在启动报错这个地方主要在maven项目中含有父模块、子模块的时候可能会碰到，注意一下可以将Mybatis的依赖放到需要使用mysql的子模块中，就不要放到父模块中统一配置了
                             
                         </div>
                         <div class="publish-info">
