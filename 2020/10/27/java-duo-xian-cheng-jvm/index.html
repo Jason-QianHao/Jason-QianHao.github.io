@@ -443,7 +443,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    17.9k
+                    18k
                 </div>
                 
 
@@ -1016,6 +1016,12 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
 <p>（4）原理分析</p>
 <img src="http://jason-qianhao.xyz/1240-20210630155739887.png" alt="img"/>
 
+<ul>
+<li>当需要创建的线程任务，小于核心线程数时，线程池直接创建线程</li>
+<li>当线程任务数量大于核心线程数，小于最大线程数时，将多于核心线程数的线程任务放入等待队列</li>
+<li>当队列满容后，继续创建线程数量至最大线程数</li>
+<li>当线程池达到最大线程数时，继续有线程任务，则执行抛弃策略</li>
+</ul>
 <h2 id="悲观锁与乐观锁"><a href="#悲观锁与乐观锁" class="headerlink" title="悲观锁与乐观锁"></a>悲观锁与乐观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>（1）概念</p>
 <p>总是假设最坏的情况，每次去拿数据的时候都认为别人会修改，所以每次<strong>在拿数据的时候都会上锁</strong>，这样别人想拿这个数据就会阻塞直到它拿到锁（<strong>共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程</strong>）</p>
 <p>（2）常见悲观锁</p>
@@ -1490,35 +1496,46 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p><strong>·最终标记</strong></p>
 <p><strong>·筛选回收</strong></p>
 <p>  **G1 收集器在后台维护了一个优先列表，每次根据允许的收集时间，优先选择回收价值最大的 Region(这也就是它的名字 Garbage-First 的由来)**。这种使用 Region 划分内存空间以及有优先级的区域回收方式，保证了 G1 收集器在有限时间内可以尽可能高的收集效率（把内存化整为零）。</p>
-<h2 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h2><h3 id="堆内存相关"><a href="#堆内存相关" class="headerlink" title="堆内存相关"></a>堆内存相关</h3><h4 id="显示指定堆内存"><a href="#显示指定堆内存" class="headerlink" title="显示指定堆内存"></a>显示指定堆内存</h4><p>  -Xms<heapsize>[unit]</p>
-<p>  -Xmx<heapsize>[unit]</p>
-<p><strong>·heap size</strong>表示要初始化内存的具体大小。</p>
-<p><strong>·unit</strong>表示要初始化内存的单位。单位为<em>*<em>“ g”*</em>* (GB) 、*<strong>“ m”</strong>*（MB）、*</em>*“ k”***（KB）。</p>
+<h2 id="JVM参数"><a href="#JVM参数" class="headerlink" title="JVM参数"></a>JVM参数</h2><h3 id="堆内存相关"><a href="#堆内存相关" class="headerlink" title="堆内存相关"></a>堆内存相关</h3><h4 id="显示指定堆内存"><a href="#显示指定堆内存" class="headerlink" title="显示指定堆内存"></a>显示指定堆内存</h4><p><code>-Xms&lt;heapsize&gt;[unit]</code></p>
+<p><code>-Xmx&lt;heapsize&gt;[unit]</code></p>
+<p><strong>· heap size</strong>表示要初始化内存的具体大小。</p>
+<p><strong>· unit</strong>表示要初始化内存的单位。单位为<em>g</em> (GB) 、<em>m</em>（MB）、<em>k</em>（KB）。</p>
+<blockquote>
 <p>-Xms2G -Xmx5G</p>
-<h4 id="显示指定新生代内存大小"><a href="#显示指定新生代内存大小" class="headerlink" title="显示指定新生代内存大小"></a>显示指定新生代内存大小</h4><p>**默认情况下，YG 的最小大小为 1310*MB*，最大大小为*无限制***。一共有两种指定 新生代内存(Young Ceneration)大小的方法。</p>
+</blockquote>
+<h4 id="显示指定新生代内存大小"><a href="#显示指定新生代内存大小" class="headerlink" title="显示指定新生代内存大小"></a>显示指定新生代内存大小</h4><p><strong>默认情况下，YG 的最小大小为 1310MB，最大大小为无限制</strong>。一共有两种指定 新生代内存(Young Ceneration)大小的方法。</p>
 <p>（1）<strong>通过-XX:NewSize和-XX:MaxNewSize指定</strong></p>
-<p>​    -XX:NewSize=<youngsize>[unit]</p>
-<p>​    -XX:MaxNewSize=<youngsize>[unit]</p>
-<p>-XX:NewSize=256m-XX:MaxNewSize=1024m</p>
-<p>（2）<strong>通过-Xmn<young size>[unit] 指定</strong></p>
-<p>-Xmn256m</p>
-<p>*<em>还可以通过*</em>-XX:NewRatio=*<em>来设置新生代和老年代内存的比值。</em>*</p>
+<p>​    <code>-XX:NewSize=&lt;youngsize&gt;[unit]</code></p>
+<p>​    <code>-XX:MaxNewSize=&lt;youngsize&gt;[unit]</code></p>
+<blockquote>
+<p>-XX:NewSize=256m    -XX:MaxNewSize=1024m</p>
+</blockquote>
+<p>（2）<strong>通过<code>-Xmn&lt;young size&gt;[unit]</code>指定</strong></p>
+<blockquote>
+<p> -Xmn256m</p>
+</blockquote>
+<p><strong>还可以通过<code>-XX:NewRatio=</code>来设置新生代和老年代内存的比值。</strong></p>
 <h4 id="显示指定永久代-元空间的大小"><a href="#显示指定永久代-元空间的大小" class="headerlink" title="显示指定永久代/元空间的大小"></a><strong>显示指定永久代/元空间的大小</strong></h4><p>（1）JDK1.8之前</p>
-<p>-XX:PermSize=N //方法区 (永久代) 初始大小</p>
-<p>-XX:MaxPermSize=N //方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常:java.lang.OutOfMemoryError: PermGen</p>
+<p><code>-XX:PermSize=N</code> //方法区 (永久代) 初始大小</p>
+<p><code>-XX:MaxPermSize=N</code> //方法区 (永久代) 最大大小,超过这个值将会抛出 OutOfMemoryError 异常:java.lang.OutOfMemoryError: PermGen</p>
 <p>（2）<strong>JDK 1.8</strong></p>
 <p>  方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是元空间，元空间使用的是直接内存。</p>
-<p>-XX:MetaspaceSize=N //设置 Metaspace 的初始（和最小大小）-XX:MaxMetaspaceSize=N //设置 Metaspace 的最大大小，如果不指定大小</p>
+<p><code>-XX:MetaspaceSize=N</code> //设置 Metaspace 的初始（和最小大小）</p>
+<p><code>-XX:MaxMetaspaceSize=N</code> //设置 Metaspace 的最大大小，如果不指定大小</p>
 <h3 id="垃圾收集相关"><a href="#垃圾收集相关" class="headerlink" title="垃圾收集相关"></a>垃圾收集相关</h3><p>JVM具有四种类型的<em>GC</em>实现：</p>
 <p>  ·串行垃圾收集器</p>
 <p>  ·并行垃圾收集器</p>
 <p>  ·CMS垃圾收集器</p>
 <p>   ·G1垃圾收集器</p>
-<p>可以使用以下参数声明这些实现：</p>
-<p>-XX:+UseSerialGC</p>
-<p>-XX:+UseParallelGC</p>
-<p>-XX:+USeParNewGC</p>
-<p>-XX:+UseG1GC</p>
+<p>可以使用以下参数声明这些实现</p>
+<pre class="line-numbers language-none"><code class="language-none">-XX:+UseSerialGC
+
+-XX:+UseParallelGC
+
+-XX:+USeParNewGC
+
+-XX:+UseG1GC<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h3 id="GC调优策略"><a href="#GC调优策略" class="headerlink" title="GC调优策略"></a>GC调优策略</h3><h4 id="GC-调优原则"><a href="#GC-调优原则" class="headerlink" title="GC 调优原则"></a>GC 调优原则</h4><p>  多数的 Java 应用不需要在服务器上进行 GC 优化； </p>
 <p>  多数导致 GC 问题的 Java 应用，都不是因为我们参数设置错误，而是代码问题；</p>
 <p>  在应用上线之前，先考虑将机器的 JVM 参数设置到最优（最适合）； </p>
@@ -2280,7 +2297,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">459.9k</span>&nbsp;字
+                class="white-color">460.1k</span>&nbsp;字
             
             
             
