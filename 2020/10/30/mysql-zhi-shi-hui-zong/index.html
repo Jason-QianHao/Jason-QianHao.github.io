@@ -478,9 +478,24 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h1 id="MySQL知识汇总"><a href="#MySQL知识汇总" class="headerlink" title="MySQL知识汇总"></a>MySQL知识汇总</h1><blockquote>
-<p>目录<br>1数据库的概念</p>
-<p>2 MySql逻辑架构<br>3 并发控制<br>4 事务<br>5 MVCC多版本并发控制<br>6 存储引擎<br>7 索引<br>8 MySql优化<br>9 其他知识点  </p>
-<p>参考资料<br>· 《高性能MySql》<br>· 《尚硅谷MySql》<br>·  JavaG  </p>
+<p>目录</p>
+<ol>
+<li>数据库的概念</li>
+<li>MySql逻辑架构</li>
+<li>并发控制</li>
+<li>事务</li>
+<li>MVCC多版本并发控制 </li>
+<li>存储引擎</li>
+<li>索引</li>
+<li>MySql优化</li>
+<li>其他知识点  </li>
+</ol>
+<p>参考资料  </p>
+<ul>
+<li>《高性能MySql》  </li>
+<li>《尚硅谷MySql》  </li>
+<li>JavaG  </li>
+</ul>
 </blockquote>
 <h1 id="数据库的概念"><a href="#数据库的概念" class="headerlink" title="数据库的概念"></a>数据库的概念</h1><p>（1）DB</p>
 <p>数据库（database）：存储数据的“仓库”。它保存了一系列有组织的数据。</p>
@@ -563,7 +578,8 @@
 <li>作用：负责MySql中数据的存储和提取</li>
 <li>服务器通过API与存储引擎通信</li>
 </ul>
-<h1 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h1><h2 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h2><p>（1）共享锁–读锁</p>
+<h1 id="并发控制"><a href="#并发控制" class="headerlink" title="并发控制"></a>并发控制</h1><p>更详情可以参考：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6878884451162521613">深入理解MySQL锁类型和加锁原理 - 掘金</a></p>
+<h2 id="读写锁"><a href="#读写锁" class="headerlink" title="读写锁"></a>读写锁</h2><p>（1）共享锁–读锁</p>
 <ul>
 <li><p>共享锁（Share Locks，简记为S）又被称为读锁，其他用户可以并发读取数据，但任何事务都不能获取数据上的排他锁，直到已释放所有共享锁。</p>
 </li>
@@ -594,10 +610,14 @@
 <li>会出现死锁</li>
 </ul>
 <h4 id="InnoDB中的行锁分类"><a href="#InnoDB中的行锁分类" class="headerlink" title="InnoDB中的行锁分类"></a>InnoDB中的行锁分类</h4><ul>
-<li>Record lock 对索引加锁，锁定行</li>
+<li>Record lock <strong>对索引加锁</strong>，锁定行</li>
 <li>Gap lock “间隙”加锁，锁定一个范围（不含索引项本身），防止幻读</li>
 <li>Next-Key lock 结合上述两种，锁定索引项本身和索引范围，解决幻读问题</li>
 </ul>
+<p>注意在InnoDB中，具体加锁的方式（<strong>行锁是加在了索引上</strong>）和底层原理</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">update</span> <span class="token keyword">user</span> <span class="token keyword">set</span> age <span class="token operator">=</span> <span class="token number">10</span> <span class="token keyword">where</span> name <span class="token operator">=</span> <span class="token string">'Tom'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="http://jason-qianhao.xyz/202205031114641.image" alt="345.jpg"></p>
 <h2 id="InnoDB的死锁"><a href="#InnoDB的死锁" class="headerlink" title="InnoDB的死锁"></a>InnoDB的死锁</h2><p>（1）InnoDB的行级锁是基于索引实现的，如果查询语句为命中任何索引，那么InnoDB会使用表级锁</p>
 <p>（2）使用锁的时候，如果<strong>表没有定义任何索引，那么InnoDB会创建一个隐藏的聚簇索</strong>引并使用这个索引来加记录锁。</p>
 <p>（3）InnoDB产生死锁原因</p>
@@ -618,15 +638,15 @@
 <p><strong>四种隔离级别</strong></p>
 <ul>
 <li>READ UNCOMMITTED 未提交读/<strong>脏读</strong>。事务中的修改还没有提交，对其他事务也可见，即其他事务读取了未提交的数据。</li>
-<li>READ COMMITTED 提交读/<strong>不可重复读</strong>。一个事务只能“看见”已经提交的事务所做的修改，可能执行两次查询，等到不一样的结果。</li>
+<li>READ COMMITTED 提交读/<strong>不可重复读</strong>。一个事务只能“看见”已经提交的事务所做的修改，可能执行两次查询，得到不一样的结果。</li>
 <li>REPEATABLE READ 可重复读/<strong>幻读</strong>。<strong>是MySQL的默认事务隔离级别</strong>，保证了在同一个事务中多次读取同样记录的结果一致。可能发生幻读：一个事务在读取某个范围内的记录时，另一个事务在范围内插入记录，导致<strong>幻行</strong>。通过<strong>MVCC</strong>多版本并发控制解决问题。</li>
 <li>SERIALIZEABLE 可串行化。最高的隔离级别，强制事务串行执行。本质是在读取的每一行数据上都加锁。</li>
 </ul>
-<p><img src="http://jason-qianhao.xyz/1240-20210630204745542.png" alt="image"></p>
+<p><img src="http://jason-qianhao.xyz/202205031034966.png" alt="img"></p>
 <p>（4）持久性</p>
 <p>   一旦事务提交，则其所做的修改就会永久保存到数据库中。</p>
 <h2 id="事务日志"><a href="#事务日志" class="headerlink" title="事务日志"></a>事务日志</h2><ul>
-<li>存储引擎在修改表的数据是只需要修改其内存的拷贝，再把修改行为记录到持久在硬盘的事务日志中。</li>
+<li><strong>存储引擎在修改表的数据时，只需要修改其内存的拷贝</strong>，再把修改行为记录到持久在硬盘的事务日志中。</li>
 <li>即修改数据，需要写两次磁盘。</li>
 <li>若系统崩溃，可通过日志自动恢复数据</li>
 </ul>
@@ -671,7 +691,12 @@
 <li>READ COMMITTED <strong>每次读取数据前都生成一个ReadView ，</strong>所以不能重复读取，MVCC的活跃事务列表记录此时后面的<strong>未提交</strong>的事务，只能读到新版本的数据。</li>
 </ul>
 <blockquote>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/flying_hengfei/article/details/106965517">MVCC到底是什么？这一篇博客就够啦_flying_hengfei的博客-CSDN博客_mvcc作用</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aspirant/p/9177978.html">Mysql 间隙锁原理，以及Repeatable Read隔离级别下可以防止幻读原理(百度) - aspirant - 博客园</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wwcom123/p/10727194.html">【MySQL】当前读、快照读、MVCC - wwcom123 - 博客园</a></p>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/flying_hengfei/article/details/106965517">MVCC到底是什么？这一篇博客就够啦_flying_hengfei的博客-CSDN博客_mvcc作用</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/aspirant/p/9177978.html">Mysql 间隙锁原理，以及Repeatable Read隔离级别下可以防止幻读原理(百度) - aspirant - 博客园</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/wwcom123/p/10727194.html">【MySQL】当前读、快照读、MVCC - wwcom123 - 博客园</a></li>
+</ul>
 </blockquote>
 <h3 id="工作环境"><a href="#工作环境" class="headerlink" title="工作环境"></a>工作环境</h3><p>仅在两个隔离级别下工作，REPEATABLE READ(可重复读)和READ COMMITTED（提交读）。</p>
 <h1 id="存储引擎-1"><a href="#存储引擎-1" class="headerlink" title="存储引擎"></a>存储引擎</h1><h2 id="查看表的存储引擎"><a href="#查看表的存储引擎" class="headerlink" title="查看表的存储引擎"></a>查看表的存储引擎</h2><p>show table status like “table_name”</p>
@@ -714,9 +739,11 @@
 <p>（4）避免哈希冲突：在WHERE条件中带入哈希值和对应列值。</p>
 <h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p>（1）主键索引</p>
 <ul>
-<li>唯一性索引，必须指定为“PRIMARY KEY”。每个表只能有一个主键，主键也不能为空</li>
-<li>方式：<pre><code>      · CREATE TABLE tablename ( [...], PRIMARY KEY (列的列表) )
-      · ALTER TABLE tablename ADD PRIMARY KEY (列的列表)
+<li><p>唯一性索引，必须指定为“PRIMARY KEY”。每个表只能有一个主键，主键也不能为空</p>
+</li>
+<li><p>方式：</p>
+<pre><code>  <pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">CREATE</span> <span class="token keyword">TABLE</span> tablename <span class="token punctuation">(</span> <span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>列的列表<span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> tablename <span class="token keyword">ADD</span> <span class="token keyword">PRIMARY</span> <span class="token keyword">KEY</span> <span class="token punctuation">(</span>列的列表<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </code></pre>
 </li>
 </ul>
@@ -867,17 +894,17 @@
 <ul>
 <li>原理，主数据库将二进制日志文件（bin-log）传给从数据库。</li>
 <li>触发时刻：从数据库监控主数据库二进制文件的变化，发生变化则通过IO线程进行二进制文件的复制和传输。</li>
-<li>意义<pre><code>     1 数据丢失和备份
-     2 读写分离
-     3 负载均衡，高可用
+<li>意义<pre><code>  - 数据丢失和备份
+  - 读写分离
+  - 负载均衡，高可用
 </code></pre>
 </li>
 </ul>
 <p>（2）读写分离</p>
 <ul>
 <li>定义：主数据库负责助理事务，从数据库负责读操作</li>
-<li>意义<pre><code>          1 分摊服务器压力，提高机器的系统处理效率
-          2 增加冗余，提高系统可用性，可以在主数据库宕机式进行数据恢复
+<li>意义<pre><code>      - 分摊服务器压力，提高机器的系统处理效率
+      - 增加冗余，提高系统可用性，可以在主数据库宕机式进行数据恢复
 </code></pre>
 </li>
 </ul>
@@ -910,16 +937,21 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
  END;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">&gt; call user_porcedPa(10);<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h2 id="数据库备份"><a href="#数据库备份" class="headerlink" title="数据库备份"></a>数据库备份</h2><p><strong>（1）手动方式</strong></p>
-<p><strong>·cmd控制台:</strong><br>在环境变量中配置mysql环境变量<br>mysqldump –u -账号–密码数据库[表名1 表名2..]  &gt; 文件路径</p>
-<p><strong>案例:</strong> mysqldump-u -root root test &gt; d:\temp.sql<br>比如: 把temp数据库备份到 d:\temp.bak    mysqldump -u root -proot test &gt; f:\temp.bak</p>
-<p><strong>· 如果你希望备份是，数据库的某几张表</strong><br><code> mysqldump -u root -proot test dept &gt; f:\temp.dept.sql</code></p>
-<p><strong>· 如何使用备份文件恢复我们的数据.</strong><br>mysql控制台<br><code> source d:\temp.dept.bak</code></p>
+<ul>
+<li><p><strong>cmd控制台:</strong><br>在环境变量中配置mysql环境变量<br><code>mysqldump –u -账号 –密码 数据库[表名1 表名2..]  &gt; 文件路径</code></p>
+<p><strong>案例:</strong> <code>mysqldump -u -root root test &gt; d:\temp.sql</code></p>
+</li>
+<li><p><strong>如果你希望备份是，数据库的某几张表</strong><br><code> mysqldump -u root -proot test dept &gt; f:\temp.dept.sql</code></p>
+</li>
+<li><p><strong>如何使用备份文件恢复我们的数据.</strong><br>mysql控制台<br><code> source d:\temp.dept.bak</code></p>
+</li>
+</ul>
 <p><strong>（2）自动方式</strong></p>
 <p>把备份数据库的指令，写入到bat文件, 然后通过任务管理器去定时调用 bat文件.</p>
 <p>mytask.bat 内容是:</p>
 <blockquote>
 <p>@echo off</p>
-<p>F:\path\mysqlanzhuang\bin\mysqldump -u root -proot test dept &gt; f:\temp.dept.sql</p>
+<p>f:\xxx\mysqldump -u root -proot test dept &gt; f:\temp.dept.sql</p>
 </blockquote>
 <p>创建执行计划任务执行脚本。</p>
 <h2 id="数据库范式"><a href="#数据库范式" class="headerlink" title="数据库范式"></a>数据库范式</h2><p>（1）作用：为了建立冗余较小、结构合理的数据库，设计数据库时必须遵循一定的规则。</p>
@@ -941,8 +973,12 @@ end;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
 <p>（3）在默认情况下，我们的mysql不会记录慢查询，需要在启动mysql时候，指定记录慢查询才可以，将慢查询定位到日志中。</p>
 <h2 id="SQL语句执行慢的原因"><a href="#SQL语句执行慢的原因" class="headerlink" title="SQL语句执行慢的原因"></a>SQL语句执行慢的原因</h2><h3 id="偶尔很慢"><a href="#偶尔很慢" class="headerlink" title="偶尔很慢"></a>偶尔很慢</h3><p>（1） 系统在刷新“脏页”中</p>
 <p> 当我们要往数据库插入一条数据、或者要更新一条数据的时候，我们知道数据库会在<strong>内存</strong>中把对应字段的数据更新了，但是更新之后，这些更新的字段并不会马上同步持久化到<strong>磁盘</strong>中去，而是把这些更新的记录写入到 redo log 日记中去，等到空闲的时候，在通过 redo log 里的日记把最新的数据同步到<strong>磁盘</strong>中去。当内存数据页跟磁盘数据页内容不一致的时候，我们称这个内存页为“脏页”。</p>
-<p><strong>· redolog写满了：</strong>redo log 里的容量是有限的，如果数据库一直很忙，更新又很频繁，这个时候 redo log 很快就会被写满了，这个时候就没办法等到空闲的时候再把数据同步到磁盘的，只能暂停其他操作，全身心来把数据同步到磁盘中去的，而这个时候，<strong>就会导致我们平时正常的SQL语句突然执行的很慢</strong>，所以说，数据库在在同步数据到磁盘的时候，就有可能导致我们的SQL语句执行的很慢了。</p>
-<p> ** · 内存不够用了：**如果一次查询较多的数据，恰好碰到所查数据页不在内存中时，需要申请内存，而此时恰好内存不足的时候就需要淘汰一部分内存数据页，如果是干净页，就直接释放，如果恰好是脏页就需要刷脏页。</p>
+<ul>
+<li><p><strong>redolog写满了：</strong>redo log 里的容量是有限的，如果数据库一直很忙，更新又很频繁，这个时候 redo log 很快就会被写满了，这个时候就没办法等到空闲的时候再把数据同步到磁盘的，只能暂停其他操作，全身心来把数据同步到磁盘中去的，而这个时候，<strong>就会导致我们平时正常的SQL语句突然执行的很慢</strong>，所以说，数据库在在同步数据到磁盘的时候，就有可能导致我们的SQL语句执行的很慢了。</p>
+</li>
+<li><p><strong>内存不够用了:</strong> 如果一次查询较多的数据，恰好碰到所查数据页不在内存中时，需要申请内存，而此时恰好内存不足的时候就需要淘汰一部分内存数据页，如果是干净页，就直接释放，如果恰好是脏页就需要刷脏页。</p>
+</li>
+</ul>
 <p>（2）未获取到锁</p>
 <p>  要执行的这条语句，刚好这条语句涉及到的<strong>表</strong>，别人在用，并且加锁了，我们拿不到锁，只能慢慢等待别人释放锁了。或者，表没有加锁，但要使用到的某个一行被加锁了。</p>
 <h3 id="一直很慢"><a href="#一直很慢" class="headerlink" title="一直很慢"></a>一直很慢</h3><p>(1) 没有用上索引：例如该字段没有索引；由于对字段进行运算、函数操作导致无法用索引。</p>
