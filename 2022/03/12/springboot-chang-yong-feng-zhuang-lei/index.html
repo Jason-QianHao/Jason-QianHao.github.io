@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    449
+                    2.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    9 分
                 </div>
                 
 
@@ -481,10 +481,18 @@
 <p>目录</p>
 <ol>
 <li>ResponseEntity HTTP响应类</li>
+<li>Assert 断言</li>
+<li>ObjectUtils 对象操作</li>
+<li>StringUtils 字符串操作</li>
+<li>CollectionUtils 集合工具</li>
+<li>FileCopyUtils 文件工具</li>
+<li>ResourceUtils 资源处理</li>
+<li>StreamUtils 流处理</li>
 </ol>
 <p>参考/来源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/neweastsun/article/details/81142870/">使用spring ResponseEntity处理http响应</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_2RlN-MZMBicSlvGQt5FxQ">推荐几个好用的Springboot内置工具类</a></li>
 </ul>
 </blockquote>
 <h1 id="ResponseEntity-HTTP响应类"><a href="#ResponseEntity-HTTP响应类" class="headerlink" title="ResponseEntity HTTP响应类"></a>ResponseEntity HTTP响应类</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>ResponseEntity标识整个http相应：状态码、头部信息以及相应体内容。因此我们可以使用其对http响应实现完整配置。</p>
@@ -551,6 +559,217 @@
 <p>尽管ResponseEntity非常强大，但不应该过度使用。在一些简单情况下，还有其他方法能满足我们的需求，使代码更整洁。</p>
 </li>
 </ul>
+<h1 id="Assert-断言"><a href="#Assert-断言" class="headerlink" title="Assert 断言"></a>Assert 断言</h1><p>断言是一个逻辑判断，用于检查不应该发生的情况</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 要求参数 object 必须为非空（Not Null），否则抛出异常，不予放行</span>
+<span class="token comment">// 参数 message 参数用于定制异常信息。</span>
+<span class="token keyword">void</span> <span class="token function">notNull</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数必须空（Null），否则抛出异常，不予『放行』。</span>
+<span class="token comment">// 和 notNull() 方法断言规则相反</span>
+<span class="token keyword">void</span> <span class="token function">isNull</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数必须为真（True），否则抛出异常，不予『放行』。</span>
+<span class="token keyword">void</span> <span class="token function">isTrue</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> expression<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数（List/Set）必须非空（Not Empty），否则抛出异常，不予放行</span>
+<span class="token keyword">void</span> <span class="token function">notEmpty</span><span class="token punctuation">(</span><span class="token class-name">Collection</span> collection<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数（String）必须有长度（即，Not Empty），否则抛出异常，不予放行</span>
+<span class="token keyword">void</span> <span class="token function">hasLength</span><span class="token punctuation">(</span><span class="token class-name">String</span> text<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数（String）必须有内容（即，Not Blank），否则抛出异常，不予放行</span>
+<span class="token keyword">void</span> <span class="token function">hasText</span><span class="token punctuation">(</span><span class="token class-name">String</span> text<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数是指定类型的实例，否则抛出异常，不予放行</span>
+<span class="token keyword">void</span> <span class="token function">isInstanceOf</span><span class="token punctuation">(</span><span class="token class-name">Class</span> type<span class="token punctuation">,</span> <span class="token class-name">Object</span> obj<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span>
+<span class="token comment">// 要求参数 `subType` 必须是参数 superType 的子类或实现类，否则抛出异常，不予放行</span>
+<span class="token keyword">void</span> <span class="token function">isAssignable</span><span class="token punctuation">(</span><span class="token class-name">Class</span> superType<span class="token punctuation">,</span> <span class="token class-name">Class</span> subType<span class="token punctuation">,</span> <span class="token class-name">String</span> message<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="ObjectUtils-对象操作"><a href="#ObjectUtils-对象操作" class="headerlink" title="ObjectUtils 对象操作"></a>ObjectUtils 对象操作</h1><ol>
+<li><p>获取对象的基本信息</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 获取对象的类名。参数为 null 时，返回字符串："null" </span>
+<span class="token class-name">String</span> <span class="token function">nullSafeClassName</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span>
+<span class="token comment">// 参数为 null 时，返回 0</span>
+<span class="token keyword">int</span> <span class="token function">nullSafeHashCode</span><span class="token punctuation">(</span><span class="token class-name">Object</span> object<span class="token punctuation">)</span>
+<span class="token comment">// 参数为 null 时，返回字符串："null"</span>
+<span class="token class-name">String</span> <span class="token function">nullSafeToString</span><span class="token punctuation">(</span><span class="token keyword">boolean</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span>
+<span class="token comment">// 获取对象 HashCode（十六进制形式字符串）。参数为 null 时，返回 0 </span>
+<span class="token class-name">String</span> <span class="token function">getIdentityHexString</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span>
+<span class="token comment">// 获取对象的类名和 HashCode。参数为 null 时，返回字符串："" </span>
+<span class="token class-name">String</span> <span class="token function">identityToString</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span>
+<span class="token comment">// 相当于 toString()方法，但参数为 null 时，返回字符串：""</span>
+<span class="token class-name">String</span> <span class="token function">getDisplayString</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>判断工具</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 判断数组是否为空</span>
+<span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span>
+<span class="token comment">// 判断参数对象是否是数组</span>
+<span class="token keyword">boolean</span> <span class="token function">isArray</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span>
+<span class="token comment">// 判断数组中是否包含指定元素</span>
+<span class="token keyword">boolean</span> <span class="token function">containsElement</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">,</span> <span class="token class-name">Object</span> element<span class="token punctuation">)</span>
+<span class="token comment">// 相等，或同为 null时，返回 true</span>
+<span class="token keyword">boolean</span> <span class="token function">nullSafeEquals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> o1<span class="token punctuation">,</span> <span class="token class-name">Object</span> o2<span class="token punctuation">)</span>
+<span class="token comment">/*
+判断参数对象是否为空，判断标准为：
+    Optional: Optional.empty()
+       Array: length == 0
+CharSequence: length == 0
+  Collection: Collection.isEmpty()
+         Map: Map.isEmpty()
+ */</span>
+<span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>其他工具方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 向参数数组的末尾追加新元素，并返回一个新数组</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">A</span><span class="token punctuation">,</span> <span class="token class-name">O</span> <span class="token keyword">extends</span> <span class="token class-name">A</span><span class="token punctuation">></span></span> <span class="token class-name">A</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">addObjectToArray</span><span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">,</span> <span class="token class-name">O</span> obj<span class="token punctuation">)</span>
+<span class="token comment">// 原生基础类型数组 --> 包装类数组</span>
+<span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">toObjectArray</span><span class="token punctuation">(</span><span class="token class-name">Object</span> source<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="StringUtils-字符串操作"><a href="#StringUtils-字符串操作" class="headerlink" title="StringUtils 字符串操作"></a>StringUtils 字符串操作</h1><ol>
+<li><p>字符串判断工具</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 判断字符串是否为 null，或 ""。注意，包含空白符的字符串为非空</span>
+<span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token class-name">Object</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 判断字符串是否是以指定内容结束。忽略大小写</span>
+<span class="token keyword">boolean</span> <span class="token function">endsWithIgnoreCase</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token class-name">String</span> suffix<span class="token punctuation">)</span>
+<span class="token comment">// 判断字符串是否已指定内容开头。忽略大小写</span>
+<span class="token keyword">boolean</span> <span class="token function">startsWithIgnoreCase</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token class-name">String</span> prefix<span class="token punctuation">)</span> 
+<span class="token comment">// 是否包含空白符</span>
+<span class="token keyword">boolean</span> <span class="token function">containsWhitespace</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 判断字符串非空且长度不为 0，即，Not Empty</span>
+<span class="token keyword">boolean</span> <span class="token function">hasLength</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 判断字符串是否包含实际内容，即非仅包含空白符，也就是 Not Blank</span>
+<span class="token keyword">boolean</span> <span class="token function">hasText</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 判断字符串指定索引处是否包含一个子串。</span>
+<span class="token keyword">boolean</span> <span class="token function">substringMatch</span><span class="token punctuation">(</span><span class="token class-name">CharSequence</span> str<span class="token punctuation">,</span> <span class="token keyword">int</span> index<span class="token punctuation">,</span> <span class="token class-name">CharSequence</span> substring<span class="token punctuation">)</span>
+<span class="token comment">// 计算一个字符串中指定子串的出现次数</span>
+<span class="token keyword">int</span> <span class="token function">countOccurrencesOf</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token class-name">String</span> sub<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>字符串操作工具</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 查找并替换指定子串</span>
+<span class="token class-name">String</span> <span class="token function">replace</span><span class="token punctuation">(</span><span class="token class-name">String</span> inString<span class="token punctuation">,</span> <span class="token class-name">String</span> oldPattern<span class="token punctuation">,</span> <span class="token class-name">String</span> newPattern<span class="token punctuation">)</span>
+<span class="token comment">// 去除尾部的特定字符</span>
+<span class="token class-name">String</span> <span class="token function">trimTrailingCharacter</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token keyword">char</span> trailingCharacter<span class="token punctuation">)</span> 
+<span class="token comment">// 去除头部的特定字符</span>
+<span class="token class-name">String</span> <span class="token function">trimLeadingCharacter</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">,</span> <span class="token keyword">char</span> leadingCharacter<span class="token punctuation">)</span>
+<span class="token comment">// 去除头部的空白符</span>
+<span class="token class-name">String</span> <span class="token function">trimLeadingWhitespace</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 去除头部的空白符</span>
+<span class="token class-name">String</span> <span class="token function">trimTrailingWhitespace</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 去除头部和尾部的空白符</span>
+<span class="token class-name">String</span> <span class="token function">trimWhitespace</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 删除开头、结尾和中间的空白符</span>
+<span class="token class-name">String</span> <span class="token function">trimAllWhitespace</span><span class="token punctuation">(</span><span class="token class-name">String</span> str<span class="token punctuation">)</span>
+<span class="token comment">// 删除指定子串</span>
+<span class="token class-name">String</span> <span class="token function">delete</span><span class="token punctuation">(</span><span class="token class-name">String</span> inString<span class="token punctuation">,</span> <span class="token class-name">String</span> pattern<span class="token punctuation">)</span>
+<span class="token comment">// 删除指定字符（可以是多个）</span>
+<span class="token class-name">String</span> <span class="token function">deleteAny</span><span class="token punctuation">(</span><span class="token class-name">String</span> inString<span class="token punctuation">,</span> <span class="token class-name">String</span> charsToDelete<span class="token punctuation">)</span>
+<span class="token comment">// 对数组的每一项执行 trim() 方法</span>
+<span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">trimArrayElements</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> array<span class="token punctuation">)</span>
+<span class="token comment">// 将 URL 字符串进行解码</span>
+<span class="token class-name">String</span> <span class="token function">uriDecode</span><span class="token punctuation">(</span><span class="token class-name">String</span> source<span class="token punctuation">,</span> <span class="token class-name">Charset</span> charset<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>路径相关工具方法</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 解析路径字符串，优化其中的 “..” </span>
+<span class="token class-name">String</span> <span class="token function">cleanPath</span><span class="token punctuation">(</span><span class="token class-name">String</span> path<span class="token punctuation">)</span>
+<span class="token comment">// 解析路径字符串，解析出文件名部分</span>
+<span class="token class-name">String</span> <span class="token function">getFilename</span><span class="token punctuation">(</span><span class="token class-name">String</span> path<span class="token punctuation">)</span>
+<span class="token comment">// 解析路径字符串，解析出文件后缀名</span>
+<span class="token class-name">String</span> <span class="token function">getFilenameExtension</span><span class="token punctuation">(</span><span class="token class-name">String</span> path<span class="token punctuation">)</span>
+<span class="token comment">// 比较两个两个字符串，判断是否是同一个路径。会自动处理路径中的 “..” </span>
+<span class="token keyword">boolean</span> <span class="token function">pathEquals</span><span class="token punctuation">(</span><span class="token class-name">String</span> path1<span class="token punctuation">,</span> <span class="token class-name">String</span> path2<span class="token punctuation">)</span>
+<span class="token comment">// 删除文件路径名中的后缀部分</span>
+<span class="token class-name">String</span> <span class="token function">stripFilenameExtension</span><span class="token punctuation">(</span><span class="token class-name">String</span> path<span class="token punctuation">)</span> 
+<span class="token comment">// 以 “. 作为分隔符，获取其最后一部分</span>
+<span class="token class-name">String</span> <span class="token function">unqualify</span><span class="token punctuation">(</span><span class="token class-name">String</span> qualifiedName<span class="token punctuation">)</span>
+<span class="token comment">// 以指定字符作为分隔符，获取其最后一部分</span>
+<span class="token class-name">String</span> <span class="token function">unqualify</span><span class="token punctuation">(</span><span class="token class-name">String</span> qualifiedName<span class="token punctuation">,</span> <span class="token keyword">char</span> separator<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="CollectionUtils-集合工具"><a href="#CollectionUtils-集合工具" class="headerlink" title="CollectionUtils 集合工具"></a>CollectionUtils 集合工具</h1><ol>
+<li><p>集合判断工具</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 判断 List/Set 是否为空</span>
+<span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">)</span>
+<span class="token comment">// 判断 Map 是否为空</span>
+<span class="token keyword">boolean</span> <span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">,</span><span class="token operator">?</span><span class="token punctuation">></span></span> map<span class="token punctuation">)</span>
+<span class="token comment">// 判断 List/Set 中是否包含某个对象</span>
+<span class="token keyword">boolean</span> <span class="token function">containsInstance</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">,</span> <span class="token class-name">Object</span> element<span class="token punctuation">)</span>
+<span class="token comment">// 以迭代器的方式，判断 List/Set 中是否包含某个对象</span>
+<span class="token keyword">boolean</span> <span class="token function">contains</span><span class="token punctuation">(</span><span class="token class-name">Iterator</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> iterator<span class="token punctuation">,</span> <span class="token class-name">Object</span> element<span class="token punctuation">)</span>
+<span class="token comment">// 判断 List/Set 是否包含某些对象中的任意一个</span>
+<span class="token keyword">boolean</span> <span class="token function">containsAny</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> source<span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> candidates<span class="token punctuation">)</span>
+<span class="token comment">// 判断 List/Set 中的每个元素是否唯一。即 List/Set 中不存在重复元素</span>
+<span class="token keyword">boolean</span> <span class="token function">hasUniqueObject</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>集合操作工具</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 将 Array 中的元素都添加到 List/Set 中</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token keyword">void</span> <span class="token function">mergeArrayIntoCollection</span><span class="token punctuation">(</span><span class="token class-name">Object</span> array<span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> collection<span class="token punctuation">)</span> 
+<span class="token comment">// 将 Properties 中的键值对都添加到 Map 中</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> <span class="token keyword">void</span> <span class="token function">mergePropertiesIntoMap</span><span class="token punctuation">(</span><span class="token class-name">Properties</span> props<span class="token punctuation">,</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span><span class="token punctuation">,</span><span class="token class-name">V</span><span class="token punctuation">></span></span> map<span class="token punctuation">)</span>
+<span class="token comment">// 返回 List 中最后一个元素</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">T</span> <span class="token function">lastElement</span><span class="token punctuation">(</span><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> list<span class="token punctuation">)</span> 
+<span class="token comment">// 返回 Set 中最后一个元素</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">T</span> <span class="token function">lastElement</span><span class="token punctuation">(</span><span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> set<span class="token punctuation">)</span> 
+<span class="token comment">// 返回参数 candidates 中第一个存在于参数 source 中的元素</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> <span class="token class-name">E</span> <span class="token function">findFirstMatch</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> source<span class="token punctuation">,</span> <span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">E</span><span class="token punctuation">></span></span> candidates<span class="token punctuation">)</span>
+<span class="token comment">// 返回 List/Set 中指定类型的元素。</span>
+<span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token class-name">T</span> <span class="token function">findValueOfType</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">,</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> type<span class="token punctuation">)</span>
+<span class="token comment">// 返回 List/Set 中指定类型的元素。如果第一种类型未找到，则查找第二种类型，以此类推</span>
+<span class="token class-name">Object</span> <span class="token function">findValueOfType</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">,</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> types<span class="token punctuation">)</span>
+<span class="token comment">// 返回 List/Set 中元素的类型</span>
+<span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> <span class="token function">findCommonElementType</span><span class="token punctuation">(</span><span class="token class-name">Collection</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> collection<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="FileCopyUtils-文件处理"><a href="#FileCopyUtils-文件处理" class="headerlink" title="FileCopyUtils 文件处理"></a>FileCopyUtils 文件处理</h1><ol>
+<li><p>输入</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 从文件中读入到字节数组中</span>
+<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">copyToByteArray</span><span class="token punctuation">(</span><span class="token class-name">File</span> in<span class="token punctuation">)</span>
+<span class="token comment">// 从输入流中读入到字节数组中</span>
+<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">copyToByteArray</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">)</span>
+<span class="token comment">// 从输入流中读入到字符串中</span>
+<span class="token class-name">String</span> <span class="token function">copyToString</span><span class="token punctuation">(</span><span class="token class-name">Reader</span> in<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>输出</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 从字节数组到文件</span>
+<span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> in<span class="token punctuation">,</span> <span class="token class-name">File</span> out<span class="token punctuation">)</span>
+<span class="token comment">// 从文件到文件</span>
+<span class="token keyword">int</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">File</span> in<span class="token punctuation">,</span> <span class="token class-name">File</span> out<span class="token punctuation">)</span>
+<span class="token comment">// 从字节数组到输出流</span>
+<span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> in<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span> 
+<span class="token comment">// 从输入流到输出流</span>
+<span class="token keyword">int</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span> 
+<span class="token comment">// 从输入流到输出流</span>
+<span class="token keyword">int</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">Reader</span> in<span class="token punctuation">,</span> <span class="token class-name">Writer</span> out<span class="token punctuation">)</span>
+<span class="token comment">// 从字符串到输出流</span>
+<span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">String</span> in<span class="token punctuation">,</span> <span class="token class-name">Writer</span> out<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="ResourceUtils-资源处理"><a href="#ResourceUtils-资源处理" class="headerlink" title="ResourceUtils 资源处理"></a>ResourceUtils 资源处理</h1><ol>
+<li><p>从资源路径获取文件</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 判断字符串是否是一个合法的 URL 字符串。</span>
+<span class="token keyword">static</span> <span class="token keyword">boolean</span> <span class="token function">isUrl</span><span class="token punctuation">(</span><span class="token class-name">String</span> resourceLocation<span class="token punctuation">)</span>
+<span class="token comment">// 获取 URL</span>
+<span class="token keyword">static</span> <span class="token class-name">URL</span> <span class="token function">getURL</span><span class="token punctuation">(</span><span class="token class-name">String</span> resourceLocation<span class="token punctuation">)</span> 
+<span class="token comment">// 获取文件（在 JAR 包内无法正常使用，需要是一个独立的文件）</span>
+<span class="token keyword">static</span> <span class="token class-name">File</span> <span class="token function">getFile</span><span class="token punctuation">(</span><span class="token class-name">String</span> resourceLocation<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>Resource</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 文件系统资源 D:\...</span>
+<span class="token class-name">FileSystemResource</span>
+<span class="token comment">// URL 资源，如 file://... http://...</span>
+<span class="token class-name">UrlResource</span>
+<span class="token comment">// 类路径下的资源，classpth:...</span>
+<span class="token class-name">ClassPathResource</span>
+<span class="token comment">// Web 容器上下文中的资源（jar 包、war 包）</span>
+<span class="token class-name">ServletContextResource</span>
+<span class="token comment">// 判断资源是否存在</span>
+<span class="token keyword">boolean</span> <span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 从资源中获得 File 对象</span>
+<span class="token class-name">File</span> <span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 从资源中获得 URI 对象</span>
+<span class="token class-name">URI</span> <span class="token function">getURI</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 从资源中获得 URI 对象</span>
+<span class="token class-name">URL</span> <span class="token function">getURL</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 获得资源的 InputStream</span>
+<span class="token class-name">InputStream</span> <span class="token function">getInputStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 获得资源的描述信息</span>
+<span class="token class-name">String</span> <span class="token function">getDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="StreamUtils-流处理"><a href="#StreamUtils-流处理" class="headerlink" title="StreamUtils 流处理"></a>StreamUtils 流处理</h1><ol>
+<li><p>输入</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> in<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span>
+<span class="token keyword">int</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span>
+<span class="token keyword">void</span> <span class="token function">copy</span><span class="token punctuation">(</span><span class="token class-name">String</span> in<span class="token punctuation">,</span> <span class="token class-name">Charset</span> charset<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">)</span>
+<span class="token keyword">long</span> <span class="token function">copyRange</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">,</span> <span class="token class-name">OutputStream</span> out<span class="token punctuation">,</span> <span class="token keyword">long</span> start<span class="token punctuation">,</span> <span class="token keyword">long</span> end<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>输出</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">copyToByteArray</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">)</span>
+<span class="token class-name">String</span> <span class="token function">copyToString</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">,</span> <span class="token class-name">Charset</span> charset<span class="token punctuation">)</span>
+<span class="token comment">// 舍弃输入流中的内容</span>
+<span class="token keyword">int</span> <span class="token function">drain</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
 
                 
             </div>
@@ -1296,7 +1515,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">460.1k</span>&nbsp;字
+                class="white-color">462.1k</span>&nbsp;字
             
             
             

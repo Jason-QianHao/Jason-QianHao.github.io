@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.4k
+                    10.3k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    42 分
+                    41 分
                 </div>
                 
 
@@ -650,10 +650,9 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> <span class="token function">getObjectType</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
    <span class="token comment">//返回由 FactoryBean 创建的 Bean 实例的作用域是 singleton 还是 prototype</span>
    <span class="token keyword">boolean</span> <span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="IOC容器的使用步骤："><a href="#IOC容器的使用步骤：" class="headerlink" title="IOC容器的使用步骤："></a>IOC容器的使用步骤：</h4></li>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<p>（1）创建IOC配置文件的抽象资源，这个抽象资源包含了BeanDefinition的定义信息。<br>    ClassPathResource res = new ClassPathResource(“bean.xml”);<br>（2）创建一个BeanFactory。<br>    DefaultListableBeanFactory factory = new DefaultListableBeanFactory();<br>（3）创建一个BeanDefinitionReader。<br>    XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);<br>（4）加载配置信息，完成载入和注册Bean定义。<br>    reader.loadBeanDefinitions(res);</p>
+<h4 id="IOC容器的使用步骤："><a href="#IOC容器的使用步骤：" class="headerlink" title="IOC容器的使用步骤："></a>IOC容器的使用步骤：</h4><p>（1）创建IOC配置文件的抽象资源，这个抽象资源包含了BeanDefinition的定义信息。<br>    ClassPathResource res = new ClassPathResource(“bean.xml”);<br>（2）创建一个BeanFactory。<br>    DefaultListableBeanFactory factory = new DefaultListableBeanFactory();<br>（3）创建一个BeanDefinitionReader。<br>    XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(factory);<br>（4）加载配置信息，完成载入和注册Bean定义。<br>    reader.loadBeanDefinitions(res);</p>
 <ul>
 <li>BeanDefinition<br>BeanFactory 是 Bean 容器，那么 Bean 又是什么呢？这里的 BeanDefinition 就是我们所说的 Spring 的 Bean，我们自己定义的各个 Bean 其实会转换成一个个 BeanDefinition 存在于 Spring 的 BeanFactory 中。所以 Bean 在代码层面上可以简单认为是 BeanDefinition 的实例BeanDefinition 中保存了我们的 Bean 信息，比如这个 Bean 指向的是哪个类、是否是单例的、是否懒加载、这个 Bean 依赖了哪些 Bean 等等。</li>
 </ul>
@@ -671,10 +670,17 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 <p><em>IOC初始化过程</em>:</p>
 <p><img src="http://jason-qianhao.xyz/1240-20210629151319746.png" alt="img"></p>
 <ul>
-<li>一些注意点<br>（1）Bean的依赖注入发生在第一次getBean()方法调用时<br>（2）设置了lazyinit属性的Bean，在IOC容器初始化完成注入<br>（3）创建bean实例的两种方法：<pre><code>  - BeanUtils中的JVM反射
-        - CGLIB
-</code></pre>
-（4）在Bean的创建和对象依赖注入中，递归完成依赖注入。</li>
+<li>一些注意点<ol>
+<li>Bean的依赖注入发生在第一次getBean()方法调用时</li>
+<li>设置了lazyinit属性的Bean，在IOC容器初始化完成注入</li>
+<li>创建bean实例的两种方法：<ul>
+<li>BeanUtils中的JVM反射</li>
+<li>CGLIB</li>
+</ul>
+</li>
+<li>在Bean的创建和对象依赖注入中，递归完成依赖注入</li>
+</ol>
+</li>
 </ul>
 <h2 id="IOC中的Bean"><a href="#IOC中的Bean" class="headerlink" title="IOC中的Bean"></a>IOC中的Bean</h2><h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><p>（1）singleton 单例模式（默认）。Bean类中的全局变量用TheadLocal来定义，解决线程安全问题。<br>（2）prototype，每次请求会创建一个新的bean实例。<br>（3）request，Http请求创建一个Bean，仅在当前request有效。<br>（4）session，Http请求创建一个Bean，仅在当前session有效。<br>（5）global-session，全局session，在基于portlet的web中有效。</p>
 <h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>（1）Bean容器中找到Bean定义。<br>（2）创建bean实例<br>（3）bean属性注入<br>（4）如果实现了*.Aware接口，调用setXXX（）方法。<br>（5）如果实现了BeanPostProcess方法，调用postProcessBeforeInitialization方法。<br>（6）如果实现了InitializingBean接口，调用afterPropertiesSet方法。<br>（7）如果配置文件中定义包含Init-method属性，执行指定方法<br>（8）如果实现了BeanPostProcess方法，调用postProcessAfterInitialization()方法。<br>（9）如果实现了DisposableBean接口，执行destroy()方法<br>（10）如果在配置文件中定义包含destroy-method属性，执行指定方法。</p>
@@ -710,10 +716,9 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 </li>
 <li><p>注解<br>  <strong>使用注解步骤</strong></p>
 <ul>
-<li>先引入context名称空间<pre><code>  `xmlns:context=&quot;http://www.springframework.org/schema/context&quot;`
-</code></pre>
-</li>
-<li>开启注解扫描  <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cn.itcast.e_anno2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>								<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li>先引入context名称空间   <code>xmlns:context=&quot;http://www.springframework.org/schema/context</code></li>
+<li>开启注解扫描  <pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token namespace">context:</span>component-scan</span> <span class="token attr-name">base-package</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>cn.itcast.e_anno2<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span><span class="token namespace">context:</span>component-scan</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
 <li>使用注解，通过注解的方式，把对象加入ioc容器。</li>
 </ul>
 <p><strong>创建对象以及处理对象依赖关系，相关的注解：</strong></p>
@@ -734,7 +739,14 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 @Resource是jdk1.6  默认以名称查找 再以类型
 
 如果xml和注解混合使用，先走xml<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>@Component 和 @Bean 的区别是什么？</strong><br>      a. 作用对象不同：@Component注解作用于类，而@Bean注解作用于方法。<br>      b. @Component通常通过类路径扫描(@ComponentScan)来自动侦测以及自动装配到<br>        Spring容器中；@Bean注解通常是在标有该注解的方法中定义产生这个Bean，<br>        @bean告诉Spring这是某个类的实例，当需要它的时候还给我。<br>      c. @Bean注解比Component注解的自定义性更强，而且很多地方只能通过@Bean注解<br>        来注册bean。特别是引用第三方库中的类需要装配到Spring容器时，只能通过<br>        @Bean实现。</p>
+<p><strong>@Component 和 @Bean 的区别是什么？</strong></p>
+<blockquote>
+<ol>
+<li>作用对象不同：@Component注解作用于类，而@Bean注解作用于方法。</li>
+<li>@Component通常通过类路径扫描(@ComponentScan)来自动侦测以及自动装配到Spring容器中；@Bean注解通常是在标有该注解的方法中定义产生这个Bean，@bean告诉Spring这是某个类的实例，当需要它的时候还给我。</li>
+<li>@Bean注解比Component注解的自定义性更强，而且很多地方只能通过@Bean注解来注册bean。特别是引用第三方库中的类需要装配到Spring容器时，只能通过@Bean实现。</li>
+</ol>
+</blockquote>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Bean</span>
 <span class="token keyword">public</span> <span class="token class-name">OneService</span> <span class="token function">getService</span><span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
    <span class="token keyword">case</span> <span class="token punctuation">(</span>status<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -925,61 +937,61 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>（3）配置Advice</p>
-<pre class="line-numbers language-none"><code class="language-none">@Aspect
-public class AdviceExample&#123;
-  &#x2F;&#x2F; 这里会用到我们前面说的 SystemArchitecture
-  &#x2F;&#x2F; 下面方法就是写拦截 &quot;dao层实现&quot;
-  @Before(&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;)
-  public void doAccessCheck()&#123;
-  &#x2F;&#x2F; ... 实现代码
-  &#125;
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Aspect</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">AdviceExample</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// 这里会用到我们前面说的 SystemArchitecture</span>
+  <span class="token comment">// 下面方法就是写拦截 "dao层实现"</span>
+  <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAccessCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// ... 实现代码</span>
+  <span class="token punctuation">&#125;</span>
  
-  &#x2F;&#x2F; 当然，我们也可以直接&quot;内联&quot;Pointcut，直接在这里定义 Pointcut
-  &#x2F;&#x2F; 把 Advice 和 Pointcut 合在一起了，但是这两个概念我们还是要区分清楚的
-  @Before(&quot;execution(* com.javadoop.dao.*.*(..))&quot;)
-  public void doAccessCheck()&#123;
-  &#x2F;&#x2F; ... 实现代码
-  &#125;
-  @AfterReturning(&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;)
-  publicvoiddoAccessCheck()&#123;
-  &#x2F;&#x2F; ...
-  &#125;
-  @AfterReturning( pointcut&#x3D;&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;, returning&#x3D;&quot;retVal&quot;)
-  publicvoiddoAccessCheck(Object retVal)&#123;
-    &#x2F;&#x2F; 这样，进来这个方法的处理时候，retVal 就是相应方法的返回值，是不是非常方便
-    &#x2F;&#x2F; ... 实现代码
-  &#125;
+  <span class="token comment">// 当然，我们也可以直接"内联"Pointcut，直接在这里定义 Pointcut</span>
+  <span class="token comment">// 把 Advice 和 Pointcut 合在一起了，但是这两个概念我们还是要区分清楚的</span>
+  <span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"execution(* com.javadoop.dao.*.*(..))"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doAccessCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// ... 实现代码</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">)</span>
+  <span class="token function">publicvoiddoAccessCheck</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// ...</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token annotation punctuation">@AfterReturning</span><span class="token punctuation">(</span> pointcut<span class="token operator">=</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">,</span> returning<span class="token operator">=</span><span class="token string">"retVal"</span><span class="token punctuation">)</span>
+  <span class="token function">publicvoiddoAccessCheck</span><span class="token punctuation">(</span><span class="token class-name">Object</span> retVal<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 这样，进来这个方法的处理时候，retVal 就是相应方法的返回值，是不是非常方便</span>
+    <span class="token comment">// ... 实现代码</span>
+  <span class="token punctuation">&#125;</span>
  
-  &#x2F;&#x2F; 异常返回
-  @AfterThrowing(&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;)
-  publicvoiddoRecoveryActions()&#123;
-  &#x2F;&#x2F; ... 实现代码
-  &#125;
-  @AfterThrowing( pointcut&#x3D;&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;, throwing&#x3D;&quot;ex&quot;)
-  public void doRecoveryActions(DataAccessException ex)&#123;
-  &#x2F;&#x2F; ... 实现代码
-  &#125;
-  &#x2F;&#x2F; 注意理解它和 @AfterReturning 之间的区别，这里会拦截正常返回和异常的情况
-  @After(&quot;com.javadoop.aop.SystemArchitecture.dataAccessOperation()&quot;)
-  public void doReleaseLock()&#123;
-    &#x2F;&#x2F; 通常就像 finally 块一样使用，用来释放资源。
-    &#x2F;&#x2F; 无论正常返回还是异常退出，都会被拦截到
-  &#125;
-  &#x2F;&#x2F; 感觉这个很有用吧，既能做 @Before 的事情，也可以做 @AfterReturning 的事情
-  @Around(&quot;com.javadoop.aop.SystemArchitecture.businessService()&quot;)
-  public Object doBasicProfiling(ProceedingJoinPoint pjp)throwsThrowable&#123;
-  &#x2F;&#x2F; start stopwatchObject
-  retVal &#x3D; pjp.proceed();
-  &#x2F;&#x2F; stop stopwatchreturnretVal; 
-  &#125;
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token comment">// 异常返回</span>
+  <span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">)</span>
+  <span class="token function">publicvoiddoRecoveryActions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// ... 实现代码</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token annotation punctuation">@AfterThrowing</span><span class="token punctuation">(</span> pointcut<span class="token operator">=</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">,</span> throwing<span class="token operator">=</span><span class="token string">"ex"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doRecoveryActions</span><span class="token punctuation">(</span><span class="token class-name">DataAccessException</span> ex<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment">// ... 实现代码</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">// 注意理解它和 @AfterReturning 之间的区别，这里会拦截正常返回和异常的情况</span>
+  <span class="token annotation punctuation">@After</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.aop.SystemArchitecture.dataAccessOperation()"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">doReleaseLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token comment">// 通常就像 finally 块一样使用，用来释放资源。</span>
+    <span class="token comment">// 无论正常返回还是异常退出，都会被拦截到</span>
+  <span class="token punctuation">&#125;</span>
+  <span class="token comment">// 感觉这个很有用吧，既能做 @Before 的事情，也可以做 @AfterReturning 的事情</span>
+  <span class="token annotation punctuation">@Around</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.aop.SystemArchitecture.businessService()"</span><span class="token punctuation">)</span>
+  <span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">doBasicProfiling</span><span class="token punctuation">(</span><span class="token class-name">ProceedingJoinPoint</span> pjp<span class="token punctuation">)</span>throwsThrowable<span class="token punctuation">&#123;</span>
+  <span class="token comment">// start stopwatchObject</span>
+  retVal <span class="token operator">=</span> pjp<span class="token punctuation">.</span><span class="token function">proceed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// stop stopwatchreturnretVal; </span>
+  <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>此外，Spring 提供了非常简单的获取入参的方法，使用 org.aspectj.lang.<strong>JoinPoint</strong> 作为 Advice 的第一个参数即可，如：</li>
 </ul>
-<pre class="line-numbers language-none"><code class="language-none">@Before(&quot;com.javadoop.springaoplearning.aop_spring_2_aspectj.SystemArchitecture.businessService()&quot;)
-public void logArgs(JoinPoint joinPoint)&#123;  
-  System.out.println(&quot;方法执行前，打印入参：&quot;+ Arrays.toString(joinPoint.getArgs()));
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Before</span><span class="token punctuation">(</span><span class="token string">"com.javadoop.springaoplearning.aop_spring_2_aspectj.SystemArchitecture.businessService()"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">logArgs</span><span class="token punctuation">(</span><span class="token class-name">JoinPoint</span> joinPoint<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>  
+  <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"方法执行前，打印入参："</span><span class="token operator">+</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span>joinPoint<span class="token punctuation">.</span><span class="token function">getArgs</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>注意</strong>：第一，必须放置在第一个参数上；第二，如果是 @Around，我们通常会使用其子类 ProceedingJoinPoint，因为它有 procceed()/procceed(args[]) 方法。</p>
 <h3 id="schema-based-配置"><a href="#schema-based-配置" class="headerlink" title="schema-based 配置"></a>schema-based 配置</h3><p>  是 Spring 2.0 以后提供的基于<code> &lt;aop /&gt;</code> 命名空间的 XML 配置。这里说的 schema-based 就是指基于 aop 这个 schema。</p>
 <h2 id="AOP源码分析"><a href="#AOP源码分析" class="headerlink" title="AOP源码分析"></a>AOP源码分析</h2><img src="http://jason-qianhao.xyz/1240-20210629151320079.png" alt="img" style="zoom:50%;" />
@@ -1150,14 +1162,15 @@ public void logArgs(JoinPoint joinPoint)&#123;
 <li><p>粒度：整个方法</p>
 </li>
 <li><p>事务管理器类：</p>
-<pre><code> Jdbc技术：**DataSourceTransactionManager**       
-</code></pre>
+<p> ​    Jdbc技术：<strong>DataSourceTransactionManager</strong>       </p>
 <p> ​    Hibernate技术：<strong>HibernateTransactionManager</strong></p>
 <ul>
-<li><strong>配置方式：</strong><br>  XML<br>   @Transactional注解</li>
-<li>注意点<pre><code>  事物是程序运行如果没有错误,会自动提交事物,如果程序运行发生异常,则会自动回滚。 **如果使用了try捕获异常时.一定要在catch里面手动回滚。**
-</code></pre>
+<li><strong>配置方式：</strong><ul>
+<li>XML</li>
+<li>@Transactional注解</li>
+</ul>
 </li>
+<li>注意点  事物是程序运行如果没有错误,会自动提交事物,如果程序运行发生异常,则会自动回滚。 <strong>如果使用了try捕获异常时.一定要在catch里面手动回滚。</strong></li>
 </ul>
 </li>
 </ul>
@@ -1190,11 +1203,11 @@ public void logArgs(JoinPoint joinPoint)&#123;
 <li><p>hession 使用二进制协议</p>
 </li>
 <li><p>Burlap 基于XML</p>
-<pre><code>但是都是基于http协议设计
-</code></pre>
+<p>​    但是都是基于http协议设计</p>
 </li>
 </ul>
-<p>（3）Spring RMI<br>    基于TCP/IP协议，使用序列化传输对象。</p>
+<p>（3）Spring RMI</p>
+<p>​    基于TCP/IP协议，使用序列化传输对象。</p>
 <h1 id="Spring代码"><a href="#Spring代码" class="headerlink" title="Spring代码"></a>Spring代码</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>project</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
 <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>modelVersion</span><span class="token punctuation">></span></span>4.0.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>modelVersion</span><span class="token punctuation">></span></span>
@@ -2003,7 +2016,7 @@ public void logArgs(JoinPoint joinPoint)&#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">460.1k</span>&nbsp;字
+                class="white-color">462.1k</span>&nbsp;字
             
             
             
