@@ -481,8 +481,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><em>由简书搬迁而来<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9e4868a3fd70"><strong>原文链接</strong></a></em></p>
-<h1 id="ITDatabase"><a href="#ITDatabase" class="headerlink" title="ITDatabase"></a>ITDatabase</h1><h2 id="系统总体架构"><a href="#系统总体架构" class="headerlink" title="系统总体架构"></a>系统总体架构</h2><img src="http://jason-qianhao.xyz/1240-20210704082006202.jpeg" alt="img" />
+                <h1 id="ITDatabase"><a href="#ITDatabase" class="headerlink" title="ITDatabase"></a>ITDatabase</h1><h2 id="系统总体架构"><a href="#系统总体架构" class="headerlink" title="系统总体架构"></a>系统总体架构</h2><img src="http://jason-qianhao.xyz/1240-20210704082006202.jpeg" alt="img" />
 
 <h2 id="系统流程图"><a href="#系统流程图" class="headerlink" title="系统流程图"></a>系统流程图</h2><img src="http://jason-qianhao.xyz/1240-20210704082006160.jpeg" alt="img" />
 
@@ -628,7 +627,8 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
 <p>​    和数据库字段名保持一致</p>
 <h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
  <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
- <span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
+ <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
+ 	<span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
 <span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
  <span class="token key atrule">configuration</span><span class="token punctuation">:</span>
 <span class="token comment"># 开启驼峰uName自动映射到u_name</span>
@@ -669,7 +669,7 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
     <span class="token key atrule">max-idle</span><span class="token punctuation">:</span> <span class="token number">100</span>
     <span class="token key atrule">min-idle</span><span class="token punctuation">:</span> <span class="token number">1</span>
     <span class="token key atrule">max-active</span><span class="token punctuation">:</span> <span class="token number">1000</span>
-    <span class="token key atrule">max-wait</span><span class="token punctuation">:</span> <span class="token number">-11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    <span class="token key atrule">max-wait</span><span class="token punctuation">:</span> <span class="token number">-11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h3 id="工程结构截图"><a href="#工程结构截图" class="headerlink" title="工程结构截图"></a>工程结构截图</h3><img src="http://jason-qianhao.xyz/1240-20210704082006194.png" alt="img" />
 
@@ -709,7 +709,7 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2021/01/19/itdatabase/">https://jason-qianhao.github.io/2021/01/19/itdatabase/</a>
+                    <a href="https://jason-qianhao.github.io/2021/01/19/zai-xian-zi-yuan-gong-xiang-itdatabase/">https://jason-qianhao.github.io/2021/01/19/zai-xian-zi-yuan-gong-xiang-itdatabase/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1230,12 +1230,12 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                         <span class="chip bg-color">Spring</span>
                     </a>
                     
-                    <a href="/tags/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/">
-                        <span class="chip bg-color">项目仓库</span>
-                    </a>
-                    
                     <a href="/tags/SpringCloud/">
                         <span class="chip bg-color">SpringCloud</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/">
+                        <span class="chip bg-color">项目仓库</span>
                     </a>
                     
                 </div>
@@ -1432,7 +1432,7 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">462.1k</span>&nbsp;字
+                class="white-color">461.9k</span>&nbsp;字
             
             
             

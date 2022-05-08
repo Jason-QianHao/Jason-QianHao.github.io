@@ -455,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    441
+                    442
                 </div>
                 
 
@@ -512,7 +512,8 @@
 <p>我使用的Springboot的版本是2.6.7</p>
 <h1 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h1><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
    <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
-   <span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
+   <span class="token key atrule">servlet</span><span class="token punctuation">:</span> 
+   	<span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
 
 <span class="token key atrule">springdoc</span><span class="token punctuation">:</span>
   <span class="token key atrule">swagger-ui</span><span class="token punctuation">:</span>
@@ -528,7 +529,7 @@
   <span class="token comment"># 配置需要生成接口文档的扫描包</span>
   <span class="token key atrule">packages-to-scan</span><span class="token punctuation">:</span> com.jason.controller
   <span class="token comment"># 配置需要生成接口文档的接口路径</span>
-  <span class="token key atrule">paths-to-match</span><span class="token punctuation">:</span> /test/<span class="token important">**</span><span class="token punctuation">,</span>/admin/<span class="token important">**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+  <span class="token key atrule">paths-to-match</span><span class="token punctuation">:</span> /test/<span class="token important">**</span><span class="token punctuation">,</span>/admin/<span class="token important">**</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="配置类"><a href="#配置类" class="headerlink" title="配置类"></a>配置类</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SpringDocConfig</span> <span class="token punctuation">&#123;</span>
@@ -1340,7 +1341,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">462.1k</span>&nbsp;字
+                class="white-color">461.9k</span>&nbsp;字
             
             
             
