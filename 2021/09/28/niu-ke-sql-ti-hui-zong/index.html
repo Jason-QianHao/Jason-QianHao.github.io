@@ -1068,14 +1068,25 @@ last_name <span class="token keyword">varchar</span><span class="token punctuati
 
 <h4 id="SQL60"><a href="#SQL60" class="headerlink" title="SQL60"></a>SQL60</h4><img src="http://jason-qianhao.xyz/image-20211014110905479.png" alt="image-20211014110905479" style="zoom:50%;" />
 
-<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span> s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 方法一</span>
+<span class="token keyword">SELECT</span> s1<span class="token punctuation">.</span>emp_no<span class="token punctuation">,</span> s1<span class="token punctuation">.</span>salary<span class="token punctuation">,</span>
 <span class="token punctuation">(</span><span class="token keyword">SELECT</span> <span class="token function">SUM</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span>salary<span class="token punctuation">)</span>
 <span class="token keyword">FROM</span> salaries <span class="token keyword">AS</span> s2
 <span class="token keyword">WHERE</span> s2<span class="token punctuation">.</span>emp_no <span class="token operator">&lt;=</span> s1<span class="token punctuation">.</span>emp_no
 <span class="token operator">AND</span> s2<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span><span class="token punctuation">)</span> <span class="token keyword">AS</span> running_total
 <span class="token keyword">FROM</span> salaries <span class="token keyword">AS</span> s1
 <span class="token keyword">WHERE</span> s1<span class="token punctuation">.</span>to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span>
-<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> s1<span class="token punctuation">.</span>emp_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> s1<span class="token punctuation">.</span>emp_no<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment"># 方法二</span>
+<span class="token keyword">select</span>
+    emp_no<span class="token punctuation">,</span>
+    salary<span class="token punctuation">,</span>
+    <span class="token function">sum</span><span class="token punctuation">(</span>salary<span class="token punctuation">)</span> <span class="token keyword">over</span><span class="token punctuation">(</span><span class="token keyword">order</span> <span class="token keyword">by</span> emp_no<span class="token punctuation">)</span> <span class="token keyword">as</span> running_total
+<span class="token keyword">from</span>
+    salaries
+<span class="token keyword">where</span>
+    to_date <span class="token operator">=</span> <span class="token string">'9999-01-01'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h4 id="SQL65"><a href="#SQL65" class="headerlink" title="SQL65"></a>SQL65</h4><img src="http://jason-qianhao.xyz/image-20211014111602913.png" alt="image-20211014111602913" style="zoom:50%;" />
 
