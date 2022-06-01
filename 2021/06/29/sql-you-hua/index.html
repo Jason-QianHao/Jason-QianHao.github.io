@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    122
+                    588
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -477,10 +477,74 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="书写高质量SQL的30条建议"><a href="#书写高质量SQL的30条建议" class="headerlink" title="书写高质量SQL的30条建议"></a>书写高质量SQL的30条建议</h2><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486461&idx=1&sn=60a22279196d084cc398936fe3b37772&chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&token=1987003517&lang=zh_CN%23rd">书写高质量SQL的30条建议</a></p>
-<h2 id="Order-by-底层原理和SQL优化"><a href="#Order-by-底层原理和SQL优化" class="headerlink" title="Order by 底层原理和SQL优化"></a>Order by 底层原理和SQL优化</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34162294/article/details/105508631">order by 底层原理和优化查询案例</a></p>
-<h2 id="MySQL分页查询优化"><a href="#MySQL分页查询优化" class="headerlink" title="MySQL分页查询优化"></a>MySQL分页查询优化</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/scotth/p/7995856.html">分页查询的性能优化方案</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41092717/article/details/82351735?utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">sql进行Order by排序再进行分页limit取值会出现重复显示问题</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/nannan819/article/details/54171708">mysql分页出现重复数据-order by</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42365510/article/details/113221579?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-1-113221579.pc_agg_rank_aggregation&utm_term=mysql%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2&spm=1000.2123.3001.4430">mysql百万级别数据查询_MySQL百万级数据量分页查询方法及其优化_hateful harmful的博客-CSDN博客</a></p>
+                <blockquote>
+<p>目录：</p>
+<ol>
+<li>SQL优化的一般步骤</li>
+</ol>
+<p>参考/来源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dV-2vI8tRESbq-CyOG3ybA">https://mp.weixin.qq.com/s/dV-2vI8tRESbq-CyOG3ybA</a></li>
+</ul>
+</blockquote>
+<h1 id="SQL优化的一般步骤"><a href="#SQL优化的一般步骤" class="headerlink" title="SQL优化的一般步骤"></a>SQL优化的一般步骤</h1><ol>
+<li><p>通过慢查日志等定位那些执行效率较低的 SQL 语句</p>
+</li>
+<li><p>explain 分析SQL的执行计划，需要重点关注 type、rows、filtered、extra</p>
+</li>
+<li><p>show profile 分析</p>
+<p>了解 SQL 执行的线程的状态及消耗的时间。</p>
+<p>默认是关闭的，开启语句“set profiling = 1;”</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SHOW</span> PROFILES <span class="token punctuation">;</span>
+<span class="token keyword">SHOW</span> PROFILE <span class="token keyword">FOR</span> QUERY  <span class="token comment">#&#123;id&#125;;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<li><p>trace </p>
+<p>trace分析优化器如何选择执行计划，通过 trace 文件能够进一步了解为什么优惠券选择 A 执行计划而不选择 B 执行计划。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">set</span> optimizer_trace<span class="token operator">=</span><span class="token string">"enabled=on"</span><span class="token punctuation">;</span>
+<span class="token keyword">set</span> optimizer_trace_max_mem_size<span class="token operator">=</span><span class="token number">1000000</span><span class="token punctuation">;</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> information_schema<span class="token punctuation">.</span>optimizer_trace<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
+<li><p>确定问题并采用相应的措施</p>
+<ul>
+<li>优化索引</li>
+<li>优化 SQL 语句：修改 SQL、IN 查询分段、时间查询分段、基于上一次数据过滤</li>
+<li>改用其他实现方式：ES、数仓等</li>
+<li>数据碎片处理</li>
+</ul>
+</li>
+</ol>
+<h1 id="书写高质量SQL的30条建议"><a href="#书写高质量SQL的30条建议" class="headerlink" title="书写高质量SQL的30条建议"></a>书写高质量SQL的30条建议</h1><p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=Mzg2OTA0Njk0OA==&mid=2247486461&idx=1&sn=60a22279196d084cc398936fe3b37772&chksm=cea24436f9d5cd20a4fa0e907590f3e700d7378b3f608d7b33bb52cfb96f503b7ccb65a1deed&token=1987003517&lang=zh_CN%23rd">书写高质量SQL的30条建议</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/dV-2vI8tRESbq-CyOG3ybA">优化慢SQL</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/OQf4_Omy-TUWJ7TM7ITq8Q">8种最坑SQL写法</a></p>
+<h1 id="Order-by-底层原理和SQL优化"><a href="#Order-by-底层原理和SQL优化" class="headerlink" title="Order by 底层原理和SQL优化"></a>Order by 底层原理和SQL优化</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_34162294/article/details/105508631">order by 底层原理和优化查询案例</a></p>
+<h1 id="MySQL分页查询优化"><a href="#MySQL分页查询优化" class="headerlink" title="MySQL分页查询优化"></a>MySQL分页查询优化</h1><ol>
+<li><p>一般来说，是将上一页的最大值当成参数作为查询条件的，通过where条件，快速定位起始位置。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token keyword">SELECT</span>   <span class="token operator">*</span>
+<span class="token keyword">FROM</span>     operation
+<span class="token keyword">WHERE</span>    <span class="token keyword">type</span> <span class="token operator">=</span> <span class="token string">'SQLStats'</span>
+<span class="token operator">AND</span>      name <span class="token operator">=</span> <span class="token string">'SlowLog'</span>
+<span class="token operator">AND</span>      create_time <span class="token operator">></span> <span class="token string">'2017-03-16 14:00:00'</span>
+<span class="token keyword">ORDER</span> <span class="token keyword">BY</span> create_time <span class="token keyword">limit</span> <span class="token number">10</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>在新设计下查询时间基本固定，不会随着数据量的增长而发生变化。</p>
+</li>
+<li><p>索引覆盖+子查询优化</p>
+<p>因为我们有主键id，并且在上面建了索引，所以可以先在索引树中找到开始位置的 id值，再根据找到的id值查询行数据。</p>
+<pre class="line-numbers language-sql" data-language="sql"><code class="language-sql"><span class="token comment">/*子查询获取偏移4800000条的位置的id，在这个位置上往后取25*/</span>
+ <span class="token keyword">SELECT</span> a<span class="token punctuation">.</span>empno<span class="token punctuation">,</span>a<span class="token punctuation">.</span>empname<span class="token punctuation">,</span>a<span class="token punctuation">.</span>job<span class="token punctuation">,</span>a<span class="token punctuation">.</span>sal<span class="token punctuation">,</span>b<span class="token punctuation">.</span>depno<span class="token punctuation">,</span>b<span class="token punctuation">.</span>depname
+ <span class="token keyword">from</span> emp a <span class="token keyword">left</span> <span class="token keyword">join</span> dep b <span class="token keyword">on</span> a<span class="token punctuation">.</span>depno <span class="token operator">=</span> b<span class="token punctuation">.</span>depno
+ <span class="token keyword">where</span> a<span class="token punctuation">.</span>id <span class="token operator">>=</span> <span class="token punctuation">(</span><span class="token keyword">select</span> id <span class="token keyword">from</span> emp <span class="token keyword">order</span> <span class="token keyword">by</span> id <span class="token keyword">limit</span> <span class="token number">4800000</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">)</span>
+ <span class="token keyword">order</span> <span class="token keyword">by</span> a<span class="token punctuation">.</span>id <span class="token keyword">limit</span> <span class="token number">25</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ol>
+<p>其他可以参考：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/scotth/p/7995856.html">分页查询的性能优化方案</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41092717/article/details/82351735?utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control&dist_request_id=&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~BlogCommendFromMachineLearnPai2~default-1.control">sql进行Order by排序再进行分页limit取值会出现重复显示问题</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nannan819/article/details/54171708">mysql分页出现重复数据-order by</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42365510/article/details/113221579?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_v2~rank_aggregation-1-113221579.pc_agg_rank_aggregation&utm_term=mysql%E7%99%BE%E4%B8%87%E7%BA%A7%E5%88%AB%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2&spm=1000.2123.3001.4430">mysql百万级别数据查询_MySQL百万级数据量分页查询方法及其优化_hateful harmful的博客-CSDN博客</a></p>
+</li>
+</ul>
 
                 
             </div>
@@ -1226,7 +1290,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">466.7k</span>&nbsp;字
+                class="white-color">473.2k</span>&nbsp;字
             
             
             

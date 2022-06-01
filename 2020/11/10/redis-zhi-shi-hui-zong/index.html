@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    8.8k
+                    9.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    31 分
+                    33 分
                 </div>
                 
 
@@ -478,8 +478,48 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>目录<br>  1 Redis简介<br>  2 数据结构和对象<br>  3 数据库<br>  4 RDB<br>  5 AOF<br>  6 事件<br>  7 客户端<br>  8 复制<br>  9 哨兵机制<br>  10集群<br>  11 发布与订阅<br>  12 事务<br>  13 缓存问题<br>  14 内存淘汰机制<br>  15 Redis并发竞争key<br>  16 缓存与数据库一致性问题  </p>
-<p>参考资料<br>· 《Redis设计与实现》<br>  · JavaG  </p>
+<p>目录  </p>
+<ol>
+<li><p>Redis简介  </p>
+</li>
+<li><p> 数据结构和对象  </p>
+</li>
+<li><p>数据库  </p>
+</li>
+<li><p>RDB  </p>
+</li>
+<li><p> AOF  </p>
+</li>
+<li><p>事件  </p>
+</li>
+<li><p>客户端  </p>
+</li>
+<li><p>复制  </p>
+</li>
+<li><p>哨兵机制  </p>
+</li>
+<li><p>集群  </p>
+</li>
+<li><p>发布与订阅  </p>
+</li>
+<li><p>事务  </p>
+</li>
+<li><p>缓存问题  </p>
+</li>
+<li><p>内存淘汰机制  </p>
+</li>
+<li><p>Redis并发竞争key  </p>
+</li>
+<li><p>缓存与数据库一致性问题  </p>
+</li>
+<li><p>Redis实现消息队列</p>
+</li>
+</ol>
+<p>参考资料  </p>
+<ul>
+<li>《Redis设计与实现》  </li>
+<li>JavaG  </li>
+</ul>
 </blockquote>
 <h1 id="Redis-简介"><a href="#Redis-简介" class="headerlink" title="Redis 简介"></a>Redis 简介</h1><p>  简单来说redis就是一个数据库，不过与传统数据库不同的是redis的数据是存在内存中的，所以读写速度非常快，因此redis被广泛应用于缓存方向。另外，redis也经常用来做分布式锁。redis提供了多种数据类型来支持不同的业务场景。除此之外，redis支持事务、持久化、LUA脚本、LRU驱动事件、多种集群方案。</p>
 <h1 id="数据结构和对象"><a href="#数据结构和对象" class="headerlink" title="数据结构和对象"></a>数据结构和对象</h1><p>  redis数据库里面的每个键值对都是由<strong>对象</strong>组成的，其中，</p>
@@ -737,6 +777,8 @@
 
 <p>​    将所有产生的套接字都放在一个<strong>队列</strong>里面，然后通过这个队列，以<strong>有序、同步、每次一个套接字</strong>的方式向文件事件分派器传送套接字。</p>
 <p>​    Redis以单线程模式运行。</p>
+<p>​    多路复用的具体实现，详见：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/2y60cxUjaaE2pWSdCBX1lA">深度解析单线程的 Redis 如何做到每秒数万 QPS 的超高处理能力</a>，主要是通过<strong>epoll</strong>模型进行多路复用。</p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206011244987.png" alt="图片"></p>
 <p>（3）文件事件分派器</p>
 <p>​    根据IO复用器传过来的套接字产生的事件类型，调用相应的事件处理器</p>
 <p>（4）事件处理器</p>
@@ -1016,14 +1058,46 @@
 <p>  · 第五个为time，与第四个参数相呼应，代表key的过期时间。</p>
 <p>  方法底层主要使用Redis的Setnx 命令实现。</p>
 <p>  总的来说，执行上面的set()方法就只会导致两种结果：<strong>1. 当前没有锁（key不存在），那么就进行加锁操作，并对锁设置个有效期，同时value表示加锁的客户端。2. 已有锁存在，不做任何操作。</strong></p>
-<h1 id="缓存与数据库一致性问题"><a href="#缓存与数据库一致性问题" class="headerlink" title="缓存与数据库一致性问题"></a>缓存与数据库一致性问题</h1><ul>
-<li><p>最经典的缓存+数据库读写的模式，就是 Cache Aside Pattern。</p>
-<p>读的时候，先读缓存，缓存没有的话，就读数据库，然后取出数据后放入缓存，同时返回响应。</p>
-<p>更新的时候，<strong>先删除缓存，然后再更新数据库</strong>。</p>
+<h1 id="缓存与数据库一致性问题"><a href="#缓存与数据库一致性问题" class="headerlink" title="缓存与数据库一致性问题"></a>缓存与数据库一致性问题</h1><p>首先写入缓存中的数据，都设置失效时间，这样一来，缓存中不经常访问的数据，随着时间的推移，都会逐渐「过期」淘汰掉，最终缓存中保留的，都是经常被访问的「热数据」，缓存利用率得以最大化。</p>
+<p><strong>在满足实时性的条件下，不存在两者完全保存一致的方案，只有最终一致性方案。</strong></p>
+<p>我们对比以下 6 种方案：</p>
+<ol>
+<li><p>先写 Redis，再写 MySQL</p>
+<p><strong>这种方案，我肯定不会用</strong>，万一 DB 挂了，你把数据写到缓存，DB 无数据，这个是灾难性的；</p>
+<p>我之前也见同学这么用过，如果写 DB 失败，对 Redis 进行逆操作，那如果逆操作失败呢，是不是还要搞个重试？</p>
 </li>
-<li><p>Redis如果写数据库成功了，写缓存失败了怎么办？</p>
-<p>高峰期的时候让缓存的过期时间小一点，但是明显不能完全解决这个问题～</p>
-<p><strong>可以单独写一个定时任务，定时对比数据库和Redis中的数据，数据中可以加入版本号，查阅版本号是否一致等等。</strong></p>
+<li><p>先写 MySQL，再写 Redis</p>
+<p><strong>对于并发量、一致性要求不高的项目，很多就是这么用的</strong>，我之前也经常这么搞，但是不建议这么做；</p>
+<p>当 Redis 瞬间不可用的情况，需要报警出来，然后线下处理。</p>
+</li>
+<li><p>先删除 Redis，再写 MySQL</p>
+<p>这种方式，我还真没用过，<strong>直接忽略吧。</strong></p>
+</li>
+<li><p>先删除 Redis，再写 MySQL，再删除 Redis</p>
+<p>这种方式虽然可行，但是<strong>感觉好复杂</strong>，还要搞个消息队列去异步删除 Redis。</p>
+</li>
+<li><p>先写 MySQL，再删除 Redis</p>
+<p><strong>比较推荐这种方式</strong>，删除 Redis 如果失败，可以再多重试几次，否则报警出来；</p>
+<p>这个方案，是实时性中最好的方案，在一些高并发场景中，推荐这种。</p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206011839438.png"></p>
+</li>
+<li><p>先写 MySQL，通过 Binlog，异步更新 Redis</p>
+<p><strong>对于异地容灾、数据汇总等，建议会用这种方式</strong>，比如 binlog + kafka，数据的一致性也可以达到秒级；</p>
+<p>纯粹的高并发场景，不建议用这种方案，比如抢购、秒杀等。</p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206011840658.png"></p>
+</li>
+</ol>
+<p><strong>个人结论：</strong></p>
+<ul>
+<li><strong>实时一致性方案</strong>：采用“先写 MySQL，再删除 Redis”的策略，这种情况虽然也会存在两者不一致，但是需要满足的条件有点苛刻，<strong>所以是满足实时性条件下，能尽量满足一致性的最优解。</strong></li>
+<li><strong>最终一致性方案</strong>：采用“先写 MySQL，通过 Binlog，异步更新 Redis”，可以通过 Binlog，结合消息队列异步更新 Redis，<strong>是最终一致性的最优解。</strong></li>
+</ul>
+<p>详情看：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/RL4Bt_UkNcnsBGL_9w37Zg">https://mp.weixin.qq.com/s/RL4Bt_UkNcnsBGL_9w37Zg</a></p>
+<p>另外，Redis如果写数据库成功了，写缓存失败了怎么办？</p>
+<ul>
+<li><p>高峰期的时候让缓存的过期时间小一点，但是明显不能完全解决这个问题～</p>
+</li>
+<li><p><strong>可以单独写一个定时任务，定时对比数据库和Redis中的数据，数据中可以加入版本号，查阅版本号是否一致等等。</strong></p>
 </li>
 </ul>
 <h1 id="Redis实现消息队列"><a href="#Redis实现消息队列" class="headerlink" title="Redis实现消息队列"></a>Redis实现消息队列</h1><p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d32b16f12f09">Redis实现消息队列的4种方案</a></p>
@@ -1772,7 +1846,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">466.7k</span>&nbsp;字
+                class="white-color">473.2k</span>&nbsp;字
             
             
             
