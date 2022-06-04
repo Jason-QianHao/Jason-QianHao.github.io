@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Linux安装Mysql, 小小千千 Blog">
+    <meta name="keywords" content="Spring的循环依赖问题, 小小千千 Blog">
     <meta name="description" content="心怀梦想 不惧前行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Linux安装Mysql | 小小千千 Blog</title>
+    <title>Spring的循环依赖问题 | 小小千千 Blog</title>
     <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/202206-202212/202206041943253.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Linux安装Mysql</h1>
+                    <h1 class="description center-align post-title">Spring的循环依赖问题</h1>
                 </div>
             </div>
         </div>
@@ -409,12 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                <span class="chip bg-color">操作系统</span>
-                            </a>
-                        
-                            <a href="/tags/Linux/">
-                                <span class="chip bg-color">Linux</span>
+                            <a href="/tags/Spring/">
+                                <span class="chip bg-color">Spring</span>
                             </a>
                         
                     </div>
@@ -425,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                操作系统
+                            <a href="/categories/Spring/" class="post-category">
+                                Spring
                             </a>
                         
                     </div>
@@ -438,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-09-27
+                    2022-06-04
                 </div>
                 
 
@@ -447,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    522
+                    1.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -477,67 +473,87 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Linux安装Mysql"><a href="#Linux安装Mysql" class="headerlink" title="Linux安装Mysql"></a>Linux安装Mysql</h1><h1 id="下载MySQL安装包"><a href="#下载MySQL安装包" class="headerlink" title="下载MySQL安装包"></a>下载MySQL安装包</h1><ol>
-<li><p>首先需要查询本机centos或其他Linux版本信息</p>
-<p>输入<code>lsb_release -a</code></p>
-</li>
-<li><p>在官网<a target="_blank" rel="noopener" href="https://dev.mysql.com/downloads/mysql%E4%B8%8B%E8%BD%BD%E5%AF%B9%E5%BA%94%E7%89%88%E6%9C%AC">https://dev.mysql.com/downloads/mysql下载对应版本</a></p>
-<ul>
-<li>可以现在bundle版本的，如mysql-8.0.15-1.el7.x86_64.rpm-bundle.tar。</li>
-<li>也可以单独下载各个模块：common –&gt;client-plugs –&gt; libs –&gt; client –&gt; server。</li>
-</ul>
-</li>
-</ol>
-<h1 id="安装Mysql"><a href="#安装Mysql" class="headerlink" title="安装Mysql"></a>安装Mysql</h1><p>按照common –&gt;client-plugs –&gt; libs –&gt; client –&gt; server顺序进行安装。</p>
-<p>使用命令<code>rpm -ivh ***.rpm</code>进行模块的安装。</p>
+                <p><img src="http://jason-qianhao.xyz/202206-202212/202206041943253.jpg"></p>
 <blockquote>
-<p>注意：</p>
-<p>当提示“mariadb-libs 被 mysql-community-libs-8.0.15-1.el7.x86_64 取代”，是lib和系统自带的冲突。使用命令<code>yum remove mysql-libs -y</code>后再使用<code>rpm -ivh ***</code> 命令继续安装。</p>
+<p>目录</p>
+<ol>
+<li>循环依赖</li>
+<li>解决方法</li>
+<li>Spring的三级缓存</li>
+<li>典型：Swagger的循环依赖报错</li>
+</ol>
+<p>参考/来源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/JVhRgiEcaNf6KLQehQwx1Q">https://mp.weixin.qq.com/s/JVhRgiEcaNf6KLQehQwx1Q</a></li>
+</ul>
 </blockquote>
-<h1 id="MySQL的root密码和相关权限设置"><a href="#MySQL的root密码和相关权限设置" class="headerlink" title="MySQL的root密码和相关权限设置"></a>MySQL的root密码和相关权限设置</h1><ol>
-<li><p>首先执行<code>service mysqld restart</code>指令重启mysql服务，为了后面查看日志里面的默认root密码。</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@localhost /<span class="token punctuation">]</span><span class="token comment"># service mysqld restart</span>
-Redirecting to /bin/systemctl restart mysqld.service
-<span class="token punctuation">[</span>root@localhost /<span class="token punctuation">]</span><span class="token comment"># /bin/systemctl restart mysqld.service</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></li>
-<li><p>查看日志默认密码，mysql的日志在<code>/var/log/mysqld.log</code>里面</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@localhost log<span class="token punctuation">]</span><span class="token comment"># cat mysqld.log </span>
- <span class="token punctuation">..</span><span class="token punctuation">..</span> A temporary password is generated <span class="token keyword">for</span> root@localhost: <span class="token comment">#+Tp!)#Fv6e;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
-<li><p>修改登陆密码</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token punctuation">[</span>root@localhost /<span class="token punctuation">]</span><span class="token comment"># mysql -u root -p</span>
-Enter password: 
-Welcome to the MySQL monitor.  Commands end with <span class="token punctuation">;</span> or <span class="token punctuation">\</span>g.
-Your MySQL connection <span class="token function">id</span> is <span class="token number">13</span>
-Server version: <span class="token number">8.0</span>.15
-Copyright <span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token number">2000</span>, <span class="token number">2019</span>, Oracle and/or its affiliates. All rights reserved.
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-Type <span class="token string">'help;'</span> or <span class="token string">'\h'</span> <span class="token keyword">for</span> help. Type <span class="token string">'\c'</span> to <span class="token function">clear</span> the current input statement.
-mysql<span class="token operator">></span>  ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'localhost'</span> IDENTIFIED BY <span class="token string">'...@...123'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="循环依赖"><a href="#循环依赖" class="headerlink" title="循环依赖"></a>循环依赖</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">B</span> b<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span>
 
-<p>注意这里密码有复杂度的要求，尽量设置复杂一点并好记忆的密码～</p>
-</li>
-<li><p>开放所有ip地址都能访问：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">CREATE <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'%'</span> IDENTIFIED BY <span class="token string">'root123'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<span class="token annotation punctuation">@Service</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">B</span> <span class="token punctuation">&#123;</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">A</span> a<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<p>root123是你自己设置的密码，若执行开放指定ip能访问，把%换成ip地址。</p>
-</li>
-<li><p>修改加密方式：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">ALTER <span class="token environment constant">USER</span> <span class="token string">'root'</span>@<span class="token string">'%'</span> IDENTIFIED WITH mysql_native_password BY <span class="token string">'root123'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这种循环依赖可能会产生问题，例如 A 要依赖 B，发现 B 还没创建</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206041547945.png" style="zoom:50%;" />
 
-<p>MySQL8默认是caching_sha2_password</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>关键就是<strong>提前暴露未完全创建完毕的 Bean</strong></p>
+<p>在 Spring 中，只有同时满足以下两点才能解决循环依赖的问题：</p>
+<ol>
+<li><p><strong>依赖的 Bean 必须都是单例</strong></p>
+<p>先创建 A，此时的 A 是不完整的（没有注入 B），用个 map 保存这个不完整的 A，再创建 B ，B 需要 A。</p>
+<p>所以从那个 map 得到“不完整”的 A，此时的 B 就完整了，然后 A 就可以注入 B，然后 A 就完整了，B 也完整了，且它们是相互依赖的</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206041551090.png" style="zoom:80%;" /></li>
+<li><p><strong>依赖注入的方式，必须不全是构造器注入，且 beanName 字母序在前的不能是构造器注入</strong></p>
+<p>在 Spring 中创建 Bean 分三步:</p>
+<ul>
+<li><p>实例化，createBeanInstance，就是 new 了个对象</p>
 </li>
-<li><p>开放防火墙端口<br>查看防火墙开放的端口。<code>firewall-cmd --zone=public --list-ports</code><br>开启防火墙端口3306：<code>firewall-cmd --zone=public --add-port=3306/tcp --permanent</code></p>
+<li><p>属性注入，populateBean， 就是 set 一些属性值</p>
+</li>
+<li><p>初始化，initializeBean，执行一些 aware 接口中的方法，initMethod，AOP代理等</p>
+</li>
+</ul>
+<p>明确了上面这三点，再结合我上面说的“不完整的”，我们来理一下。</p>
+<p>如果全是构造器注入，比如<code>A(B b)</code>，那表明在 new 的时候，就需要得到 B，此时需要 new B 。</p>
+<p>但是 B 也是要在构造的时候注入 A ，即<code>B(A a)</code>，这时候 B 需要在一个 map 中找到不完整的 A ，发现找不到。</p>
+<p>为什么找不到？因为 A 还没 new 完呢，所以找到不完整的 A，因此如果全是构造器注入的话，那么 Spring 无法处理循环依赖。</p>
+<p>注意， <strong>Spring 容器是按照字母序创建 Bean 的，A 的创建永远排在 B 前面。</strong></p>
 </li>
 </ol>
-<h1 id="远程连接数据库授权"><a href="#远程连接数据库授权" class="headerlink" title="远程连接数据库授权"></a>远程连接数据库授权</h1><ol>
-<li><p>创建时间数据库</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">CREATE SCHEMA <span class="token variable"><span class="token variable">`</span>testd_atabase<span class="token variable">`</span></span> DEFAULT CHARACTER SET utf8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li><p>授权</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">grant all on *.* to <span class="token string">'root'</span>@<span class="token string">'%'</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li><p>grant权限修改</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">update mysql.user <span class="token builtin class-name">set</span> <span class="token assign-left variable">Grant_priv</span><span class="token operator">=</span><span class="token string">'Y'</span>,Super_priv<span class="token operator">=</span><span class="token string">'Y'</span> <span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<h1 id="Spring的三级缓存"><a href="#Spring的三级缓存" class="headerlink" title="Spring的三级缓存"></a>Spring的三级缓存</h1><p>Spring创建单例Bean过程中的三个map：</p>
+<ul>
+<li><p>一级缓存，singletonObjects，存储所有已创建完毕的单例 Bean （完整的 Bean）</p>
+</li>
+<li><p>二级缓存，earlySingletonObjects，存储所有仅完成实例化，但还<strong>未进行属性注入和初始化</strong>的 Bean</p>
+</li>
+<li><p>三级缓存，singletonFactories，存储能建立这个 Bean 的一个工厂，通过工厂能获取这个 Bean，延迟化 Bean 的生成，工厂生成的 Bean 会塞入二级缓存</p>
+</li>
+</ul>
+<p>这三个 map 是如何配合的呢？</p>
+<ol>
+<li>首先，获取单例 Bean 的时候会通过 BeanName 先去 singletonObjects（一级缓存） 查找完整的 Bean，如果找到则直接返回，否则进行步骤 2。</li>
+<li>看对应的 Bean 是否在创建中，<strong>如果不在直接返回null</strong>，如果是，则会去 earlySingletonObjects （二级缓存）查找 Bean，如果找到则返回，否则进行步骤 3</li>
+<li>去 singletonFactories （三级缓存）通过 BeanName 查找到对应的工厂，如果存着工厂则通过工厂创建 Bean ，并且放置到 earlySingletonObjects 中。</li>
+<li>如果三个缓存都没找到，则返回 null。</li>
 </ol>
+<p>比如还是上面类A、B的例子，创建时，<strong>Spring解决循环依赖的过程</strong>如下：</p>
+<ol>
+<li>在实例化 Bean A 之后，会往 singletonFactories 塞入一个工厂，而调用这个工厂的 getObject 方法，就能得到这个 Bean</li>
+<li>然后就开始执行属性注入，这个时候 A 发现需要注入 B，所以去 getBean(B)，此时又会走一遍上面描述的逻辑，到了 B 的属性注入这一步。</li>
+<li>此时 B 调用 getBean(A)，这时候一级缓存里面找不到，但是发现 A 正在创建中的，于是去二级缓存找，发现没找到，于是去三级缓存找，然后找到了。并且通过上面提前在三级缓存里暴露的工厂得到 A。</li>
+<li>然后将这个工厂从三级缓存里删除，并将 A 加入到二级缓存中。然后结果就是 B 属性注入成功。</li>
+<li>紧接着 B 调用 initializeBean 初始化，最终返回，此时 B 已经被加到了一级缓存里 。</li>
+<li>这时候就回到了 A 的属性注入，此时注入了 B，接着执行初始化，最后 A 也会被加到一级缓存里，且从二级缓存中删除 A。</li>
+</ol>
+<p>其实破坏循环依赖，其实只有二级缓存就够了，但是碍于生命周期的问题，提前暴露工厂延迟代理对象的生成，详情看：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/JVhRgiEcaNf6KLQehQwx1Q">https://mp.weixin.qq.com/s/JVhRgiEcaNf6KLQehQwx1Q</a></p>
+<h1 id="典型：-Swagger的循环依赖报错"><a href="#典型：-Swagger的循环依赖报错" class="headerlink" title="典型： Swagger的循环依赖报错"></a>典型： Swagger的循环依赖报错</h1><p>Spring 2.6.4版本后，Springboot项目启动，Spring Security相关类出现循环依赖错误。</p>
+<p>详见例子：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/zipKaEv2n6cIr6b02riZkg">https://mp.weixin.qq.com/s/zipKaEv2n6cIr6b02riZkg</a></p>
 
                 
             </div>
@@ -564,7 +580,7 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2021/09/27/linux-an-zhuang-mysql/">https://jason-qianhao.github.io/2021/09/27/linux-an-zhuang-mysql/</a>
+                    <a href="https://jason-qianhao.github.io/2022/06/04/spring-de-xun-huan-yi-lai-wen-ti/">https://jason-qianhao.github.io/2022/06/04/spring-de-xun-huan-yi-lai-wen-ti/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -602,12 +618,8 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                                    <span class="chip bg-color">操作系统</span>
-                                </a>
-                            
-                                <a href="/tags/Linux/">
-                                    <span class="chip bg-color">Linux</span>
+                                <a href="/tags/Spring/">
+                                    <span class="chip bg-color">Spring</span>
                                 </a>
                             
                         </div>
@@ -1040,16 +1052,17 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/09/28/niu-ke-sql-ti-hui-zong/">
+                <a href="/2022/06/04/spring-de-xun-huan-yi-lai-wen-ti/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/43.jpg" class="responsive-img" alt="牛客网SQL题汇总">
+                        <img src="http://jason-qianhao.xyz/202206-202212/202206041943253.jpg" class="responsive-img" alt="Spring的循环依赖问题">
                         
-                        <span class="card-title">牛客网SQL题汇总</span>
+                        <span class="card-title">Spring的循环依赖问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1059,30 +1072,27 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
+                            <a href="/categories/Spring/" class="post-category">
+                                    Spring
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
-                    </a>
-                    
-                    <a href="/tags/SQL/">
-                        <span class="chip bg-color">SQL</span>
+                    <a href="/tags/Spring/">
+                        <span class="chip bg-color">Spring</span>
                     </a>
                     
                 </div>
@@ -1096,12 +1106,12 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/07/go-ji-chu-zhi-shi/">
+                <a href="/2022/06/04/java-duo-xian-cheng-de-chang-jian-shi-yong-fang-fa/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/40.jpg" class="responsive-img" alt="Go基础知识">
+                        <img src="http://jason-qianhao.xyz/202206-202212/202206041238473.jpg" class="responsive-img" alt="Java多线程的常见使用方法">
                         
-                        <span class="card-title">Go基础知识</span>
+                        <span class="card-title">Java多线程的常见使用方法</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1112,14 +1122,14 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Go/" class="post-category">
-                                    Go
+                            <a href="/categories/Java/" class="post-category">
+                                    Java
                                 </a>
                             
                             
@@ -1129,8 +1139,12 @@ mysql<span class="token operator">></span>  ALTER <span class="token environment
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Go/">
-                        <span class="chip bg-color">Go</span>
+                    <a href="/tags/Java/">
+                        <span class="chip bg-color">Java</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/">
+                        <span class="chip bg-color">多线程</span>
                     </a>
                     
                 </div>

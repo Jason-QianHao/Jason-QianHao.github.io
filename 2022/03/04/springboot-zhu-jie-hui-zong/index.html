@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.3k
+                    4.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    19 分
+                    21 分
                 </div>
                 
 
@@ -499,11 +499,21 @@
 <li><p>第三方注入Bean</p>
 <p>3.1 @Bean</p>
 <p>3.2 @Configuration</p>
+<p>3.3 @Qualifier</p>
+<p>3.4 @Scope</p>
+</li>
+<li><p>启动类相关</p>
+<p>5.1 @PropertySource</p>
+<p>5.2 @ImportResource</p>
 </li>
 </ol>
+<p>参考/来源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/T_jW0QS1Q9GgIuvvlZZ8ag">Springboot注解大全</a></li>
+</ul>
 </blockquote>
-<h1 id="Controller请求相关"><a href="#Controller请求相关" class="headerlink" title="Controller请求相关"></a>Controller请求相关</h1><h2 id="requestBody参数绑定"><a href="#requestBody参数绑定" class="headerlink" title="@requestBody参数绑定"></a>@requestBody参数绑定</h2><p>一般运用在POST请求中，最好后端接口带上此注解</p>
-<p>通过@requestBody可以将POST请求体中的JSON字符串绑定到相应的bean上，当然，也可以将其分别绑定到对应的字符串上。</p>
+<h1 id="Controller请求相关"><a href="#Controller请求相关" class="headerlink" title="Controller请求相关"></a>Controller请求相关</h1><h2 id="requestBody参数绑定"><a href="#requestBody参数绑定" class="headerlink" title="@requestBody参数绑定"></a>@requestBody参数绑定</h2><p>请求体的<code>Content-Type</code>必须为<code>application/json</code>格式的数据</p>
+<p>一般运用在POST请求中，最好后端接口带上此注解。通过@requestBody可以将POST请求体中的JSON字符串绑定到相应的bean上，当然，也可以将其分别绑定到对应的字符串上。</p>
 <pre class="line-numbers language-js" data-language="js"><code class="language-js">　$<span class="token punctuation">.</span><span class="token function">ajax</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
 　　　　　　　　url<span class="token operator">:</span><span class="token string">"/login"</span><span class="token punctuation">,</span>
 　　　　　　　　type<span class="token operator">:</span><span class="token string">"POST"</span><span class="token punctuation">,</span>
@@ -1179,6 +1189,47 @@ public void login(@requestBody User)&#123;
          <span class="token keyword">return</span> hello<span class="token punctuation">;</span>
      <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Qualifier"><a href="#Qualifier" class="headerlink" title="@Qualifier"></a>@Qualifier</h2><p>当有多个同一类型的<code>bean</code>时，使用<code>@Autowired</code>导入会报错，提示当前对象并不是唯一，<code>Spring</code>不知道导入哪个依赖，这个时候，我们可以使用<code>@Qualifier</code>进行更细粒度的控制，选择其中一个候选者，一般于<code>@Autowired</code>搭配使用，示例如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+<span class="token annotation punctuation">@Qualifier</span><span class="token punctuation">(</span><span class="token string">"deptService"</span><span class="token punctuation">)</span>
+<span class="token keyword">private</span> <span class="token class-name">DeptService</span> deptService<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="Scope"><a href="#Scope" class="headerlink" title="@Scope"></a>@Scope</h2><p>用于生命一个<code>spring bean</code>的作用域，作用的范围一共有以下几种：</p>
+<ul>
+<li>singleton：唯一 bean 实例，Spring 中的 bean 默认都是单例的。</li>
+<li>prototype：每次请求都会创建一个新的 bean 实例，对象多例。</li>
+<li>request：每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP request 内有效。</li>
+<li>session：每一次 HTTP 请求都会产生一个新的 bean，该 bean 仅在当前 HTTP session 内有效。</li>
+</ul>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">/**
+ * 单例对象
+ */</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span><span class="token string">"singleton"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">HelloController</span> <span class="token punctuation">&#123;</span>
+
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="启动类相关"><a href="#启动类相关" class="headerlink" title="启动类相关"></a>启动类相关</h1><h2 id="PropertySource"><a href="#PropertySource" class="headerlink" title="@PropertySource"></a>@PropertySource</h2><p>这个注解是用来读取我们自定义的配置文件的，比如导入<code>test.properties</code>和<code>bussiness.properties</code>两个配置文件，用法如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token annotation punctuation">@PropertySource</span><span class="token punctuation">(</span>value <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token string">"test.properties"</span><span class="token punctuation">,</span><span class="token string">"bussiness.properties"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PropertyApplication</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">PropertyApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="ImportResource"><a href="#ImportResource" class="headerlink" title="@ImportResource"></a>@ImportResource</h2><p>用来加载 xml 配置文件，比如导入自定义的<code>aaa.xml</code>文件，用法如下：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ImportResource</span><span class="token punctuation">(</span>locations <span class="token operator">=</span> <span class="token string">"classpath:aaa.xml"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@SpringBootApplication</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PropertyApplication</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">SpringApplication</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">PropertyApplication</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -1932,7 +1983,7 @@ public void login(@requestBody User)&#123;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">477.6k</span>&nbsp;字
+                class="white-color">479.1k</span>&nbsp;字
             
             
             
