@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.7k
+                    10.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    37 分
+                    41 分
                 </div>
                 
 
@@ -474,8 +474,18 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <blockquote>
-<p>目录<br>  <strong>1 Java基础<br>  2 Java集合</strong>  </p>
-<p>  参考资料<br>  ·《Java编程思想》<br>·《Java Web 技术内幕》<br>·《Java 并发编程实战》     </p>
+<p>目录  </p>
+<ol>
+<li>Java基础  </li>
+<li>Java集合  </li>
+</ol>
+<p>参考资料  </p>
+<ul>
+<li>《Java编程思想》  </li>
+<li>《Java Web 技术内幕》  </li>
+<li>《Java 并发编程实战》   </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Gr8kLpM9bgocCuC-Ve_dZg">https://mp.weixin.qq.com/s/Gr8kLpM9bgocCuC-Ve_dZg</a>  </li>
+</ul>
 </blockquote>
 <h1 id="Java基础"><a href="#Java基础" class="headerlink" title="Java基础"></a>Java基础</h1><h2 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h2><h3 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h3><h4 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h4><p>  用引用（reference）操纵对象。犹如遥控器和电视机的关系。</p>
 <h4 id="new关键字"><a href="#new关键字" class="headerlink" title="new关键字"></a>new关键字</h4><p>  创建对象，并存储在堆heap中。</p>
@@ -727,8 +737,7 @@
 <p>用final修饰的成员变量表示常量，值一旦给定就无法改变！final修饰的变量有三种：静态变量、实例变量和局部变量，分别表示三种类型的常量。</p>
 </li>
 <li><p>方法区的常量池</p>
-<img src="E:\我的\GithubBlog\Jason-QianHao.github.io\assets\Java\1240-20210630155739956.png" alt="img" />
-
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206041147264.png" alt="1240-20210630155739956"></p>
 <img src="http://jason-qianhao.xyz/1240-20210630155739975.png" alt="img" style="zoom:80%;" />
 
 <p>运行时常量池相对于CLass文件常量池的另外一个重要特征是具备动态性，Java语言并不要求常量一定只有编译期才能产生，也就是并非预置入CLass文件中常量池的内容才能进入方法区运行时常量池，运行期间也可能将新的常量放入池中，这种特性被开发人员利用比较多的就是String类的intern()方法。</p>
@@ -762,6 +771,9 @@
 </ul>
 <h3 id="“-”“-”的重载"><a href="#“-”“-”的重载" class="headerlink" title="“+”“+=”的重载"></a>“+”“+=”的重载</h3><p>​    · java中仅有的两个重载过的操作符</p>
 <p>​    · “+”底层用了StringBuffer()的append()和toString()方法。</p>
+<h3 id="String的最大长度"><a href="#String的最大长度" class="headerlink" title="String的最大长度"></a>String的最大长度</h3><p>首先字符串的内容是由一个字符数组 char[] 来存储的，由于数组的长度及索引是整数，且String类中返回字符串长度的方法length() 的返回值也是int ，所以通过查看java源码中的类Integer我们可以看到<strong>Integer的最大范围是2^31 -1</strong>,由于数组是从0开始的，所以数组的最大长度可以使【0~2^31-1】通过计算是大概4GB。</p>
+<p>但是通过翻阅java虚拟机手册对class文件格式的定义以及常量池中对String类型的结构体定义我们可以知道<strong>对于索引定义了u2</strong>，就是无符号占2个字节，2个字节可以表示的最大范围是2^16 -1 = 65535。<br>其实是65535，但是由于JVM需要1个字节表示结束指令，所以这个范围就为<strong>65534</strong>了。<strong>超出这个范围在编译时期是会报错的，但是运行时拼接或者赋值的话范围是在整形的最大范围。</strong></p>
+<p>详细解释可以看: <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/s15e0GOOxChNtikWEhoH5g">https://mp.weixin.qq.com/s/s15e0GOOxChNtikWEhoH5g</a></p>
 <h3 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h3><p>（1）创建正则 java.util.regex.Pattern</p>
 <p>（2）表达式</p>
 <p>​    · <code>split( regex )</code></p>
@@ -1087,7 +1099,49 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
 <span class="token comment">// Wanger&#123;name=王二,age=18,pre=不沉默,meizi=null&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>另外， final关键字在序列化和反序列化时有一些微妙，详见：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/48007904">java序列化与final关键字</a></p>
-<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>  指定容器可以保存的类型，在编译器检查错误。</p>
+<h1 id="Java集合"><a href="#Java集合" class="headerlink" title="Java集合"></a>Java集合</h1><h2 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h2><p>指定容器可以保存的类型，在编译器检查错误。</p>
+<p>我们在定义泛型类，泛型方法，泛型接口的时候经常会碰见很多不同的通配符，比如 T，E，K，V 等等。本质上这些个都是通配符，没啥区别，只不过是编码时的一种约定俗成的东西。比如上述代码中的 T ，我们可以换成 A-Z 之间的任何一个 字母都可以，并不会影响程序的正常运行，但是如果换成其他的字母代替 T ，在可读性上可能会弱一些。<strong>通常情况下，T，E，K，V，？是这样约定的：</strong></p>
+<ul>
+<li>？表示不确定的 java 类型</li>
+<li>T (type) 表示具体的一个java类型</li>
+<li>K V (key value) 分别代表java键值中的Key Value</li>
+<li>E (element) 代表Element</li>
+</ul>
+<h3 id="？无界通配符"><a href="#？无界通配符" class="headerlink" title="？无界通配符"></a>？无界通配符</h3><p>对于不确定或者不关心实际要操作的类型，可以使用无限制通配符（尖括号里一个问号，即 &lt;?&gt; ），表示可以持有任何类型。</p>
+<p>不过一般和用在上下届通配符里面。</p>
+<h3 id="上界通配符-lt-extends-E-gt"><a href="#上界通配符-lt-extends-E-gt" class="headerlink" title="上界通配符 &lt; ? extends E&gt;"></a>上界通配符 &lt; ? extends E&gt;</h3><p>用 extends 关键字声明，表示参数化的类型可能是所指定的类型，或者是此类型的子类。</p>
+<ul>
+<li>如果传入的类型不是 E 或者 E 的子类，编译不成功</li>
+<li>泛型中可以使用 E 的方法，要不然还得强转成 E 才能使用</li>
+</ul>
+<p>类型参数列表中如果有多个类型参数上限，用逗号分开</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">K</span> <span class="token keyword">extends</span> <span class="token class-name">A</span><span class="token punctuation">,</span> <span class="token class-name">E</span> <span class="token keyword">extends</span> <span class="token class-name">B</span><span class="token punctuation">></span></span> <span class="token class-name">E</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token class-name">K</span> arg1<span class="token punctuation">,</span> <span class="token class-name">E</span> arg2<span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token class-name">E</span> result <span class="token operator">=</span> arg2<span class="token punctuation">;</span>
+    arg2<span class="token punctuation">.</span><span class="token function">compareTo</span><span class="token punctuation">(</span>arg1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">//.....</span>
+    <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="下界通配符-lt-super-E-gt"><a href="#下界通配符-lt-super-E-gt" class="headerlink" title="下界通配符 &lt; ? super E&gt;"></a>下界通配符 &lt; ? super E&gt;</h3><p>用 super 进行声明，表示参数化的类型可能是所指定的类型，或者是此类型的父类型，直至 Object</p>
+<h3 id="？和-T-的区别"><a href="#？和-T-的区别" class="headerlink" title="？和 T 的区别"></a>？和 T 的区别</h3><p>T 是一个确定的类型，通常用于泛型类和泛型方法的定义，？是一个不确定的类型，通常用于泛型方法的调用代码和形参，不能用于定义类和泛型方法。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 可以</span>
+<span class="token class-name">T</span> t <span class="token operator">=</span> <span class="token function">operate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 不可以</span>
+？car <span class="token operator">=</span> <span class="token function">operate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><code>Class&lt;T&gt;</code>在实例化的时候，T 要替换成具体类。<code>Class&lt;?&gt;</code>它是个通配泛型，? 可以代表任何类型，所以主要用于声明时的限制情况</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token comment">// 可以</span>
+<span class="token keyword">public</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> clazz<span class="token punctuation">;</span>
+<span class="token comment">// 不可以，因为 T 需要指定类型</span>
+<span class="token keyword">public</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> clazzT<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>那如果也想 <code>public Class&lt;T&gt; clazzT;</code>这样的话，就必须让当前的类也指定 T ，</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Test3</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">public</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span> clazz<span class="token punctuation">;</span>
+    <span class="token comment">// 不会报错</span>
+    <span class="token keyword">public</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> clazzT<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="分类-1"><a href="#分类-1" class="headerlink" title="分类"></a>分类</h2><p>  Java容器类类库的用途是“保存对象”。</p>
 <h3 id="Collection"><a href="#Collection" class="headerlink" title="Collection"></a>Collection</h3><p>  · Collection容器继承了Iterable接口（ 实现iterator()方法 ），都可以使用foreach。</p>
 <p>  · Collection容器都覆盖了toString()，可以直接使用print(）</p>
@@ -2177,7 +2231,7 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">475.6k</span>&nbsp;字
+                class="white-color">477.6k</span>&nbsp;字
             
             
             

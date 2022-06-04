@@ -683,7 +683,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 </li>
 </ul>
 <h2 id="IOC中的Bean"><a href="#IOC中的Bean" class="headerlink" title="IOC中的Bean"></a>IOC中的Bean</h2><h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><p>（1）singleton 单例模式（默认）。Bean类中的全局变量用TheadLocal来定义，解决线程安全问题。<br>（2）prototype，每次请求会创建一个新的bean实例。<br>（3）request，Http请求创建一个Bean，仅在当前request有效。<br>（4）session，Http请求创建一个Bean，仅在当前session有效。<br>（5）global-session，全局session，在基于portlet的web中有效。</p>
-<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>（1）Bean容器中找到Bean定义。<br>（2）创建bean实例<br>（3）bean属性注入<br>（4）如果实现了*.Aware接口，调用setXXX（）方法。<br>（5）如果实现了BeanPostProcess方法，调用postProcessBeforeInitialization方法。<br>（6）如果实现了InitializingBean接口，调用afterPropertiesSet方法。<br>（7）如果配置文件中定义包含Init-method属性，执行指定方法<br>（8）如果实现了BeanPostProcess方法，调用postProcessAfterInitialization()方法。<br>（9）如果实现了DisposableBean接口，执行destroy()方法<br>（10）如果在配置文件中定义包含destroy-method属性，执行指定方法。</p>
+<h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>（1）Bean容器中找到Bean定义。<br>（2）创建bean实例<br>（3）bean属性注入<br>（4）如果实现了*.Aware接口，调用setXXX（）方法。<br>（5）如果实现了<strong>BeanPostProcess</strong>方法，调用postProcessBeforeInitialization方法。<br>（6）如果实现了InitializingBean接口，调用afterPropertiesSet方法。<br>（7）如果配置文件中定义包含Init-method属性，执行指定方法<br>（8）如果实现了BeanPostProcess方法，调用postProcessAfterInitialization()方法。<br>（9）如果实现了DisposableBean接口，执行destroy()方法<br>（10）如果在配置文件中定义包含destroy-method属性，执行指定方法。</p>
 <h2 id="IOC中创建对象"><a href="#IOC中创建对象" class="headerlink" title="IOC中创建对象"></a>IOC中创建对象</h2><p>  创建对象,有几种方式：</p>
 <ul>
 <li><p>调用无参数构造器</p>
@@ -2016,7 +2016,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">475.6k</span>&nbsp;字
+                class="white-color">477.6k</span>&nbsp;字
             
             
             
