@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.3k
+                    10.4k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    41 分
+                    42 分
                 </div>
                 
 
@@ -682,7 +682,49 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 </ol>
 </li>
 </ul>
-<h2 id="IOC中的Bean"><a href="#IOC中的Bean" class="headerlink" title="IOC中的Bean"></a>IOC中的Bean</h2><h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><p>（1）singleton 单例模式（默认）。Bean类中的全局变量用TheadLocal来定义，解决线程安全问题。<br>（2）prototype，每次请求会创建一个新的bean实例。<br>（3）request，Http请求创建一个Bean，仅在当前request有效。<br>（4）session，Http请求创建一个Bean，仅在当前session有效。<br>（5）global-session，全局session，在基于portlet的web中有效。</p>
+<h2 id="IOC中的Bean"><a href="#IOC中的Bean" class="headerlink" title="IOC中的Bean"></a>IOC中的Bean</h2><h3 id="Bean的作用域"><a href="#Bean的作用域" class="headerlink" title="Bean的作用域"></a>Bean的作用域</h3><ul>
+<li><p>singleton 单例模式（默认）。</p>
+<p>解决线程安全问题主要有两种：</p>
+<ul>
+<li><p><strong>尽量不要在 Controller 中定义成员变量</strong> ；</p>
+<p>如果必须要定义一个非静态成员变量，那么可以通过<strong>注解 @Scope(“prototype”)</strong> ，将Controller设置为多例模式。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Controller</span>
+<span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span>value<span class="token operator">=</span><span class="token string">"prototype"</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestController</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/addNum"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token operator">++</span>num<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p><strong>使用 ThreadLocal 变量。</strong> 每一个线程都有一个变量的副本</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TestController</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">private</span> <span class="token keyword">int</span> num <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ThreadLocal</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> uniqueNum <span class="token operator">=</span>
+             <span class="token keyword">new</span> <span class="token class-name">ThreadLocal</span> <span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                 <span class="token annotation punctuation">@Override</span> <span class="token keyword">protected</span> <span class="token class-name">Integer</span> <span class="token function">initialValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                     <span class="token keyword">return</span> num<span class="token punctuation">;</span>
+                 <span class="token punctuation">&#125;</span>
+             <span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@RequestMapping</span><span class="token punctuation">(</span><span class="token string">"/addNum"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">addNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">int</span> unum <span class="token operator">=</span> uniqueNum<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+       uniqueNum<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token operator">++</span>unum<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>uniqueNum<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+</li>
+<li><p>prototype，每次请求会创建一个新的bean实例。</p>
+</li>
+<li><p>request，Http请求创建一个Bean，仅在当前request有效。</p>
+</li>
+<li><p>session，Http请求创建一个Bean，仅在当前session有效。</p>
+</li>
+<li><p>global-session，全局session，在基于portlet的web中有效。</p>
+</li>
+</ul>
 <h3 id="Bean的生命周期"><a href="#Bean的生命周期" class="headerlink" title="Bean的生命周期"></a>Bean的生命周期</h3><p>（1）Bean容器中找到Bean定义。<br>（2）创建bean实例<br>（3）bean属性注入<br>（4）如果实现了*.Aware接口，调用setXXX（）方法。<br>（5）如果实现了<strong>BeanPostProcess</strong>方法，调用postProcessBeforeInitialization方法。<br>（6）如果实现了InitializingBean接口，调用afterPropertiesSet方法。<br>（7）如果配置文件中定义包含Init-method属性，执行指定方法<br>（8）如果实现了BeanPostProcess方法，调用postProcessAfterInitialization()方法。<br>（9）如果实现了DisposableBean接口，执行destroy()方法<br>（10）如果在配置文件中定义包含destroy-method属性，执行指定方法。</p>
 <h2 id="IOC中创建对象"><a href="#IOC中创建对象" class="headerlink" title="IOC中创建对象"></a>IOC中创建对象</h2><p>  创建对象,有几种方式：</p>
 <ul>
@@ -1000,6 +1042,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
 
 <img src="http://jason-qianhao.xyz/1240-20210629151320171.jpeg" alt="img" style="zoom:50%;" />
 
+<h2 id="AOP使用实例"><a href="#AOP使用实例" class="headerlink" title="AOP使用实例"></a>AOP使用实例</h2><p>详见：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/TEftQTUWjB9l8yWj0pvArA">为了甩锅，我写了个牛逼的日志切面！</a></p>
 <h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><h2 id="MVC模型"><a href="#MVC模型" class="headerlink" title="MVC模型"></a>MVC模型</h2><img src="http://jason-qianhao.xyz/1240-20210629151320143.jpeg" alt="img" style="zoom:50%;" />
 
 <h2 id="web环境中的IOC环境"><a href="#web环境中的IOC环境" class="headerlink" title="web环境中的IOC环境"></a>web环境中的IOC环境</h2><p>（1）由ContextLoaderListener 启动根上下文（IOC容器）。<br>（2）由WebApplicationContext 启动子上下文</p>
@@ -2016,7 +2059,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">479.1k</span>&nbsp;字
+                class="white-color">480.9k</span>&nbsp;字
             
             
             
