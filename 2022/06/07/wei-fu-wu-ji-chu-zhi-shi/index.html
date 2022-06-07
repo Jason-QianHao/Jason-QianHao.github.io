@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="在线资源共享ITDatabase, 小小千千 Blog">
+    <meta name="keywords" content="微服务基础知识, 小小千千 Blog">
     <meta name="description" content="心怀梦想 不惧前行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>在线资源共享ITDatabase | 小小千千 Blog</title>
+    <title>微服务基础知识 | 小小千千 Blog</title>
     <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/65.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/202206-202212/202206072245127.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">在线资源共享ITDatabase</h1>
+                    <h1 class="description center-align post-title">微服务基础知识</h1>
                 </div>
             </div>
         </div>
@@ -409,16 +409,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Springboot/">
-                                <span class="chip bg-color">Springboot</span>
-                            </a>
-                        
-                            <a href="/tags/Spring/">
-                                <span class="chip bg-color">Spring</span>
-                            </a>
-                        
-                            <a href="/tags/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/">
-                                <span class="chip bg-color">项目仓库</span>
+                            <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                <span class="chip bg-color">微服务</span>
                             </a>
                         
                     </div>
@@ -429,8 +421,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/" class="post-category">
-                                项目仓库
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                微服务
                             </a>
                         
                     </div>
@@ -442,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-01-19
+                    2022-06-07
                 </div>
                 
 
@@ -451,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    5.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    8 分
+                    20 分
                 </div>
                 
 
@@ -481,209 +473,197 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="ITDatabase"><a href="#ITDatabase" class="headerlink" title="ITDatabase"></a>ITDatabase</h1><h2 id="系统总体架构"><a href="#系统总体架构" class="headerlink" title="系统总体架构"></a>系统总体架构</h2><img src="http://jason-qianhao.xyz/1240-20210704082006202.jpeg" alt="img" />
+                <p><img src="http://jason-qianhao.xyz/202206-202212/202206072245127.jpg"></p>
+<blockquote>
+<p>目录：</p>
+<ol>
+<li>简介</li>
+<li>注册中心</li>
+<li>微服务拆分原则AFK</li>
+</ol>
+<p>参考/来源：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2022/04/microservice.html">https://www.ruanyifeng.com/blog/2022/04/microservice.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/utQdt4Kc9dWF4GBtnlTtCQ">https://mp.weixin.qq.com/s/utQdt4Kc9dWF4GBtnlTtCQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0-5GDX8KP6UMij638R94tg">https://mp.weixin.qq.com/s/0-5GDX8KP6UMij638R94tg</a></li>
+</ul>
+</blockquote>
+<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>微服务（microservice）是一种软件架构。</p>
+<p>2014年，<a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html">Docker</a> 出现了，彻底改变了软件开发的面貌。它让程序运行在容器中，每个容器可以分别设定运行环境，并且只占用很少的系统资源。</p>
+<p>可以用容器来实现”面向服务架构”，每个服务不再占用一台服务器，而是占用一个容器。这样就不需要多台服务器了，最简单的情况下，本机运行多个容器，只用一台服务器就实现了面向服务架构，这在以前是做不到的。这种实现方式就叫做<strong>微服务</strong>。</p>
+<p>简单说，<strong>微服务就是采用容器技术的面向服务架构</strong>。它依然使用”服务”作为功能单元，但是变成了轻量级实现，不需要新增服务器，只需要新建容器（一个进程），所以才叫做”微服务”。</p>
+<p><strong>一个微服务就是一个独立的进程。</strong> 这个进程可以运行在本机，也可以运行在别的服务器，或者在云端（比如云服务和云函数 FaaS）。</p>
+<h1 id="注册中心"><a href="#注册中心" class="headerlink" title="注册中心"></a>注册中心</h1><p><strong>服务注册中心（Registry）</strong>：用于保存 RPC Server 的注册信息，当 RPC Server 节点发生变更时，Registry 会同步变更，RPC Client 感知后会刷新本地内存中缓存的服务节点列表。</p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206072210866.png"></p>
+<p>这里主要介绍5种常用的注册中心，分别为<strong>Zookeeper、Eureka、Nacos、Consul和ETCD</strong></p>
+<h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><p>国内Dubbo场景下很多都是使用Zookeeper来完成了注册中心的功能。</p>
+<p>随着Dubbo框架的不断开发优化，和各种注册中心组件的诞生，即使是RPC框架，现在的注册中心也逐步放弃了ZooKeeper。在常用的开发集群环境中，ZooKeeper依然起到十分重要的作用，Java体系中，大部分的集群环境都是依赖ZooKeeper管理服务的各个节点。</p>
+<h3 id="注册中心的实现"><a href="#注册中心的实现" class="headerlink" title="注册中心的实现"></a>注册中心的实现</h3><p>Zookeeper可以充当一个服务注册表（Service Registry），让多个服务提供者形成一个集群，让服务消费者通过服务注册表获取具体的服务访问地址（Ip+端口）去访问具体的服务提供者。如下图所示：</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072218052.png" style="zoom:50%;" />
 
-<h2 id="系统流程图"><a href="#系统流程图" class="headerlink" title="系统流程图"></a>系统流程图</h2><img src="http://jason-qianhao.xyz/1240-20210704082006160.jpeg" alt="img" />
+<p>每当一个服务提供者部署后都要将自己的服务注册到zookeeper的某一路径上: /{service}/{version}/{ip:port} 。</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072219975.png" alt="图片" style="zoom: 67%;" />
 
-<h2 id="主页面展示"><a href="#主页面展示" class="headerlink" title="主页面展示"></a>主页面展示</h2><p><img src="http://jason-qianhao.xyz/1240-20210704082006191.jpeg" alt="img"></p>
-<h2 id="ITDatabase-Web工程"><a href="#ITDatabase-Web工程" class="headerlink" title="ITDatabase-Web工程"></a>ITDatabase-Web工程</h2><h3 id="Maven依赖"><a href="#Maven依赖" class="headerlink" title="Maven依赖"></a>Maven依赖</h3><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>parent</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-parent<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.5.2.RELEASE<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>relativePath</span> <span class="token punctuation">/></span></span> <span class="token comment">&lt;!-- lookup parent from repository --></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>parent</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- 集成web --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-web<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- 集成mybatis --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.mybatis.spring.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mybatis-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.1.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- 集成mysql --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>mysql<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>mysql-connector-java<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>5.1.46<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- 集成freemarker --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-freemarker<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!--Lombok --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.projectlombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>lombok<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.18.6<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>net.logstash.logback<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>logstash-logback-encoder<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>4.9<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- redis --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-data-redis<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-  <span class="token comment">&lt;!-- PageHelper --></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>com.github.pagehelper<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>pagehelper-spring-boot-starter<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
-    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.10<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在zookeeper中，进行服务注册，实际上就是在zookeeper中创建了一个znode节点，该节点存储了该服务的IP、端口、调用方式(协议、序列化方式)等。该节点承担着最重要的职责，它由服务提供者(发布服务时)创建，以供服务消费者获取节点中的信息，从而定位到服务提供者真正网络拓扑位置以及得知如何调用。</p>
+<h3 id="RPC调用流程"><a href="#RPC调用流程" class="headerlink" title="RPC调用流程"></a>RPC调用流程</h3><ol>
+<li>服务提供者启动时，会将其服务名称，ip地址注册到配置中心。</li>
+<li>服务消费者在第一次调用服务时，会通过注册中心找到相应的服务的IP地址列表，并缓存到本地，以供后续使用。当消费者调用服务时，不会再去请求注册中心，而是直接通过负载均衡算法从IP列表中取一个服务提供者的服务器调用服务。</li>
+<li>当服务提供者的某台服务器宕机或下线时，相应的ip会从服务提供者IP列表中移除。同时，注册中心会将新的服务IP地址列表发送给服务消费者机器，缓存在消费者本机。</li>
+<li>当某个服务的所有服务器都下线了，那么这个服务也就下线了。</li>
+<li>同样，当服务提供者的某台服务器上线时，注册中心会将新的服务IP地址列表发送给服务消费者机器，缓存在消费者本机。</li>
+<li>服务提供方可以根据服务消费者的数量来作为服务下线的依据。</li>
+</ol>
+<p>zookeeper提供了“心跳检测”功能：<strong>它会定时向各个服务提供者发送一个请求（实际上建立的是一个 socket 长连接），如果长期没有响应，服务中心就认为该服务提供者已经“挂了”，并将其剔除。</strong></p>
+<p>比如100.100.0.237这台机器如果宕机了，那么zookeeper上的路径就会只剩/HelloWorldService/1.0.0/100.100.0.238:16888。</p>
+<p>Zookeeper的Watch机制其实就是一种<strong>推拉结合的模式</strong>：</p>
+<ul>
+<li>服务消费者会去监听相应路径（/HelloWorldService/1.0.0），一旦路径上的数据有任务变化（增加或减少），<strong>Zookeeper只会发送一个事件类型和节点信息给关注的客户端，而不会包括具体的变更内容</strong>，所以事件本身是轻量级的，这就是推的部分。</li>
+<li><strong>收到变更通知的客户端需要自己去拉变更的数据</strong>，这就是拉的部分。</li>
+</ul>
+<h3 id="Zookeeper不适合作为注册中心"><a href="#Zookeeper不适合作为注册中心" class="headerlink" title="Zookeeper不适合作为注册中心"></a>Zookeeper不适合作为注册中心</h3><p>作为一个分布式协同服务，ZooKeeper非常好，但是对于Service发现服务来说就不合适了，因为对于Service发现服务来说就算是返回了包含不实的信息的结果也比什么都不返回要好。<strong>所以当向注册中心查询服务列表时，我们可以容忍注册中心返回的是几分钟以前的注册信息，但不能接受服务直接down掉不可用。</strong></p>
+<p>但是zk会出现这样一种情况，当master节点因为网络故障与其他节点失去联系时，剩余节点会重新进行leader选举。问题在于，选举leader的时间太长，30 ~ 120s, 且选举期间整个zk集群都是不可用的，这就导致在选举期间注册服务瘫痪。在云部署的环境下，因网络问题使得zk集群失去master节点是较大概率会发生的事，虽然服务能够最终恢复，但是漫长的选举时间导致的注册长期不可用是不能容忍的。</p>
+<p>所以说，<strong>作为注册中心，可用性的要求要高于一致性！</strong></p>
+<p>在 CAP 模型中，<strong>Zookeeper整体遵循一致性（CP）原则</strong>，即在任何时候对 Zookeeper 的访问请求能得到一致的数据结果，但是当机器下线或者宕机时，<strong>不能保证服务可用性。</strong></p>
+<p>那为什么Zookeeper不使用最终一致性（AP）模型呢？因为这个依赖<strong>Zookeeper的核心算法是ZAB，所有设计都是为了强一致性</strong>。这个对于分布式协调系统，完全没没有毛病，但是<strong>你如果将Zookeeper为分布式协调服务所做的一致性保障，用在注册中心，或者说服务发现场景，这个其实就不合适。</strong></p>
+<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><img src="http://jason-qianhao.xyz/202206-202212/202206072226488.png" style="zoom:67%;" />
 
-<h3 id="数据库设计"><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h3><p>（1）用户表users</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">#用户表
+<h3 id="Eureka-特点"><a href="#Eureka-特点" class="headerlink" title="Eureka 特点"></a>Eureka 特点</h3><ul>
+<li><strong>可用性（AP原则）</strong>：Eureka 在设计时就紧遵AP原则，Eureka的集群中，只要有一台Eureka还在，就能保证注册服务可用，只不过查到的信息可能不是最新的（不保证强一致性）。</li>
+<li><strong>去中心化架构</strong>：Eureka Server 可以运行多个实例来构建集群，不同于 ZooKeeper 的选举 leader 的过程，Eureka Server 采用的是Peer to Peer 对等通信。这是一种去中心化的架构，无 master/slave 之分，每一个 Peer 都是对等的。节点通过彼此互相注册来提高可用性，每个节点需要添加一个或多个有效的 serviceUrl 指向其他节点。每个节点都可被视为其他节点的副本。</li>
+<li><strong>请求自动切换</strong>：在集群环境中如果某台 Eureka Server 宕机，Eureka Client 的请求会自动切换到新的 Eureka Server 节点上，当宕机的服务器重新恢复后，Eureka 会再次将其纳入到服务器集群管理之中。</li>
+<li><strong>节点间操作复制</strong>：当节点开始接受客户端请求时，所有的操作都会在节点间进行复制操作，将请求复制到该 Eureka Server 当前所知的其它所有节点中。</li>
+<li><strong>自动注册&amp;心跳</strong>：当一个新的 Eureka Server 节点启动后，会首先尝试从邻近节点获取所有注册列表信息，并完成初始化。Eureka Server 通过 getEurekaServiceUrls() 方法获取所有的节点，并且会通过心跳契约的方式定期更新。</li>
+<li><strong>自动下线</strong>：默认情况下，如果 Eureka Server 在一定时间内没有接收到某个服务实例的心跳（默认周期为30秒），Eureka Server 将会注销该实例（默认为90秒， eureka.instance.lease-expiration-duration-in-seconds 进行自定义配置）。</li>
+<li><strong>保护模式</strong>：当 Eureka Server 节点在短时间内丢失过多的心跳时，那么这个节点就会进入自我保护模式。</li>
+</ul>
+<p>除了上述特点，Eureka还有一种自我保护机制，如果在15分钟内超过 <strong>85%</strong> 的节点都没有正常的心跳，那么Eureka就认为客户端与注册中心出现了网络故障，此时会出现以下几种情况：</p>
+<ul>
+<li>Eureka不再从注册表中移除因为长时间没有收到心跳而过期的服务；</li>
+<li>Eureka仍然能够接受新服务注册和查询请求，但是不会被同步到其它节点上（即保证当前节点依然可用）</li>
+<li>当网络稳定时，当前实例新注册的信息会被同步到其它节点中。</li>
+</ul>
+<h3 id="Eureka工作流程"><a href="#Eureka工作流程" class="headerlink" title="Eureka工作流程"></a>Eureka工作流程</h3><p>了解完 Eureka 核心概念，自我保护机制，以及集群内的工作原理后，我们来整体梳理一下 Eureka 的工作流程：</p>
+<ol>
+<li>Eureka Server 启动成功，等待服务端注册。在启动过程中如果配置了集群，集群之间定时通过 Replicate 同步注册表，每个 Eureka Server 都存在独立完整的服务注册表信息。</li>
+<li>Eureka Client 启动时根据配置的 Eureka Server 地址去注册中心注册服务。</li>
+<li>Eureka Client 会每 30s 向 Eureka Server 发送一次心跳请求，证明客户端服务正常。</li>
+<li>当 Eureka Server 90s 内没有收到 Eureka Client 的心跳，注册中心则认为该节点失效，会注销该实例。</li>
+<li>单位时间内 Eureka Server 统计到有大量的 Eureka Client 没有上送心跳，则认为可能为网络异常，进入自我保护机制，不再剔除没有上送心跳的客户端。</li>
+<li>当 Eureka Client 心跳请求恢复正常之后，Eureka Server 自动退出自我保护模式。</li>
+<li>Eureka Client 定时全量或者增量从注册中心获取服务注册表，并且将获取到的信息缓存到本地。</li>
+<li>服务调用时，Eureka Client 会先从本地缓存找寻调取的服务。如果获取不到，先从注册中心刷新注册表，再同步到本地缓存。</li>
+<li>Eureka Client 获取到目标服务器信息，发起服务调用。</li>
+<li>Eureka Client 程序关闭时向 Eureka Server 发送取消请求，Eureka Server 将实例从注册表中删除。</li>
+</ol>
+<p>Eureka 为了保障注册中心的高可用性，容忍了数据的非强一致性，服务节点间的数据可能不一致， Client-Server 间的数据可能不一致。<strong>比较适合跨越多机房、对注册中心服务可用性要求较高的使用场景。</strong></p>
+<h2 id="Nacos"><a href="#Nacos" class="headerlink" title="Nacos"></a>Nacos</h2><img src="http://jason-qianhao.xyz/202206-202212/202206072229839.png" style="zoom:67%;" />
 
-CREATE TABLE &#96;users&#96;(
+<p>Nacos 致力于帮助您发现、配置和管理微服务。Nacos 提供了一组简单易用的特性集，帮助您快速实现动态服务发现、服务配置、服务元数据及流量管理。</p>
+<p>Nacos 帮助您更敏捷和容易地构建、交付和管理微服务平台。Nacos 是构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。</p>
+<p><strong>Nacos 主要特点</strong>：</p>
+<p><strong>服务发现和服务健康监测</strong>：</p>
+<ul>
+<li>Nacos 支持基于 DNS 和基于 RPC 的服务发现。服务提供者使用原生SDK、OpenAPI、或一个独立的Agent TODO注册 Service 后，服务消费者可以使用DNS TODO 或HTTP&amp;API查找和发现服务。</li>
+<li>Nacos 提供对服务的实时的健康检查，阻止向不健康的主机或服务实例发送请求。Nacos 支持传输层 (PING 或 TCP)和应用层 (如 HTTP、MySQL、用户自定义）的健康检查。对于复杂的云环境和网络拓扑环境中（如 VPC、边缘网络等）服务的健康检查，Nacos 提供了 agent 上报模式和服务端主动检测2种健康检查模式。Nacos 还提供了统一的健康检查仪表盘，帮助您根据健康状态管理服务的可用性及流量。</li>
+</ul>
+<p><strong>动态配置服务</strong>：</p>
+<ul>
+<li>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置。</li>
+<li>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷。</li>
+<li>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。</li>
+<li>Nacos 提供了一个简洁易用的UI (控制台样例 Demo) 帮助您管理所有的服务和应用的配置。Nacos 还提供包括配置版本跟踪、金丝雀发布、一键回滚配置以及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助您更安全地在生产环境中管理配置变更和降低配置变更带来的风险。</li>
+</ul>
+<p><strong>动态 DNS 服务</strong>：</p>
+<ul>
+<li>动态 DNS 服务支持权重路由，让您更容易地实现中间层负载均衡、更灵活的路由策略、流量控制以及数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以 DNS 协议为基础的服务发现，以帮助您消除耦合到厂商私有服务发现 API 上的风险。</li>
+<li>Nacos 提供了一些简单的 DNS APIs TODO 帮助您管理服务的关联域名和可用的 IP:PORT 列表。</li>
+</ul>
+<p>小节一下：</p>
+<ul>
+<li>Nacos是阿里开源的，支持基于 DNS 和基于 RPC 的服务发现。</li>
+<li><strong>Nacos的注册中心支持CP也支持AP</strong>，对他来说只是一个命令的切换，随你玩，还支持各种注册中心迁移到Nacos，反正一句话，只要你想要的他就有。</li>
+<li><strong>Nacos除了服务的注册发现之外，还支持动态配置服务</strong>，一句话概括就是<strong>Nacos = Spring Cloud注册中心 + Spring Cloud配置中心</strong>。</li>
+</ul>
+<h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><p>Consul 是 HashiCorp 公司推出的开源工具，用于实现分布式系统的服务发现与配置。与其它分布式服务注册与发现的方案，Consul 的方案更“一站式”，内置了服务注册与发现框架、分布一致性协议实现、健康检查、Key/Value 存储、多数据中心方案，不再需要依赖其它工具（比如 ZooKeeper 等）。</p>
+<p>Consul 使用起来也较为简单，使用 Go 语言编写，因此具有天然可移植性(支持Linux、windows和Mac OS X)；安装包仅包含一个可执行文件，方便部署，与 Docker 等轻量级容器可无缝配合。</p>
+<h3 id="Consul-的调用过程"><a href="#Consul-的调用过程" class="headerlink" title="Consul 的调用过程"></a>Consul 的调用过程</h3><ol>
+<li>当 Producer 启动的时候，会向 Consul 发送一个 post 请求，告诉 Consul 自己的 IP 和 Port；</li>
+<li>Consul 接收到 Producer 的注册后，每隔 10s（默认）会向 Producer 发送一个健康检查的请求，检验 Producer 是否健康；</li>
+<li>当 Consumer 发送 GET 方式请求 /api/address 到 Producer 时，会先从 Consul 中拿到一个存储服务 IP 和 Port 的临时表，从表中拿到 Producer 的 IP 和 Port 后再发送 GET 方式请求 /api/address；</li>
+<li>该临时表每隔 10s 会更新，只包含有通过了健康检查的 Producer。</li>
+</ol>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072232142.png" alt="图片" style="zoom:67%;" />
 
-&#96;id&#96; int(11) NOT NUll auto_increment COMMENT&#39;主键（自增长）&#39;,
+<h3 id="Consul-主要特征"><a href="#Consul-主要特征" class="headerlink" title="Consul 主要特征"></a>Consul 主要特征</h3><ul>
+<li>CP模型，使用 Raft 算法来保证强一致性，不保证可用性；</li>
+<li>支持服务注册与发现、健康检查、KV Store功能。</li>
+<li>支持多数据中心，可以避免单数据中心的单点故障，而其部署则需要考虑网络延迟, 分片等情况等。</li>
+<li>支持安全服务通信，Consul可以为服务生成和分发TLS证书，以建立相互的TLS连接。</li>
+<li>支持 http 和 dns 协议接口；</li>
+<li>官方提供 web 管理界面。</li>
+</ul>
+<h2 id="ETCD"><a href="#ETCD" class="headerlink" title="ETCD"></a>ETCD</h2><p>etcd是一个Go言编写的分布式、高可用的一致性键值存储系统，用于提供可靠的分布式键值存储、配置共享和服务发现等功能。</p>
+<h3 id="ETCD-特点"><a href="#ETCD-特点" class="headerlink" title="ETCD 特点"></a>ETCD 特点</h3><ul>
+<li>易使用：基于HTTP+JSON的API让你用curl就可以轻松使用；</li>
+<li>易部署：使用Go语言编写，跨平台，部署和维护简单；</li>
+<li>强一致：使用Raft算法充分保证了分布式系统数据的强一致性；</li>
+<li>高可用：具有容错能力，假设集群有n个节点，当有(n-1)/2节点发送故障，依然能提供服务；</li>
+<li>持久化：数据更新后，会通过WAL格式数据持久化到磁盘，支持Snapshot快照；</li>
+<li>快速：每个实例每秒支持一千次写操作，极限写性能可达10K QPS；</li>
+<li>安全：可选SSL客户认证机制；</li>
+<li>ETCD 3.0：除了上述功能，还支持gRPC通信、watch机制。</li>
+</ul>
+<h3 id="ETCD-框架"><a href="#ETCD-框架" class="headerlink" title="ETCD 框架"></a>ETCD 框架</h3><p>etcd主要分为四个部分：</p>
+<ul>
+<li>HTTP Server：用于处理用户发送的API请求以及其它etcd节点的同步与心跳信息请求。</li>
+<li>Store：用于处理etcd支持的各类功能的事务，包括数据索引、节点状态变更、监控与反馈、事件处理与执行等等，是etcd对用户提供的大多数API功能的具体实现。</li>
+<li>Raft：Raft强一致性算法（Paxos的简化版）的具体实现，是etcd的核心。</li>
+<li>WAL：Write Ahead Log（预写式日志），是etcd的数据存储方式。除了在内存中存有所有数据的状态以及节点的索引以外，etcd就通过WAL进行持久化存储。WAL中，所有的数据提交前都会事先记录日志。Snapshot是为了防止数据过多而进行的状态快照；Entry表示存储的具体日志内容。</li>
+</ul>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072233286.png" alt="" style="zoom:67%;" />
 
-&#96;username&#96; VARCHAR(50) NOT NULL COMMENT&#39;用户名&#39;,
+<p>通常，一个用户的请求发送过来，会经由HTTP Server转发给Store进行具体的事务处理，如果涉及到节点的修改，则交给Raft模块进行状态的变更、日志的记录，然后再同步给别的etcd节点以确认数据提交，最后进行数据的提交，再次同步。</p>
+<h2 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h2><ul>
+<li><strong>关于CP还是AP的选择</strong>：选择 AP，因为可用性高于一致性，所以更倾向 Eureka 和 Nacos；关于Eureka、Nacos如何选择，哪个让我做的事少，我就选择哪个，显然 Nacos 帮我们做了更多的事。</li>
+<li><strong>技术体系</strong>：Etcd 和 Consul 都是Go开发的，Eureka、Nacos、Zookeeper 和 Zookeeper 都是Java开发的，可能项目属于不同的技术栈，会偏向选择对应的技术体系。</li>
+<li><strong>高可用</strong>：这几款开源产品都已经考虑如何搭建高可用集群，有些差别而已；</li>
+<li><strong>产品的活跃度</strong>：这几款开源产品整体上都比较活跃。</li>
+</ul>
+<h2 id="5种对比"><a href="#5种对比" class="headerlink" title="5种对比"></a>5种对比</h2><p><img src="http://jason-qianhao.xyz/202206-202212/202206072234290.png"></p>
+<ul>
+<li><p><strong>服务健康检查</strong>：Euraka 使用时需要显式配置健康检查支持；Zookeeper、Etcd 则在失去了和服务进程的连接情况下任务不健康，而 Consul 相对更为详细点，比如内存是否已使用了90%，文件系统的空间是不是快不足了。</p>
+</li>
+<li><p><strong>多数据中心</strong>：Consul 和 Nacos 都支持，其他的产品则需要额外的开发工作来实现。</p>
+</li>
+<li><p><strong>KV 存储服务</strong>：除了 Eureka，其他几款都能够对外支持 k-v 的存储服务，所以后面会讲到这几款产品追求高一致性的重要原因。而提供存储服务，也能够较好的转化为动态配置服务哦。</p>
+</li>
+<li><p><strong>CAP 理论的取舍</strong>：</p>
+</li>
+<li><ul>
+<li>Eureka 是典型的 AP，Nacos可以配置为 AP，作为分布式场景下的服务发现的产品较为合适，服务发现场景的可用性优先级较高，一致性并不是特别致命。</li>
+<li>而Zookeeper、Etcd、Consul则是 CP 类型牺牲可用性，在服务发现场景并没太大优势；</li>
+</ul>
+</li>
+<li><p><strong>Watch的支持</strong>：Zookeeper 支持服务器端推送变化，其它都通过长轮询的方式来实现变化的感知。</p>
+</li>
+<li><p><strong>自身集群的监控</strong>：除了Zookeeper和Nacos，其它几款都默认支持 metrics，运维者可以搜集并报警这些度量信息达到监控目的。</p>
+</li>
+<li><p><strong>Spring Cloud的集成</strong>：目前都有相对应的 boot starter，提供了集成能力。</p>
+</li>
+</ul>
+<h1 id="微服务拆分原则AFK"><a href="#微服务拆分原则AFK" class="headerlink" title="微服务拆分原则AFK"></a>微服务拆分原则AFK</h1><p>需要对服务器进行集群，一变多，具体怎么扩充服务器？即AFK原则。</p>
+<p>X轴拆分:水平复制，就是将单体系统多运行几个实例，做集群加负载均衡的模式,主主、主备、主从。</p>
+<p>Y轴拆分:基于不同的业务拆分</p>
+<p>Z轴拆分:基于数据拆分。</p>
+<h2 id="X轴拆分"><a href="#X轴拆分" class="headerlink" title="X轴拆分"></a>X轴拆分</h2><p>一台机器可以看成另一台机器的镜像,基本具有全量数据,这种拆分模式就是AKF拆分模式之一:<strong>X轴拆分</strong></p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206072238057.png"></p>
+<p>为了解决单点故障,所以弄几台全量数据的机器做备份,例如主主、主备等,特点是任何两台包含的数据是差不多的,一台可以看成另一台的镜像。</p>
+<h2 id="Y轴拆分"><a href="#Y轴拆分" class="headerlink" title="Y轴拆分"></a>Y轴拆分</h2><p>这时候又有新的问题,例如一台服务器中,可能某些功能被频繁访问,涉及到的数据频繁读写,其他数据基本不怎么访问,这时候可以将这部分数据独立出来,也就是根据功能、业务继续拆分服务器,这种拆解就是AFK中的<strong>Y轴拆分</strong></p>
+<p>特点是Y轴纵向来看不同的Redis负责的功能是不同的,也就是所包含的数据也是不同的,另外仅仅扩展出一个Y轴上的业务服务器,又可能会存在单点问题,所以可以结合AFK的X轴拆分原则,继续对刚拆分的Y轴上的点进行X轴拆分。</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072239312.png" style="zoom:67%;" />
 
-&#96;password&#96; VARCHAR(32) NOT NULL COMMENT&#39;密码，加密存储&#39;,
-
-&#96;phone&#96; VARCHAR(20) DEFAULT NULL COMMENT&#39;手机号&#39;,
-
-&#96;email&#96; VARCHAR(50) DEFAULT NULL COMMENT&#39;邮箱&#39;,
-
-&#96;openId&#96; VARCHAR(100) DEFAULT NULL COMMENT&#39;登录Id&#39;,
-
-&#96;created&#96; TIMESTAMP not NULL DEFAULT CURRENT_TIMESTAMP COMMENT&#39;自动插入，创建时间&#39;,
-
-&#96;updated&#96; TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT&#39;自动插入，修改时间&#39;,
-
-PRIMARY KEY(&#96;id&#96;),
-
-UNIQUE KEY &#96;username&#96; (&#96;username&#96;) USING BTREE,
-
-UNIQUE KEY &#96;phone&#96; (&#96;phone&#96;) USING BTREE,
-
-UNIQUE KEY &#96;email&#96; (&#96;email&#96;) USING BTREE
-
-)ENGINE&#x3D;INNODB COMMENT&#x3D;&#39;用户表&#39;;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（2）资源内容表MessageInfo</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">#资源内容表
-
-CREATE TABLE &#96;message_info&#96;(
-
-&#96;id&#96; int(11) NOT null auto_increment COMMENT&#39;主键（自增长）&#39;,
-
-&#96;message_name&#96; VARCHAR(150) NOT null COMMENT&#39;资源名称&#39;,
-
-&#96;message_url&#96; VARCHAR(100) NOT NULL COMMENT&#39;资源url&#39;,
-
-&#96;message_typeId&#96; int NOT NULL COMMENT&#39;资源类型Id&#39;,
-
-&#96;message_pwd&#96; VARCHAR(100) NOT NULL COMMENT&#39;资源提取码&#39;,
-
-&#96;message_author&#96; VARCHAR(100) NOT null COMMENT&#39;上传者&#39;,
-
-&#96;created&#96; TIMESTAMP not NULL DEFAULT CURRENT_TIMESTAMP COMMENT&#39;自动插入，创建时间&#39;,
-
-&#96;updated&#96; TIMESTAMP not null DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT&#39;自动插入，修改时间&#39;,
-
-PRIMARY KEY(&#96;id&#96;),
-
-KEY &#96;message_name&#96; (&#96;message_name&#96;) USING BTREE,
-
-INDEX &#96;message_typeId&#96; (&#96;message_typeId&#96;) USING BTREE,
-
-KEY &#96;message_author&#96; (&#96;message_author&#96;),
-
-UNIQUE KEY &#96;message_url&#96; (&#96;message_url&#96;)
-
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>（3）资源类型表MessageType</p>
-<pre class="line-numbers language-mysql" data-language="mysql"><code class="language-mysql">#资源种类表
-
-CREATE TABLE &#96;message_type&#96;(
-
-&#96;id&#96; int(11) NOT NULL auto_increment COMMENT&#39;主键（自增长）&#39;,
-
-&#96;type_name&#96; VARCHAR(30) NOT NULL COMMENT&#39;资源类型名&#39;,
-
-PRIMARY KEY(&#96;id&#96;),
-
-UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
-
-);<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>  资源类型表的id即为资源内容表的message_typeId。</p>
-<h3 id="实体类设计"><a href="#实体类设计" class="headerlink" title="实体类设计"></a>实体类设计</h3><p>（1）userEntity</p>
-<p>​    和数据库字段名保持一致</p>
-<p>（2）MessageInfoEntity</p>
-<p>​    除保留数据库字段名外，添加<strong>typeName字段</strong>用于联合查询</p>
-<p>（3）MessageTpyeEntity</p>
-<p>​    和数据库字段名保持一致</p>
-<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">server</span><span class="token punctuation">:</span>
- <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80</span>
- <span class="token key atrule">servlet</span><span class="token punctuation">:</span>
- 	<span class="token key atrule">context-path</span><span class="token punctuation">:</span> /
-<span class="token key atrule">mybatis</span><span class="token punctuation">:</span>
- <span class="token key atrule">configuration</span><span class="token punctuation">:</span>
-<span class="token comment"># 开启驼峰uName自动映射到u_name</span>
-   <span class="token key atrule">map-underscore-to-camel-case</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-<span class="token key atrule">pagehelper</span><span class="token punctuation">:</span>
-<span class="token comment"># 方言配置</span>
- <span class="token key atrule">helperDialect</span><span class="token punctuation">:</span> mysql
-<span class="token comment"># 3.3.0版本可用 - 分页参数合理化，默认false禁用</span>
-<span class="token comment"># 启用合理化时，如果pageNum&lt;1会查询第一页，如果pageNum>pages会查询最后一页</span>
-<span class="token comment"># 禁用合理化时，如果pageNum&lt;1或pageNum>pages会返回空数据</span>
- <span class="token key atrule">reasonable</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
- <span class="token key atrule">supportMethodsArguments</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
- <span class="token key atrule">params</span><span class="token punctuation">:</span> count=countSql
-<span class="token key atrule">spring</span><span class="token punctuation">:</span>
-<span class="token comment"># mysql</span>
- <span class="token key atrule">datasource</span><span class="token punctuation">:</span>
-   <span class="token key atrule">url</span><span class="token punctuation">:</span> jdbc<span class="token punctuation">:</span>mysql<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>3306/itdatabase
-   <span class="token key atrule">username</span><span class="token punctuation">:</span> root
-   <span class="token key atrule">password</span><span class="token punctuation">:</span> root
-   <span class="token key atrule">driver-class-name</span><span class="token punctuation">:</span> com.mysql.jdbc.Driver
- <span class="token key atrule">freemarker</span><span class="token punctuation">:</span>
-   <span class="token key atrule">allow-request-override</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-   <span class="token key atrule">cache</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-   <span class="token key atrule">check-template-location</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-   <span class="token key atrule">charset</span><span class="token punctuation">:</span> UTF<span class="token punctuation">-</span><span class="token number">8</span>
-   <span class="token key atrule">content-type</span><span class="token punctuation">:</span> text/html
-   <span class="token key atrule">expose-request-attributes</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-   <span class="token key atrule">expose-session-attributes</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-   <span class="token key atrule">expose-spring-macro-helpers</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-   <span class="token key atrule">suffix</span><span class="token punctuation">:</span> .ftl
-   <span class="token key atrule">template-loader-path</span><span class="token punctuation">:</span> classpath<span class="token punctuation">:</span>/templates/
-<span class="token comment">#redis</span>
- <span class="token key atrule">redis</span><span class="token punctuation">:</span>
-   <span class="token key atrule">host</span><span class="token punctuation">:</span> localhost
-   <span class="token key atrule">password</span><span class="token punctuation">:</span> <span class="token number">123457</span>
-   <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">6379</span>
-   <span class="token key atrule">pool</span><span class="token punctuation">:</span>
-    <span class="token key atrule">max-idle</span><span class="token punctuation">:</span> <span class="token number">100</span>
-    <span class="token key atrule">min-idle</span><span class="token punctuation">:</span> <span class="token number">1</span>
-    <span class="token key atrule">max-active</span><span class="token punctuation">:</span> <span class="token number">1000</span>
-    <span class="token key atrule">max-wait</span><span class="token punctuation">:</span> <span class="token number">-11</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="工程结构截图"><a href="#工程结构截图" class="headerlink" title="工程结构截图"></a>工程结构截图</h3><img src="http://jason-qianhao.xyz/1240-20210704082006194.png" alt="img" />
-
-<h2 id="系统介绍"><a href="#系统介绍" class="headerlink" title="系统介绍"></a>系统介绍</h2><p>  本系统是在线资源共享系统，最早版本采用SSM框架，即Spring+SpringMVC+Mybatis进行设计，后续考虑到Springboot配置项目的便捷性，经过不断优化最终采用Springboot+Mybatis进行系统设计。系统设计依然采用SpringMVC模式，分Controller层、Service层和Dao层。</p>
-<p>  系统设计从数据库设计开始，数据库表分为用户表、资源内容表和资源类型表。用户表用来存储注册的用户信息，有用户名、邮箱、密码等字段，其中Id为主键，用户名、手机号和邮箱加之唯一索引。资源内容表用来存储用户上传的资源信息，有资源名称、资源url、资源类型Id等字段，其中资源url为唯一索引，资源类型Id和资源类型表的Id相关联用来查询种类名称。资源类型表用来存储资源类型名称，已经存在10种在表中，用户也可以自定义类型上传至数据库，其中类型名称为唯一索引。</p>
-<p>  接着是对实体类和Dao层的设计，实体类的设计只有在资源实体类中添加了typeName字段，用来将联合查询的结果存储在对象中，其他字段均为数据库映射，在配置文件中开启了Mybatis的“驼峰命名”映射规则。Dao层这里即为Mybatis的mapper层。根据数据表的分类，同样进行UserMapping、MessageInfoMapping和MessageTypeMapping的对应SQL封装。</p>
-<p>  在Service层设计时，除了用户服务和资源服务外，加入Redis服务用来存储用户的登录信息，这是在用户禁用Cookie后的补偿措施。用户服务封装注册、登录、Redis写入和查询。注册时，使用MD5算法对用户的密码进行加密再存储。登录服务需要验证用户名、手机和邮箱三种登录方式，并在登录成功后将”OpenId”作为键，用户的openid作为值加入Cookie和Reids。资源服务封装读取所有资源、添加资源、读取所有资源类型、删除资源、修改资源操作。特别对于自定义添加类型操作，在前端设计只有在选中“自定义”类型时，显示新增资源名称输入框；在后端需要判断新增资源名是否为空或重复等进行相应处理。</p>
-<p>  对于Controller层的设计，考虑到每次返回主页需要查询资源和分页，添加和修改资源页面需要查询所有资源类型，使用BaseController类，封装三个操作，其他Controller对其继承即可。分页采用PageHelper进行分页处理，每页记录初步设定为5条。在用户控制类中，访问主页面会检测Cookie和Redis的缓存，判断是否需要登录。在资源控制类中，处正常操作外，还拥有对添加资源的提交通过Session判断是否重复提交，对分页跳转进行控制。</p>
-<p>  最后通过@SpringbootApplication注解和@MapperScan启动工程即可。</p>
-<h2 id="一些开发笔记"><a href="#一些开发笔记" class="headerlink" title="一些开发笔记"></a>一些开发笔记</h2><p>1 Mybatis的Mapping接口，多参数时，一定要使用@Param，并且对象的字段使用user.name形式。</p>
-<p>2 前端input控件不输入值时，后端注意区别””和null</p>
-<p>3 前端Input控件配置了value默认值后，不可再配置Placeholder，否则默认值无法传到后端，为null</p>
-<p>4 PageHelper后才能查数据库，并自动绑定查询结果的List。所以其他的List一定要再pagehelper之前定义！！</p>
-
+<h2 id="Z轴拆分"><a href="#Z轴拆分" class="headerlink" title="Z轴拆分"></a>Z轴拆分</h2><p>在上面的AFK原则X-Y拆分之后,对服务器显示做了主从主备复制,然后做了业务拆分,不同的Redis负责不同的业务请求,这时候还会有一个新的问题,例如对于Y轴上一个Redis,它负责某一样业务,但是这天这个业务的数据访问巨大,贼大,那就只好对数据请求进行<strong>AFK的Z轴拆分</strong>,例如先分析下数据请求的情况,然后根据访问来源,分为北京的、上海的,这样不同的Redis虽然是负责不同的数据,但是负责的业务是一样的。AFK拆分图示:</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206072240182.png" style="zoom:67%;" />
                 
             </div>
             <hr/>
@@ -709,7 +689,7 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2021/01/19/zai-xian-zi-yuan-gong-xiang-itdatabase/">https://jason-qianhao.github.io/2021/01/19/zai-xian-zi-yuan-gong-xiang-itdatabase/</a>
+                    <a href="https://jason-qianhao.github.io/2022/06/07/wei-fu-wu-ji-chu-zhi-shi/">https://jason-qianhao.github.io/2022/06/07/wei-fu-wu-ji-chu-zhi-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -747,16 +727,8 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Springboot/">
-                                    <span class="chip bg-color">Springboot</span>
-                                </a>
-                            
-                                <a href="/tags/Spring/">
-                                    <span class="chip bg-color">Spring</span>
-                                </a>
-                            
-                                <a href="/tags/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/">
-                                    <span class="chip bg-color">项目仓库</span>
+                                <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                                    <span class="chip bg-color">微服务</span>
                                 </a>
                             
                         </div>
@@ -1189,16 +1161,17 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/01/20/jian-dan-shang-cheng-shop/">
+                <a href="/2022/06/07/wei-fu-wu-ji-chu-zhi-shi/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/67.jpg" class="responsive-img" alt="简单商城Shop">
+                        <img src="http://jason-qianhao.xyz/202206-202212/202206072245127.jpg" class="responsive-img" alt="微服务基础知识">
                         
-                        <span class="card-title">简单商城Shop</span>
+                        <span class="card-title">微服务基础知识</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1208,34 +1181,27 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-20
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-07
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/" class="post-category">
-                                    项目仓库
+                            <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="post-category">
+                                    微服务
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Spring/">
-                        <span class="chip bg-color">Spring</span>
-                    </a>
-                    
-                    <a href="/tags/SpringCloud/">
-                        <span class="chip bg-color">SpringCloud</span>
-                    </a>
-                    
-                    <a href="/tags/%E9%A1%B9%E7%9B%AE%E4%BB%93%E5%BA%93/">
-                        <span class="chip bg-color">项目仓库</span>
+                    <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/">
+                        <span class="chip bg-color">微服务</span>
                     </a>
                     
                 </div>
@@ -1249,12 +1215,12 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/12/12/cao-zuo-xi-tong-zhi-shi-hui-zong/">
+                <a href="/2022/06/06/rocketmq-zhi-shi-hui-zong/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/2.jpg" class="responsive-img" alt="操作系统知识汇总">
+                        <img src="http://jason-qianhao.xyz/202206-202212/202206061557040.jpg" class="responsive-img" alt="RocketMQ知识汇总">
                         
-                        <span class="card-title">操作系统知识汇总</span>
+                        <span class="card-title">RocketMQ知识汇总</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1265,14 +1231,14 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-12-12
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-06
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="post-category">
-                                    操作系统
+                            <a href="/categories/MQ/" class="post-category">
+                                    MQ
                                 </a>
                             
                             
@@ -1282,8 +1248,12 @@ UNIQUE KEY &#96;type_name&#96; (&#96;type_name&#96;)
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">
-                        <span class="chip bg-color">操作系统</span>
+                    <a href="/tags/MQ/">
+                        <span class="chip bg-color">MQ</span>
+                    </a>
+                    
+                    <a href="/tags/RocketMQ/">
+                        <span class="chip bg-color">RocketMQ</span>
                     </a>
                     
                 </div>
