@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/11.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/icfe/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -450,7 +450,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    8 分
                 </div>
                 
 
@@ -473,14 +473,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="常见日志框架"><a href="#常见日志框架" class="headerlink" title="常见日志框架"></a>常见日志框架</h1><blockquote>
-<p>参考：</p>
+                <p><img src="http://jason-qianhao.xyz/icfe/11.jpg"></p>
+<blockquote>
+<p>目录：</p>
+<ol>
+<li><p>概览</p>
+</li>
+<li><p>日志的发展历程</p>
+</li>
+<li><p>基本用法</p>
+</li>
+<li><p>1 log4j</p>
+</li>
+<li><p>2 jul</p>
+</li>
+<li><p>3 jcl</p>
+</li>
+<li><p>4 slf4j</p>
+</li>
+<li><p>5 log4j2</p>
+</li>
+</ol>
+<p>参考/来源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/eaglelihh/p/15003410.html#log4j2">https://www.cnblogs.com/eaglelihh/p/15003410.html#log4j2</a></li>
 <li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1876048">https://cloud.tencent.com/developer/article/1876048</a></li>
 </ul>
 </blockquote>
-<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p><img src="http://jason-qianhao.xyz/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80Mjg2NTM3NQ==,size_16,color_FFFFFF,t_70.png" alt="常见日志框架"></p>
+<h1 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h1><p><img src="http://jason-qianhao.xyz/202206-202212/202206081448190.png"></p>
 <ol>
 <li><p><strong>市面流行的日志框架</strong>：</p>
 <ul>
@@ -527,27 +547,26 @@
 </blockquote>
 </li>
 </ol>
-<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><h2 id="log4j"><a href="#log4j" class="headerlink" title="log4j"></a>log4j</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.2</span><span class="token number">.17</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
-配置文件：
-log4j<span class="token punctuation">.</span>properties
-# <span class="token class-name">Set</span> root logger level <span class="token keyword">to</span> DEBUG and its only appender <span class="token keyword">to</span> A1<span class="token punctuation">.</span>
-log4j<span class="token punctuation">.</span>rootLogger<span class="token operator">=</span>DEBUG<span class="token punctuation">,</span> A1
-# A1 is set <span class="token keyword">to</span> <span class="token namespace">be</span> a <span class="token class-name">ConsoleAppender</span><span class="token punctuation">.</span>
-log4j<span class="token punctuation">.</span>appender<span class="token punctuation">.</span>A1<span class="token operator">=</span><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span>ConsoleAppender</span>
-# A1 <span class="token keyword">uses</span> <span class="token class-name">PatternLayout</span><span class="token punctuation">.</span>
-log4j<span class="token punctuation">.</span>appender<span class="token punctuation">.</span>A1<span class="token punctuation">.</span>layout<span class="token operator">=</span><span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span>PatternLayout</span>
-log4j<span class="token punctuation">.</span>appender<span class="token punctuation">.</span>A1<span class="token punctuation">.</span>layout<span class="token punctuation">.</span>ConversionPattern<span class="token operator">=</span><span class="token operator">%</span><span class="token operator">-</span><span class="token number">4</span>r <span class="token punctuation">[</span><span class="token operator">%</span>t<span class="token punctuation">]</span> <span class="token operator">%</span><span class="token operator">-</span><span class="token number">5</span>p <span class="token operator">%</span>c <span class="token operator">%</span>x <span class="token operator">-</span> <span class="token operator">%</span>m<span class="token operator">%</span>n
- 
-测试类：
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
+<h1 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h1><h2 id="log4j"><a href="#log4j" class="headerlink" title="log4j"></a>log4j</h2><ul>
+<li><p>依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.17<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>配置文件</p>
+<p>log4j.properties</p>
+<pre class="line-numbers language-properties" data-language="properties"><code class="language-properties"><span class="token comment"># Set root logger level to DEBUG and its only appender to A1.</span>
+<span class="token attr-name">log4j.rootLogger</span><span class="token punctuation">=</span><span class="token attr-value">DEBUG, A1</span>
+<span class="token comment"># A1 is set to be a ConsoleAppender.</span>
+<span class="token attr-name">log4j.appender.A1</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.log4j.ConsoleAppender</span>
+<span class="token comment"># A1 uses PatternLayout.</span>
+<span class="token attr-name">log4j.appender.A1.layout</span><span class="token punctuation">=</span><span class="token attr-value">org.apache.log4j.PatternLayout</span>
+<span class="token attr-name">log4j.appender.A1.layout.ConversionPattern</span><span class="token punctuation">=</span><span class="token attr-value">%-4r [%t] %-5p %c %x - %m%n</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>测试类</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token class-name">Logger</span> logger <span class="token operator">=</span> <span class="token class-name">Logger</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">Main</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -555,33 +574,35 @@ log4j<span class="token punctuation">.</span>appender<span class="token punctuat
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
  
+<span class="token comment">/*
 输出：
-<span class="token number">0</span>    <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO  <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span>Main</span>  <span class="token operator">-</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="jul"><a href="#jul" class="headerlink" title="jul"></a>jul</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">测试类：
-<span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>logging<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
+0    [main] INFO  cn.eagleli.log.log4j.Main  - hello, world!
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+</ul>
+<h2 id="jul"><a href="#jul" class="headerlink" title="jul"></a>jul</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">java<span class="token punctuation">.</span>util<span class="token punctuation">.</span>logging<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
         <span class="token class-name">Logger</span> logger <span class="token operator">=</span> <span class="token class-name">Logger</span><span class="token punctuation">.</span><span class="token function">getLogger</span><span class="token punctuation">(</span><span class="token class-name">Main</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"hello, world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
- 
+<span class="token comment">/*
 输出：
-八月 <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">2021</span> <span class="token number">11</span><span class="token operator">:</span><span class="token number">06</span><span class="token operator">:</span><span class="token number">19</span> 下午 <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>jul<span class="token punctuation">.</span></span>Main</span> main
-信息<span class="token operator">:</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+八月 11, 2021 11:06:19 下午 cn.eagleli.log.jul.Main main
+信息: hello, world!
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<h2 id="jcl"><a href="#jcl" class="headerlink" title="jcl"></a>jcl</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>commons<span class="token operator">-</span>logging<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>commons<span class="token operator">-</span>logging<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
-测试类：
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>logging<span class="token punctuation">.</span></span><span class="token class-name">Log</span><span class="token punctuation">;</span>
+<h2 id="jcl"><a href="#jcl" class="headerlink" title="jcl"></a>jcl</h2><ul>
+<li><p>依赖：</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>测试类</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>logging<span class="token punctuation">.</span></span><span class="token class-name">Log</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>commons<span class="token punctuation">.</span>logging<span class="token punctuation">.</span></span><span class="token class-name">LogFactory</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -589,47 +610,50 @@ log4j<span class="token punctuation">.</span>appender<span class="token punctuat
         log<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"hello, world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-
+<span class="token comment">/*
 输出：
-八月 <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">2021</span> <span class="token number">11</span><span class="token operator">:</span><span class="token number">08</span><span class="token operator">:</span><span class="token number">25</span> 下午 <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>jcl<span class="token punctuation">.</span></span>Main</span> main
-信息<span class="token operator">:</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+八月 11, 2021 11:08:25 下午 cn.eagleli.log.jcl.Main main
+信息: hello, world!
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>从上面输出结果可以看出，默认会使用<code>jul</code>作为底层的日志框架</p>
 <p>如果我们想换成<code>log4j</code>作为底层的日志框架，怎么办呢？只需要加一个依赖即可，如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>commons<span class="token operator">-</span>logging<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>commons<span class="token operator">-</span>logging<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.2</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.2</span><span class="token number">.17</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
-输出：
-<span class="token number">0</span>    <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO  <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>jcl<span class="token punctuation">.</span></span>Main</span>  <span class="token operator">-</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li><p>依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.17<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>输出</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token number">0</span>    <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO  <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>jcl<span class="token punctuation">.</span></span>Main</span>  <span class="token operator">-</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>从结果可以看出，底层日志框架已经变了，同样发现，我们的代码没有任何改动，只是加了一个依赖，由此可以看出接口的重要性。</p>
-<h2 id="slf4j"><a href="#slf4j" class="headerlink" title="slf4j"></a>slf4j</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>slf4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>slf4j<span class="token operator">-</span>api<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.7</span><span class="token number">.30</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>ch<span class="token punctuation">.</span>qos<span class="token punctuation">.</span>logback<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>logback<span class="token operator">-</span>classic<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.2</span><span class="token number">.3</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
- 
-测试类：
-<span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
+</li>
+</ul>
+<h2 id="slf4j"><a href="#slf4j" class="headerlink" title="slf4j"></a>slf4j</h2><ul>
+<li><p>依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.slf4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>slf4j-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.7.30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>ch.qos.logback<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>logback-classic<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.2.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>测试类</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span><span class="token class-name">LoggerFactory</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
     <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
@@ -637,48 +661,52 @@ log4j<span class="token punctuation">.</span>appender<span class="token punctuat
         logger<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"hello, world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
- 
+<span class="token comment">/*
 输出：
-<span class="token number">23</span><span class="token operator">:</span><span class="token number">14</span><span class="token operator">:</span><span class="token number">30.893</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> INFO <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span></span>Main</span> <span class="token operator">-</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+23:14:30.893 [main] INFO cn.eagleli.log.slf4j.Main - hello, world!
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>上面底层日志框架使用的是<code>logback</code></p>
 <p>那如果我们想切换成<code>jcl</code>作为底层实现框架，怎么办呢？只需换一个依赖即可，如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>slf4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>slf4j<span class="token operator">-</span>api<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.7</span><span class="token number">.30</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>slf4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>slf4j<span class="token operator">-</span>jcl<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">1.7</span><span class="token number">.30</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
-输出：
+</li>
+<li><p>改变依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.slf4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>slf4j-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.7.30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.slf4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>slf4j-jcl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>1.7.30<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>输出</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">输出：
 八月 <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">2021</span> <span class="token number">11</span><span class="token operator">:</span><span class="token number">18</span><span class="token operator">:</span><span class="token number">27</span> 下午 <span class="token class-name"><span class="token namespace">org<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>impl<span class="token punctuation">.</span></span>JCLLoggerAdapter</span> info
-信息<span class="token operator">:</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+信息<span class="token operator">:</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>从上面结果可以看出，底层已经切到<code>jcl</code>了，而<code>jcl</code>默认采用的是<code>jdk</code>日志框架</p>
-<p><code>cl-over-slf4j</code>和<code>slf4j-jcl</code>是不能同时使用的</p>
-<p>因为前一个使用<code>jcl API</code>桥接到<code>slf4j</code>，后一个是使用<code>slf4j API</code>桥接到<code>jcl</code>，如果同时引用会导致循环调用，进而导致栈溢出</p>
-<h2 id="log4j2"><a href="#log4j2" class="headerlink" title="log4j2"></a>log4j2</h2><pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">-</span>api<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">2.14</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">-</span>core<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">2.14</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
- 
-测试类：
+<p><code>cl-over-slf4j</code>和<code>slf4j-jcl</code>是不能同时使用的，因为前一个使用<code>jcl API</code>桥接到<code>slf4j</code>，后一个是使用<code>slf4j API</code>桥接到<code>jcl</code>，如果同时引用会导致循环调用，进而导致栈溢出</p>
+</li>
+</ul>
+<h2 id="log4j2"><a href="#log4j2" class="headerlink" title="log4j2"></a>log4j2</h2><ul>
+<li><p>依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.logging.log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.14.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.logging.log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j-core<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.14.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>测试类</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">测试类：
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">LogManager</span><span class="token punctuation">;</span>
 <span class="token keyword">import</span> <span class="token namespace">org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token punctuation">.</span></span><span class="token class-name">Logger</span><span class="token punctuation">;</span>
 <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Main</span> <span class="token punctuation">&#123;</span>
@@ -687,31 +715,34 @@ log4j<span class="token punctuation">.</span>appender<span class="token punctuat
         logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"hello, world!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span>
-
+<span class="token comment">/*
 输出：
-<span class="token number">23</span><span class="token operator">:</span><span class="token number">22</span><span class="token operator">:</span><span class="token number">12.148</span> <span class="token punctuation">[</span>main<span class="token punctuation">]</span> ERROR <span class="token class-name"><span class="token namespace">cn<span class="token punctuation">.</span>eagleli<span class="token punctuation">.</span>log<span class="token punctuation">.</span>log4j2<span class="token punctuation">.</span></span>Main</span> <span class="token operator">-</span> hello<span class="token punctuation">,</span> world<span class="token operator">!</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+23:22:12.148 [main] ERROR cn.eagleli.log.log4j2.Main - hello, world!
+*/</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>以上我们采用的<code>log4j2</code>作为底层的实现，我们想要用<code>slf4j</code>作为底层的实现，怎么办呢？只需加一个依赖即可，如下：</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">依赖：
-    <span class="token generics"><span class="token punctuation">&lt;</span>dependencies<span class="token punctuation">></span></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">-</span>api<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">2.14</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-        <span class="token generics"><span class="token punctuation">&lt;</span>dependency<span class="token punctuation">></span></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>groupId<span class="token punctuation">></span></span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>logging<span class="token punctuation">.</span>log4j<span class="token operator">&lt;</span><span class="token operator">/</span>groupId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>artifactId<span class="token punctuation">></span></span>log4j<span class="token operator">-</span><span class="token keyword">to</span><span class="token operator">-</span>slf4j<span class="token operator">&lt;</span><span class="token operator">/</span>artifactId<span class="token operator">></span>
-            <span class="token generics"><span class="token punctuation">&lt;</span>version<span class="token punctuation">></span></span><span class="token number">2.14</span><span class="token number">.1</span><span class="token operator">&lt;</span><span class="token operator">/</span>version<span class="token operator">></span>
-        <span class="token operator">&lt;</span><span class="token operator">/</span>dependency<span class="token operator">></span>
-    <span class="token operator">&lt;</span><span class="token operator">/</span>dependencies<span class="token operator">></span>
-
-输出：
-SLF4J<span class="token operator">:</span> <span class="token class-name">Failed</span> <span class="token keyword">to</span> <span class="token namespace">load</span> <span class="token keyword">class</span> <span class="token string">"org.slf4j.impl.StaticLoggerBinder"</span><span class="token punctuation">.</span>
+</li>
+<li><p>改变依赖</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependencies</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.logging.log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j-api<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.14.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.logging.log4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>log4j-to-slf4j<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+           <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>2.14.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependencies</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
+<li><p>输出</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java">SLF4J<span class="token operator">:</span> <span class="token class-name">Failed</span> <span class="token keyword">to</span> <span class="token namespace">load</span> <span class="token keyword">class</span> <span class="token string">"org.slf4j.impl.StaticLoggerBinder"</span><span class="token punctuation">.</span>
 SLF4J<span class="token operator">:</span> <span class="token class-name">Defaulting</span> <span class="token keyword">to</span> <span class="token namespace">no</span><span class="token operator">-</span>operation <span class="token punctuation">(</span>NOP<span class="token punctuation">)</span> logger implementation
-SLF4J<span class="token operator">:</span> <span class="token class-name">See</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>org<span class="token operator">/</span>codes<span class="token punctuation">.</span>html#<span class="token class-name">StaticLoggerBinder</span> <span class="token keyword">for</span> further details<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+SLF4J<span class="token operator">:</span> <span class="token class-name">See</span> http<span class="token operator">:</span><span class="token operator">/</span><span class="token operator">/</span>www<span class="token punctuation">.</span>slf4j<span class="token punctuation">.</span>org<span class="token operator">/</span>codes<span class="token punctuation">.</span>html#<span class="token class-name">StaticLoggerBinder</span> <span class="token keyword">for</span> further details<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p>从结果看出，我们底层日志框架已经切换了，因为没有任何<code>slf4j</code>的实现类框架，所以没有输出日志。</p>
+</li>
+</ul>
 
                 
             </div>
@@ -1449,7 +1480,7 @@ SLF4J<span class="token operator">:</span> <span class="token class-name">See</s
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">494.5k</span>&nbsp;字
+                class="white-color">499.4k</span>&nbsp;字
             
             
             

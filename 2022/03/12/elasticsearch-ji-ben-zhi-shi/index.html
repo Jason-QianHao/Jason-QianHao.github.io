@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/71.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/icfe/71.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,6 +413,10 @@
                                 <span class="chip bg-color">Elasticsearch</span>
                             </a>
                         
+                            <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                                <span class="chip bg-color">搜索引擎</span>
+                            </a>
+                        
                     </div>
                     
                 </div>
@@ -421,8 +425,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Elasticsearch/" class="post-category">
-                                Elasticsearch
+                            <a href="/categories/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/" class="post-category">
+                                搜索引擎
                             </a>
                         
                     </div>
@@ -443,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    3.5k
+                    5.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    13 分
+                    19 分
                 </div>
                 
 
@@ -473,7 +477,8 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
+                <p><img src="http://jason-qianhao.xyz/icfe/71.jpg"></p>
+<blockquote>
 <p>目录：</p>
 <ol>
 <li>简介</li>
@@ -484,6 +489,7 @@
 <ul>
 <li><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000038895410">Elasticsearch入门教程</a></li>
 <li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904056347951117">ES–索引、分片、节点、集群等概念浅析</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/GLKTl5c_OSQSJfwMBPu20A">Elasticsearch详解</a></li>
 </ul>
 </blockquote>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Elasticsearch 是一个分布式的开源搜索和分析引擎，适用于所有类型的数据，包括文本、数字、地理空间、结构化和非结构化数据。<strong>Elasticsearch 在 Apache Lucene 的基础上开发而成</strong>，由 Elasticsearch N.V.（即现在的 Elastic）于 2010 年首次发布。</p>
@@ -500,8 +506,75 @@
 <li>安全分析</li>
 <li>业务分析</li>
 </ul>
-<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="Index（索引）"><a href="#Index（索引）" class="headerlink" title="Index（索引）"></a>Index（索引）</h2><p>Elastic 会索引所有字段，经过处理后写入一个<strong>反向索引（Inverted Index）</strong>。</p>
-<p>查找数据的时候，直接查找该索引。</p>
+<h1 id="数据分类"><a href="#数据分类" class="headerlink" title="数据分类"></a>数据分类</h1><p>搜索引擎是对数据的检索，所以我们先从生活中的数据说起。我们生活中的数据总体分为两种：</p>
+<ul>
+<li><strong>结构化数据</strong></li>
+<li><strong>非结构化数据</strong></li>
+</ul>
+<p><strong>结构化数据：</strong>也称作行数据，是由二维表结构来逻辑表达和实现的数据，严格地遵循数据格式与长度规范，主要通过关系型数据库进行存储和管理。指具有固定格式或有限长度的数据，如数据库，元数据等。</p>
+<p><strong>非结构化数据：</strong>又可称为全文数据，不定长或无固定格式，不适于由数据库二维表来表现，包括所有格式的办公文档、XML、HTML、Word 文档，邮件，各类报表、图片和咅频、视频信息等。</p>
+<p><strong>说明：</strong>如果要更细致的区分的话，XML、HTML 可划分为半结构化数据。因为它们也具有自己特定的标签格式，所以既可以根据需要按结构化数据来处理，也可抽取出纯文本按非结构化数据来处理。</p>
+<p><strong>根据两种数据分类，搜索也相应的分为两种：</strong></p>
+<ul>
+<li><strong>结构化数据搜索</strong></li>
+<li><strong>非结构化数据搜索</strong></li>
+</ul>
+<p><strong>对于结构化数据，</strong>因为它们具有特定的结构，所以我们一般都是可以通过关系型数据库（MySQL，Oracle 等）的二维表（Table）的方式存储和搜索，也可以建立索引。</p>
+<p><strong>对于非结构化数据</strong>，也即对全文数据的搜索主要有两种方法：</p>
+<ul>
+<li><strong>顺序扫描</strong></li>
+<li><strong>全文检索</strong></li>
+</ul>
+<p><strong>顺序扫描：</strong>通过文字名称也可了解到它的大概搜索方式，即按照顺序扫描的方式查询特定的关键字。</p>
+<p>例如给你一张报纸，让你找到该报纸中“平安”的文字在哪些地方出现过。你肯定需要从头到尾把报纸阅读扫描一遍然后标记出关键字在哪些版块出现过以及它的出现位置。这种方式无疑是最耗时的最低效的，如果报纸排版字体小，而且版块较多甚至有多份报纸，等你扫描完你的眼睛也差不多了。</p>
+<p><strong>全文搜索：</strong>对非结构化数据顺序扫描很慢，我们是否可以进行优化？把我们的非结构化数据想办法弄得有一定结构不就行了吗？</p>
+<p>将非结构化数据中的一部分信息提取出来，重新组织，使其变得有一定结构，然后对此有一定结构的数据进行搜索，从而达到搜索相对较快的目的。这种方式就构成了全文检索的基本思路。这部分从非结构化数据中提取出的然后重新组织的信息，我们称之为<strong>索引</strong>。</p>
+<p>这种方式的主要工作量在前期索引的创建，但是对于后期搜索却是快速高效的。</p>
+<h1 id="关于Lucene"><a href="#关于Lucene" class="headerlink" title="关于Lucene"></a>关于Lucene</h1><p>目前市场上开放源代码的<strong>最好全文检索引擎工具包</strong>就属于 Apache 的 Lucene了。但是 Lucene 只是一个工具包，它不是一个完整的全文检索引擎。Lucene 的目的是为软件开发人员提供一个简单易用的工具包，以方便的在目标系统中实现全文检索的功能，或者是以此为基础建立起完整的全文检索引擎。</p>
+<p>Lucene 能实现全文搜索主要是因为它实现了<strong>倒排索引的查询结构</strong>。</p>
+<h2 id="如何理解倒排索引"><a href="#如何理解倒排索引" class="headerlink" title="如何理解倒排索引"></a><strong>如何理解倒排索引</strong></h2><p>假如现有三份数据文档，文档的内容如下分别是：</p>
+<ul>
+<li>Java is the best programming language.</li>
+<li>PHP is the best programming language.</li>
+<li>Javascript is the best programming language.</li>
+</ul>
+<p>为了创建倒排索引，我们通过<strong>分词器</strong>将每个文档的内容域拆分成单独的词（我们称它为<strong>词</strong>条或 Term），创建一个包含所有不重复词条的排序列表，然后列出每个词条出现在哪个文档。</p>
+<p>结果如下所示：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Term          Doc_1    Doc_2   Doc_3
+-------------------------------------
+Java        <span class="token operator">|</span>   X   <span class="token operator">|</span>        <span class="token operator">|</span>
+is          <span class="token operator">|</span>   X   <span class="token operator">|</span>   X    <span class="token operator">|</span>   X
+the         <span class="token operator">|</span>   X   <span class="token operator">|</span>   X    <span class="token operator">|</span>   X
+best        <span class="token operator">|</span>   X   <span class="token operator">|</span>   X    <span class="token operator">|</span>   X
+programming <span class="token operator">|</span>   x   <span class="token operator">|</span>   X    <span class="token operator">|</span>   X
+language    <span class="token operator">|</span>   X   <span class="token operator">|</span>   X    <span class="token operator">|</span>   X
+PHP         <span class="token operator">|</span>       <span class="token operator">|</span>   X    <span class="token operator">|</span>
+Javascript  <span class="token operator">|</span>       <span class="token operator">|</span>        <span class="token operator">|</span>   X
+-------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>这种结构由文档中所有不重复词的列表构成，对于其中每个词都有一个文档列表与之关联。</p>
+<p><strong>这种由属性值来确定记录的位置的结构就是倒排索引。带有倒排索引的文件我们称为倒排文件。</strong></p>
+<p>我们将上面的内容转换为图的形式来说明倒排索引的结构信息，如下图所示：</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206081418791.png" style="zoom:67%;" />
+
+<h2 id="几个核心术语"><a href="#几个核心术语" class="headerlink" title="几个核心术语"></a>几个核心术语</h2><ul>
+<li><p><strong>词条（Term）：</strong>索引里面最小的存储和查询单元，对于英文来说是一个单词，对于中文来说一般指分词后的一个词。</p>
+</li>
+<li><p><strong>词典（Term Dictionary）：</strong>或字典，是词条 Term 的集合。搜索引擎的通常索引单位是单词，单词词典是由文档集合中出现过的所有单词构成的字符串集合，单词词典内每条索引项记载单词本身的一些信息以及指向“倒排列表”的指针。</p>
+</li>
+<li><p><strong>倒排表（Post list）：</strong>一个文档通常由多个词组成，倒排表记录的是某个词在哪些文档里出现过以及出现的位置。</p>
+<p>每条记录称为一个倒排项（Posting）。倒排表记录的不单是文档编号，还存储了词频等信息。</p>
+</li>
+<li><p><strong>倒排文件（Inverted File）：</strong>所有单词的倒排列表往往顺序地存储在磁盘的某个文件里，这个文件被称之为倒排文件，倒排文件是存储倒排索引的物理文件。</p>
+</li>
+</ul>
+<p>从上图我们可以了解到倒排索引主要由两个部分组成：</p>
+<ul>
+<li><strong>词典</strong></li>
+<li><strong>倒排文件</strong></li>
+</ul>
+<p>词典和倒排表是 Lucene 中很重要的两种数据结构，是实现快速检索的重要基石。词典和倒排文件是分两部分存储的，词典在内存中而倒排文件存储在磁盘上。</p>
+<h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="Index（索引）"><a href="#Index（索引）" class="headerlink" title="Index（索引）"></a>Index（索引）</h2><p>Elastic 会索引所有字段，经过处理后写入一个<strong>反向索引（Inverted Index）</strong>。查找数据的时候，直接查找该索引。</p>
 <p>所以，Elastic 数据管理的顶层单位就叫做 Index（索引）。它是单个数据库的同义词。每个 Index （即数据库）的名字必须是小写。</p>
 <h2 id="Type（类型）7-0废弃"><a href="#Type（类型）7-0废弃" class="headerlink" title="Type（类型）7.0废弃"></a>Type（类型）7.0废弃</h2><p>在index（索引）中，可以定义一个或多个类型，类似于mysql中的table，同一种类型的数据放在一起</p>
 <h2 id="Document（文档）"><a href="#Document（文档）" class="headerlink" title="Document（文档）"></a>Document（文档）</h2><p>保存在某个索引（Index）下、某种类型（Type）的一个数据（Document），<strong>文档是json格式的数据</strong>，Document1相当于mysql中某个table数据</p>
@@ -514,6 +587,14 @@
 <p>从分片只是主分片的一个副本，它用于提供数据的冗余副本，<strong>从分片和主分片不会出现在同一个节点上</strong>（防止单点故障）。</p>
 <p>默认情况下一个索引创建 5 个主分片，每个主分片会有一个从分片 (5 primary + 5 replica = 10 个分片)。如果你只有一个节点，那么 5 个 replica 都无法被分配 (unassigned)，此时 <strong>cluster status 会变成 Yellow</strong>。</p>
 <p>分片是独立的，对于一个 Search Request 的行为，每个分片都会执行这个 Request。每个分片都是一个 Lucene Index，所以一个分片只能存放 <strong>Integer.MAX_VALUE - 128 = 2,147,483,519 个 docs。</strong></p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">PUT /myIndex
+<span class="token punctuation">&#123;</span>
+   <span class="token string">"settings"</span> <span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+      <span class="token string">"number_of_shards"</span> <span class="token builtin class-name">:</span> <span class="token number">5</span>,
+      <span class="token string">"number_of_replicas"</span> <span class="token builtin class-name">:</span> <span class="token number">1</span>
+   <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <p><strong>replica 的作用主要包括：</strong></p>
 <ol>
 <li>容灾：primary 分片丢失，replica 分片就会被顶上去成为新的主分片，同时根据这个新的主分片创建新的 replica，集群数据安然无恙；</li>
@@ -827,6 +908,7 @@
   &#125;
 &#125;'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
+<h1 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h1><p>详见：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/H4n1dB5-ZobwpsenRY1F-g">https://mp.weixin.qq.com/s/H4n1dB5-ZobwpsenRY1F-g</a></p>
 
                 
             </div>
@@ -893,6 +975,10 @@
                             
                                 <a href="/tags/Elasticsearch/">
                                     <span class="chip bg-color">Elasticsearch</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/">
+                                    <span class="chip bg-color">搜索引擎</span>
                                 </a>
                             
                         </div>
@@ -1572,7 +1658,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">494.5k</span>&nbsp;字
+                class="white-color">499.4k</span>&nbsp;字
             
             
             
