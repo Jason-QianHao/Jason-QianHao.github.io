@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/74.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/icfe/74.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -455,14 +455,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.5k
+                    2.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    11 分
+                    12 分
                 </div>
                 
 
@@ -485,11 +485,15 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
+                <p><img src="http://jason-qianhao.xyz/icfe/74.jpg"></p>
+<blockquote>
 <p>目录：</p>
 <ol>
 <li>WebSocket简介</li>
+<li>WebSocket和Http的区别</li>
 <li>Springboot整合WebSocket</li>
+<li>WebSocket在Spring中的多例模式</li>
+<li>一些部署问题</li>
 </ol>
 <p>参考/来源：</p>
 <ul>
@@ -517,6 +521,21 @@
 <pre class="line-numbers language-markup" data-language="markup"><code class="language-markup">ws://example.com:80/some/path<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
 <p><img src="http://jason-qianhao.xyz/bg2017051503.jpg" alt="img"></p>
+<h1 id="WebSocket和Http的对比"><a href="#WebSocket和Http的对比" class="headerlink" title="WebSocket和Http的对比"></a>WebSocket和Http的对比</h1><p><strong>相同点</strong></p>
+<ul>
+<li>都是基于TCP的应用层协议。</li>
+<li>都使用Request/Response模型进行连接的建立。</li>
+<li>在连接的建立过程中对错误的处理方式相同，在这个阶段WS可能返回和HTTP相同的返回码。</li>
+<li>都可以在网络中传输数据。</li>
+</ul>
+<p><strong>不同点</strong></p>
+<ul>
+<li>WS使用HTTP来建立连接，但是定义了一系列新的header域，这些域在HTTP中并不会使用。</li>
+<li>WS的连接不能通过中间人来转发，它必须是一个直接连接。</li>
+<li>WS连接建立之后，通信双方都可以在任何时刻向另一方发送数据。</li>
+<li>WS连接建立之后，数据的传输使用帧来传递，不再需要Request消息。</li>
+<li>WS的数据帧有序。</li>
+</ul>
 <h1 id="Springboot整合WebSocket"><a href="#Springboot整合WebSocket" class="headerlink" title="Springboot整合WebSocket"></a>Springboot整合WebSocket</h1><h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-starter-websocket<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
@@ -860,7 +879,7 @@ mapMapper<span class="token punctuation">.</span><span class="token function">up
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2022/03/13/websocket/">https://jason-qianhao.github.io/2022/03/13/websocket/</a>
+                    <a href="https://jason-qianhao.github.io/2022/03/13/websocket-he-springboot-zheng-he/">https://jason-qianhao.github.io/2022/03/13/websocket-he-springboot-zheng-he/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1351,7 +1370,7 @@ mapMapper<span class="token punctuation">.</span><span class="token function">up
                 <a href="/2022/03/13/shi-yong-minio-zi-jian-oss/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/75.jpg" class="responsive-img" alt="使用Minio自建OSS">
+                        <img src="http://jason-qianhao.xyz/icfe/75.jpg" class="responsive-img" alt="使用Minio自建OSS">
                         
                         <span class="card-title">使用Minio自建OSS</span>
                     </div>
@@ -1403,7 +1422,7 @@ mapMapper<span class="token punctuation">.</span><span class="token function">up
                 <a href="/2022/03/13/springboot-zheng-he-quartz/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/73.jpg" class="responsive-img" alt="Springboot整合Quartz">
+                        <img src="http://jason-qianhao.xyz/icfe/73.jpg" class="responsive-img" alt="Springboot整合Quartz">
                         
                         <span class="card-title">Springboot整合Quartz</span>
                     </div>
@@ -1595,7 +1614,7 @@ mapMapper<span class="token punctuation">.</span><span class="token function">up
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">499.4k</span>&nbsp;字
+                class="white-color">500.8k</span>&nbsp;字
             
             
             

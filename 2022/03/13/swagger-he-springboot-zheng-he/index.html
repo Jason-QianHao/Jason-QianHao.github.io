@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/25.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/icfe/25.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -421,8 +421,8 @@
                                 <span class="chip bg-color">架构</span>
                             </a>
                         
-                            <a href="/tags/API%E5%B7%A5%E5%85%B7/">
-                                <span class="chip bg-color">API工具</span>
+                            <a href="/tags/API%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90/">
+                                <span class="chip bg-color">API文档生成</span>
                             </a>
                         
                     </div>
@@ -455,14 +455,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    893
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    4 分
                 </div>
                 
 
@@ -485,10 +485,10 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
+                <p><img src="http://jason-qianhao.xyz/icfe/25.jpg"></p>
+<blockquote>
 <p>目录：</p>
-<ol>
-<li>RESTful概念</li>
+<ol start="2">
 <li>Swagger简介</li>
 <li>Springboot整合Swagger</li>
 </ol>
@@ -497,70 +497,6 @@
 <li><a target="_blank" rel="noopener" href="https://mrbird.cc/Spring-Boot-Swagger2-RESTful-API.html">https://mrbird.cc/Spring-Boot-Swagger2-RESTful-API.html</a></li>
 </ul>
 </blockquote>
-<h1 id="RESTful概念"><a href="#RESTful概念" class="headerlink" title="RESTful概念"></a>RESTful概念</h1><p>在此之前，我们先聊聊什么是<strong>REST</strong>。REST实际上为<strong>Re</strong>presentational <strong>S</strong>tate <strong>T</strong>ransfer的缩写，翻译为“表现层状态转化” 。如果一个架构符合REST 原则，就称它为<strong>RESTful</strong>架构。</p>
-<p>实际上，“表现层状态转化”省略了主语，完整的说应该是“资源表现层状态转化”。什么是资源（Resource）？资源指的是网络中信息的表现形式，比如一段文本，一首歌，一个视频文件等等；什么是表现层（Reresentational）？表现层即资源的展现在你面前的形式，比如文本可以是JSON格式的，也可以是XML形式的，甚至为二进制形式的。图片可以是gif，也可以是PNG；什么是状态转换（State Transfer）？用户可使用URL通过HTTP协议来获取各种资源，HTTP协议包含了一些操作资源的方法，比如：GET 用来获取资源， POST 用来新建资源 , PUT 用来更新资源， DELETE 用来删除资源， PATCH 用来更新资源的部分属性。通过这些HTTP协议的方法来操作资源的过程即为状态转换。</p>
-<p>下面对比下传统URL请求和RESTful风格请求的区别：</p>
-<table>
-<thead>
-<tr>
-<th align="left">描述</th>
-<th align="left">传统请求</th>
-<th align="left">方法</th>
-<th align="left">RESTful请求</th>
-<th align="left">方法</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">查询</td>
-<td align="left">/user/query?name=mrbird</td>
-<td align="left">GET</td>
-<td align="left">/user?name=mrbird</td>
-<td align="left">GET</td>
-</tr>
-<tr>
-<td align="left">详情</td>
-<td align="left">/user/getInfo?id=1</td>
-<td align="left">GET</td>
-<td align="left">/user/1</td>
-<td align="left">GET</td>
-</tr>
-<tr>
-<td align="left">创建</td>
-<td align="left">/user/create?name=mrbird</td>
-<td align="left">POST</td>
-<td align="left">/user</td>
-<td align="left">POST</td>
-</tr>
-<tr>
-<td align="left">修改</td>
-<td align="left">/user/update?name=mrbird&amp;id=1</td>
-<td align="left">POST</td>
-<td align="left">/user/1</td>
-<td align="left">PUT</td>
-</tr>
-<tr>
-<td align="left">删除</td>
-<td align="left">/user/delete?id=1</td>
-<td align="left">GET</td>
-<td align="left">/user/1</td>
-<td align="left">DELETE</td>
-</tr>
-</tbody></table>
-<p>从上面这张表，我们大致可以总结下传统请求和RESTful请求的几个区别：</p>
-<ol>
-<li>传统请求通过URL来描述行为，如create，delete等；RESTful请求通过URL来描述资源。</li>
-<li>RESTful请求通过HTTP请求的方法来描述行为，比如DELETE，POST，PUT等，并且使用HTTP状态码来表示不同的结果。</li>
-<li>RESTful请求通过JSON来交换数据。</li>
-</ol>
-<p><strong>RESTful只是一种风格，并不是一种强制性的标准。</strong></p>
-<p>Spring Boot中包含了一些注解，对应于HTTP协议中的方法：</p>
-<ul>
-<li><code>@GetMapping</code>对应HTTP中的<strong>GET</strong>方法；</li>
-<li><code>@PostMapping</code>对应HTTP中的<strong>POST</strong>方法；</li>
-<li><code>@PutMapping</code>对应HTTP中的<strong>PUT</strong>方法；</li>
-<li><code>@DeleteMapping</code>对应HTTP中的<strong>DELETE</strong>方法；</li>
-<li><code>@PatchMapping</code>对应HTTP中的<strong>PATCH</strong>方法。</li>
-</ul>
 <h1 id="Swagger简介"><a href="#Swagger简介" class="headerlink" title="Swagger简介"></a>Swagger简介</h1><p>Swagger是一款可以快速生成符合RESTful风格API并进行在线调试的插件。</p>
 <p><strong>Swagger常用注解</strong></p>
 <ul>
@@ -719,7 +655,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2022/03/13/swagger-he-spring-zheng-he/">https://jason-qianhao.github.io/2022/03/13/swagger-he-spring-zheng-he/</a>
+                    <a href="https://jason-qianhao.github.io/2022/03/13/swagger-he-springboot-zheng-he/">https://jason-qianhao.github.io/2022/03/13/swagger-he-springboot-zheng-he/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -769,8 +705,8 @@
                                     <span class="chip bg-color">架构</span>
                                 </a>
                             
-                                <a href="/tags/API%E5%B7%A5%E5%85%B7/">
-                                    <span class="chip bg-color">API工具</span>
+                                <a href="/tags/API%E6%96%87%E6%A1%A3%E7%94%9F%E6%88%90/">
+                                    <span class="chip bg-color">API文档生成</span>
                                 </a>
                             
                         </div>
@@ -1266,7 +1202,7 @@
                 <a href="/2022/03/13/shi-yong-minio-zi-jian-oss/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/75.jpg" class="responsive-img" alt="使用Minio自建OSS">
+                        <img src="http://jason-qianhao.xyz/icfe/75.jpg" class="responsive-img" alt="使用Minio自建OSS">
                         
                         <span class="card-title">使用Minio自建OSS</span>
                     </div>
@@ -1450,7 +1386,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">499.4k</span>&nbsp;字
+                class="white-color">500.8k</span>&nbsp;字
             
             
             
