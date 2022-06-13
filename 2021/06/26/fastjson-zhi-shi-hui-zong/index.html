@@ -288,7 +288,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/banner/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('http://jason-qianhao.xyz/icfe/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -413,6 +413,10 @@
                                 <span class="chip bg-color">架构</span>
                             </a>
                         
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%A0%BC%E5%BC%8F/">
+                                <span class="chip bg-color">数据传输格式</span>
+                            </a>
+                        
                             <a href="/tags/JSON/">
                                 <span class="chip bg-color">JSON</span>
                             </a>
@@ -451,7 +455,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    518
+                    557
                 </div>
                 
 
@@ -481,7 +485,20 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="fastjson知识汇总"><a href="#fastjson知识汇总" class="headerlink" title="fastjson知识汇总"></a>fastjson知识汇总</h1><h1 id="fastjson简介"><a href="#fastjson简介" class="headerlink" title="fastjson简介"></a>fastjson简介</h1><p>Fastjson是一个Java语言编写的高性能功能完善的JSON库。fastjson采用独创的算法，将parse的速度提升到极致，超过所有json库，包括曾经号称最快的jackson。并且还超越了google的二进制协议protocol buf。Fastjson完全支持<a target="_blank" rel="noopener" href="http://json.org/">http://json.org</a>的标准，也是官方网站收录的参考实现之一。支持各种JDK类型。包括基本类型、JavaBean、Collection、Map、Enum、泛型等。支持JDK 5、JDK 6、Android、阿里云手机等环境。</p>
+                <p><img src="http://jason-qianhao.xyz/icfe/23.jpg"></p>
+<blockquote>
+<p>目录：</p>
+<ol>
+<li>fastjson简介</li>
+<li>生成json字符串</li>
+<li>解析json字符串为四种类型</li>
+<li>JSONObject与JSON字符串的转换</li>
+<li>JSONObject中Map, List转换</li>
+<li>fastjson解析null值不显示问题</li>
+<li>总结</li>
+</ol>
+</blockquote>
+<h1 id="fastjson简介"><a href="#fastjson简介" class="headerlink" title="fastjson简介"></a>fastjson简介</h1><p>Fastjson是一个Java语言编写的高性能功能完善的JSON库。fastjson采用独创的算法，将parse的速度提升到极致，超过所有json库，包括曾经号称最快的jackson。并且还超越了google的二进制协议protocol buf。Fastjson完全支持<a target="_blank" rel="noopener" href="http://json.org/">http://json.org</a>的标准，也是官方网站收录的参考实现之一。支持各种JDK类型。包括基本类型、JavaBean、Collection、Map、Enum、泛型等。支持JDK 5、JDK 6、Android、阿里云手机等环境。</p>
 <p>maven依赖：</p>
 <pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token comment">&lt;!-- fastjson --></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
@@ -504,7 +521,7 @@
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span></span> listMap <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>jsonString<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">TypeReference</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">List</span><span class="token punctuation">&lt;</span><span class="token class-name">Map</span><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span><span class="token class-name">Object</span><span class="token punctuation">></span><span class="token punctuation">></span><span class="token punctuation">></span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
 <p>​      注意：此处可看出fastjson反射机制比gson更准确， id = 1001 通过fastjson反射仍是 id = 1001 , 而通过gson反射结果 为 id =1001.0</p>
-<h1 id="JSONObject与JSON类型的转换"><a href="#JSONObject与JSON类型的转换" class="headerlink" title="JSONObject与JSON类型的转换"></a>JSONObject与JSON类型的转换</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">JSONObject</span> jsonObject <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>jsonString<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="JSONObject与JSON字符串的转换"><a href="#JSONObject与JSON字符串的转换" class="headerlink" title="JSONObject与JSON字符串的转换"></a>JSONObject与JSON字符串的转换</h1><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">JSONObject</span> jsonObject <span class="token operator">=</span> JSON<span class="token punctuation">.</span><span class="token function">parseObject</span><span class="token punctuation">(</span>jsonString<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h1 id="JSONObject中-Map-List转换"><a href="#JSONObject中-Map-List转换" class="headerlink" title="JSONObject中 Map, List转换"></a>JSONObject中 Map, List转换</h1><ol>
 <li><p><strong>Map转JSONObject</strong></p>
@@ -517,7 +534,7 @@
 <li><p><strong>List转JSONArray</strong></p>
 <pre class="line-numbers language-none"><code class="language-none">JSONArray array &#x3D; JSONArray.parseArray(JSON.toJSONString(itemList)); <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
 </ol>
-<h1 id="fastjson解析null值处理-null的属性不显示"><a href="#fastjson解析null值处理-null的属性不显示" class="headerlink" title="fastjson解析null值处理 null的属性不显示"></a>fastjson解析null值处理 null的属性不显示</h1><p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012448083/article/details/75026310">fastjson解析null值处理 null的属性不显示</a></p>
+<h1 id="fastjson解析null值不显示问题"><a href="#fastjson解析null值不显示问题" class="headerlink" title="fastjson解析null值不显示问题"></a>fastjson解析null值不显示问题</h1><p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/u012448083/article/details/75026310">fastjson解析null值处理 null的属性不显示</a></p>
 <blockquote>
 <p>语法：</p>
 <p>JSONObject.toJSONString(Object object, SerializerFeature… features)</p>
@@ -600,6 +617,10 @@
                             
                                 <a href="/tags/%E6%9E%B6%E6%9E%84/">
                                     <span class="chip bg-color">架构</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E6%A0%BC%E5%BC%8F/">
+                                    <span class="chip bg-color">数据传输格式</span>
                                 </a>
                             
                                 <a href="/tags/JSON/">
@@ -1283,7 +1304,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">500.8k</span>&nbsp;字
+                class="white-color">514.5k</span>&nbsp;字
             
             
             

@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    511
+                    1.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    5 分
                 </div>
                 
 
@@ -477,19 +477,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Docker知识汇总"><a href="#Docker知识汇总" class="headerlink" title="Docker知识汇总"></a>Docker知识汇总</h1><blockquote>
+                <blockquote>
 <p>目录  </p>
 <ol>
-<li>Docker简介   </li>
-<li>Docker体系结构  </li>
-<li>Docker内部组件</li>
-<li>镜像管理</li>
-<li>容器管理</li>
-<li>管理应用程序数据</li>
-<li>Dockerfile</li>
-<li>镜像仓库</li>
+<li><p>Docker简介   </p>
+</li>
+<li><p>Docker体系结构  </p>
+</li>
+<li><p>Docker内部组件</p>
+</li>
+<li><p>镜像管理</p>
+</li>
+<li><p>容器管理</p>
+</li>
+<li><p>管理应用程序数据</p>
+</li>
+<li><p>Dockerfile</p>
+</li>
+<li><p>镜像仓库</p>
+</li>
+<li><p>需要注意的问题</p>
+<p>9.1 Mysql需要实现容器化吗？</p>
+</li>
 </ol>
-<p>参考资料<br>· 李振良Docker  </p>
+<p>参考资料  </p>
+<ul>
+<li>李振良Docker  </li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/YYaPVsWFsZoaWIOk6St_wg">Mysql要不要实现Docker容器化</a></li>
+</ul>
 </blockquote>
 <h1 id="Docker简介"><a href="#Docker简介" class="headerlink" title="Docker简介"></a>Docker简介</h1><h2 id="Docker概述"><a href="#Docker概述" class="headerlink" title="Docker概述"></a>Docker概述</h2><p>  Docker是一个开源的应用容器引擎，使用Go语言开发，基于Linux内核的cgroup，namespace，Union Fs等技术，对应用进程进行封装隔离，并且独立与宿主机与其他进程，这种<strong>运行时封装的状态称为容器</strong>。</p>
 <p>  Docker理念是将应用及依赖包打包到一个可移植的容器中，可发布到任意Linux发行版Docker引擎上，使用沙箱机制运行程序，程序之间相互隔离。</p>
@@ -523,6 +538,33 @@
 <h1 id="镜像仓库"><a href="#镜像仓库" class="headerlink" title="镜像仓库"></a>镜像仓库</h1><h2 id="搭建私有镜像仓库"><a href="#搭建私有镜像仓库" class="headerlink" title="搭建私有镜像仓库"></a>搭建私有镜像仓库</h2><p><img src="http://jason-qianhao.xyz/1240-20210703124724163.png" alt="img"></p>
 <p><img src="http://jason-qianhao.xyz/1240-20210703124724159.png" alt="img"></p>
 <h2 id="Docker-Hub的使用"><a href="#Docker-Hub的使用" class="headerlink" title="Docker Hub的使用"></a>Docker Hub的使用</h2><p><img src="http://jason-qianhao.xyz/1240-20210703124724172.png" alt="img"></p>
+<h1 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h1><h2 id="Mysql需要实现容器化吗？"><a href="#Mysql需要实现容器化吗？" class="headerlink" title="Mysql需要实现容器化吗？"></a>Mysql需要实现容器化吗？</h2><p>聊一下 Docker 不适合跑 MySQL 的 N 个原因</p>
+<h3 id="数据安全问题"><a href="#数据安全问题" class="headerlink" title="数据安全问题"></a><strong>数据安全问题</strong></h3><p>不要将数据储存在容器中，这也是 Docker 官方容器使用技巧中的一条。容器随时可以停止、或者删除。当容器被rm掉，容器里的数据将会丢失。为了避免数据丢失，用户可以使用数据卷挂载来存储数据。</p>
+<p>但是容器的 Volumes 设计是围绕 Union FS 镜像层提供持久存储，数据安全缺乏保证。如果容器突然崩溃，数据库未正常关闭，可能会损坏数据。另外，容器里共享数据卷组，对物理机硬件损伤也比较大。</p>
+<h3 id="性能问题"><a href="#性能问题" class="headerlink" title="性能问题"></a><strong>性能问题</strong></h3><p>大家都知道，MySQL 属于关系型数据库，对IO要求较高。当一台物理机跑多个时，IO就会累加，导致IO瓶颈，大大降低 MySQL 的读写性能。</p>
+<p>在一次Docker应用的十大难点专场上，某国有银行的一位架构师也曾提出过：“数据库的性能瓶颈一般出现在IO上面，如果按 Docker 的思路，那么多个docker最终IO请求又会出现在存储上面。现在互联网的数据库多是share nothing的架构，可能这也是不考虑迁移到 Docker 的一个因素吧”。</p>
+<p>其实也有相对应的一些策略来解决这个问题，比如：</p>
+<ul>
+<li><p>数据库程序与数据分离</p>
+<p>如果使用Docker 跑 MySQL，数据库程序与数据需要进行分离，将数据存放到共享存储，程序放到容器里。如果容器有异常或 MySQL 服务异常，自动启动一个全新的容器。另外，建议不要把数据存放到宿主机里，宿主机和容器共享卷组，对宿主机损坏的影响比较大。</p>
+</li>
+<li><p>跑轻量级或分布式数据库</p>
+<p>Docker 里部署轻量级或分布式数据库，Docker 本身就推荐服务挂掉，自动启动新容器，而不是继续重启容器服务。</p>
+</li>
+<li><p>合理布局应用</p>
+<p>对于IO要求比较高的应用或者服务，将数据库部署在物理机或者KVM中比较合适。目前腾讯云的TDSQL和阿里的Oceanbase都是直接部署在物理机器，而非Docker 。</p>
+</li>
+</ul>
+<h3 id="状态问题"><a href="#状态问题" class="headerlink" title="状态问题"></a><strong>状态问题</strong></h3><p>在 Docker 中水平伸缩只能用于无状态计算服务，而不是数据库。</p>
+<p>Docker 快速扩展的一个重要特征就是无状态，具有数据状态的都不适合直接放在 Docker 里面，如果 Docker 中安装数据库，存储服务需要单独提供。</p>
+<p>目前，腾讯云的TDSQL（金融分布式数据库）和阿里云的Oceanbase（分布式数据库系统）都直接运行中在物理机器上，并非使用便于管理的 Docker 上。</p>
+<h3 id="资源隔离方面"><a href="#资源隔离方面" class="headerlink" title="资源隔离方面"></a><strong>资源隔离方面</strong></h3><p>资源隔离方面，Docker 确实不如虚拟机KVM，Docker是利用Cgroup实现资源限制的，只能限制资源消耗的最大值，而不能隔绝其他程序占用自己的资源。如果其他应用过渡占用物理机资源，将会影响容器里 MySQL 的读写效率。</p>
+<p>需要的隔离级别越多，获得的资源开销就越多。相比专用环境而言，容易水平伸缩是Docker的一大优势。然而在 Docker 中水平伸缩只能用于无状态计算服务，数据库并不适用。</p>
+<h3 id="难道-MySQL-不能跑在容器里吗"><a href="#难道-MySQL-不能跑在容器里吗" class="headerlink" title="难道 MySQL 不能跑在容器里吗"></a>难道 MySQL 不能跑在容器里吗</h3><p>MySQL 也不是全然不能容器化。</p>
+<p>1）对数据丢失不敏感的业务（例如用户搜索商品）就可以数据化，利用数据库分片来来增加实例数，从而增加吞吐量。</p>
+<p>2）docker适合跑轻量级或分布式数据库，当docker服务挂掉，会自动启动新容器，而不是继续重启容器服务。</p>
+<p>3）数据库利用中间件和容器化系统能够自动伸缩、容灾、切换、自带多个节点，也是可以进行容器化的。</p>
+<p>典型案例：同程旅游、京东、阿里的数据库容器化都是不错的案例，大家可以自行去查看。</p>
 
                 
             </div>
@@ -1264,7 +1306,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">500.8k</span>&nbsp;字
+                class="white-color">514.5k</span>&nbsp;字
             
             
             
