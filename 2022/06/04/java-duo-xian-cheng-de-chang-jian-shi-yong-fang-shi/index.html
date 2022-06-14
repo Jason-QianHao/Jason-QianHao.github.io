@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Java多线程的常见使用方法, 小小千千 Blog">
+    <meta name="keywords" content="Java多线程的常见使用方式, 小小千千 Blog">
     <meta name="description" content="心怀梦想 不惧前行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Java多线程的常见使用方法 | 小小千千 Blog</title>
+    <title>Java多线程的常见使用方式 | 小小千千 Blog</title>
     <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Java多线程的常见使用方法</h1>
+                    <h1 class="description center-align post-title">Java多线程的常见使用方式</h1>
                 </div>
             </div>
         </div>
@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.1k
+                    2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    8 分
                 </div>
                 
 
@@ -483,11 +483,13 @@
 <ol>
 <li>Thread.sleep(0)的作用</li>
 <li>让多个线程按照顺序执行</li>
+<li>两个线程交换数据</li>
 </ol>
 <p>参考/来源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/XqEkDKO9KD3YXONezb77Dg">https://mp.weixin.qq.com/s/XqEkDKO9KD3YXONezb77Dg</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/tuoBtuQXvdJGduyZpui1MQ">https://mp.weixin.qq.com/s/tuoBtuQXvdJGduyZpui1MQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/GzjcfogxK3beXB1II7VoQw">https://mp.weixin.qq.com/s/GzjcfogxK3beXB1II7VoQw</a></li>
 </ul>
 </blockquote>
 <h1 id="Thread-sleep-0-的作用"><a href="#Thread-sleep-0-的作用" class="headerlink" title="Thread.sleep(0) 的作用"></a>Thread.sleep(0) 的作用</h1><p>在大循环中，常见到：</p>
@@ -682,6 +684,146 @@ out:
 关上冰箱！
 */</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
+<h1 id="两个线程交换数据"><a href="#两个线程交换数据" class="headerlink" title="两个线程交换数据"></a>两个线程交换数据</h1><p>通过 JDK 中的 <code>java.util.concurrent.Exchanger</code> 类来实现</p>
+<h2 id="Exchanger-简介"><a href="#Exchanger-简介" class="headerlink" title="Exchanger 简介"></a>Exchanger 简介</h2><p>Exchanger 就是线程之间的数据交换器，只能用于两个线程之间的数据交换。</p>
+<p>Exchanger 提供了两个公开方法：</p>
+<p><img src="http://jason-qianhao.xyz/202206-202212/202206141135000.png"></p>
+<p>1、只带泛型 V（交换的数据对象）的方法，线程一直阻塞，直到其他任意线程和它交换数据，或者被线程中断</p>
+<p>2、另外一个带时间的方法，如果超过设置时间还没有线程和它交换数据，就会抛出 <code>TimeoutException</code> 异常；</p>
+<h2 id="Exchanger-实战"><a href="#Exchanger-实战" class="headerlink" title="Exchanger 实战"></a>Exchanger 实战</h2><h4 id="简单数据交换"><a href="#简单数据交换" class="headerlink" title="简单数据交换"></a>简单数据交换</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Exchanger</span> exchanger <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Exchanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Object</span> data <span class="token operator">=</span> <span class="token string">"-公众号Java技术栈AAA"</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 开始交换数据</span>
+            data <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Object</span> data <span class="token operator">=</span> <span class="token string">"-公众号Java技术栈BBB"</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 开始交换数据</span>
+            data <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><strong>这段代码的逻辑：</strong></p>
+<p>1、创建并启动两个线程；</p>
+<p>2、进行数据交换前先打印出自己线程的数据；</p>
+<p>3、进行数据交换；</p>
+<p>4、打印数据交换之后的数据；</p>
+<p><strong>输出结果：</strong></p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206141136252.png" style="zoom:67%;" />
+
+<p>从结果可以看出，线程 0、1 分别先打印出 A、B，数据交换之后，打印出了 B、A，数据交换正常！</p>
+<h4 id="超时数据交换"><a href="#超时数据交换" class="headerlink" title="超时数据交换"></a>超时数据交换</h4><pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Exchanger</span> exchanger <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Exchanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Object</span> data <span class="token operator">=</span> <span class="token string">"-公众号Java技术栈AAA"</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 开始交换数据</span>
+            data <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token number">3000L</span><span class="token punctuation">,</span> <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>MILLISECONDS<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>现在只启动了一个线程，并且设置了超时时间 3 秒。</p>
+<p><strong>输出结果：</strong></p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206141137214.png" style="zoom:67%;" />
+
+<p>首先线程输出了自己的数据，然后 3 秒后，并没有其他线程和它交换数据，所以抛出了超时异常，最后线程结束运行。</p>
+<h4 id="中断数据交换"><a href="#中断数据交换" class="headerlink" title="中断数据交换"></a>中断数据交换</h4><p>线程开始交换数据后，会一直阻塞直到其他任意线程和它交换数据，或者被中断、超时，上面演示了超时，下面这个示例演示一下中断。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Exchanger</span> exchanger <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Exchanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Object</span> data <span class="token operator">=</span> <span class="token string">"-公众号Java技术栈AAA"</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 开始交换数据</span>
+            data <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>结果输出：</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206141138928.png" alt="" style="zoom:67%;" />
+
+<p>默认情况下不带超时设置会一直阻塞运行中……</p>
+<p>现在我再加入一段中断的逻辑：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test3</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">InterruptedException</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Exchanger</span> exchanger <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Exchanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">Thread</span> thread <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+            <span class="token class-name">Object</span> data <span class="token operator">=</span> <span class="token string">"-公众号Java技术栈AAA"</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// 开始交换数据</span>
+            data <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    thread<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// 线程中断</span>
+    <span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">3000L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    thread<span class="token punctuation">.</span><span class="token function">interrupt</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>主线程休眠 3 秒后，中断该线程。</p>
+<p>输出结果：</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206141138625.png" style="zoom:67%;" />
+
+<p>输出结果 3 秒后，线程被中断了，抛出了中断异常，线程也停止阻塞，最后线程结束运行。</p>
+<h4 id="两两数据交换"><a href="#两两数据交换" class="headerlink" title="两两数据交换"></a>两两数据交换</h4><p>另外需要知道是，Exchanger 只能用于两个线程之间的数据交换，一个线程开启数据交换之后，会阻塞直到其他任意线程同样开启数据交换达到交换点。</p>
+<p>最后来个示例，开启 10 个线程，看它们是怎么两两交换的：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">test4</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">Exchanger</span> exchanger <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Exchanger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token class-name">Integer</span> data <span class="token operator">=</span> i<span class="token punctuation">;</span>
+        <span class="token keyword">new</span> <span class="token class-name">Thread</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token punctuation">&#123;</span>
+            <span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+                <span class="token class-name">Object</span> exchange <span class="token operator">=</span> exchanger<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">Thread</span><span class="token punctuation">.</span><span class="token function">currentThread</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"-"</span> <span class="token operator">+</span> exchange<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">InterruptedException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token string">"Java技术栈"</span> <span class="token operator">+</span> i<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>输出结果：</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206141139372.png" alt="" style="zoom:67%;" />
+
+<p>可以看到，10 个线程，都两两交换彼此的数据了。</p>
 
                 
             </div>
@@ -708,7 +850,7 @@ out:
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2022/06/04/java-duo-xian-cheng-de-chang-jian-shi-yong-fang-fa/">https://jason-qianhao.github.io/2022/06/04/java-duo-xian-cheng-de-chang-jian-shi-yong-fang-fa/</a>
+                    <a href="https://jason-qianhao.github.io/2022/06/04/java-duo-xian-cheng-de-chang-jian-shi-yong-fang-shi/">https://jason-qianhao.github.io/2022/06/04/java-duo-xian-cheng-de-chang-jian-shi-yong-fang-shi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -1431,7 +1573,7 @@ out:
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">514.5k</span>&nbsp;字
+                class="white-color">522.5k</span>&nbsp;字
             
             
             
