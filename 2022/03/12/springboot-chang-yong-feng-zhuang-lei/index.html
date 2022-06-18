@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    2.3k
+                    3.5k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    9 分
+                    15 分
                 </div>
                 
 
@@ -488,11 +488,19 @@
 <li>FileCopyUtils 文件工具</li>
 <li>ResourceUtils 资源处理</li>
 <li>StreamUtils 流处理</li>
+<li>ClassUtils 工具类</li>
+<li>BeanUtils 工具类</li>
+<li>ReflectionUtils 工具类</li>
+<li>Base64Utils</li>
+<li>StandardCharests 标准字符集</li>
+<li>SerializationUtils 序列化工具</li>
+<li>HttpStatus 状态码</li>
 </ol>
 <p>参考/来源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/neweastsun/article/details/81142870/">使用spring ResponseEntity处理http响应</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_2RlN-MZMBicSlvGQt5FxQ">推荐几个好用的Springboot内置工具类</a></li>
+<li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/XVOxdgyi_ElOTiAXpo4KIw">https://mp.weixin.qq.com/s/XVOxdgyi_ElOTiAXpo4KIw</a></li>
 </ul>
 </blockquote>
 <h1 id="ResponseEntity-HTTP响应类"><a href="#ResponseEntity-HTTP响应类" class="headerlink" title="ResponseEntity HTTP响应类"></a>ResponseEntity HTTP响应类</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>ResponseEntity标识整个http相应：状态码、头部信息以及相应体内容。因此我们可以使用其对http响应实现完整配置。</p>
@@ -770,6 +778,109 @@ CharSequence: length == 0
 <span class="token comment">// 舍弃输入流中的内容</span>
 <span class="token keyword">int</span> <span class="token function">drain</span><span class="token punctuation">(</span><span class="token class-name">InputStream</span> in<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ol>
+<h1 id="ClassUtils-工具类"><a href="#ClassUtils-工具类" class="headerlink" title="ClassUtils 工具类"></a>ClassUtils 工具类</h1><p>spring的<code>org.springframework.util</code>包下的<code>ClassUtils</code>类，它里面有很多让我们惊喜的功能。</p>
+<p>它里面包含了类和对象相关的很多非常实用的方法。</p>
+<h2 id="获取对象的所有接口"><a href="#获取对象的所有接口" class="headerlink" title="获取对象的所有接口"></a>获取对象的所有接口</h2><p>如果你想获取某个对象的所有接口，可以使用ClassUtils的<code>getAllInterfaces</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">></span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> allInterfaces <span class="token operator">=</span> <span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">getAllInterfaces</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="获取某个类的包名"><a href="#获取某个类的包名" class="headerlink" title="获取某个类的包名"></a>获取某个类的包名</h2><p>如果你想获取某个类的包名，可以使用ClassUtils的<code>getPackageName</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> packageName <span class="token operator">=</span> <span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">getPackageName</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>packageName<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="判断某个类是否内部类"><a href="#判断某个类是否内部类" class="headerlink" title="判断某个类是否内部类"></a>判断某个类是否内部类</h2><p>如果你想判断某个类是否内部类，可以使用ClassUtils的<code>isInnerClass</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">isInnerClass</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="判断对象是否代理对象"><a href="#判断对象是否代理对象" class="headerlink" title="判断对象是否代理对象"></a>判断对象是否代理对象</h2><p>如果你想判断对象是否代理对象，可以使用ClassUtils的<code>isCglibProxy</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">isCglibProxy</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h1 id="BeanUtils-工具类"><a href="#BeanUtils-工具类" class="headerlink" title="BeanUtils 工具类"></a>BeanUtils 工具类</h1><p>spring给我们提供了一个<code>JavaBean</code>的工具类，它在<code>org.springframework.beans</code>包下面，它的名字叫做：<code>BeanUtils</code>。</p>
+<h2 id="拷贝对象的属性"><a href="#拷贝对象的属性" class="headerlink" title="拷贝对象的属性"></a>拷贝对象的属性</h2><p>曾几何时，你有没有这样的需求：把某个对象中的所有属性，都拷贝到另外一个对象中。这时就能使用BeanUtils的<code>copyProperties</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">User</span> user1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user1<span class="token punctuation">.</span><span class="token function">setId</span><span class="token punctuation">(</span><span class="token number">1L</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user1<span class="token punctuation">.</span><span class="token function">setName</span><span class="token punctuation">(</span><span class="token string">"苏三说技术"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+user1<span class="token punctuation">.</span><span class="token function">setAddress</span><span class="token punctuation">(</span><span class="token string">"成都"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token class-name">User</span> user2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">User</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">copyProperties</span><span class="token punctuation">(</span>user1<span class="token punctuation">,</span> user2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user2<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="实例化某个类"><a href="#实例化某个类" class="headerlink" title="实例化某个类"></a>实例化某个类</h2><p>如果你想通过反射实例化一个类的对象，可以使用BeanUtils的<code>instantiateClass</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">User</span> user <span class="token operator">=</span> <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">instantiateClass</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>user<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="获取指定类的指定方法"><a href="#获取指定类的指定方法" class="headerlink" title="获取指定类的指定方法"></a>获取指定类的指定方法</h2><p>如果你想获取某个类的指定方法，可以使用BeanUtils的<code>findDeclaredMethod</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Method</span> declaredMethod <span class="token operator">=</span> <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">findDeclaredMethod</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"getId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>declaredMethod<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="获取指定方法的参数"><a href="#获取指定方法的参数" class="headerlink" title="获取指定方法的参数"></a>获取指定方法的参数</h2><p>如果你想获取某个方法的参数，可以使用BeanUtils的<code>findPropertyForMethod</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Method</span> declaredMethod <span class="token operator">=</span> <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">findDeclaredMethod</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"getId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">PropertyDescriptor</span> propertyForMethod <span class="token operator">=</span> <span class="token class-name">BeanUtils</span><span class="token punctuation">.</span><span class="token function">findPropertyForMethod</span><span class="token punctuation">(</span>declaredMethod<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>propertyForMethod<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="ReflectionUtils-工具类"><a href="#ReflectionUtils-工具类" class="headerlink" title="ReflectionUtils 工具类"></a>ReflectionUtils 工具类</h1><p>有时候，我们需要在项目中使用<code>反射</code>功能，如果使用最原始的方法来开发，代码量会非常多，而且很麻烦，它需要处理一大堆异常以及访问权限等问题。</p>
+<p>spring给我们提供了一个<code>ReflectionUtils</code>工具，它在<code>org.springframework.util</code>包下面。</p>
+<h2 id="获取方法"><a href="#获取方法" class="headerlink" title="获取方法"></a>获取方法</h2><p>如果你想获取某个类的某个方法，可以使用ReflectionUtils类的<code>findMethod</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Method</span> method <span class="token operator">=</span> <span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findMethod</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"getId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="获取字段"><a href="#获取字段" class="headerlink" title="获取字段"></a>获取字段</h2><p>如果你想获取某个类的某个字段，可以使用ReflectionUtils类的<code>findField</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Field</span> field <span class="token operator">=</span> <span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="执行方法"><a href="#执行方法" class="headerlink" title="执行方法"></a>执行方法</h2><p>如果你想通过反射调用某个方法，传递参数，可以使用ReflectionUtils类的<code>invokeMethod</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">invokeMethod</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> springContextsUtil<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">,</span> param<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<h2 id="判断字段是否常量"><a href="#判断字段是否常量" class="headerlink" title="判断字段是否常量"></a>判断字段是否常量</h2><p>如果你想判断某个字段是否常量，可以使用ReflectionUtils类的<code>isPublicStaticFinal</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Field</span> field <span class="token operator">=</span> <span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findField</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">isPublicStaticFinal</span><span class="token punctuation">(</span>field<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h2 id="判断是否equals方法"><a href="#判断是否equals方法" class="headerlink" title="判断是否equals方法"></a>判断是否equals方法</h2><p>如果你想判断某个方法是否equals方法，可以使用ReflectionUtils类的<code>isEqualsMethod</code>方法。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Method</span> method <span class="token operator">=</span> <span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">findMethod</span><span class="token punctuation">(</span><span class="token class-name">User</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> <span class="token string">"getId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token class-name">ReflectionUtils</span><span class="token punctuation">.</span><span class="token function">isEqualsMethod</span><span class="token punctuation">(</span>method<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="Base64Utils"><a href="#Base64Utils" class="headerlink" title="Base64Utils"></a>Base64Utils</h1><p>有时候，为了安全考虑，需要将参数只用<code>base64</code>编码。</p>
+<p>这时就能直接使用<code>org.springframework.util</code>包下的<code>Base64Utils</code>工具类。</p>
+<p>它里面包含：<code>encode</code>和<code>decode</code>方法，用于对数据进行加密和解密。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"abc"</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> encode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token class-name">Base64Utils</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"加密后："</span> <span class="token operator">+</span> encode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">String</span> decode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token class-name">Base64Utils</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>encode<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"utf8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"解密后："</span> <span class="token operator">+</span> decode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">UnsupportedEncodingException</span> e<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>执行结果：</p>
+<pre class="line-numbers language-none"><code class="language-none">加密后：YWJj
+解密后：abc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="StandardCharsets-标准字符集"><a href="#StandardCharsets-标准字符集" class="headerlink" title="StandardCharsets 标准字符集"></a>StandardCharsets 标准字符集</h1><p>我们在做字符转换的时候，经常需要指定字符编码，比如：UTF-8、ISO-8859-1等等。</p>
+<p>这时就可以直接使用<code>java.nio.charset</code>包下的<code>StandardCharsets</code>类中静态变量。</p>
+<p>例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> str <span class="token operator">=</span> <span class="token string">"abc"</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> encode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token class-name">Base64Utils</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"加密后："</span> <span class="token operator">+</span> encode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">String</span> decode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token class-name">Base64Utils</span><span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>encode<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">,</span> <span class="token class-name">StandardCharsets</span><span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"解密后："</span> <span class="token operator">+</span> decode<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="SerializationUtils-序列化工具"><a href="#SerializationUtils-序列化工具" class="headerlink" title="SerializationUtils 序列化工具"></a>SerializationUtils 序列化工具</h1><p>有时候，我们需要把数据进行<code>序列化</code>和<code>反序列化</code>处理。</p>
+<p>传统的做法是某个类实现<code>Serializable</code>接口，然后重新它的<code>writeObject</code>和<code>readObject</code>方法。</p>
+<p>但如果使用<code>org.springframework.util</code>包下的<code>SerializationUtils</code>工具类，能更轻松实现序列化和反序列化功能。例如：</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">String</span><span class="token punctuation">></span></span> map <span class="token operator">=</span> <span class="token class-name">Maps</span><span class="token punctuation">.</span><span class="token function">newHashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+map<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span><span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token string">"3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> serialize <span class="token operator">=</span> <span class="token class-name">SerializationUtils</span><span class="token punctuation">.</span><span class="token function">serialize</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Object</span> deserialize <span class="token operator">=</span> <span class="token class-name">SerializationUtils</span><span class="token punctuation">.</span><span class="token function">deserialize</span><span class="token punctuation">(</span>serialize<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>deserialize<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h1 id="HttpStatus-状态码"><a href="#HttpStatus-状态码" class="headerlink" title="HttpStatus 状态码"></a>HttpStatus 状态码</h1><p>很多时候，我们会在代码中定义http的返回码，比如：接口正常返回200，异常返回500，接口找不到返回404，接口不可用返回502等。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">private</span> <span class="token keyword">int</span> SUCCESS_CODE <span class="token operator">=</span> <span class="token number">200</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">int</span> ERROR_CODE <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span>
+<span class="token keyword">private</span> <span class="token keyword">int</span> NOT_FOUND_CODE <span class="token operator">=</span> <span class="token number">404</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<p>其实<code>org.springframework.http</code>包下的HttpStatus枚举，或者<code>org.apache.http</code>包下的<code>HttpStatus</code>接口，已经把常用的http返回码给我们定义好了，直接拿来用就可以了，真的不用再重复定义了。</p>
+<img src="http://jason-qianhao.xyz/202206-202212/202206181437566.png" style="zoom:50%;" />
 
                 
             </div>
@@ -1523,7 +1634,7 @@ CharSequence: length == 0
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">522.5k</span>&nbsp;字
+                class="white-color">526.2k</span>&nbsp;字
             
             
             
