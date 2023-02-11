@@ -447,7 +447,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    914
+                    930
                 </div>
                 
 
@@ -477,7 +477,7 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="http://jason-qianhao.xyz/2023/202301231621619.jpg" alt="83"></p>
+                <p><img src="http://jason-qianhao.xyz/2023/202301231621619.jpg"></p>
 <blockquote>
 <p>目录</p>
 <ol>
@@ -496,7 +496,7 @@
 <p>​    所以正常来说TPS的增加，对线程池对压力影响并不是很大。</p>
 </blockquote>
 </li>
-<li><p>外部依赖耗时增加。比如Redis缓存，随着并发请求量的增加，耗时也会增加。流量越大，耗时增加的越明显。和Redis服务器CPU的压力有关。</p>
+<li><p>外部依赖耗时增加。比如Redis缓存，随着并发请求量的增加，耗时也会增加。流量越大，耗时增加的越明显。主要考虑是应用<strong>系统频繁的GC占用用户线程，导致TBase调用超时</strong>。</p>
 <blockquote>
 <p>在工作中的实际例子：</p>
 <p>​    一个接口平常访问Redis集群，耗时在0.4ms左右（其中包含了很多连接超时请求），在双十一大流量下，平均耗时可以达到1.2ms，翻了3倍左右。</p>
@@ -1280,7 +1280,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">530.1k</span>&nbsp;字
+                class="white-color">531.6k</span>&nbsp;字
             
             
             
