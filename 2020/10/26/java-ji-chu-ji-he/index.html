@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.7k
+                    11.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    41 分
+                    42 分
                 </div>
                 
 
@@ -627,6 +627,18 @@
    <span class="token keyword">return</span> p<span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>Annotation（注解）是JDK5开始引入的新特性，可以看作是一种特殊的注释，主要用于修饰类，方法或者变量，在框架中大量使用（如 Spring、Mybatis等）</p>
+<p>注解是一种能被添加到java代码中的元数据，类、方法、变量、参数和包都可以用注解来修饰。注解对于它所修饰的代码并没有直接的影响。</p>
+<p>自定义注解，异步博客<a href="https://jason-qianhao.github.io/2023/03/04/java-zi-ding-yi-zhu-jie/">Java自定义注解</a></p>
+<h3 id="Java常见的一些注解"><a href="#Java常见的一些注解" class="headerlink" title="Java常见的一些注解"></a>Java常见的一些注解</h3><h4 id="SuppressWarnings注解"><a href="#SuppressWarnings注解" class="headerlink" title="@SuppressWarnings注解"></a>@SuppressWarnings注解</h4><p>SuppressWarnings注解是jse提供的注解。作用是屏蔽一些无关紧要的警告。使开发者能看到一些他们真正关心的警告。从而提高开发者的效率。详细参考文档：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6924650277744164878">https://juejin.cn/post/6924650277744164878</a></p>
+<p>可以标注在类、字段、方法、参数、构造方法，以及局部变量上。</p>
+<blockquote>
+<p>@SuppressWarnings(“unchecked”) 告诉编译器忽略 unchecked 警告信息，如使用List，ArrayList等未进行参数化产生的警告信息。</p>
+<p>@SuppressWarnings(“serial”) 如果编译器出现这样的警告信息：The serializable class WmailCalendar does not declare a static final serialVersionUID field of type long，使用这个注释将警告信息去掉。</p>
+<p>@SuppressWarnings(“deprecation”) 如果使用了使用@Deprecated注释的方法，编译器将出现警告信息。使用这个注释将警告信息去掉。</p>
+<p>@SuppressWarnings(“unchecked”, “deprecation”) 告诉编译器同时忽略unchecked和deprecation的警告信息。</p>
+<p>@SuppressWarnings(value={“unchecked”, “deprecation”}) 等同于@SuppressWarnings(“unchecked”, “deprecation”)</p>
+</blockquote>
 <h2 id="复用类"><a href="#复用类" class="headerlink" title="复用类"></a>复用类</h2><h3 id="组合类"><a href="#组合类" class="headerlink" title="组合类"></a>组合类</h3><p>  在类的字段中包含对其他类的引用。</p>
 <h3 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h3><p>  <strong>所有类都隐式继承Object类。</strong></p>
 <p>  Object类的方法：</p>
@@ -1282,10 +1294,13 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
 <tr>
 <td><strong>getOrDefault(Object key, V defaultValue)</strong></td>
 </tr>
+<tr>
+<td>Object result = hashMap.<strong>computeIfAbsent(Object key, Function remappingFunction)</strong> <br />对 hashMap 中指定 key 的值进行重新计算，如果不存在这个 key，则添加到 hashMap.<br />如果 key 对应的 value 不存在，则使用获取 remappingFunction 重新计算后的值，并保存为该 key 的 value，否则返回 value。</td>
+</tr>
 </tbody></table>
 <p>  <strong>说明：</strong></p>
 <p>​    调用Map.entrySet()，将集合中的映射关系对象存储Set中。迭代Set集合，通过entry的getKey()和getValue()方法获取映射关系对象。</p>
-<h2 id="迭代器Iterator"><a href="#迭代器Iterator" class="headerlink" title="迭代器Iterator"></a>迭代器Iterator</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>  · 迭代器是一个对象，它的工作是遍历并选择序列中的对象，而客户端程序员不必知道或关心该序列底层的结构。</p>
+<h2 id="迭代器Iterator"><a href="#迭代器Iterator" class="headerlink" title="迭代器Iterator"></a>迭代器Iterator</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>  · 迭代器是一个对象，它的工作是遍历并选择序列中的对象，而客户端程序员不必知道或关心该序列底层的结构。</p>
 <p>  · 迭代器只能单向移动。</p>
 <p>  · 不能对正在被迭代的集合进行结构上的改变，否则抛出异常。但可以使用iterator自己的remove方法</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>（1）使用iterator()返回一个Iterator对象，并准备返回序列的第一个元素。</p>
@@ -1345,7 +1360,7 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
 <p>（2）利用红黑树结构实现</p>
 <h3 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h3><p>（1）按照添加的顺序保存对象</p>
 <p>（2）使用链表来维护元素的插入顺序</p>
-<h2 id="Map的实现"><a href="#Map的实现" class="headerlink" title="Map的实现"></a>Map的实现</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><h4 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h4><p>（1）提供最快的查找技术</p>
+<h2 id="Map的实现"><a href="#Map的实现" class="headerlink" title="Map的实现"></a>Map的实现</h2><h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><h4 id="概念-2"><a href="#概念-2" class="headerlink" title="概念"></a>概念</h4><p>（1）提供最快的查找技术</p>
 <p>（2）基于散列表实现</p>
 <p>（3）线程不安全</p>
 <p>（4）hash()方法</p>
@@ -2231,7 +2246,7 @@ wanger<span class="token punctuation">.</span><span class="token function">setAg
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">537.1k</span>&nbsp;字
+                class="white-color">538.4k</span>&nbsp;字
             
             
             

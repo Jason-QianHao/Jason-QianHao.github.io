@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.6k
+                    5.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    24 分
+                    25 分
                 </div>
                 
 
@@ -496,6 +496,7 @@
 <li><a href="#4.5">获取指定日期</a></li>
 <li><a href="#4.6">JDBC和java8</a></li>
 <li>Stream API</li>
+<li>Supplier</li>
 </ul>
 <p>参考来源：</p>
 <ul>
@@ -1226,6 +1227,34 @@ String result &#x3D; first.get(); &#x2F;&#x2F; Python<span aria-hidden="true" cl
     <span class="token keyword">return</span> children<span class="token punctuation">;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
+<h1 id="Supplier"><a href="#Supplier" class="headerlink" title="Supplier"></a>Supplier</h1><p>Java Supplier是一个功能接口，代表结果的提供者。Supplier在Java 8中被引入，属于java.util.function包。</p>
+<p>Supplier的功能方法是get()。Supplier功能接口的源代码如下。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@FunctionalInterface</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">></span></span> <span class="token punctuation">&#123;</span>
+    <span class="token class-name">T</span> <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>我们可以看到在上面的代码中，Supplier有get()方法，可以返回通用类型的值。get()方法不接受任何参数，只返回通用类型的值。</p>
+<p>一个Supplier可以通过lambda表达式、方法引用或默认构造函数来实例化。</p>
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  	 <span class="token comment">// lambda表达式</span>
+     <span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">></span></span> s1 <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-></span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span> 
+     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token comment">// 方法引用.假设myUtil是MyUtil类的实例，getAge()是一个非静态方法</span>
+  	 <span class="token class-name">MyUtil</span> myUtil <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MyUtil</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      
+     <span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Integer</span><span class="token punctuation">></span></span> s2 <span class="token operator">=</span> myUtil<span class="token operator">::</span><span class="token function">getAge</span><span class="token punctuation">;</span>
+     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>s2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+  
+  	 <span class="token comment">// 默认构造函数</span>
+  	 <span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">Random</span><span class="token punctuation">></span></span> s3 <span class="token operator">=</span> <span class="token class-name">Random</span><span class="token operator">::</span><span class="token keyword">new</span><span class="token punctuation">;</span> 
+     <span class="token class-name">Random</span> random <span class="token operator">=</span> s3<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>random<span class="token punctuation">.</span><span class="token function">nextInt</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   
+  <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
+<p>Java还提供了返回特定类型值的Supplier。BooleanSupplier返回Boolean数据类型，IntSupplier返回Integer数据类型，LongSupplier返回Long数据类型，DoubleSupplier返回Double数据类型值。</p>
 
                 
             </div>
@@ -1975,7 +2004,7 @@ String result &#x3D; first.get(); &#x2F;&#x2F; Python<span aria-hidden="true" cl
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">537.1k</span>&nbsp;字
+                class="white-color">538.4k</span>&nbsp;字
             
             
             
