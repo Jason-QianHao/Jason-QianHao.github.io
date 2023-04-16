@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.4k
+                    9.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    36 分
+                    37 分
                 </div>
                 
 
@@ -1315,6 +1315,18 @@ dmtsai lines: 5 columns: 9<span aria-hidden="true" class="line-numbers-rows"><sp
 <p>僵尸进程通过 ps 命令显示出来的状态为 Z（zombie）。</p>
 <p>系统所能使用的进程号是有限的，如果产生大量僵尸进程，将因为没有可用的进程号而导致系统不能产生新的进程。</p>
 <p>要消灭系统中大量的僵尸进程，只需要将其父进程杀死，此时僵尸进程就会变成孤儿进程，从而被 init 进程所收养，这样 init 进程就会释放所有的僵尸进程所占有的资源，从而结束僵尸进程。</p>
+<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><h2 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h2><p>查询、设置网卡和IP网段等相关参数</p>
+<h2 id="curl-amp-wget"><a href="#curl-amp-wget" class="headerlink" title="curl &amp; wget"></a><strong>curl &amp; wget</strong></h2><p>使用curl或wget命令，不用离开终端就可以下载文件。如你用curl，键入curl -O后面跟一个文件路径。wget则不需要任何选项。下载的文件在当前目录。</p>
+<h2 id="ping"><a href="#ping" class="headerlink" title="ping"></a><strong>ping</strong></h2><p>ping发送ECHO_REQUEST包到你指定的地址。这样你可以很方便确认你的电脑和Internet或是一个指定的IP地址是不是通的。使用 -c 开关，可以指定发送ECHO_REQUEST包的个数。</p>
+<h2 id="netstat-1"><a href="#netstat-1" class="headerlink" title="netstat"></a>netstat</h2><p>命令可以显示网络接口的很多统计信息，包括打开的socket和路由表。无选项运行命令显示打开的socket。</p>
+<h2 id="curl"><a href="#curl" class="headerlink" title="curl"></a>curl</h2><p>是一种命令行工具，作用是发出网络请求，然后获取数据，显示在”标准输出”（stdout）上面。它支持多种协议，下面列举其常用功能。</p>
+<h2 id="telnet"><a href="#telnet" class="headerlink" title="telnet"></a>telnet</h2><p>执行telnet指令开启终端机阶段作业，并登入远端主机。 telnet命令可以帮助你从这台路由器远程登陆到远端开启了telnet服务的设备，包括路由器、交换机、linux服务器等，并且配置当前路由器的telnet服务。</p>
+<p>常见的如下面两个命令，可以测试远端机器或者服务端口通不通</p>
+<p>登录远程主机：</p>
+<pre class="line-numbers language-none"><code class="language-none">[root@linux265 ~]# telnet 192.168.0.5<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>连接本地主机，端口号为23：</p>
+<pre class="line-numbers language-none"><code class="language-none">[root@linux265 ~]# telnet localhost23<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
                 
             </div>
@@ -2060,7 +2072,7 @@ dmtsai lines: 5 columns: 9<span aria-hidden="true" class="line-numbers-rows"><sp
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">551.4k</span>&nbsp;字
+                class="white-color">555.4k</span>&nbsp;字
             
             
             
