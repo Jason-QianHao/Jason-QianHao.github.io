@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    9.1k
+                    9.2k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    41 分
+                    42 分
                 </div>
                 
 
@@ -1740,6 +1740,13 @@ true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span
 
 <p>我们无需额外的判空了，而且还可以设置Boolean对象为空时返回的默认值。</p>
 <h1 id="StringUtils"><a href="#StringUtils" class="headerlink" title="StringUtils"></a>StringUtils</h1><p>是<code>org.apache.commons.lang3</code>包下的<code>StringUtils</code>工具类，给我们提供了非常丰富的方法操作字符串。</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-lang3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.12.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
 <h2 id="字符串判空"><a href="#字符串判空" class="headerlink" title="字符串判空"></a>字符串判空</h2><p>其实空字符串，不只是null一种，还有””，” “，”null”等等，多种情况。</p>
 <p>StringUtils给我们提供了多个判空的静态方法，例如：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"> <span class="token class-name">String</span> str1 <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
@@ -1850,6 +1857,18 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 <h2 id="sha256加密"><a href="#sha256加密" class="headerlink" title="sha256加密"></a>sha256加密</h2><p>如果你想对数据进行sha256加密，可以使用DigestUtils的<code>sha256Hex</code>方法。例如：</p>
 <pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token class-name">String</span> md5Hex <span class="token operator">=</span> <span class="token class-name">DigestUtils</span><span class="token punctuation">.</span><span class="token function">sha256Hex</span><span class="token punctuation">(</span><span class="token string">"苏三说技术"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>md5Hex<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+
+<h1 id="ToString方法重写"><a href="#ToString方法重写" class="headerlink" title="ToString方法重写"></a>ToString方法重写</h1><pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token comment">&lt;!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 --></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dependency</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.apache.commons<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>commons-lang3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>version</span><span class="token punctuation">></span></span>3.12.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>version</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dependency</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+        <span class="token keyword">return</span> <span class="token class-name">ToStringBuilder</span><span class="token punctuation">.</span><span class="token function">reflectionToString</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token class-name">ToStringStyle</span><span class="token punctuation">.</span>SHORT_PREFIX_STYLE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h1 id="javatuples元组"><a href="#javatuples元组" class="headerlink" title="javatuples元组"></a>javatuples元组</h1><p>可以构建一个多元素的对象.</p>
 <p>依赖</p>
@@ -2615,7 +2634,7 @@ false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">555.4k</span>&nbsp;字
+                class="white-color">566.7k</span>&nbsp;字
             
             
             

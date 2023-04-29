@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.8k
+                    12.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    44 分
                 </div>
                 
 
@@ -480,12 +480,15 @@
 <li>简介</li>
 <li>注册中心</li>
 <li>微服务拆分原则AFK</li>
+<li>分布式事务</li>
 </ol>
 <p>参考/来源：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2022/04/microservice.html">https://www.ruanyifeng.com/blog/2022/04/microservice.html</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/utQdt4Kc9dWF4GBtnlTtCQ">https://mp.weixin.qq.com/s/utQdt4Kc9dWF4GBtnlTtCQ</a></li>
 <li><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/0-5GDX8KP6UMij638R94tg">https://mp.weixin.qq.com/s/0-5GDX8KP6UMij638R94tg</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_24313635/article/details/104044297">https://blog.csdn.net/qq_24313635/article/details/104044297</a></li>
+<li><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1785983">https://cloud.tencent.com/developer/article/1785983</a></li>
 </ul>
 </blockquote>
 <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>微服务（microservice）是一种软件架构。</p>
@@ -664,6 +667,276 @@
 
 <h2 id="Z轴拆分"><a href="#Z轴拆分" class="headerlink" title="Z轴拆分"></a>Z轴拆分</h2><p>在上面的AFK原则X-Y拆分之后,对服务器显示做了主从主备复制,然后做了业务拆分,不同的Redis负责不同的业务请求,这时候还会有一个新的问题,例如对于Y轴上一个Redis,它负责某一样业务,但是这天这个业务的数据访问巨大,贼大,那就只好对数据请求进行<strong>AFK的Z轴拆分</strong>,例如先分析下数据请求的情况,然后根据访问来源,分为北京的、上海的,这样不同的Redis虽然是负责不同的数据,但是负责的业务是一样的。AFK拆分图示:</p>
 <img src="http://jason-qianhao.xyz/202206-202212/202206072240182.png" style="zoom:67%;" />
+
+<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><p>在微服务架构下，数据库也会分库分表，此时依靠单数据库的ACID特性保证事务的手段失效。</p>
+<p>一个事务可能涉及多个数据库或者多个表扩库执行,而网络具有不稳定性,也就是事务执行难度加大,分表分库后事务为了与传统事务做出区别,叫做<strong>分布式事务</strong>(跨分片事务)。</p>
+<h2 id="CAP和Base理论"><a href="#CAP和Base理论" class="headerlink" title="CAP和Base理论"></a>CAP和Base理论</h2><p>相对于本地事务的ACID性质，分布式事务有也有对应的两个事务特性，按照保证事务一致性的方式，分为CAP（钢性事务）和Base理论（柔性事务）</p>
+<p>具体描述可以见<a href="https://jason-qianhao.github.io/2020/11/19/zookeeper-zhi-shi-hui-zong/">Zookeeper博客</a></p>
+<h2 id="分布式事务处理模型"><a href="#分布式事务处理模型" class="headerlink" title="分布式事务处理模型"></a>分布式事务处理模型</h2><h3 id="DTP模型"><a href="#DTP模型" class="headerlink" title="DTP模型"></a><strong>DTP模型</strong></h3><p>DTP(Distributed Transaction Processing)是x/open组织提出来的分布式事务的模型.</p>
+<p>一个DTP模型至少包含以下三个元素:</p>
+<pre class="line-numbers language-erlang" data-language="erlang"><code class="language-erlang"><span class="token number">1.</span> <span class="token variable">AP</span><span class="token punctuation">,</span> 应用程序<span class="token punctuation">,</span>用于定义事务开始和结束的边界<span class="token punctuation">.</span> 说人话就是我们开启事务的代码所以的应用<span class="token punctuation">.</span>
+<span class="token number">2.</span> <span class="token variable">RM</span><span class="token punctuation">,</span> 资源管理器<span class="token punctuation">.</span> 理论上一切支持持久化的数据库资源都可以是一个资源管理器<span class="token punctuation">.</span>
+<span class="token number">3.</span> <span class="token variable">TM</span><span class="token punctuation">,</span> 事务管理器<span class="token punctuation">,</span> 负责对事务进行协调<span class="token punctuation">,</span>监控<span class="token punctuation">.</span> 并负责事务的提交和回滚<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="XA规范"><a href="#XA规范" class="headerlink" title="XA规范"></a><strong>XA规范</strong></h3><p>XA是x/open提出来的分布式事务的规范, 它是跟语言无关的.</p>
+<p>XA规范定义了事务管理器TM(Transaction Manager)和资源管理器RM(Resource Manager)交互、应用程序的接口. 例如TM可以通过以下接口对RM进行管理</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token level number">1</span><span class="token punctuation">.</span> xa_open和xa_close<span class="token punctuation">,</span> 用于跟RM建立连接
+<span class="token level number">2</span><span class="token punctuation">.</span> xa_star和xa_end<span class="token punctuation">,</span> 开始和结束一个事务
+<span class="token level number">3</span><span class="token punctuation">.</span> xa_prepare<span class="token punctuation">,</span> xa_commit和xa_rollback<span class="token punctuation">,</span> 用于预提交<span class="token punctuation">,</span> 提交和回滚一个事务
+<span class="token level number">4</span><span class="token punctuation">.</span> xa_recover 用于回滚一个预提交的事务<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>事务管理器TM就是事务的协调者，资源管理器RM可以认为就是一个数据库。</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292015022.jpeg"></p>
+<h3 id="JTA规范"><a href="#JTA规范" class="headerlink" title="JTA规范"></a><strong>JTA规范</strong></h3><p>JTA规范是可以认为是XA规范java语言实现版的规范.</p>
+<p>JTA定义了一系列分布式事务相关的接口:</p>
+<pre class="line-numbers language-cobol" data-language="cobol"><code class="language-cobol"><span class="token level number">1</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span><span class="token keyword">Status</span><span class="token punctuation">:</span> 定义了事务的状态<span class="token punctuation">,</span>例如prepare<span class="token punctuation">,</span> commit rollback等等等
+<span class="token level number">2</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>Synchronization：同步
+<span class="token level number">3</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>Transaction：事务
+<span class="token level number">4</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>TransactionManager：事务管理器
+<span class="token level number">5</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>UserTransaction：用于声明一个分布式事务
+<span class="token level number">6</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>TransactionSynchronizationRegistry：事务同步注册
+<span class="token level number">7</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>xa<span class="token punctuation">.</span>XAResource：定义RM提供给TM操作的接口
+<span class="token level number">8</span><span class="token punctuation">.</span> javax<span class="token punctuation">.</span>transaction<span class="token punctuation">.</span>xa<span class="token punctuation">.</span>Xid：事务<span class="token keyword">id</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>以上不同的接口由不同的角色(RM, RM等)来实现</p>
+<h2 id="分布式事务解决方案"><a href="#分布式事务解决方案" class="headerlink" title="分布式事务解决方案"></a>分布式事务解决方案</h2><h3 id="二阶段提交（2PC）"><a href="#二阶段提交（2PC）" class="headerlink" title="二阶段提交（2PC）"></a>二阶段提交（2PC）</h3><p><img src="http://jason-qianhao.xyz/2023/202304292015545.png"></p>
+<p>两阶段提交的算法思路可以概括为：参与者将操作成功或失败的结果通知协调者，再由协调者根据所有参与者的反馈情况决定个参与者是否要提交操作还是中止操作。</p>
+<p><strong>1.1 第一阶段：请求阶段（投票阶段）</strong></p>
+<p>协调者向所有的参与者发送事务执行请求，并等待参与者反馈事务执行结果。</p>
+<p>事务参与者收到请求之后，本地执行事务，但不提交。</p>
+<p>参与者将自己事务执行情况反馈给协调者，同时等待协调者的下一步通知。</p>
+<p><strong>1.2 第二阶段：提交阶段（执行阶段）</strong></p>
+<p>在第一阶段协调者的询盘之后，各个参与者会回复自己事务的执行情况，这时候存在三种可能：<br>1、所有的参与者回复能够正常执行事务<br> ①协调者向各个参与者发送commit通知，请求提交事务<br> ②参与者收到事务提交通知之后，执行commit操作<br> ③参与者向协调者返回事务commit结果信息。<br>2、一个或多个参与者回复事务执行失败<br>3、协调者等待超时<br> ①协调者向各个参与者发送事务rollback通知，请求回滚事务<br> ②参与者收到事务回滚通知之后，执行rollback操作<br> ③参与者向协调者返回事务rollback结果信息</p>
+<p><strong>1.3 两阶段提交的缺点</strong></p>
+<p>同步阻塞：执行过程中，所有参与者的节点都是事务阻塞型的。当参与者占用公共资源时，其他第三方节点访问公共资源不得不处于阻塞状态。</p>
+<p>单点故障：由于协调者的重要性，一旦协调者发生故障，参与者会一直阻塞，尤其是在第二阶段，协调者发生故障，那么所有的参与者都处于锁定事务资源的状态中，而无法继续完成事务操作。（<em><strong>如果是协调者挂掉，可以重新选举一个协调者，但是无法解决因为协调者宕机导致的参与者处于阻塞状态的问题</strong></em>）</p>
+<p>数据不一致：在第二阶段中，当协调者向参与者发送commit请求之后，发生了局部网络异常或者在发送commit请求过程中协调者发生了故障，这会导致只有一部分参与者接收到了commit请求。而在这部分参与者接到commit请求之后就会执行commit操作。但是其他部分未接收到commit请求的节点则无法提交事务。于是，整个分布式系统就出现了数据不一致的现象。</p>
+<p><strong>1.4 两阶段提交无法解决的问题</strong></p>
+<p>当协调者和参与者同时出现故障时，两阶段提交无法保证事务的完整性。如果调用者在发出commit消息之后宕机，而唯一接收到commit消息的参与者同时也宕机了。那么即使协调者通过选举协议产生了新的协调者，这条事务的状态也是不确定的，因为没人知道事务是否已经被提交。</p>
+<h3 id="二阶段补偿型事务（TCC）"><a href="#二阶段补偿型事务（TCC）" class="headerlink" title="二阶段补偿型事务（TCC）"></a>二阶段补偿型事务（TCC）</h3><p>TCC是二阶段协议的一种，优化，只锁定了一部分的资源，其他的事务仍可以使用。TCC是一种比较成熟的分布式事务解决方案，可用于<strong>解决跨库操作的数据一致性问题</strong>，适用于公司内部对一致性、实时性要求较高的业务场景。其中Try、Confirm、Cancel 3个方法均由业务编码实现。其中Try操作为第一阶段，负责资源的检查和预留；Confirm操作为第二阶段，执行真正的业务操作；Cancel时执行取消（回滚）操作。</p>
+<p>业务实现TCC服务之后，该TCC服务将作为分布式事务的其中一个资源，参与到整个分布式事务中；事务管理器分两阶段协调的TCC服务，<em><strong>第一阶段调用所有TCC服务的Try方法（和二阶段提交中的预提交不同，这里每一个RM来说，事务此时已经提交了），在第二阶段执行所有TCC服务的Confirm或者Cancel方法</strong></em>。</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292015644.png"></p>
+<h3 id="三阶段提交（3PC）"><a href="#三阶段提交（3PC）" class="headerlink" title="三阶段提交（3PC）"></a>三阶段提交（3PC）</h3><p>3PC 就是在 2PC 的基础上，为了解决 2PC 的某些缺点而设计的，3PC 分为三个阶段：CanCommit，PreCommit 和 doCommit。</p>
+<p><strong>CanCommit</strong></p>
+<p>流程如下图：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292016004.png"></p>
+<ol>
+<li><p>事务询问 协调者向所有参与者发送事务 canCommit 请求，请求中包含事务内容，询问是否可以执行事务提交操作，并开始等待响应。</p>
+</li>
+<li><p>反馈询问结果 参与者收到 canCommit 请求后，分析事务内容，判断自身是否可以执行事务，如果可以，那么就返回 Yes 响应，进入预备状态，否则返回 No 响应。</p>
+<p>注意：此过程中并没有执行事务(对比 2PC 的 Prepare 阶段，参与者是执行了事务的)。</p>
+</li>
+</ol>
+<p><strong>PreCommit</strong></p>
+<p>流程图如下：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292016039.png"></p>
+<p>PreCommit 阶段根据各参与者返回的 CanCommit 响应，决定下一步动作。如果收到了所有参与者的 Yes 响应，则执行事务预提交，否则(收到了至少一个 No 响应或一定时长内没有收到所有参与者的 Yes 响应，如 3PC 第一张图片中红色部分)，执行事务中断。</p>
+<p><strong>事务预提交</strong></p>
+<ol>
+<li>发送 PreCommit 请求 协调者发送 PreCommit 请求，并进入 Prepared 阶段。</li>
+<li>参与者处理 PreCommit 参与者收到 PreCommit 请求后，执行事务操作，并将 Undo 和 Redo 信息记录事务日志中。</li>
+<li>反馈执行结果 如果参与者成功执行了事务并写入 Undo 和 Redo 信息，那么反馈 Ack 给协调者，并等待下一步指令。</li>
+</ol>
+<p><strong>事务中断</strong></p>
+<p>上图中，红色的 Abort 表示协调者发送的不是 PreCommit 请求，而是 Abort 请求。</p>
+<ol>
+<li>发送事务中断请求 协调者向所有参与者发送 Abort 请求。</li>
+<li>中断事务 参与者收到 Abort 请求后，会触发事务中断。此外，如果参与者在等待协调者指令超时，会自己触发事务中断，在 2PC 中，参与者会一直阻塞的等待协调者指令，所以 3PC 中解决了因为这种情况带来的阻塞。</li>
+</ol>
+<p><strong>doCommit</strong></p>
+<p>流程图如下：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292016336.png"></p>
+<p>协调者根据第二阶段的响应决定最终操作，如果协调者收到了所有参与者在 PreCommit 阶段的 Ack 响应，那么会进入执行事务提交阶段，否则执行事务中断。</p>
+<p><strong>事务提交</strong></p>
+<ol>
+<li>发送提交请求 协调者收到所有参与者在 PreCommit 阶段返回的 Ack 响应后，向所有参与者发送 doCommit 请求，并进入提交状态。</li>
+<li>事务提交 参与者收到 Commit 请求后，执行事务提交，提交完成后释放事务执行期占用的所有资源。</li>
+<li>反馈结果 参与者完成事务提交之后，向协调者返回 Ack 响应。</li>
+<li>完成事务 协调者收到所有参与者的 Ack 响应后，完成事务。</li>
+</ol>
+<p><strong>事务中断</strong></p>
+<ol>
+<li><p>发送事务中断请求 协调者向所有参与者发送 Abort 请求。</p>
+</li>
+<li><p>事务回滚 参与者收到 Abort 请求后，会使用第二阶段记录的 Undo 信息进行事务回滚，并在完成回滚后释放所有事务资源。</p>
+<p>注意：因为第一阶段并没有任何参与者实际执行事务，所以在第二阶段(PreCommit 阶段)执行事务中断，是不需要事务回滚的，也就不需要下面的反馈结果，直接中断事务即可。</p>
+</li>
+<li><p>反馈回滚结果 参与者执行事务回滚后向协调者发送 Ack 响应。</p>
+</li>
+<li><p>中断事务 协调者接收到所有参与者反馈的 Ack 响应后，完成事务中断。</p>
+</li>
+</ol>
+<p><strong>3PC 的改进和缺点</strong></p>
+<p><strong>改进</strong></p>
+<ol>
+<li>降低了阻塞<ul>
+<li>参与者返回 CanCommit 请求的响应后，等待第二阶段指令，若等待超时，则自动 abort，降低了阻塞；</li>
+<li>参与者返回 PreCommit 请求的响应后，等待第三阶段指令，若等待超时，则自动 commit 事务，也降低了阻塞；</li>
+</ul>
+</li>
+<li>解决单点故障问题<ul>
+<li>参与者返回 CanCommit 请求的响应后，等待第二阶段指令，若协调者宕机，等待超时后自动 abort；</li>
+<li>参与者返回 PreCommit 请求的响应后，等待第三阶段指令，若协调者宕机，等待超时后自动 commit 事务；</li>
+</ul>
+</li>
+</ol>
+<p><strong>缺点</strong></p>
+<p>数据不一致问题仍然是存在的，比如第三阶段协调者发出了 abort 请求，然后有些参与者没有收到 abort，那么就会自动 commit，造成数据不一致。</p>
+<p>RocketMq的事务消息有点类似这里的3pc的思想，参与者broker在超时之后，会主动回查协调者那边的事务执行状态，然后根据执行状态判断应该执行abort还是commit操作</p>
+<h3 id="本地消息表（最终一致性）"><a href="#本地消息表（最终一致性）" class="headerlink" title="本地消息表（最终一致性）"></a>本地消息表（最终一致性）</h3><p>本地消息表的方案最初是由ebay提出，核心思路是将分布式事务拆分成本地事务进行处理。</p>
+<p>方案通过在事务主动发起方额外新建事务消息表，事务发起方处理业务和记录事务消息在本地事务中完成，轮询事务消息表的数据发送事务消息，事务被动方基于消息中间件消费事务消息表中的事务。</p>
+<p>这样设计可以避免”<strong>业务处理成功 + 事务消息发送失败</strong>“，或”<strong>业务处理失败 + 事务消息发送成功</strong>“的棘手情况出现，保证2个系统事务的数据一致性。</p>
+<p><strong>处理流程</strong></p>
+<p>下面把分布式事务最先开始处理的事务方成为事务主动方，在事务主动方之后处理的业务内的其他事务成为事务被动方。</p>
+<p>为了方便理解，下面继续以电商下单为例进行方案解析，这里把整个过程简单分为扣减库存，订单创建2个步骤，库存服务和订单服务分别在不同的服务器节点上，其中库存服务是事务主动方，订单服务是事务被动方。</p>
+<p>事务的主动方需要额外新建事务消息表，用于记录分布式事务的消息的发生、处理状态。</p>
+<p>整个业务处理流程如下：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292016374.png" alt="本地消息表方案"></p>
+<ul>
+<li><strong>步骤1 事务主动方处理本地事务。</strong> 事务主动发在本地事务中处理业务更新操作和写消息表操作。 上面例子中库存服务阶段再本地事务中完成扣减库存和写消息表(图中1、2)。</li>
+<li><strong>步骤2 事务主动方通过消息中间件，通知事务被动方处理事务通知事务待消息</strong>。 消息中间件可以基于Kafka、RocketMQ消息队列，事务主动方法主动写消息到消息队列，事务消费方消费并处理消息队列中的消息。 上面例子中，库存服务把事务待处理消息写到消息中间件，订单服务消费消息中间件的消息，完成新增订单（图中3 - 5）。</li>
+<li><strong>步骤3 事务被动方通过消息中间件，通知事务主动方事务已处理的消息。</strong> 上面例子中，订单服务把事务已处理消息写到消息中间件，库存服务消费中间件的消息，并将事务消息的状态更新为已完成(图中6 - 8)</li>
+</ul>
+<p>为了数据的一致性，当处理错误需要重试，事务发送方和事务接收方相关业务处理需要支持幂等。具体保存一致性的容错处理如下：</p>
+<ul>
+<li>1、当步骤1处理出错，事务回滚，相当于什么都没发生。</li>
+<li>2、当步骤2、步骤3处理出错，由于未处理的事务消息还是保存在事务发送方，事务发送方可以定时轮询为超时消息数据，再次发送的消息中间件进行处理。事务被动方消费事务消息重试处理。</li>
+<li>3、如果是业务上的失败，事务被动方可以发消息给事务主动方进行回滚。</li>
+<li>4、如果多个事务被动方已经消费消息，事务主动方需要回滚事务时需要通知事务被动方回滚。</li>
+</ul>
+<p><strong>方案总结</strong></p>
+<p>方案的优点如下：</p>
+<ul>
+<li>从应用设计开发的角度实现了消息数据的可靠性，消息数据的可靠性不依赖于消息中间件，弱化了对MQ中间件特性的依赖。</li>
+<li>方案轻量，容易实现。</li>
+</ul>
+<p>缺点如下：</p>
+<ul>
+<li>与具体的业务场景绑定，耦合性强，不可公用。</li>
+<li>消息数据与业务数据同库，占用业务系统资源。</li>
+<li>业务系统在使用关系型数据库的情况下，消息服务性能会受到关系型数据库并发性能的局限。</li>
+</ul>
+<h3 id="MQ事务消息（最终一致性）"><a href="#MQ事务消息（最终一致性）" class="headerlink" title="MQ事务消息（最终一致性）"></a>MQ事务消息（最终一致性）</h3><p>下面主要基于RocketMQ4.3之后的版本介绍MQ的分布式事务方案。</p>
+<p>在本地消息表方案中，保证事务主动方发写业务表数据和写消息表数据的一致性是基于数据库事务，RocketMQ的事务消息相对于普通MQ，相对于提供了2PC的提交接口，方案如下：</p>
+<p><strong>正常情况——事务主动方发消息</strong> 这种情况下，事务主动方服务正常，没有发生故障，发消息流程如下：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017001.png" alt="正常情况——事务主动方发消息"></p>
+<ul>
+<li>图中1、发送方向 MQ服务端(MQ Server)发送half消息。</li>
+<li>图中2、MQ Server 将消息持久化成功之后，向发送方 ACK 确认消息已经发送成功。</li>
+<li>图中3、发送方开始执行本地事务逻辑。</li>
+<li>图中4、发送方根据本地事务执行结果向 MQ Server 提交二次确认（commit 或是 rollback）。</li>
+<li>图中5、MQ Server 收到 commit 状态则将半消息标记为可投递，订阅方最终将收到该消息；MQ Server 收到 rollback 状态则删除半消息，订阅方将不会接受该消息。</li>
+</ul>
+<p><strong>异常情况——事务主动方消息恢复</strong> 在断网或者应用重启等异常情况下，图中4提交的二次确认超时未到达 MQ Server，此时处理逻辑如下：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017236.png" alt="异常情况——事务主动方消息恢复"></p>
+<ul>
+<li>图中5、MQ Server 对该消息发起消息回查。</li>
+<li>图中6、发送方收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</li>
+<li>图中7、发送方根据检查得到的本地事务的最终状态再次提交二次确认</li>
+<li>图中8、MQ Server基于commit / rollback 对消息进行投递或者删除</li>
+</ul>
+<p>有一些第三方的MQ是支持事务消息的，比如RocketMQ，但是市面上一些主流的MQ都是不支持事务消息的，比如 RabbitMQ 和 Kafka 都不支持。</p>
+<h3 id="Saga（最终一致性）"><a href="#Saga（最终一致性）" class="headerlink" title="Saga（最终一致性）"></a>Saga（最终一致性）</h3><p>Saga事务源于1987年普林斯顿大学的Hecto和Kenneth发表的如何处理long lived transaction（长活事务）论文，<strong>Saga事务核心思想是将长事务拆分为多个本地短事务</strong>，由Saga事务协调器协调，如果正常结束那就正常完成，如果某个步骤失败，则根据相反顺序一次调用补偿操作。</p>
+<p><strong>处理流程</strong></p>
+<p>Saga事务基本协议如下：</p>
+<ul>
+<li>每个Saga事务由一系列幂等的有序子事务(sub-transaction) Ti 组成。</li>
+<li>每个Ti 都有对应的幂等补偿动作Ci，补偿动作用于撤销Ti造成的结果。</li>
+</ul>
+<p>可以看到，和TCC相比，Saga没有“预留”动作，它的Ti就是直接提交到库。</p>
+<p>下面以下单流程为例，整个操作包括：创建订单、扣减库存、支付、增加积分 Saga的执行顺序有两种：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017783.png" alt="Saga事务执行顺序"></p>
+<ul>
+<li>事务正常执行完成 T1, T2, T3, …, Tn，例如：扣减库存(T1)，创建订单(T2)，支付(T3)，依次有序完成整个事务。</li>
+<li>事务回滚 T1, T2, …, Tj, Cj,…, C2, C1，其中0 &lt; j &lt; n，例如：扣减库存(T1)，创建订单(T2)，支付(T3，支付失败)，支付回滚(C3)，订单回滚(C2)，恢复库存(C1)。</li>
+</ul>
+<p>Saga定义了两种恢复策略：</p>
+<ul>
+<li>向前恢复(forward recovery)</li>
+</ul>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017524.png" alt="Saga事务向前恢复"></p>
+<p>对应于上面第一种执行顺序，适用于必须要成功的场景，发生失败进行重试，执行顺序是类似于这样的：T1, T2, …, Tj(失败), Tj(重试),…, Tn，其中j是发生错误的子事务(sub-transaction)。该情况下不需要Ci。</p>
+<ul>
+<li>向后恢复(backward recovery)</li>
+</ul>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017482.png" alt="Saga事务向后恢复"></p>
+<p>对应于上面提到的第二种执行顺序，其中j是发生错误的子事务(sub-transaction)，这种做法的效果是撤销掉之前所有成功的子事务，使得整个Saga的执行结果撤销。</p>
+<p>Saga事务常见的有两种不同的实现方式：</p>
+<ul>
+<li>1、<strong>命令协调(Order Orchestrator)：中央协调器负责集中处理事件的决策和业务逻辑排序。</strong></li>
+</ul>
+<p>中央协调器（Orchestrator，简称OSO）以命令/回复的方式与每项服务进行通信，全权负责告诉每个参与者该做什么以及什么时候该做什么。</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017699.png" alt="命令协调模式"></p>
+<p>以电商订单的例子为例：</p>
+<blockquote>
+<p>1、事务发起方的主业务逻辑请求OSO服务开启订单事务 2、OSO向库存服务请求扣减库存，库存服务回复处理结果。 3、OSO向订单服务请求创建订单，订单服务回复创建结果。 4、OSO向支付服务请求支付，支付服务回复处理结果。 5、主业务逻辑接收并处理OSO事务处理结果回复。</p>
+</blockquote>
+<p>中央协调器必须事先知道执行整个订单事务所需的流程(例如通过读取配置)。如果有任何失败，它还负责通过向每个参与者发送命令来撤销之前的操作来协调分布式的回滚。基于中央协调器协调一切时，回滚要容易得多，因为协调器默认是执行正向流程，回滚时只要执行反向流程即可。</p>
+<ul>
+<li>2、<strong>事件编排 (Event Choreography0：没有中央协调器（没有单点风险）时，每个服务产生并观察其他服务的事件，并决定是否应采取行动</strong>。</li>
+</ul>
+<p>在事件编排方法中，第一个服务执行一个事务，然后发布一个事件。该事件被一个或多个服务进行监听，这些服务再执行本地事务并发布（或不发布）新的事件。</p>
+<p>当最后一个服务执行本地事务并且不发布任何事件时，意味着分布式事务结束，或者它发布的事件没有被任何Saga参与者听到都意味着事务结束。</p>
+<p>以电商订单的例子为例：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292017456.png" alt="事件编排模式"></p>
+<ul>
+<li>1、事务发起方的主业务逻辑发布开始订单事件</li>
+<li>2、库存服务监听开始订单事件，扣减库存，并发布库存已扣减事件</li>
+<li>3、订单服务监听库存已扣减事件，创建订单，并发布订单已创建事件</li>
+<li>4、支付服务监听订单已创建事件，进行支付，并发布订单已支付事件</li>
+<li>5、主业务逻辑监听订单已支付事件并处理。</li>
+</ul>
+<p>事件/编排是实现Saga模式的自然方式，它很简单，容易理解，不需要太多的代码来构建。如果事务涉及2至4个步骤，则可能是非常合适的。</p>
+<p><strong>方案总结</strong></p>
+<p><strong>命令协调设计的优点和缺点：</strong> 优点如下：</p>
+<ul>
+<li>1、服务之间关系简单，避免服务之间的循环依赖关系，因为Saga协调器会调用Saga参与者，但参与者不会调用协调器</li>
+<li>2、程序开发简单，只需要执行命令/回复(其实回复消息也是一种事件消息)，降低参与者的复杂性。</li>
+<li>3、易维护扩展，在添加新步骤时，事务复杂性保持线性，回滚更容易管理，更容易实施和测试</li>
+</ul>
+<p>缺点如下：</p>
+<ul>
+<li>1、中央协调器容易处理逻辑容易过于复杂，导致难以维护。</li>
+<li>2、存在协调器单点故障风险。</li>
+</ul>
+<p><strong>事件/编排设计的优点和缺点</strong> 优点如下：</p>
+<ul>
+<li>1、避免中央协调器单点故障风险。</li>
+<li>2、当涉及的步骤较少服务开发简单，容易实现。</li>
+</ul>
+<p>缺点如下：</p>
+<ul>
+<li>1、服务之间存在循环依赖的风险。</li>
+<li>2、当涉及的步骤较多，服务间关系混乱，难以追踪调测。</li>
+</ul>
+<p>值得补充的是，由于Saga模型中没有Prepare阶段，因此事务间不能保证隔离性，当多个Saga事务操作同一资源时，就会产生更新丢失、脏数据读取等问题，这时需要在业务层控制并发，例如：在应用层面加锁，或者应用层面预先冻结资源。</p>
+<h3 id="方案比较"><a href="#方案比较" class="headerlink" title="方案比较"></a>方案比较</h3><p>介绍完分布式事务相关理论和常见解决方案后，最终的目的在实际项目中运用，因此，总结一下各个方案的常见的使用场景。</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292018143.png"></p>
+<ul>
+<li>2PC/3PC 依赖于数据库，能够很好的提供强一致性和强事务性，但相对来说延迟比较高，比较适合传统的单体应用，在同一个方法中存在跨库操作的情况，不适合高并发和高性能要求的场景。</li>
+<li>TCC 适用于执行时间确定且较短，实时性要求高，对数据一致性要求高，比如互联网金融企业最核心的三个服务：交易、支付、账务。</li>
+<li>本地消息表/MQ事务 都适用于事务中参与方支持操作幂等，对一致性要求不高，业务上能容忍数据不一致到一个人工检查周期，事务涉及的参与方、参与环节较少，业务上有对账/校验系统兜底。</li>
+<li>Saga事务 由于Saga事务不能保证隔离性，需要在业务层控制并发，适合于业务场景事务并发操作同一资源较少的情况。 Saga相比缺少预提交动作，导致补偿动作的实现比较麻烦，例如业务是发送短信，补偿动作则得再发送一次短信说明撤销，用户体验比较差。Saga事务较适用于补偿动作容易处理的场景。</li>
+</ul>
+<h2 id="分布式事务框架"><a href="#分布式事务框架" class="headerlink" title="分布式事务框架"></a>分布式事务框架</h2><p>在实际的应用中, 分布式事务出现的场景可以总结为两种. 还是以一个购买服务为例, 那么这两种分布式事务的场景可能是:</p>
+<p>第一种, 同一个服务中对多个RM进行操作（数据库层面的一个分布式，服务并没有分布式）</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292018617.png"></p>
+<p>第二种, 一个服务通过RPC调用多个服务, 间接操作了多个RM（服务分布式）</p>
+<p><img src="http://jason-qianhao.xyz/2023/202304292018979.png"></p>
+<p>在微服务化大行其道的今天,按业务分库应该是大多公司搭建架构的一个基本准则了. 所以这样来看, 貌似是第二种场景更符合实际了.</p>
+<p>当然第一种场景肯定也还是有存在的. 例如上面”本地消息表”的解决方案中, 就有需要再同一个服务中跟多个RM交互.</p>
+<p>分布式事务开源框架其实市面上也挺多的,例如tcc-transactio等等。</p>
+<p>关于分布式事务框架atomikos和seata的详细内容，可以见其单独的博客内容。</p>
+<ul>
+<li><p>atomikos</p>
+<p>atomikos是一个非常有名的分布式事务开源框架. 它有**<u>JTA/XA</u>**规范的实现, 也有TCC机制的实现方案, 前者是免费开源的, 后者是商业付费版的.</p>
+<p>atomikos适用于场景1的分布式事务. 如果有场景1的分布式事务的话, 直接使用atomikos就可以了, 简单直接高效。但是话又说回来了, 实际场景的分布式事务更多的还是属于场景2的.。很明显简单的JTA事务是处理不了场景2的分布式事务的。场景2下的分布式事务, 可以考虑使用seata</p>
+</li>
+<li><p>seata</p>
+<p>seata就是Fescar(TXC/GTC/FESCAR)和tcc-transaction整合后开源的一个分布式事务落地解决方案框架,实现了AT, TCC, SAGA三种模式, 大有一统江湖的意思.</p>
+</li>
+</ul>
+
                 
             </div>
             <hr/>
@@ -1400,7 +1673,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">555.4k</span>&nbsp;字
+                class="white-color">566.7k</span>&nbsp;字
             
             
             
