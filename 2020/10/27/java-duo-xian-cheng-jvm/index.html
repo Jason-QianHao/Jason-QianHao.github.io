@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    18.1k
+                    18.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    67 分
+                    69 分
                 </div>
                 
 
@@ -1031,6 +1031,7 @@ newScheduledThreadPool<span class="token punctuation">.</span><span class="token
 <li>当队列满容后，继续创建线程数量至最大线程数</li>
 <li>当线程池达到最大线程数时，继续有线程任务，则执行抛弃策略</li>
 </ul>
+<h3 id="线程池参数的设置"><a href="#线程池参数的设置" class="headerlink" title="线程池参数的设置"></a>线程池参数的设置</h3><p> 一般说来，大家认为线程池的大小经验值应该这样设置：（其中N为CPU processors的个数）<br>（1）如果是CPU密集型应用，则线程池大小设置为N+1(或者是N)，线程的应用场景：主要是复杂算法<br>（2）如果是IO密集型应用，则线程池大小设置为2N+1(或者是2N)，线程的应用场景：主要是：数据库数据的交互，文件上传下载，网络数据传输等等<br>+1的原因是：即使当计算密集型的线程偶尔由于缺失故障或者其他原因而暂停时，这个额外的线程也能确保CPU的时钟周期不会被浪费。</p>
 <h3 id="线程的异常"><a href="#线程的异常" class="headerlink" title="线程的异常"></a>线程的异常</h3><p>1、线程池中线程中异常尽量手动捕获</p>
 <p>2、通过设置ThreadFactory的UncaughtExceptionHandler可以对未捕获的异常做保底处理，通过execute提交任务，线程依然会中断，而通过submit提交任务，可以获取线程执行结果，线程异常会在get执行结果时抛出。参考：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/rBVKN1W8hv5SFWpfSUtE9g">https://mp.weixin.qq.com/s/rBVKN1W8hv5SFWpfSUtE9g</a></p>
 <h2 id="悲观锁与乐观锁"><a href="#悲观锁与乐观锁" class="headerlink" title="悲观锁与乐观锁"></a>悲观锁与乐观锁</h2><h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>（1）概念</p>
@@ -1318,10 +1319,13 @@ c <span class="token operator">=</span> <span class="token function">findClass</
 <p>​      解析native方法时</p>
 <p>（4）ClassCastException</p>
 <p>（5）ExceptionInInitializerError</p>
-<h2 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenwansangz/article/details/95601232">什么是JIT</a></p>
+<h2 id="JIT"><a href="#JIT" class="headerlink" title="JIT"></a>JIT</h2><p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shenwansangz/article/details/95601232">什么是JIT</a>、<a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/10/22/java-jit-practice-in-meituan.html">基本功 | Java即时编译器原理解析及实践</a></p>
 <p>​    JIT编译（just-in-time compilation）狭义来说是当某段代码即将第一次被执行时进行编译，因而叫“即时编译”。JIT编译是动态编译的一种特例。JIT编译一词后来被泛化，时常与动态编译等价；但要注意广义与狭义的JIT编译所指的区别。</p>
 <p><img src="http://jason-qianhao.xyz/20160812104144969" alt="JVM运行原理"></p>
 <p>​    当虚拟机发现某个方法或代码块的运行特别频繁时，就会把这些代码认定为“<em>热点代码</em>”。为了提高热点代码的执行效率，在运行时，虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各种层次的优化，完成这个任务的编译器称为<em>即时编译器</em>（Just In Time Compiler）</p>
+<p>Java的执行过程整体可以分为两个部分，第一步由javac将源码编译成字节码，在这个过程中会进行词法分析、语法分析、语义分析，编译原理中这部分的编译称为前端编译。接下来无需编译直接逐条将字节码解释执行，在解释执行的过程中，虚拟机同时对程序运行的信息进行收集，在这些信息的基础上，编译器会逐渐发挥作用，它会进行后端编译——把字节码编译成机器码，但不是所有的代码都会被编译，只有被JVM认定为的热点代码，才可能被编译。</p>
+<p>怎么样才会被认为是热点代码呢？JVM中会设置一个阈值，当方法或者代码块的在一定时间内的调用次数超过这个阈值时就会被编译，存入<strong>codeCache</strong>中。当下次执行时，再遇到这段代码，就会从codeCache中读取机器码，直接执行，以此来提升程序运行的性能。整体的执行过程大致如下图所示：</p>
+<p><img src="http://jason-qianhao.xyz/2023/202306291749932.png"></p>
 <h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><p>（1）分类</p>
 <p>​    · 物理内存 RAM，调用操作系统接口访问。</p>
 <p>​    · 虚拟内存，物理内存临时存储在磁盘文件</p>
@@ -2308,7 +2312,7 @@ c <span class="token operator">=</span> <span class="token function">findClass</
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">566.7k</span>&nbsp;字
+                class="white-color">575.9k</span>&nbsp;字
             
             
             

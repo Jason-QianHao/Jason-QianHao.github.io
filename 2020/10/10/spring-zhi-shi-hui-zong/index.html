@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    10.4k
+                    10.7k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    42 分
+                    43 分
                 </div>
                 
 
@@ -554,6 +554,42 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
       <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>座右铭</span><span class="token punctuation">></span></span>在哭泣中学会坚强<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>座右铭</span><span class="token punctuation">></span></span>
     <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>student2</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>students</span><span class="token punctuation">></span></span>  <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Spring的命名空间"><a href="#Spring的命名空间" class="headerlink" title="Spring的命名空间"></a>Spring的命名空间</h3><p>基础的Spring命名空间</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beans</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>xsi</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2001/XMLSchema-instance<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xsi:</span>schemaLocation</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>beans</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>命名空间定了XML NameSpace和对应的XML Schema Definition 文档的位置关系。它的值由一个或多个URI引用对组成，两个URI之间以空白符或换行符分割。</p>
+<ul>
+<li>启动注解扫描和自动装配时的命名空间</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">xmlns:context="http://www.springframework.org/schema/context"
+
+xsi:schemaLocation="http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-4.0.xsd"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>启动AOP功能</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">xmlns:aop="http://www.springframework.org/schema/aop"
+
+xsi:schemaLocation="http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li>启动事务声明</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml">xmlns:tx="http://www.springframework.org/schema/tx"
+
+xsi:schemaLocation="http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd"<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+
+
 <h3 id="常用解析XML方法"><a href="#常用解析XML方法" class="headerlink" title="常用解析XML方法"></a>常用解析XML方法</h3><p>  常用解析框架： Dom4j、Sax、Pull。</p>
 <ul>
 <li>Dom4j与Sax区别<br><strong>dom4j不适合大文件的解析，因为它是一下子将文件加载到内存中</strong>，所以有可能出现内存溢出，sax是基于事件来对xml进行解析的，所以他可以解析大文件的xml，也正是因为如此，所以dom4j可以对xml进行灵活的增删改查和导航，而sax没有这么强的灵活性，所以sax经常是用来解析大型xml文件，而要对xml文件进行<strong>一些灵活（crud）操作就用dom4j</strong>。</li>
@@ -2059,7 +2095,7 @@ jsonObject<span class="token punctuation">.</span><span class="token function">p
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">566.7k</span>&nbsp;字
+                class="white-color">575.9k</span>&nbsp;字
             
             
             
