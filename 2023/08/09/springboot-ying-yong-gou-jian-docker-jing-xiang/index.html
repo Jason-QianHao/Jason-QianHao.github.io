@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Dokcer重点概念、安装和部署Nginx实践, 小小千千 Blog">
+    <meta name="keywords" content="Springboot应用构建docker镜像, 小小千千 Blog">
     <meta name="description" content="心怀梦想 不惧前行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Dokcer重点概念、安装和部署Nginx实践 | 小小千千 Blog</title>
+    <title>Springboot应用构建docker镜像 | 小小千千 Blog</title>
     <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -288,12 +288,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/38.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Dokcer重点概念、安装和部署Nginx实践</h1>
+                    <h1 class="description center-align post-title">Springboot应用构建docker镜像</h1>
                 </div>
             </div>
         </div>
@@ -409,6 +409,10 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/Springboot/">
+                                <span class="chip bg-color">Springboot</span>
+                            </a>
+                        
                             <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">
                                 <span class="chip bg-color">系统运维</span>
                             </a>
@@ -438,7 +442,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-30
+                    2023-08-09
                 </div>
                 
 
@@ -447,14 +451,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    4.1k
+                    792
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    15 分
+                    4 分
                 </div>
                 
 
@@ -477,384 +481,130 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="/medias/featureimages/38.jpg"></p>
-<blockquote>
-<p>目录：</p>
+                <p><img src="/medias/featureimages/9.jpg"></p>
 <ol>
-<li>Docker重点概念</li>
-<li>Docker的Linux安装</li>
-<li>部署Nginx实践</li>
-</ol>
-</blockquote>
-<h1 id="Docker重点概念"><a href="#Docker重点概念" class="headerlink" title="Docker重点概念"></a>Docker重点概念</h1><p>Docker 包括三个基本概念:</p>
+<li><p>Springboot应用打包</p>
+<p>使用<code>spring-boot-maven-plugin</code>插件，打包为可执行jar</p>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>build</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugins</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plugin</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>groupId</span><span class="token punctuation">></span></span>org.springframework.boot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>groupId</span><span class="token punctuation">></span></span>
+                <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>artifactId</span><span class="token punctuation">></span></span>spring-boot-maven-plugin<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>artifactId</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugin</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plugins</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>build</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="http://jason-qianhao.xyz/2023/202308101708440.png"></p>
+</li>
+<li><p>新建Dockerfile文件</p>
+<p>文件可以直接放在工程根目录下（和target同级目录）</p>
+<pre class="line-numbers language-dockerfile" data-language="dockerfile"><code class="language-dockerfile">FROM openjdk:8u212-jre
+LABEL author&#x3D;Jason email&#x3D;qianhao_cs@163.com
+
+COPY target&#x2F;SpringbootDemo-1.0-SNAPSHOT.jar &#x2F;SpringbootDemo-1.0-SNAPSHOT.jar
+ENTRYPOINT [&quot;java&quot;, &quot;-jar&quot;, &quot;&#x2F;SpringbootDemo-1.0-SNAPSHOT.jar&quot;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="http://jason-qianhao.xyz/2023/202308101709757.png"></p>
+</li>
+<li><p>构建镜像</p>
 <ul>
-<li><p><strong>镜像（Image）</strong>：Docker 镜像（Image），就相当于是一个 root 文件系统。比如官方镜像 ubuntu:16.04 就包含了完整的一套 Ubuntu16.04 最小系统的 root 文件系统。</p>
+<li><p>可以使用IDEA的docker插件直接构建</p>
 </li>
-<li><p><strong>容器（Container）</strong>：镜像（Image）和容器（Container）的关系，就像是<strong>面向对象程序设计中的类和实例</strong>一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等。</p>
-</li>
-<li><p><strong>仓库（Repository）</strong>：仓库可看成一个代码控制中心，用来保存镜像。</p>
-</li>
+<li><p>也可以使用命令进行构建</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> build -t jason/springbootdemo:test <span class="token builtin class-name">.</span>                            
+<span class="token punctuation">[</span>+<span class="token punctuation">]</span> Building <span class="token number">83</span>.3s <span class="token punctuation">(</span><span class="token number">7</span>/7<span class="token punctuation">)</span> FINISHED                                                                                                                                                                                  docker:desktop-linux
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build definition from Dockerfile                                                                                                                                                                               <span class="token number">0</span>.1s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring dockerfile: 284B                                                                                                                                                                                               <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load .dockerignore                                                                                                                                                                                                  <span class="token number">0</span>.1s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context: 2B                                                                                                                                                                                                    <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load metadata <span class="token keyword">for</span> docker.io/library/openjdk:8u212-jre                                                                                                                                                               <span class="token number">5</span>.4s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span>internal<span class="token punctuation">]</span> load build context                                                                                                                                                                                                  <span class="token number">0</span>.8s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> transferring context: <span class="token number">20</span>.83MB                                                                                                                                                                                               <span class="token number">0</span>.8s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">1</span>/2<span class="token punctuation">]</span> FROM docker.io/library/openjdk:8u212-jre@sha256:11cbb99bc937a7cf5735857d418f98a9287b627f2caa01925f9ec677ad6c7abe                                                                                                        <span class="token number">77</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> resolve docker.io/library/openjdk:8u212-jre@sha256:11cbb99bc937a7cf5735857d418f98a9287b627f2caa01925f9ec677ad6c7abe                                                                                                         <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:11cbb99bc937a7cf5735857d418f98a9287b627f2caa01925f9ec677ad6c7abe <span class="token number">1</span>.06kB / <span class="token number">1</span>.06kB                                                                                                                                     <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:a4d8138d0f6b5a441aaa533faf5fe0c3996a6ca42643c46f4402c7e8bda53742 <span class="token number">45</span>.34MB / <span class="token number">45</span>.34MB                                                                                                                                  <span class="token number">51</span>.3s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:dbdc36973392a980d56b8fab63383ae44582f6502001d8bbdd543aa3bf1d746e <span class="token number">10</span>.79MB / <span class="token number">10</span>.79MB                                                                                                                                  <span class="token number">18</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:1e32bd4ecaf8ff682367094f70dbc38158503280ec996e41fb904a32fb00fbe5 <span class="token number">1</span>.58kB / <span class="token number">1</span>.58kB                                                                                                                                     <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:0fc98012d4a8fd00e8fb9eeb1c10d9e7944db138a50879c5def9dcfd5b0ad61a <span class="token number">8</span>.50kB / <span class="token number">8</span>.50kB                                                                                                                                     <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:f59d6d019dd5b8398eb8d794e3fafe31f9411cc99a71dabfa587bf732b4a7385 <span class="token number">4</span>.34MB / <span class="token number">4</span>.34MB                                                                                                                                    <span class="token number">19</span>.4s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:5fee445fce940c37221a2a1de8588cda557eb4cbc3f7583931e384b137762539 <span class="token number">5</span>.12MB / <span class="token number">5</span>.12MB                                                                                                                                    <span class="token number">24</span>.3s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:d270185e6f4dcd4cf5d00aec5a2b5f3888c1757ca73728f988198afc8303e3cc 223B / 223B                                                                                                                                        <span class="token number">19</span>.9s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> sha256:0ca0b0a3fc43fc2508d780f16173002056aabffcbeed244b5128f0653ff5756a <span class="token number">40</span>.11MB / <span class="token number">40</span>.11MB                                                                                                                                  <span class="token number">74</span>.7s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:a4d8138d0f6b5a441aaa533faf5fe0c3996a6ca42643c46f4402c7e8bda53742                                                                                                                                          <span class="token number">6</span>.2s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:dbdc36973392a980d56b8fab63383ae44582f6502001d8bbdd543aa3bf1d746e                                                                                                                                          <span class="token number">1</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:f59d6d019dd5b8398eb8d794e3fafe31f9411cc99a71dabfa587bf732b4a7385                                                                                                                                          <span class="token number">0</span>.2s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:5fee445fce940c37221a2a1de8588cda557eb4cbc3f7583931e384b137762539                                                                                                                                          <span class="token number">0</span>.4s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:d270185e6f4dcd4cf5d00aec5a2b5f3888c1757ca73728f988198afc8303e3cc                                                                                                                                          <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> extracting sha256:0ca0b0a3fc43fc2508d780f16173002056aabffcbeed244b5128f0653ff5756a                                                                                                                                          <span class="token number">2</span>.1s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">[</span><span class="token number">2</span>/2<span class="token punctuation">]</span> COPY target/SpringbootDemo-1.0-SNAPSHOT.jar /SpringbootDemo-1.0-SNAPSHOT.jar                                                                                                                                             <span class="token number">0</span>.5s
+ <span class="token operator">=</span><span class="token operator">></span> exporting to image                                                                                                                                                                                                             <span class="token number">0</span>.2s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> exporting layers                                                                                                                                                                                                            <span class="token number">0</span>.2s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> writing image sha256:3a0fb5897eddb5746a6c0e34975c796c73a4809c3286623a075ae251acc56e30                                                                                                                                       <span class="token number">0</span>.0s
+ <span class="token operator">=</span><span class="token operator">></span> <span class="token operator">=</span><span class="token operator">></span> naming to docker.io/jason/springbootdemo:test                                                                                                                                                                               <span class="token number">0</span>.0s
+
+What's Next?
+  View summary of image vulnerabilities and recommendations → <span class="token function">docker</span> scout quickview
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">ls</span>
+Dockerfile pom.xml    src        target
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> images                              
+REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+jason/springbootdemo       <span class="token builtin class-name">test</span>      3a0fb5897edd   <span class="token number">45</span> seconds ago   267MB
+nginx                      latest    89da1fb6dcb9   <span class="token number">13</span> days ago      187MB
+docker/welcome-to-docker   latest    912b66cfd46e   <span class="token number">7</span> weeks ago      <span class="token number">13</span>.4MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
 </ul>
-<p>Docker 使用客户端-服务器 (C/S) 架构模式，使用远程API来管理和创建Docker容器。</p>
-<p>Docker 容器通过 Docker 镜像来创建。</p>
-<h2 id="镜像"><a href="#镜像" class="headerlink" title="镜像"></a>镜像</h2><blockquote>
-<p>Docker 提供了一个很简单的机制来创建镜像或者更新现有的镜像，用户甚至可以直接从其他人那里下载一个已经做好的镜像来直接使用。</p>
-<p>Docker 镜像是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含任何动态数据，其内容在构建之后也不会被改变</p>
-<p>镜像的构建是分层的，不同于ios那样的打包系统，docker的镜像只是一个虚拟的概念，实际上它并不是由一个文件组成的而是由一组文件组成的。</p>
-<p>镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层标记为该文件已删除。</p>
-<p>在最终容器运行的时候，虽然不会看到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉</p>
-</blockquote>
-<p>镜像常见操作：</p>
-<ul>
-<li><p>docker search [镜像名称]：搜索Docker Hub(镜像仓库)上的镜像；</p>
-</li>
-<li><p>docker pull [镜像名称]：从仓库中获取镜像；</p>
-</li>
-<li><p>docker images：列出本地所有的镜像（非隐藏，可以加入-a参数显示所有)；</p>
-</li>
-<li><p>docker build：通过 Dockerfile build 出镜像；</p>
-</li>
-<li><p>docker commit：将容器中的所有改动生成新的镜像；</p>
-</li>
-<li><p>docker history：查看镜像的历史；</p>
-</li>
-<li><p>docker save：将镜像保存成 tar 包；</p>
-</li>
-<li><p>docker import：通过 tar 包导入新的镜像；</p>
-</li>
-<li><p>docker load：通过 tar 包或者标志输入导入镜像；</p>
-</li>
-<li><p>docker rmi：删除本地镜像；</p>
-</li>
-<li><p>docker tag：给镜像打 tag</p>
-</li>
-</ul>
-<h2 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h2><blockquote>
-<p>Docker 利用容器来运行应用。</p>
-<p>容器是从镜像创建的运行实例。它可以被启动、开始、停止、删除。每个容器都是相互隔离的、保证安全的平台。</p>
-<p>可以把容器看做是一个简易版的 Linux 环境（包括root用户权限、进程空间、用户空间和网络空间等）和运行在其中的应用程序。</p>
-<p>镜像（ Image ）和容器（ Container ）的关系，就像是面向对象程序设计中的 类 和 实例一样，镜像是静态的定义，容器是镜像运行时的实体。容器可以被创建、启动、停止、删除、暂停等</p>
-<p>容器的实质是进程，但与直接在宿主执行的进程不同，容器进程运行于属于自己的独立的命名空间。因此容器可以拥有自己的 root 文件系统、自己的网络配置、自己的进程空间，甚至自己的用户 ID 空间。容器内的进程是运行在一个隔离的环境里，使用起来，就好像是在一个独立于宿主的系统下操作一样。这种特性使得容器封装的应用比直接在宿主运行更加安全。</p>
-<p>镜像使用的是分层存储，容器也是如此。每一个容器运行时，是以镜像为基础层，在其上创建一个当前容器的存储层，我们可以称这个为容器运行时读写而准备的存储层为”容器存储层”。容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。按照 Docker 最佳实践的要求，容器不应该向其存储层内写入任何数据，容器存储层要保持无状态化。所有的文件写入操作，都应该使用 数据卷（Volume）、或者绑定宿主目录，在这些位置的读写会跳过容器存储层，直接对宿主（或网络存储）发生读写，其性能和稳定性更高。</p>
-</blockquote>
-<p>容器常见操作：</p>
-<ul>
-<li><p>docker run [OPTIONS] IMAGE [COMMAND] [ARG…]：利用镜像创建并启动一个容器</p>
-<ul>
-<li><p>常用参数：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">--interactive 等同于 -i ，接受 stdin 的输入，（即使没有连接，也要保持STDIN打开）
-
---tty 等同于 -t，分配一个 tty,也就是分配虚拟终端，一般和 i 一起使用；
-
---name 给容器设置一个名字，如果没有指定将会随机产生一个名称
-
--d, --detach       在后台运行容器并打印出容器ID <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></li>
-<li><p>demo</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">docker</span> run --name nginx-test -p <span class="token number">8080</span>:80 -d nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-</ul>
-</li>
-<li><p>docker exec -it containerID /bin/bash：以bash方式进入容器</p>
-</li>
-<li><p>docker container start/stop/restart：启动/停止/重启停止状态下的容器</p>
-</li>
-<li><p>docker rm [容器名称]/[容器ID] ：删除已关闭的容器</p>
-</li>
-<li><p>docker inspect [容器id]：查看容器全部信息</p>
-</li>
-<li><p>docker container ls -a / docker ps -a：查看所有已经创建的包括终止状态的容器</p>
-</li>
-</ul>
-<h2 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h2><blockquote>
-<p>镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。一个 Docker Registry 中可以包含多个仓库（ Repository ）；每个仓库可以包含多个标签（ Tag ）</p>
-<p>仓库分为公开仓库（Public）和私有仓库（Private）两种形式。</p>
-<p>最大的公开仓库是 Docker Hub，存放了数量庞大的镜像供用户下载。</p>
-<p>docker官方镜像仓库：<a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com</a></p>
-</blockquote>
-<p>仓库常见操作：</p>
-<ul>
-<li>docker login: 登录镜像仓库；</li>
-<li>docker logout: 登出镜像仓库；</li>
-<li>docker pull: 从镜像仓库拉取镜像 ；</li>
-<li>docker push: 向镜像仓库 push 镜像，需要先 login。</li>
-</ul>
-<h2 id="底层实现"><a href="#底层实现" class="headerlink" title="底层实现"></a>底层实现</h2><p>Docker 底层的核心技术包括 Linux 上的命名空间（Namespaces）、控制组（Control groups）、Union 文件系统（Union file systems）和容器格式（Container format）。</p>
-<p>我们知道，传统的虚拟机通过在宿主主机中运行 hypervisor 来模拟一整套完整的硬件环境提供给虚拟机的操作系统。虚拟机系统看到的环境是可限制的，也是彼此隔离的。 这种直接的做法实现了对资源最完整的封装，但很多时候往往意味着系统资源的浪费。 例如，以宿主机和虚拟机系统都为 Linux 系统为例，虚拟机中运行的应用其实可以利用宿主机系统中的运行环境。</p>
-<p>我们知道，在操作系统中，包括内核、文件系统、网络、PID、UID、IPC、内存、硬盘、CPU 等等，所有的资源都是应用进程直接共享的。 要想实现虚拟化，除了要实现对内存、CPU、网络IO、硬盘IO、存储空间等的限制外，还要实现文件系统、网络、PID、UID、IPC等等的相互隔离。 前者相对容易实现一些，后者则需要宿主机系统的深入支持。</p>
-<p>随着 Linux 系统对于命名空间功能的完善实现，程序员已经可以实现上面的所有需求，让某些进程在彼此隔离的命名空间中运行。大家虽然都共用一个内核和某些运行时环境（例如一些系统命令和系统库），但是彼此却看不到，都以为系统中只有自己的存在。这种机制就是容器（Container），利用命名空间来做权限的隔离控制，利用 cgroups 来做资源分配。</p>
-<h3 id="命名空间"><a href="#命名空间" class="headerlink" title="命名空间"></a>命名空间</h3><p>Linux 内核中提供了 6 中隔离支持，分别是：IPC 隔离、网络隔离、挂载点隔离、进程编号隔离、用户和用户组隔离、主机名和域名隔离。</p>
-<table>
-<thead>
-<tr>
-<th align="left">Namespace</th>
-<th align="left">flag</th>
-<th align="left">隔离内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">IPC</td>
-<td align="left">CLONE_NEWIPC</td>
-<td align="left">IPC（信号量、消息队列和共享内存等）隔离</td>
-</tr>
-<tr>
-<td align="left">Network</td>
-<td align="left">CLONE_NEWNET</td>
-<td align="left">网络隔离（网络栈、端口等）</td>
-</tr>
-<tr>
-<td align="left">Mount</td>
-<td align="left">CLONE_NEWNS</td>
-<td align="left">挂载点（文件系统）</td>
-</tr>
-<tr>
-<td align="left">PID</td>
-<td align="left">CLONE_NEWPID</td>
-<td align="left">进程编号</td>
-</tr>
-<tr>
-<td align="left">User</td>
-<td align="left">CLONE_NEWUSER</td>
-<td align="left">用户和用户组</td>
-</tr>
-<tr>
-<td align="left">UTS</td>
-<td align="left">CLONE_NEWUTS</td>
-<td align="left">主机名和域名</td>
-</tr>
-</tbody></table>
-<h3 id="控制组"><a href="#控制组" class="headerlink" title="控制组"></a>控制组</h3><p>控制组是 Linux 内核的一个特性，主要用来对共享资源进行隔离、限制、审计等。只有能控制分配到容器的资源，才能避免当多个容器同时运行时的对系统资源的竞争。</p>
-<p>CGroups 中有几个重要概念：</p>
-<ul>
-<li><strong>cgroup</strong>：通过 CGroups 系统进行限制的一组进程。CGroups 中的资源限制都是以进程组为单位实现的，一个进程可以加入到某个进程组，从而受到相同的资源限制。</li>
-<li><strong>task</strong>：在 CGroups 中，task 可以理解为一个进程。</li>
-<li><strong>hierarchy</strong>：可以理解成层级关系，CGroups 的组织关系就是层级的形式，每个节点都是一个 cgroup。cgroup 可以有多个子节点，子节点默认继承父节点的属性。</li>
-<li><strong>subsystem</strong>：更准确的表述应该是 ***resource controllers***，也就是资源控制器，比如 cpu 子系统负责控制 cpu 时间的分配。子系统必须应用（attach）到一个 hierarchy 上才能起作用。</li>
-</ul>
-<p>其中最核心的是 ***subsystem***，CGroups 目前支持的 *<strong>subsystem*</strong> 包括：</p>
-<ul>
-<li><strong>cpu</strong>：限制进程的 cpu 使用率；</li>
-<li><strong>cpuacct</strong>：统计 CGroups 中的进程的 cpu 使用情况；</li>
-<li><strong>cpuset</strong>：为 CGroups 中的进程分配单独的 cpu 节点或者内存节点；</li>
-<li><strong>memory</strong>：限制进程的内存使用；</li>
-<li><strong>devices</strong>：可以控制进程能够访问哪些设备；</li>
-<li><strong>blkio</strong>：限制进程的块设备 IO；</li>
-<li><strong>freezer</strong>：挂起或者恢复 CGroups 中的进程；</li>
-<li><strong>net_cls</strong>：标记进程的网络数据包，然后可以使用防火墙或者 tc 模块（traffic controller）控制该数据包。这个控制器只适用从该 cgroup 离开的网络包，不适用到达该 cgroup 的网络包；</li>
-<li><strong>ns</strong>：将不同 CGroups 下面的进程应用不同的 namespace；</li>
-<li><strong>perf_event</strong>：监控 CGroups 中的进程的 perf 事件（注：perf 是 Linux 系统中的性能调优工具）；</li>
-<li><strong>pids</strong>：限制一个 cgroup 以及它的子节点中可以创建的进程数目；</li>
-<li><strong>rdma</strong>：限制 cgroup 中可以使用的 RDMA 资源。</li>
-</ul>
-<h3 id="联合文件系统"><a href="#联合文件系统" class="headerlink" title="联合文件系统"></a>联合文件系统</h3><ul>
-<li><p>联合文件系统是一种分层、轻量级并且高性能的文件系统，它支持对文件系统的修改作为一次提交来一层层的叠加，同时可以将不同目录挂载到同一个虚拟文件系统下(unite several directories into a single virtual filesystem)。</p>
-</li>
-<li><p>联合文件系统是 Docker 镜像的基础。镜像可以通过分层来进行继承，基于基础镜像（没有父镜像），可以制作各种具体的应用镜像。</p>
-</li>
-<li><p>Docker 目前支持的联合文件系统包括 <code>OverlayFS</code>, <code>AUFS</code>, <code>Btrfs</code>, <code>VFS</code>, <code>ZFS</code> 和 <code>Device Mapper</code>。</p>
-</li>
-<li><p><code>overlay2</code> 是目前 Docker 默认的存储驱动，以前则是 <code>aufs</code></p>
-</li>
-</ul>
-<h3 id="数据存储"><a href="#数据存储" class="headerlink" title="数据存储"></a>数据存储</h3><p>想要在 Docker 容器停止之后创建的文件依旧存在，也就是将文件在宿主机上保存。那么有两种方式：<strong>volumes</strong>、<strong>bind mounts</strong>。</p>
-<h4 id="数据卷volumes"><a href="#数据卷volumes" class="headerlink" title="数据卷volumes"></a>数据卷volumes</h4><pre class="line-numbers language-none"><code class="language-none">数据卷 可以在容器之间共享和重用
-
-对 数据卷 的修改会立马生效
-
-对 数据卷 的更新，不会影响镜像
-
-数据卷 默认会一直存在，即使容器被删除
-
-Volumes 会把文件存储到宿主机的指定位置，在 Linux 系统上这个位置为 &#x2F;var&#x2F;lib&#x2F;docker&#x2F;volumes&#x2F;。这些文件只能由 Docker 进程进行修改，是 docker 文件持久化的最好的方式。<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ul>
-<li>启动挂载数据卷的容器</li>
-</ul>
-<p>在用 <code>docker run</code> 命令的时候，使用 <code>--mount</code> 标记来将 <code>数据卷</code> 挂载到容器里。在一次 <code>docker run</code> 中可以挂载多个 <code>数据卷</code>。</p>
-<p>例如创建一个名为 <code>web</code> 的容器，并加载一个名为<code>my-vol</code>的 <code>数据卷</code> 到容器的 <code>/usr/share/nginx/html</code> 目录。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">docker</span> run -d -P <span class="token punctuation">\</span>
-    --name web <span class="token punctuation">\</span>
-    <span class="token comment"># -v my-vol:/usr/share/nginx/html \</span>
-    --mount <span class="token assign-left variable">source</span><span class="token operator">=</span>my-vol,target<span class="token operator">=</span>/usr/share/nginx/html <span class="token punctuation">\</span>
-    nginx:alpine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>在主机里使用以下命令可以查看 <code>web</code> 容器的信息</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">docker</span> inspect web<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><code>数据卷</code> 信息在 “Mounts” Key 下面</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"Mounts"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token property">"Type"</span><span class="token operator">:</span> <span class="token string">"volume"</span><span class="token punctuation">,</span>
-        <span class="token property">"Name"</span><span class="token operator">:</span> <span class="token string">"my-vol"</span><span class="token punctuation">,</span>
-        <span class="token property">"Source"</span><span class="token operator">:</span> <span class="token string">"/var/lib/docker/volumes/my-vol/_data"</span><span class="token punctuation">,</span>
-        <span class="token property">"Destination"</span><span class="token operator">:</span> <span class="token string">"/usr/share/nginx/html"</span><span class="token punctuation">,</span>
-        <span class="token property">"Driver"</span><span class="token operator">:</span> <span class="token string">"local"</span><span class="token punctuation">,</span>
-        <span class="token property">"Mode"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-        <span class="token property">"RW"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        <span class="token property">"Propagation"</span><span class="token operator">:</span> <span class="token string">""</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h4 id="挂载主机目录-bind-mounts"><a href="#挂载主机目录-bind-mounts" class="headerlink" title="挂载主机目录 bind mounts"></a>挂载主机目录 bind mounts</h4><p>使用 <code>--mount</code> 标记可以指定挂载一个本地主机的目录到容器中去。</p>
-<p>Docker 挂载主机目录的默认权限是 <code>读写</code>，用户也可以通过增加 <code>readonly</code> 指定为 <code>只读</code>。</p>
-<p><strong>bind mounts</strong> 可以将文件存储到宿主机上面任意位置，而且别的应用程序也可以修改。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">$ <span class="token function">docker</span> run -d -P <span class="token punctuation">\</span>
-    --name web <span class="token punctuation">\</span>
-    <span class="token comment"># -v /src/webapp:/usr/share/nginx/html \</span>
-    --mount <span class="token assign-left variable">type</span><span class="token operator">=</span>bind,source<span class="token operator">=</span>/src/webapp,target<span class="token operator">=</span>/usr/share/nginx/html <span class="token punctuation">\</span>
-    nginx:alpine<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"Mounts"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token punctuation">&#123;</span>
-        <span class="token property">"Type"</span><span class="token operator">:</span> <span class="token string">"bind"</span><span class="token punctuation">,</span>
-        <span class="token property">"Source"</span><span class="token operator">:</span> <span class="token string">"/src/webapp"</span><span class="token punctuation">,</span>
-        <span class="token property">"Destination"</span><span class="token operator">:</span> <span class="token string">"/usr/share/nginx/html"</span><span class="token punctuation">,</span>
-        <span class="token property">"Mode"</span><span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
-        <span class="token property">"RW"</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
-        <span class="token property">"Propagation"</span><span class="token operator">:</span> <span class="token string">"rprivate"</span>
-    <span class="token punctuation">&#125;</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="命令大全"><a href="#命令大全" class="headerlink" title="命令大全"></a>命令大全</h2><p><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-command-manual.html">docker命令大全</a></p>
-<h1 id="Docker的Linux安装"><a href="#Docker的Linux安装" class="headerlink" title="Docker的Linux安装"></a>Docker的Linux安装</h1><ol>
-<li><strong>查看当前的内核版本</strong></li>
-</ol>
-<p>Linux 内核：官方建议 3.10 以上，3.8以上貌似也可。</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">uname <span class="token operator">-</span>r<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ol start="2">
-<li><strong>使用 root 权限更新 yum 包</strong></li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum <span class="token operator">-</span>y update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p>这个命令不是必须执行的，看个人情况，后面出现不兼容的情况的话就必须update了</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">注意 
-yum <span class="token operator">-</span>y update：升级所有包同时也升级软件和系统内核； 
-yum <span class="token operator">-</span>y upgrade：只升级所有包，不升级软件和系统内核<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<ol start="3">
-<li><strong>卸载旧版本（如果之前安装过的话）</strong></li>
-</ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum remove docker  docker<span class="token operator">-</span>common docker<span class="token operator">-</span>selinux docker<span class="token operator">-</span>engine<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
 <ol start="4">
-<li><p><strong>安装需要的软件包， yum-util 提供yum-config-manager功能，另两个是devicemapper驱动依赖</strong></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum install <span class="token operator">-</span>y yum<span class="token operator">-</span>utils device<span class="token operator">-</span>mapper<span class="token operator">-</span>persistent<span class="token operator">-</span>data lvm2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li><p>查看可用版本有哪些</p>
+<li><p>镜像上传镜像仓库</p>
+<p>我这里上传到自己的阿里云仓库</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> images                              
+REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+jason/springbootdemo       <span class="token builtin class-name">test</span>      3a0fb5897edd   <span class="token number">45</span> seconds ago   267MB
+nginx                      latest    89da1fb6dcb9   <span class="token number">13</span> days ago      187MB
+docker/welcome-to-docker   latest    912b66cfd46e   <span class="token number">7</span> weeks ago      <span class="token number">13</span>.4MB
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> login --username<span class="token operator">=</span>--- registry.cn-hangzhou.aliyuncs.com                                                                                                <span class="token number">1</span>
+Password: 
+Login Succeeded
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> tag 3a0fb5897edd registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test:v1.0         
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> images                                                                        
+REPOSITORY                                                 TAG       IMAGE ID       CREATED          SIZE
+registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test   v1.0      3a0fb5897edd   <span class="token number">14</span> minutes ago   267MB
+jason/springbootdemo                                       <span class="token builtin class-name">test</span>      3a0fb5897edd   <span class="token number">14</span> minutes ago   267MB
+nginx                                                      latest    89da1fb6dcb9   <span class="token number">13</span> days ago      187MB
+docker/welcome-to-docker                                   latest    912b66cfd46e   <span class="token number">7</span> weeks ago      <span class="token number">13</span>.4MB
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span class="token function">docker</span> push registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test:v1.0        
+The push refers to repository <span class="token punctuation">[</span>registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test<span class="token punctuation">]</span>
+336f15db5802: Pushed 
+d23b61e01ad4: Pushed 
+95392ba99ec2: Pushed 
+189f0fcc0630: Pushed 
+392f356944ff: Pushed 
+15210a41d4ee: Pushed 
+e2a8a00a83b2: Pushed 
+v1.0: digest: sha256:27bbd9031e2c50ec6bf6195d4f52ff4379464311a6776a187151821b6998b811 size: <span class="token number">1794</span>
+qianhao@qianhaodeMacBook-Pro.local:SpringbootDemo <span class="token punctuation">(</span>main <span class="token operator">!</span>*%<span class="token punctuation">)</span> $ <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p><img src="http://jason-qianhao.xyz/2023/202308101726159.png"></p>
 </li>
 </ol>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum list docker<span class="token operator">-</span>ce <span class="token operator">--</span>showduplicates <span class="token operator">|</span> sort <span class="token operator">-</span>r<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li><p>容器运行</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">qianhao@qianhaodeMacBook-Pro.local:qianhao $ <span class="token function">docker</span> images
+REPOSITORY                                                 TAG       IMAGE ID       CREATED          SIZE
+registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test   v1.0      3a0fb5897edd   <span class="token number">37</span> minutes ago   267MB
+jason/springbootdemo                                       <span class="token builtin class-name">test</span>      3a0fb5897edd   <span class="token number">37</span> minutes ago   267MB
+nginx                                                      latest    89da1fb6dcb9   <span class="token number">13</span> days ago      187MB
+docker/welcome-to-docker                                   latest    912b66cfd46e   <span class="token number">7</span> weeks ago      <span class="token number">13</span>.4MB
+qianhao@qianhaodeMacBook-Pro.local:qianhao $ <span class="token function">docker</span> run -d --name springboottest -p <span class="token number">80</span>:80 registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test:v1.0
+3702af8645515de117bfd830fbdbb8d26bde1408898ba4c20c302b3e941caa0d
+qianhao@qianhaodeMacBook-Pro.local:qianhao $ <span class="token function">docker</span> <span class="token function">ps</span>                                                                       <span class="token number">127</span>
+CONTAINER ID   IMAGE                                                           COMMAND                   CREATED              STATUS              PORTS                NAMES
+3702af864551   registry.cn-hangzhou.aliyuncs.com/jason_aliyun_repo/test:v1.0   <span class="token string">"java -jar /Springbo…"</span>   About a minute ago   Up About a minute   <span class="token number">0.0</span>.0.0:80-<span class="token operator">></span><span class="token number">80</span>/tcp   springboottest
+qianhao@qianhaodeMacBook-Pro.local:qianhao $<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
-<ol start="6">
-<li><p>选择一个版本并安装：<code>yum install docker-ce-版本号</code></p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum <span class="token operator">-</span>y install docker<span class="token operator">-</span>ce<span class="token operator">-</span><span class="token number">18.03</span><span class="token number">.1</span><span class="token punctuation">.</span>ce<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
-<li><p>启动 Docker 并设置开机自启</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl start <span class="token function">docker</span>
-systemctl <span class="token builtin class-name">enable</span> <span class="token function">docker</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+<p>我的demo是注解脱敏，成功运行在80端口</p>
+<p><img src="http://jason-qianhao.xyz/2023/202308101731800.png"></p>
+</li>
 </ol>
-<h1 id="部署Nginx实践"><a href="#部署Nginx实践" class="headerlink" title="部署Nginx实践"></a>部署Nginx实践</h1><ol>
-<li>拉取nginx镜像</li>
-</ol>
-<p>默认最新版本latest</p>
-<pre class="line-numbers language-none"><code class="language-none">docker pull nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<ol start="2">
-<li>在宿主机中设置挂在目录</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">mkdir -p &#x2F;data&#x2F;nginx&#x2F;&#123;conf,conf.d,html,log&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<p><img src="http://jason-qianhao.xyz/image-20211130162322421.png" alt="image-20211130162322421"></p>
-<ol start="3">
-<li>配置文件放置挂在目录</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">#user www-data;
-worker_processes auto;
-#pid &#x2F;run&#x2F;nginx.pid;
-
-events &#123;
-        worker_connections 768;
-        # multi_accept on;
-&#125;
-
-http &#123;
-
-        ##
-        # Basic Settings
-        ##
-
-        sendfile on;
-        tcp_nopush on;
-        tcp_nodelay on;
-        keepalive_timeout 65;
-        types_hash_max_size 2048;
-        # server_tokens off;
-
-        # server_names_hash_bucket_size 64;
-        # server_name_in_redirect off;
-
-        include &#x2F;etc&#x2F;nginx&#x2F;mime.types;
-        default_type application&#x2F;octet-stream;
-
-        ##
-        # SSL Settings
-        ##
-
-        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
-        ssl_prefer_server_ciphers on;
-
-        ##
-        # Logging Settings
-        ##
-
-        access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log;
-        error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;
-
-        ##
-        # Gzip Settings
-        ##
-
-        gzip on;
-        gzip_disable &quot;msie6&quot;;
-
-        # gzip_vary on;
-        # gzip_proxied any;
-        # gzip_comp_level 6;
-        # gzip_buffers 16 8k;
-        # gzip_http_version 1.1;
-        # gzip_types text&#x2F;plain text&#x2F;css application&#x2F;json application&#x2F;javascript text&#x2F;xml application&#x2F;xml application&#x2F;xml+rss text&#x2F;javascript;
-
-        ##
-        # Virtual Host Configs
-        ##
-
-        include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;
-        include &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;*;
-
-        server&#123;
-                listen 80;
-                server_name your_server_name;   #你的serverName
-                root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;
-                index index.html;
-        &#125;
-
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<ol start="4">
-<li>启动nginx容器</li>
-</ol>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">docker</span> run 
---name my_nginx
--d -p <span class="token number">80</span>:80  
--v /data/nginx/conf/nginx.conf:/etc/nginx/nginx.conf 
--v /data/nginx/log:/var/log/nginx 
--v /data/nginx/html:/usr/share/nginx/html
-nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>第一个-v：挂载nginx的主配置文件，以方便在宿主机上直接修改容器的配置文件</p>
-<p>第二个-v：挂载容器内nginx的日志，容器运行起来之后，可以直接在宿主机的这个目录中查看nginx日志</p>
-<p>第三个-v：挂载静态页面目录</p>
-<ol start="5">
-<li>效果如下：</li>
-</ol>
-<p><img src="http://jason-qianhao.xyz/image-20211130163158525.png" alt="image-20211130163158525"></p>
 
                 
             </div>
@@ -881,7 +631,7 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2021/11/30/dokcer-chong-dian-gai-nian-an-zhuang-he-bu-shu-nginx-shi-jian/">https://jason-qianhao.github.io/2021/11/30/dokcer-chong-dian-gai-nian-an-zhuang-he-bu-shu-nginx-shi-jian/</a>
+                    <a href="https://jason-qianhao.github.io/2023/08/09/springboot-ying-yong-gou-jian-docker-jing-xiang/">https://jason-qianhao.github.io/2023/08/09/springboot-ying-yong-gou-jian-docker-jing-xiang/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -918,6 +668,10 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
+                            
+                                <a href="/tags/Springboot/">
+                                    <span class="chip bg-color">Springboot</span>
+                                </a>
                             
                                 <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">
                                     <span class="chip bg-color">系统运维</span>
@@ -1357,16 +1111,17 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/12/01/yi-xie-xiao-si-kao-he-ji/">
+                <a href="/2023/08/09/springboot-ying-yong-gou-jian-docker-jing-xiang/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/wallhaven-nzd9jg.jpg" class="responsive-img" alt="一些小思考合集">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Springboot应用构建docker镜像">
                         
-                        <span class="card-title">一些小思考合集</span>
+                        <span class="card-title">Springboot应用构建docker镜像</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1376,26 +1131,35 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-01
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E9%9A%8F%E7%AC%94/" class="post-category">
-                                    随笔
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    系统运维
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E9%9A%8F%E7%AC%94/">
-                        <span class="chip bg-color">随笔</span>
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">系统运维</span>
+                    </a>
+                    
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>
@@ -1409,12 +1173,12 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/28/niu-ke-sql-ti-hui-zong/">
+                <a href="/2023/07/30/docker-de-ji-ben-shi-yong/">
                     <div class="card-image">
                         
-                        <img src="http://jason-qianhao.xyz/banner/43.jpg" class="responsive-img" alt="牛客网SQL题汇总">
+                        <img src="/medias/featureimages/39.jpg" class="responsive-img" alt="Docker的安装和基本使用">
                         
-                        <span class="card-title">牛客网SQL题汇总</span>
+                        <span class="card-title">Docker的安装和基本使用</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1425,14 +1189,14 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-28
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
-                                    数据库
+                            <a href="/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" class="post-category">
+                                    系统运维
                                 </a>
                             
                             
@@ -1442,12 +1206,12 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">
-                        <span class="chip bg-color">数据库</span>
+                    <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">
+                        <span class="chip bg-color">系统运维</span>
                     </a>
                     
-                    <a href="/tags/SQL/">
-                        <span class="chip bg-color">SQL</span>
+                    <a href="/tags/Docker/">
+                        <span class="chip bg-color">Docker</span>
                     </a>
                     
                 </div>
@@ -1596,7 +1360,7 @@ nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></spa
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">583.7k</span>&nbsp;字
+                class="white-color">584.9k</span>&nbsp;字
             
             
             

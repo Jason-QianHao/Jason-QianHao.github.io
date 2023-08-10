@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Docker的基本使用, 小小千千 Blog">
+    <meta name="keywords" content="Docker的安装和基本使用, 小小千千 Blog">
     <meta name="description" content="心怀梦想 不惧前行">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Docker的基本使用 | 小小千千 Blog</title>
+    <title>Docker的安装和基本使用 | 小小千千 Blog</title>
     <link rel="icon" type="image/png" href="/medias/logo-jiagou.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -293,7 +293,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Docker的基本使用</h1>
+                    <h1 class="description center-align post-title">Docker的安装和基本使用</h1>
                 </div>
             </div>
         </div>
@@ -447,14 +447,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.9k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    9 分
                 </div>
                 
 
@@ -482,14 +482,165 @@
 <p>目录</p>
 <ol>
 <li>MacOS安装Docker</li>
+<li>Linux安装Docker</li>
+<li>Docker部署Nginx实践</li>
 <li>Docker的常用命令</li>
 </ol>
 <p>参考</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/docker-image-usage.html">https://www.runoob.com/docker/docker-image-usage.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.runoob.com/docker/macos-docker-install.html">https://www.runoob.com/docker/macos-docker-install.html</a></li>
 </ul>
 </blockquote>
-<h1 id="MacOS安装Docker"><a href="#MacOS安装Docker" class="headerlink" title="MacOS安装Docker"></a>MacOS安装Docker</h1><h1 id="Docker的常用命令"><a href="#Docker的常用命令" class="headerlink" title="Docker的常用命令"></a>Docker的常用命令</h1><h2 id="查找镜像-docker-search"><a href="#查找镜像-docker-search" class="headerlink" title="查找镜像 docker search"></a>查找镜像 docker search</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$  docker search httpd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="MacOS安装Docker"><a href="#MacOS安装Docker" class="headerlink" title="MacOS安装Docker"></a>MacOS安装Docker</h1><ul>
+<li><p>通过homebrew安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">brew install --cask --appdir&#x3D;&#x2F;Users&#x2F;qianhao&#x2F;Applications&#x2F;Docker docker<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>手动下载</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://docs.docker.com/get-docker/">https://docs.docker.com/get-docker/</a></p>
+</li>
+</ul>
+<h1 id="Linux安装Docker"><a href="#Linux安装Docker" class="headerlink" title="Linux安装Docker"></a>Linux安装Docker</h1><ol>
+<li><strong>查看当前的内核版本</strong></li>
+</ol>
+<p>Linux 内核：官方建议 3.10 以上，3.8以上貌似也可。</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">uname <span class="token operator">-</span>r<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li><strong>使用 root 权限更新 yum 包</strong></li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum <span class="token operator">-</span>y update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p>这个命令不是必须执行的，看个人情况，后面出现不兼容的情况的话就必须update了</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">注意 
+yum <span class="token operator">-</span>y update：升级所有包同时也升级软件和系统内核； 
+yum <span class="token operator">-</span>y upgrade：只升级所有包，不升级软件和系统内核<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<ol start="3">
+<li><strong>卸载旧版本（如果之前安装过的话）</strong></li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum remove docker  docker<span class="token operator">-</span>common docker<span class="token operator">-</span>selinux docker<span class="token operator">-</span>engine<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="4">
+<li><p><strong>安装需要的软件包， yum-util 提供yum-config-manager功能，另两个是devicemapper驱动依赖</strong></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum install <span class="token operator">-</span>y yum<span class="token operator">-</span>utils device<span class="token operator">-</span>mapper<span class="token operator">-</span>persistent<span class="token operator">-</span>data lvm2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>查看可用版本有哪些</p>
+</li>
+</ol>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum list docker<span class="token operator">-</span>ce <span class="token operator">--</span>showduplicates <span class="token operator">|</span> sort <span class="token operator">-</span>r<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="6">
+<li><p>选择一个版本并安装：<code>yum install docker-ce-版本号</code></p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">yum <span class="token operator">-</span>y install docker<span class="token operator">-</span>ce<span class="token operator">-</span><span class="token number">18.03</span><span class="token number">.1</span><span class="token punctuation">.</span>ce<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre></li>
+<li><p>启动 Docker 并设置开机自启</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">systemctl start docker
+systemctl enable docker<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre></li>
+</ol>
+<h1 id="Docker部署Nginx实践"><a href="#Docker部署Nginx实践" class="headerlink" title="Docker部署Nginx实践"></a>Docker部署Nginx实践</h1><ol>
+<li>拉取nginx镜像</li>
+</ol>
+<p>默认最新版本latest</p>
+<pre class="line-numbers language-none"><code class="language-none">docker pull nginx<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ol start="2">
+<li>在宿主机中设置挂在目录</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">mkdir -p &#x2F;data&#x2F;nginx&#x2F;&#123;conf,conf.d,html,log&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<p><img src="http://jason-qianhao.xyz/image-20211130162322421.png" alt="image-20211130162322421"></p>
+<ol start="3">
+<li>配置文件放置挂在目录</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">#user www-data;
+worker_processes auto;
+#pid &#x2F;run&#x2F;nginx.pid;
+
+events &#123;
+        worker_connections 768;
+        # multi_accept on;
+&#125;
+
+http &#123;
+
+        ##
+        # Basic Settings
+        ##
+
+        sendfile on;
+        tcp_nopush on;
+        tcp_nodelay on;
+        keepalive_timeout 65;
+        types_hash_max_size 2048;
+        # server_tokens off;
+
+        # server_names_hash_bucket_size 64;
+        # server_name_in_redirect off;
+
+        include &#x2F;etc&#x2F;nginx&#x2F;mime.types;
+        default_type application&#x2F;octet-stream;
+
+        ##
+        # SSL Settings
+        ##
+
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+        ssl_prefer_server_ciphers on;
+
+        ##
+        # Logging Settings
+        ##
+
+        access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;access.log;
+        error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;error.log;
+
+        ##
+        # Gzip Settings
+        ##
+
+        gzip on;
+        gzip_disable &quot;msie6&quot;;
+
+        # gzip_vary on;
+        # gzip_proxied any;
+        # gzip_comp_level 6;
+        # gzip_buffers 16 8k;
+        # gzip_http_version 1.1;
+        # gzip_types text&#x2F;plain text&#x2F;css application&#x2F;json application&#x2F;javascript text&#x2F;xml application&#x2F;xml application&#x2F;xml+rss text&#x2F;javascript;
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        include &#x2F;etc&#x2F;nginx&#x2F;conf.d&#x2F;*.conf;
+        include &#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;*;
+
+        server&#123;
+                listen 80;
+                server_name your_server_name;   #你的serverName
+                root &#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html;
+                index index.html;
+        &#125;
+
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ol start="4">
+<li>启动nginx容器</li>
+</ol>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">docker run 
+--name my_nginx
+-d -p 80:80  
+-v &#x2F;data&#x2F;nginx&#x2F;conf&#x2F;nginx.conf:&#x2F;etc&#x2F;nginx&#x2F;nginx.conf 
+-v &#x2F;data&#x2F;nginx&#x2F;log:&#x2F;var&#x2F;log&#x2F;nginx 
+-v &#x2F;data&#x2F;nginx&#x2F;html:&#x2F;usr&#x2F;share&#x2F;nginx&#x2F;html
+nginx<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<p>第一个-v：挂载nginx的主配置文件，以方便在宿主机上直接修改容器的配置文件</p>
+<p>第二个-v：挂载容器内nginx的日志，容器运行起来之后，可以直接在宿主机的这个目录中查看nginx日志</p>
+<p>第三个-v：挂载静态页面目录</p>
+<ol start="5">
+<li>效果如下：</li>
+</ol>
+<p><img src="http://jason-qianhao.xyz/image-20211130163158525.png" alt="image-20211130163158525"></p>
+<h1 id="Docker的常用命令"><a href="#Docker的常用命令" class="headerlink" title="Docker的常用命令"></a>Docker的常用命令</h1><h2 id="查找镜像-docker-search"><a href="#查找镜像-docker-search" class="headerlink" title="查找镜像 docker search"></a>查找镜像 docker search</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$  docker search httpd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h2 id="获取镜像-docker-pull"><a href="#获取镜像-docker-pull" class="headerlink" title="获取镜像 docker pull"></a>获取镜像 docker pull</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ docker pull ubuntu
 $ docker pull ubuntu:15.10<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -505,6 +656,13 @@ ubuntu              15.10               4e3b13c8a266        4 weeks ago         
 hello-world         latest              690ed74de00f        6 months ago        960 B
 training&#x2F;webapp     latest              6fae60ef3446        11 months ago       348.8 MB<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
+<h2 id="镜像重命名标签-docker-tag"><a href="#镜像重命名标签-docker-tag" class="headerlink" title="镜像重命名标签 docker tag"></a>镜像重命名标签 docker tag</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ docker tag 860c279d2fec runoob&#x2F;centos:dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+<ul>
+<li><code>860c279d2fec</code>是镜像ID</li>
+<li><code>runoob/centos</code>是目标REPOSITORY</li>
+<li><code>dev</code>是目标标签</li>
+</ul>
 <h2 id="删除镜像-docker-rmi"><a href="#删除镜像-docker-rmi" class="headerlink" title="删除镜像 docker rmi"></a>删除镜像 docker rmi</h2><p>删除 hello-world 镜像</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ docker rmi hello-world<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
@@ -1157,17 +1315,16 @@ CONTAINER ID        IMAGE                  COMMAND              ...
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2023/07/30/docker-de-ji-ben-shi-yong/">
+                <a href="/2023/08/09/springboot-ying-yong-gou-jian-docker-jing-xiang/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/39.jpg" class="responsive-img" alt="Docker的基本使用">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="Springboot应用构建docker镜像">
                         
-                        <span class="card-title">Docker的基本使用</span>
+                        <span class="card-title">Springboot应用构建docker镜像</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -1177,9 +1334,9 @@ CONTAINER ID        IMAGE                  COMMAND              ...
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-07-30
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2023-08-09
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1192,9 +1349,12 @@ CONTAINER ID        IMAGE                  COMMAND              ...
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
+                    
+                    <a href="/tags/Springboot/">
+                        <span class="chip bg-color">Springboot</span>
+                    </a>
                     
                     <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/">
                         <span class="chip bg-color">系统运维</span>
@@ -1398,7 +1558,7 @@ CONTAINER ID        IMAGE                  COMMAND              ...
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">583.7k</span>&nbsp;字
+                class="white-color">584.9k</span>&nbsp;字
             
             
             
