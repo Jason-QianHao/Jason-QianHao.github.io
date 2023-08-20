@@ -434,7 +434,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2023-08-19
+                    2023-08-20
                 </div>
                 
 
@@ -443,14 +443,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    30
+                    932
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -482,7 +482,65 @@
 <li>双活架构和负载均衡</li>
 </ol>
 </blockquote>
-<p>待续。。。</p>
+<p>在分布式部署下，应用集群部署，流量进行负载均衡。</p>
+<ul>
+<li>应用集群是怎么进行部署的？</li>
+<li>流量是怎么分发到各个集群的</li>
+<li>如果应用集群中的一个实例挂了，怎么进行流量转发？怎么做高保</li>
+</ul>
+<h1 id="蚂蚁的LDC架构"><a href="#蚂蚁的LDC架构" class="headerlink" title="蚂蚁的LDC架构"></a>蚂蚁的LDC架构</h1><h2 id="部署架构图"><a href="#部署架构图" class="headerlink" title="部署架构图"></a>部署架构图</h2><img src="http://jason-qianhao.xyz/2023/202308201944968.jpg" style="zoom:67%;" />
+
+<h2 id="几个概念"><a href="#几个概念" class="headerlink" title="几个概念"></a>几个概念</h2><ul>
+<li>IDC：物理机房。通常有服务部署的城市，会有多个机房</li>
+<li>LDC：逻辑机房，物理机房的一部分机器的集合</li>
+<li>Zone的划分<ul>
+<li>RZone，是SOA化下，能提供完整应用服务的集群机器的集合。每个RZone集群只报错本Zone的用户数据，<strong>不同RZone间数据隔离</strong>（<strong>服务单元化</strong>）。</li>
+<li>CZone，在IDC机房下，可能会存在一个CZone集群，存储<strong>该IDC下的共享数据</strong>。</li>
+<li>GZone，有些IDC机房下，会有一个GZone集群，存储了<strong>所有应用集群可以共享的数据</strong>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="LDC流量分发原则"><a href="#LDC流量分发原则" class="headerlink" title="LDC流量分发原则"></a>LDC流量分发原则</h2><ol>
+<li>同城流量优先访问本地机房集群</li>
+<li>RZone的流量按照用户UID进行路由，一般一个用户都会路由到对应城市的同一个RZone集群</li>
+<li>RZone优先访问自己城市的CZone，尽量避免跨城访问CZone</li>
+<li>每个Zone的机器间，进行流量负载均衡</li>
+</ol>
+<h2 id="集群数据一致性"><a href="#集群数据一致性" class="headerlink" title="集群数据一致性"></a>集群数据一致性</h2><ul>
+<li>RZone不存在数据一致性问题，设计本身就是进行数据隔离，每个RZone内部做容灾处理</li>
+<li>CZone之间有时候会做数据同步。比如进行某个人的交易情况查询，数据服务是CZone部署的，在长时间段，这个人的数据可能分布在不同的CZone里面，如果不做数据同步，在进行数据查询的时候，会存在数据缺失问题。</li>
+</ul>
+<h1 id="双城四机房高保系统架构"><a href="#双城四机房高保系统架构" class="headerlink" title="双城四机房高保系统架构"></a>双城四机房高保系统架构</h1><img src="http://jason-qianhao.xyz/2023/202308202010449.jpg" alt="双城四机房部署" style="zoom:67%;" />
+
+<p>基于上述LDC架构，我们在设计一个CZone服务的可用性的时候，需要考虑</p>
+<ul>
+<li><p>需要在几个城市部署？</p>
+<p>通常公司会在几个主要城市部署机器，但是我们的CZone服务可能没有那么多资源在每个机房去部署，所以通常两个主要城市部署会承担大部分流量。比如北部和南部各选一个主要城市部署</p>
+</li>
+<li><p>同一个城市怎么部署</p>
+<p>同一个城市，同城不会只部署一个机房，为了容灾会有多个机房。那我们的CZone服务在通常会部署在2个机房，进行容灾。</p>
+</li>
+</ul>
+<p>基于上述两点考虑，就会有常见的<strong>双城四机房高保系统架构</strong>。</p>
+<ol>
+<li>低耗时。同城流量优先访问本城市流量</li>
+<li>高可用。同城的2个机房遵从主从架构。主机房承担流量，同时将数据同步至备机房。主机房挂了，可以切换至备机房提供服务。如果资源不够，2个机房也可以不使用主从架构，直接进行负载均衡流量。</li>
+</ol>
+<h1 id="双活架构和负载均衡"><a href="#双活架构和负载均衡" class="headerlink" title="双活架构和负载均衡"></a>双活架构和负载均衡</h1><p>首先得区分这两个概念</p>
+<ul>
+<li>双活。就是平常说的主从架构。一主一丛。<ul>
+<li>主节点和备节点，资源相当，理论上是<strong>1:1</strong></li>
+<li>主节点挂了，直接启用备节点。</li>
+<li><strong>主节点和备节点要保持数据一致性</strong>。</li>
+<li>主节点和备节点内部的机器，遵从流量负载均衡</li>
+</ul>
+</li>
+<li>负载均衡。就没有主备说法<ul>
+<li>每个服务器都提供服务，承担流量</li>
+<li>如果一个服务器挂了，或一个节点挂了，流量会负载到其他服务器。</li>
+</ul>
+</li>
+</ul>
 
                 
             </div>
@@ -509,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://jason-qianhao.github.io/2023/08/19/xi-tong-gao-ke-yong-bu-shu/">https://jason-qianhao.github.io/2023/08/19/xi-tong-gao-ke-yong-bu-shu/</a>
+                    <a href="https://jason-qianhao.github.io/2023/08/20/xi-tong-gao-ke-yong-bu-shu/">https://jason-qianhao.github.io/2023/08/20/xi-tong-gao-ke-yong-bu-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -986,7 +1044,7 @@
                 <i class="far fa-dot-circle"></i>&nbsp;本篇
             </div>
             <div class="card">
-                <a href="/2023/08/19/xi-tong-gao-ke-yong-bu-shu/">
+                <a href="/2023/08/20/xi-tong-gao-ke-yong-bu-shu/">
                     <div class="card-image">
                         
                         <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="系统高可用部署">
@@ -1002,7 +1060,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2023-08-20
                             </span>
                         <span class="publish-author">
                             
@@ -1226,7 +1284,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">585.8k</span>&nbsp;字
+                class="white-color">586.7k</span>&nbsp;字
             
             
             
